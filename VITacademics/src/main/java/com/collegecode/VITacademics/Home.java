@@ -2,6 +2,7 @@ package com.collegecode.VITacademics;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,9 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 
 import com.collegecode.adapters.DrawerListAdapter;
 import com.collegecode.fragments.NowFragment;
+import com.collegecode.fragments.SettingsFragment;
+import com.collegecode.objects.DataHandler;
 
 /**
  * Created by saurabh on 4/22/14.
@@ -86,13 +90,44 @@ public class Home extends ActionBarActivity {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
-            selectItem(position);
+            // Highlight the selected item, update the title, and close the drawer
+            mDrawerList.setItemChecked(position, true);
+            setTitle(titles[position]);
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            final int pos = position;
+            //Use Handler to avoid lag in the transaction
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    selectItem(pos);
+                }
+            }, 200);
+
+        }
+    }
+
+    //Radio Button in Settings Fragment Callback
+    public void onRadioButtonClicked(View view) {
+        DataHandler dat = new DataHandler(this);
+        boolean checked = ((RadioButton) view).isChecked();
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioChen:
+                if (checked)
+                    dat.saveCampus(false);
+                    break;
+            case R.id.radioVel:
+                if (checked)
+                    dat.saveCampus(true);
+                    break;
         }
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
@@ -109,20 +144,18 @@ public class Home extends ActionBarActivity {
         switch(position){
             case 0:
                 fragment = new NowFragment();
-                ft.replace(R.id.content_frame, fragment);
                 break;
+            case 4:
+                fragment = new SettingsFragment();
+                break;
+
             default:
                 fragment = new NowFragment();
                 ft.replace(R.id.content_frame, fragment);
 
         }
+        ft.replace(R.id.content_frame, fragment);
         ft.commit();
-
-
-        // Highlight the selected item, update the title, and close the drawer
-        mDrawerList.setItemChecked(position, true);
-        setTitle(titles[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     @Override

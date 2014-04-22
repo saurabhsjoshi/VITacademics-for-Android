@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/lbl_settings_regno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Registration Number"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Black"
+            app:typeface="roboto_light" />
+
+        <EditText
+            android:id="@+id/txt_settings_regno"
+            android:layout_width="wrap_content"
+            android:maxLength="12"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_settings_regno"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:ems="10"
+            android:hint="Eg.11BCE0354"
+            android:inputType="textCapCharacters" />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/lbl_settings_dob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_settings_regno"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Date of Birth"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Black"
+            app:typeface="roboto_light" />
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lbl_settings_dob"
+            android:layout_centerHorizontal="true"
+            android:calendarViewShown="false"
+            android:keepScreenOn="true"
+            android:endYear="2015"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/lbl_settings_campus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datePicker"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="Select your campus"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/Black"
+            app:typeface="roboto_light" />
+
+        <RadioGroup
+            android:id="@+id/radioCol"
+            android:layout_below="@id/lbl_settings_campus"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radioVel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vellore"
+                android:onClick="onRadioButtonClicked"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioChen"
+                android:layout_marginLeft="5dp"
+                android:onClick="onRadioButtonClicked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chennai" />
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+</ScrollView>

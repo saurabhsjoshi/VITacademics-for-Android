@@ -47,7 +47,7 @@ public class VITxAPI {
 
     private void setUrls(){
         String REG_NO = dat.getRegNo();
-        String DOB = dat.getDOB();
+        String DOB = dat.getDOBString();
 
         if(dat.isVellore()){
             CAPTCHA_URL = "http://vitacademicsrel.appspot.com/captcha/" + REG_NO;
@@ -109,7 +109,6 @@ public class VITxAPI {
         protected void onPostExecute(Bitmap result){
             listner.onTaskCompleted(e, result);
         }
-
     }
 
     private class loadAttendanceWithRegistrationNumber_Async extends AsyncTask<Void,Void,Void>{

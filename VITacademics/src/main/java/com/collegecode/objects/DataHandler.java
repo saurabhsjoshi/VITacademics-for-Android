@@ -17,9 +17,10 @@ public class DataHandler {
     }
 
     private void saveString(String key, String string){
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(key, string);
-        editor.commit();
+        preferences.edit().putString(key, string).commit();
+    }
+    private void saveInt(String key, int num){
+        preferences.edit().putInt(key, num).commit();
     }
 
     public void saveJSON(String jsonInput){
@@ -35,15 +36,18 @@ public class DataHandler {
         saveString("TIMETABLEJSON", tt);
     }
 
+    public void saveRegNo(String regno){ saveString("REGNO", regno);}
+
+    public void saveDob(int[] dob){for(int i = 0; i < 3; i++) saveInt("DOB"+i, dob[i]);}
+
+    public void saveCampus(Boolean isVellore){preferences.edit().putBoolean("isVellore",isVellore).commit();}
+
     public String getRegNo(){
-        return "11BEC0262";
+        return preferences.getString("REGNO", "");
     }
 
-    public String getDOB(){
-        return "19091992";
+    public int[] getDOB(){int[] dob = new int[3]; for(int i = 0; i < 3; i++)dob[i] = preferences.getInt("DOB"+i, 0); return dob;
     }
-
-    public boolean isVellore(){
-        return true;
-    }
+    public String getDOBString(){int[] dob = getDOB(); return Integer.toString(dob[0]) + Integer.toString(dob[1]) + Integer.toString(dob[2]);}
+    public boolean isVellore(){return preferences.getBoolean("isVellore", true);}
 }
