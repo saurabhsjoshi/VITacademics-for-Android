@@ -20,6 +20,7 @@ import com.collegecode.objects.DataHandler;
 public class SettingsFragment extends Fragment{
     DataHandler dat;
     DatePicker.OnDateChangedListener datechanged;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

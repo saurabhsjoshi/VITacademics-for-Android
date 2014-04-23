@@ -84,6 +84,7 @@ public class Home extends ActionBarActivity {
         //Set listner for actionbar drawer click
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        selectItem(0);
 
     }
 
@@ -94,18 +95,21 @@ public class Home extends ActionBarActivity {
             mDrawerList.setItemChecked(position, true);
             setTitle(titles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
-
-            final int pos = position;
             //Use Handler to avoid lag in the transaction
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    selectItem(pos);
-                }
-            }, 200);
-
+            selectItem(position);
         }
     }
+
+    private void selectItem(final int position){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                selectItem_Async(position);
+            }
+        }, 200);
+    }
+
+
 
     //Radio Button in Settings Fragment Callback
     public void onRadioButtonClicked(View view) {
@@ -132,7 +136,7 @@ public class Home extends ActionBarActivity {
     }
 
     /** Swaps fragments in the main content view */
-    private void selectItem(int position) {
+    private void selectItem_Async(int position) {
         // Create a new fragment and specify the planet to show based on position
         //Bundle args = new Bundle();
         //args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
