@@ -106,7 +106,7 @@ public class Home extends ActionBarActivity {
             public void run() {
                 selectItem_Async(position);
             }
-        }, 200);
+        }, 250);
     }
 
 

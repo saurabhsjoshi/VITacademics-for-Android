@@ -65,6 +65,9 @@ public class VITxAPI {
         new loadAttendanceWithRegistrationNumber_Async().execute();
     }
 
+    public void CaptchaLessLoad(){
+        new loadCaptchatBitmap_Async().execute();}
+
     public void loadCaptchaBitmap(){
         new loadCaptchatBitmap_Async().execute();
     }
@@ -73,6 +76,21 @@ public class VITxAPI {
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(url);
         return client.execute(request);
+    }
+
+    private class captchaLessLoad_Async extends AsyncTask<Void,Void,Void>{
+        Exception e = null;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+
+            }catch (Exception e1){e = e1;}
+            return null;
+        }
+
+        protected void onPostExecute(Void voids){
+            listner.onTaskCompleted(e, "Done");
+        }
     }
 
     private class loadCaptchatBitmap_Async extends AsyncTask<Void,Void,Bitmap>{
