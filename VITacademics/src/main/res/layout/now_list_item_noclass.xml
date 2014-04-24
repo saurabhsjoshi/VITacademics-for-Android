@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id = "@+id/now_item_img_noclass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src = "@drawable/flag"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        />
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height = "wrap_content"
+        android:layout_width = "wrap_content"
+        android:singleLine="true"
+        android:text="No class right now!"
+        app:typeface="roboto_light"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/now_item_img_noclass"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

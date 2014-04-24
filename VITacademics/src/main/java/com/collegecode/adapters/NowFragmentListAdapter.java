@@ -26,6 +26,7 @@ public class NowFragmentListAdapter extends ArrayAdapter<NowItem> {
     public int getViewTypeCount() {
         return NowType.values().length;
     }
+
     @Override
     public int getItemViewType(int position) {
         return getItem(position).getViewType();

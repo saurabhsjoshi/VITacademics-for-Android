@@ -14,6 +14,7 @@ import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.NowListFiles.NowItem;
 import com.collegecode.objects.NowListFiles.NowListHeader;
 import com.collegecode.objects.NowListFiles.NowListItem;
+import com.collegecode.objects.NowListFiles.NowListNoClass;
 import com.collegecode.objects.Subject;
 
 import java.util.ArrayList;
@@ -57,7 +58,8 @@ public class NowFragment extends Fragment {
         temp.slot = "T1";
 
         subs.add(new NowListHeader("RIGHT NOW"));
-        subs.add(new NowListItem(temp));
+        subs.add(new NowListNoClass());
+        //subs.add(new NowListItem(temp));
 
         subs.add(new NowListHeader("TODAY"));
         subs.add(new NowListItem(temp));
