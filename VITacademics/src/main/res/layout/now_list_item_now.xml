@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card_bg_r4"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.devspark.robototextview.widget.RobotoTextView
@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:textSize="41dp"
-        android:layout_marginLeft="2dp"
+        android:layout_marginLeft="5dp"
         android:textColor="@color/Gray"
         android:ellipsize="end"
         app:typeface="roboto_thin"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -62,7 +62,7 @@
         android:ellipsize="end"
         android:singleLine="true"
         android:layout_marginBottom="2dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginRight="10dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/lbl_now_slot"
         android:layout_below="@id/lbl_now_subject"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="2dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

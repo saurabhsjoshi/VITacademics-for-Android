@@ -6,9 +6,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.collegecode.VITacademics.R;
+import com.collegecode.adapters.NowFragmentListAdapter;
 import com.collegecode.objects.DataHandler;
+import com.collegecode.objects.NowListFiles.NowItem;
+import com.collegecode.objects.NowListFiles.NowListHeader;
+import com.collegecode.objects.NowListFiles.NowListItem;
+import com.collegecode.objects.Subject;
+
+import java.util.ArrayList;
 
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
@@ -42,6 +50,22 @@ public class NowFragment extends Fragment {
         // Finally commit the setup to our PullToRefreshLayout
                 .setup(mPullToRefreshLayout);
 
+        ArrayList<NowItem> subs = new ArrayList<NowItem>();
+
+        Subject temp = new Subject();
+        temp.title = "Test Subject Name";
+        temp.slot = "T1";
+
+        subs.add(new NowListHeader("RIGHT NOW"));
+        subs.add(new NowListItem(temp));
+
+        subs.add(new NowListHeader("TODAY"));
+        subs.add(new NowListItem(temp));
+        subs.add(new NowListItem(temp));
+        subs.add(new NowListItem(temp));
+
+        ListView mainList = (ListView) v.findViewById(R.id.list_now);
+        mainList.setAdapter(new NowFragmentListAdapter(getActivity(), subs));
         return v;
     }
 }
