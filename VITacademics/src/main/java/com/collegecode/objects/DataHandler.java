@@ -46,8 +46,11 @@ public class DataHandler {
         return preferences.getString("REGNO", "");
     }
 
-    public int[] getDOB(){int[] dob = new int[3]; for(int i = 0; i < 3; i++)dob[i] = preferences.getInt("DOB"+i, 0); return dob;
-    }
+    public int[] getDOB(){int[] dob = new int[3]; for(int i = 0; i < 3; i++)dob[i] = preferences.getInt("DOB"+i, 0); return dob;}
+
     public String getDOBString(){int[] dob = getDOB(); return Integer.toString(dob[0]) + Integer.toString(dob[1]) + Integer.toString(dob[2]);}
+
     public boolean isVellore(){return preferences.getBoolean("isVellore", true);}
+
+    public String getTimeTable(){return preferences.getString("TIMETABLEJSON", "");}
 }
