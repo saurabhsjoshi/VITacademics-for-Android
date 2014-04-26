@@ -9,6 +9,7 @@ public class TTSlot{
     public Calendar frm_time;
     public Calendar to_time;
     public String slt, clsnbr;
+    public String venue;
     public boolean isLab = false;
 
     public TTSlot(String slt , String clsnbr) {
