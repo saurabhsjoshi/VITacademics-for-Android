@@ -53,13 +53,20 @@ public class DataHandler {
 
     public int[] getDOB(){int[] dob = new int[3]; for(int i = 0; i < 3; i++)dob[i] = preferences.getInt("DOB"+i, 0); return dob;}
 
-    public String getDOBString(){int[] dob = getDOB(); return Integer.toString(dob[0]) + Integer.toString(dob[1]) + Integer.toString(dob[2]);}
+    public String getDOBString(){int[] dob = getDOB(); return check_dob(dob[0]) + check_dob(dob[1] + 1) + Integer.toString(dob[2]);}
 
     public boolean isVellore(){return preferences.getBoolean("isVellore", true);}
 
     public String getJSON(){return preferences.getString("ATTENDANCEJSON","");}
 
     public String getTimeTable(){return  temp_TT;}//return preferences.getString("TIMETABLEJSON", ""); }
+
+    private String check_dob(int num){
+        String t = Integer.toString(num);
+        if(t.length() == 1)
+            t = "0"+t;
+        return t;
+    }
 
     public Subject getSubject(String clsnbr){
         Subject att = new Subject();

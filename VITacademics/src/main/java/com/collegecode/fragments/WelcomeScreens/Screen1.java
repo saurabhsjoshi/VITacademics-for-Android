@@ -35,6 +35,7 @@ public class Screen1 extends Fragment {
         return view;
     }
 
+    //Prevents crash due to bug in Android
     @Override
     public void onSaveInstanceState( Bundle outState ) {}
 }

@@ -13,6 +13,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -29,6 +30,7 @@ public class VITxAPI {
     private DataHandler dat;
 
     private String CAPTCHA_URL;
+    private String CAPTCHALESS_URL;
     private String CAPTCHASUB_URL;
     private String ATTENDANCE_URL;
 
@@ -50,11 +52,13 @@ public class VITxAPI {
         String DOB = dat.getDOBString();
 
         if(dat.isVellore()){
+            CAPTCHALESS_URL = "http://www.vitacademicsrel.appspot.com/captchaless/" + REG_NO + "/" + DOB;
             CAPTCHA_URL = "http://vitacademicsrel.appspot.com/captcha/" + REG_NO;
             CAPTCHASUB_URL = "http://vitacademicsrel.appspot.com/captchasub/" + REG_NO + "/" + DOB;
             ATTENDANCE_URL = "http://vitacademicsrel.appspot.com/attj/" + REG_NO + "/" + DOB;
         }
         else{
+            CAPTCHALESS_URL = "http://www.vitacademicsrelc.appspot.com/captchaless/" + REG_NO + "/" + DOB;
             CAPTCHA_URL = "http://vitacademicsrelc.appspot.com/captcha/" + REG_NO;
             CAPTCHASUB_URL = "http://vitacademicsrelc.appspot.com/captchasub/" + REG_NO + "/" + DOB;
             ATTENDANCE_URL = "http://vitacademicsrelc.appspot.com/attj/" + REG_NO + "/" + DOB;
@@ -66,7 +70,7 @@ public class VITxAPI {
     }
 
     public void CaptchaLessLoad(){
-        new loadCaptchatBitmap_Async().execute();}
+        new captchaLessLoad_Async().execute();}
 
     public void loadCaptchaBitmap(){
         new loadCaptchatBitmap_Async().execute();
@@ -78,12 +82,20 @@ public class VITxAPI {
         return client.execute(request);
     }
 
+
+
     private class captchaLessLoad_Async extends AsyncTask<Void,Void,Void>{
         Exception e = null;
         @Override
         protected Void doInBackground(Void... voids) {
             try {
+                System.out.println(CAPTCHALESS_URL);
+                String result = EntityUtils.toString(getResponse(CAPTCHALESS_URL).getEntity());
 
+                if(result.equals("success"))
+                    return null;
+                else
+                    throw new Exception("Incorrect Credentials. Please try again");
             }catch (Exception e1){e = e1;}
             return null;
         }
