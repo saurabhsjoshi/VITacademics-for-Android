@@ -35,6 +35,7 @@ public class VITxAPI {
     private String TIMETABLE_URL;
     private String CAPTCHASUB_URL;
     private String ATTENDANCE_URL;
+    private String MARKS_URL;
 
 
 
@@ -43,6 +44,10 @@ public class VITxAPI {
         this.listner = listner;
         this.dat = new DataHandler(context);
         setUrls();
+    }
+
+    public void changeListner(OnTaskComplete listner){
+        this.listner = listner;
     }
 
     private void setUrls(){
@@ -55,6 +60,7 @@ public class VITxAPI {
             CAPTCHASUB_URL = "http://vitacademicsrel.appspot.com/captchasub/" + REG_NO + "/" + DOB;
             ATTENDANCE_URL = "http://vitacademicsrel.appspot.com/attj/" + REG_NO + "/" + DOB;
             TIMETABLE_URL = "http://vitacademicstokensystem.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
+            MARKS_URL = "http://www.vitacademicsrel.appspot.com/marks/" + REG_NO + "/" + DOB;
         }
         else{
             CAPTCHALESS_URL = "http://www.vitacademicsrelc.appspot.com/captchaless/" + REG_NO + "/" + DOB;
@@ -62,18 +68,14 @@ public class VITxAPI {
             CAPTCHASUB_URL = "http://vitacademicsrelc.appspot.com/captchasub/" + REG_NO + "/" + DOB;
             ATTENDANCE_URL = "http://vitacademicsrelc.appspot.com/attj/" + REG_NO + "/" + DOB;
             TIMETABLE_URL = "http://vitacademicstokensystemc.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
+            MARKS_URL = "http://www.vitacademicsrelc.appspot.com/marks/" + REG_NO + "/" + DOB;
         }
     }
 
-    public void loadAttendanceWithRegistrationNumber(){
-        new loadAttendanceWithRegistrationNumber_Async().execute();
-    }
-
+    public void loadAttendanceWithRegistrationNumber(){new loadAttendanceWithRegistrationNumber_Async().execute();}
     public void loadTimeTable(){new loadTimTable_Async().execute();}
-
-    public void CaptchaLessLoad(){
-        new captchaLessLoad_Async().execute();}
-
+    public void loadMarks(){new loadMarks_Async().execute();}
+    public void CaptchaLessLoad(){new captchaLessLoad_Async().execute();}
     public void loadCaptchaBitmap(){
         new loadCaptchatBitmap_Async().execute();
     }
@@ -153,6 +155,22 @@ public class VITxAPI {
             return null;
         }
 
+        protected void onPostExecute(Void voids){
+            listner.onTaskCompleted(e, "Done");
+        }
+    }
+
+    private class loadMarks_Async extends AsyncTask<Void,Void,Void>{
+        private Exception e = null;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                String result = EntityUtils.toString(getResponse(MARKS_URL).getEntity());
+                dat.saveMarks(result);
+            }catch (Exception e1){e = e1;}
+            return null;
+        }
         protected void onPostExecute(Void voids){
             listner.onTaskCompleted(e, "Done");
         }

@@ -27,12 +27,14 @@ public class Screen3 extends Fragment {
 
     private boolean ATTENDANCE_LOAD = false;
     private boolean TT_LOAD = false;
+
     VITxAPI api_tt;
     VITxAPI api_att;
 
     private TextView txt_done;
     private Button btn_go;
     private ProgressBar prg;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +52,7 @@ public class Screen3 extends Fragment {
 
         final TextView txt_att = (TextView) view.findViewById(R.id.lbl_att_load);
         final TextView txt_tt = (TextView) view.findViewById(R.id.lbl_tt_load);
-
+        final TextView txt_marks = (TextView) view.findViewById(R.id.lbl_parse_data);
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,10 +67,24 @@ public class Screen3 extends Fragment {
                     onError(e);
                 }
                 else{
-                    ATTENDANCE_LOAD = true;
                     txt_att.setTextColor(Color.parseColor("#008000"));
                     txt_att.setText("Attendance Saved");
-                    checkIfDone();
+
+                    api_att.changeListner(new OnTaskComplete() {
+                        @Override
+                        public void onTaskCompleted(Exception e, Object result) {
+                            if(e!=null)
+                                onError(e);
+                            else {
+                                ATTENDANCE_LOAD = true;
+                                txt_marks.setText("Data Saved");
+                                txt_marks.setTextColor(Color.parseColor("#008000"));
+                                checkIfDone();
+                            }
+                        }
+                    });
+
+                    api_att.loadMarks();
                 }
             }
         });

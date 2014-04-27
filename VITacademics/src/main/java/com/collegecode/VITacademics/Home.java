@@ -20,9 +20,9 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 
 import com.collegecode.adapters.DrawerListAdapter;
+import com.collegecode.fragments.CoursesFragment;
 import com.collegecode.fragments.NowFragment;
 import com.collegecode.fragments.SettingsFragment;
-import com.collegecode.fragments.WelcomeScreens.Screen1;
 import com.collegecode.objects.DataHandler;
 
 /**
@@ -171,7 +171,7 @@ public class Home extends ActionBarActivity {
                 fragment = new NowFragment();
                 break;
             case 1:
-                fragment = new Screen1();
+                fragment = new CoursesFragment();
                 break;
             case 4:
                 fragment = new SettingsFragment();

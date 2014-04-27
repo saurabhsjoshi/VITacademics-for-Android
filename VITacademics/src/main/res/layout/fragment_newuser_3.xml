@@ -38,7 +38,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_fb"
             android:text="Saving Data"
-            android:textColor="@color/green"
+            android:textColor="@color/SkyBlue"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="20dp"
             app:typeface="roboto_thin"/>
