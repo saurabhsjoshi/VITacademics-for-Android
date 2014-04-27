@@ -50,9 +50,12 @@ public class TimeTable{
     /* Returns list of TTSlots for today! */
     public ArrayList<TTSlot> getTT(int Day){
         ArrayList<TTSlot> today = new ArrayList<TTSlot>();
+
+        if(Day == Calendar.SUNDAY || Day == Calendar.SATURDAY)
+            Day = Calendar.MONDAY;
+
         set_day(Day);
         try {
-
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.DAY_OF_WEEK, Day);
 

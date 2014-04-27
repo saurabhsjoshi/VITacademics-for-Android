@@ -2,6 +2,7 @@ package com.collegecode.objects;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 
 import org.json.JSONArray;
@@ -73,19 +74,22 @@ public class DataHandler {
 
         try {
             JSONArray root = new JSONArray(getJSON());
+            //System.out.println(root.toString());
             JSONObject sub;
             String temp;
 
             for(int i = 0; i < root.length(); i++){
                 sub = root.getJSONObject(i);
-                temp = sub.getString("clsnbr");
+                temp = sub.getString("classnbr");
                 if(temp.equals(clsnbr)){
                     att.code = sub.getString("code");
                     att.title = sub.getString("title");
                     att.type = sub.getString("type");
                     att.slot = sub.getString("slot");
+
                     att.attended = Integer.parseInt(sub.getString("attended"));
                     att.conducted = Integer.parseInt(sub.getString("conducted"));
+
                     att.percentage = (int) getPer(att.attended, att.conducted);
 
                     if (getPer(att.attended,att.conducted) > att.percentage)
@@ -101,13 +105,24 @@ public class DataHandler {
         return att;
     }
 
+
+
     public boolean isNewUser(){return preferences.getBoolean("NewUser", true);}
 
     public void setNewUser(boolean bol){preferences.edit().putBoolean("NewUser", bol).commit();}
 
-    static float getPer(int num, int div)
+    public static float getPer(int num, int div)
     {
         return (float)((int)(((float)num/div)*1000))/10;
+    }
+
+    public static int getPerColor(int per){
+        if (per < 80 && per >= 75)
+            return Color.parseColor("#ffa500");
+        else if (per < 75)
+            return Color.parseColor("#ff0000");
+        else
+            return Color.parseColor("#008000");
     }
 
 }

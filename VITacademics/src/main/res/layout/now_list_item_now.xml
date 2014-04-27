@@ -105,6 +105,23 @@
         app:typeface="roboto_light_italic"
         />
 
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/lbl_now_att_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/lbl_now_subject"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="2dp"
+        android:layout_alignBaseline="@id/lbl_now_att_go"
+        android:layout_alignParentBottom="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="80%"
+        android:textColor="@color/green"
+        app:typeface="roboto_light_italic"
+        />
+
 
 
 </RelativeLayout>
