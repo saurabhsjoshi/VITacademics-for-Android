@@ -103,6 +103,8 @@ public class DataHandler {
 
     public boolean isNewUser(){return preferences.getBoolean("NewUser", true);}
 
+    public void setNewUser(boolean bol){preferences.edit().putBoolean("NewUser", bol).commit();}
+
     static float getPer(int num, int div)
     {
         return (float)((int)(((float)num/div)*1000))/10;

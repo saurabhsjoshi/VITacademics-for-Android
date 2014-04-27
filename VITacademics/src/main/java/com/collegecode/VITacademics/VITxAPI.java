@@ -22,6 +22,7 @@ import java.io.InputStream;
 
 /**
  * Created by saurabh on 4/22/14.
+ * File to handle interaction with VITacademics server async
  */
 
 public class VITxAPI {
@@ -31,6 +32,7 @@ public class VITxAPI {
 
     private String CAPTCHA_URL;
     private String CAPTCHALESS_URL;
+    private String TIMETABLE_URL;
     private String CAPTCHASUB_URL;
     private String ATTENDANCE_URL;
 
@@ -43,10 +45,6 @@ public class VITxAPI {
         setUrls();
     }
 
-    public void changeListner(OnTaskComplete listner){
-        this.listner = listner;
-    }
-
     private void setUrls(){
         String REG_NO = dat.getRegNo();
         String DOB = dat.getDOBString();
@@ -56,18 +54,22 @@ public class VITxAPI {
             CAPTCHA_URL = "http://vitacademicsrel.appspot.com/captcha/" + REG_NO;
             CAPTCHASUB_URL = "http://vitacademicsrel.appspot.com/captchasub/" + REG_NO + "/" + DOB;
             ATTENDANCE_URL = "http://vitacademicsrel.appspot.com/attj/" + REG_NO + "/" + DOB;
+            TIMETABLE_URL = "http://vitacademicstokensystem.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
         }
         else{
             CAPTCHALESS_URL = "http://www.vitacademicsrelc.appspot.com/captchaless/" + REG_NO + "/" + DOB;
             CAPTCHA_URL = "http://vitacademicsrelc.appspot.com/captcha/" + REG_NO;
             CAPTCHASUB_URL = "http://vitacademicsrelc.appspot.com/captchasub/" + REG_NO + "/" + DOB;
             ATTENDANCE_URL = "http://vitacademicsrelc.appspot.com/attj/" + REG_NO + "/" + DOB;
+            TIMETABLE_URL = "http://vitacademicstokensystemc.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
         }
     }
 
     public void loadAttendanceWithRegistrationNumber(){
         new loadAttendanceWithRegistrationNumber_Async().execute();
     }
+
+    public void loadTimeTable(){new loadTimTable_Async().execute();}
 
     public void CaptchaLessLoad(){
         new captchaLessLoad_Async().execute();}
@@ -81,8 +83,6 @@ public class VITxAPI {
         HttpGet request = new HttpGet(url);
         return client.execute(request);
     }
-
-
 
     private class captchaLessLoad_Async extends AsyncTask<Void,Void,Void>{
         Exception e = null;
@@ -141,17 +141,40 @@ public class VITxAPI {
         }
     }
 
+    private class loadTimTable_Async extends AsyncTask<Void,Void,Void>{
+        private Exception e = null;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                String result = EntityUtils.toString(getResponse(TIMETABLE_URL).getEntity());
+                dat.saveTimeTable(result);
+            }catch (Exception e1){e = e1;}
+            return null;
+        }
+
+        protected void onPostExecute(Void voids){
+            listner.onTaskCompleted(e, "Done");
+        }
+    }
+
     private class loadAttendanceWithRegistrationNumber_Async extends AsyncTask<Void,Void,Void>{
         private Exception e = null;
 
         @Override
         protected Void doInBackground(Void... voids) {
-
+            try {
+                String result = EntityUtils.toString(getResponse(ATTENDANCE_URL).getEntity());
+                if(result.contains("valid"))
+                    dat.saveJSON(result);
+                else
+                    throw new Exception("Error! Could not load attendance!");
+            }catch (Exception e1){e = e1;}
             return null;
         }
 
         protected void onPostExecute(Void voids){
-            listner.onTaskCompleted(null, "Hello");
+            listner.onTaskCompleted(e, "Done");
         }
     }
 }
