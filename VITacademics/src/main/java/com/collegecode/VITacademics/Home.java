@@ -1,11 +1,13 @@
 package com.collegecode.VITacademics;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.IntentCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -18,6 +20,7 @@ import android.widget.RadioButton;
 import com.collegecode.adapters.DrawerListAdapter;
 import com.collegecode.fragments.NowFragment;
 import com.collegecode.fragments.SettingsFragment;
+import com.collegecode.fragments.WelcomeScreens.Screen1;
 import com.collegecode.objects.DataHandler;
 
 /**
@@ -36,14 +39,26 @@ public class Home extends ActionBarActivity {
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
+    //Check if this activity is alive still
+    private boolean isActive = true;
+
     //Titles
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DataHandler dat = new DataHandler(this);
+
+        //Check if newUser
+        if(dat.isNewUser()) {
+            isActive = false;
+            startActivity(new Intent(this, NewUser.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK));
+            overridePendingTransition(R.anim.enter, R.anim.exit);
+        }
+
         setContentView(R.layout.activity_home);
 
         mTitle = mDrawerTitle = getTitle();
@@ -86,6 +101,8 @@ public class Home extends ActionBarActivity {
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         selectItem(0);
 
+
+
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -104,7 +121,8 @@ public class Home extends ActionBarActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                selectItem_Async(position);
+                if(isActive)
+                    selectItem_Async(position);
             }
         }, 250);
     }
@@ -149,17 +167,19 @@ public class Home extends ActionBarActivity {
             case 0:
                 fragment = new NowFragment();
                 break;
+            case 1:
+                fragment = new Screen1();
+                break;
             case 4:
                 fragment = new SettingsFragment();
                 break;
 
             default:
                 fragment = new NowFragment();
-                ft.replace(R.id.content_frame, fragment);
-
         }
+
         ft.replace(R.id.content_frame, fragment);
-        ft.commit();
+        ft.commitAllowingStateLoss();
     }
 
     @Override

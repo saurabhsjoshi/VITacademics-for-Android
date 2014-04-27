@@ -23,6 +23,7 @@ public class DataHandler {
     private void saveString(String key, String string){
         preferences.edit().putString(key, string).commit();
     }
+
     private void saveInt(String key, int num){
         preferences.edit().putInt(key, num).commit();
     }
@@ -92,6 +93,8 @@ public class DataHandler {
 
         return att;
     }
+
+    public boolean isNewUser(){return preferences.getBoolean("NewUser", true);}
 
     static float getPer(int num, int div)
     {
