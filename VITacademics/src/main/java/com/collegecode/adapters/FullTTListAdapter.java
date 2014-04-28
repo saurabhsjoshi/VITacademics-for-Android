@@ -12,7 +12,9 @@ import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.Subject;
 import com.collegecode.objects.TimeTableFiles.TTSlot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by saurabh on 4/28/14.
@@ -33,12 +35,20 @@ public class FullTTListAdapter extends ArrayAdapter<TTSlot> {
         convertView = mInflater.inflate(R.layout.fulltt_list_item,null);
 
         TTSlot t = getItem(pos);
-        Subject sub = dat.getSubject(t.clsnbr);
+        Subject subject = dat.getSubject(t.clsnbr);
+
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mma", Locale.getDefault());
 
         ((TextView) convertView.findViewById(R.id.lbl_now_slot)).setText(t.slt);
-        ((TextView) convertView.findViewById(R.id.lbl_now_subject)).setText(sub.title);
-        ((TextView) convertView.findViewById(R.id.lbl_now_att_now)).setText("");
+        ((TextView) convertView.findViewById(R.id.lbl_now_subject)).setText(subject.title);
+        ((TextView) convertView.findViewById(R.id.lbl_now_venue)).setText(t.venue);
 
+        TextView lbl_timing = (TextView) convertView.findViewById(R.id.lbl_now_timing);
+        TextView lbl_per = (TextView) convertView.findViewById(R.id.lbl_now_att_now);
+
+        lbl_per.setText("Attendance: "+ subject.percentage + "%");
+        lbl_per.setTextColor(DataHandler.getPerColor(subject.percentage));
+        lbl_timing.setText(timeFormat.format(t.frm_time.getTime()) + " - " + timeFormat.format(t.to_time.getTime()));
         return convertView;
     }
 
