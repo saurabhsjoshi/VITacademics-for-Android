@@ -18,6 +18,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom = "8dp"
         android:ellipsize="end"
+        android:textColor="#000000"
         android:textAppearance = "?android:attr/listSeparatorTextViewStyle"
         app:typeface="roboto_light"
         />
