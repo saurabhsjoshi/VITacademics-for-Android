@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.collegecode.adapters.DrawerListAdapter;
 import com.collegecode.fragments.CoursesFragment;
@@ -177,6 +178,10 @@ public class Home extends ActionBarActivity {
             case 2:
                 fragment = new FullTimeTableFragment();
                 break;
+            case 3:
+                Toast.makeText(this, "Coming Soon!", Toast.LENGTH_SHORT).show();
+                fragment = new SettingsFragment();
+                break;
             case 4:
                 fragment = new SettingsFragment();
                 break;
@@ -184,9 +189,10 @@ public class Home extends ActionBarActivity {
             default:
                 fragment = new NowFragment();
         }
-
-        ft.replace(R.id.content_frame, fragment);
-        ft.commitAllowingStateLoss();
+        if(position!=3){
+            ft.replace(R.id.content_frame, fragment);
+            ft.commitAllowingStateLoss();
+        }
     }
 
     @Override

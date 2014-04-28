@@ -56,7 +56,7 @@ public class NowListItem implements NowItem{
         getMiss(subject.attended, subject.conducted, (TextView) view.findViewById(R.id.lbl_now_att_miss));
 
         lbl_per.setText(subject.percentage + "%");
-        lbl_per.setTextColor(dat.getPerColor(subject.percentage));
+        lbl_per.setTextColor(DataHandler.getPerColor(subject.percentage));
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mma", Locale.getDefault());
         lbl_timing.setText(timeFormat.format(ttSlot.frm_time.getTime()) + " - " + timeFormat.format(ttSlot.to_time.getTime()));

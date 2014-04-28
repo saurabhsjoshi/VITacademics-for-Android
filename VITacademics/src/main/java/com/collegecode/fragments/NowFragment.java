@@ -40,6 +40,7 @@ public class NowFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_now,container, false);
         dat = new DataHandler(getActivity());
         cntx = getActivity();
+
         mPullToRefreshLayout = (PullToRefreshLayout) v.findViewById(R.id.ptr_layout);
 
         OnRefreshListener listener = new OnRefreshListener() {

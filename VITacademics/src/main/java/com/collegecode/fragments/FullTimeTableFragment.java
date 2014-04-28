@@ -51,7 +51,6 @@ public class FullTimeTableFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_timetable,container, false);
         ViewPager pager = (ViewPager)v.findViewById(R.id.timetable_pager);
         pager.setAdapter(new FullTTPagerAdapter(getActivity(), getChildFragmentManager()));

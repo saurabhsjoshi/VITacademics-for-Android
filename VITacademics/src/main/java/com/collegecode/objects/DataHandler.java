@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 /**
  * Created by saurabh on 4/22/14.
  */
@@ -68,12 +70,43 @@ public class DataHandler {
         return t;
     }
 
+    public ArrayList<Subject> getAllSubjects(){
+        ArrayList<Subject> subs = new ArrayList<Subject>();
+        Subject att;
+        try{
+            JSONArray root = new JSONArray(getJSON());
+            JSONObject sub;
+
+            for(int i = 0; i < root.length(); i++){
+                sub = root.getJSONObject(i);
+                att = new Subject();
+                att.code = sub.getString("code");
+                att.title = sub.getString("title");
+                att.type = sub.getString("type");
+                att.slot = sub.getString("slot");
+                att.attended = Integer.parseInt(sub.getString("attended"));
+                att.conducted = Integer.parseInt(sub.getString("conducted"));
+
+                att.percentage = (int) getPer(att.attended, att.conducted);
+
+                if (getPer(att.attended,att.conducted) > att.percentage)
+                    att.percentage += 1;
+
+                att.regdate = sub.getString("regdate");
+                att.classnbr = sub.getString("classnbr");
+                //No need to parse this here
+                att.detailsString = sub.getJSONArray("details").toString();
+                att.putAttendanceDetails();
+                subs.add(att);
+            }
+        }catch (Exception e){e.printStackTrace();}
+        return subs;
+    }
     public Subject getSubject(String clsnbr){
         Subject att = new Subject();
 
         try {
             JSONArray root = new JSONArray(getJSON());
-            //System.out.println(root.toString());
             JSONObject sub;
             String temp;
 
@@ -85,7 +118,6 @@ public class DataHandler {
                     att.title = sub.getString("title");
                     att.type = sub.getString("type");
                     att.slot = sub.getString("slot");
-
                     att.attended = Integer.parseInt(sub.getString("attended"));
                     att.conducted = Integer.parseInt(sub.getString("conducted"));
 
@@ -96,6 +128,8 @@ public class DataHandler {
 
                     att.regdate = sub.getString("regdate");
                     att.classnbr = sub.getString("classnbr");
+                    //No need to parse this here
+                    att.detailsString = sub.getJSONArray("details").toString();
                     break;
                 }
             }
