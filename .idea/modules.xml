@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/VITacademics.iml" filepath="$PROJECT_DIR$/VITacademics.iml" />
       <module fileurl="file://$PROJECT_DIR$/VITacademics/VITacademics-VITacademics.iml" filepath="$PROJECT_DIR$/VITacademics/VITacademics-VITacademics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/facebook/facebook.iml" filepath="$PROJECT_DIR$/facebook/facebook.iml" />
     </modules>
   </component>
 </project>

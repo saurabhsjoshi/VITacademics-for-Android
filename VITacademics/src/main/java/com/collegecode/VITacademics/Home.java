@@ -22,9 +22,9 @@ import android.widget.Toast;
 
 import com.collegecode.adapters.DrawerListAdapter;
 import com.collegecode.fragments.CoursesFragment;
+import com.collegecode.fragments.FullTimeTableFragment;
 import com.collegecode.fragments.NowFragment;
 import com.collegecode.fragments.SettingsFragment;
-import com.collegecode.fragments.FullTimeTableFragment;
 import com.collegecode.objects.DataHandler;
 
 /**
@@ -62,11 +62,10 @@ public class Home extends ActionBarActivity {
             startActivity(new Intent(this, NewUser.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK));
             overridePendingTransition(R.anim.enter, R.anim.exit);
         }
-
+        //Parse.initialize(this, "pslFDPvG2NmCKEW3v20X9QtgOabxtAvsetd3Keq6", "o3g05te1eRhgbc7pUC6bbzFtVypUuHLEauM3x4vY");
         setContentView(R.layout.activity_home);
 
         mTitle = mDrawerTitle = getTitle();
-
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
