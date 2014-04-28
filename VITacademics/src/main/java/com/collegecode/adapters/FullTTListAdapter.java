@@ -21,6 +21,7 @@ public class FullTTListAdapter extends ArrayAdapter<TTSlot> {
     private LayoutInflater mInflater;
     private DataHandler dat;
 
+
     public FullTTListAdapter(Context context, ArrayList<TTSlot> items){
         super(context, 0, items);
         mInflater = LayoutInflater.from(context);
@@ -36,6 +37,10 @@ public class FullTTListAdapter extends ArrayAdapter<TTSlot> {
 
         ((TextView) convertView.findViewById(R.id.lbl_now_slot)).setText(t.slt);
         ((TextView) convertView.findViewById(R.id.lbl_now_subject)).setText(sub.title);
+        ((TextView) convertView.findViewById(R.id.lbl_now_att_now)).setText("");
+
         return convertView;
     }
+
+
 }

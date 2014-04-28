@@ -1,5 +1,6 @@
 package com.collegecode.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,8 +22,10 @@ import java.util.Calendar;
 public class FullTTListFragment extends Fragment{
 
     private int day = 0;
+    Context context;
 
-    public FullTTListFragment(int day){
+    public FullTTListFragment(int day, Context context){
+        this.context = context;
         this.day = day;
     }
 
@@ -31,7 +34,8 @@ public class FullTTListFragment extends Fragment{
         View v = inflater.inflate(R.layout.fragment_fullttlist,container, false);
 
         ListView listView = (ListView) v.findViewById(R.id.list_one_tt);
-        TimeTable timeTable = new TimeTable(getActivity());
+
+        TimeTable timeTable = new TimeTable(context);
 
         ArrayList<TTSlot> ttSlots;
 
@@ -55,7 +59,8 @@ public class FullTTListFragment extends Fragment{
                 ttSlots = timeTable.getTT(Calendar.MONDAY);
                 break;
         }
-        listView.setAdapter(new FullTTListAdapter(getActivity(), ttSlots));
+
+        listView.setAdapter(new FullTTListAdapter(context, ttSlots));
         return v;
     }
 }
