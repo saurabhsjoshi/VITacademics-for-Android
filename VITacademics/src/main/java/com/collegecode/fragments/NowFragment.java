@@ -95,7 +95,7 @@ public class NowFragment extends Fragment {
                     if (temp.compareTo(ttSlots.get(i).frm_time) >= 0 && temp.compareTo(ttSlots.get(i).to_time) < 0){
                         noClass = false;
                         subs.add(new NowListItem(cntx, ttSlots.get(i)));
-                        subs.remove(i);
+                        ttSlots.remove(i);
                         break;
                     }
                 }
