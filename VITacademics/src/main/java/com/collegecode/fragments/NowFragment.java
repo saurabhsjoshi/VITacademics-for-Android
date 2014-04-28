@@ -78,11 +78,14 @@ public class NowFragment extends Fragment {
             TimeTable tt = new TimeTable(cntx);
 
             int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+            boolean not_weekend = true;
 
+            Calendar temp = Calendar.getInstance();
             if(today == Calendar.SUNDAY || today == Calendar.SATURDAY) {
                 subs.add(new NowListNoClass());
                 subs.add(new NowListHeader("ON MONDAY"));
                 today = Calendar.MONDAY;
+                not_weekend = false;
                 ttSlots = tt.getTT(today);
             }
 
@@ -90,7 +93,7 @@ public class NowFragment extends Fragment {
             {
                 ttSlots = tt.getTT(today);
                 boolean noClass = true;
-                Calendar temp = Calendar.getInstance();
+
                 for(int i = 0; i < ttSlots.size(); i++){
                     if (temp.compareTo(ttSlots.get(i).frm_time) >= 0 && temp.compareTo(ttSlots.get(i).to_time) < 0){
                         noClass = false;
@@ -98,13 +101,22 @@ public class NowFragment extends Fragment {
                         ttSlots.remove(i);
                         break;
                     }
+
                 }
+
                 if(noClass)
                     subs.add(new NowListNoClass());
                 subs.add(new NowListHeader("TODAY"));
             }
 
-
+            if(temp.compareTo(ttSlots.get(ttSlots.size()-1).to_time) > 0 && not_weekend)
+            {
+                subs.clear();
+                subs.add(new NowListHeader("DONE FOR THE DAY!"));
+                subs.add(new NowListHeader("TOMORROW"));
+                temp.add(Calendar.DAY_OF_WEEK, 1);
+                ttSlots = tt.getTT(temp.get(Calendar.DAY_OF_WEEK));
+            }
 
             for(int i = 0; i < ttSlots.size(); i++){
                 subs.add(new NowListItem(cntx, ttSlots.get(i)));
