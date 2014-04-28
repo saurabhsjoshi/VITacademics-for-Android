@@ -47,14 +47,16 @@ public class TimeTable{
         }
     }
 
-    /* Returns list of TTSlots for today! */
+    /* Returns list of TTSlots for given Calendar.Day! */
     public ArrayList<TTSlot> getTT(int Day){
         ArrayList<TTSlot> today = new ArrayList<TTSlot>();
 
+        //If Sunday or Monday then show Monday
         if(Day == Calendar.SUNDAY || Day == Calendar.SATURDAY)
             Day = Calendar.MONDAY;
 
         set_day(Day);
+
         try {
             Calendar calendar = Calendar.getInstance();
             calendar.set(Calendar.DAY_OF_WEEK, Day);
@@ -73,17 +75,25 @@ public class TimeTable{
 
                 //Check if user has class now
                 if(json_slts.getInt(i) != 0){
-
                     clsnbr = Integer.toString(json_slts.getInt(i));
+
                     //Get the subject from data handler
                     Subject sub = dat.getSubject(clsnbr);
 
                     //Get the slot for now
                     if(sub.slot.contains("+")){
+                        int tmp;
+
                         //Check if two slots and break
                         String[] parts = sub.slot.split("\\+");
                         for(int j = 0; j < parts.length; j++){
-                            if(slts_today[i].toUpperCase().equals(parts[j])){
+                            //Check if lab and increment accordingly
+                            if(parts[j].charAt(0) == 'L')
+                                tmp = i + 10;
+                            else
+                                tmp = i;
+
+                            if(slts_today[tmp].toUpperCase().equals(parts[j])){
                                 slt = parts[j];
                                 break;
                             }

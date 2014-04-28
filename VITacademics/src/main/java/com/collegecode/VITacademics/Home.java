@@ -23,7 +23,7 @@ import com.collegecode.adapters.DrawerListAdapter;
 import com.collegecode.fragments.CoursesFragment;
 import com.collegecode.fragments.NowFragment;
 import com.collegecode.fragments.SettingsFragment;
-import com.collegecode.fragments.WelcomeScreens.FullTimeTableFragment;
+import com.collegecode.fragments.FullTimeTableFragment;
 import com.collegecode.objects.DataHandler;
 
 /**
