@@ -37,8 +37,6 @@ public class VITxAPI {
     private String ATTENDANCE_URL;
     private String MARKS_URL;
 
-
-
     public VITxAPI(Context context, OnTaskComplete listner){
         //Initialize with a result listner and context
         this.listner = listner;
@@ -91,14 +89,14 @@ public class VITxAPI {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                System.out.println(CAPTCHALESS_URL);
+
                 String result = EntityUtils.toString(getResponse(CAPTCHALESS_URL).getEntity());
 
                 if(result.equals("success"))
                     return null;
                 else
                     throw new Exception("Incorrect Credentials. Please try again");
-            }catch (Exception e1){e = e1;}
+            }catch (Exception e1){e = new Exception("Oops! Something went wrong. Check your network!");}
             return null;
         }
 
@@ -133,7 +131,7 @@ public class VITxAPI {
                 HttpEntity entity= getResponse(CAPTCHA_URL).getEntity();
                 byte [] content = convertInputStreamToByteArray(entity.getContent());
                 temp = BitmapFactory.decodeByteArray(content, 0, content.length);
-            }catch (Exception ex){this.e = ex;}
+            }catch (Exception ex){e = new Exception("Oops! Something went wrong. Check your network!");}
 
             return temp;
         }
@@ -151,7 +149,7 @@ public class VITxAPI {
             try {
                 String result = EntityUtils.toString(getResponse(TIMETABLE_URL).getEntity());
                 dat.saveTimeTable(result);
-            }catch (Exception e1){e = e1;}
+            }catch (Exception e1){e = new Exception("Oops! Something went wrong. Check your network!");}
             return null;
         }
 
@@ -168,7 +166,7 @@ public class VITxAPI {
             try {
                 String result = EntityUtils.toString(getResponse(MARKS_URL).getEntity());
                 dat.saveMarks(result);
-            }catch (Exception e1){e = e1;}
+            }catch (Exception e1){e = new Exception("Oops! Something went wrong. Check your network!");}
             return null;
         }
         protected void onPostExecute(Void voids){
@@ -187,7 +185,7 @@ public class VITxAPI {
                     dat.saveJSON(result);
                 else
                     throw new Exception("Error! Could not load attendance!");
-            }catch (Exception e1){e = e1;}
+            }catch (Exception e1){e = new Exception("Oops! Something went wrong. Check your network!");}
             return null;
         }
 

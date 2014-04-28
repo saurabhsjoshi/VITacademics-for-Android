@@ -6,6 +6,7 @@
     <color name="SkyBlue">#7f7fff</color>
     <color name="DarkBlue">#0000b2</color>
     <color name="Gray">#808080</color>
+    <color name="light_background_start">#F0F0F0</color>
     <color name="Black">#000000</color>
     <color name="Silver">#999999</color>
 </resources>

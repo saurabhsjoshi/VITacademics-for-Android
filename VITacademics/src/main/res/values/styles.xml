@@ -29,9 +29,8 @@
         <item name="actionModeBackground">@drawable/cab_background_top_style1</item>
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_style1</item>
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Style1</item>
-
-
     </style>
+
 
     <style name="ActionBar.Solid.Style1" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="background">@drawable/ab_solid_style1</item>
