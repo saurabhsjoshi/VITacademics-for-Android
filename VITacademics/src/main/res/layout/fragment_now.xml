@@ -11,6 +11,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:clickable="false"
+        android:layout_margin = "5dp"
+        android:divider="@android:color/transparent"
         />
 
 </uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>
