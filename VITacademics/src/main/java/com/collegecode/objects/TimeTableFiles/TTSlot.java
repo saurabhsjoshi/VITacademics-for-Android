@@ -49,8 +49,8 @@ public class TTSlot{
                 }
                 else
                 {
-                    frm_time = set_hour_min(frm_time, 8, 0);
-                    to_time = set_hour_min(to_time, 8, 50);
+                    frm_time = set_hour_min(frm_time, 12, 0);
+                    to_time = set_hour_min(to_time, 12, 50);
                 }
                 break;
             case 5:
