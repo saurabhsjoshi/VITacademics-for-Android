@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,7 @@ public class NowFragment extends Fragment {
             int today = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
             boolean not_weekend = true;
 
+            /* TODO: CLEANUP THIS CODE AND MAKE IT BETTER */
             Calendar temp = Calendar.getInstance();
             if(today == Calendar.SUNDAY || today == Calendar.SATURDAY) {
                 subs.add(new NowListNoClass());
@@ -99,14 +101,26 @@ public class NowFragment extends Fragment {
                     if (temp.compareTo(ttSlots.get(i).frm_time) >= 0 && temp.compareTo(ttSlots.get(i).to_time) < 0){
                         noClass = false;
                         subs.add(new NowListItem(cntx, ttSlots.get(i)));
-                        ttSlots.remove(i);
+                        if(i != ttSlots.size()-1){
+                            String text = DateUtils.getRelativeTimeSpanString( ttSlots.get(i+1).frm_time.getTimeInMillis(), temp.getTimeInMillis(), 0).toString();
+                            subs.add(new NowListHeader("NEXT " + text.toUpperCase()));
+                            subs.add(new NowListItem(cntx, ttSlots.get(i+1)));
+                        }
                         break;
                     }
-
                 }
 
-                if(noClass)
+                if(noClass){
                     subs.add(new NowListNoClass());
+                    for(int i = 0; i < ttSlots.size(); i++){
+                        if(temp.compareTo(ttSlots.get(i).frm_time) < 0){
+                            String text = DateUtils.getRelativeTimeSpanString(ttSlots.get(i).frm_time.getTimeInMillis(), temp.getTimeInMillis(), 0).toString();
+                            subs.add(new NowListHeader("NEXT " + text.toUpperCase()));
+                            subs.add(new NowListItem(cntx, ttSlots.get(i)));
+                            break;
+                        }
+                    }
+                }
                 subs.add(new NowListHeader("TODAY"));
             }
 
@@ -114,7 +128,11 @@ public class NowFragment extends Fragment {
             {
                 subs.clear();
                 subs.add(new NowListHeader("DONE FOR THE DAY!"));
-                subs.add(new NowListHeader("TOMORROW"));
+                if(temp.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY)
+                    subs.add(new NowListHeader("ON MONDAY"));
+                else
+                    subs.add(new NowListHeader("TOMORROW"));
+
                 temp.add(Calendar.DAY_OF_WEEK, 1);
                 ttSlots = tt.getTT(temp.get(Calendar.DAY_OF_WEEK));
             }
