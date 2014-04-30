@@ -79,7 +79,7 @@ public class Settings extends PreferenceActivity {
         switch (item.getItemId())
         {
             case android.R.id.home:
-                Toast.makeText(getApplicationContext(), "Refresh app if settings are changed!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Refresh app if credentials are changed!",Toast.LENGTH_SHORT).show();
                 finish();
                 break;
         }
@@ -89,7 +89,7 @@ public class Settings extends PreferenceActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) { //Back key pressed
-            Toast.makeText(getApplicationContext(), "Refresh app if settings are changed!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Refresh app if credentials are changed!",Toast.LENGTH_SHORT).show();
             finish();
             return true;
         }

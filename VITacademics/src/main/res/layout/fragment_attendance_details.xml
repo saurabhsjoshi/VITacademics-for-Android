@@ -189,34 +189,6 @@
                 </LinearLayout>
 
             </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/atten_toolbar"
-                android:id="@+id/atten_details_button"
-                android:layout_margin="5dp"
-                android:padding="10dp">
-                <com.devspark.robototextview.widget.RobotoTextView
-                    android:id="@+id/atten_lastUpdatedDate"
-                    android:text="Attendance not uploaded"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:layout_alignParentLeft="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    app:typeface="roboto_light"
-                    />
-                <com.devspark.robototextview.widget.RobotoTextView
-                    android:id="@+id/atten_lastUpdatedStatus"
-                    android:text=" "
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    app:typeface="roboto_light"
-                    />
-            </RelativeLayout>
-
         </RelativeLayout>
     </ScrollView>
 
