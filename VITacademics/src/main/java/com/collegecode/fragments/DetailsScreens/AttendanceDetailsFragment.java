@@ -43,8 +43,6 @@ public class AttendanceDetailsFragment extends Fragment {
         tv_type=(TextView)v.findViewById(R.id.type_detailed);
         tv_atten=(TextView)v.findViewById(R.id.atten_detailed);
         tv_net_per=(TextView)v.findViewById(R.id.net_per);
-        atten_updated_date=(TextView)v.findViewById(R.id.atten_lastUpdatedDate);
-        atten_updated_status=(TextView)v.findViewById(R.id.atten_lastUpdatedStatus);
         bunk_val=(TextView)v.findViewById(R.id.bunk_val);
         makeup_val=(TextView)v.findViewById(R.id.makeup_val);
         progBar=(ProgressBar)v.findViewById(R.id.progressBar_detailed);
