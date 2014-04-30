@@ -14,6 +14,22 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:summary=""
+        android:title="Others" >
+        <ListPreference
+            android:entries="@array/def_ui"
+            android:entryValues="@array/def_ui_values"
+            android:key="defUi"
+            android:summary="Select the page you would like to see first"
+            android:title="Default Page" />
+        <Preference
+            android:key="pref_reset"
+            android:title="RESET VITacademics"
+            android:summary="Delete all data and begin again"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:summary="About the app"
         android:title="About" >
     </PreferenceCategory>

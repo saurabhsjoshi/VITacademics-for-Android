@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="def_ui">
+        <item>Today</item>
+        <item>Courses</item>
+        <item>Timetable</item>
+    </string-array>
+
+    <string-array name="def_ui_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+</resources>

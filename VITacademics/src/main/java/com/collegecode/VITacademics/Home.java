@@ -62,6 +62,7 @@ public class Home extends ActionBarActivity {
             startActivity(new Intent(this, NewUser.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK));
             overridePendingTransition(R.anim.enter, R.anim.exit);
         }
+
         //Parse.initialize(this, "pslFDPvG2NmCKEW3v20X9QtgOabxtAvsetd3Keq6", "o3g05te1eRhgbc7pUC6bbzFtVypUuHLEauM3x4vY");
         setContentView(R.layout.activity_home);
 
@@ -103,7 +104,7 @@ public class Home extends ActionBarActivity {
         //Set listner for actionbar drawer click
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-        selectItem(0);
+        selectItem(dat.getDefUi());
 
 
 
