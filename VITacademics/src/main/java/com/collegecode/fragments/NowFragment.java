@@ -85,7 +85,8 @@ public class NowFragment extends Fragment {
             /* TODO: CLEANUP THIS CODE AND MAKE IT BETTER */
             Calendar temp = Calendar.getInstance();
             if(today == Calendar.SUNDAY || today == Calendar.SATURDAY) {
-                subs.add(new NowListNoClass());
+                subs.clear();
+                subs.add(new NowListHeader("IT'S WEEKEND!"));
                 subs.add(new NowListHeader("ON MONDAY"));
                 today = Calendar.MONDAY;
                 not_weekend = false;
@@ -104,7 +105,7 @@ public class NowFragment extends Fragment {
                         if(i != ttSlots.size()-1){
                             String text = DateUtils.getRelativeTimeSpanString( ttSlots.get(i+1).frm_time.getTimeInMillis(), temp.getTimeInMillis(), 0).toString();
                             subs.add(new NowListHeader("NEXT " + text.toUpperCase()));
-                            subs.add(new NowListItem(cntx, ttSlots.get(i+1)));
+                            subs.add(new NowListItem(cntx, ttSlots.get(i + 1)));
                         }
                         break;
                     }

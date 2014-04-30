@@ -114,7 +114,8 @@ public class Home extends ActionBarActivity {
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             // Highlight the selected item, update the title, and close the drawer
             mDrawerList.setItemChecked(position, true);
-            setTitle(titles[position]);
+            if(position!=4)
+                setTitle(titles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
             //Use Handler to avoid lag in the transaction
             selectItem(position);
@@ -182,13 +183,14 @@ public class Home extends ActionBarActivity {
                 fragment = new SettingsFragment();
                 break;
             case 4:
+                startActivity(new Intent(this, Settings.class));
                 fragment = new SettingsFragment();
                 break;
 
             default:
                 fragment = new NowFragment();
         }
-        if(position!=3){
+        if(position!=3 && position != 4){
             ft.replace(R.id.content_frame, fragment);
             ft.commitAllowingStateLoss();
         }
