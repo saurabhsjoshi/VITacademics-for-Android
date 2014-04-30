@@ -17,6 +17,10 @@ public class Subject {
     public boolean att_valid = false;
     public Attendance attendance[]=null;
 
+    public void loadMarks(){
+        /* TODO: Need to add marks handling */
+    }
+
     public void putAttendanceDetails() {
         try {
 

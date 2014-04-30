@@ -63,6 +63,8 @@ public class DataHandler {
 
     public String getTimeTable(){return  preferences.getString("TIMETABLEJSON", "");}
 
+    public int getDefUi(){return Integer.parseInt(preferences.getString("defUi","0"));}
+
     private String check_dob(int num){
         String t = Integer.toString(num);
         if(t.length() == 1)

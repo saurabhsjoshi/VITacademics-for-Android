@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:id="@+id/code_detailed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="5dp"
+                android:layout_marginBottom="0dp"
+                android:maxLines="1"
+                android:text="Large Text"
+                app:typeface="roboto_light"/>
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:id="@+id/title_detailed"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="0dp"
+                android:minLines="2"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/code_detailed"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:text="Large Text"
+                android:textSize="30dp"
+                app:typeface="roboto_light"/>
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:id="@+id/type_detailed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_alignLeft="@+id/title_detailed"
+                android:layout_below="@+id/title_detailed"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                app:typeface="roboto_light"/>
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:id="@+id/slot_detailed"
+                android:layout_width="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/title_detailed"
+                android:layout_below="@+id/title_detailed"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                app:typeface="roboto_light"/>
+
+            <LinearLayout
+                android:id="@+id/progress_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/type_detailed"
+                android:layout_centerHorizontal="true">
+
+                <ProgressBar
+                    android:id="@+id/progressBar_detailed"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1" />
+
+                <com.devspark.robototextview.widget.RobotoTextView
+                    android:id="@+id/net_per"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="99%"
+                    android:textSize="30dp"
+                    app:typeface="roboto_light"/>
+            </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/atten_toolbar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress_layout" >
+
+                <com.devspark.robototextview.widget.RobotoTextView
+                    android:id="@+id/atten_detailed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="5dp"
+                    android:text="TextView"
+                    app:typeface="roboto_light"/>
+
+
+                <LinearLayout
+                    android:id="@+id/atten_all"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/atten_detailed"
+                    android:orientation="horizontal" >
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:id="@+id/bunk_picker"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentTop="true" >
+                            <Button
+                                android:id="@+id/bunk_sub"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="-" />
+
+                            <com.devspark.robototextview.widget.RobotoTextView
+                                android:id="@+id/bunk_val"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="10"
+                                android:gravity="center_horizontal"
+                                android:text="3"
+                                app:typeface="roboto_light"/>
+
+                            <Button
+                                android:id="@+id/bunk_add"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="+" />
+                        </LinearLayout>
+
+
+
+                        <LinearLayout
+                            android:id="@+id/makeup_picker"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/makeup_sub"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="-" />
+
+                            <com.devspark.robototextview.widget.RobotoTextView
+                                android:id="@+id/makeup_val"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="10"
+                                android:gravity="center_horizontal"
+                                android:text="5"
+                                app:typeface="roboto_light"/>
+
+                            <Button
+                                android:id="@+id/makeup_add"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="25"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:text="+" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/atten_toolbar"
+                android:id="@+id/atten_details_button"
+                android:layout_margin="5dp"
+                android:padding="10dp">
+                <com.devspark.robototextview.widget.RobotoTextView
+                    android:id="@+id/atten_lastUpdatedDate"
+                    android:text="Attendance not uploaded"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_alignParentLeft="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    app:typeface="roboto_light"
+                    />
+                <com.devspark.robototextview.widget.RobotoTextView
+                    android:id="@+id/atten_lastUpdatedStatus"
+                    android:text=" "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    app:typeface="roboto_light"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

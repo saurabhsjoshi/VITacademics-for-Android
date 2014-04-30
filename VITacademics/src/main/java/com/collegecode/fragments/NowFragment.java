@@ -158,7 +158,7 @@ public class NowFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), SubjectDetails.class);
                         intent.putExtra("clsnbr", temp.clsnbr);
                         startActivity(intent);
-                    }catch (Exception e){}}
+                    }catch (Exception ignored){}}
             });
             mPullToRefreshLayout.setRefreshComplete();
         }
