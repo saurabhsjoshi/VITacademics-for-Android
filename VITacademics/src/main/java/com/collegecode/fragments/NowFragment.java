@@ -2,6 +2,7 @@ package com.collegecode.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,9 +10,11 @@ import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.collegecode.VITacademics.R;
+import com.collegecode.VITacademics.SubjectDetails;
 import com.collegecode.adapters.NowFragmentListAdapter;
 import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.NowListFiles.NowItem;
@@ -147,6 +150,16 @@ public class NowFragment extends Fragment {
 
         protected void onPostExecute(Void voids){
             mainList.setAdapter(new NowFragmentListAdapter(getActivity(), subs));
+            mainList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    try{
+                        TTSlot temp = ((NowListItem) mainList.getItemAtPosition(i)).ttSlot;
+                        Intent intent = new Intent(getActivity(), SubjectDetails.class);
+                        intent.putExtra("clsnbr", temp.clsnbr);
+                        startActivity(intent);
+                    }catch (Exception e){}}
+            });
             mPullToRefreshLayout.setRefreshComplete();
         }
     }

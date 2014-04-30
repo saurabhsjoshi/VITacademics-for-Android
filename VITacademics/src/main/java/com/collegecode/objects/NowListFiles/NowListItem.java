@@ -17,7 +17,7 @@ import java.util.Locale;
  * Created by saurabh on 4/24/14.
  */
 public class NowListItem implements NowItem{
-    TTSlot ttSlot;
+    public TTSlot ttSlot;
     Context context;
 
     public NowListItem(Context context, TTSlot subject){
