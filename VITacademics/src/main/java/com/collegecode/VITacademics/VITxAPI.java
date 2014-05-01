@@ -27,7 +27,6 @@ import java.io.InputStream;
 
 public class VITxAPI {
     private OnTaskComplete listner;
-    private Context context;
     private DataHandler dat;
 
     private String CAPTCHA_URL;
@@ -36,6 +35,8 @@ public class VITxAPI {
     private String CAPTCHASUB_URL;
     private String ATTENDANCE_URL;
     private String MARKS_URL;
+
+    public String Captcha;
 
     public VITxAPI(Context context, OnTaskComplete listner){
         //Initialize with a result listner and context
@@ -59,6 +60,7 @@ public class VITxAPI {
             ATTENDANCE_URL = "http://vitacademicsrel.appspot.com/attj/" + REG_NO + "/" + DOB;
             TIMETABLE_URL = "http://vitacademicstokensystem.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
             MARKS_URL = "http://www.vitacademicsrel.appspot.com/marks/" + REG_NO + "/" + DOB;
+            CAPTCHASUB_URL = "http://www.vitacademicsrel.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
         }
         else{
             CAPTCHALESS_URL = "http://www.vitacademicsrelc.appspot.com/captchaless/" + REG_NO + "/" + DOB;
@@ -67,6 +69,7 @@ public class VITxAPI {
             ATTENDANCE_URL = "http://vitacademicsrelc.appspot.com/attj/" + REG_NO + "/" + DOB;
             TIMETABLE_URL = "http://vitacademicstokensystemc.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
             MARKS_URL = "http://www.vitacademicsrelc.appspot.com/marks/" + REG_NO + "/" + DOB;
+            CAPTCHASUB_URL = "http://www.vitacademicsrelc.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
         }
     }
 
@@ -77,6 +80,7 @@ public class VITxAPI {
     public void loadCaptchaBitmap(){
         new loadCaptchatBitmap_Async().execute();
     }
+    public void submitCaptcha(){setUrls(); new submitCaptcha_Async().execute();}
 
     private HttpResponse getResponse(String url) throws IOException{
         HttpClient client = new DefaultHttpClient();
@@ -225,12 +229,46 @@ public class VITxAPI {
                 String result = EntityUtils.toString(res.getEntity());
                 if(result.contains("valid"))
                     dat.saveJSON(result);
+                else if(result.equals("timedout"))
+                    e = new Exception("needref");
                 else
-                    throw new Exception("Error! Could not load attendance!");
+                    e = new Exception("Error! Could not load attendance!");
             }catch (Exception e1){e = new Exception("Oops! Something went wrong. Check your network!");}
             return null;
         }
 
+        protected void onPostExecute(Void voids){
+            listner.onTaskCompleted(e, "Done");
+        }
+    }
+
+    private class submitCaptcha_Async extends AsyncTask<Void,Void,Void>{
+        private Exception e = null;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                HttpResponse res = getResponse(CAPTCHASUB_URL);
+
+                if(res.getStatusLine().getStatusCode() == 403 || res.getStatusLine().getStatusCode() == 503)
+                {
+                    e = new Exception("Our servers are overloaded! Please try again later");
+                    return null;
+                }
+
+                String result = EntityUtils.toString(res.getEntity());
+
+                if(result.contains("success"))
+                    return null;
+                else if(result.equals("timedout"))
+                    e = new Exception("needref");
+                else if(result.equals("captchaerror"))
+                    e = new Exception("cape");
+                else
+                    e = new Exception("Error! Could not load attendance!");
+            }catch (Exception e1){e1.printStackTrace(); e = new Exception("Oops! Something went wrong. Check your network!");}
+            return null;
+        }
         protected void onPostExecute(Void voids){
             listner.onTaskCompleted(e, "Done");
         }

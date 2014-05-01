@@ -12,15 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.collegecode.VITacademics.R;
 import com.collegecode.VITacademics.SubjectDetails;
+import com.collegecode.VITacademics.VITxAPI;
 import com.collegecode.adapters.NowFragmentListAdapter;
+import com.collegecode.objects.CaptchaDialogListener;
 import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.NowListFiles.NowItem;
 import com.collegecode.objects.NowListFiles.NowListHeader;
 import com.collegecode.objects.NowListFiles.NowListItem;
 import com.collegecode.objects.NowListFiles.NowListNoClass;
+import com.collegecode.objects.OnTaskComplete;
 import com.collegecode.objects.TimeTableFiles.TTSlot;
 import com.collegecode.objects.TimeTableFiles.TimeTable;
 
@@ -38,6 +42,50 @@ public class NowFragment extends Fragment {
     DataHandler dat;
     Context cntx;
     ListView mainList;
+    VITxAPI api;
+
+    private OnTaskComplete l1 = new OnTaskComplete() {
+        @Override
+        public void onTaskCompleted(Exception e, Object result) {
+            mPullToRefreshLayout.setRefreshComplete();
+            if(e!=null && e.getMessage().equals("needref"))
+                new CaptchaDialog(getActivity(), l2).show();
+            else if(e == null){
+                new load_Data().execute();
+                Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private CaptchaDialogListener l2 = new CaptchaDialogListener() {
+        @Override
+        public void onTaskCompleted(String Captcha, Boolean Response) {
+            if(Response)
+            {
+                api.changeListner(l3);
+                api.Captcha = Captcha;
+                mPullToRefreshLayout.setRefreshing(true);
+                api.submitCaptcha();
+            }
+        }
+    };
+
+    private OnTaskComplete l3 = new OnTaskComplete() {
+        @Override
+        public void onTaskCompleted(Exception e, Object result) {
+            mPullToRefreshLayout.setRefreshComplete();
+            if(e != null && e.getMessage().equals("cape"))
+                Toast.makeText(getActivity(), "Incorrect Captcha. Please try again!", Toast.LENGTH_SHORT).show();
+            else if (e == null){
+                new load_Data().execute();
+                Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,10 +95,12 @@ public class NowFragment extends Fragment {
 
         mPullToRefreshLayout = (PullToRefreshLayout) v.findViewById(R.id.ptr_layout);
 
-        OnRefreshListener listener = new OnRefreshListener() {
+        final OnRefreshListener listener = new OnRefreshListener() {
             @Override
             public void onRefreshStarted(View view) {
-                mPullToRefreshLayout.setRefreshComplete();
+
+                api = new VITxAPI(getActivity(), l1);
+                api.loadAttendanceWithRegistrationNumber();
             }
         };
 
