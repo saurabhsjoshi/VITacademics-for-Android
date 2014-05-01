@@ -89,13 +89,21 @@ public class VITxAPI {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
+                HttpResponse res = getResponse(CAPTCHALESS_URL);
 
-                String result = EntityUtils.toString(getResponse(CAPTCHALESS_URL).getEntity());
+                if(res.getStatusLine().getStatusCode() == 403 || res.getStatusLine().getStatusCode() == 503)
+                {
+                    e = new Exception("Our servers are overloaded! Please try again later");
+                    return null;
+                }
+
+                String result = EntityUtils.toString((res).getEntity());
 
                 if(result.equals("success"))
                     return null;
                 else
-                    throw new Exception("Incorrect Credentials. Please try again");
+                    e =  new Exception("Incorrect Credentials. Please try again");
+
             }catch (Exception e1){e = new Exception("Oops! Something went wrong. Check your network!");}
             return null;
         }
@@ -127,10 +135,20 @@ public class VITxAPI {
             Bitmap temp = null;
             try
             {
+                HttpResponse res = getResponse(CAPTCHA_URL);
 
-                HttpEntity entity= getResponse(CAPTCHA_URL).getEntity();
+                if(res.getStatusLine().getStatusCode() == 403 || res.getStatusLine().getStatusCode() == 503)
+                {
+                    e = new Exception("Our servers are overloaded! Please try again later");
+                    return null;
+                }
+
+                HttpEntity entity= res.getEntity();
+
                 byte [] content = convertInputStreamToByteArray(entity.getContent());
+
                 temp = BitmapFactory.decodeByteArray(content, 0, content.length);
+
             }catch (Exception ex){e = new Exception("Oops! Something went wrong. Check your network!");}
 
             return temp;
@@ -147,7 +165,15 @@ public class VITxAPI {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                String result = EntityUtils.toString(getResponse(TIMETABLE_URL).getEntity());
+                HttpResponse res = getResponse(TIMETABLE_URL);
+
+                if(res.getStatusLine().getStatusCode() == 403 || res.getStatusLine().getStatusCode() == 503)
+                {
+                    e = new Exception("Our servers are overloaded! Please try again later");
+                    return null;
+                }
+
+                String result = EntityUtils.toString(res.getEntity());
                 dat.saveTimeTable(result);
             }catch (Exception e1){e = new Exception("Oops! Something went wrong. Check your network!");}
             return null;
@@ -164,7 +190,15 @@ public class VITxAPI {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                String result = EntityUtils.toString(getResponse(MARKS_URL).getEntity());
+                HttpResponse res = getResponse(MARKS_URL);
+
+                if(res.getStatusLine().getStatusCode() == 403 || res.getStatusLine().getStatusCode() == 503)
+                {
+                    e = new Exception("Our servers are overloaded! Please try again later");
+                    return null;
+                }
+
+                String result = EntityUtils.toString(res.getEntity());
                 dat.saveMarks(result);
             }catch (Exception e1){e = new Exception("Oops! Something went wrong. Check your network!");}
             return null;
@@ -180,7 +214,15 @@ public class VITxAPI {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                String result = EntityUtils.toString(getResponse(ATTENDANCE_URL).getEntity());
+                HttpResponse res = getResponse(ATTENDANCE_URL);
+
+                if(res.getStatusLine().getStatusCode() == 403 || res.getStatusLine().getStatusCode() == 503)
+                {
+                    e = new Exception("Our servers are overloaded! Please try again later");
+                    return null;
+                }
+
+                String result = EntityUtils.toString(res.getEntity());
                 if(result.contains("valid"))
                     dat.saveJSON(result);
                 else
