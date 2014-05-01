@@ -42,7 +42,7 @@ public class NowFragment extends Fragment {
     DataHandler dat;
     Context cntx;
     ListView mainList;
-    VITxAPI api;
+    private VITxAPI api;
 
     private OnTaskComplete l1 = new OnTaskComplete() {
         @Override
