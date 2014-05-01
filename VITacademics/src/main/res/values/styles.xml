@@ -31,6 +31,12 @@
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Style1</item>
     </style>
 
+    <style name="ButtonBarButton">
+    </style>
+    <style name="ButtonBar" parent="@android:style/ButtonBar">
+    </style>
+
+
 
     <style name="ActionBar.Solid.Style1" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
         <item name="background">@drawable/ab_solid_style1</item>

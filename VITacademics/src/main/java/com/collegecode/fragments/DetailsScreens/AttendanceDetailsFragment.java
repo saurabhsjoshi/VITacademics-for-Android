@@ -28,10 +28,10 @@ public class AttendanceDetailsFragment extends Fragment {
     Subject subject;
 
     Button bunk_add,bunk_sub, makeup_add, makeup_sub;
-    TextView tv_title,tv_slot,tv_type,tv_code,tv_atten,tv_net_per,bunk_val,makeup_val,atten_updated_date,atten_updated_status;
+    TextView tv_title,tv_slot,tv_type,tv_code,tv_atten,tv_net_per,bunk_val,makeup_val;
     ProgressBar progBar;
 
-    int per, max, atten, count=1,size,pos, globe_makeup = 0, globe_bunk=0, prev_bunk =0 , prev_makeup = 0, t_atten, t_max,  class_offset;
+    int per, max, atten, globe_makeup = 0, globe_bunk=0, t_atten, t_max,  class_offset;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
