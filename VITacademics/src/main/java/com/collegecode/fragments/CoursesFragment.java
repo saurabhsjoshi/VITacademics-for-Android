@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.collegecode.VITacademics.Home;
 import com.collegecode.VITacademics.R;
 import com.collegecode.VITacademics.VITxAPI;
 import com.collegecode.adapters.CoursesListAdapter;
@@ -41,8 +42,10 @@ public class CoursesFragment extends Fragment {
                 new Load_Data().execute();
                 Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
             }
-            else
+            else{
                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                ((Home) getActivity()).enable_drawer();
+            }
         }
     };
 
@@ -71,6 +74,7 @@ public class CoursesFragment extends Fragment {
             }
             else
                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            ((Home) getActivity()).enable_drawer();
         }
     };
 
@@ -85,6 +89,7 @@ public class CoursesFragment extends Fragment {
         OnRefreshListener listener = new OnRefreshListener() {
             @Override
             public void onRefreshStarted(View view) {
+                ((Home) getActivity()).disable_drawer();
                 api = new VITxAPI(getActivity(), l1);
                 api.loadAttendanceWithRegistrationNumber();
             }
@@ -120,6 +125,7 @@ public class CoursesFragment extends Fragment {
         protected void onPostExecute(Void voids){
             listView.setAdapter(new CoursesListAdapter(getActivity(), subs));
             mPullToRefreshLayout.setRefreshComplete();
+            ((Home) getActivity()).enable_drawer();
         }
 
     }

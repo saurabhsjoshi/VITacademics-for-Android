@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.collegecode.VITacademics.Home;
 import com.collegecode.VITacademics.R;
 import com.collegecode.VITacademics.SubjectDetails;
 import com.collegecode.VITacademics.VITxAPI;
@@ -54,8 +55,10 @@ public class NowFragment extends Fragment {
                 new load_Data().execute();
                 Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
             }
-            else
+            else{
                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                ((Home) getActivity()).enable_drawer();
+            }
         }
     };
 
@@ -84,6 +87,8 @@ public class NowFragment extends Fragment {
             }
             else
                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            ((Home) getActivity()).enable_drawer();
         }
     };
 
@@ -98,7 +103,7 @@ public class NowFragment extends Fragment {
         final OnRefreshListener listener = new OnRefreshListener() {
             @Override
             public void onRefreshStarted(View view) {
-
+                ((Home) getActivity()).disable_drawer();
                 api = new VITxAPI(getActivity(), l1);
                 api.loadAttendanceWithRegistrationNumber();
             }
@@ -211,6 +216,7 @@ public class NowFragment extends Fragment {
                     }catch (Exception ignored){}}
             });
             mPullToRefreshLayout.setRefreshComplete();
+            ((Home) getActivity()).enable_drawer();
         }
     }
 }
