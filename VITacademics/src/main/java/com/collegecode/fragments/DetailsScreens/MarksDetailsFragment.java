@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.collegecode.VITacademics.R;
 import com.collegecode.objects.Mark;
@@ -27,7 +26,7 @@ public class MarksDetailsFragment extends Fragment {
         if(subject.marks_valid){
             v = inflater.inflate(R.layout.fragment_marks,container, false);
             Mark m = subject.mark;
-            ((TextView) v.findViewById(R.id.txt_cat1)).setText(m.cat[0].marks);
+            //((TextView) v.findViewById(R.id.txt_cat1)).setText(m.cat[0].marks);
         }
         else
             v = inflater.inflate(R.layout.fragment_nomarks,container, false);
