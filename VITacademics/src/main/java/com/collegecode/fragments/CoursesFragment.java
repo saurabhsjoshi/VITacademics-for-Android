@@ -1,16 +1,19 @@
 package com.collegecode.fragments;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.collegecode.VITacademics.Home;
 import com.collegecode.VITacademics.R;
+import com.collegecode.VITacademics.SubjectDetails;
 import com.collegecode.VITacademics.VITxAPI;
 import com.collegecode.adapters.CoursesListAdapter;
 import com.collegecode.objects.CaptchaDialogListener;
@@ -124,6 +127,20 @@ public class CoursesFragment extends Fragment {
 
         protected void onPostExecute(Void voids){
             listView.setAdapter(new CoursesListAdapter(getActivity(), subs));
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    try {
+                        Subject temp = (Subject) listView.getItemAtPosition(i);
+                        Intent intent = new Intent(getActivity(), SubjectDetails.class);
+                        intent.putExtra("clsnbr", temp.classnbr);
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            });
             mPullToRefreshLayout.setRefreshComplete();
             ((Home) getActivity()).enable_drawer();
         }
