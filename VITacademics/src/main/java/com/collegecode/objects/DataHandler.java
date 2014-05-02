@@ -63,6 +63,8 @@ public class DataHandler {
 
     public String getTimeTable(){return  preferences.getString("TIMETABLEJSON", "");}
 
+    public String getMarks(){return  preferences.getString("MARKSJSON","");}
+
     public int getDefUi(){return Integer.parseInt(preferences.getString("defUi","0"));}
 
     private String check_dob(int num){
@@ -132,6 +134,7 @@ public class DataHandler {
                     att.classnbr = sub.getString("classnbr");
                     //No need to parse this here
                     att.detailsString = sub.getJSONArray("details").toString();
+                    att.marksJSON = getMarks();
                     break;
                 }
             }

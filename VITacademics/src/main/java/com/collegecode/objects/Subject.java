@@ -11,14 +11,53 @@ import java.util.Date;
  */
 public class Subject {
 
-    public String title, code, type, slot, regdate, classnbr,atten_last_status,atten_last_date, detailsString;
+    public String title, code, type, slot, regdate, classnbr,atten_last_status,atten_last_date, detailsString, marksJSON;
     public int attended, conducted , percentage;
     public int attendance_length = 0;
-    public boolean att_valid = false;
+    public boolean att_valid = false, marks_valid = false;
     public Attendance attendance[]=null;
+    public Mark mark;
 
     public void loadMarks(){
         /* TODO: Need to add marks handling */
+        if(type.contains("Lab"))
+            return;
+
+        try
+        {
+            JSONArray j = new JSONArray(marksJSON);
+            j = j.getJSONArray(0);
+
+            if(j.length() <= 17)
+                return;
+
+            mark = new Mark();
+
+            mark.cat[0].name = "CAT-I";
+            mark.cat[0].status = j.getString(5);
+            mark.cat[0].marks = j.getString(6);
+
+            mark.cat[1].name = "CAT-II";
+            mark.cat[1].status = j.getString(7);
+            mark.cat[1].marks = j.getString(8);
+
+            int count = 0;
+            for (int i = 9 ; i <= 13 ; i += 2){
+                mark.quiz[count].status = j.getString(i);
+                count += 1;
+            }
+
+            //FEED QUIZ MARKS
+            count = 0;
+            for (int i = 10 ; i <= 14 ; i += 2){
+                mark.quiz[count].marks = j.getString(i);
+                count += 1;
+            }
+
+            marks_valid = true;
+
+        }catch (Exception ignore){ignore.printStackTrace();}
+
     }
 
     public void putAttendanceDetails() {
