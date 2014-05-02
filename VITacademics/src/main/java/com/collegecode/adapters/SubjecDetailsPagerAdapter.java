@@ -31,7 +31,7 @@ public class SubjecDetailsPagerAdapter extends FragmentPagerAdapter{
         if(position == 0)
             return new AttendanceDetailsFragment(context, subject);
         else if(position == 1)
-            return new MarksDetailsFragment(context);
+            return new MarksDetailsFragment(subject);
         else
             return new DayByDayFragment(context, subject);
     }

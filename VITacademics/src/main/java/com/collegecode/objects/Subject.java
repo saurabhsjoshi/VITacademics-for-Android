@@ -19,15 +19,21 @@ public class Subject {
     public Mark mark;
 
     public void loadMarks(){
-        /* TODO: Need to add marks handling */
         if(type.contains("Lab"))
             return;
-
         try
         {
             JSONArray j = new JSONArray(marksJSON);
             j = j.getJSONArray(0);
 
+            JSONArray temp;
+            for(int i = 0 ; i < j.length(); i++){
+                temp = j.getJSONArray(i);
+                if(temp.getString(1).equals(classnbr)){
+                    j = j.getJSONArray(i);
+                    break;
+                }
+            }
             if(j.length() <= 17)
                 return;
 
@@ -56,7 +62,7 @@ public class Subject {
 
             marks_valid = true;
 
-        }catch (Exception ignore){ignore.printStackTrace();}
+        }catch (Exception e){e.printStackTrace();}
 
     }
 

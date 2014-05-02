@@ -6,18 +6,26 @@ package com.collegecode.objects;
 public class Mark {
 
     //CATS
-    Test[] cat = new Test[2];
+    public Test[] cat = new Test[2];
 
     //QUIZ
-    Test[] quiz = new Test[3];
+    public Test[] quiz = new Test[3];
 
     //ASSIGNMENT
-    Test asgn = new Test();
+    public Test asgn = new Test();
 
+    public Mark(){
+        for (int i = 0 ; i<3 ; i++){
+            if (i<2)
+                cat[i] = new Test();
+            if (i<3)
+                quiz[i] = new Test();
+        }
+    }
     public class Test{
-        String name;
-        String status ;
-        String marks;
+        public String name;
+        public String status ;
+        public String marks;
     }
 
 }
