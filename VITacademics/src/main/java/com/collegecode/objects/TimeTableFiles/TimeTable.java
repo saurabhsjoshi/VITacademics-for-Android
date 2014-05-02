@@ -88,12 +88,16 @@ public class TimeTable{
                         String[] parts = sub.slot.split("\\+");
                         for(int j = 0; j < parts.length; j++){
                             //Check if lab and increment accordingly
+
                             if(parts[j].charAt(0) == 'L')
                                 tmp = i + 10;
                             else
+                            {
                                 tmp = i;
-
-                            if(slts_today[tmp].toUpperCase().equals(parts[j])){
+                                if (i > 4)
+                                    tmp -= 1;
+                            }
+                            if(slts_today[tmp].trim().toUpperCase().equals(parts[j])){
                                 slt = parts[j];
                                 break;
                             }
@@ -105,6 +109,7 @@ public class TimeTable{
 
                     temp = new TTSlot(slt, clsnbr);
                     temp.venue = getVenue(subs, clsnbr);
+
                     temp.setTime(i);
                     today.add(temp);
                 }

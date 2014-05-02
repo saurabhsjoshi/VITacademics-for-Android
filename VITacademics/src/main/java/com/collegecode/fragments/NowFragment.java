@@ -183,8 +183,7 @@ public class NowFragment extends Fragment {
                 subs.add(new NowListHeader("TODAY"));
             }
 
-            if(temp.compareTo(ttSlots.get(ttSlots.size()-1).to_time) > 0 && not_weekend)
-            {
+            if(ttSlots.size() == 0){
                 subs.clear();
                 subs.add(new NowListHeader("DONE FOR THE DAY!"));
                 if(temp.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY)
@@ -194,6 +193,21 @@ public class NowFragment extends Fragment {
 
                 temp.add(Calendar.DAY_OF_WEEK, 1);
                 ttSlots = tt.getTT(temp.get(Calendar.DAY_OF_WEEK));
+
+            }
+            else{
+                if(temp.compareTo(ttSlots.get(ttSlots.size()-1).to_time) > 0 && not_weekend)
+                {
+                    subs.clear();
+                    subs.add(new NowListHeader("DONE FOR THE DAY!"));
+                    if(temp.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY)
+                        subs.add(new NowListHeader("ON MONDAY"));
+                    else
+                        subs.add(new NowListHeader("TOMORROW"));
+
+                    temp.add(Calendar.DAY_OF_WEEK, 1);
+                    ttSlots = tt.getTT(temp.get(Calendar.DAY_OF_WEEK));
+                }
             }
 
             for(int i = 0; i < ttSlots.size(); i++){
