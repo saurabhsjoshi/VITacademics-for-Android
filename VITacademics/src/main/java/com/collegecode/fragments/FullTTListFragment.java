@@ -1,14 +1,17 @@
 package com.collegecode.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.collegecode.VITacademics.R;
+import com.collegecode.VITacademics.SubjectDetails;
 import com.collegecode.adapters.FullTTListAdapter;
 import com.collegecode.objects.TimeTableFiles.TTSlot;
 import com.collegecode.objects.TimeTableFiles.TimeTable;
@@ -33,7 +36,7 @@ public class FullTTListFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_fullttlist,container, false);
 
-        ListView listView = (ListView) v.findViewById(R.id.list_one_tt);
+        final ListView listView = (ListView) v.findViewById(R.id.list_one_tt);
 
         TimeTable timeTable = new TimeTable(context);
 
@@ -61,6 +64,16 @@ public class FullTTListFragment extends Fragment{
         }
 
         listView.setAdapter(new FullTTListAdapter(context, ttSlots));
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TTSlot temp = (TTSlot) listView.getItemAtPosition(i);
+                Intent intent = new Intent(getActivity(), SubjectDetails.class);
+                intent.putExtra("clsnbr", temp.clsnbr);
+                startActivity(intent);
+            }
+        });
         return v;
     }
 }
