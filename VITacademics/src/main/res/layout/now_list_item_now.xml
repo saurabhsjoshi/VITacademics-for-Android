@@ -106,7 +106,7 @@
         app:typeface="roboto_light"
         android:textSize="35dp"
         android:textIsSelectable="false"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="31dp"
         android:layout_alignTop="@+id/lbl_now_att_go"
         android:layout_toRightOf="@+id/lbl_now_att_miss" />
 
