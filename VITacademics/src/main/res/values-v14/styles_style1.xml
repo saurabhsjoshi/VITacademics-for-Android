@@ -25,7 +25,7 @@
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Style1</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Style1</item>
         <item name="android:actionDropDownStyle">@style/DropDownNav.Style1</item>
-        <item name="android:actionBarStyle">@style/ActionBar.Solid.Style1</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Transparent.Style1</item>
         <item name="android:actionModeBackground">@drawable/cab_background_top_style1</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_style1</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Style1</item>
