@@ -32,10 +32,10 @@
         android:id="@+id/btn_next1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="38dp"
         android:text="Let's Begin!"
-        app:typeface="roboto_light"/>
+        app:typeface="roboto_light"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -33,16 +33,17 @@
                 android:id="@+id/title_detailed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="5dp"
                 android:minLines="2"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/code_detailed"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:text="Large Text"
-                android:textSize="30dp"
-                app:typeface="roboto_light"/>
+                android:textSize="28dp"
+                app:typeface="roboto_light"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="20dp" />
 
             <com.devspark.robototextview.widget.RobotoTextView
                 android:id="@+id/type_detailed"
@@ -82,14 +83,6 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1" />
 
-                <com.devspark.robototextview.widget.RobotoTextView
-                    android:id="@+id/net_per"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="99%"
-                    android:textSize="30dp"
-                    app:typeface="roboto_light"/>
             </LinearLayout>
             <RelativeLayout
                 android:id="@+id/atten_toolbar"
@@ -189,6 +182,18 @@
                 </LinearLayout>
 
             </RelativeLayout>
+
+            <com.devspark.robototextview.widget.RobotoTextView
+                android:id="@+id/net_per"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="99%"
+                android:textSize="40dp"
+                app:typeface="roboto_light"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_above="@+id/progress_layout"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </ScrollView>
 

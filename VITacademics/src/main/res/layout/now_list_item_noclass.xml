@@ -10,25 +10,19 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src = "@drawable/flag"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height = "wrap_content"
         android:layout_width = "wrap_content"
         android:singleLine="true"
-        android:layout_centerVertical="true"
         android:text="No class right now!"
         app:typeface="roboto_light"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_toRightOf="@+id/now_item_img_noclass"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_below="@+id/now_item_img_noclass"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

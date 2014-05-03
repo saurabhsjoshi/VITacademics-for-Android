@@ -5,21 +5,21 @@
     android:layout_height="wrap_content"
     android:background="@drawable/card_bg_r4"
     android:padding="15dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:focusableInTouchMode="true">
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id = "@+id/lbl_now_slot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="F1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:textSize="41dp"
-        android:layout_marginLeft="5dp"
+        android:textSize="25dp"
         android:textColor="@color/Gray"
         android:ellipsize="end"
-        app:typeface="roboto_thin"
-        />
+        app:typeface="roboto_light"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/lbl_now_venue"
@@ -27,33 +27,32 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="SJT121"
-        android:textColor="@color/SkyBlue"
+        android:textColor="#ff0a82ff"
         app:typeface="roboto_light"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dp" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/lbl_now_subject"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:minLines="2"
-        android:layout_toRightOf="@id/lbl_now_slot"
-        android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Data Structures and Algorithms"
-        android:textColor="@color/Gray"
+        android:textColor="@color/Black"
         app:typeface="roboto_light"
-        android:layout_toLeftOf="@id/lbl_now_venue" />
+        android:textSize="20dp"
+        android:layout_below="@+id/lbl_now_slot"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/lbl_now_timing"
@@ -61,30 +60,25 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:singleLine="true"
-        android:layout_marginBottom="2dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="8:00AM - 10:00AM"
         android:textColor="@color/Gray"
-        android:layout_below="@id/lbl_now_subject"
-        app:typeface="roboto_light_italic"
-        />
+        app:typeface="roboto_light"
+        android:layout_alignTop="@+id/lbl_now_att_now"
+        android:layout_alignRight="@+id/lbl_now_subject"
+        android:layout_alignEnd="@+id/lbl_now_subject"
+        android:textSize="14dp" />
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/lbl_now_att_now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/lbl_now_subject"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="2dp"
-        android:layout_alignBaseline="@id/lbl_now_timing"
-        android:layout_alignParentBottom="true"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_alignParentLeft="true"
         android:text="Attendance: 80%"
         android:textColor="@color/green"
-        app:typeface="roboto_light_italic"
-        />
+        app:typeface="roboto_light"
+        android:layout_below="@+id/lbl_now_subject"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="14dp" />
 </RelativeLayout>

@@ -3,7 +3,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:weightSum="1">
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id = "@+id/lbl_now_header_title"
@@ -20,5 +21,5 @@
         android:textColor="#000000"
         android:textAppearance = "?android:attr/listSeparatorTextViewStyle"
         app:typeface="roboto_light"
-        />
+        android:layout_weight="0.05" />
 </LinearLayout>
