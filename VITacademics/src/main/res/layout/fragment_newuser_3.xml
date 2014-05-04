@@ -23,12 +23,11 @@
             android:id="@+id/lbl_fb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/prg_indeterminate"
             android:layout_centerHorizontal="true"
             android:text="Facebook login disabled"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/Gray"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="120dp"
             app:typeface="roboto_thin"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
@@ -91,6 +90,15 @@
             android:text="Start using VITacademics"
             android:enabled="false"
             />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/app_logo"
+            android:background="@drawable/ic_launcher"
+            android:visibility="invisible"
+            android:layout_alignTop="@+id/prg_indeterminate"
+            android:layout_centerHorizontal="true" />
 
 
     </RelativeLayout>

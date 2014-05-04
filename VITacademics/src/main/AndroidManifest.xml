@@ -10,10 +10,12 @@
         android:theme="@style/Theme.Style1" >
         <activity
             android:name="com.collegecode.VITacademics.SubjectDetails"
+            android:screenOrientation="portrait"
             android:label="Subject Details"
             />
         <activity
             android:name="com.collegecode.VITacademics.Settings"
+            android:screenOrientation="portrait"
             android:label="Settings"
             />
 

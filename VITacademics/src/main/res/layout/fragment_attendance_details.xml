@@ -124,7 +124,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="25"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
-                                android:text="-" />
+                                android:background="@drawable/round_shape_btn"
+                                android:text="-"
+                                android:layout_marginBottom="10dp" />
 
                             <com.devspark.robototextview.widget.RobotoTextView
                                 android:id="@+id/bunk_val"
@@ -141,6 +143,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="25"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:background="@drawable/round_shape_btn"
                                 android:text="+" />
                         </LinearLayout>
 
@@ -158,6 +161,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="25"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:background="@drawable/round_shape_btn"
                                 android:text="-" />
 
                             <com.devspark.robototextview.widget.RobotoTextView
@@ -175,6 +179,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="25"
                                 android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:background="@drawable/round_shape_btn"
                                 android:text="+" />
 
                         </LinearLayout>

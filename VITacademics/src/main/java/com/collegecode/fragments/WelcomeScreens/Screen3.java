@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class Screen3 extends Fragment {
     private TextView txt_done;
     private Button btn_go;
     private ProgressBar prg;
+    private ImageView applogo;
 
 
     @Override
@@ -47,6 +49,7 @@ public class Screen3 extends Fragment {
         txt_done = (TextView) view.findViewById(R.id.lbl_parse_data);
         btn_go = (Button) view.findViewById(R.id.btn_start_using);
         prg = (ProgressBar) view.findViewById(R.id.prg_indeterminate);
+        applogo = (ImageView)view.findViewById(R.id.app_logo);
 
         ((TextView) view.findViewById(R.id.lbl_save_data)).setTextColor(Color.parseColor("#008000"));
 
@@ -118,6 +121,7 @@ public class Screen3 extends Fragment {
             new DataHandler(getActivity()).setNewUser(false);
             btn_go.setEnabled(true);
             prg.setVisibility(View.GONE);
+            applogo.setVisibility(View.VISIBLE);
             txt_done.setTextColor(Color.parseColor("#008000"));
         }
     }
