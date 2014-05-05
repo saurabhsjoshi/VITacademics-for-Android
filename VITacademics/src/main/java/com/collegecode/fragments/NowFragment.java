@@ -144,7 +144,7 @@ public class NowFragment extends Fragment {
             Calendar temp = Calendar.getInstance();
             if(today == Calendar.SUNDAY || today == Calendar.SATURDAY) {
                 subs.clear();
-                subs.add(new NowListHeader("IT'S WEEKEND!"));
+                subs.add(new NowListHeader("IT'S A WEEKEND!"));
                 subs.add(new NowListHeader("ON MONDAY"));
                 today = Calendar.MONDAY;
                 not_weekend = false;

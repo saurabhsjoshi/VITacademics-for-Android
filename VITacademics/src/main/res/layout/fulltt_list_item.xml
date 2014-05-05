@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="F1"
         android:textSize="25dp"
-        android:textColor="@color/Gray"
+        android:textColor="#ff0a82ff"
         android:ellipsize="end"
         app:typeface="roboto_light"
         android:layout_alignParentTop="true"

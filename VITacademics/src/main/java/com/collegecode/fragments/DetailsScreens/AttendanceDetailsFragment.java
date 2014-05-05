@@ -2,6 +2,7 @@ package com.collegecode.fragments.DetailsScreens;
 
 import android.content.Context;
 import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
@@ -118,6 +119,33 @@ public class AttendanceDetailsFragment extends Fragment {
         else
         {
             tv_atten.setText("You would have attended "+t_atten+" out of "+t_max+" classes");
+        }
+        /*Color Change of Buttons in Attendance Details */
+        if(per<75)
+        {
+            Drawable d = getResources().getDrawable(R.drawable.round_shape_red);
+            bunk_sub.setBackground(d);
+            bunk_add.setBackground(d);
+            makeup_add.setBackground(d);
+            makeup_sub.setBackground(d);
+        }
+
+        else if(per>=80)
+        {
+            Drawable d = getResources().getDrawable(R.drawable.round_shape_green);
+            bunk_sub.setBackground(d);
+            bunk_add.setBackground(d);
+            makeup_add.setBackground(d);
+            makeup_sub.setBackground(d);
+        }
+
+        else if(per<80 && per>=75)
+        {
+            Drawable d = getResources().getDrawable(R.drawable.round_shape_btn);
+            bunk_sub.setBackground(d);
+            bunk_add.setBackground(d);
+            makeup_add.setBackground(d);
+            makeup_sub.setBackground(d);
         }
     }
 

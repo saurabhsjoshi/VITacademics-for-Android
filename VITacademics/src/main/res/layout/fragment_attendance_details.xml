@@ -75,6 +75,8 @@
                 android:layout_below="@+id/type_detailed"
                 android:layout_centerHorizontal="true">
 
+
+
                 <ProgressBar
                     android:id="@+id/progressBar_detailed"
                     style="?android:attr/progressBarStyleHorizontal"
@@ -118,6 +120,10 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:layout_alignParentTop="true" >
+
+
+
+
                             <Button
                                 android:id="@+id/bunk_sub"
                                 android:layout_width="fill_parent"

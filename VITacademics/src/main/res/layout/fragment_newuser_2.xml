@@ -109,6 +109,8 @@
             android:text="Sign In"
             android:layout_centerHorizontal="true"
             app:typeface="roboto_light"
+            android:background="@drawable/round_shape_green"
+            android:padding="10dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"/>
     </RelativeLayout>

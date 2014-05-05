@@ -35,6 +35,8 @@
         android:layout_marginBottom="38dp"
         android:text="Let's Begin!"
         app:typeface="roboto_light"
+        android:background="@drawable/round_shape_blue"
+        android:padding="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
