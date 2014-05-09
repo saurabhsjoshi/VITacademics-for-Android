@@ -103,14 +103,15 @@ public class AttendanceDetailsFragment extends Fragment {
         tv_net_per.setTextColor(DataHandler.getPerColor(per));
 
         float x[]={5,5,5,5,5,5,5,5};
-        ShapeDrawable pgDrawable = new ShapeDrawable(new RoundRectShape(x, null,null));
+       /* ShapeDrawable pgDrawable = new ShapeDrawable(new RoundRectShape(x, null,null));
         pgDrawable.getPaint().setColor(DataHandler.getPerColor(per));
         ClipDrawable progress = new ClipDrawable(pgDrawable, Gravity.LEFT, ClipDrawable.HORIZONTAL);
-        progBar.setProgressDrawable(progress);
+        progBar.setProgressDrawable(progress);*/
         progBar.setMax(t_max);
         progBar.setProgress(0);
         progBar.invalidate();
         progBar.setProgress(t_atten);
+       /* progBar.setRotation(90.0f);*/
 
         if(globe_makeup==0 && globe_bunk==0)
         {
@@ -120,32 +121,36 @@ public class AttendanceDetailsFragment extends Fragment {
         {
             tv_atten.setText("You would have attended "+t_atten+" out of "+t_max+" classes");
         }
+
         /*Color Change of Buttons in Attendance Details */
+
         if(per<75)
         {
-            Drawable d = getResources().getDrawable(R.drawable.round_shape_red);
-            bunk_sub.setBackground(d);
-            bunk_add.setBackground(d);
-            makeup_add.setBackground(d);
-            makeup_sub.setBackground(d);
+            Drawable d1 = getResources().getDrawable(R.drawable.circular_progress_red);
+            progBar.setProgressDrawable(d1);
+            bunk_sub.setBackgroundResource(R.drawable.round_shape_red);
+            bunk_add.setBackgroundResource(R.drawable.round_shape_red);
+            makeup_add.setBackgroundResource(R.drawable.round_shape_red);
+            makeup_sub.setBackgroundResource(R.drawable.round_shape_red);
         }
-
         else if(per>=80)
         {
-            Drawable d = getResources().getDrawable(R.drawable.round_shape_green);
-            bunk_sub.setBackground(d);
-            bunk_add.setBackground(d);
-            makeup_add.setBackground(d);
-            makeup_sub.setBackground(d);
+            Drawable d1 = getResources().getDrawable(R.drawable.circular_progress_green);
+            progBar.setProgressDrawable(d1);
+            bunk_sub.setBackgroundResource(R.drawable.round_shape_green);
+            bunk_add.setBackgroundResource(R.drawable.round_shape_green);
+            makeup_add.setBackgroundResource(R.drawable.round_shape_green);
+            makeup_sub.setBackgroundResource(R.drawable.round_shape_green);
         }
 
         else if(per<80 && per>=75)
         {
-            Drawable d = getResources().getDrawable(R.drawable.round_shape_btn);
-            bunk_sub.setBackground(d);
-            bunk_add.setBackground(d);
-            makeup_add.setBackground(d);
-            makeup_sub.setBackground(d);
+            Drawable d1 = getResources().getDrawable(R.drawable.circular_progress_yellow);
+            progBar.setProgressDrawable(d1);
+            bunk_sub.setBackgroundResource(R.drawable.round_shape_btn);
+            bunk_add.setBackgroundResource(R.drawable.round_shape_btn);
+            makeup_add.setBackgroundResource(R.drawable.round_shape_btn);
+            makeup_sub.setBackgroundResource(R.drawable.round_shape_btn);
         }
     }
 

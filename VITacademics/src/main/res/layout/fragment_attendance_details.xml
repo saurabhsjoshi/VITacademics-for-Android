@@ -81,9 +81,12 @@
                     android:id="@+id/progressBar_detailed"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:progressDrawable="@drawable/circular_progress_red"
+                    android:max="100"
+                    android:progress="99"/>
 
             </LinearLayout>
             <RelativeLayout
@@ -194,18 +197,20 @@
 
             </RelativeLayout>
 
-            <com.devspark.robototextview.widget.RobotoTextView
-                android:id="@+id/net_per"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="99%"
-                android:textSize="40dp"
-                app:typeface="roboto_light"
-                android:layout_alignWithParentIfMissing="false"
-                android:layout_above="@+id/progress_layout"
-                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </ScrollView>
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/net_per"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="99%"
+        android:textSize="40dp"
+        app:typeface="roboto_light"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignBottom="@+id/scrollView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="190dp" />
 
 </RelativeLayout>
