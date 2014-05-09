@@ -26,6 +26,8 @@ import com.collegecode.fragments.FullTimeTableFragment;
 import com.collegecode.fragments.NowFragment;
 import com.collegecode.fragments.SettingsFragment;
 import com.collegecode.objects.DataHandler;
+import com.parse.Parse;
+import com.parse.ParseFacebookUtils;
 
 /**
  * Created by saurabh on 4/22/14.
@@ -55,6 +57,8 @@ public class Home extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         DataHandler dat = new DataHandler(this);
+        Parse.initialize(this, "pslFDPvG2NmCKEW3v20X9QtgOabxtAvsetd3Keq6", "o3g05te1eRhgbc7pUC6bbzFtVypUuHLEauM3x4vY");
+        ParseFacebookUtils.initialize("239533019505160");
 
         //Check if newUser
         if(dat.isNewUser()) {
@@ -63,7 +67,6 @@ public class Home extends ActionBarActivity {
             overridePendingTransition(R.anim.enter, R.anim.exit);
         }
 
-        //Parse.initialize(this, "pslFDPvG2NmCKEW3v20X9QtgOabxtAvsetd3Keq6", "o3g05te1eRhgbc7pUC6bbzFtVypUuHLEauM3x4vY");
         setContentView(R.layout.activity_home);
 
         mTitle = mDrawerTitle = getTitle();

@@ -20,6 +20,8 @@ import com.collegecode.VITacademics.R;
 import com.collegecode.VITacademics.VITxAPI;
 import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.OnTaskComplete;
+import com.koushikdutta.ion.Ion;
+import com.parse.ParseUser;
 
 /**
  * Created by saurabh on 4/27/14.
@@ -46,12 +48,15 @@ public class Screen3 extends Fragment {
 
         ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle("Finalizing");
 
-        txt_done = (TextView) view.findViewById(R.id.lbl_parse_data);
         btn_go = (Button) view.findViewById(R.id.btn_start_using);
         prg = (ProgressBar) view.findViewById(R.id.prg_indeterminate);
         applogo = (ImageView)view.findViewById(R.id.app_logo);
 
         ((TextView) view.findViewById(R.id.lbl_save_data)).setTextColor(Color.parseColor("#008000"));
+
+        Ion.with(getActivity())
+                .load("http://graph.facebook.com/" + ParseUser.getCurrentUser().getString("fbId") + "/picture?type=large")
+                .intoImageView(applogo);
 
         final TextView txt_att = (TextView) view.findViewById(R.id.lbl_att_load);
         final TextView txt_tt = (TextView) view.findViewById(R.id.lbl_tt_load);
