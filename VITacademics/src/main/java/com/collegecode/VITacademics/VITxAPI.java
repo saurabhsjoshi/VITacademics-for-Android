@@ -38,6 +38,8 @@ public class VITxAPI {
 
     public String Captcha;
 
+    public boolean isDev = true;
+
     public VITxAPI(Context context, OnTaskComplete listner){
         //Initialize with a result listner and context
         this.listner = listner;
@@ -53,6 +55,17 @@ public class VITxAPI {
         String REG_NO = dat.getRegNo();
         String DOB = dat.getDOBString();
 
+        if(isDev)
+        {
+            CAPTCHALESS_URL = "http://www.vitacademicsdev.appspot.com/captchaless/" + REG_NO + "/" + DOB;
+            CAPTCHA_URL = "http://vitacademicsdev.appspot.com/captcha/" + REG_NO;
+            CAPTCHASUB_URL = "http://vitacademicsdev.appspot.com/captchasub/" + REG_NO + "/" + DOB;
+            ATTENDANCE_URL = "http://vitacademicsdev.appspot.com/attj/" + REG_NO + "/" + DOB;
+            TIMETABLE_URL = "http://vitacademicstokensystem.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
+            MARKS_URL = "http://www.vitacademicsdev.appspot.com/marks/" + REG_NO + "/" + DOB;
+            CAPTCHASUB_URL = "http://www.vitacademicsdev.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
+            return;
+        }
         if(dat.isVellore()){
             CAPTCHALESS_URL = "http://www.vitacademicsrel.appspot.com/captchaless/" + REG_NO + "/" + DOB;
             CAPTCHA_URL = "http://vitacademicsrel.appspot.com/captcha/" + REG_NO;
