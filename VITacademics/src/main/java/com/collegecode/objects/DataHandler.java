@@ -43,7 +43,7 @@ public class DataHandler {
         saveString("TIMETABLEJSON", tt);
     }
 
-    public void saveRegNo(String regno){ saveString("REGNO", regno);}
+    public void saveRegNo(String regno){ saveString("REGNO", regno.trim());}
 
     public void saveDob(int[] dob){for(int i = 0; i < 3; i++) saveInt("DOB"+i, dob[i]);}
 

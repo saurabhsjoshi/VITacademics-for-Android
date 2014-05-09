@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/card_bg_r4"
     android:padding="15dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:focusableInTouchMode="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id = "@+id/lbl_now_slot"
