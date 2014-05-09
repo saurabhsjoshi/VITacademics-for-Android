@@ -2,7 +2,6 @@ package com.collegecode.fragments.WelcomeScreens;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -120,8 +119,8 @@ public class Screen3 extends Fragment {
     private void checkIfDone(){
         if(ATTENDANCE_LOAD && TT_LOAD){
             new DataHandler(getActivity()).setNewUser(false);
-            btn_go.setEnabled(true);Drawable d = getResources().getDrawable(R.drawable.round_shape_green);
-            btn_go.setBackground(d);
+            btn_go.setEnabled(true);
+            btn_go.setBackgroundResource(R.drawable.round_shape_green);
             prg.setVisibility(View.GONE);
             applogo.setVisibility(View.VISIBLE);
             txt_done.setTextColor(Color.parseColor("#008000"));
