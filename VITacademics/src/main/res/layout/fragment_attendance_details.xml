@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp">
 
     <ScrollView
@@ -10,12 +10,12 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:scrollbars="none">
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
+            android:layout_height="wrap_content">
 
             <com.devspark.robototextview.widget.RobotoTextView
                 android:id="@+id/code_detailed"
@@ -23,77 +23,91 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_margin="5dp"
                 android:layout_marginBottom="0dp"
                 android:maxLines="1"
                 android:text="Large Text"
-                app:typeface="roboto_light"/>
+                app:typeface="roboto_light" />
 
             <com.devspark.robototextview.widget.RobotoTextView
                 android:id="@+id/title_detailed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:minLines="2"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/code_detailed"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
+                android:minLines="2"
                 android:text="Large Text"
                 android:textSize="28dp"
-                app:typeface="roboto_light"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="20dp" />
+                app:typeface="roboto_light" />
 
             <com.devspark.robototextview.widget.RobotoTextView
                 android:id="@+id/type_detailed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_alignLeft="@+id/title_detailed"
                 android:layout_below="@+id/title_detailed"
+                android:layout_margin="5dp"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                app:typeface="roboto_light"/>
+                app:typeface="roboto_light" />
 
             <com.devspark.robototextview.widget.RobotoTextView
                 android:id="@+id/slot_detailed"
                 android:layout_width="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_height="wrap_content"
                 android:layout_alignRight="@+id/title_detailed"
                 android:layout_below="@+id/title_detailed"
+                android:layout_margin="5dp"
                 android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                app:typeface="roboto_light"/>
+                app:typeface="roboto_light" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/progress_layout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@+id/type_detailed"
-                android:layout_centerHorizontal="true">
+                android:layout_below="@+id/type_detailed">
 
-
-
-                <ProgressBar
-                    android:id="@+id/progressBar_detailed"
-                    style="?android:attr/progressBarStyleHorizontal"
+                <com.devspark.robototextview.widget.RobotoTextView
+                    android:id="@+id/net_per"
                     android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:progressDrawable="@drawable/circular_progress_red"
-                    android:max="100"
-                    android:progress="99"/>
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="5dp"
+                    android:text="99%"
+                    android:textSize="35dp"
+                    app:typeface="roboto_light" />
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar_detailed"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_margin="7dp"
+                        android:layout_weight="1"
+                        android:max="100"
+                        android:progress="99"
+                        android:progressDrawable="@drawable/circular_progress_red" />
+                </LinearLayout>
+            </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/atten_toolbar"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/progress_layout" >
+                android:layout_below="@id/progress_layout">
 
                 <com.devspark.robototextview.widget.RobotoTextView
                     android:id="@+id/atten_detailed"
@@ -103,7 +117,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_margin="5dp"
                     android:text="TextView"
-                    app:typeface="roboto_light"/>
+                    app:typeface="roboto_light" />
 
 
                 <LinearLayout
@@ -111,31 +125,29 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/atten_detailed"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal">
+
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" >
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:id="@+id/bunk_picker"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_alignParentTop="true" >
-
-
-
+                            android:layout_alignParentTop="true"
+                            android:orientation="horizontal">
 
                             <Button
                                 android:id="@+id/bunk_sub"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
                                 android:layout_weight="25"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:background="@drawable/round_shape_btn"
                                 android:text="-"
-                                android:layout_marginBottom="10dp" />
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
 
                             <com.devspark.robototextview.widget.RobotoTextView
                                 android:id="@+id/bunk_val"
@@ -144,18 +156,17 @@
                                 android:layout_weight="10"
                                 android:gravity="center_horizontal"
                                 android:text="3"
-                                app:typeface="roboto_light"/>
+                                app:typeface="roboto_light" />
 
                             <Button
                                 android:id="@+id/bunk_add"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="25"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:background="@drawable/round_shape_btn"
-                                android:text="+" />
+                                android:text="+"
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
                         </LinearLayout>
-
 
 
                         <LinearLayout
@@ -169,9 +180,9 @@
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="25"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:background="@drawable/round_shape_btn"
-                                android:text="-" />
+                                android:text="-"
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
 
                             <com.devspark.robototextview.widget.RobotoTextView
                                 android:id="@+id/makeup_val"
@@ -180,37 +191,21 @@
                                 android:layout_weight="10"
                                 android:gravity="center_horizontal"
                                 android:text="5"
-                                app:typeface="roboto_light"/>
+                                app:typeface="roboto_light" />
 
                             <Button
                                 android:id="@+id/makeup_add"
                                 android:layout_width="fill_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="25"
-                                android:textAppearance="?android:attr/textAppearanceMedium"
                                 android:background="@drawable/round_shape_btn"
-                                android:text="+" />
+                                android:text="+"
+                                android:textAppearance="?android:attr/textAppearanceMedium" />
 
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
             </RelativeLayout>
-
         </RelativeLayout>
     </ScrollView>
-
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/net_per"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="99%"
-        android:textSize="40dp"
-        app:typeface="roboto_light"
-        android:layout_alignWithParentIfMissing="false"
-        android:layout_alignBottom="@+id/scrollView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="190dp" />
-
 </RelativeLayout>
