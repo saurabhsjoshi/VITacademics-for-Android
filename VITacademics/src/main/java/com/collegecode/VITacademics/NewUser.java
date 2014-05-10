@@ -26,11 +26,15 @@ import com.parse.ParseUser;
  * Created by saurabh on 4/26/14.
  */
 public class NewUser extends ActionBarActivity {
-    ProgressDialog pdia;
+    public ProgressDialog pdia;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newuser);
+        pdia = new ProgressDialog(this);
+        pdia.setMessage("Loading");
+
         changeScreen(0);
     }
 
@@ -47,6 +51,7 @@ public class NewUser extends ActionBarActivity {
                                 ParseUser.getCurrentUser().put("fbId", user.getId());
                                 ParseUser.getCurrentUser().put("fbName", user.getName());
                                 ParseUser.getCurrentUser().saveInBackground();
+                                pdia.dismiss();
                             }
                         }
                     });

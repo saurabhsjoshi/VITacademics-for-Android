@@ -16,9 +16,12 @@ import com.collegecode.VITacademics.R;
  */
 public class Screen1 extends Fragment {
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
 
         View view = inflater.inflate(R.layout.fragment_newuser_1,container, false);
 
@@ -29,6 +32,7 @@ public class Screen1 extends Fragment {
             @Override
             public void onClick(View view) {
                 NewUser nw = (NewUser) getActivity();
+                nw.pdia.show();
                 nw.loginwithFaceBook();
             }
         });
