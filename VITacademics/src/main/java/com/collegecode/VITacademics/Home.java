@@ -57,8 +57,11 @@ public class Home extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         DataHandler dat = new DataHandler(this);
+
+
         Parse.initialize(this, "pslFDPvG2NmCKEW3v20X9QtgOabxtAvsetd3Keq6", "o3g05te1eRhgbc7pUC6bbzFtVypUuHLEauM3x4vY");
         ParseFacebookUtils.initialize("239533019505160");
+
 
         //Check if newUser
         if(dat.isNewUser()) {

@@ -51,6 +51,7 @@ public class Screen3 extends Fragment {
         btn_go = (Button) view.findViewById(R.id.btn_start_using);
         prg = (ProgressBar) view.findViewById(R.id.prg_indeterminate);
         applogo = (ImageView)view.findViewById(R.id.app_logo);
+        txt_done = (TextView) view.findViewById(R.id.lbl_parse_data);
 
         ((TextView) view.findViewById(R.id.lbl_save_data)).setTextColor(Color.parseColor("#008000"));
 
@@ -60,7 +61,7 @@ public class Screen3 extends Fragment {
 
         final TextView txt_att = (TextView) view.findViewById(R.id.lbl_att_load);
         final TextView txt_tt = (TextView) view.findViewById(R.id.lbl_tt_load);
-        final TextView txt_marks = (TextView) view.findViewById(R.id.lbl_parse_data);
+        
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,8 +86,8 @@ public class Screen3 extends Fragment {
                                 onError(e);
                             else {
                                 ATTENDANCE_LOAD = true;
-                                txt_marks.setText("Data Saved");
-                                txt_marks.setTextColor(Color.parseColor("#008000"));
+                                txt_done.setText("Data Saved");
+                                txt_done.setTextColor(Color.parseColor("#008000"));
                                 checkIfDone();
                             }
                         }

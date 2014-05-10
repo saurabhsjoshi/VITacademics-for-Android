@@ -1,5 +1,6 @@
 package com.collegecode.VITacademics;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,12 +26,11 @@ import com.parse.ParseUser;
  * Created by saurabh on 4/26/14.
  */
 public class NewUser extends ActionBarActivity {
-
+    ProgressDialog pdia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newuser);
-
         changeScreen(0);
     }
 

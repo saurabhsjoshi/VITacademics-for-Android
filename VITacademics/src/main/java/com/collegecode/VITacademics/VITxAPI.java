@@ -38,7 +38,7 @@ public class VITxAPI {
 
     public String Captcha;
 
-    public boolean isDev = true;
+    public boolean isDev = false;
 
     public VITxAPI(Context context, OnTaskComplete listner){
         //Initialize with a result listner and context
