@@ -28,6 +28,7 @@
         <activity
             android:name="com.collegecode.VITacademics.NewUser"
             android:screenOrientation="portrait"
+            android:noHistory="true"
             />
         <activity
             android:name="com.collegecode.VITacademics.Home"
