@@ -1,4 +1,4 @@
-package com.collegecode.objects;
+package com.collegecode.objects.QRCreator;
 /*
  * Copyright (C) 2008 ZXing authors
  * 

@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.collegecode.VITacademics.R;
-import com.collegecode.objects.Contents;
-import com.collegecode.objects.QRCodeEncoder;
+import com.collegecode.objects.QRCreator.Contents;
+import com.collegecode.objects.QRCreator.QRCodeEncoder;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 

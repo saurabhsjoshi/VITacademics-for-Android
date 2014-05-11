@@ -254,11 +254,10 @@ public class Home extends ActionBarActivity {
             case IntentIntegrator.REQUEST_CODE:
                 IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode,
                         resultCode, data);
-                if (scanResult == null) {
-                    return;
+                if (scanResult.getContents() != null) {
+                    final String result = scanResult.getContents();
+                    System.out.println(result);
                 }
-                final String result = scanResult.getContents();
-                System.out.println(result);
                 break;
         }
 
