@@ -16,12 +16,13 @@ import android.widget.Toast;
 
 import com.collegecode.VITacademics.Home;
 import com.collegecode.VITacademics.NewUser;
+import com.collegecode.VITacademics.ParseAPI;
 import com.collegecode.VITacademics.R;
 import com.collegecode.VITacademics.VITxAPI;
 import com.collegecode.objects.DataHandler;
+import com.collegecode.objects.OnParseFinished;
 import com.collegecode.objects.OnTaskComplete;
-import com.koushikdutta.ion.Ion;
-import com.parse.ParseUser;
+import com.parse.ParseException;
 
 /**
  * Created by saurabh on 4/27/14.
@@ -30,15 +31,16 @@ public class Screen3 extends Fragment {
 
     private boolean ATTENDANCE_LOAD = false;
     private boolean TT_LOAD = false;
+    private boolean PARSE_LOGIN = false;
 
     VITxAPI api_tt;
     VITxAPI api_att;
+    ParseAPI api_login;
 
     private TextView txt_done;
     private Button btn_go;
     private ProgressBar prg;
     private ImageView applogo;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,24 +50,45 @@ public class Screen3 extends Fragment {
 
         ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle("Finalizing");
 
+        txt_done = (TextView) view.findViewById(R.id.lbl_parse_data);
         btn_go = (Button) view.findViewById(R.id.btn_start_using);
         prg = (ProgressBar) view.findViewById(R.id.prg_indeterminate);
         applogo = (ImageView)view.findViewById(R.id.app_logo);
-        txt_done = (TextView) view.findViewById(R.id.lbl_parse_data);
 
         ((TextView) view.findViewById(R.id.lbl_save_data)).setTextColor(Color.parseColor("#008000"));
 
-        Ion.with(getActivity())
-                .load("http://graph.facebook.com/" + ParseUser.getCurrentUser().getString("fbId") + "/picture?type=large")
-                .intoImageView(applogo);
-
         final TextView txt_att = (TextView) view.findViewById(R.id.lbl_att_load);
         final TextView txt_tt = (TextView) view.findViewById(R.id.lbl_tt_load);
-        
+
         btn_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().startActivity(new Intent(getActivity(), Home.class));
+            }
+        });
+
+        api_login = new ParseAPI(getActivity());
+        api_login.registerUser(new OnParseFinished() {
+            @Override
+            public void onTaskCompleted(ParseException e) {
+                if(e == null || e.getCode() == ParseException.USERNAME_TAKEN)
+                {
+                    api_login.loginUser(new OnParseFinished() {
+                        @Override
+                        public void onTaskCompleted(ParseException e) {
+                            if(e == null)
+                            {
+                                PARSE_LOGIN = true;
+                                checkIfDone();
+                            }
+                        }
+                    });
+                }
+                else{
+                    e.printStackTrace();
+                    onError(new Exception("Could not register! Please check your network and try again!"));
+                }
+
             }
         });
 
@@ -117,13 +140,14 @@ public class Screen3 extends Fragment {
         api_tt.loadTimeTable();
         return view;
     }
+
     private void onError(Exception e){
         Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
         ((NewUser) getActivity()).changeScreen(1);
     }
 
     private void checkIfDone(){
-        if(ATTENDANCE_LOAD && TT_LOAD){
+        if(ATTENDANCE_LOAD && TT_LOAD && PARSE_LOGIN){
             new DataHandler(getActivity()).setNewUser(false);
             btn_go.setEnabled(true);
             btn_go.setBackgroundResource(R.drawable.round_shape_green);

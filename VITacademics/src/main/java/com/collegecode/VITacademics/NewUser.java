@@ -32,8 +32,8 @@ public class NewUser extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newuser);
-        pdia = new ProgressDialog(this);
-        pdia.setMessage("Loading");
+        //pdia = new ProgressDialog(this);
+        //pdia.setMessage("Loading");
 
         changeScreen(0);
     }

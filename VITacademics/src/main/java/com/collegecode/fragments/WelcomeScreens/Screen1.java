@@ -32,8 +32,7 @@ public class Screen1 extends Fragment {
             @Override
             public void onClick(View view) {
                 NewUser nw = (NewUser) getActivity();
-                nw.pdia.show();
-                nw.loginwithFaceBook();
+                nw.changeScreen(1);
             }
         });
         return view;
