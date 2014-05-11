@@ -9,4 +9,13 @@
     <color name="light_background_start">#F0F0F0</color>
     <color name="Black">#000000</color>
     <color name="Silver">#999999</color>
+    <color name="zxinglib_transparent">#00000000</color>
+    <color name="zxinglib_viewfinder_frame">#ff000000</color>
+    <color name="zxinglib_viewfinder_laser">#ffff0000</color>
+    <color name="zxinglib_viewfinder_mask">#60000000</color>
+    <color name="zxinglib_result_view">#b0000000</color>
+    <color name="zxinglib_possible_result_points">#c0ffff00</color>
+    <color name="zxinglib_result_image_border">#ffffffff</color>
+    <color name="zxinglib_result_points">#c000ff00</color>
+    <color name="zxinglib_status_text">#ffffffff</color>
 </resources>

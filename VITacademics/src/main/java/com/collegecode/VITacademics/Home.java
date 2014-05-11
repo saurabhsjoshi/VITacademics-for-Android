@@ -18,13 +18,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import com.collegecode.adapters.DrawerListAdapter;
 import com.collegecode.fragments.CoursesFragment;
+import com.collegecode.fragments.FaceBookLogin;
+import com.collegecode.fragments.FriendsFragment;
 import com.collegecode.fragments.FullTimeTableFragment;
 import com.collegecode.fragments.NowFragment;
 import com.collegecode.fragments.SettingsFragment;
+import com.collegecode.objects.BarCodeScanner.IntentIntegrator;
+import com.collegecode.objects.BarCodeScanner.IntentResult;
 import com.collegecode.objects.DataHandler;
 
 /**
@@ -167,7 +170,7 @@ public class Home extends ActionBarActivity {
     }
 
     /** Swaps fragments in the main content view */
-    private void selectItem_Async(int position) {
+    public void selectItem_Async(int position) {
         // Create a new fragment and specify the planet to show based on position
         //Bundle args = new Bundle();
         //args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
@@ -187,18 +190,19 @@ public class Home extends ActionBarActivity {
                 fragment = new FullTimeTableFragment();
                 break;
             case 3:
-                Toast.makeText(this, "Coming Soon!", Toast.LENGTH_SHORT).show();
-                fragment = new SettingsFragment();
+                fragment = new FriendsFragment();
                 break;
             case 4:
                 startActivity(new Intent(this, Settings.class));
                 fragment = new SettingsFragment();
                 break;
-
+            case 5:
+                fragment = new FaceBookLogin();
+                break;
             default:
                 fragment = new NowFragment();
         }
-        if(position!=3 && position != 4){
+        if(position != 4){
             ft.replace(R.id.content_frame, fragment);
             ft.commitAllowingStateLoss();
         }
@@ -241,6 +245,23 @@ public class Home extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case IntentIntegrator.REQUEST_CODE:
+                IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode,
+                        resultCode, data);
+                if (scanResult == null) {
+                    return;
+                }
+                final String result = scanResult.getContents();
+                System.out.println(result);
+                break;
+        }
+
     }
 
 }

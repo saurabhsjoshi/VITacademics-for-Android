@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_fb_login"
+        android:icon="@drawable/menu_fb"
+        android:orderInCategory="20"
+        android:title="Login"
+        app:showAsAction = "always">
+    </item>
+    <item
+        android:id="@+id/menu_add_person"
+        android:icon="@drawable/ic_action_add_person"
+        android:orderInCategory="19"
+        android:title="Add"
+        app:showAsAction = "always">
+    </item>
+    <item
+        android:id="@+id/menu_share_tt"
+        android:icon="@drawable/ic_action_share"
+        android:orderInCategory="19"
+        android:title="Add"
+        app:showAsAction = "always">
+    </item>
+</menu>

@@ -49,6 +49,8 @@ public class DataHandler {
 
     public void saveCampus(Boolean isVellore){preferences.edit().putBoolean("isVellore",isVellore).commit();}
 
+    public void setFbLogin(Boolean isFbLogin){preferences.edit().putBoolean("isFbLogin", isFbLogin).commit();}
+
     public String getRegNo(){
         return preferences.getString("REGNO", "");
     }
@@ -58,6 +60,8 @@ public class DataHandler {
     public String getDOBString(){int[] dob = getDOB(); return check_dob(dob[0]) + check_dob(dob[1] + 1) + Integer.toString(dob[2]);}
 
     public boolean isVellore(){return preferences.getBoolean("isVellore", true);}
+
+    public boolean isFacebookLogin(){return preferences.getBoolean("isFbLogin",false);}
 
     public String getJSON(){return preferences.getString("ATTENDANCEJSON","");}
 

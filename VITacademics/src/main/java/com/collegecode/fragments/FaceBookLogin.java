@@ -8,54 +8,41 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.collegecode.VITacademics.Home;
 import com.collegecode.VITacademics.R;
-import com.collegecode.objects.BarCodeScanner.IntentIntegrator;
-import com.collegecode.objects.BarCodeScanner.ZXingLibConfig;
-import com.collegecode.objects.DataHandler;
 
 /**
  * Created by saurabh on 5/11/14.
  */
-public class FriendsFragment extends Fragment{
-    private DataHandler dat;
-    private ZXingLibConfig zxingLibConfig;
+public class FaceBookLogin extends Fragment{
+    ImageButton btn_login;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_friends,container, false);
         setHasOptionsMenu(true);
-        dat = new DataHandler(getActivity());
-        zxingLibConfig = new ZXingLibConfig();
-        zxingLibConfig.useFrontLight = true;
+        View v = inflater.inflate(R.layout.fragment_facebook_login,container, false);
+        btn_login = (ImageButton) v.findViewById(R.id.btn_login);
+        
         return v;
     }
 
     @Override
     public void onCreateOptionsMenu(
             Menu menu, MenuInflater inflater) {
-
-        inflater.inflate(R.menu.menu_fragment_friends, menu);
-
-        if(dat.isFacebookLogin())
-            menu.findItem(R.id.menu_fb_login).setVisible(false);
+        inflater.inflate(R.menu.menu_fragment_fb_login, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle item selection
         switch (item.getItemId()) {
-            case R.id.menu_fb_login:
-                ((Home) getActivity()).selectItem_Async(5);
+            case R.id.menu_fb_cancel:
+                ((Home) getActivity()).selectItem_Async(3);
                 return true;
-            case R.id.menu_add_person:
-                IntentIntegrator.initiateScan(getActivity(), zxingLibConfig);
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
 }

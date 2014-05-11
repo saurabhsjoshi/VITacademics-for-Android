@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<SurfaceView android:id="@+id/zxinglib_preview_view"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_centerInParent="true" />
+
+	<com.collegecode.objects.BarCodeScanner.ViewfinderView
+		android:id="@+id/zxinglib_viewfinder_view" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:background="@color/zxinglib_transparent" />
+
+	<TextView android:id="@+id/zxinglib_status_view"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_gravity="bottom|center_horizontal" android:background="@color/zxinglib_transparent"
+		android:text="@string/zxinglib_msg_default_status" android:textColor="@color/zxinglib_status_text"
+		android:textSize="14sp" />
+</FrameLayout>

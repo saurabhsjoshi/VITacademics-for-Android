@@ -80,9 +80,11 @@ public class PrefsOpen extends DialogPreference {
             Field[] fields=R.raw.class.getFields();
             for (Field field : fields) {
                 try {
-                    final_string += field.getName() + ": \n";
-                    final_string += readRawTextFile(context, field.getInt(field));
-                    final_string += "\n\n";
+                    if(!field.getName().equals("beep")){
+                        final_string += field.getName() + ": \n";
+                        final_string += readRawTextFile(context, field.getInt(field));
+                        final_string += "\n\n";
+                    }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
