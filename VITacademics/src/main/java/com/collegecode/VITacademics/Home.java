@@ -29,6 +29,7 @@ import com.collegecode.fragments.SettingsFragment;
 import com.collegecode.objects.BarCodeScanner.IntentIntegrator;
 import com.collegecode.objects.BarCodeScanner.IntentResult;
 import com.collegecode.objects.DataHandler;
+import com.parse.ParseFacebookUtils;
 
 /**
  * Created by saurabh on 4/22/14.
@@ -58,6 +59,8 @@ public class Home extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         DataHandler dat = new DataHandler(this);
+
+        new ParseAPI(this).parseInit();
 
         //Check if newUser
         if(dat.isNewUser()) {
@@ -259,6 +262,8 @@ public class Home extends ActionBarActivity {
                     System.out.println(result);
                 }
                 break;
+            default:
+                ParseFacebookUtils.finishAuthentication(requestCode, resultCode, data);
         }
 
     }

@@ -39,7 +39,7 @@ public class FriendsFragment extends Fragment{
         inflater.inflate(R.menu.menu_fragment_friends, menu);
 
         if(dat.isFacebookLogin())
-            menu.findItem(R.id.menu_fb_login).setVisible(false);
+            menu.removeItem(R.id.menu_fb_login);
     }
 
     @Override

@@ -19,7 +19,7 @@
         android:id="@+id/menu_share_tt"
         android:icon="@drawable/ic_action_share"
         android:orderInCategory="19"
-        android:title="Add"
+        android:title="Share TimeTable"
         app:showAsAction = "always">
     </item>
 </menu>

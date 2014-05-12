@@ -1,6 +1,5 @@
 package com.collegecode.VITacademics;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,50 +12,17 @@ import com.collegecode.fragments.WelcomeScreens.Screen1;
 import com.collegecode.fragments.WelcomeScreens.Screen2;
 import com.collegecode.fragments.WelcomeScreens.Screen3;
 import com.collegecode.objects.DataHandler;
-import com.facebook.Request;
-import com.facebook.Response;
-import com.facebook.model.GraphUser;
-import com.parse.LogInCallback;
-import com.parse.ParseException;
-import com.parse.ParseFacebookUtils;
-import com.parse.ParseUser;
 
 /**
  * Created by saurabh on 4/26/14.
  */
 public class NewUser extends ActionBarActivity {
-    public ProgressDialog pdia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newuser);
-        //pdia = new ProgressDialog(this);
-        //pdia.setMessage("Loading");
-
         changeScreen(0);
-    }
-
-    public void loginwithFaceBook(){
-        ParseFacebookUtils.logIn(this, new LogInCallback() {
-            @Override
-            public void done(ParseUser user, ParseException err) {
-                if (user != null) {
-                    changeScreen(1);
-                    Request.executeMeRequestAsync(ParseFacebookUtils.getSession(), new Request.GraphUserCallback() {
-                        @Override
-                        public void onCompleted(GraphUser user, Response response) {
-                            if (user != null) {
-                                ParseUser.getCurrentUser().put("fbId", user.getId());
-                                ParseUser.getCurrentUser().put("fbName", user.getName());
-                                ParseUser.getCurrentUser().saveInBackground();
-                                pdia.dismiss();
-                            }
-                        }
-                    });
-                }
-            }
-        });
     }
 
     public void changeScreen(int num){

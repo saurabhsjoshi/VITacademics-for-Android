@@ -1,5 +1,6 @@
 package com.collegecode.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,22 +12,86 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.collegecode.VITacademics.Home;
+import com.collegecode.VITacademics.ParseAPI;
 import com.collegecode.VITacademics.R;
+import com.collegecode.objects.DataHandler;
+import com.collegecode.objects.OnParseFinished;
+import com.facebook.Request;
+import com.facebook.Response;
+import com.facebook.model.GraphUser;
+import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 /**
  * Created by saurabh on 5/11/14.
  */
 public class FaceBookLogin extends Fragment{
     ImageButton btn_login;
+    public ProgressDialog pdia;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         View v = inflater.inflate(R.layout.fragment_facebook_login,container, false);
         btn_login = (ImageButton) v.findViewById(R.id.btn_login);
-        
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pdia = new ProgressDialog(getActivity());
+                pdia.setMessage("Loading");
+                pdia.setCancelable(true);
+                pdia.show();
+                loginwithFaceBook();
+            }
+        });
+
         return v;
     }
+
+    ParseUser parse_user;
+    public void loginwithFaceBook(){
+        parse_user = ParseUser.getCurrentUser();
+        if (!ParseFacebookUtils.isLinked(parse_user)) {
+            ParseFacebookUtils.link(parse_user, getActivity(), new SaveCallback() {
+                @Override
+                public void done(ParseException ex) {
+                    if (ParseFacebookUtils.isLinked(parse_user)) {
+                        Request.executeMeRequestAsync(ParseFacebookUtils.getSession(), new Request.GraphUserCallback() {
+                            @Override
+                            public void onCompleted(GraphUser user, Response response) {
+                                if (user != null) {
+                                    parse_user.put("facebookID", user.getId());
+                                    parse_user.put("facebookName", user.getName());
+                                    parse_user.put("isSignedIn", "true");
+                                    ParseAPI p = new ParseAPI(getActivity());
+                                    p.save_current_user(new OnParseFinished() {
+                                        @Override
+                                        public void onTaskCompleted(ParseException e) {
+                                            if (e == null) {
+                                                new DataHandler(getActivity()).setFbLogin(true);
+                                                ((Home) getActivity()).selectItem_Async(3);
+                                                System.out.println("Done");
+                                            } else
+                                                e.printStackTrace();
+                                            pdia.dismiss();
+                                        }
+
+                                    });
+                                }
+                            }
+                        });
+                    }
+
+                }
+             });
+        }
+        else{((Home) getActivity()).selectItem_Async(3); pdia.dismiss();}
+    }
+
+
 
     @Override
     public void onCreateOptionsMenu(
