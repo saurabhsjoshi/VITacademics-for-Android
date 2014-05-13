@@ -7,7 +7,9 @@ import android.graphics.Bitmap;
  */
 public class Friend {
     public boolean isFb = false;
+    public String regno;
+    public String fbId;
     public String timetable;
     public String title;
-    public Bitmap b;
+    public Bitmap img_profile;
 }

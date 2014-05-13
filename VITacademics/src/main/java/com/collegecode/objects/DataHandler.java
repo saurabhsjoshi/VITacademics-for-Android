@@ -104,8 +104,10 @@ public class DataHandler {
 
         Gson gson = new Gson();
 
-        for(int i = 0; i < size; i++)
+        for(int i = 0; i < size; i++){
             t.add(gson.fromJson(preferences.getString("FRIENDJSON"+i,""), Friend.class));
+            t.get(i).img_profile = null;
+        }
 
         return t;
     }

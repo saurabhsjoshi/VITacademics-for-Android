@@ -3,6 +3,8 @@ package com.collegecode.fragments;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.collegecode.VITacademics.Home;
@@ -25,7 +28,14 @@ import com.collegecode.objects.BarCodeScanner.ZXingLibConfig;
 import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.Friend;
 import com.collegecode.objects.OnTaskComplete;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
@@ -39,12 +49,15 @@ public class FriendsFragment extends Fragment{
     private ZXingLibConfig zxingLibConfig;
     private ListView listView;
     private PullToRefreshLayout mPullToRefreshLayout;
+    private TextView lbl_empty;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_friends,container, false);
+
         mPullToRefreshLayout = (PullToRefreshLayout) v.findViewById(R.id.ptr_layout);
         listView = (ListView) v.findViewById(R.id.list);
+        lbl_empty = (TextView) v.findViewById(R.id.lbl_empty);
 
         ActionBarPullToRefresh.from(getActivity()).setup(mPullToRefreshLayout);
 
@@ -53,7 +66,7 @@ public class FriendsFragment extends Fragment{
         zxingLibConfig = new ZXingLibConfig();
         zxingLibConfig.useFrontLight = true;
         new Load_Data().execute();
-
+        new Refresh_Data().execute();
         return v;
     }
 
@@ -99,7 +112,6 @@ public class FriendsFragment extends Fragment{
                             }});
                         api.getToken();
                     }});
-
         builder.show();
     }
 
@@ -134,6 +146,7 @@ public class FriendsFragment extends Fragment{
         }
     }
 
+
     private class Load_Data extends AsyncTask<Void,Void,Void> {
         private ArrayList<Friend> friends;
 
@@ -146,9 +159,20 @@ public class FriendsFragment extends Fragment{
         protected Void doInBackground(Void... voids) {
             Friend f = new Friend();
             f.title = "Saurabh Joshi";
+            f.isFb = false;
             friends = new DataHandler(getActivity()).getFreinds();
-            friends.add(f);
-            friends.add(f);
+
+            for(int i = 0; i < friends.size(); i++)
+            {
+                if(friends.get(i).isFb){
+                    File file = new File(getActivity().getCacheDir().getPath() + "/" + friends.get(i).fbId + ".jpg");
+                    try {
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                        friends.get(i).img_profile = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
+                    }catch (Exception e){e.printStackTrace();}
+                }
+            }
             return null;
         }
 
@@ -166,8 +190,88 @@ public class FriendsFragment extends Fragment{
 
             });
             mPullToRefreshLayout.setRefreshComplete();
+            if(friends.size() == 0)
+                lbl_empty.setVisibility(View.VISIBLE);
+            else
+                lbl_empty.setVisibility(View.GONE);
         }
 
+
+
+    }
+
+    private class Refresh_Data extends AsyncTask<Void,Void,Void>{
+
+        private ArrayList<Friend> friends;
+
+        protected void onPreExecute(){
+            friends = new ArrayList<Friend>();
+        }
+
+        private void downloadProfileImage(final ArrayList<Friend> friends){
+            for(int i = 0; i < friends.size(); i++){
+                String fbId;
+                fbId = friends.get(i).fbId;
+                final int j = i;
+                if(friends.get(i).isFb){
+                    Ion.with(getActivity())
+                            .load("http://graph.facebook.com/" + fbId + "/picture?type=large")
+                            .write(new File(getActivity().getCacheDir().getPath() + "/" + fbId + ".jpg"))
+                            .setCallback(new FutureCallback<File>() {
+                                @Override
+                                public void onCompleted(Exception e, File file) {
+                                    if (e == null) {
+                                        System.out.println("GOT PROFILE PICTURE!: " + file.getPath() );
+                                        BitmapFactory.Options options = new BitmapFactory.Options();
+                                        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                                        try {
+                                            friends.get(j).img_profile = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
+                                        } catch (FileNotFoundException e1) {
+                                            e1.printStackTrace();
+                                        }
+                                    }
+                                }
+                            });
+                }
+            }
+        }
+        private boolean needSaving = false;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                friends = new DataHandler(getActivity()).getFreinds();
+                for(int i = 0; i < friends.size(); i++){
+                    if(!friends.get(i).isFb){
+                        ParseQuery<ParseUser> query = ParseUser.getQuery();
+                        ParseUser u = (query.whereEqualTo("username","11BEC0262")).getFirst();
+                        if(u.get("isSignedIn").equals("true")){
+                            friends.get(i).isFb = true;
+                            friends.get(i).fbId = u.get("facebookID").toString();
+                            needSaving = true;
+                        }
+                    }
+                }
+                if(needSaving)
+                    dat.saveFriends(friends);
+
+            }catch (Exception e){e.printStackTrace();}
+            downloadProfileImage(friends);
+            return null;
+        }
+
+        protected void onPostExecute(Void voids){
+            if(needSaving){
+                listView.invalidateViews();
+                listView.scrollBy(0,0);
+                Toast.makeText(getActivity(), "Friends list was updated.", Toast.LENGTH_SHORT).show();
+                ((FreindsListAdapter) listView.getAdapter()).notifyDataSetChanged();
+                listView.setAdapter(new FreindsListAdapter(getActivity(), friends));
+            }
+            if(friends.size() == 0)
+                lbl_empty.setVisibility(View.VISIBLE);
+            else
+                lbl_empty.setVisibility(View.GONE);
+        }
     }
 
 

@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -37,7 +38,7 @@
             android:noHistory="true"
             />
 
-        <activity android:name="com.collegecode.objects.BarCodeScanner.LauncherActivity"></activity>
+        <activity android:name="com.collegecode.objects.BarCodeScanner.LauncherActivity"/>
         <activity android:name="com.collegecode.objects.BarCodeScanner.CaptureActivity"
             android:screenOrientation="landscape" android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
