@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -39,6 +41,15 @@ public class DataHandler {
         saveString("ATTENDANCEJSON", jsonInput);
     }
 
+    public void addFriend(Friend f){
+        int cur = preferences.getInt("FRIENDJSONSIZE", 0);
+        Gson gson = new Gson();
+        String t = gson.toJson(f);
+        saveString("FRIENDJSON"+cur ,t);
+        cur += 1;
+        saveInt("FRIENDJSONSIZE", cur);
+    }
+
     public void saveMarks(String marks){
         saveString("MARKSJSON", marks);
     }
@@ -56,6 +67,16 @@ public class DataHandler {
     public void setFbLogin(Boolean isFbLogin){preferences.edit().putBoolean("isFbLogin", isFbLogin).commit();}
 
     public void saveToken(String json){saveString("PINJSON", json);}
+
+    public void saveFriends(ArrayList<Friend> friends){
+        Gson gson = new Gson();
+        String t;
+        for(int i = 0 ; i < friends.size(); i++){
+            t = gson.toJson(friends.get(i));
+            saveString("FRIENDJSON" + i , t);
+        }
+        saveInt("FRIENDJSONSIZE", friends.size());
+    }
 
     public String getRegNo(){
         return preferences.getString("REGNO", "");
@@ -76,6 +97,18 @@ public class DataHandler {
     public String getMarks(){return  preferences.getString("MARKSJSON","");}
 
     public int getDefUi(){return Integer.parseInt(preferences.getString("defUi","0"));}
+
+    public ArrayList<Friend> getFreinds(){
+        ArrayList<Friend> t = new ArrayList<Friend>();
+        int size = preferences.getInt("FRIENDJSONSIZE", 0);
+
+        Gson gson = new Gson();
+
+        for(int i = 0; i < size; i++)
+            t.add(gson.fromJson(preferences.getString("FRIENDJSON"+i,""), Friend.class));
+
+        return t;
+    }
 
     public String getTokenExpiryTimeString(){
         try {
