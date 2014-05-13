@@ -260,6 +260,9 @@ public class Home extends ActionBarActivity {
                         resultCode, data);
                 if (scanResult.getContents() != null) {
                     final String result = scanResult.getContents();
+                    FriendsFragment f = (FriendsFragment)getSupportFragmentManager().findFragmentById(R.id.content_frame);
+                    f.TOKEN = result;
+                    f.addFriendToList();
                     System.out.println(result);
                 }
                 break;

@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 public class Friend {
     public boolean isFb = false;
     public String regno;
+    public String dob;
     public String fbId;
     public String timetable;
     public String title;

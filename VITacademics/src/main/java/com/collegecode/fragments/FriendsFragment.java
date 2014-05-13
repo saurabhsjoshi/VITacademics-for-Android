@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -115,14 +117,65 @@ public class FriendsFragment extends Fragment{
         builder.show();
     }
 
+    public String TOKEN = "";
+    ProgressDialog pdiag;
+
+    public void addFriendToList(){
+        pdiag = new ProgressDialog(getActivity());
+        pdiag.setMessage("Adding Friend");
+        pdiag.setTitle("Please wait");
+        pdiag.setCancelable(false);
+        pdiag.show();
+        VITxAPI api = new VITxAPI(getActivity(), new OnTaskComplete() {
+            @Override
+            public void onTaskCompleted(Exception e, Object result) {
+                if(e == null){
+                    pdiag.dismiss();
+                    Toast.makeText(getActivity(), "Friend Added!", Toast.LENGTH_SHORT).show();
+                    ((Home) getActivity()).selectItem_Async(3);
+                }
+                else
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        api.Token = TOKEN;
+        api.submitToken();
+    }
+
+
+
     private void showAddAlert(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Add Friend")
                 .setItems(R.array.freinds_add, new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int which) {
-                        if(which == 1){
+                        //Scan Barcode
+                        if(which == 1)
                             IntentIntegrator.initiateScan(getActivity(), zxingLibConfig);
+                        //Enter PIN
+                        else if(which == 0){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setTitle("Enter PIN");
+                            final EditText input = new EditText(getActivity());
+                            input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+                            builder.setView(input);
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    TOKEN = input.getText().toString();
+                                    addFriendToList();
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            });
+
+                            builder.show();
                         }
+
                     }
                 });
         builder.show();
@@ -253,7 +306,6 @@ public class FriendsFragment extends Fragment{
                 }
                 if(needSaving)
                     dat.saveFriends(friends);
-
             }catch (Exception e){e.printStackTrace();}
             downloadProfileImage(friends);
             return null;
@@ -261,11 +313,9 @@ public class FriendsFragment extends Fragment{
 
         protected void onPostExecute(Void voids){
             if(needSaving){
-                listView.invalidateViews();
-                listView.scrollBy(0,0);
+
                 Toast.makeText(getActivity(), "Friends list was updated.", Toast.LENGTH_SHORT).show();
-                ((FreindsListAdapter) listView.getAdapter()).notifyDataSetChanged();
-                listView.setAdapter(new FreindsListAdapter(getActivity(), friends));
+                ((Home) getActivity()).selectItem_Async(3);
             }
             if(friends.size() == 0)
                 lbl_empty.setVisibility(View.VISIBLE);
@@ -273,6 +323,5 @@ public class FriendsFragment extends Fragment{
                 lbl_empty.setVisibility(View.GONE);
         }
     }
-
 
 }

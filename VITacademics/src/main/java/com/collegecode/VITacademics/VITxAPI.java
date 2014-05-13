@@ -6,7 +6,12 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 
 import com.collegecode.objects.DataHandler;
+import com.collegecode.objects.Friend;
 import com.collegecode.objects.OnTaskComplete;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -14,9 +19,11 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -36,8 +43,10 @@ public class VITxAPI {
     private String ATTENDANCE_URL;
     private String MARKS_URL;
     private String TOKEN_URL;
+    private String TOKENSUB_URL;
 
     public String Captcha;
+    public String Token;
 
     public boolean isDev = false;
 
@@ -76,6 +85,7 @@ public class VITxAPI {
             MARKS_URL = "http://www.vitacademicsrel.appspot.com/marks/" + REG_NO + "/" + DOB;
             CAPTCHASUB_URL = "http://www.vitacademicsrel.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
             TOKEN_URL = "http://vitacademicstokensystem.appspot.com/getnewtoken/" + REG_NO + "/" + DOB;
+            TOKENSUB_URL = "http://vitacademicstokensystem.appspot.com/accesstoken/" + Token;
         }
         else{
             CAPTCHALESS_URL = "http://www.vitacademicsrelc.appspot.com/captchaless/" + REG_NO + "/" + DOB;
@@ -85,7 +95,8 @@ public class VITxAPI {
             TIMETABLE_URL = "http://vitacademicstokensystemc.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
             MARKS_URL = "http://www.vitacademicsrelc.appspot.com/marks/" + REG_NO + "/" + DOB;
             CAPTCHASUB_URL = "http://www.vitacademicsrelc.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
-            TOKEN_URL = "http://vitacademicstokensystem.appspot.com/getnewtoken/" + REG_NO + "/" + DOB;
+            TOKEN_URL = "http://vitacademicstokensystemc.appspot.com/getnewtoken/" + REG_NO + "/" + DOB;
+            TOKENSUB_URL = "http://vitacademicstokensystemc.appspot.com/accesstoken/" + Token;
         }
     }
 
@@ -97,6 +108,7 @@ public class VITxAPI {
         new loadCaptchatBitmap_Async().execute();
     }
     public void submitCaptcha(){setUrls(); new submitCaptcha_Async().execute();}
+    public void submitToken(){setUrls(); new submitToken_Async().execute();}
     public void getToken(){new getToken_Async().execute();}
 
     private HttpResponse getResponse(String url) throws IOException{
@@ -321,6 +333,68 @@ public class VITxAPI {
 
         protected void onPostExecute(Void voids){
             listner.onTaskCompleted(e, token);
+        }
+
+    }
+
+    private class submitToken_Async extends AsyncTask <Void,Void,Void>{
+        Exception e = null;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try{
+                HttpResponse res = getResponse(TOKENSUB_URL);
+
+                if(res.getStatusLine().getStatusCode() == 403 || res.getStatusLine().getStatusCode() == 503)
+                {
+                    e = new Exception("Our servers are overloaded! Please try again later");
+                    return null;
+                }
+
+                String result = EntityUtils.toString(res.getEntity());
+                JSONObject root = new JSONObject(result);
+                if(root.getString("status").equals("success")){
+                    Friend f = new Friend();
+                    f.regno = root.getString("regno");
+                    f.dob = root.getString("dob");
+                    f.title = root.getString("regno");
+
+                    ParseQuery<ParseUser> query = ParseUser.getQuery();
+                    ParseUser u = (query.whereEqualTo("username",f.regno)).getFirst();
+
+                    if(u.getString("isSignedIn").equals("true")){
+                        f.isFb = true;
+                        f.fbId = u.getString("facebookID");
+                        f.title = u.getString("facebookName");
+                        Ion.with(dat.context)
+                                .load("http://graph.facebook.com/" + f.fbId + "/picture?type=large")
+                                .write(new File(dat.context.getCacheDir().getPath() + "/" + f.fbId + ".jpg"))
+                                .setCallback(new FutureCallback<File>() {
+                                    @Override
+                                    public void onCompleted(Exception e1, File file) {
+                                        if (e1 != null)
+                                            e = new Exception("Error occured while downloading profile picture. Please try again!");
+                                    }});
+                    }
+                    //Get the timetable
+                    f.timetable = EntityUtils.toString(getResponse("http://vitacademicstokensystem.appspot.com/gettimetable/" + f.regno + f.dob).getEntity());
+                    //Save friend to memory!
+                    dat.addFriend(f);
+
+                }
+                else{
+                    e = new Exception("Oops! Looks like the token is incorrect.");
+                }
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+                e = new Exception("Oops! Something went wrong. Check your network!");
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void voids){
+            listner.onTaskCompleted(e, "done");
         }
 
     }

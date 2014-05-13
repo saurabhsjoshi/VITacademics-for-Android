@@ -20,7 +20,7 @@ import java.util.Date;
  * Created by saurabh on 4/22/14.
  */
 public class DataHandler {
-    Context context;
+    public Context context;
     SharedPreferences preferences;
 
     public DataHandler(Context context){
