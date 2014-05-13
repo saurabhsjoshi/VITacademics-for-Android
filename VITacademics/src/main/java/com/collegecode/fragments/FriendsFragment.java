@@ -53,6 +53,7 @@ public class FriendsFragment extends Fragment{
     private void showShareAlert(){
         diag = new ProgressDialog(getActivity());
         diag.setMessage("Loading");
+        diag.setCancelable(false);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Share TimeTable")
                 .setItems(R.array.freinds_share, new DialogInterface.OnClickListener() {
@@ -67,7 +68,6 @@ public class FriendsFragment extends Fragment{
                                 else{
                                     Home h = (Home) getActivity();
                                     h.token = (String) result;
-                                    diag.dismiss();
 
                                     //QR CODE
                                     if(which == 0)
@@ -76,7 +76,7 @@ public class FriendsFragment extends Fragment{
                                     else
                                         Toast.makeText(getActivity(), "Coming Soon", Toast.LENGTH_SHORT).show();
                                 }
-
+                                diag.dismiss();
                             }});
                         api.getToken();
                     }});
@@ -96,6 +96,7 @@ public class FriendsFragment extends Fragment{
                 });
         builder.show();
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

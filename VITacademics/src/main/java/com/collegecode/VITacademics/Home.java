@@ -178,12 +178,6 @@ public class Home extends ActionBarActivity {
 
     /** Swaps fragments in the main content view */
     public void selectItem_Async(int position) {
-        // Create a new fragment and specify the planet to show based on position
-        //Bundle args = new Bundle();
-        //args.putInt(PlanetFragment.ARG_PLANET_NUMBER, position);
-       // fragment.setArguments(args);
-
-        // Insert the fragment by replacing any existing fragment
         Fragment fragment;
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         switch(position){
