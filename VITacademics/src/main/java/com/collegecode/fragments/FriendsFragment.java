@@ -1,5 +1,8 @@
 package com.collegecode.fragments;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,12 +11,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.collegecode.VITacademics.Home;
 import com.collegecode.VITacademics.R;
+import com.collegecode.VITacademics.VITxAPI;
 import com.collegecode.objects.BarCodeScanner.IntentIntegrator;
 import com.collegecode.objects.BarCodeScanner.ZXingLibConfig;
 import com.collegecode.objects.DataHandler;
+import com.collegecode.objects.OnTaskComplete;
 
 /**
  * Created by saurabh on 5/11/14.
@@ -42,6 +48,55 @@ public class FriendsFragment extends Fragment{
             menu.removeItem(R.id.menu_fb_login);
     }
 
+    private ProgressDialog diag;
+
+    private void showShareAlert(){
+        diag = new ProgressDialog(getActivity());
+        diag.setMessage("Loading");
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Share TimeTable")
+                .setItems(R.array.freinds_share, new DialogInterface.OnClickListener() {
+
+                    public void onClick(final DialogInterface dialog, final int which) {
+                        diag.show();
+                        VITxAPI api = new VITxAPI(getActivity(), new OnTaskComplete() {
+                            @Override
+                            public void onTaskCompleted(Exception e, Object result) {
+                                if(e != null)
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                else{
+                                    Home h = (Home) getActivity();
+                                    h.token = (String) result;
+                                    diag.dismiss();
+
+                                    //QR CODE
+                                    if(which == 0)
+                                        h.selectItem_Async(6);
+                                    //NFC
+                                    else
+                                        Toast.makeText(getActivity(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }});
+                        api.getToken();
+                    }});
+
+        builder.show();
+    }
+
+    private void showAddAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Share TimeTable")
+                .setItems(R.array.freinds_add, new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int which) {
+                        if(which == 1){
+                            IntentIntegrator.initiateScan(getActivity(), zxingLibConfig);
+                        }
+                    }
+                });
+        builder.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle item selection
@@ -50,12 +105,16 @@ public class FriendsFragment extends Fragment{
                 ((Home) getActivity()).selectItem_Async(5);
                 return true;
             case R.id.menu_add_person:
-                IntentIntegrator.initiateScan(getActivity(), zxingLibConfig);
+                showAddAlert();
+                return true;
+            case R.id.menu_share_tt:
+                showShareAlert();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
 
 }

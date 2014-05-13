@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.collegecode.VITacademics.Home;
 import com.collegecode.VITacademics.ParseAPI;
@@ -72,6 +73,7 @@ public class FaceBookLogin extends Fragment{
                                         public void onTaskCompleted(ParseException e) {
                                             if (e == null) {
                                                 new DataHandler(getActivity()).setFbLogin(true);
+                                                Toast.makeText(getActivity(), "Signed in!" , Toast.LENGTH_SHORT).show();
                                                 ((Home) getActivity()).selectItem_Async(3);
                                                 System.out.println("Done");
                                             } else
@@ -84,11 +86,16 @@ public class FaceBookLogin extends Fragment{
                             }
                         });
                     }
+                    else{
+                        ((Home) getActivity()).selectItem_Async(3); pdia.dismiss();
+                        Toast.makeText(getActivity(), "Error Occured! Please try again." , Toast.LENGTH_SHORT).show();
+                    }
 
                 }
              });
         }
-        else{((Home) getActivity()).selectItem_Async(3); pdia.dismiss();}
+        else{((Home) getActivity()).selectItem_Async(3); pdia.dismiss();new DataHandler(getActivity()).setFbLogin(true);
+            Toast.makeText(getActivity(), "Signed in!" , Toast.LENGTH_SHORT).show();}
     }
 
 

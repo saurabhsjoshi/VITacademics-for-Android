@@ -25,6 +25,7 @@ import com.collegecode.fragments.FaceBookLogin;
 import com.collegecode.fragments.FriendsFragment;
 import com.collegecode.fragments.FullTimeTableFragment;
 import com.collegecode.fragments.NowFragment;
+import com.collegecode.fragments.QRCodeFragment;
 import com.collegecode.fragments.SettingsFragment;
 import com.collegecode.objects.BarCodeScanner.IntentIntegrator;
 import com.collegecode.objects.BarCodeScanner.IntentResult;
@@ -172,6 +173,9 @@ public class Home extends ActionBarActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    //For QR and NFC
+    public String token = "";
+
     /** Swaps fragments in the main content view */
     public void selectItem_Async(int position) {
         // Create a new fragment and specify the planet to show based on position
@@ -201,6 +205,9 @@ public class Home extends ActionBarActivity {
                 break;
             case 5:
                 fragment = new FaceBookLogin();
+                break;
+            case 6:
+                fragment = new QRCodeFragment();
                 break;
             default:
                 fragment = new NowFragment();

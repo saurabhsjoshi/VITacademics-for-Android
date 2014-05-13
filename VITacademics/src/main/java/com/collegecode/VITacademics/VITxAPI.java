@@ -35,6 +35,7 @@ public class VITxAPI {
     private String CAPTCHASUB_URL;
     private String ATTENDANCE_URL;
     private String MARKS_URL;
+    private String TOKEN_URL;
 
     public String Captcha;
 
@@ -74,6 +75,7 @@ public class VITxAPI {
             TIMETABLE_URL = "http://vitacademicstokensystem.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
             MARKS_URL = "http://www.vitacademicsrel.appspot.com/marks/" + REG_NO + "/" + DOB;
             CAPTCHASUB_URL = "http://www.vitacademicsrel.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
+            TOKEN_URL = "http://vitacademicstokensystem.appspot.com/getnewtoken/" + REG_NO + "/" + DOB;
         }
         else{
             CAPTCHALESS_URL = "http://www.vitacademicsrelc.appspot.com/captchaless/" + REG_NO + "/" + DOB;
@@ -83,6 +85,7 @@ public class VITxAPI {
             TIMETABLE_URL = "http://vitacademicstokensystemc.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
             MARKS_URL = "http://www.vitacademicsrelc.appspot.com/marks/" + REG_NO + "/" + DOB;
             CAPTCHASUB_URL = "http://www.vitacademicsrelc.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
+            TOKEN_URL = "http://vitacademicstokensystem.appspot.com/getnewtoken/" + REG_NO + "/" + DOB;
         }
     }
 
@@ -94,6 +97,7 @@ public class VITxAPI {
         new loadCaptchatBitmap_Async().execute();
     }
     public void submitCaptcha(){setUrls(); new submitCaptcha_Async().execute();}
+    public void getToken(){new getToken_Async().execute();}
 
     private HttpResponse getResponse(String url) throws IOException{
         HttpClient client = new DefaultHttpClient();
@@ -285,5 +289,39 @@ public class VITxAPI {
         protected void onPostExecute(Void voids){
             listner.onTaskCompleted(e, "Done");
         }
+    }
+
+    private class getToken_Async extends AsyncTask <Void,Void,Void>{
+        Exception e = null;
+        String token = "";
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+           try{
+               token = dat.getToken();
+               if(token.equals("expired")){
+                   HttpResponse res = getResponse(TOKEN_URL);
+
+                   if(res.getStatusLine().getStatusCode() == 403 || res.getStatusLine().getStatusCode() == 503)
+                   {
+                       e = new Exception("Our servers are overloaded! Please try again later");
+                       return null;
+                   }
+
+                   String result = EntityUtils.toString(res.getEntity());
+                   dat.saveToken(result);
+                   token = dat.getToken();
+               }
+           }catch (Exception e1){
+               e1.printStackTrace();
+               e = new Exception("Oops! Something went wrong. Check your network!");
+           }
+            return null;
+        }
+
+        protected void onPostExecute(Void voids){
+            listner.onTaskCompleted(e, token);
+        }
+
     }
 }

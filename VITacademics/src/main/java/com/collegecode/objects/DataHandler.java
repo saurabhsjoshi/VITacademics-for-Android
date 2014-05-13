@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.text.format.DateUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by saurabh on 4/22/14.
@@ -51,6 +55,8 @@ public class DataHandler {
 
     public void setFbLogin(Boolean isFbLogin){preferences.edit().putBoolean("isFbLogin", isFbLogin).commit();}
 
+    public void saveToken(String json){saveString("PINJSON", json);}
+
     public String getRegNo(){
         return preferences.getString("REGNO", "");
     }
@@ -70,6 +76,34 @@ public class DataHandler {
     public String getMarks(){return  preferences.getString("MARKSJSON","");}
 
     public int getDefUi(){return Integer.parseInt(preferences.getString("defUi","0"));}
+
+    public String getTokenExpiryTimeString(){
+        try {
+            JSONObject obj = new JSONObject(preferences.getString("PINJSON",""));
+            String dt = obj.getString("expiry");
+
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+            Date expiry_date =  df.parse(dt);
+
+            return "Expires " + DateUtils.getRelativeTimeSpanString(expiry_date.getTime(), new Date().getTime() , 0).toString();
+        }catch (Exception ignore){}
+        return "";
+    }
+
+    public String getToken(){
+        try {
+            JSONObject obj = new JSONObject(preferences.getString("PINJSON",""));
+            String dt = obj.getString("expiry");
+
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
+            Date expiry_date =  df.parse(dt);
+
+            if(expiry_date.after(new Date())){
+                return obj.getString("token");
+            }
+        }catch (Exception ignore){}
+        return "expired";
+    }
 
     private String check_dob(int num){
         String t = Integer.toString(num);
