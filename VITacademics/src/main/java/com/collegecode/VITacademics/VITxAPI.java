@@ -377,7 +377,7 @@ public class VITxAPI {
                                     }});
                     }
                     //Get the timetable
-                    f.timetable = EntityUtils.toString(getResponse("http://vitacademicstokensystem.appspot.com/gettimetable/" + f.regno + f.dob).getEntity());
+                    f.timetable = EntityUtils.toString(getResponse("http://vitacademicstokensystem.appspot.com/gettimetable/" + f.regno + "/" + f.dob).getEntity());
                     //Save friend to memory!
                     dat.addFriend(f);
 

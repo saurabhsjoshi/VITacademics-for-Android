@@ -108,7 +108,7 @@ public class FriendsFragment extends Fragment{
                                         h.selectItem_Async(6);
                                     //NFC
                                     else
-                                        Toast.makeText(getActivity(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                                        ((Home) getActivity()).enableNdefExchangeMode();
                                 }
                                 diag.dismiss();
                             }});
@@ -130,15 +130,16 @@ public class FriendsFragment extends Fragment{
             @Override
             public void onTaskCompleted(Exception e, Object result) {
                 if(e == null){
-                    pdiag.dismiss();
                     Toast.makeText(getActivity(), "Friend Added!", Toast.LENGTH_SHORT).show();
                     ((Home) getActivity()).selectItem_Async(3);
                 }
                 else
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                pdiag.dismiss();
             }
         });
         api.Token = TOKEN;
+
         api.submitToken();
     }
 
@@ -210,11 +211,7 @@ public class FriendsFragment extends Fragment{
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Friend f = new Friend();
-            f.title = "Saurabh Joshi";
-            f.isFb = false;
             friends = new DataHandler(getActivity()).getFreinds();
-
             for(int i = 0; i < friends.size(); i++)
             {
                 if(friends.get(i).isFb){
@@ -313,7 +310,6 @@ public class FriendsFragment extends Fragment{
 
         protected void onPostExecute(Void voids){
             if(needSaving){
-
                 Toast.makeText(getActivity(), "Friends list was updated.", Toast.LENGTH_SHORT).show();
                 ((Home) getActivity()).selectItem_Async(3);
             }

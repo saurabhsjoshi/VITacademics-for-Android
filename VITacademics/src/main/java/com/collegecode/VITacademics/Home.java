@@ -1,10 +1,17 @@
 package com.collegecode.VITacademics;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
+import android.nfc.NfcAdapter;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -12,6 +19,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.IntentCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,6 +62,15 @@ public class Home extends ActionBarActivity {
     //Titles
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
+
+    public boolean hasNFC = false;
+
+    private NfcAdapter mNfcAdapter;
+    PendingIntent mNfcPendingIntent;
+    IntentFilter[] mNdefExchangeFilters;
+    private boolean mResumed = false;
+    private boolean mWriteMode = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,8 +129,20 @@ public class Home extends ActionBarActivity {
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         selectItem(dat.getDefUi());
 
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+            if(mNfcAdapter!=null){
+                hasNFC = true;
+                mNfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+                // Intent filters for exchanging over p2p.
+                IntentFilter ndefDetected = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+                try {
+                    ndefDetected.addDataType("text/plain");
+                } catch (IntentFilter.MalformedMimeTypeException e) { }
+                mNdefExchangeFilters = new IntentFilter[] { ndefDetected };
+            }
 
-
+        }
     }
 
     public void disable_drawer(){
@@ -147,8 +176,6 @@ public class Home extends ActionBarActivity {
         }, 250);
     }
 
-
-
     //Radio Button in Settings Fragment Callback
     public void onRadioButtonClicked(View view) {
         DataHandler dat = new DataHandler(this);
@@ -169,7 +196,6 @@ public class Home extends ActionBarActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
@@ -178,6 +204,7 @@ public class Home extends ActionBarActivity {
 
     /** Swaps fragments in the main content view */
     public void selectItem_Async(int position) {
+
         Fragment fragment;
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         switch(position){
@@ -272,4 +299,100 @@ public class Home extends ActionBarActivity {
 
     }
 
+    NdefMessage[] getNdefMessages(Intent intent) {
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            // Parse the intent
+            NdefMessage[] msgs = null;
+            String action = intent.getAction();
+            if (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)
+                    || NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
+                Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
+                if (rawMsgs != null) {
+                    msgs = new NdefMessage[rawMsgs.length];
+                    for (int i = 0; i < rawMsgs.length; i++) {
+                        msgs[i] = (NdefMessage) rawMsgs[i];
+                    }
+                } else {
+                    // Unknown tag type
+                    byte[] empty = new byte[] {};
+                    NdefRecord record = new NdefRecord(NdefRecord.TNF_UNKNOWN, empty, empty, empty);
+                    NdefMessage msg = new NdefMessage(new NdefRecord[] {
+                            record
+                    });
+                    msgs = new NdefMessage[] {
+                            msg
+                    };
+                }
+            } else {
+                Log.d("ERROR", "Unknown intent.");
+                finish();
+            }
+            return msgs;
+        }
+        return null;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        // NDEF exchange mode
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            try{
+                if (!mWriteMode && NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
+                    NdefMessage[] msgs = getNdefMessages(intent);
+                    final String result = new String(msgs[0].getRecords()[0].getPayload());
+                    FriendsFragment f = (FriendsFragment)getSupportFragmentManager().findFragmentById(R.id.content_frame);
+                    f.TOKEN = result;
+                    f.addFriendToList();
+                }
+
+            }catch (Exception ignore){}
+        }
+    }
+
+    private NdefMessage getNoteAsNdef() {
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            byte[] textBytes = token.getBytes();
+            NdefRecord textRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, "text/plain".getBytes(),new byte[] {}, textBytes);
+            return new NdefMessage(new NdefRecord[] {textRecord});
+        }
+        return null;
+    }
+
+
+    public void enableNdefExchangeMode() {
+        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            mNfcAdapter.enableForegroundNdefPush(Home.this, getNoteAsNdef());
+            mNfcAdapter.enableForegroundDispatch(this, mNfcPendingIntent, mNdefExchangeFilters, null);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mResumed = false;
+        try{
+            if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+                mNfcAdapter.disableForegroundNdefPush(this);
+            }
+        }catch (Exception ignore){}
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mResumed = true;
+        try{
+            if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+                if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
+                    NdefMessage[] messages = getNdefMessages(getIntent());
+                    byte[] payload = messages[0].getRecords()[0].getPayload();
+                    System.out.println("GOT THIS:" + new String(payload));
+                    //setNoteBody(new String(payload));
+                    setIntent(new Intent()); // Consume this intent.
+                }
+                enableNdefExchangeMode();
+            }
+
+        }catch (Exception ignore){}
+    }
 }
