@@ -50,7 +50,7 @@ public class Home extends ActionBarActivity {
 
     //Initialize drawer tabs
     private String[] titles = { "Today", "Courses", "Timetable","Friends", "Settings"};
-    private String[] subtitle = { "Realtime Overview", "Attendance|Marks|More", "Day|Week", "Coming Soon!", "Change credentials"};
+    private String[] subtitle = { "Realtime Overview", "Attendance|Marks|More", "Day|Week", "", "Change credentials"};
     private int[] imgs = new int[]{ R.drawable.now, R.drawable.ic_action_sort_by_size, R.drawable.timetable, R.drawable.friends, R.drawable.settings};
 
     //Drawer ListView

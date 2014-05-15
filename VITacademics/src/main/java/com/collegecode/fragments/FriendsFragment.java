@@ -194,6 +194,49 @@ public class FriendsFragment extends Fragment{
                             builder.show();
                         }
                         else if(which == 2){
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            // Get the layout inflater
+                            LayoutInflater inflater = getActivity().getLayoutInflater();
+
+                            // Inflate and set the layout for the dialog
+                            // Pass null as the parent view because its going in the dialog layout
+                            builder.setTitle("Enter Credentials");
+                            final View dView = inflater.inflate(R.layout.dialog_add_freind, null);
+                            builder.setView(dView)
+                                    // Add action buttons
+                                    .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(final DialogInterface dialog, int id) {
+                                            VITxAPI api = new VITxAPI(getActivity(), new OnTaskComplete() {
+                                                @Override
+                                                public void onTaskCompleted(Exception e, Object result) {
+                                                    if (e == null) {
+                                                        Toast.makeText(getActivity(), "Friend Added!", Toast.LENGTH_SHORT).show();
+                                                        ((Home) getActivity()).selectItem_Async(3);
+                                                    } else
+                                                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    pdiag.dismiss();
+                                                }
+                                            });
+                                            pdiag = new ProgressDialog(getActivity());
+                                            pdiag.setMessage("Adding Friend");
+                                            pdiag.setTitle("Please wait");
+                                            pdiag.setCancelable(false);
+                                            pdiag.show();
+                                            api.Friend_regno = ((EditText) dView.findViewById(R.id.username)).getText().toString().toUpperCase();
+                                            api.Friend_dob = ((EditText) dView.findViewById(R.id.password)).getText().toString();
+                                            api.AddFriendwithCredentials();
+                                            dialog.dismiss();
+                                        }
+                                    })
+                                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+                            builder.show();
+                        }
+                        else if(which == 3){
                             if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
                                 NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
 
@@ -329,6 +372,7 @@ public class FriendsFragment extends Fragment{
                         if(u.get("isSignedIn").equals("true")){
                             friends.get(i).isFb = true;
                             friends.get(i).fbId = u.get("facebookID").toString();
+                            friends.get(i).title = u.get("facebookName").toString();
                             needSaving = true;
                         }
                     }

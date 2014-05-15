@@ -44,9 +44,13 @@ public class VITxAPI {
     private String MARKS_URL;
     private String TOKEN_URL;
     private String TOKENSUB_URL;
+    private String FRIEND_TIMETABLE_URL;
 
     public String Captcha;
     public String Token;
+
+    public String Friend_regno;
+    public String Friend_dob;
 
     public boolean isDev = false;
 
@@ -86,6 +90,7 @@ public class VITxAPI {
             CAPTCHASUB_URL = "http://www.vitacademicsrel.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
             TOKEN_URL = "http://vitacademicstokensystem.appspot.com/getnewtoken/" + REG_NO + "/" + DOB;
             TOKENSUB_URL = "http://vitacademicstokensystem.appspot.com/accesstoken/" + Token;
+            FRIEND_TIMETABLE_URL = "http://vitacademicstokensystem.appspot.com/gettimetable/" + Friend_regno + "/" + Friend_dob;
         }
         else{
             CAPTCHALESS_URL = "http://www.vitacademicsrelc.appspot.com/captchaless/" + REG_NO + "/" + DOB;
@@ -97,6 +102,7 @@ public class VITxAPI {
             CAPTCHASUB_URL = "http://www.vitacademicsrelc.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
             TOKEN_URL = "http://vitacademicstokensystemc.appspot.com/getnewtoken/" + REG_NO + "/" + DOB;
             TOKENSUB_URL = "http://vitacademicstokensystemc.appspot.com/accesstoken/" + Token;
+            FRIEND_TIMETABLE_URL = "http://vitacademicstokensystemc.appspot.com/gettimetable/" + Friend_regno + "/" + Friend_dob;
         }
     }
 
@@ -110,6 +116,7 @@ public class VITxAPI {
     public void submitCaptcha(){setUrls(); new submitCaptcha_Async().execute();}
     public void submitToken(){setUrls(); new submitToken_Async().execute();}
     public void getToken(){new getToken_Async().execute();}
+    public void AddFriendwithCredentials(){setUrls(); new AddFriendwithCredentials_Async().execute();}
 
     private HttpResponse getResponse(String url) throws IOException{
         HttpClient client = new DefaultHttpClient();
@@ -389,6 +396,62 @@ public class VITxAPI {
             }catch (Exception e1){
                 e1.printStackTrace();
                 e = new Exception("Oops! Something went wrong. Check your network!");
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void voids){
+            listner.onTaskCompleted(e, "done");
+        }
+
+    }
+
+    private class AddFriendwithCredentials_Async extends AsyncTask <Void,Void,Void>{
+        Exception e = null;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try{
+                HttpResponse res = getResponse(FRIEND_TIMETABLE_URL);
+
+                if(res.getStatusLine().getStatusCode() == 403 || res.getStatusLine().getStatusCode() == 503)
+                {
+                    e = new Exception("Our servers are overloaded! Please try again later");
+                    return null;
+                }
+
+                String result = EntityUtils.toString(res.getEntity());
+
+                Friend f = new Friend();
+                f.regno = Friend_regno;
+                f.dob = Friend_dob;
+                f.title = Friend_regno;
+
+                ParseQuery<ParseUser> query = ParseUser.getQuery();
+                ParseUser u = (query.whereEqualTo("username",f.regno)).getFirst();
+
+                if(u.getString("isSignedIn").equals("true")){
+                    f.isFb = true;
+                    f.fbId = u.getString("facebookID");
+                    f.title = u.getString("facebookName");
+                    Ion.with(dat.context)
+                            .load("http://graph.facebook.com/" + f.fbId + "/picture?type=large")
+                            .write(new File(dat.context.getCacheDir().getPath() + "/" + f.fbId + ".jpg"))
+                            .setCallback(new FutureCallback<File>() {
+                                @Override
+                                public void onCompleted(Exception e1, File file) {
+                                    if (e1 != null)
+                                        e = new Exception("Error occured while downloading profile picture. Please try again!");
+                                }});
+                }
+                //Get the timetable
+                f.timetable = result;
+                //Save friend to memory!
+                dat.addFriend(f);
+
+            }catch (Exception e1){
+                e1.printStackTrace();
+                e = new Exception("Oops! Something went wrong. Check credentials and try again.");
             }
             return null;
         }

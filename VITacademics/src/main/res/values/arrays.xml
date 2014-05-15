@@ -20,6 +20,7 @@
     <string-array name="freinds_add">
         <item>PIN</item>
         <item>QR Code</item>
+        <item>Credentials</item>
         <item>NFC</item>
     </string-array>
 
