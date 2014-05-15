@@ -116,14 +116,12 @@ public class TimeTable{
                             FreindEndsIn = DateUtils.getRelativeTimeSpanString(temp.to_time.getTimeInMillis(), calendar.getTimeInMillis(), 0).toString();
                             return true;
                         }
-                        else
-                            return false;
                     }
                 }
 
             }catch (Exception e){e.printStackTrace(); return false;}
 
-            return true;
+            return false;
         }
 
     }
