@@ -16,7 +16,7 @@
         android:layout_marginRight="25dp"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:text="Tap your friends phone to add him.\n\n Make sure your friend is on the add friend screen."
+        android:text="Tap your friends NFC enabled device.\n\n Make sure your friend is on the add friend screen."
         app:typeface="roboto_light"/>
 
     <WebView

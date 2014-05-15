@@ -32,6 +32,7 @@ import com.collegecode.fragments.CoursesFragment;
 import com.collegecode.fragments.FaceBookLogin;
 import com.collegecode.fragments.FriendsFragment;
 import com.collegecode.fragments.FullTimeTableFragment;
+import com.collegecode.fragments.NFCAddFragment;
 import com.collegecode.fragments.NFCFragment;
 import com.collegecode.fragments.NowFragment;
 import com.collegecode.fragments.QRCodeFragment;
@@ -234,6 +235,9 @@ public class Home extends ActionBarActivity {
             case 7:
                 fragment = new NFCFragment();
                 break;
+            case 8:
+                fragment = new NFCAddFragment();
+                break;
             default:
                 fragment = new NowFragment();
         }
@@ -259,7 +263,7 @@ public class Home extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        disableNdefExchangeMode();
+
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.home, menu);
         return true;

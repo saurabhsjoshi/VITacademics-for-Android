@@ -193,6 +193,24 @@ public class FriendsFragment extends Fragment{
 
                             builder.show();
                         }
+                        else if(which == 2){
+                            if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+                                NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
+
+                                if(mNfcAdapter!=null && mNfcAdapter.isEnabled()){
+                                    ((Home) getActivity()).enableNdefExchangeMode();
+                                    ((Home) getActivity()).selectItem_Async(8);
+                                }
+                                else
+                                    Toast.makeText(getActivity(), "Could not connect to a NFC service.", Toast.LENGTH_SHORT).show();
+
+                            }
+                            else
+                            {
+                                Toast.makeText(getActivity(), "NFC not supported on your device", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
                     }
                 });
         builder.show();
