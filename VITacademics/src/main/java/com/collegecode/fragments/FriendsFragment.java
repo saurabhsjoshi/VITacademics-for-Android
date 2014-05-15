@@ -111,15 +111,12 @@ public class FriendsFragment extends Fragment{
                                     //NFC
                                     else{
                                         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
-                                            NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
-
-                                            if(mNfcAdapter!=null && mNfcAdapter.isEnabled()){
+                                            if(((Home) getActivity()).hasNFC){
                                                 ((Home) getActivity()).enableNdefExchangeMode();
                                                 ((Home) getActivity()).selectItem_Async(7);
                                             }
                                             else
                                                 Toast.makeText(getActivity(), "Could not connect to a NFC service.", Toast.LENGTH_SHORT).show();
-
                                         }
                                         else
                                         {

@@ -104,6 +104,7 @@ public class ParseAPI {
             user.setPassword(dat.getDOBString());
             user.put("isSignedIn","false");
             user.put("registrationNumber",dat.getRegNo());
+            user.put("Platform", "Android");
             user.put("dateOfBirth", dat.getDOBString());
             try {
                 user.signUp();

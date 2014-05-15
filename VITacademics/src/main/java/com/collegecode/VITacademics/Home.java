@@ -242,7 +242,7 @@ public class Home extends ActionBarActivity {
                 fragment = new NowFragment();
         }
         if(position > 4){
-            ft.setCustomAnimations(R.anim.abc_slide_in_bottom, R.anim.abc_slide_out_top);
+            ft.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
         }
         if(position != 4){
             ft.replace(R.id.content_frame, fragment);
@@ -351,10 +351,9 @@ public class Home extends ActionBarActivity {
                 if (!mWriteMode && NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
                     NdefMessage[] msgs = getNdefMessages(intent);
                     final String result = new String(msgs[0].getRecords()[0].getPayload());
-                    FriendsFragment f = (FriendsFragment)getSupportFragmentManager().findFragmentById(R.id.content_frame);
+                    NFCAddFragment f = (NFCAddFragment)getSupportFragmentManager().findFragmentById(R.id.content_frame);
                     f.TOKEN = result;
                     f.addFriendToList();
-
                 }
 
             }catch (Exception ignore){}
@@ -365,6 +364,7 @@ public class Home extends ActionBarActivity {
         if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
             byte[] textBytes = token.getBytes();
             NdefRecord textRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, "text/plain".getBytes(),new byte[] {}, textBytes);
+            //selectItem(3);
             return new NdefMessage(new NdefRecord[] {textRecord});
         }
         return null;
@@ -373,7 +373,7 @@ public class Home extends ActionBarActivity {
     public void disableNdefExchangeMode() {
         try {
             if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
-                mNfcAdapter.disableForegroundNdefPush(this);
+                //mNfcAdapter.disableForegroundNdefPush(this);
                 mNfcAdapter.disableForegroundDispatch(this);
             }
         }catch (Exception ignore){}
@@ -409,7 +409,7 @@ public class Home extends ActionBarActivity {
                 if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
                     NdefMessage[] messages = getNdefMessages(getIntent());
                     byte[] payload = messages[0].getRecords()[0].getPayload();
-                    System.out.println("GOT THIS:" + new String(payload));
+
                     //setNoteBody(new String(payload));
                     setIntent(new Intent()); // Consume this intent.
                 }
