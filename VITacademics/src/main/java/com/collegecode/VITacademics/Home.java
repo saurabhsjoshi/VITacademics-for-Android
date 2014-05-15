@@ -241,6 +241,9 @@ public class Home extends ActionBarActivity {
             default:
                 fragment = new NowFragment();
         }
+        if(position > 4){
+            ft.setCustomAnimations(R.anim.abc_slide_in_bottom, R.anim.abc_slide_out_top);
+        }
         if(position != 4){
             ft.replace(R.id.content_frame, fragment);
             ft.commitAllowingStateLoss();
