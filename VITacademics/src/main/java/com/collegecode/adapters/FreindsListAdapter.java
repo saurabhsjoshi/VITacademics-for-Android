@@ -49,12 +49,17 @@ public class FreindsListAdapter extends ArrayAdapter<Friend> {
         if(t.getFriendStatus(f.timetable)){
             txt_status.setText("In class");
             txt_status.setTextColor(Color.parseColor("#ffa500"));
+            ((TextView) view.findViewById(R.id.lbl_endsin)).setText("Class ends " + t.FreindEndsIn);
         }
+
         else {
             txt_status.setText("Idle");
             txt_status.setTextColor(Color.parseColor("#008000"));
+            ((TextView) view.findViewById(R.id.lbl_endsin)).setText("");
         }
+
         ((TextView) view.findViewById(R.id.lbl_venue)).setText(t.FriendVenue);
+
         return view;
     }
 }

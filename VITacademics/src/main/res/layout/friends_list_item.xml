@@ -39,6 +39,18 @@
         android:layout_marginTop="3dp"/>
 
     <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/lbl_endsin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_toRightOf="@id/lbl_status"
+        android:layout_alignBaseline="@id/lbl_status"
+        android:layout_below="@id/lbl_title"
+        android:layout_marginLeft="10dp"
+        android:text="Class ends in 1 hour"
+        android:layout_marginTop="3dp"/>
+
+    <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/lbl_venue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

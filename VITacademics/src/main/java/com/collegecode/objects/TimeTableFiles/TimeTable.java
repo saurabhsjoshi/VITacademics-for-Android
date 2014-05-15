@@ -1,6 +1,7 @@
 package com.collegecode.objects.TimeTableFiles;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 
 import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.Subject;
@@ -49,6 +50,7 @@ public class TimeTable{
 
     //PARSE A FRIENDS TIMETABLE
     public String FriendVenue = "";
+    public String FreindEndsIn = "";
     public boolean getFriendStatus(String ttJSON){
         Calendar calendar  = Calendar.getInstance();
 
@@ -57,6 +59,7 @@ public class TimeTable{
         if(Day == Calendar.SATURDAY || Day == Calendar.SUNDAY)
         {
             FriendVenue = "";
+            FreindEndsIn = "";
             return false;
         }
 
@@ -76,7 +79,7 @@ public class TimeTable{
                         clsnbr = Integer.toString(json_slts.getInt(i));
 
                         //Get the subject from data handler
-                        Subject sub = getFriendSubject(clsnbr,root.getJSONArray("subjects"));
+                        Subject sub = getFriendSubject(clsnbr, root.getJSONArray("subjects"));
 
                         //Get the slot for now
                         if(sub.slot.contains("+")){
@@ -110,6 +113,7 @@ public class TimeTable{
 
                         if (calendar.compareTo(temp.frm_time) >= 0 && calendar.compareTo(temp.to_time) < 0){
                             FriendVenue = temp.venue;
+                            FreindEndsIn = DateUtils.getRelativeTimeSpanString(temp.to_time.getTimeInMillis(), calendar.getTimeInMillis(), 0).toString();
                             return true;
                         }
                         else
