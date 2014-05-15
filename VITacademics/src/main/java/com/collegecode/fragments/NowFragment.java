@@ -103,7 +103,7 @@ public class NowFragment extends Fragment {
         final OnRefreshListener listener = new OnRefreshListener() {
             @Override
             public void onRefreshStarted(View view) {
-                ((Home) getActivity()).disable_drawer();
+                //((Home) getActivity()).disable_drawer();
                 api = new VITxAPI(getActivity(), l1);
                 api.loadAttendanceWithRegistrationNumber();
             }

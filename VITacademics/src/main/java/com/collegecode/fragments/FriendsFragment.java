@@ -5,10 +5,13 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.nfc.NfcAdapter;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,7 +80,6 @@ public class FriendsFragment extends Fragment{
             Menu menu, MenuInflater inflater) {
 
         inflater.inflate(R.menu.menu_fragment_friends, menu);
-
         if(dat.isFacebookLogin())
             menu.removeItem(R.id.menu_fb_login);
     }
@@ -107,8 +109,23 @@ public class FriendsFragment extends Fragment{
                                     if(which == 0)
                                         h.selectItem_Async(6);
                                     //NFC
-                                    else
-                                        ((Home) getActivity()).enableNdefExchangeMode();
+                                    else{
+                                        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+                                            NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
+
+                                            if(mNfcAdapter!=null && mNfcAdapter.isEnabled()){
+                                                ((Home) getActivity()).enableNdefExchangeMode();
+                                                ((Home) getActivity()).selectItem_Async(7);
+                                            }
+                                            else
+                                                Toast.makeText(getActivity(), "Could not connect to a NFC service.", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(getActivity(), "NFC not supported on your device", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
                                 }
                                 diag.dismiss();
                             }});
@@ -176,7 +193,6 @@ public class FriendsFragment extends Fragment{
 
                             builder.show();
                         }
-
                     }
                 });
         builder.show();
@@ -271,16 +287,14 @@ public class FriendsFragment extends Fragment{
                                 @Override
                                 public void onCompleted(Exception e, File file) {
                                     if (e == null) {
-                                        System.out.println("GOT PROFILE PICTURE!: " + file.getPath() );
+                                        Log.i("FRIENDS API","GOT PROFILE PICTURE!: " + file.getPath());
                                         BitmapFactory.Options options = new BitmapFactory.Options();
                                         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                                         try {
                                             friends.get(j).img_profile = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
                                         } catch (FileNotFoundException e1) {
                                             e1.printStackTrace();
-                                        }
-                                    }
-                                }
+                                        }}}
                             });
                 }
             }
@@ -293,7 +307,7 @@ public class FriendsFragment extends Fragment{
                 for(int i = 0; i < friends.size(); i++){
                     if(!friends.get(i).isFb){
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
-                        ParseUser u = (query.whereEqualTo("username","11BEC0262")).getFirst();
+                        ParseUser u = (query.whereEqualTo("username",friends.get(i).regno)).getFirst();
                         if(u.get("isSignedIn").equals("true")){
                             friends.get(i).isFb = true;
                             friends.get(i).fbId = u.get("facebookID").toString();
@@ -303,8 +317,10 @@ public class FriendsFragment extends Fragment{
                 }
                 if(needSaving)
                     dat.saveFriends(friends);
+
+                downloadProfileImage(friends);
             }catch (Exception e){e.printStackTrace();}
-            downloadProfileImage(friends);
+
             return null;
         }
 
@@ -319,5 +335,4 @@ public class FriendsFragment extends Fragment{
                 lbl_empty.setVisibility(View.GONE);
         }
     }
-
 }

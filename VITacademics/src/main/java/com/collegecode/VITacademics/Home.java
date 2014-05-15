@@ -32,6 +32,7 @@ import com.collegecode.fragments.CoursesFragment;
 import com.collegecode.fragments.FaceBookLogin;
 import com.collegecode.fragments.FriendsFragment;
 import com.collegecode.fragments.FullTimeTableFragment;
+import com.collegecode.fragments.NFCFragment;
 import com.collegecode.fragments.NowFragment;
 import com.collegecode.fragments.QRCodeFragment;
 import com.collegecode.fragments.SettingsFragment;
@@ -230,6 +231,9 @@ public class Home extends ActionBarActivity {
             case 6:
                 fragment = new QRCodeFragment();
                 break;
+            case 7:
+                fragment = new NFCFragment();
+                break;
             default:
                 fragment = new NowFragment();
         }
@@ -255,7 +259,7 @@ public class Home extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
+        disableNdefExchangeMode();
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.home, menu);
         return true;
@@ -343,6 +347,7 @@ public class Home extends ActionBarActivity {
                     FriendsFragment f = (FriendsFragment)getSupportFragmentManager().findFragmentById(R.id.content_frame);
                     f.TOKEN = result;
                     f.addFriendToList();
+
                 }
 
             }catch (Exception ignore){}
@@ -358,12 +363,23 @@ public class Home extends ActionBarActivity {
         return null;
     }
 
+    public void disableNdefExchangeMode() {
+        try {
+            if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+                mNfcAdapter.disableForegroundNdefPush(this);
+                mNfcAdapter.disableForegroundDispatch(this);
+            }
+        }catch (Exception ignore){}
+
+    }
 
     public void enableNdefExchangeMode() {
-        if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
-            mNfcAdapter.enableForegroundNdefPush(Home.this, getNoteAsNdef());
-            mNfcAdapter.enableForegroundDispatch(this, mNfcPendingIntent, mNdefExchangeFilters, null);
-        }
+        try{
+            if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+                mNfcAdapter.enableForegroundNdefPush(Home.this, getNoteAsNdef());
+                mNfcAdapter.enableForegroundDispatch(this, mNfcPendingIntent, mNdefExchangeFilters, null);
+            }
+        }catch (Exception ignore){}
     }
 
     @Override
