@@ -432,7 +432,7 @@ public class VITxAPI {
                     f.fbId = u.getString("facebookID");
                     f.title = u.getString("facebookName");
                     Ion.with(dat.context)
-                            .load("http://graph.facebook.com/" + f.fbId + "/picture?type=large")
+                            .load("http://graph.facebook.com/" + f.fbId + "/picture?type=square")
                             .write(new File(dat.context.getCacheDir().getPath() + "/" + f.fbId + ".jpg"))
                             .setCallback(new FutureCallback<File>() {
                                 @Override

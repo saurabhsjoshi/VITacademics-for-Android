@@ -2,16 +2,20 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/img_profile"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:src="@drawable/ic_action_person"
         android:layout_alignParentLeft="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_action_person"/>
+        app:border_width="1dp"
+        app:border_color="#FFFFFF"/>
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/lbl_title"
@@ -36,7 +40,8 @@
         android:layout_toRightOf="@id/img_profile"
         android:layout_below="@id/lbl_title"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="3dp"/>
+        android:layout_marginTop="3dp"
+        app:typeface="roboto_regular"/>
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/lbl_endsin"
@@ -48,7 +53,8 @@
         android:layout_below="@id/lbl_title"
         android:layout_marginLeft="10dp"
         android:text="Class ends in 1 hour"
-        android:layout_marginTop="3dp"/>
+        android:layout_marginTop="3dp"
+        app:typeface="roboto_regular"/>
 
     <com.devspark.robototextview.widget.RobotoTextView
         android:id="@+id/lbl_venue"

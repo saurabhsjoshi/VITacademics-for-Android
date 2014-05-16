@@ -23,7 +23,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="VITacademics now integrates with your Time Table and also lets you know where your freinds are!"
+        android:text="VITacademics now integrates with your Time Table and also lets you know where your friends are!"
         android:minLines="2"
         android:singleLine="false"
         />
