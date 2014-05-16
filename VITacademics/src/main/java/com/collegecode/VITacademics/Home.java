@@ -34,6 +34,7 @@ import com.collegecode.fragments.FriendsFragment;
 import com.collegecode.fragments.FullTimeTableFragment;
 import com.collegecode.fragments.NFCAddFragment;
 import com.collegecode.fragments.NFCFragment;
+import com.collegecode.fragments.NotificationFragment;
 import com.collegecode.fragments.NowFragment;
 import com.collegecode.fragments.QRCodeFragment;
 import com.collegecode.fragments.SettingsFragment;
@@ -41,6 +42,9 @@ import com.collegecode.objects.BarCodeScanner.IntentIntegrator;
 import com.collegecode.objects.BarCodeScanner.IntentResult;
 import com.collegecode.objects.DataHandler;
 import com.parse.ParseFacebookUtils;
+import com.parse.PushService;
+
+import org.json.JSONObject;
 
 /**
  * Created by saurabh on 4/22/14.
@@ -49,9 +53,9 @@ import com.parse.ParseFacebookUtils;
 public class Home extends ActionBarActivity {
 
     //Initialize drawer tabs
-    private String[] titles = { "Today", "Courses", "Timetable","Friends", "Settings"};
-    private String[] subtitle = { "Realtime Overview", "Attendance|Marks|More", "Day|Week", "", "Change credentials"};
-    private int[] imgs = new int[]{ R.drawable.now, R.drawable.ic_action_sort_by_size, R.drawable.timetable, R.drawable.friends, R.drawable.settings};
+    private String[] titles = { "Today", "Courses", "Timetable","Friends", "Notifications", "Settings"};
+    private String[] subtitle = { "Realtime Overview", "Attendance|Marks|More", "Day|Week", "Check thier status","Latest news", "Change credentials"};
+    private int[] imgs = new int[]{ R.drawable.now, R.drawable.ic_action_sort_by_size, R.drawable.timetable, R.drawable.friends, R.drawable.ic_action_unread,  R.drawable.settings};
 
     //Drawer ListView
     private DrawerLayout mDrawerLayout;
@@ -79,7 +83,6 @@ public class Home extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         DataHandler dat = new DataHandler(this);
-
         new ParseAPI(this).parseInit();
 
         //Check if newUser
@@ -145,6 +148,15 @@ public class Home extends ActionBarActivity {
             }
 
         }
+
+        PushService.setDefaultPushCallback(this, Home.class);
+        if(getIntent().getExtras() != null){
+            try {
+                JSONObject data = new JSONObject(getIntent().getExtras().getString("com.parse.Data"));
+                System.out.println(data.get("alert").toString());
+            }catch (Exception ignore){}
+        }
+
     }
 
     public void disable_drawer(){
@@ -160,11 +172,17 @@ public class Home extends ActionBarActivity {
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             // Highlight the selected item, update the title, and close the drawer
             mDrawerList.setItemChecked(position, true);
-            if(position!=4)
+            if(position != 5)
                 setTitle(titles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
             //Use Handler to avoid lag in the transaction
-            selectItem(position);
+            if(position == 4)
+                selectItem(9);
+            else if(position == 5)
+                selectItem(4);
+            else
+                selectItem(position);
+
         }
     }
 
@@ -238,10 +256,13 @@ public class Home extends ActionBarActivity {
             case 8:
                 fragment = new NFCAddFragment();
                 break;
+            case 9:
+                fragment = new NotificationFragment();
+                break;
             default:
                 fragment = new NowFragment();
         }
-        if(position > 4){
+        if(position > 4 && position != 9){
             ft.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
         }
         if(position != 4){
@@ -271,7 +292,6 @@ public class Home extends ActionBarActivity {
         //getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -374,7 +394,7 @@ public class Home extends ActionBarActivity {
         try {
             if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
                 //mNfcAdapter.disableForegroundNdefPush(this);
-                mNfcAdapter.disableForegroundDispatch(this);
+                //mNfcAdapter.disableForegroundDispatch(this);
             }
         }catch (Exception ignore){}
 
@@ -409,8 +429,7 @@ public class Home extends ActionBarActivity {
                 if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
                     NdefMessage[] messages = getNdefMessages(getIntent());
                     byte[] payload = messages[0].getRecords()[0].getPayload();
-
-                    //setNoteBody(new String(payload));
+                    Log.i("com.collegecode.VITacademics", new String(payload));
                     setIntent(new Intent()); // Consume this intent.
                 }
                 enableNdefExchangeMode();

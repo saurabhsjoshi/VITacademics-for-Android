@@ -41,6 +41,16 @@ public class DataHandler {
         saveString("ATTENDANCEJSON", jsonInput);
     }
 
+    public void addPushMessage(PushMessage pm){
+        int cur = preferences.getInt("PUSHMESSAGEJSONSIZE", 0);
+        Gson gson = new Gson();
+
+        String t = gson.toJson(pm);
+        saveString("PUSHMESSAGEJSON"+cur,t);
+
+        saveInt("PUSHMESSAGEJSONSIZE", cur + 1);
+    }
+
     public void addFriend(Friend f){
         int cur = preferences.getInt("FRIENDJSONSIZE", 0);
         Gson gson = new Gson();
