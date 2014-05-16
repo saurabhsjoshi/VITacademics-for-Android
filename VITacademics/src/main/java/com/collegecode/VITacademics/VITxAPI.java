@@ -373,15 +373,12 @@ public class VITxAPI {
                         f.isFb = true;
                         f.fbId = u.getString("facebookID");
                         f.title = u.getString("facebookName");
+
                         Ion.with(dat.context)
                                 .load("http://graph.facebook.com/" + f.fbId + "/picture?type=large")
                                 .write(new File(dat.context.getCacheDir().getPath() + "/" + f.fbId + ".jpg"))
-                                .setCallback(new FutureCallback<File>() {
-                                    @Override
-                                    public void onCompleted(Exception e1, File file) {
-                                        if (e1 != null)
-                                            e = new Exception("Error occured while downloading profile picture. Please try again!");
-                                    }});
+                                .get();
+
                     }
                     //Get the timetable
                     f.timetable = EntityUtils.toString(getResponse("http://vitacademicstokensystem.appspot.com/gettimetable/" + f.regno + "/" + f.dob).getEntity());

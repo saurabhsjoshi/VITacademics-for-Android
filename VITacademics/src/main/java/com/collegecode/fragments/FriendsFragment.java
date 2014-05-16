@@ -11,16 +11,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +40,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import de.timroes.android.listview.EnhancedListView;
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
 import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 
@@ -52,16 +50,17 @@ import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 public class FriendsFragment extends Fragment{
     private DataHandler dat;
     private ZXingLibConfig zxingLibConfig;
-    private ListView listView;
+    private EnhancedListView listView;
     private PullToRefreshLayout mPullToRefreshLayout;
     private TextView lbl_empty;
+    private ProgressDialog pdiag;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_friends,container, false);
 
         mPullToRefreshLayout = (PullToRefreshLayout) v.findViewById(R.id.ptr_layout);
-        listView = (ListView) v.findViewById(R.id.list);
+        listView = (EnhancedListView) v.findViewById(R.id.enhanced_list);
         lbl_empty = (TextView) v.findViewById(R.id.lbl_empty);
 
         ActionBarPullToRefresh.from(getActivity()).setup(mPullToRefreshLayout);
@@ -70,8 +69,11 @@ public class FriendsFragment extends Fragment{
         dat = new DataHandler(getActivity());
         zxingLibConfig = new ZXingLibConfig();
         zxingLibConfig.useFrontLight = true;
+
         new Load_Data().execute();
         new Refresh_Data().execute();
+
+
         return v;
     }
 
@@ -132,7 +134,7 @@ public class FriendsFragment extends Fragment{
     }
 
     public String TOKEN = "";
-    ProgressDialog pdiag;
+
 
     public void addFriendToList(){
         pdiag = new ProgressDialog(getActivity());
@@ -301,27 +303,44 @@ public class FriendsFragment extends Fragment{
         }
 
         protected void onPostExecute(Void voids){
+            final FreindsListAdapter mAdapter = new FreindsListAdapter(getActivity(), friends);
             listView.setAdapter(new FreindsListAdapter(getActivity(), friends));
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    try {
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            });
             mPullToRefreshLayout.setRefreshComplete();
             if(friends.size() == 0)
                 lbl_empty.setVisibility(View.VISIBLE);
             else
                 lbl_empty.setVisibility(View.GONE);
+
+            listView.setDismissCallback(new de.timroes.android.listview.EnhancedListView.OnDismissCallback() {
+
+                /**
+                 * This method will be called when the user swiped a way or deleted it via
+                 * {@link de.timroes.android.listview.EnhancedListView#delete(int)}.
+                 *
+                 * @param listView The {@link EnhancedListView} the item has been deleted from.
+                 * @param position The position of the item to delete from your adapter.
+                 * @return An {@link de.timroes.android.listview.EnhancedListView.Undoable}, if you want
+                 *      to give the user the possibility to undo the deletion.
+                 */
+                @Override
+                public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+                    final Friend f = mAdapter.getItem(position);
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            dat.deleteFriend(f);
+                        }};
+                    new Thread(runnable).start();
+                    mAdapter.remove(f);
+                    Toast.makeText(getActivity(), f.title + " has been deleted.", Toast.LENGTH_SHORT).show();
+                    return null;
+                }
+            });
+            listView.enableSwipeToDismiss();
+            listView.setSwipeDirection(EnhancedListView.SwipeDirection.START);
+            listView.setSwipingLayout(R.layout.friend_list_item_back);
         }
-
-
-
     }
 
     private class Refresh_Data extends AsyncTask<Void,Void,Void>{
@@ -345,7 +364,6 @@ public class FriendsFragment extends Fragment{
                                 @Override
                                 public void onCompleted(Exception e, File file) {
                                     if (e == null) {
-                                        Log.i("FRIENDS API","GOT PROFILE PICTURE!: " + file.getPath());
                                         BitmapFactory.Options options = new BitmapFactory.Options();
                                         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                                         try {
@@ -388,10 +406,6 @@ public class FriendsFragment extends Fragment{
                 Toast.makeText(getActivity(), "Friends list was updated.", Toast.LENGTH_SHORT).show();
                 ((Home) getActivity()).selectItem_Async(3);
             }
-            if(friends.size() == 0)
-                lbl_empty.setVisibility(View.VISIBLE);
-            else
-                lbl_empty.setVisibility(View.GONE);
         }
     }
 }

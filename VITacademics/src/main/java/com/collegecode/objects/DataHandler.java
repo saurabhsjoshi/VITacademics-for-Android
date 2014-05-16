@@ -226,6 +226,21 @@ public class DataHandler {
         return att;
     }
 
+    public void deleteFriend(Friend f){
+        try {
+            ArrayList<Friend> t = getFreinds();
+
+            for(int i = 0; i < t.size(); i++){
+                if(f.regno.equals(t.get(i).regno)){
+                    t.remove(i);
+                    break;
+                }
+            }
+            saveFriends(t);
+
+        }catch (Exception e){e.printStackTrace();}
+    }
+
     public boolean isNewUser(){return preferences.getBoolean("NewUser", true);}
 
     public void setNewUser(boolean bol){preferences.edit().putBoolean("NewUser", bol).commit();}
