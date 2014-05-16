@@ -42,7 +42,6 @@ import com.collegecode.objects.BarCodeScanner.IntentIntegrator;
 import com.collegecode.objects.BarCodeScanner.IntentResult;
 import com.collegecode.objects.DataHandler;
 import com.parse.ParseFacebookUtils;
-import com.parse.PushService;
 
 import org.json.JSONObject;
 
@@ -146,10 +145,8 @@ public class Home extends ActionBarActivity {
                 } catch (IntentFilter.MalformedMimeTypeException e) { }
                 mNdefExchangeFilters = new IntentFilter[] { ndefDetected };
             }
-
         }
 
-        PushService.setDefaultPushCallback(this, Home.class);
         if(getIntent().getExtras() != null){
             try {
                 JSONObject data = new JSONObject(getIntent().getExtras().getString("com.parse.Data"));

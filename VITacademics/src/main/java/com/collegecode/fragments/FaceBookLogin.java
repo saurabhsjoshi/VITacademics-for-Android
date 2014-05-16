@@ -3,6 +3,7 @@ package com.collegecode.fragments;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -59,11 +60,14 @@ public class FaceBookLogin extends Fragment{
             ParseFacebookUtils.link(parse_user, getActivity(), new SaveCallback() {
                 @Override
                 public void done(ParseException ex) {
+                    if(ex != null)
+                        ex.printStackTrace();
                     if (ParseFacebookUtils.isLinked(parse_user)) {
                         Request.executeMeRequestAsync(ParseFacebookUtils.getSession(), new Request.GraphUserCallback() {
                             @Override
                             public void onCompleted(GraphUser user, Response response) {
                                 if (user != null) {
+                                    Log.i("VITacademics PARSE API" , response.toString());
                                     parse_user.put("facebookID", user.getId());
                                     parse_user.put("facebookName", user.getName());
                                     parse_user.put("isSignedIn", "true");
@@ -75,7 +79,7 @@ public class FaceBookLogin extends Fragment{
                                                 new DataHandler(getActivity()).setFbLogin(true);
                                                 Toast.makeText(getActivity(), "Signed in!" , Toast.LENGTH_SHORT).show();
                                                 ((Home) getActivity()).selectItem_Async(3);
-                                                System.out.println("Done");
+                                                Log.i("VITacademics PARSE API" , "Done");
                                             } else
                                                 e.printStackTrace();
                                             pdia.dismiss();
