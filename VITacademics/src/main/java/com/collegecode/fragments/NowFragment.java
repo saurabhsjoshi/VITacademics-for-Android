@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -235,13 +234,13 @@ public class NowFragment extends Fragment {
 
 
             if(!dat.getviewShowCase()){
-                ((Home) getActivity()).enable_drawer();
                 ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
                 f.hideOnClickOutside = false;
-                f.centerText = false;
-                ((Home) getActivity()).mDrawerLayout.openDrawer(Gravity.LEFT);
-                ShowcaseView.insertShowcaseView(((ListView) getActivity().findViewById(R.id.left_drawer)).getChildAt(1), getActivity(), "Drawer", "Open drawer to access the menu!", f);
+                f.centerText = true;
+                ShowcaseView.insertShowcaseView(getActivity().findViewById(android.R.id.home), getActivity(), "Drawer", "Tap the icon or swipe from left to access the menu.", f);
+                dat.saveviewShowCase(true);
             }
+            dat.saveviewShowCase(false);
         }
     }
 }
