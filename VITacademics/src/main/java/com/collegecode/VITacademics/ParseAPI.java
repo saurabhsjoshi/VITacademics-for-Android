@@ -39,6 +39,11 @@ public class ParseAPI {
         reg.listner = listner;
         reg.execute();
     }
+    public void logoutUser(OnParseFinished listner){
+        logoutUser_Async reg = new logoutUser_Async();
+        reg.listner = listner;
+        reg.execute();
+    }
 
     public void parseInit(){
         new parseInit_Async().execute();
@@ -53,9 +58,18 @@ public class ParseAPI {
             try {
                 ParseUser.logIn(dat.getRegNo(), dat.getDOBString());
                 String t = ParseUser.getCurrentUser().get("isSignedIn").toString().trim();
-                if(t.equals(true))
-                    dat.setFbLogin(true);
-
+                if(t.equals("true")){
+                    dat.setFbLogin(false);
+                    ParseUser user = ParseUser.getCurrentUser();
+                    user.setUsername(dat.getRegNo());
+                    user.setPassword(dat.getDOBString());
+                    ParseFacebookUtils.unlink(ParseUser.getCurrentUser());
+                    user.put("isSignedIn","false");
+                    user.put("registrationNumber",dat.getRegNo());
+                    user.put("platform", "Android");
+                    user.put("dateOfBirth", dat.getDOBString());
+                    user.save();
+                }
             }catch (ParseException e){
                 this.e = e;
             }
@@ -87,7 +101,7 @@ public class ParseAPI {
     private class parseInit_Async extends AsyncTask<Void,Void,Void>{
         @Override
         protected Void doInBackground(Void... voids) {
-            Parse.initialize(context, "pslFDPvG2NmCKEW3v20X9QtgOabxtAvsetd3Keq6", "o3g05te1eRhgbc7pUC6bbzFtVypUuHLEauM3x4vY");
+            Parse.initialize(context, "vtpDFHGacMwZIpMtpDaFuu0ToBol9b9nQM9VD57N", "OCKn8dB6wqeGqvSdYbXHgYe9mDGFb2yukyDHT3Fs");
             ParseFacebookUtils.initialize("239533019505160");
             return null;
         }
@@ -104,7 +118,7 @@ public class ParseAPI {
             user.setPassword(dat.getDOBString());
             user.put("isSignedIn","false");
             user.put("registrationNumber",dat.getRegNo());
-            user.put("Platform", "Android");
+            user.put("platform", "Android");
             user.put("dateOfBirth", dat.getDOBString());
             try {
                 user.signUp();
@@ -120,6 +134,37 @@ public class ParseAPI {
         }
 
     }
+
+    private class logoutUser_Async extends AsyncTask<Void,Void,Void> {
+        public OnParseFinished listner;
+        private ParseException e = null;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            ParseUser user = ParseUser.getCurrentUser();
+            user.put("isSignedIn","false");
+            try
+            {
+                user.save();
+                ParseFacebookUtils.getSession().closeAndClearTokenInformation();
+                ParseFacebookUtils.unlink(user);
+
+            } catch (ParseException e) {
+                this.e = e;
+            }
+            catch (Exception e1){
+                e1.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void voids){
+            listner.onTaskCompleted(e);
+        }
+
+    }
+
+
 
 
 }

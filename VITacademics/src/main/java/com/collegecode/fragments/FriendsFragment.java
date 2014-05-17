@@ -31,15 +31,14 @@ import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.Friend;
 import com.collegecode.objects.OnTaskComplete;
 import com.espian.showcaseview.ShowcaseView;
-import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import de.timroes.android.listview.EnhancedListView;
 import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
@@ -369,21 +368,20 @@ public class FriendsFragment extends Fragment{
                 fbId = friends.get(i).fbId;
                 final int j = i;
                 if(friends.get(i).isFb){
-                    Ion.with(getActivity())
-                            .load("http://graph.facebook.com/" + fbId + "/picture?type=square")
-                            .write(new File(getActivity().getCacheDir().getPath() + "/" + fbId + ".jpg"))
-                            .setCallback(new FutureCallback<File>() {
-                                @Override
-                                public void onCompleted(Exception e, File file) {
-                                    if (e == null) {
-                                        BitmapFactory.Options options = new BitmapFactory.Options();
-                                        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                                        try {
-                                            friends.get(j).img_profile = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
-                                        } catch (FileNotFoundException e1) {
-                                            e1.printStackTrace();
-                                        }}}
-                            });
+                    try {
+                        Ion.with(getActivity())
+                                .load("http://graph.facebook.com/" + fbId + "/picture?type=square")
+                                .write(new File(getActivity().getCacheDir().getPath() + "/" + fbId + ".jpg"))
+                                .get();
+
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+
+                        friends.get(j).img_profile = BitmapFactory.decodeFile(getActivity().getCacheDir().getPath() + "/" + fbId + ".jpg", options);
+                    }
+                    catch (InterruptedException e2){e2.printStackTrace();}
+                    catch (ExecutionException e3){e3.printStackTrace();}
+
                 }
             }
         }
@@ -396,7 +394,9 @@ public class FriendsFragment extends Fragment{
                     if(!friends.get(i).isFb){
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
                         ParseUser u = (query.whereEqualTo("username",friends.get(i).regno)).getFirst();
-                        if(u.get("isSignedIn").equals("true")){
+
+                        String isIt = u.getString("isSignedIn");
+                        if(isIt != null && isIt.equals("true")){
                             friends.get(i).isFb = true;
                             friends.get(i).fbId = u.get("facebookID").toString();
                             friends.get(i).title = u.get("facebookName").toString();

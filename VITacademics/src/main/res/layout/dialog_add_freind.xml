@@ -13,6 +13,7 @@
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
+        android:inputType="textCapCharacters"
         android:hint="Registration number"
         app:typeface="roboto_light"/>
 

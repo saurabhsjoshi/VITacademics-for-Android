@@ -27,6 +27,10 @@ public class DataHandler {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
+    public static void DELETE_ALL_DATA(Context context){
+        PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
+    }
+
     private void saveString(String key, String string){
         preferences.edit().putString(key, string).commit();
     }

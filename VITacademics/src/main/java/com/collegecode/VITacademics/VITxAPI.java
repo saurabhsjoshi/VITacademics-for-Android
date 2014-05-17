@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.Friend;
 import com.collegecode.objects.OnTaskComplete;
-import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -387,7 +386,7 @@ public class VITxAPI {
 
                 }
                 else{
-                    e = new Exception("Oops! Looks like the token is incorrect.");
+                    e = new Exception("Oops! Looks like the token is incorrect or expired.");
                 }
 
             }catch (Exception e1){
@@ -427,19 +426,15 @@ public class VITxAPI {
                 ParseQuery<ParseUser> query = ParseUser.getQuery();
                 ParseUser u = (query.whereEqualTo("username",f.regno)).getFirst();
 
-                if(u.getString("isSignedIn").equals("true")){
+                String isIt = u.getString("isSignedIn");
+                if(isIt != null && isIt.equals("true")){
                     f.isFb = true;
                     f.fbId = u.getString("facebookID");
                     f.title = u.getString("facebookName");
                     Ion.with(dat.context)
                             .load("http://graph.facebook.com/" + f.fbId + "/picture?type=square")
                             .write(new File(dat.context.getCacheDir().getPath() + "/" + f.fbId + ".jpg"))
-                            .setCallback(new FutureCallback<File>() {
-                                @Override
-                                public void onCompleted(Exception e1, File file) {
-                                    if (e1 != null)
-                                        e = new Exception("Error occured while downloading profile picture. Please try again!");
-                                }});
+                            .get();
                 }
                 //Get the timetable
                 f.timetable = result;

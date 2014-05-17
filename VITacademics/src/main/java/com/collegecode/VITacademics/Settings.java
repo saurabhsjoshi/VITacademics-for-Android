@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.collegecode.objects.DataHandler;
+import com.collegecode.objects.OnParseFinished;
+import com.parse.ParseException;
 
 /**
  * Created by saurabh on 4/29/14.
@@ -43,6 +45,7 @@ public class Settings extends PreferenceActivity {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 new DataHandler(context).setNewUser(true);
+                                DataHandler.DELETE_ALL_DATA(context);
                                 startActivity(new Intent(context, Home.class));
                                 break;
                         }
@@ -50,6 +53,36 @@ public class Settings extends PreferenceActivity {
                 };
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setMessage("Are you sure you want to reset VITacademics?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+                return false;
+            }
+        });
+
+        ((Preference) findPreference("pref_logout")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                ParseAPI api = new ParseAPI(context);
+                                api.logoutUser(new OnParseFinished() {
+                                    @Override
+                                    public void onTaskCompleted(ParseException e) {
+                                        if(e!=null)
+                                            e.printStackTrace();
+                                        new DataHandler(context).setFbLogin(false);
+                                        Toast.makeText(context, "Facebook Logout Complete!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                Toast.makeText(context, "You will be logged out shortly!", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }
+                };
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Are you sure you want to logout of Facebook?").setPositiveButton("Yes", dialogClickListener)
                         .setNegativeButton("No", dialogClickListener).show();
                 return false;
             }

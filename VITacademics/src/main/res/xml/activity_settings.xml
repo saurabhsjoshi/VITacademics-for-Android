@@ -30,6 +30,16 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:summary=""
+        android:title="Social" >
+        <Preference
+            android:key="pref_logout"
+            android:title="Logout of Facebook"
+            android:summary="Unlinks VITacademics from your account"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:summary="About the app"
         android:title="About" >
     </PreferenceCategory>
