@@ -57,7 +57,7 @@ public class Home extends ActionBarActivity {
     private int[] imgs = new int[]{ R.drawable.now, R.drawable.ic_action_sort_by_size, R.drawable.timetable, R.drawable.friends, R.drawable.ic_action_unread,  R.drawable.settings};
 
     //Drawer ListView
-    private DrawerLayout mDrawerLayout;
+    public DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 

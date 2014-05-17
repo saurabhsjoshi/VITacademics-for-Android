@@ -1,1 +1,1 @@
-include ':VITacademics', ':facebook'
+include ':VITacademics', ':facebook', ':showcaseview'

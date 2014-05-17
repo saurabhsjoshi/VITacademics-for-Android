@@ -64,6 +64,8 @@ public class DataHandler {
         saveString("MARKSJSON", marks);
     }
 
+    public void saveviewShowCase(Boolean shown){preferences.edit().putBoolean("ViewShowCase",shown).commit();}
+
     public void saveTimeTable(String tt){
         saveString("TIMETABLEJSON", tt);
     }
@@ -91,6 +93,8 @@ public class DataHandler {
     public String getRegNo(){
         return preferences.getString("REGNO", "");
     }
+
+    public boolean getviewShowCase(){return  preferences.getBoolean("ViewShowCase",false);}
 
     public int[] getDOB(){int[] dob = new int[3]; for(int i = 0; i < 3; i++)dob[i] = preferences.getInt("DOB"+i, 0); return dob;}
 

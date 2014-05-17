@@ -22,9 +22,11 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.1.0'
     compile 'com.viewpagerindicator:library:2.4.1'
     compile 'com.android.support:support-v4:19.1.0'
-    compile 'com.github.johnkil.android-robototextview:robototextview:2.0.0'
+    compile 'com.github.johnkil.android-robototextview:robototextview:2.0.1'
     compile 'de.timroes.android:EnhancedListView:0.3.2@aar'
     compile 'de.hdodenhof:circleimageview:1.1.0'
     compile 'com.github.chrisbanes.actionbarpulltorefresh:extra-abc:+'
+    compile 'com.nineoldandroids:library:2.4.0+'
     compile project(':facebook')
+    compile project(':showcaseview')
     compile fileTree(dir: 'libs', include: ['*.jar'])}

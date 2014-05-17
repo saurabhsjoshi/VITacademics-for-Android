@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.collegecode.objects.NowListFiles.NowListNoClass;
 import com.collegecode.objects.OnTaskComplete;
 import com.collegecode.objects.TimeTableFiles.TTSlot;
 import com.collegecode.objects.TimeTableFiles.TimeTable;
+import com.espian.showcaseview.ShowcaseView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -230,7 +232,16 @@ public class NowFragment extends Fragment {
                     }catch (Exception ignored){}}
             });
             mPullToRefreshLayout.setRefreshComplete();
-            ((Home) getActivity()).enable_drawer();
+
+
+            if(!dat.getviewShowCase()){
+                ((Home) getActivity()).enable_drawer();
+                ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
+                f.hideOnClickOutside = false;
+                f.centerText = false;
+                ((Home) getActivity()).mDrawerLayout.openDrawer(Gravity.LEFT);
+                ShowcaseView.insertShowcaseView(((ListView) getActivity().findViewById(R.id.left_drawer)).getChildAt(1), getActivity(), "Drawer", "Open drawer to access the menu!", f);
+            }
         }
     }
 }
