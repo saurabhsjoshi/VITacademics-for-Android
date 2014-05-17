@@ -240,7 +240,6 @@ public class NowFragment extends Fragment {
                 ShowcaseView.insertShowcaseView(getActivity().findViewById(android.R.id.home), getActivity(), "Drawer", "Tap the icon or swipe from left to access the menu.", f);
                 dat.saveviewShowCase(true);
             }
-            dat.saveviewShowCase(false);
         }
     }
 }

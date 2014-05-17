@@ -30,6 +30,7 @@ import com.collegecode.objects.BarCodeScanner.ZXingLibConfig;
 import com.collegecode.objects.DataHandler;
 import com.collegecode.objects.Friend;
 import com.collegecode.objects.OnTaskComplete;
+import com.espian.showcaseview.ShowcaseView;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.parse.ParseQuery;
@@ -340,6 +341,17 @@ public class FriendsFragment extends Fragment{
             listView.enableSwipeToDismiss();
             listView.setSwipeDirection(EnhancedListView.SwipeDirection.START);
             listView.setSwipingLayout(R.layout.friend_list_item_back);
+
+            if(friends.size() >= 1){
+                if(dat.getviewShowCaseFrnd()){
+                    ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
+                    f.hideOnClickOutside = false;
+                    f.centerText = true;
+                    ShowcaseView.insertShowcaseView(listView, getActivity(), "Delete", "To delete friend swipe from the right", f).setScaleMultiplier(2f);
+                    dat.saveviewShowCaseFrnd(true);
+                }
+            }
+
         }
     }
 
@@ -358,7 +370,7 @@ public class FriendsFragment extends Fragment{
                 final int j = i;
                 if(friends.get(i).isFb){
                     Ion.with(getActivity())
-                            .load("http://graph.facebook.com/" + fbId + "/picture?type=large")
+                            .load("http://graph.facebook.com/" + fbId + "/picture?type=square")
                             .write(new File(getActivity().getCacheDir().getPath() + "/" + fbId + ".jpg"))
                             .setCallback(new FutureCallback<File>() {
                                 @Override
