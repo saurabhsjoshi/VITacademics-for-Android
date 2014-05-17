@@ -8,7 +8,6 @@ import android.text.format.DateUtils;
 
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
@@ -38,7 +37,8 @@ public class DataHandler {
 
     public void saveJSON(String jsonInput){
         jsonInput = jsonInput.substring(jsonInput.indexOf('%')+1);
-        saveString("ATTENDANCEJSON", jsonInput);
+        sqDatabase db = new sqDatabase(context);
+        db.addSubjects(jsonInput);
     }
 
     public void addPushMessage(PushMessage pm){
@@ -166,72 +166,15 @@ public class DataHandler {
     }
 
     public ArrayList<Subject> getAllSubjects(){
-        ArrayList<Subject> subs = new ArrayList<Subject>();
-        Subject att;
-        try{
-            JSONArray root = new JSONArray(getJSON());
-            JSONObject sub;
 
-            for(int i = 0; i < root.length(); i++){
-                sub = root.getJSONObject(i);
-                att = new Subject();
-                att.code = sub.getString("code");
-                att.title = sub.getString("title");
-                att.type = sub.getString("type");
-                att.slot = sub.getString("slot");
-                att.attended = Integer.parseInt(sub.getString("attended"));
-                att.conducted = Integer.parseInt(sub.getString("conducted"));
-
-                att.percentage = (int) getPer(att.attended, att.conducted);
-
-                if (getPer(att.attended,att.conducted) > att.percentage)
-                    att.percentage += 1;
-
-                att.regdate = sub.getString("regdate");
-                att.classnbr = sub.getString("classnbr");
-                //No need to parse this here
-                att.detailsString = sub.getJSONArray("details").toString();
-                att.putAttendanceDetails();
-                subs.add(att);
-            }
-        }catch (Exception e){e.printStackTrace();}
-        return subs;
+        sqDatabase sq = new sqDatabase(context);
+        return sq.getAllSubjects();
     }
     public Subject getSubject(String clsnbr){
-        Subject att = new Subject();
-
-        try {
-            JSONArray root = new JSONArray(getJSON());
-            JSONObject sub;
-            String temp;
-
-            for(int i = 0; i < root.length(); i++){
-                sub = root.getJSONObject(i);
-                temp = sub.getString("classnbr");
-                if(temp.equals(clsnbr)){
-                    att.code = sub.getString("code");
-                    att.title = sub.getString("title");
-                    att.type = sub.getString("type");
-                    att.slot = sub.getString("slot");
-                    att.attended = Integer.parseInt(sub.getString("attended"));
-                    att.conducted = Integer.parseInt(sub.getString("conducted"));
-
-                    att.percentage = (int) getPer(att.attended, att.conducted);
-
-                    if (getPer(att.attended,att.conducted) > att.percentage)
-                        att.percentage += 1;
-
-                    att.regdate = sub.getString("regdate");
-                    att.classnbr = sub.getString("classnbr");
-                    //No need to parse this here
-                    att.detailsString = sub.getJSONArray("details").toString();
-                    att.marksJSON = getMarks();
-                    break;
-                }
-            }
-        }catch (Exception e){e.printStackTrace();}
-
-        return att;
+        sqDatabase db = new sqDatabase(context);
+        Subject s = db.getSubject(clsnbr);
+        s.marksJSON = getMarks();
+        return s;
     }
 
     public void deleteFriend(Friend f){

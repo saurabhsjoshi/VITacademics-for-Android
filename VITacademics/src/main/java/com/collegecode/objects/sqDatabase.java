@@ -2,6 +2,7 @@ package com.collegecode.objects;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -29,6 +30,8 @@ public class sqDatabase extends SQLiteOpenHelper {
     private static final String KEY_CLASNBR = "clsnbr";
     private static final String KEY_TITLE = "title";
     private static final String KEY_SLOT = "slot";
+
+    private static final String[] COLUMNS = {KEY_CLASNBR,KEY_TITLE,KEY_SLOT,"type","attended", "conducted", "regdate", "details"};
 
     public sqDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -62,7 +65,7 @@ public class sqDatabase extends SQLiteOpenHelper {
 
                 ContentValues values = new ContentValues();
 
-                values.put(KEY_CLASNBR, sub.getString("classnbr"));
+                values.put(KEY_CLASNBR, Integer.parseInt(sub.getString("classnbr")));
                 values.put(KEY_TITLE, sub.getString("title"));
                 values.put(KEY_SLOT, sub.getString("slot"));
                 values.put("type", sub.getString("type"));
@@ -77,16 +80,79 @@ public class sqDatabase extends SQLiteOpenHelper {
 
     }
 
-    public Subject getSubject(String clsnbr){
-        return null;
+    public Subject getSubject(String clsnbr) {
+        Subject sub = new Subject();
+        try{
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            Cursor cursor = db.query(TABLE_SUBJECTS, COLUMNS, KEY_CLASNBR + "=?", new String[]{String.valueOf(clsnbr)}, null, null, null, null);
+
+            if (cursor != null)
+                cursor.moveToFirst();
+
+            sub.classnbr = Integer.toString(cursor.getInt(0));
+            sub.title = cursor.getString(1);
+            sub.slot = cursor.getString(2);
+            sub.type = cursor.getString(3);
+            sub.attended = cursor.getInt(4);
+            sub.conducted = cursor.getInt(5);
+            sub.regdate = cursor.getString(6);
+            sub.detailsString = cursor.getString(7);
+
+            sub.percentage = (int) DataHandler.getPer(sub.attended, sub.conducted);
+
+            if (DataHandler.getPer(sub.attended,sub.conducted) > sub.percentage)
+                sub.percentage += 1;
+
+            cursor.close();
+            db.close();
+
+        }catch(Exception e){e.printStackTrace();}
+
+
+        return sub;
     }
 
-    public int getSubjectsCount(String subject){
+    /*public int getSubjectsCount(String subject){
+        String countQuery = "SELECT  * FROM " + TABLE_SUBJECTS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+        cursor.close();
+        db.close();
         return 0;
-    }
+    }*/
 
     public ArrayList<Subject> getAllSubjects(){
-        return null;
+        ArrayList<Subject> subs = new ArrayList<Subject>();
+        String selectQuery = "SELECT  * FROM " + TABLE_SUBJECTS;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Subject sub = new Subject();
+                sub.classnbr = Integer.toString(cursor.getInt(0));
+                sub.title = cursor.getString(1);
+                sub.slot = cursor.getString(2);
+                sub.type = cursor.getString(3);
+                sub.attended = cursor.getInt(4);
+                sub.conducted = cursor.getInt(5);
+                sub.regdate = cursor.getString(6);
+                sub.detailsString = cursor.getString(7);
+
+                sub.percentage = (int) DataHandler.getPer(sub.attended, sub.conducted);
+
+                if (DataHandler.getPer(sub.attended,sub.conducted) > sub.percentage)
+                    sub.percentage += 1;
+                sub.putAttendanceDetails();
+                subs.add(sub);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return subs;
     }
 
 }
