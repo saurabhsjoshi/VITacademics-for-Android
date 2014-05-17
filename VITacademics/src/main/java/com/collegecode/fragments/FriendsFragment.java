@@ -343,7 +343,7 @@ public class FriendsFragment extends Fragment{
             listView.setSwipingLayout(R.layout.friend_list_item_back);
 
             if(friends.size() >= 1){
-                if(dat.getviewShowCaseFrnd()){
+                if(!dat.getviewShowCaseFrnd()){
                     ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
                     f.hideOnClickOutside = false;
                     f.centerText = true;
