@@ -1,4 +1,4 @@
-package com.collegecode.fragments;
+package com.collegecode.fragments.FriendsFragments;
 
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;

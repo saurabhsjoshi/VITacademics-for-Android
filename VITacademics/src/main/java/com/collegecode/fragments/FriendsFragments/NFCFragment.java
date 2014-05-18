@@ -1,4 +1,4 @@
-package com.collegecode.fragments;
+package com.collegecode.fragments.FriendsFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
