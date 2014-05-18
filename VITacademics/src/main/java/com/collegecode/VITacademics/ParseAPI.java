@@ -57,8 +57,8 @@ public class ParseAPI {
         protected Void doInBackground(Void... voids) {
             try {
                 ParseUser.logIn(dat.getRegNo(), dat.getDOBString());
-                String t = ParseUser.getCurrentUser().get("isSignedIn").toString().trim();
-                if(t.equals("true")){
+                String t = ParseUser.getCurrentUser().getString("isSignedIn");
+                if(t!=null && t.equals("true")){
                     dat.setFbLogin(false);
                     ParseUser user = ParseUser.getCurrentUser();
                     user.setUsername(dat.getRegNo());
