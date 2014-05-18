@@ -48,7 +48,7 @@ public class SubjectDetails extends ActionBarActivity {
 
         protected void onPreExecute(){
             sub = new Subject();
-            setProgressBarIndeterminateVisibility(true);
+            setSupportProgressBarIndeterminateVisibility(true);
         }
 
         @Override
@@ -63,7 +63,7 @@ public class SubjectDetails extends ActionBarActivity {
             pager.setAdapter(new SubjecDetailsPagerAdapter(context, sub, ((FragmentActivity)context).getSupportFragmentManager()));
             titlePageIndicator.setViewPager(pager);
             titlePageIndicator.setTextColor(getResources().getColor(R.color.Gray));
-            setProgressBarIndeterminateVisibility(false);
+            setSupportProgressBarIndeterminateVisibility(false);
         }
 
     }
