@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/txt_cat1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Under Development"
-        app:typeface="roboto_light"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <com.echo.holographlibrary.BarGraph
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="150dp"
+            android:id="@+id/graph_quiz"/>
+
+
+        <com.echo.holographlibrary.BarGraph
+            android:layout_below="@id/graph_quiz"
+            android:layout_width="match_parent"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_height="150dp"
+            android:id="@+id/graph_cat"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:id="@+id/lbl_mrk_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/graph_cat"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="20dp"
+            android:text="DETAILS HERE"
+            app:typeface="roboto_light"/>
+
+    </RelativeLayout>
+
+</ScrollView>

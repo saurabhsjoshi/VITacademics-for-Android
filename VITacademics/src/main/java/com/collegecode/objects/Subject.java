@@ -60,6 +60,8 @@ public class Subject {
                 count += 1;
             }
 
+            mark.asgn.marks = j.getString(16);
+
             marks_valid = true;
 
         }catch (Exception e){e.printStackTrace();}

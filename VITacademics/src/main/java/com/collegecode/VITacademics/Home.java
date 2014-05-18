@@ -29,14 +29,14 @@ import android.widget.RadioButton;
 
 import com.collegecode.adapters.DrawerListAdapter;
 import com.collegecode.fragments.CoursesFragment;
-import com.collegecode.fragments.FaceBookLogin;
+import com.collegecode.fragments.FriendsFragments.FaceBookLogin;
 import com.collegecode.fragments.FriendsFragment;
 import com.collegecode.fragments.FullTimeTableFragment;
-import com.collegecode.fragments.NFCAddFragment;
-import com.collegecode.fragments.NFCFragment;
+import com.collegecode.fragments.FriendsFragments.NFCAddFragment;
+import com.collegecode.fragments.FriendsFragments.NFCFragment;
 import com.collegecode.fragments.NotificationFragment;
 import com.collegecode.fragments.NowFragment;
-import com.collegecode.fragments.QRCodeFragment;
+import com.collegecode.fragments.FriendsFragments.QRCodeFragment;
 import com.collegecode.fragments.SettingsFragment;
 import com.collegecode.objects.BarCodeScanner.IntentIntegrator;
 import com.collegecode.objects.BarCodeScanner.IntentResult;

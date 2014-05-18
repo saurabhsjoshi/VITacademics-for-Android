@@ -29,4 +29,5 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0+'
     compile project(':facebook')
     compile project(':showcaseview')
+    compile project(":hololib")
     compile fileTree(dir: 'libs', include: ['*.jar'])}
