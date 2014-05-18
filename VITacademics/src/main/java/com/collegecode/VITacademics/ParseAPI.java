@@ -58,18 +58,18 @@ public class ParseAPI {
             try {
                 ParseUser.logIn(dat.getRegNo(), dat.getDOBString());
                 String t = ParseUser.getCurrentUser().getString("isSignedIn");
+                ParseUser user = ParseUser.getCurrentUser();
                 if(t!=null && t.equals("true")){
                     dat.setFbLogin(false);
-                    ParseUser user = ParseUser.getCurrentUser();
                     user.setUsername(dat.getRegNo());
                     user.setPassword(dat.getDOBString());
                     ParseFacebookUtils.unlink(ParseUser.getCurrentUser());
                     user.put("isSignedIn","false");
-                    user.put("registrationNumber",dat.getRegNo());
-                    user.put("platform", "Android");
-                    user.put("dateOfBirth", dat.getDOBString());
-                    user.save();
                 }
+                user.put("registrationNumber",dat.getRegNo());
+                user.put("platform", "Android");
+                user.put("dateOfBirth", dat.getDOBString());
+                user.save();
             }catch (ParseException e){
                 this.e = e;
             }

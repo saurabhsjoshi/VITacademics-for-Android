@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/VITacademics/VITacademics-VITacademics.iml" filepath="$PROJECT_DIR$/VITacademics/VITacademics-VITacademics.iml" />
       <module fileurl="file://$PROJECT_DIR$/VITacademics-for-Android.iml" filepath="$PROJECT_DIR$/VITacademics-for-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/facebook/facebook.iml" filepath="$PROJECT_DIR$/facebook/facebook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hololib/hololib.iml" filepath="$PROJECT_DIR$/hololib/hololib.iml" />
       <module fileurl="file://$PROJECT_DIR$/showcaseview/showcaseview.iml" filepath="$PROJECT_DIR$/showcaseview/showcaseview.iml" />
     </modules>
   </component>
