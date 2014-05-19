@@ -56,6 +56,14 @@ public class DataHandler {
         saveInt("PUSHMESSAGEJSONSIZE", cur + 1);
     }
 
+    public void savePushMessages(ArrayList<PushMessage> msgs){
+        Gson gson = new Gson();
+        for(int i = 0; i < msgs.size(); i++)
+            saveString("PUSHMESSAGEJSON"+i, gson.toJson(msgs));
+
+        saveInt("PUSHMESSAGEJSONSIZE", msgs.size());
+    }
+
     public void addFriend(Friend f){
         int cur = preferences.getInt("FRIENDJSONSIZE", 0);
         Gson gson = new Gson();
@@ -98,7 +106,7 @@ public class DataHandler {
     }
 
     public String getRegNo(){
-        return preferences.getString("REGNO", "");
+        return preferences.getString("REGNO", "").toUpperCase();
     }
 
     public boolean getviewShowCase(){return  preferences.getBoolean("ViewShowCase",false);}
@@ -111,9 +119,7 @@ public class DataHandler {
 
     public boolean isVellore(){return preferences.getBoolean("isVellore", true);}
 
-    public boolean isFacebookLogin(){return preferences.getBoolean("isFbLogin",false);}
-
-    public String getJSON(){return preferences.getString("ATTENDANCEJSON","");}
+    public boolean isFacebookLogin(){return preferences.getBoolean("isFbLogin", false);}
 
     public String getTimeTable(){return  preferences.getString("TIMETABLEJSON", "");}
 
@@ -180,6 +186,36 @@ public class DataHandler {
         Subject s = db.getSubject(clsnbr);
         s.marksJSON = getMarks();
         return s;
+    }
+
+    public ArrayList<PushMessage> getAllPushMessage(){
+        ArrayList<PushMessage> temp = new ArrayList<PushMessage>();
+        try{
+
+            Gson gson = new Gson();
+            int size = preferences.getInt("PUSHMESSAGEJSONSIZE",0);
+
+            for(int i = 0; i < size; i++){
+                PushMessage p = gson.fromJson("PUSHMESSAGEJSON"+i,PushMessage.class);
+                temp.add(p);
+            }
+
+        }catch (Exception e){e.printStackTrace();}
+
+        return temp;
+    }
+
+    public void deletePushMessage(PushMessage msg){
+        ArrayList<PushMessage> temp = getAllPushMessage();
+        for(int i = 0 ; i < temp.size(); i++){
+            if(msg.title.equals(temp.get(i).title) && msg.message.equals(temp.get(i).message))
+            {
+                temp.remove(i);
+                break;
+            }
+        }
+        savePushMessages(temp);
+
     }
 
     public void deleteFriend(Friend f){

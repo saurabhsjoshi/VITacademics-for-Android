@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.timroes.android.listview.EnhancedListView
+        android:id="@+id/enhanced_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="10"
+        android:scrollbars="vertical" />
+
+    <com.devspark.robototextview.widget.RobotoTextView
+        android:id="@+id/lbl_empty"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No notifications!"
+        app:typeface="roboto_bold"/>
+
+</RelativeLayout>

@@ -49,6 +49,7 @@ public class ParseAPI {
         new parseInit_Async().execute();
     }
 
+
     private class loginUser_Async extends AsyncTask<Void,Void,Void>{
         public OnParseFinished listner;
         private ParseException e = null;
@@ -64,8 +65,8 @@ public class ParseAPI {
                     user.setUsername(dat.getRegNo());
                     user.setPassword(dat.getDOBString());
                     ParseFacebookUtils.unlink(ParseUser.getCurrentUser());
-                    user.put("isSignedIn","false");
                 }
+                user.put("isSignedIn","false");
                 user.put("registrationNumber",dat.getRegNo());
                 user.put("platform", "Android");
                 user.put("dateOfBirth", dat.getDOBString());
