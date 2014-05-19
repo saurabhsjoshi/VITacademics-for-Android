@@ -29,6 +29,7 @@ public class DataHandler {
 
     public static void DELETE_ALL_DATA(Context context){
         PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
+        context.deleteDatabase("subjectsManager");
     }
 
     private void saveString(String key, String string){
