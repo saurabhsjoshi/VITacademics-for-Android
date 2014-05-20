@@ -9,7 +9,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Title here"
         app:typeface="roboto_bold"/>

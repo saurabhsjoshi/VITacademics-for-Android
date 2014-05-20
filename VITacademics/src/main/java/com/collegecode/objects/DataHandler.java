@@ -196,7 +196,7 @@ public class DataHandler {
             int size = preferences.getInt("PUSHMESSAGEJSONSIZE",0);
 
             for(int i = 0; i < size; i++){
-                PushMessage p = gson.fromJson("PUSHMESSAGEJSON"+i,PushMessage.class);
+                PushMessage p = gson.fromJson(preferences.getString("PUSHMESSAGEJSON"+i,""),PushMessage.class);
                 temp.add(p);
             }
 
