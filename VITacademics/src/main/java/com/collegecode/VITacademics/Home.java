@@ -150,7 +150,8 @@ public class Home extends ActionBarActivity {
         if(getIntent().getExtras() != null){
             try {
                 JSONObject data = new JSONObject(getIntent().getExtras().getString("com.parse.Data"));
-                System.out.println(data.get("alert").toString());
+                Log.i("PUSH SERVICE", data.toString());
+                selectItem(9);
             }catch (Exception ignore){}
         }
 
