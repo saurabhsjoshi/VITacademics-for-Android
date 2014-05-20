@@ -19,7 +19,7 @@ package com.facebook;
 /**
  * Specifies different categories of logging messages that can be generated.
  *
- * @see Settings#addLoggingBehavior(LoggingBehavior)
+ * @see Settings#addLoggingBehavior(com.facebook.LoggingBehavior)
  */
 public enum LoggingBehavior {
     /**

@@ -1468,7 +1468,7 @@ public class Request {
     /**
      * Executes requests as a single batch asynchronously. This function will return immediately, and the requests will
      * be processed on a separate thread. In order to process results of a request, or determine whether a request
-     * succeeded or failed, a callback must be specified (see the {@link #setCallback(Callback) setCallback} method).
+     * succeeded or failed, a callback must be specified (see the {@link #setCallback(com.facebook.Request.Callback) setCallback} method).
      * <p/>
      * This should only be called from the UI thread.
      *
@@ -1488,7 +1488,7 @@ public class Request {
     /**
      * Executes requests as a single batch asynchronously. This function will return immediately, and the requests will
      * be processed on a separate thread. In order to process results of a request, or determine whether a request
-     * succeeded or failed, a callback must be specified (see the {@link #setCallback(Callback) setCallback} method).
+     * succeeded or failed, a callback must be specified (see the {@link #setCallback(com.facebook.Request.Callback) setCallback} method).
      * <p/>
      * This should only be called from the UI thread.
      *
@@ -1506,7 +1506,7 @@ public class Request {
     /**
      * Executes requests as a single batch asynchronously. This function will return immediately, and the requests will
      * be processed on a separate thread. In order to process results of a request, or determine whether a request
-     * succeeded or failed, a callback must be specified (see the {@link #setCallback(Callback) setCallback} method).
+     * succeeded or failed, a callback must be specified (see the {@link #setCallback(com.facebook.Request.Callback) setCallback} method).
      * <p/>
      * This should only be called from the UI thread.
      *
@@ -1595,7 +1595,7 @@ public class Request {
      * responsibility to ensure that it will correctly generate the desired responses. This function will return
      * immediately, and the requests will be processed on a separate thread. In order to process results of a request,
      * or determine whether a request succeeded or failed, a callback must be specified (see the
-     * {@link #setCallback(Callback) setCallback} method).
+     * {@link #setCallback(com.facebook.Request.Callback) setCallback} method).
      * <p/>
      * This should only be called from the UI thread.
      *
@@ -1615,7 +1615,7 @@ public class Request {
      * responsibility to ensure that it will correctly generate the desired responses. This function will return
      * immediately, and the requests will be processed on a separate thread. In order to process results of a request,
      * or determine whether a request succeeded or failed, a callback must be specified (see the
-     * {@link #setCallback(Callback) setCallback} method)
+     * {@link #setCallback(com.facebook.Request.Callback) setCallback} method)
      * <p/>
      * This should only be called from the UI thread.
      *
@@ -2351,7 +2351,7 @@ public class Request {
 
     /**
      * Specifies the interface that consumers of
-     * {@link Request#executeMeRequestAsync(Session, com.facebook.Request.GraphUserCallback)}
+     * {@link com.facebook.Request#executeMeRequestAsync(Session, com.facebook.Request.GraphUserCallback)}
      * can use to be notified when the request completes, either successfully or with an error.
      */
     public interface GraphUserCallback {
@@ -2366,7 +2366,7 @@ public class Request {
 
     /**
      * Specifies the interface that consumers of
-     * {@link Request#executeMyFriendsRequestAsync(Session, com.facebook.Request.GraphUserListCallback)}
+     * {@link com.facebook.Request#executeMyFriendsRequestAsync(Session, com.facebook.Request.GraphUserListCallback)}
      * can use to be notified when the request completes, either successfully or with an error.
      */
     public interface GraphUserListCallback {
@@ -2381,7 +2381,7 @@ public class Request {
 
     /**
      * Specifies the interface that consumers of
-     * {@link Request#executePlacesSearchRequestAsync(Session, android.location.Location, int, int, String, com.facebook.Request.GraphPlaceListCallback)}
+     * {@link com.facebook.Request#executePlacesSearchRequestAsync(Session, android.location.Location, int, int, String, com.facebook.Request.GraphPlaceListCallback)}
      * can use to be notified when the request completes, either successfully or with an error.
      */
     public interface GraphPlaceListCallback {

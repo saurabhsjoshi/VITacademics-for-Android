@@ -366,7 +366,7 @@ public class AppLinkData {
     }
 
     /**
-     * This method has been deprecated. Please use {@link AppLinkData#getArgumentBundle()} instead.
+     * This method has been deprecated. Please use {@link com.facebook.AppLinkData#getArgumentBundle()} instead.
      * @return JSONObject property bag.
      */
     @Deprecated

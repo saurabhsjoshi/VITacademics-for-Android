@@ -557,7 +557,7 @@ public class WebDialog extends Dialog {
             return parameters;
         }
 
-        protected WebDialog.OnCompleteListener getListener() {
+        protected OnCompleteListener getListener() {
             return listener;
         }
 
