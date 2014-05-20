@@ -303,43 +303,46 @@ public class FriendsFragment extends Fragment{
         }
 
         protected void onPostExecute(Void voids){
-            final FreindsListAdapter mAdapter = new FreindsListAdapter(getActivity(), friends);
-            listView.setAdapter(new FreindsListAdapter(getActivity(), friends));
-
             mPullToRefreshLayout.setRefreshComplete();
-            if(friends.size() == 0)
-                lbl_empty.setVisibility(View.VISIBLE);
-            else
-                lbl_empty.setVisibility(View.GONE);
+            try{
+                final FreindsListAdapter mAdapter = new FreindsListAdapter(getActivity(), friends);
+                listView.setAdapter(new FreindsListAdapter(getActivity(), friends));
 
-            listView.setDismissCallback(new de.timroes.android.listview.EnhancedListView.OnDismissCallback() {
+                if(friends.size() == 0)
+                    lbl_empty.setVisibility(View.VISIBLE);
+                else
+                    lbl_empty.setVisibility(View.GONE);
 
-                /**
-                 * This method will be called when the user swiped a way or deleted it via
-                 * {@link de.timroes.android.listview.EnhancedListView#delete(int)}.
-                 *
-                 * @param listView The {@link EnhancedListView} the item has been deleted from.
-                 * @param position The position of the item to delete from your adapter.
-                 * @return An {@link de.timroes.android.listview.EnhancedListView.Undoable}, if you want
-                 *      to give the user the possibility to undo the deletion.
-                 */
-                @Override
-                public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
-                    final Friend f = mAdapter.getItem(position);
-                    Runnable runnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            dat.deleteFriend(f);
-                        }};
-                    new Thread(runnable).start();
-                    mAdapter.remove(f);
-                    Toast.makeText(getActivity(), f.title + " has been deleted.", Toast.LENGTH_SHORT).show();
-                    return null;
-                }
-            });
-            listView.enableSwipeToDismiss();
-            listView.setSwipeDirection(EnhancedListView.SwipeDirection.START);
-            listView.setSwipingLayout(R.layout.friend_list_item_back);
+                listView.setDismissCallback(new de.timroes.android.listview.EnhancedListView.OnDismissCallback() {
+
+                    /**
+                     * This method will be called when the user swiped a way or deleted it via
+                     * {@link de.timroes.android.listview.EnhancedListView#delete(int)}.
+                     *
+                     * @param listView The {@link EnhancedListView} the item has been deleted from.
+                     * @param position The position of the item to delete from your adapter.
+                     * @return An {@link de.timroes.android.listview.EnhancedListView.Undoable}, if you want
+                     *      to give the user the possibility to undo the deletion.
+                     */
+                    @Override
+                    public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
+                        final Friend f = mAdapter.getItem(position);
+                        Runnable runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                dat.deleteFriend(f);
+                            }};
+                        new Thread(runnable).start();
+                        mAdapter.remove(f);
+                        Toast.makeText(getActivity(), f.title + " has been deleted.", Toast.LENGTH_SHORT).show();
+                        return null;
+                    }
+                });
+                listView.enableSwipeToDismiss();
+                listView.setSwipeDirection(EnhancedListView.SwipeDirection.START);
+                listView.setSwipingLayout(R.layout.friend_list_item_back);
+
+            }catch (Exception e){e.printStackTrace();}
 
             if(friends.size() >= 1){
                 if(!dat.getviewShowCaseFrnd()){

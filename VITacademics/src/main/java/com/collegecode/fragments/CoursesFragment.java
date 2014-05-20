@@ -38,17 +38,18 @@ public class CoursesFragment extends Fragment {
     private OnTaskComplete l1 = new OnTaskComplete() {
         @Override
         public void onTaskCompleted(Exception e, Object result) {
-            mPullToRefreshLayout.setRefreshComplete();
-            if(e!=null && e.getMessage().equals("needref"))
-                new CaptchaDialog(getActivity(), l2).show();
-            else if(e == null){
-                new Load_Data().execute();
-                Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                ((Home) getActivity()).enable_drawer();
-            }
+            try {
+                mPullToRefreshLayout.setRefreshComplete();
+                if (e != null && e.getMessage().equals("needref"))
+                    new CaptchaDialog(getActivity(), l2).show();
+                else if (e == null) {
+                    new Load_Data().execute();
+                    Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    ((Home) getActivity()).enable_drawer();
+                }
+            }catch (Exception e1){e1.printStackTrace();}
         }
     };
 
@@ -68,17 +69,17 @@ public class CoursesFragment extends Fragment {
     private OnTaskComplete l3 = new OnTaskComplete() {
         @Override
         public void onTaskCompleted(Exception e, Object result) {
-            mPullToRefreshLayout.setRefreshComplete();
-            if(e != null && e.getMessage().equals("cape"))
-                Toast.makeText(getActivity(), "Incorrect Captcha. Please try again!", Toast.LENGTH_SHORT).show();
-            else if (e == null){
-                new Load_Data().execute();
-                Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
-            }
-            else
-                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            ((Home) getActivity()).enable_drawer();
-        }
+            try {
+                mPullToRefreshLayout.setRefreshComplete();
+                if (e != null && e.getMessage().equals("cape"))
+                    Toast.makeText(getActivity(), "Incorrect Captcha. Please try again!", Toast.LENGTH_SHORT).show();
+                else if (e == null) {
+                    new Load_Data().execute();
+                    Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                ((Home) getActivity()).enable_drawer();
+            }catch (Exception e1){e1.printStackTrace();}}
     };
 
 
@@ -121,26 +122,31 @@ public class CoursesFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            try{
             subs = new DataHandler(getActivity()).getAllSubjects();
+            }catch (Exception e){e.printStackTrace();}
             return null;
         }
 
         protected void onPostExecute(Void voids){
-            listView.setAdapter(new CoursesListAdapter(getActivity(), subs));
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    try {
-                        Subject temp = (Subject) listView.getItemAtPosition(i);
-                        Intent intent = new Intent(getActivity(), SubjectDetails.class);
-                        intent.putExtra("clsnbr", temp.classnbr);
-                        startActivity(intent);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+            try{
+                listView.setAdapter(new CoursesListAdapter(getActivity(), subs));
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        try {
+                            Subject temp = (Subject) listView.getItemAtPosition(i);
+                            Intent intent = new Intent(getActivity(), SubjectDetails.class);
+                            intent.putExtra("clsnbr", temp.classnbr);
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
 
-            });
+                });
+            }catch (Exception e){e.printStackTrace();}
+
             mPullToRefreshLayout.setRefreshComplete();
             ((Home) getActivity()).enable_drawer();
         }

@@ -49,18 +49,18 @@ public class NowFragment extends Fragment {
     private OnTaskComplete l1 = new OnTaskComplete() {
         @Override
         public void onTaskCompleted(Exception e, Object result) {
-            mPullToRefreshLayout.setRefreshComplete();
-            if(e!=null && e.getMessage().equals("needref"))
-                new CaptchaDialog(getActivity(), l2).show();
-            else if(e == null){
-                new load_Data().execute();
-                Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                ((Home) getActivity()).enable_drawer();
-            }
-        }
+            try {
+                mPullToRefreshLayout.setRefreshComplete();
+                if (e != null && e.getMessage().equals("needref"))
+                    new CaptchaDialog(getActivity(), l2).show();
+                else if (e == null) {
+                    new load_Data().execute();
+                    Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    ((Home) getActivity()).enable_drawer();
+                }
+            }catch (Exception e1){e1.printStackTrace();}}
     };
 
     private CaptchaDialogListener l2 = new CaptchaDialogListener() {
@@ -79,18 +79,18 @@ public class NowFragment extends Fragment {
     private OnTaskComplete l3 = new OnTaskComplete() {
         @Override
         public void onTaskCompleted(Exception e, Object result) {
-            mPullToRefreshLayout.setRefreshComplete();
-            if(e != null && e.getMessage().equals("cape"))
-                Toast.makeText(getActivity(), "Incorrect Captcha. Please try again!", Toast.LENGTH_SHORT).show();
-            else if (e == null){
-                new load_Data().execute();
-                Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
-            }
-            else
-                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            try {
+                mPullToRefreshLayout.setRefreshComplete();
+                if (e != null && e.getMessage().equals("cape"))
+                    Toast.makeText(getActivity(), "Incorrect Captcha. Please try again!", Toast.LENGTH_SHORT).show();
+                else if (e == null) {
+                    new load_Data().execute();
+                    Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
 
-            ((Home) getActivity()).enable_drawer();
-        }
+                ((Home) getActivity()).enable_drawer();
+            }catch (Exception e1){e1.printStackTrace();}}
     };
 
     @Override
@@ -219,17 +219,21 @@ public class NowFragment extends Fragment {
         }
 
         protected void onPostExecute(Void voids){
-            mainList.setAdapter(new NowFragmentListAdapter(getActivity(), subs));
-            mainList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    try{
-                        TTSlot temp = ((NowListItem) mainList.getItemAtPosition(i)).ttSlot;
-                        Intent intent = new Intent(getActivity(), SubjectDetails.class);
-                        intent.putExtra("clsnbr", temp.clsnbr);
-                        startActivity(intent);
-                    }catch (Exception ignored){}}
-            });
+            try {
+                mainList.setAdapter(new NowFragmentListAdapter(getActivity(), subs));
+                mainList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        try {
+                            TTSlot temp = ((NowListItem) mainList.getItemAtPosition(i)).ttSlot;
+                            Intent intent = new Intent(getActivity(), SubjectDetails.class);
+                            intent.putExtra("clsnbr", temp.clsnbr);
+                            startActivity(intent);
+                        } catch (Exception ignored) {
+                        }
+                    }
+                });
+            }catch (Exception e){e.printStackTrace();}
             mPullToRefreshLayout.setRefreshComplete();
 
 
