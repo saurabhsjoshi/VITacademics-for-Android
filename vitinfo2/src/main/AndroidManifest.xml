@@ -49,8 +49,8 @@
             android:noHistory="true"
             />
 
-        <activity android:name="com.karthikb351.vitinfo2.objects.BarCodeScanner.LauncherActivity"/>
-        <activity android:name="com.karthikb351.vitinfo2.objects.BarCodeScanner.CaptureActivity"
+        <activity android:name="com.karthikb351.vitinfo2.objects$BarCodeScanner.LauncherActivity"/>
+        <activity android:name="com.karthikb351.vitinfo2.objects$BarCodeScanner.CaptureActivity"
             android:screenOrientation="landscape" android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
