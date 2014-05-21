@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.karthikb351.vitinfo2.NewUser;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.objects.DataHandler;
 
 ;
 
@@ -22,9 +23,6 @@ public class Screen1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-
         View view = inflater.inflate(R.layout.fragment_newuser_1,container, false);
 
         ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle("Welcome");
@@ -33,6 +31,7 @@ public class Screen1 extends Fragment {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DataHandler.DELETE_ALL_DATA(getActivity());
                 NewUser nw = (NewUser) getActivity();
                 nw.changeScreen(1);
             }
