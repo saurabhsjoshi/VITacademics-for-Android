@@ -13,6 +13,8 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -231,6 +233,26 @@ public class DataHandler {
             saveFriends(t);
 
         }catch (Exception e){e.printStackTrace();}
+    }
+
+    public int getSubLength(){
+        sqDatabase sq = new sqDatabase(context);
+        return sq.getSubjectsCount();
+    }
+
+    public Subject getSubwithPos(int pos){
+        ArrayList<Subject> subs = getAllSubjects();
+
+        Collections.sort(subs, new Comparator<Subject>() {
+            @Override
+            public int compare(Subject sub1, Subject sub2) {
+
+                return sub1.classnbr.compareTo(sub2.classnbr);
+            }
+        });
+
+
+        return subs.get(pos);
     }
 
     public boolean isNewUser(){return preferences.getBoolean("NewUser", true);}

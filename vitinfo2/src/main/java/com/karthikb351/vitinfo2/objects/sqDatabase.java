@@ -113,14 +113,18 @@ public class sqDatabase extends SQLiteOpenHelper {
         return sub;
     }
 
-    /*public int getSubjectsCount(String subject){
+    public int getSubjectsCount(){
         String countQuery = "SELECT  * FROM " + TABLE_SUBJECTS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
+
+        int count = cursor.getCount();
+
         cursor.close();
         db.close();
-        return 0;
-    }*/
+
+        return count;
+    }
 
     public ArrayList<Subject> getAllSubjects(){
         ArrayList<Subject> subs = new ArrayList<Subject>();
