@@ -22,6 +22,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.espian.showcaseview.ShowcaseView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.karthikb351.vitinfo2.Application;
 import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.VITxAPI;
@@ -60,6 +63,10 @@ public class FriendsFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_friends,container, false);
+
+        Tracker t = ((Application) getActivity().getApplication()).getTracker(Application.TrackerName.GLOBAL_TRACKER);
+        t.setScreenName("Friends Fragment");
+        t.send(new HitBuilders.AppViewBuilder().build());
 
         mPullToRefreshLayout = (PullToRefreshLayout) v.findViewById(R.id.ptr_layout);
         listView = (EnhancedListView) v.findViewById(R.id.enhanced_list);

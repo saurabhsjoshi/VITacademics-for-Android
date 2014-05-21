@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.karthikb351.vitinfo2.Application;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.SubjectDetails;
 import com.karthikb351.vitinfo2.adapters.FullTTListAdapter;
@@ -43,6 +46,10 @@ public class FullTTListFragment extends Fragment{
         TimeTable timeTable = new TimeTable(context);
 
         ArrayList<TTSlot> ttSlots;
+
+        Tracker t = ((Application) getActivity().getApplication()).getTracker(Application.TrackerName.GLOBAL_TRACKER);
+        t.setScreenName("FullTT Fragment");
+        t.send(new HitBuilders.AppViewBuilder().build());
 
         switch (day){
             case 0:

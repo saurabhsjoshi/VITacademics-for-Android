@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 19
-        versionCode 3
-        versionName "3.1.0 Beta3"
+        versionCode 17
+        versionName "3.2.0 Beta"
     }
     buildTypes {
         release {
@@ -28,6 +28,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:1.1.0'
     compile 'com.github.chrisbanes.actionbarpulltorefresh:extra-abc:+'
     compile 'com.nineoldandroids:library:2.4.0+'
+    compile 'com.google.android.gms:play-services:4.3.23'
     compile project(':facebook')
     compile project(':showcaseview')
     compile project(":hololib")

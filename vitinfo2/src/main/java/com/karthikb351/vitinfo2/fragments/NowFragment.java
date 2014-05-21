@@ -15,6 +15,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.espian.showcaseview.ShowcaseView;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.karthikb351.vitinfo2.Application;
 import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.SubjectDetails;
@@ -101,6 +104,10 @@ public class NowFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_now,container, false);
         dat = new DataHandler(getActivity());
         cntx = getActivity();
+
+        Tracker t = ((Application) getActivity().getApplication()).getTracker(Application.TrackerName.GLOBAL_TRACKER);
+        t.setScreenName("Now Fragment");
+        t.send(new HitBuilders.AppViewBuilder().build());
 
         mPullToRefreshLayout = (PullToRefreshLayout) v.findViewById(R.id.ptr_layout);
 

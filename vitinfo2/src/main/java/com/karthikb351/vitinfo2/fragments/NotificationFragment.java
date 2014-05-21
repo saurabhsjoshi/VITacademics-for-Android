@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+import com.karthikb351.vitinfo2.Application;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapters.NotificationListAdapter;
 import com.karthikb351.vitinfo2.objects.DataHandler;
@@ -29,6 +32,11 @@ public class NotificationFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        Tracker t = ((Application) getActivity().getApplication()).getTracker(Application.TrackerName.GLOBAL_TRACKER);
+        t.setScreenName("Notification Fragment");
+        t.send(new HitBuilders.AppViewBuilder().build());
+
         View v = inflater.inflate(R.layout.fragment_notification,container, false);
         listView = (EnhancedListView) v.findViewById(R.id.enhanced_list);
         lbl_empty = (TextView) v.findViewById(R.id.lbl_empty);
