@@ -389,6 +389,9 @@ public class VITxAPI {
                     }
                     //Get the timetable
                     f.timetable = EntityUtils.toString(getResponse("http://vitacademicstokensystem.appspot.com/gettimetable/" + f.regno + "/" + f.dob).getEntity());
+                    try {
+                        new JSONObject(f.timetable);
+                    }catch (JSONException e1){e = new Exception("Could not parse friends timetable. Please try again!"); return null;}
                     //Save friend to memory!
                     dat.addFriend(f);
 
