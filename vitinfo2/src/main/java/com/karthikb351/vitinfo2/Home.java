@@ -222,6 +222,8 @@ public class Home extends ActionBarActivity {
     //For QR and NFC
     public String token = "";
 
+    public Fragment dataFrag = null;
+
     /** Swaps fragments in the main content view */
     public void selectItem_Async(int position) {
 

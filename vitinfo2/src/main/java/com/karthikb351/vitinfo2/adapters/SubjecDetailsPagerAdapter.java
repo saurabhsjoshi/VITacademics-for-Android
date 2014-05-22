@@ -28,12 +28,24 @@ public class SubjecDetailsPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        if(position == 0)
-            return new AttendanceDetailsFragment(context, subject);
-        else if(position == 1)
-            return new MarksDetailsFragment(subject);
-        else
-            return new DayByDayFragment(context, subject);
+        if(position == 0){
+            AttendanceDetailsFragment f = new AttendanceDetailsFragment();
+            f.context = context;
+            f.subject = subject;
+            return f;
+        }
+        else if(position == 1){
+            MarksDetailsFragment f = new MarksDetailsFragment();
+            f.subject = subject;
+            return f;
+        }
+
+        else{
+            DayByDayFragment f = new DayByDayFragment();
+            f.context = context;
+            f.subject = subject;
+            return f;
+        }
     }
 
     @Override

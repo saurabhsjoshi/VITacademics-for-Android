@@ -22,11 +22,11 @@ import java.util.ArrayList;
  * Created by saurabh on 4/30/14.
  */
 public class MarksDetailsFragment extends Fragment {
-    Subject subject;
+    public Subject subject;
     public float total = 0;
 
-    public MarksDetailsFragment(Subject subject){
-        this.subject = subject;
+    public MarksDetailsFragment(){
+
     }
 
     @Override

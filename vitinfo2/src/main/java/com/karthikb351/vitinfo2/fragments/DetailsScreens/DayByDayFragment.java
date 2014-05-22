@@ -18,12 +18,11 @@ import com.karthikb351.vitinfo2.objects.Subject;
  * Created by saurabh on 4/30/14.
  */
 public class DayByDayFragment extends Fragment {
-    Subject subject;
-    Context context;
+    public Subject subject;
+    public Context context;
 
-    public DayByDayFragment(Context context, Subject subject){
-        this.context = context;
-        this.subject = subject;
+    public DayByDayFragment(){
+
     }
 
     @Override

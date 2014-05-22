@@ -21,8 +21,12 @@ public class FullTTPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int position) {
-        return new FullTTListFragment(position, context);
+    public Fragment getItem(int position)
+    {
+        FullTTListFragment f = new FullTTListFragment();
+        f.context = context;
+        f.day = position;
+        return f;
     }
 
     @Override

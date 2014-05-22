@@ -69,7 +69,6 @@ public class FaceBookLogin extends Fragment{
                             @Override
                             public void onCompleted(GraphUser user, Response response) {
                                 if (user != null) {
-                                    Log.i("VITacademics PARSE API", response.toString());
                                     parse_user.put("facebookID", user.getId());
                                     parse_user.put("facebookName", user.getName());
                                     parse_user.put("isSignedIn", "true");

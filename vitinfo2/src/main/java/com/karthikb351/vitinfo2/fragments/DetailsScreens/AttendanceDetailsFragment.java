@@ -22,9 +22,9 @@ import com.karthikb351.vitinfo2.objects.Subject;
  * Created by saurabh on 4/30/14.
  */
 public class AttendanceDetailsFragment extends Fragment {
-    Context context;
+    public Context context;
     DataHandler dat;
-    Subject subject;
+    public Subject subject;
 
     Button bunk_add,bunk_sub, makeup_add, makeup_sub;
     TextView tv_title,tv_slot,tv_type,tv_code,tv_atten,tv_net_per,bunk_val,makeup_val;
@@ -35,6 +35,7 @@ public class AttendanceDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_attendance_details,container, false);
+        dat = new DataHandler(context);
 
         tv_title=(TextView)v.findViewById(R.id.title_detailed);
         tv_slot=(TextView)v.findViewById(R.id.slot_detailed);
@@ -216,10 +217,7 @@ public class AttendanceDetailsFragment extends Fragment {
         updateScreen();
     }
 
-    public AttendanceDetailsFragment(Context context, Subject sub){
-        this.context = context;
-        this.subject = sub;
+    public AttendanceDetailsFragment(){
 
-        dat = new DataHandler(context);
     }
 }

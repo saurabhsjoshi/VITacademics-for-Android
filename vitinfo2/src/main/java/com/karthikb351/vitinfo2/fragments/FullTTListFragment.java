@@ -29,12 +29,10 @@ import java.util.Calendar;
  */
 public class FullTTListFragment extends Fragment{
 
-    private int day = 0;
-    Context context;
+    public int day = 0;
+    public Context context;
 
-    public FullTTListFragment(int day, Context context){
-        this.context = context;
-        this.day = day;
+    public FullTTListFragment(){
     }
 
     @Override
