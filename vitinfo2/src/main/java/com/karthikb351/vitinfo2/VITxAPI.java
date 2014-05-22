@@ -18,6 +18,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -213,6 +214,13 @@ public class VITxAPI {
                 }
 
                 String result = EntityUtils.toString(res.getEntity());
+                //Check if really timetable or just blank text.
+                try{
+                    new JSONObject(result);
+                }catch (JSONException e1){
+                    e = new Exception("Oops! Could not parse Timetable. Try again!");
+                    return null;
+                }
                 dat.saveTimeTable(result);
             }catch (Exception e1){e = new Exception("Oops! Something went wrong. Check your network!");}
             return null;
