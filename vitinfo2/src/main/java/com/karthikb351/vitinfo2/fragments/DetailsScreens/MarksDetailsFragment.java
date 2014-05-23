@@ -42,22 +42,22 @@ public class MarksDetailsFragment extends Fragment {
             ArrayList<Bar> points = new ArrayList<Bar>();
 
             Bar d = new Bar();
-            d.setColor(Color.parseColor("#99CC00"));
+            d.setColor(Color.parseColor("#4198d9"));
             d.setName("Quiz 1");
             d.setValue(getMark(m.quiz[0].marks));
 
             Bar d2 = new Bar();
-            d2.setColor(Color.parseColor("#FFBB33"));
+            d2.setColor(Color.parseColor("#4198d9"));
             d2.setName("Quiz 2");
             d2.setValue(getMark(m.quiz[1].marks));
 
             Bar d3 = new Bar();
-            d3.setColor(Color.parseColor("#FFBB33"));
+            d3.setColor(Color.parseColor("#4198d9"));
             d3.setName("Quiz 3");
             d3.setValue(getMark(m.quiz[2].marks));
 
             Bar d4 = new Bar();
-            d4.setColor(Color.parseColor("#FFBB33"));
+            d4.setColor(Color.parseColor("#4198d9"));
             d4.setName("Assignment");
             d4.setValue(getMark(m.asgn.marks));
 
@@ -75,19 +75,19 @@ public class MarksDetailsFragment extends Fragment {
             ArrayList<Bar> points2 = new ArrayList<Bar>();
 
             Bar d5 = new Bar();
-            d5.setColor(Color.parseColor("#99CC00"));
+            d5.setColor(Color.parseColor("#4198d9"));
             d5.setName("CAT I");
             d5.setValue(getCMark(m.cat[0].marks));
 
             Bar d6 = new Bar();
-            d6.setColor(Color.parseColor("#FFBB33"));
+            d6.setColor(Color.parseColor("#4198d9"));
             d6.setName("CAT II");
             d6.setValue(getCMark(m.cat[1].marks));
 
             Bar d7 = new Bar();
-            d7.setColor(Color.parseColor("#FF0000"));
+            d7.setColor(Color.parseColor("#4198d9"));
             d7.setName("Total");
-            d7.setValue(total);
+            d7.setValue(Round(total,2));
 
             points2.add(d5);
             points2.add(d6);
@@ -111,11 +111,18 @@ public class MarksDetailsFragment extends Fragment {
        }catch (Exception ignore){return  0;}
     }
 
+    public static float Round(float Rval, int Rpl) {
+        float p = (float)Math.pow(10,Rpl);
+        Rval = Rval * p;
+        float tmp = Math.round(Rval);
+        return (float)tmp/p;
+    }
+
     private float getCMark(String num){
         try{
             float f = (Float.parseFloat(num) * 100) / 100;
 
-            total += Float.parseFloat(String.format("%.2f",(f/50 * 15)));
+            total += (f/50 * 15);
             return f;
 
         }catch (Exception ignore){return  0;}
