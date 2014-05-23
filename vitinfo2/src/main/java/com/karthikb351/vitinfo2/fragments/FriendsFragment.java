@@ -2,9 +2,12 @@ package com.karthikb351.vitinfo2.fragments;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.nfc.NfcAdapter;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -374,6 +377,23 @@ public class FriendsFragment extends Fragment{
             friends = new ArrayList<Friend>();
         }
 
+        private boolean haveNetworkConnection() {
+            boolean haveConnectedWifi = false;
+            boolean haveConnectedMobile = false;
+
+            ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+            for (NetworkInfo ni : netInfo) {
+                if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                    if (ni.isConnected())
+                        haveConnectedWifi = true;
+                if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                    if (ni.isConnected())
+                        haveConnectedMobile = true;
+            }
+            return haveConnectedWifi || haveConnectedMobile;
+        }
+
         private void downloadProfileImage(final ArrayList<Friend> friends){
             for(int i = 0; i < friends.size(); i++){
                 String fbId;
@@ -400,6 +420,8 @@ public class FriendsFragment extends Fragment{
         private boolean needSaving = false;
         @Override
         protected Void doInBackground(Void... voids) {
+            if(!haveNetworkConnection())
+                return null;
             try {
                 friends = new DataHandler(getActivity()).getFreinds();
                 for(int i = 0; i < friends.size(); i++){

@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
 import com.karthikb351.vitinfo2.adapters.DrawerListAdapter;
 import com.karthikb351.vitinfo2.fragments.CoursesFragment;
 import com.karthikb351.vitinfo2.fragments.FriendsFragment;
@@ -56,7 +57,7 @@ public class Home extends ActionBarActivity {
     //Initialize drawer tabs
     private String[] titles = { "Today", "Courses", "Timetable","Friends", "Notifications", "Settings"};
     private String[] subtitle = { "Realtime Overview", "Attendance|Marks|More", "Day|Week", "Check their status","Latest news", "Change credentials"};
-    private int[] imgs = new int[]{ R.drawable.now, R.drawable.ic_action_sort_by_size, R.drawable.timetable, R.drawable.friends, R.drawable.ic_action_unread,  R.drawable.settings};
+    private int[] imgs = new int[]{ R.drawable.ic_action_about, R.drawable.ic_action_sort_by_size, R.drawable.ic_action_event, R.drawable.ic_action_group, R.drawable.ic_action_unread,  R.drawable.ic_action_settings};
 
     //Drawer ListView
     public DrawerLayout mDrawerLayout;
@@ -91,6 +92,11 @@ public class Home extends ActionBarActivity {
             isActive = false;
             startActivity(new Intent(this, NewUser.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK));
             overridePendingTransition(R.anim.enter, R.anim.exit);
+        }
+
+        if(BuildConfig.DEBUG) {
+            GoogleAnalytics googleAnalytics = GoogleAnalytics.getInstance(getApplicationContext());
+            googleAnalytics.setAppOptOut(true);
         }
 
         setContentView(R.layout.activity_home);
