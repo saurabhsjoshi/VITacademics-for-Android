@@ -50,8 +50,8 @@
             android:noHistory="true"
             />
 
-        <activity android:name="com.karthikb351.vitinfo2.objects$BarCodeScanner.LauncherActivity"/>
-        <activity android:name="com.karthikb351.vitinfo2.objects$BarCodeScanner.CaptureActivity"
+        <activity android:name="com.karthikb351.vitinfo2.objects.BarCodeScanner.LauncherActivity"/>
+        <activity android:name="com.karthikb351.vitinfo2.objects.BarCodeScanner.CaptureActivity"
             android:screenOrientation="landscape" android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -72,6 +72,7 @@
             </intent-filter>
         </activity>
 
+        <receiver android:process=":remote" android:exported="false" android:name="com.karthikb351.vitinfo2.AlarmReceiver"/>
         <receiver android:exported="false" android:name="com.karthikb351.vitinfo2.ProviderWidget" >
             <intent-filter >
                 <action
@@ -82,7 +83,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
         </receiver>
-        <service android:name="com.karthikb351.vitinfo2.UpdateWidget"></service>
+        <service android:name="com.karthikb351.vitinfo2.UpdateWidget"/>
         <service android:name="com.parse.PushService" />
         <receiver android:name="com.parse.ParseBroadcastReceiver">
             <intent-filter>

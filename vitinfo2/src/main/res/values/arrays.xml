@@ -6,6 +6,20 @@
         <item>Timetable</item>
     </string-array>
 
+    <string-array name="def_timer">
+        <item>Disable Notifications</item>
+        <item>10 minutes before class</item>
+        <item>20 minutes before class</item>
+        <item>30 minutes before class</item>
+    </string-array>
+
+    <string-array name="def_timer_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+    </string-array>
+
     <string-array name="def_ui_values">
         <item>0</item>
         <item>1</item>

@@ -15,11 +15,25 @@
 
     <PreferenceCategory
         android:summary=""
+        android:title="Notifications" >
+        <ListPreference
+            android:entries="@array/def_timer"
+            android:entryValues="@array/def_timer_values"
+            android:key="defTimer"
+            android:defaultValue="0"
+            android:title="Reminders"
+            android:summary="Set reminder before class begins"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:summary=""
         android:title="Others" >
         <ListPreference
             android:entries="@array/def_ui"
             android:entryValues="@array/def_ui_values"
             android:key="defUi"
+            android:defaultValue="0"
             android:summary="Select the page you would like to see first"
             android:title="Default Page" />
         <Preference

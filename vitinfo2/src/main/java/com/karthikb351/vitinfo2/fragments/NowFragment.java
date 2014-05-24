@@ -4,6 +4,7 @@ package com.karthikb351.vitinfo2.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateUtils;
@@ -239,10 +240,10 @@ public class NowFragment extends Fragment {
                             Intent intent = new Intent(getActivity(), SubjectDetails.class);
                             intent.putExtra("clsnbr", temp.clsnbr);
                             startActivity(intent);
-                        } catch (Exception ignored) {
-                        }
+                        } catch (Exception ignored) {}
                     }
                 });
+
             }catch (Exception e){e.printStackTrace();}
             mPullToRefreshLayout.setRefreshComplete();
 
@@ -251,7 +252,9 @@ public class NowFragment extends Fragment {
                 ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
                 f.hideOnClickOutside = false;
                 f.centerText = true;
-                ShowcaseView.insertShowcaseView(getActivity().findViewById(android.R.id.home), getActivity(), "Drawer", "Tap the icon or swipe from left to access the menu.", f);
+                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB) {
+                    ShowcaseView.insertShowcaseView(getActivity().findViewById(android.R.id.home), getActivity(), "Drawer", "Tap the icon or swipe from left to access the menu.", f);
+                }
                 dat.saveviewShowCase(true);
             }
         }
