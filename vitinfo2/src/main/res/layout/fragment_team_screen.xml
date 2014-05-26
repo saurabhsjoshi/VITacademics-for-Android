@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/logo_back"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/img_logo"
+            android:layout_marginTop="15dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            app:border_width="1dp"
+            app:border_color="#FFFFFF"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/lbl_team"
+            android:layout_marginTop="15dp"
+            android:textSize="25sp"
+            android:layout_below="@id/img_logo"
+            android:textColor="@color/Black"
+            android:text="TEAM"
+            app:typeface="roboto_thin"
+            />
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_sau"
+            android:text="Saurabh Joshi"
+            android:autoLink="web"
+            android:textSize="20sp"
+            android:textColor="@color/Black"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lbl_team"
+            app:typeface="roboto_light"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_sau_sub"
+            android:textColor="@color/Black"
+            android:text="Android|WP8"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lbl_sau"
+            app:typeface="roboto_light_italic"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_sid"
+            android:layout_below="@id/lbl_sau_sub"
+            android:textColor="@color/Black"
+            android:text="Siddharth Gupta"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            app:typeface="roboto_light"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_sid_sub"
+            android:text="iOS|Web"
+            android:textSize="13sp"
+            android:textColor="@color/Black"
+            android:layout_marginTop="2dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lbl_sid"
+            app:typeface="roboto_light_italic"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_kis"
+            android:layout_below="@id/lbl_sid_sub"
+            android:text="Kishore Narendran"
+            android:textColor="@color/Black"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            app:typeface="roboto_light"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_kis_sub"
+            android:text="App Engine"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/Black"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lbl_kis"
+            app:typeface="roboto_light_italic"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_vib"
+            android:layout_below="@id/lbl_kis_sub"
+            android:text="Vibhor Varshney"
+            android:textSize="20sp"
+            android:textColor="@color/Black"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            app:typeface="roboto_light"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_vib_sub"
+            android:text="Android|Design"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/Black"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/lbl_vib"
+            app:typeface="roboto_light_italic"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_kar"
+            android:layout_below="@id/lbl_vib_sub"
+            android:text="Karthik Balakrishnan"
+            android:textColor="@color/Black"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            app:typeface="roboto_light"/>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_kar_sub"
+            android:text="Legacy Android"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/Black"
+            android:layout_below="@id/lbl_kar"
+            app:typeface="roboto_light_italic"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/lbl_kar_sub"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:src="@drawable/app_engine_icon"
+                />
+            <ImageView
+                android:id="@+id/img_apple"
+                android:layout_toRightOf="@id/img_android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:src="@drawable/android_icon"
+                />
+
+            <ImageView
+                android:id="@+id/img_wp"
+                android:layout_toRightOf="@id/img_apple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:src="@drawable/apple_icon"
+                />
+
+            <ImageView
+                android:id="@+id/img_ae"
+                android:layout_toRightOf="@id/img_wp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:src="@drawable/windows_icon"
+                />
+            </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

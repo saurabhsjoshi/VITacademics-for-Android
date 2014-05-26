@@ -61,6 +61,14 @@
         android:key="pref_open"
         android:summary="License details for open source software"
         android:title="Open Source Licenses"/>
+
+    <Preference
+        android:title="About Us"
+        android:summary="Follow the team">
+        <intent android:action="com.karthikb351.vitinfo2.TeamScreen">
+        </intent>
+    </Preference>
+
     <Preference
         android:key="pref_feedback"
         android:summary="Send us an email"

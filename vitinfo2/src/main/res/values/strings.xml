@@ -11,4 +11,5 @@
     <string name="zxinglib_msg_default_status">Place your friends QR inside the rectangle to scan it.</string>
     <string name="scan">Scan</string>
     <string name="scan_resut_lable">Scan Result:</string>
+
 </resources>

@@ -22,6 +22,7 @@ import com.karthikb351.vitinfo2.Application;
 import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.SubjectDetails;
+import com.karthikb351.vitinfo2.TeamScreen;
 import com.karthikb351.vitinfo2.VITxAPI;
 import com.karthikb351.vitinfo2.adapters.NowFragmentListAdapter;
 import com.karthikb351.vitinfo2.objects.CaptchaDialogListener;
@@ -249,9 +250,11 @@ public class NowFragment extends Fragment {
 
 
             if(!dat.getviewShowCase()){
+                getActivity().startActivity(new Intent(getActivity(), TeamScreen.class));
                 ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
                 f.hideOnClickOutside = false;
                 f.centerText = true;
+
                 if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB) {
                     ShowcaseView.insertShowcaseView(getActivity().findViewById(android.R.id.home), getActivity(), "Drawer", "Tap the icon or swipe from left to access the menu.", f);
                 }
