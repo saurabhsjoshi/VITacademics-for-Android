@@ -14,7 +14,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/img_logo"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/logo"
@@ -33,7 +33,7 @@
             android:layout_below="@id/img_logo"
             android:textColor="@color/Black"
             android:text="TEAM"
-            app:typeface="roboto_thin"
+            app:typeface="roboto_regular"
             />
 
         <com.devspark.robototextview.widget.RobotoTextView
@@ -43,47 +43,47 @@
             android:text="Saurabh Joshi"
             android:autoLink="web"
             android:textSize="20sp"
-            android:textColor="@color/Black"
+            android:textColor="@color/White"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_team"
-            app:typeface="roboto_light"/>
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lbl_sau_sub"
             android:textColor="@color/Black"
-            android:text="Android|WP8"
+            android:text="Android | Windows Phone 8"
             android:textSize="13sp"
             android:layout_marginTop="2dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_sau"
-            app:typeface="roboto_light_italic"/>
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lbl_sid"
             android:layout_below="@id/lbl_sau_sub"
-            android:textColor="@color/Black"
+            android:textColor="@color/White"
             android:text="Siddharth Gupta"
             android:textSize="20sp"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            app:typeface="roboto_light"/>
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lbl_sid_sub"
-            android:text="iOS|Web"
+            android:text="iOS | Web | App Engine Backend"
             android:textSize="13sp"
             android:textColor="@color/Black"
             android:layout_marginTop="2dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_sid"
-            app:typeface="roboto_light_italic"/>
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
@@ -91,23 +91,23 @@
             android:id="@+id/lbl_kis"
             android:layout_below="@id/lbl_sid_sub"
             android:text="Kishore Narendran"
-            android:textColor="@color/Black"
+            android:textColor="@color/White"
             android:textSize="20sp"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            app:typeface="roboto_light"/>
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lbl_kis_sub"
-            android:text="App Engine"
+            android:text="App Engine Backend"
             android:textSize="13sp"
             android:layout_marginTop="2dp"
             android:textColor="@color/Black"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_kis"
-            app:typeface="roboto_light_italic"/>
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
@@ -116,22 +116,22 @@
             android:layout_below="@id/lbl_kis_sub"
             android:text="Vibhor Varshney"
             android:textSize="20sp"
-            android:textColor="@color/Black"
+            android:textColor="@color/White"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            app:typeface="roboto_light"/>
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lbl_vib_sub"
-            android:text="Android|Design"
+            android:text="Android | Design"
             android:textSize="13sp"
             android:layout_marginTop="2dp"
             android:textColor="@color/Black"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_vib"
-            app:typeface="roboto_light_italic"/>
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
@@ -139,23 +139,23 @@
             android:id="@+id/lbl_kar"
             android:layout_below="@id/lbl_vib_sub"
             android:text="Karthik Balakrishnan"
-            android:textColor="@color/Black"
+            android:textColor="@color/White"
             android:textSize="20sp"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            app:typeface="roboto_light"/>
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lbl_kar_sub"
-            android:text="Legacy Android"
+            android:text="Legacy Android | App Engine Backend"
             android:textSize="13sp"
             android:layout_marginTop="2dp"
             android:layout_centerHorizontal="true"
             android:textColor="@color/Black"
             android:layout_below="@id/lbl_kar"
-            app:typeface="roboto_light_italic"/>
+            app:typeface="roboto_regular"/>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -163,6 +163,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginBottom="5dp"
             android:layout_below="@id/lbl_kar_sub"
+            android:id="@+id/iconlabel"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal">
 
@@ -200,6 +201,18 @@
                 android:src="@drawable/windows_icon"
                 />
             </RelativeLayout>
+
+        <com.devspark.robototextview.widget.RobotoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tapclick"
+            android:text="Tap Names for more details"
+            android:textSize="10sp"
+            android:layout_marginTop="2dp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/Black"
+            android:layout_below="@id/iconlabel"
+            app:typeface="roboto_regular"/>
 
     </RelativeLayout>
 

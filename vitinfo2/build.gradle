@@ -4,7 +4,6 @@ android {
     compileSdkVersion 19
     buildToolsVersion "19.0.3"
 
-    apply from: project.property("VITacademics.signing") + ".gradle";
 
     defaultConfig {
         minSdkVersion 9

@@ -37,7 +37,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_fb"
             android:text="Saving Data"
-            android:textColor="#FF03B0FF"
+            android:textColor="#33b5e5"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="20dp"
             app:typeface="roboto_thin"/>
@@ -49,7 +49,7 @@
             android:layout_below="@id/lbl_save_data"
             android:layout_centerHorizontal="true"
             android:text="Loading Attendance"
-            android:textColor="#FF03B0FF"
+            android:textColor="#33b5e5"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="20dp"
             app:typeface="roboto_thin"/>
@@ -61,7 +61,7 @@
             android:layout_below="@id/lbl_att_load"
             android:layout_centerHorizontal="true"
             android:text="Loading TimeTable"
-            android:textColor="#FF03B0FF"
+            android:textColor="#33b5e5"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="20dp"
             app:typeface="roboto_thin"/>
@@ -73,7 +73,7 @@
             android:layout_below="@id/lbl_tt_load"
             android:layout_centerHorizontal="true"
             android:text="Parsing Data"
-            android:textColor="#ff03b0ff"
+            android:textColor="#33b5e5"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginTop="20dp"
             app:typeface="roboto_thin"/>
