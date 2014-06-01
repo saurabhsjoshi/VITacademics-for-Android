@@ -19,7 +19,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:clickable="false"
-            android:background="@drawable/backward" />
+            android:background="@drawable/back_w" />
     </RelativeLayout>
 
     <TextView
@@ -91,7 +91,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:clickable="false"
-            android:background="@drawable/forward" />
+            android:background="@drawable/forward_w" />
 
     </RelativeLayout>
 

@@ -94,7 +94,7 @@
                         android:id="@+id/progressBar_detailed"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="0dp"
-                        android:layout_height="150dp"
+                        android:layout_height="160dp"
                         android:layout_margin="7dp"
                         android:layout_weight="1"
                         android:max="100"
