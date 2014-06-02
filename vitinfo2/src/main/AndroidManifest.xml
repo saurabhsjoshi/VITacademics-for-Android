@@ -81,7 +81,8 @@
         </activity>
 
         <receiver android:process=":remote" android:exported="false" android:name="com.karthikb351.vitinfo2.AlarmReceiver"/>
-        <receiver android:exported="false" android:name="com.karthikb351.vitinfo2.ProviderWidget" >
+
+        <receiver android:exported="false" android:name="com.karthikb351.vitinfo2.widgets.ProviderWidget" >
             <intent-filter >
                 <action
                     android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -91,7 +92,19 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
         </receiver>
-        <service android:name="com.karthikb351.vitinfo2.UpdateWidget"/>
+        <service android:name="com.karthikb351.vitinfo2.widgets.UpdateWidget"/>
+
+        <receiver android:exported="false" android:name="com.karthikb351.vitinfo2.widgets.MediumProviderWidget" >
+            <intent-filter >
+                <action
+                    android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_medium_info" />
+        </receiver>
+        <service android:name="com.karthikb351.vitinfo2.widgets.MediumUpdateWidget"/>
+
         <service android:name="com.parse.PushService" />
         <receiver android:name="com.parse.ParseBroadcastReceiver">
             <intent-filter>
