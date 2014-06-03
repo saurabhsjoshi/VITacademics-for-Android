@@ -1,4 +1,4 @@
-package com.karthikb351.vitinfo2;
+package com.karthikb351.vitinfo2.widgets;
 
 import android.app.PendingIntent;
 import android.app.Service;
@@ -9,13 +9,16 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 
+import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.SubjectDetails;
 import com.karthikb351.vitinfo2.objects.DataHandler;
 import com.karthikb351.vitinfo2.objects.Subject;
 
 /**
  * Created by saurabh on 5/21/14.
  */
-public class UpdateWidget extends Service {
+public class MediumUpdateWidget extends Service {
+
 
     @Override
     public IBinder onBind(Intent arg0) {
@@ -63,7 +66,7 @@ public class UpdateWidget extends Service {
 
         //WIDGET UPDATE CODE
         for (int widgetId : allWidgetIds) {
-            RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(), R.layout.widget_layout);
+            RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(), R.layout.widget_medium_layout);
 
             Subject sub;
 
@@ -77,30 +80,29 @@ public class UpdateWidget extends Service {
             remoteViews.setTextViewText(R.id.lbl_wid_per, String.valueOf(sub.percentage)+"%");
 
             //ONCLICK LISTENERS DONT CHANGE THESE
-            Intent clickIntent = new Intent(this.getApplicationContext(),ProviderWidget.class);
-            Intent clickIntent2 = new Intent(this.getApplicationContext(),ProviderWidget.class);
+            Intent clickIntent = new Intent(this.getApplicationContext(),MediumProviderWidget.class);
+            Intent clickIntent2 = new Intent(this.getApplicationContext(),MediumProviderWidget.class);
             Intent open_Intent = new Intent(this.getApplicationContext(), SubjectDetails.class);
 
             open_Intent.putExtra("clsnbr", sub.classnbr);
 
             clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-            clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,allWidgetIds);
+            clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, allWidgetIds);
             clickIntent.putExtra("back",0);
 
             clickIntent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
             clickIntent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,allWidgetIds);
             clickIntent2.putExtra("back",1);
 
-            PendingIntent open_pendingIntent = PendingIntent.getActivity(getApplicationContext(), 3, open_Intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, clickIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getApplicationContext(), 1, clickIntent2,PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent open_pendingIntent = PendingIntent.getActivity(getApplicationContext(), 4, open_Intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 5, clickIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getApplicationContext(), 6, clickIntent2,PendingIntent.FLAG_UPDATE_CURRENT);
             remoteViews.setOnClickPendingIntent(R.id.img_wid_nxt , pendingIntent);
             remoteViews.setOnClickPendingIntent(R.id.img_wid_bck , pendingIntent2);
             remoteViews.setOnClickPendingIntent(R.id.lbl_wid_sub, open_pendingIntent);
             remoteViews.setOnClickPendingIntent(R.id.prg_wid_per, open_pendingIntent);
             remoteViews.setOnClickPendingIntent(R.id.lbl_wid_slt, open_pendingIntent);
             remoteViews.setOnClickPendingIntent(R.id.lbl_wid_per, open_pendingIntent);
-
 
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
 
@@ -109,7 +111,6 @@ public class UpdateWidget extends Service {
         super.onStart(intent, startId);
 
     }
-
 
 
 

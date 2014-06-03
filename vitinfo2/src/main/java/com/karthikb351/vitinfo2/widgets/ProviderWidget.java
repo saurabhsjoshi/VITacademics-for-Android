@@ -1,4 +1,4 @@
-package com.karthikb351.vitinfo2;
+package com.karthikb351.vitinfo2.widgets;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
