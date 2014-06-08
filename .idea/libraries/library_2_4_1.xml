@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="library-2.4.1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/vitinfo2/build/exploded-aar/com.viewpagerindicator/library/2.4.1/classes.jar!/" />
-      <root url="file://$PROJECT_DIR$/vitinfo2/build/exploded-aar/com.viewpagerindicator/library/2.4.1/res" />
+      <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/com.viewpagerindicator/library/2.4.1/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/com.viewpagerindicator/library/2.4.1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
