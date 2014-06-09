@@ -78,7 +78,7 @@ public final class NativeAppCallAttachmentStore implements NativeAppCallContentP
      *
      * @param context the Context the call is being made from
      * @param callId the unique ID of the call
-     * param imageAttachments a Map of attachment names to Files containing the bitmaps; the attachment names will be
+     *  imageAttachments a Map of attachment names to Files containing the bitmaps; the attachment names will be
      *                         part of the URI processed by openFile
      * @throws java.io.IOException
      */

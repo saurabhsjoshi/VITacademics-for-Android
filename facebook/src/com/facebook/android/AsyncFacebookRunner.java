@@ -39,7 +39,7 @@ import java.net.MalformedURLException;
  *
  * @deprecated
  *
- * @see com.facebook.android.AsyncFacebookRunner.RequestListener
+ * @see RequestListener
  *        The callback interface.
  *
  * @author  Jim Brusstar (jimbru@fb.com),

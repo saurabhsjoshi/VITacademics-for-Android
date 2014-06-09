@@ -1,7 +1,8 @@
 apply plugin: 'android-library'
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:19.1.0'
+    compile 'com.android.support:support-v4:19.1.0'
+    compile files('libs/bolts.jar')
 }
 
 android {
@@ -9,8 +10,12 @@ android {
     buildToolsVersion "19.1.0"
 
     defaultConfig {
-        minSdkVersion 8
+        minSdkVersion 9
         targetSdkVersion 19
+    }
+
+    lintOptions {
+        abortOnError false
     }
 
     sourceSets {

@@ -101,8 +101,8 @@ public class NativeAppCallContentProvider extends ContentProvider {
     }
 
     @Override
-    public android.os.ParcelFileDescriptor openFile(android.net.Uri uri, String mode)
-            throws FileNotFoundException {
+    public android.os.ParcelFileDescriptor openFile(android.net.Uri uri, java.lang.String mode)
+            throws java.io.FileNotFoundException {
 
         Pair<UUID, String> callIdAndAttachmentName = parseCallIdAndAttachmentName(uri);
         if (callIdAndAttachmentName == null) {

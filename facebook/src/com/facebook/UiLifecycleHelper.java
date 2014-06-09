@@ -70,6 +70,9 @@ public class UiLifecycleHelper {
         this.callback = callback;
         this.receiver = new ActiveSessionBroadcastReceiver();
         this.broadcastManager = LocalBroadcastManager.getInstance(activity);
+
+        // Make sure we've loaded default settings if we haven't already.
+        Settings.loadDefaultsFromMetadataIfNeeded(activity);
     }
 
     /**
@@ -135,7 +138,7 @@ public class UiLifecycleHelper {
      * @param requestCode the request code
      * @param resultCode the result code
      * @param data the result data
-     * param dialogCallback the callback for handling FacebookDialog results, can be null
+     * dialogCallback the callback for handling FacebookDialog results, can be null
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data,
                 FacebookDialog.Callback facebookDialogCallback) {
@@ -190,7 +193,7 @@ public class UiLifecycleHelper {
      * dialog provided by the Facebook app). Activity results forwarded to onActivityResults will be parsed
      * and handled if they correspond to this call. Only a single pending FacebookDialog call can be tracked
      * at a time; attempting to track another one will cancel the first one.
-     * param appCall an PendingCall object containing the call ID
+     * appCall an PendingCall object containing the call ID
      */
     public void trackPendingDialogCall(FacebookDialog.PendingCall pendingCall) {
         if (pendingFacebookDialogCall != null) {
