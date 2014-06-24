@@ -40,6 +40,8 @@ public class DataHandler {
         preferences.edit().putString(key, string).commit();
     }
 
+    public void saveServerStatus(String json){saveString("SERVERSTATUS",json);}
+
     private void saveInt(String key, int num){
         preferences.edit().putInt(key, num).commit();
     }
@@ -144,6 +146,8 @@ public class DataHandler {
 
         return t;
     }
+
+    public String getServerStatus(){return  preferences.getString("SERVERSTATUS","");}
 
     public String getTokenExpiryTimeString(){
         try {

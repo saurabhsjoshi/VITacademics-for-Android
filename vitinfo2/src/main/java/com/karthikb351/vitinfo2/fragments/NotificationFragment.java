@@ -17,6 +17,8 @@ import com.karthikb351.vitinfo2.adapters.NotificationListAdapter;
 import com.karthikb351.vitinfo2.objects.DataHandler;
 import com.karthikb351.vitinfo2.objects.PushMessage;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import de.timroes.android.listview.EnhancedListView;
@@ -28,7 +30,8 @@ import de.timroes.android.listview.EnhancedListView;
  */
 public class NotificationFragment extends Fragment {
     private EnhancedListView listView;
-    private TextView lbl_empty;
+    private TextView lbl_latest_title;
+    private TextView lbl_latest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +42,8 @@ public class NotificationFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_notification,container, false);
         listView = (EnhancedListView) v.findViewById(R.id.enhanced_list);
-        lbl_empty = (TextView) v.findViewById(R.id.lbl_empty);
+        lbl_latest = (TextView) v.findViewById(R.id.txt_latest);
+        lbl_latest_title = (TextView) v.findViewById(R.id.lbl_latest_title);
         new Load_Data().execute();
         return v;
     }
@@ -59,13 +63,15 @@ public class NotificationFragment extends Fragment {
         }
 
         protected void onPostExecute(Void voids){
+            try{
+                String msg = new JSONObject(new DataHandler(getActivity()).getServerStatus()).getString("msg_content");
+                String title = new JSONObject(new DataHandler(getActivity()).getServerStatus()).getString("msg_title");
+
+                lbl_latest.setText(msg);
+            }catch (Exception ignore){}
+
             final NotificationListAdapter mAdapter = new NotificationListAdapter(getActivity(), msgs);
             listView.setAdapter(mAdapter);
-            if(msgs.size() == 0)
-                lbl_empty.setVisibility(View.VISIBLE);
-            else
-                lbl_empty.setVisibility(View.GONE);
-
             listView.setDismissCallback(new EnhancedListView.OnDismissCallback() {
 
                 /**

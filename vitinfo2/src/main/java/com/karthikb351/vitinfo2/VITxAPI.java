@@ -45,6 +45,7 @@ public class VITxAPI {
     private String TOKEN_URL;
     private String TOKENSUB_URL;
     private String FRIEND_TIMETABLE_URL;
+    private String SERVER_STATUS;
 
     public String Captcha;
     public String Token;
@@ -78,6 +79,7 @@ public class VITxAPI {
             TIMETABLE_URL = "http://vitacademicstokensystem.appspot.com/gettimetable/" + REG_NO + "/" + DOB;
             MARKS_URL = "http://www.vitacademicsdev.appspot.com/marks/" + REG_NO + "/" + DOB;
             CAPTCHASUB_URL = "http://www.vitacademicsdev.appspot.com/captchasub/" + REG_NO + "/" + DOB + "/" + Captcha;
+
             return;
         }
         if(dat.isVellore()){
@@ -91,6 +93,7 @@ public class VITxAPI {
             TOKEN_URL = "http://vitacademicstokensystem.appspot.com/getnewtoken/" + REG_NO + "/" + DOB;
             TOKENSUB_URL = "http://vitacademicstokensystem.appspot.com/accesstoken/" + Token;
             FRIEND_TIMETABLE_URL = "http://vitacademicstokensystem.appspot.com/gettimetable/" + Friend_regno + "/" + Friend_dob;
+            SERVER_STATUS = "http://vitacademicsrel.appspot.com/status";
         }
         else{
             CAPTCHALESS_URL = "http://www.vitacademicsrelc.appspot.com/captchaless/" + REG_NO + "/" + DOB;
@@ -103,6 +106,7 @@ public class VITxAPI {
             TOKEN_URL = "http://vitacademicstokensystemc.appspot.com/getnewtoken/" + REG_NO + "/" + DOB;
             TOKENSUB_URL = "http://vitacademicstokensystemc.appspot.com/accesstoken/" + Token;
             FRIEND_TIMETABLE_URL = "http://vitacademicstokensystemc.appspot.com/gettimetable/" + Friend_regno + "/" + Friend_dob;
+            SERVER_STATUS = "http://vitacademicsrelc.appspot.com/status";
         }
     }
 
@@ -117,11 +121,49 @@ public class VITxAPI {
     public void submitToken(){setUrls(); new submitToken_Async().execute();}
     public void getToken(){new getToken_Async().execute();}
     public void AddFriendwithCredentials(){setUrls(); new AddFriendwithCredentials_Async().execute();}
+    public void saveServerStatus(){new saveServerStatus_Async().execute();}
 
     private HttpResponse getResponse(String url) throws IOException{
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(url);
         return client.execute(request);
+    }
+
+    private class saveServerStatus_Async extends AsyncTask<Void,Void,Void>{
+        boolean ret = false;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+
+            try {
+                String res = EntityUtils.toString(getResponse(SERVER_STATUS).getEntity());
+                JSONObject obj = new JSONObject(res);
+
+                int ver = Integer.parseInt(obj.getString("msg_no"));
+                String saved = dat.getServerStatus();
+
+                if(!saved.equals("")){
+                    int sv = Integer.parseInt(new JSONObject(saved).getString("msg_no"));
+                    if(sv != ver)
+                        ret = true;
+                }
+                else
+                    ret = true;
+
+                if(ret)
+                    dat.saveServerStatus(res);
+
+
+
+            }catch (Exception ignore){}
+
+            return null;
+        }
+
+        protected void onPostExecute(Void voids){
+            listner.onTaskCompleted(null, ret);
+        }
     }
 
     private class captchaLessLoad_Async extends AsyncTask<Void,Void,Void>{

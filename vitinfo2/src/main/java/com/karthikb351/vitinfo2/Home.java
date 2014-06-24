@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.karthikb351.vitinfo2.adapters.DrawerListAdapter;
@@ -42,6 +43,7 @@ import com.karthikb351.vitinfo2.fragments.SettingsFragment;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.IntentIntegrator;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.IntentResult;
 import com.karthikb351.vitinfo2.objects.DataHandler;
+import com.karthikb351.vitinfo2.objects.OnTaskComplete;
 import com.parse.ParseFacebookUtils;
 
 import org.json.JSONObject;
@@ -154,6 +156,16 @@ public class Home extends ActionBarActivity {
                 mNdefExchangeFilters = new IntentFilter[] { ndefDetected };
             }
         }
+
+        VITxAPI api  = new VITxAPI(this, new OnTaskComplete() {
+            @Override
+            public void onTaskCompleted(Exception e, Object result) {
+                boolean res = (Boolean) result;
+                if(res)
+                    Toast.makeText(getApplicationContext(), "New Notificiation!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        api.saveServerStatus();
 
         if(getIntent().getExtras() != null){
             try {
