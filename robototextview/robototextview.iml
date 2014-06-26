@@ -3,7 +3,7 @@
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="GRADLE_PROJECT_PATH" value=":vitinfo2" />
+        <option name="GRADLE_PROJECT_PATH" value=":robototextview" />
       </configuration>
     </facet>
     <facet type="android" name="Android">
@@ -18,6 +18,7 @@
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
         <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="LIBRARY_PROJECT" value="true" />
       </configuration>
     </facet>
   </component>
@@ -58,29 +59,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="EnhancedListView-0.3.2" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
-    <orderEntry type="library" exported="" name="Parse-1.4.3" level="project" />
-    <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
-    <orderEntry type="library" exported="" name="extra-abc-0.9.9" level="project" />
-    <orderEntry type="library" exported="" name="androidasync-1.2.5" level="project" />
-    <orderEntry type="library" exported="" name="circleimageview-1.1.0" level="project" />
-    <orderEntry type="library" exported="" name="bolts" level="project" />
-    <orderEntry type="library" exported="" name="ion-1.2.5" level="project" />
-    <orderEntry type="library" exported="" name="play-services-4.4.52" level="project" />
-    <orderEntry type="library" exported="" name="library-0.9.9" level="project" />
-    <orderEntry type="library" exported="" name="core-3.0.1" level="project" />
-    <orderEntry type="library" exported="" name="library-0.4.0" level="project" />
-    <orderEntry type="library" exported="" name="library-2.4.0" level="project" />
-    <orderEntry type="library" exported="" name="library-2.4.1" level="project" />
-    <orderEntry type="module" module-name="robototextview" exported="" />
-    <orderEntry type="module" module-name="hololib" exported="" />
-    <orderEntry type="module" module-name="showcaseview" exported="" />
-    <orderEntry type="module" module-name="facebook" exported="" />
   </component>
 </module>
 

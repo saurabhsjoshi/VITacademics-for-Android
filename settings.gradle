@@ -1,1 +1,1 @@
-include ':vitinfo2', ':facebook', ':showcaseview', ':hololib', ':facebook'
+include ':vitinfo2', ':facebook', ':showcaseview', ':hololib', ':facebook', ':robototextview'
