@@ -37,6 +37,7 @@ import com.karthikb351.vitinfo2.fragments.FriendsFragments.NFCAddFragment;
 import com.karthikb351.vitinfo2.fragments.FriendsFragments.NFCFragment;
 import com.karthikb351.vitinfo2.fragments.FriendsFragments.QRCodeFragment;
 import com.karthikb351.vitinfo2.fragments.FullTimeTableFragment;
+import com.karthikb351.vitinfo2.fragments.MapFragment;
 import com.karthikb351.vitinfo2.fragments.NotificationFragment;
 import com.karthikb351.vitinfo2.fragments.NowFragment;
 import com.karthikb351.vitinfo2.fragments.SettingsFragment;
@@ -57,9 +58,9 @@ import org.json.JSONObject;
 public class Home extends ActionBarActivity {
 
     //Initialize drawer tabs
-    private String[] titles = { "Today", "Courses", "Timetable","Friends", "Notifications", "Settings"};
-    private String[] subtitle = { "Realtime Overview", "Attendance|Marks|More", "Day|Week", "Check their status","Latest news", "Change credentials"};
-    private int[] imgs = new int[]{ R.drawable.ic_action_about, R.drawable.ic_action_sort_by_size, R.drawable.ic_action_event, R.drawable.ic_action_group, R.drawable.ic_action_unread,  R.drawable.ic_action_settings};
+    private String[] titles = { "Today", "Courses", "Timetable","Friends", "Notifications", "Campus Map", "Settings"};
+    private String[] subtitle = { "Realtime Overview", "Attendance|Marks|More", "Day|Week", "Check their status","Latest news", "Find your way", "Change credentials"};
+    private int[] imgs = new int[]{ R.drawable.ic_action_about, R.drawable.ic_action_sort_by_size, R.drawable.ic_action_event, R.drawable.ic_action_group, R.drawable.ic_action_unread,R.drawable.ic_action_place, R.drawable.ic_action_settings};
 
     //Drawer ListView
     public DrawerLayout mDrawerLayout;
@@ -190,14 +191,16 @@ public class Home extends ActionBarActivity {
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             // Highlight the selected item, update the title, and close the drawer
             mDrawerList.setItemChecked(position, true);
-            if(position != 5)
+            if(position != 6)
                 setTitle(titles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
             //Use Handler to avoid lag in the transaction
             if(position == 4)
                 selectItem(9);
-            else if(position == 5)
+            else if(position == 6)
                 selectItem(4);
+            else if(position == 5)
+                selectItem(10);
             else
                 selectItem(position);
 
@@ -276,6 +279,9 @@ public class Home extends ActionBarActivity {
                 break;
             case 9:
                 fragment = new NotificationFragment();
+                break;
+            case 10:
+                fragment = new MapFragment();
                 break;
             default:
                 fragment = new NowFragment();
