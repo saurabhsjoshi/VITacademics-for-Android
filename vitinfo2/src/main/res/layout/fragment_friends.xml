@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ptr_layout"
+    android:id="@+id/friends_pull"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <de.timroes.android.listview.EnhancedListView
         android:id="@+id/enhanced_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="8dp"
         android:layout_weight="10"
         android:scrollbars="vertical" />
 
-    <com.devspark.robototextview.widget.RobotoTextView
-        android:id="@+id/lbl_empty"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Add people to get their details!"
-        app:typeface="roboto_bold"/>
+</android.support.v4.widget.SwipeRefreshLayout>
 
-</uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout>

@@ -22,7 +22,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.espian.showcaseview.ShowcaseView;
@@ -59,8 +58,8 @@ public class FriendsFragment extends Fragment{
     private ZXingLibConfig zxingLibConfig;
     private EnhancedListView listView;
     private SwipeRefreshLayout mPullToRefreshLayout;
-    private TextView lbl_empty;
     private ProgressDialog pdiag;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,14 +69,15 @@ public class FriendsFragment extends Fragment{
         t.setScreenName("Friends Fragment");
         t.send(new HitBuilders.AppViewBuilder().build());
 
-        mPullToRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
+        mPullToRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.friends_pull);
+
+        mPullToRefreshLayout.setEnabled(false);
 
         mPullToRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.HoloBright),
                 getResources().getColor(R.color.HoloGreen),
                 getResources().getColor(R.color.HoloBright),
                 getResources().getColor(R.color.HoloGreen));
         listView = (EnhancedListView) v.findViewById(R.id.enhanced_list);
-        lbl_empty = (TextView) v.findViewById(R.id.lbl_empty);
 
         setHasOptionsMenu(true);
         dat = new DataHandler(getActivity());
@@ -323,9 +323,7 @@ public class FriendsFragment extends Fragment{
                 listView.setAdapter(new FreindsListAdapter(getActivity(), friends));
 
                 if(friends.size() == 0)
-                    lbl_empty.setVisibility(View.VISIBLE);
-                else
-                    lbl_empty.setVisibility(View.GONE);
+                    Toast.makeText( getActivity(),"Add people to get their details!", Toast.LENGTH_SHORT).show();
 
                 listView.setDismissCallback(new EnhancedListView.OnDismissCallback() {
 
