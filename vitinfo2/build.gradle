@@ -4,14 +4,15 @@ android {
     compileSdkVersion 20
     buildToolsVersion "20.0.0"
 
-
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 20
-        versionCode 20
-        versionName "3.4.0"
+        versionCode 21
+        versionName "3.4.1"
     }
 }
+
+apply from: project.property("VITacademics.signing") + ".gradle";
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
