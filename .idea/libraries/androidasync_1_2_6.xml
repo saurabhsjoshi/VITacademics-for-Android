@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="androidasync-1.2.5">
+  <library name="androidasync-1.2.6">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/vitinfo2/libs/androidasync-1.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/vitinfo2/libs/androidasync-1.2.6.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
