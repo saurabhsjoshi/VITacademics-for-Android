@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,17 +39,11 @@ import com.karthikb351.vitinfo2.objects.TimeTableFiles.TimeTable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
-import uk.co.senab.actionbarpulltorefresh.library.listeners.OnRefreshListener;
-
-;
-
 /**
  * Created by saurabh on 4/22/14.
  */
 public class NowFragment extends Fragment {
-    private PullToRefreshLayout mPullToRefreshLayout;
+    private SwipeRefreshLayout mPullToRefreshLayout;
     DataHandler dat;
     Context cntx;
     ListView mainList;
@@ -58,7 +53,7 @@ public class NowFragment extends Fragment {
         @Override
         public void onTaskCompleted(Exception e, Object result) {
             try {
-                mPullToRefreshLayout.setRefreshComplete();
+                mPullToRefreshLayout.setRefreshing(false);
                 if (e != null && e.getMessage().equals("needref"))
                     new CaptchaDialog(getActivity(), l2).show();
                 else if (e == null) {
@@ -88,7 +83,7 @@ public class NowFragment extends Fragment {
         @Override
         public void onTaskCompleted(Exception e, Object result) {
             try {
-                mPullToRefreshLayout.setRefreshComplete();
+                mPullToRefreshLayout.setRefreshing(false);
                 if (e != null && e.getMessage().equals("cape"))
                     Toast.makeText(getActivity(), "Incorrect Captcha. Please try again!", Toast.LENGTH_SHORT).show();
                 else if (e == null) {
@@ -111,24 +106,22 @@ public class NowFragment extends Fragment {
         t.setScreenName("Now Fragment");
         t.send(new HitBuilders.AppViewBuilder().build());
 
-        mPullToRefreshLayout = (PullToRefreshLayout) v.findViewById(R.id.ptr_layout);
+        mPullToRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
 
-        final OnRefreshListener listener = new OnRefreshListener() {
+        mPullToRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.HoloBright),
+                getResources().getColor(R.color.HoloGreen),
+                getResources().getColor(R.color.HoloBright),
+                getResources().getColor(R.color.HoloGreen));
+
+
+        mPullToRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefreshStarted(View view) {
+            public void onRefresh() {
                 //((Home) getActivity()).disable_drawer();
                 api = new VITxAPI(getActivity(), l1);
                 api.loadAttendanceWithRegistrationNumber();
             }
-        };
-
-        ActionBarPullToRefresh.from(getActivity())
-                // Mark All Children as pullable
-                .allChildrenArePullable()
-                        // Set a OnRefreshListener
-                .listener(listener)
-        // Finally commit the setup to our PullToRefreshLayout
-                .setup(mPullToRefreshLayout);
+        });
 
         mainList = (ListView) v.findViewById(R.id.list_now);
 
@@ -246,7 +239,7 @@ public class NowFragment extends Fragment {
                 });
 
             }catch (Exception e){e.printStackTrace();}
-            mPullToRefreshLayout.setRefreshComplete();
+            mPullToRefreshLayout.setRefreshing(false);
 
 
             if(!dat.getviewShowCase()){

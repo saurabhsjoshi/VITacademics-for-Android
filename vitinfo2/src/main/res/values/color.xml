@@ -4,6 +4,8 @@
     <color name="LightGrey">#D3D3D3</color>
     <color name="green">#008000</color>
     <color name="SkyBlue">#7f7fff</color>
+    <color name="HoloBright">#33b5e5</color>
+    <color name="HoloGreen">#33e563</color>
     <color name="DarkBlue">#0000b2</color>
     <color name="Gray">#808080</color>
     <color name="light_background_start">#F0F0F0</color>

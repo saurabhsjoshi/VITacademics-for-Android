@@ -1,8 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.devspark.robototextview"
+    xmlns:tools="http://schemas.android.com/tools"
           android:versionCode="8"
           android:versionName="2.0.1">
 
+    <uses-sdk tools:node="replace" />
     <application/>
 
 </manifest>

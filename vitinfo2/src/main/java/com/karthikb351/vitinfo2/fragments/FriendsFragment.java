@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -47,8 +48,6 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import de.timroes.android.listview.EnhancedListView;
-import uk.co.senab.actionbarpulltorefresh.extras.actionbarcompat.PullToRefreshLayout;
-import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
 
 ;
 
@@ -59,7 +58,7 @@ public class FriendsFragment extends Fragment{
     private DataHandler dat;
     private ZXingLibConfig zxingLibConfig;
     private EnhancedListView listView;
-    private PullToRefreshLayout mPullToRefreshLayout;
+    private SwipeRefreshLayout mPullToRefreshLayout;
     private TextView lbl_empty;
     private ProgressDialog pdiag;
 
@@ -71,11 +70,14 @@ public class FriendsFragment extends Fragment{
         t.setScreenName("Friends Fragment");
         t.send(new HitBuilders.AppViewBuilder().build());
 
-        mPullToRefreshLayout = (PullToRefreshLayout) v.findViewById(R.id.ptr_layout);
+        mPullToRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
+
+        mPullToRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.HoloBright),
+                getResources().getColor(R.color.HoloGreen),
+                getResources().getColor(R.color.HoloBright),
+                getResources().getColor(R.color.HoloGreen));
         listView = (EnhancedListView) v.findViewById(R.id.enhanced_list);
         lbl_empty = (TextView) v.findViewById(R.id.lbl_empty);
-
-        ActionBarPullToRefresh.from(getActivity()).setup(mPullToRefreshLayout);
 
         setHasOptionsMenu(true);
         dat = new DataHandler(getActivity());
@@ -315,7 +317,7 @@ public class FriendsFragment extends Fragment{
         }
 
         protected void onPostExecute(Void voids){
-            mPullToRefreshLayout.setRefreshComplete();
+            mPullToRefreshLayout.setRefreshing(false);
             try{
                 final FreindsListAdapter mAdapter = new FreindsListAdapter(getActivity(), friends);
                 listView.setAdapter(new FreindsListAdapter(getActivity(), friends));
