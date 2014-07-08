@@ -162,7 +162,7 @@ public class Home extends ActionBarActivity {
             @Override
             public void onTaskCompleted(Exception e, Object result) {
                 boolean res = (Boolean) result;
-                if(res)
+                if(res && isActive)
                     Toast.makeText(getApplicationContext(), "New Notificiation!", Toast.LENGTH_SHORT).show();
             }
         });

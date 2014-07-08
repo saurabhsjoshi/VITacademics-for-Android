@@ -2,6 +2,12 @@
 
 - Built using Android Studio
 - Refreshed UI
-- Timetable support
-- Friends support coming soon
-- WARNING: Still under development. README will be updated when first release is available.
+- Full scale Timetable support
+- Add freinds to check if they are in class
+- Login using facebook
+- Campus map
+- Reminders before class (Experimental)
+- Reset app option to load data for another user
+- Supports Parse Push Messages
+- Release verison is now pushed to all users!
+- First release version: 3.4.2 ; Version Code: 22
