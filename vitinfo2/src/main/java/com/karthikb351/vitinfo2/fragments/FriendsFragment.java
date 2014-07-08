@@ -97,8 +97,14 @@ public class FriendsFragment extends Fragment{
             Menu menu, MenuInflater inflater) {
 
         inflater.inflate(R.menu.menu_fragment_friends, menu);
-        if(dat.isFacebookLogin())
-            menu.removeItem(R.id.menu_fb_login);
+
+        try
+        {
+            //TODO: Why is this even crashing!? :/
+            if(dat.isFacebookLogin())
+                menu.removeItem(R.id.menu_fb_login);
+
+        }catch (Exception ignore){}
     }
 
     private ProgressDialog diag;
