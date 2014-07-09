@@ -147,9 +147,7 @@ public class CoursesFragment extends Fragment {
 
                 });
             }catch (Exception e){e.printStackTrace();}
-
             mPullToRefreshLayout.setRefreshing(false);
-            ((Home) getActivity()).enable_drawer();
         }
 
     }
