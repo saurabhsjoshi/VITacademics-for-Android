@@ -26,7 +26,10 @@ public class DataHandler {
 
     public DataHandler(Context context){
         this.context = context;
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        try
+        {
+            preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        }catch (Exception ignore){}
     }
 
     public static void DELETE_ALL_DATA(Context context){
