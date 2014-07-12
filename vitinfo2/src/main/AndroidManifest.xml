@@ -5,6 +5,11 @@
 
     <uses-sdk tools:node="replace" />
 
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+    <uses-feature android:name="android.hardware.nfc" android:required="false" />
+    <uses-feature android:name="android.permission.flash" android:required="false"/>
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -17,9 +22,7 @@
     <uses-permission android:name="android.permission.NFC"/>
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.nfc" android:required="false" />
+
 
     <permission android:protectionLevel="signature"
         android:name="com.karthikb351.vitinfo2.permission.C2D_MESSAGE" />
