@@ -29,6 +29,18 @@
                 app:typeface="roboto_light" />
 
             <com.devspark.robototextview.widget.RobotoTextView
+                android:id="@+id/faculty_detailed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="0dp"
+                android:layout_alignBaseline="@id/code_detailed"
+                android:maxLines="1"
+                android:text="Faculty Name"
+                app:typeface="roboto_light" />
+
+            <com.devspark.robototextview.widget.RobotoTextView
                 android:id="@+id/title_detailed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

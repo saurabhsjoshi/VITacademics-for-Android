@@ -16,7 +16,8 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.objects.DataHandler;
 import com.karthikb351.vitinfo2.objects.Subject;
 
-;
+;import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * Created by saurabh on 4/30/14.
@@ -27,7 +28,7 @@ public class AttendanceDetailsFragment extends Fragment {
     public Subject subject;
 
     Button bunk_add,bunk_sub, makeup_add, makeup_sub;
-    TextView tv_title,tv_slot,tv_type,tv_code,tv_atten,tv_net_per,bunk_val,makeup_val;
+    TextView tv_title,tv_slot,tv_type,tv_code,tv_atten,tv_net_per,bunk_val,makeup_val, tv_faculty;
     ProgressBar progBar;
 
     int per, max, atten, globe_makeup = 0, globe_bunk=0, t_atten, t_max,  class_offset;
@@ -43,6 +44,7 @@ public class AttendanceDetailsFragment extends Fragment {
         tv_type=(TextView)v.findViewById(R.id.type_detailed);
         tv_atten=(TextView)v.findViewById(R.id.atten_detailed);
         tv_net_per=(TextView)v.findViewById(R.id.net_per);
+        tv_faculty=(TextView)v.findViewById(R.id.faculty_detailed);
         bunk_val=(TextView)v.findViewById(R.id.bunk_val);
         makeup_val=(TextView)v.findViewById(R.id.makeup_val);
         progBar=(ProgressBar)v.findViewById(R.id.progressBar_detailed);
@@ -63,6 +65,20 @@ public class AttendanceDetailsFragment extends Fragment {
         return v;
     }
 
+    private String getFacultyName(){
+        try
+        {
+            JSONObject root = new JSONObject(dat.getTimeTable());
+            JSONArray json = root.getJSONArray("subjects");
+            for(int i = 0; i < json.length(); i++){
+                JSONObject t = json.getJSONObject(i);
+                if(t.getString("cnum").equals(subject.classnbr))
+                    return t.getString("faculty");
+            }
+            return "";
+        }catch (Exception ignore){return "";}
+    }
+
     void Per(){
         per = (int) DataHandler.getPer(t_atten, t_max);
         if (DataHandler.getPer(t_atten, t_max) > per)
@@ -74,6 +90,7 @@ public class AttendanceDetailsFragment extends Fragment {
         tv_slot.setText(subject.slot);
         tv_code.setText(subject.code);
         tv_type.setText(subject.type);
+        tv_faculty.setText(getFacultyName());
         atten = subject.attended;
         max = subject.conducted;
 
