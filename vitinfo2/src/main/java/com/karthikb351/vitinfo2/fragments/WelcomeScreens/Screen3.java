@@ -144,8 +144,11 @@ public class Screen3 extends Fragment {
     }
 
     private void onError(Exception e){
-        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-        ((NewUser) getActivity()).changeScreen(1);
+        try{
+            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            ((NewUser) getActivity()).changeScreen(1);
+
+        }catch (Exception e1){e1.printStackTrace();}
     }
 
     private void checkIfDone(){
@@ -158,7 +161,4 @@ public class Screen3 extends Fragment {
             txt_done.setTextColor(Color.parseColor("#008000"));
         }
     }
-
-
-
 }

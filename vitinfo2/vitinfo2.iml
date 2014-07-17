@@ -66,8 +66,8 @@
     <orderEntry type="library" exported="" name="Parse-1.5.1" level="project" />
     <orderEntry type="library" exported="" name="androidasync-1.2.6" level="project" />
     <orderEntry type="library" exported="" name="circleimageview-1.1.1" level="project" />
+    <orderEntry type="library" exported="" name="play-services-5.0.77" level="project" />
     <orderEntry type="library" exported="" name="support-v4-20.0.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-4.4.52" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-20.0.0" level="project" />
     <orderEntry type="library" exported="" name="core-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-20.0.0" level="project" />

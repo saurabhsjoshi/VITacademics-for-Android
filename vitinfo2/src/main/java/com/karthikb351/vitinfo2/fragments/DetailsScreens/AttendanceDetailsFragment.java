@@ -86,25 +86,27 @@ public class AttendanceDetailsFragment extends Fragment {
     }
 
     void load(){
-        tv_title.setText(subject.title);
-        tv_slot.setText(subject.slot);
-        tv_code.setText(subject.code);
-        tv_type.setText(subject.type);
-        tv_faculty.setText(getFacultyName());
-        atten = subject.attended;
-        max = subject.conducted;
+        try{
+            tv_title.setText(subject.title);
+            tv_slot.setText(subject.slot);
+            tv_code.setText(subject.code);
+            tv_type.setText(subject.type);
+            tv_faculty.setText(getFacultyName());
+            atten = subject.attended;
+            max = subject.conducted;
 
-        bunk_val.setText("If you miss 0 more class(s)");
-        makeup_val.setText("If you attend 0 more class(s)");
+            bunk_val.setText("If you miss 0 more class(s)");
+            makeup_val.setText("If you attend 0 more class(s)");
 
-        class_offset = 1;
+            class_offset = 1;
 
-        if(subject.type.contains("Lab"))
-            for( int i=0; i<subject.slot.length(); i++ ) {
-                if( subject.slot.charAt(i) == '+' ) {
-                    class_offset++;
+            if(subject.type.contains("Lab"))
+                for( int i=0; i<subject.slot.length(); i++ ) {
+                    if( subject.slot.charAt(i) == '+' ) {
+                        class_offset++;
+                    }
                 }
-            }
+        }catch (Exception ignore){}
         updateScreen();
     }
 

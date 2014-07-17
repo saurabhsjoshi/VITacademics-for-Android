@@ -41,13 +41,19 @@ public class MapFragment extends Fragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                view.setVisibility(View.VISIBLE);
-                ((Home) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
+                try {
+                    view.setVisibility(View.VISIBLE);
+                    ((Home) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
+                }catch (Exception ignore){}
+
             }
 
             @Override
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-                ((Home) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
+                try {
+                    ((Home) getActivity()).setSupportProgressBarIndeterminateVisibility(false);
+                }catch (Exception ignore){}
+
             }
         });
 

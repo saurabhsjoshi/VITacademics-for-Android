@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 20
-        versionCode 26
-        versionName "3.4.2"
+        versionCode 27
+        versionName "3.4.3"
     }
 }
 
@@ -22,7 +22,7 @@ dependencies {
     compile 'de.timroes.android:EnhancedListView:0.3.2@aar'
     compile 'de.hdodenhof:circleimageview:+'
     compile 'com.nineoldandroids:library:2.4.0+'
-    compile 'com.google.android.gms:play-services:4.4.52'
+    compile 'com.google.android.gms:play-services:+'
     compile project(':facebook')
     compile project(':showcaseview')
     compile project(':robototextview')
