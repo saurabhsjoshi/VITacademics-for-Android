@@ -85,8 +85,8 @@ public class NowFragment extends Fragment {
                 if (e != null && e.getMessage().equals("cape"))
                     Toast.makeText(getActivity(), "Incorrect Captcha. Please try again!", Toast.LENGTH_SHORT).show();
                 else if (e == null) {
-                    new load_Data().execute();
-                    Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                    api.changeListner(l1);
+                    api.loadAttendanceWithRegistrationNumber();
                 } else
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
             }catch (Exception e1){e1.printStackTrace();}}
