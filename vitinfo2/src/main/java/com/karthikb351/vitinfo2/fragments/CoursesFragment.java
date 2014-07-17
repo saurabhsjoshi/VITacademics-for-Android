@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.karthikb351.vitinfo2.Application;
-import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.SubjectDetails;
 import com.karthikb351.vitinfo2.VITxAPI;
@@ -47,7 +46,6 @@ public class CoursesFragment extends Fragment {
                     Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    ((Home) getActivity()).enable_drawer();
                 }
             }catch (Exception e1){e1.printStackTrace();}
         }
@@ -78,7 +76,6 @@ public class CoursesFragment extends Fragment {
                     Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
                 } else
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                ((Home) getActivity()).enable_drawer();
             }catch (Exception e1){e1.printStackTrace();}}
     };
 
