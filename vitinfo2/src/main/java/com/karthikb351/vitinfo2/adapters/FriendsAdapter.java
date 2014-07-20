@@ -18,13 +18,13 @@ import java.util.ArrayList;
 /**
  * Created by saurabh on 7/20/14.
  */
-public class FriendsAdapter2 extends RecyclerView.Adapter<FriendsAdapter2.ViewHolder> {
+public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder> {
 
     private ArrayList<Friend> friends;
     private int itemLayout;
     private Context context;
 
-    public FriendsAdapter2(Context context, ArrayList<Friend> friends) {
+    public FriendsAdapter(Context context, ArrayList<Friend> friends) {
         this.context = context;
         this.friends = friends;
         this.itemLayout = R.layout.friends_list_item;

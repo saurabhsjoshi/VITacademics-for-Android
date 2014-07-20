@@ -33,7 +33,7 @@ import com.karthikb351.vitinfo2.Application;
 import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.VITxAPI;
-import com.karthikb351.vitinfo2.adapters.FriendsAdapter2;
+import com.karthikb351.vitinfo2.adapters.FriendsAdapter;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.IntentIntegrator;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.ZXingLibConfig;
 import com.karthikb351.vitinfo2.objects.DataHandler;
@@ -58,6 +58,7 @@ public class FriendsFragment extends Fragment {
     private RecyclerView listView;
     private SwipeRefreshLayout mPullToRefreshLayout;
     private ProgressDialog pdiag;
+    Refresh_Data refresh_data;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,7 +87,9 @@ public class FriendsFragment extends Fragment {
         zxingLibConfig.useFrontLight = true;
 
         new Load_Data().execute();
-        new Refresh_Data().execute();
+
+        refresh_data = new Refresh_Data();
+        refresh_data.execute();
         return v;
     }
 
@@ -278,6 +281,12 @@ public class FriendsFragment extends Fragment {
     }
 
     @Override
+    public void onPause(){
+        super.onPause();
+        refresh_data.cancel(true);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle item selection
         switch (item.getItemId()) {
@@ -295,7 +304,6 @@ public class FriendsFragment extends Fragment {
         }
     }
 
-
     private class Load_Data extends AsyncTask<Void,Void,Void> {
         private ArrayList<Friend> friends;
 
@@ -306,18 +314,22 @@ public class FriendsFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            friends = new DataHandler(getActivity()).getFreinds();
-            for(int i = 0; i < friends.size(); i++)
+            try
             {
-                if(friends.get(i).isFb){
-                    File file = new File(getActivity().getCacheDir().getPath() + "/" + friends.get(i).fbId + ".jpg");
-                    try {
-                        BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                        friends.get(i).img_profile = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
-                    }catch (Exception e){e.printStackTrace();}
+                friends = new DataHandler(getActivity()).getFreinds();
+                for(int i = 0; i < friends.size(); i++)
+                {
+                    if(friends.get(i).isFb){
+                        File file = new File(getActivity().getCacheDir().getPath() + "/" + friends.get(i).fbId + ".jpg");
+                        try {
+                            BitmapFactory.Options options = new BitmapFactory.Options();
+                            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                            friends.get(i).img_profile = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
+                        }catch (Exception e){e.printStackTrace();}
+                    }
                 }
-            }
+
+            }catch (Exception ignore){}
             return null;
         }
 
@@ -325,31 +337,10 @@ public class FriendsFragment extends Fragment {
             mPullToRefreshLayout.setRefreshing(false);
             try{
                 //final FreindsListAdapter mAdapter = new FreindsListAdapter(getActivity(), friends);
-                listView.setAdapter(new FriendsAdapter2(getActivity(), friends));
+                listView.setAdapter(new FriendsAdapter(getActivity(), friends));
 
                 if(friends.size() == 0)
                     Toast.makeText( getActivity(),"Add people to get their details!", Toast.LENGTH_SHORT).show();
-
-                /*listView.setDismissCallback(new EnhancedListView.OnDismissCallback() {
-                    @Override
-                    public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
-                        final Friend f = mAdapter.getItem(position);
-                        Runnable runnable = new Runnable() {
-                            @Override
-                            public void run() {
-                                dat.deleteFriend(f);
-                            }};
-                        new Thread(runnable).start();
-                        mAdapter.remove(f);
-                        Toast.makeText(getActivity(), f.title + " has been deleted.", Toast.LENGTH_SHORT).show();
-                        return null;
-                    }
-                });
-                listView.enableSwipeToDismiss();
-                listView.setSwipeDirection(EnhancedListView.SwipeDirection.START);
-                listView.setSwipingLayout(R.layout.friend_list_item_back);*/
-
-
             }catch (Exception e){e.printStackTrace();}
 
             if(friends.size() >= 1){
@@ -395,8 +386,9 @@ public class FriendsFragment extends Fragment {
                 String fbId;
                 fbId = friends.get(i).fbId;
                 final int j = i;
-                if(friends.get(i).isFb){
+                if(friends.get(i).isFb && getActivity() != null){
                     try {
+                        if(isCancelled())
                         Ion.with(getActivity())
                                 .load("http://graph.facebook.com/" + fbId + "/picture?type=square")
                                 .write(new File(getActivity().getCacheDir().getPath() + "/" + fbId + ".jpg"))
@@ -421,6 +413,8 @@ public class FriendsFragment extends Fragment {
             try {
                 friends = new DataHandler(getActivity()).getFreinds();
                 for(int i = 0; i < friends.size(); i++){
+                    if (isCancelled())
+                        return null;
                     if(!friends.get(i).isFb){
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
                         ParseUser u = (query.whereEqualTo("username",friends.get(i).regno)).getFirst();
