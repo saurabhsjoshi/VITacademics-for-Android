@@ -1,10 +1,9 @@
 package com.karthikb351.vitinfo2.adapters;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
@@ -17,23 +16,42 @@ import java.util.ArrayList;
 /**
  * Created by saurabh on 5/19/14.
  */
-public class NotificationListAdapter extends ArrayAdapter<PushMessage> {
-    private LayoutInflater inflater;
+public class NotificationListAdapter extends RecyclerView.Adapter<NotificationListAdapter.ViewHolder> {
+    ArrayList<PushMessage> msgs;
 
-    public NotificationListAdapter(Context context, ArrayList<PushMessage> msgs){
-        super(context, 0, msgs);
-        inflater = LayoutInflater.from(context);
+    public NotificationListAdapter(ArrayList<PushMessage> msgs){
+        this.msgs = msgs;
+    }
+
+    @Override public void onBindViewHolder(ViewHolder holder, int position) {
+        PushMessage m = msgs.get(position);
+
+        holder.title.setText(m.title);
+        holder.message.setText(m.message);
+
     }
 
     @Override
-    public View getView ( int position, View view, ViewGroup parent ) {
-        view = inflater.inflate(R.layout.notification_list_item,parent, false);
-        PushMessage m = getItem(position);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_list_item, parent, false);
+        return new ViewHolder(v);
+    }
 
-        ((TextView) view.findViewById(R.id.lbl_title)).setText(m.title);
-        ((TextView) view.findViewById(R.id.lbl_message)).setText(m.message);
+    @Override public int getItemCount() {
+        return msgs.size();
+    }
 
-        return view;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView title;
+        public TextView message;
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            message = (TextView) itemView.findViewById(R.id.lbl_title);
+            title = (TextView) itemView.findViewById(R.id.lbl_message);
+        }
     }
 
 }

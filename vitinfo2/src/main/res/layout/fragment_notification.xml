@@ -23,15 +23,13 @@
         android:layout_below="@id/lbl_latest_title"
         app:typeface="roboto_light"/>
 
-    <de.timroes.android.listview.EnhancedListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/enhanced_list"
         android:layout_below="@id/txt_latest"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_weight="10"
-        android:scrollbars="vertical" />
-
-
-
+        android:scrollbars="vertical"
+        />
 </RelativeLayout>
