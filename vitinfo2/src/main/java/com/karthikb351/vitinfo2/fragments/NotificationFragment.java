@@ -1,8 +1,8 @@
 package com.karthikb351.vitinfo2.fragments;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
+/*iimport android.os.Bundle;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +21,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import de.timroes.android.listview.EnhancedListView;
-
-;
+import de.timroes.android.listview.EnhancedListView;*/
+;import android.support.v4.app.Fragment;
 
 /**
  * Created by saurabh on 5/15/14.
  */
 public class NotificationFragment extends Fragment {
-    private EnhancedListView listView;
+   /* private EnhancedListView listView;
     private TextView lbl_latest_title;
     private TextView lbl_latest;
 
@@ -49,7 +48,7 @@ public class NotificationFragment extends Fragment {
     }
 
 
-    private class Load_Data extends AsyncTask<Void,Void,Void>{
+    private class Load_Data extends AsyncTask<Void,Void,Void> {
         private ArrayList<PushMessage> msgs;
 
         protected void onPreExecute(){
@@ -82,7 +81,7 @@ public class NotificationFragment extends Fragment {
                  * @param position The position of the item to delete from your adapter.
                  * @return An {@link de.timroes.android.listview.EnhancedListView.Undoable}, if you want
                  *      to give the user the possibility to undo the deletion.
-                 */
+
                 @Override
                 public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
                     final PushMessage f = mAdapter.getItem(position);
@@ -93,12 +92,12 @@ public class NotificationFragment extends Fragment {
                         }};
                     new Thread(runnable).start();
                     mAdapter.remove(f);
-                    Toast.makeText(getActivity(),"Push Message has been deleted.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Push Message has been deleted.", Toast.LENGTH_SHORT).show();
                     return null;
                 }
             });
             listView.enableSwipeToDismiss();
             listView.setSwipeDirection(EnhancedListView.SwipeDirection.START);
         }
-    }
+    }*/
 }

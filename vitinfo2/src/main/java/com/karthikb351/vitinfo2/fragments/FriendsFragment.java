@@ -14,6 +14,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,7 +33,7 @@ import com.karthikb351.vitinfo2.Application;
 import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.VITxAPI;
-import com.karthikb351.vitinfo2.adapters.FreindsListAdapter;
+import com.karthikb351.vitinfo2.adapters.FriendsAdapter2;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.IntentIntegrator;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.ZXingLibConfig;
 import com.karthikb351.vitinfo2.objects.DataHandler;
@@ -46,20 +48,16 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-import de.timroes.android.listview.EnhancedListView;
-
-;
-
 /**
- * Created by saurabh on 5/11/14.
+ * Created by saurabh on 7/20/14.
  */
-public class FriendsFragment extends Fragment{
+public class FriendsFragment extends Fragment {
+
     private DataHandler dat;
     private ZXingLibConfig zxingLibConfig;
-    private EnhancedListView listView;
+    private RecyclerView listView;
     private SwipeRefreshLayout mPullToRefreshLayout;
     private ProgressDialog pdiag;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,7 +76,9 @@ public class FriendsFragment extends Fragment{
                 getResources().getColor(R.color.HoloOrange),
                 getResources().getColor(R.color.HoloGreen),
                 getResources().getColor(R.color.HoloRed));
-        listView = (EnhancedListView) v.findViewById(R.id.enhanced_list);
+        listView = (RecyclerView) v.findViewById(R.id.enhanced_list);
+        listView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
 
         setHasOptionsMenu(true);
         dat = new DataHandler(getActivity());
@@ -87,8 +87,6 @@ public class FriendsFragment extends Fragment{
 
         new Load_Data().execute();
         new Refresh_Data().execute();
-
-
         return v;
     }
 
@@ -131,7 +129,7 @@ public class FriendsFragment extends Fragment{
                                     //QR CODE
                                     if(which == 0)
                                         h.selectItem_Async(6);
-                                    //NFC
+                                        //NFC
                                     else{
                                         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
                                             if(((Home) getActivity()).hasNFC){
@@ -190,7 +188,7 @@ public class FriendsFragment extends Fragment{
                         //Scan Barcode
                         if(which == 1)
                             IntentIntegrator.initiateScan(getActivity(), zxingLibConfig);
-                        //Enter PIN
+                            //Enter PIN
                         else if(which == 0){
                             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                             builder.setTitle("Enter PIN");
@@ -326,23 +324,13 @@ public class FriendsFragment extends Fragment{
         protected void onPostExecute(Void voids){
             mPullToRefreshLayout.setRefreshing(false);
             try{
-                final FreindsListAdapter mAdapter = new FreindsListAdapter(getActivity(), friends);
-                listView.setAdapter(new FreindsListAdapter(getActivity(), friends));
+                //final FreindsListAdapter mAdapter = new FreindsListAdapter(getActivity(), friends);
+                listView.setAdapter(new FriendsAdapter2(getActivity(), friends));
 
                 if(friends.size() == 0)
                     Toast.makeText( getActivity(),"Add people to get their details!", Toast.LENGTH_SHORT).show();
 
-                listView.setDismissCallback(new EnhancedListView.OnDismissCallback() {
-
-                    /**
-                     * This method will be called when the user swiped a way or deleted it via
-                     * {@link de.timroes.android.listview.EnhancedListView#delete(int)}.
-                     *
-                     * @param listView The {@link de.timroes.android.listview.EnhancedListView} the item has been deleted from.
-                     * @param position The position of the item to delete from your adapter.
-                     * @return An {@link de.timroes.android.listview.EnhancedListView.Undoable}, if you want
-                     *      to give the user the possibility to undo the deletion.
-                     */
+                /*listView.setDismissCallback(new EnhancedListView.OnDismissCallback() {
                     @Override
                     public EnhancedListView.Undoable onDismiss(EnhancedListView listView, final int position) {
                         final Friend f = mAdapter.getItem(position);
@@ -359,7 +347,8 @@ public class FriendsFragment extends Fragment{
                 });
                 listView.enableSwipeToDismiss();
                 listView.setSwipeDirection(EnhancedListView.SwipeDirection.START);
-                listView.setSwipingLayout(R.layout.friend_list_item_back);
+                listView.setSwipingLayout(R.layout.friend_list_item_back);*/
+
 
             }catch (Exception e){e.printStackTrace();}
 
@@ -461,4 +450,5 @@ public class FriendsFragment extends Fragment{
             }
         }
     }
+
 }
