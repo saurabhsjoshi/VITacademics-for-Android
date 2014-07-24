@@ -55,7 +55,7 @@ public class TeamScreen extends ActionBarActivity implements View.OnClickListene
 
         switch (view.getId()){
             case R.id.lbl_sau:
-                i.setData(Uri.parse("https://github.com/battlex2010"));
+                i.setData(Uri.parse("https://github.com/saurabhsjoshi"));
                 break;
 
             case R.id.lbl_sid:

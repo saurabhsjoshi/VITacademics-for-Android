@@ -4,6 +4,7 @@ package com.karthikb351.vitinfo2.fragments;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
  */
 public class NotificationFragment extends Fragment {
     private RecyclerView listView;
-    private TextView lbl_latest_title;
+    //private TextView lbl_latest_title;
     private TextView lbl_latest;
 
     @Override
@@ -42,7 +43,7 @@ public class NotificationFragment extends Fragment {
         listView = (RecyclerView) v.findViewById(R.id.enhanced_list);
         listView.setLayoutManager(new LinearLayoutManager(getActivity()));
         lbl_latest = (TextView) v.findViewById(R.id.txt_latest);
-        lbl_latest_title = (TextView) v.findViewById(R.id.lbl_latest_title);
+        //lbl_latest_title = (TextView) v.findViewById(R.id.lbl_latest_title);
         new Load_Data().execute();
         return v;
     }
@@ -63,8 +64,10 @@ public class NotificationFragment extends Fragment {
         protected void onPostExecute(Void voids) {
             try {
                 String msg = new JSONObject(new DataHandler(getActivity()).getServerStatus()).getString("msg_content");
-                String title = new JSONObject(new DataHandler(getActivity()).getServerStatus()).getString("msg_title");
+                //String title = new JSONObject(new DataHandler(getActivity()).getServerStatus()).getString("msg_title");
                 listView.setAdapter(new NotificationListAdapter(msgs));
+                listView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                listView.setItemAnimator(new DefaultItemAnimator());
                 lbl_latest.setText(msg);
             } catch (Exception ignore) {
             }

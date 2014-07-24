@@ -64,7 +64,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         return friends.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView image;
         public TextView name;
         public TextView status;
@@ -73,11 +73,17 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             image =  (ImageView) itemView.findViewById(R.id.img_profile);
             name = (TextView) itemView.findViewById(R.id.lbl_title);
             status = (TextView) itemView.findViewById(R.id.lbl_status);
             endsin = (TextView) itemView.findViewById(R.id.lbl_endsin);
             venue = (TextView) itemView.findViewById(R.id.lbl_venue);
+        }
+
+        @Override
+        public void onClick(View view) {
+            
         }
     }
 }

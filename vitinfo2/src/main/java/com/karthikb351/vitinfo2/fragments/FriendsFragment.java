@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
@@ -336,9 +337,9 @@ public class FriendsFragment extends Fragment {
         protected void onPostExecute(Void voids){
             mPullToRefreshLayout.setRefreshing(false);
             try{
-                //final FreindsListAdapter mAdapter = new FreindsListAdapter(getActivity(), friends);
                 listView.setAdapter(new FriendsAdapter(getActivity(), friends));
-
+                listView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                listView.setItemAnimator(new DefaultItemAnimator());
                 if(friends.size() == 0)
                     Toast.makeText( getActivity(),"Add people to get their details!", Toast.LENGTH_SHORT).show();
             }catch (Exception e){e.printStackTrace();}
