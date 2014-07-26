@@ -136,6 +136,13 @@ public class DataHandler {
 
     public int getDefUi(){return Integer.parseInt(preferences.getString("defUi","0"));}
 
+    private class FriendComparator implements Comparator<Friend> {
+        @Override
+        public int compare(Friend friend, Friend friend2) {
+            return friend.title.compareTo(friend2.title);
+        }
+    }
+
     public ArrayList<Friend> getFreinds(){
         ArrayList<Friend> t = new ArrayList<Friend>();
         int size = preferences.getInt("FRIENDJSONSIZE", 0);
@@ -146,7 +153,7 @@ public class DataHandler {
             t.add(gson.fromJson(preferences.getString("FRIENDJSON"+i,""), Friend.class));
             t.get(i).img_profile = null;
         }
-
+        Collections.sort(t, new FriendComparator());
         return t;
     }
 
