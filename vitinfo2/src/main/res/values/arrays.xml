@@ -38,6 +38,9 @@
         <item>NFC</item>
     </string-array>
 
-
-
+    <string-array name="friends_details">
+        <item>Delete</item>
+        <item>Change display name</item>
+        <item>Same classes</item>
+    </string-array>
 </resources>

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.objects.Friend;
+import com.karthikb351.vitinfo2.objects.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.objects.TimeTableFiles.TimeTable;
 
 import java.util.ArrayList;
@@ -18,15 +19,17 @@ import java.util.ArrayList;
 /**
  * Created by saurabh on 7/20/14.
  */
-public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder> {
+public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener{
 
     private ArrayList<Friend> friends;
     private int itemLayout;
     private Context context;
+    private RecyclerViewOnClickListener listener;
 
-    public FriendsAdapter(Context context, ArrayList<Friend> friends) {
+    public FriendsAdapter(Context context, ArrayList<Friend> friends, RecyclerViewOnClickListener l) {
         this.context = context;
         this.friends = friends;
+        this.listener = l;
         this.itemLayout = R.layout.friends_list_item;
     }
 
@@ -58,13 +61,37 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
         holder.venue.setText(t.FriendVenue);
         holder.itemView.setTag(f);
+
     }
 
     @Override public int getItemCount() {
         return friends.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    @Override
+    public void onClick(View view) {
+        Friend f = (Friend) view.getTag();
+        for(int i = 0; i < getItemCount(); i++){
+            if(f.regno.equals(friends.get(i).regno)){
+                listener.onClick(friends.get(i), false);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public boolean onLongClick(View view) {
+        Friend f = (Friend) view.getTag();
+        for(int i = 0; i < getItemCount(); i++){
+            if(f.regno.equals(friends.get(i).regno)){
+                listener.onClick(friends.get(i), true);
+                return true;
+            }
+        }
+        return true;
+    }
+
+    public  class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
         public TextView name;
         public TextView status;
@@ -73,7 +100,8 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(FriendsAdapter.this);
+            itemView.setOnLongClickListener(FriendsAdapter.this);
             image =  (ImageView) itemView.findViewById(R.id.img_profile);
             name = (TextView) itemView.findViewById(R.id.lbl_title);
             status = (TextView) itemView.findViewById(R.id.lbl_status);
@@ -81,9 +109,6 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
             venue = (TextView) itemView.findViewById(R.id.lbl_venue);
         }
 
-        @Override
-        public void onClick(View view) {
-            
-        }
+
     }
 }

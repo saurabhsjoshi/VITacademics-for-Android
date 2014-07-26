@@ -18,8 +18,15 @@
     <item
         android:id="@+id/menu_share_tt"
         android:icon="@drawable/ic_action_share"
-        android:orderInCategory="19"
+        android:orderInCategory="18"
         android:title="Share TimeTable"
         app:showAsAction = "always">
+    </item>
+    <item
+        android:id="@+id/menu_backup"
+        android:icon="@drawable/ic_action_share"
+        android:orderInCategory="17"
+        android:title="Backup friends"
+        app:showAsAction = "collapseActionView">
     </item>
 </menu>

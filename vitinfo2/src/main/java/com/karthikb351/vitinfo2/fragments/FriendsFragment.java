@@ -40,6 +40,7 @@ import com.karthikb351.vitinfo2.objects.BarCodeScanner.ZXingLibConfig;
 import com.karthikb351.vitinfo2.objects.DataHandler;
 import com.karthikb351.vitinfo2.objects.Friend;
 import com.karthikb351.vitinfo2.objects.OnTaskComplete;
+import com.karthikb351.vitinfo2.objects.RecyclerViewOnClickListener;
 import com.koushikdutta.ion.Ion;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -281,6 +282,27 @@ public class FriendsFragment extends Fragment {
         builder.show();
     }
 
+    private void showFriendClickDetailsDialog(final Friend f){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setItems(R.array.friends_details, new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int which) {
+                        switch (which){
+                            case 0:
+                                Runnable runnable = new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        dat.deleteFriend(f);
+                                        ((Home) getActivity()).selectItem_Async(3);
+                                    }};
+                                new Thread(runnable).start();
+                                Toast.makeText(getActivity(), f.title + " has been deleted.", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    }
+                });
+        builder.show();
+    }
+
     @Override
     public void onPause(){
         super.onPause();
@@ -337,7 +359,18 @@ public class FriendsFragment extends Fragment {
         protected void onPostExecute(Void voids){
             mPullToRefreshLayout.setRefreshing(false);
             try{
-                listView.setAdapter(new FriendsAdapter(getActivity(), friends));
+                FriendsAdapter adapter = new FriendsAdapter(getActivity(), friends, new RecyclerViewOnClickListener() {
+                    @Override
+                    public void onClick(Object result, boolean isLongPress) {
+                        Friend f = (Friend) result;
+                        //Not long click
+                        if(!isLongPress){
+                            showFriendClickDetailsDialog(f);
+                        }
+                    }
+                });
+                listView.setAdapter(adapter);
+                registerForContextMenu(listView);
                 listView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 listView.setItemAnimator(new DefaultItemAnimator());
                 if(friends.size() == 0)
