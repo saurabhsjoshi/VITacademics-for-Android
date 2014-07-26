@@ -297,9 +297,45 @@ public class FriendsFragment extends Fragment {
                                 new Thread(runnable).start();
                                 Toast.makeText(getActivity(), f.title + " has been deleted.", Toast.LENGTH_SHORT).show();
                                 break;
+
+                            case 1:
+                                showEditFriendName(f);
+                                break;
+                            case 2:
+                                break;
                         }
                     }
                 });
+        builder.show();
+    }
+
+    private void showEditFriendName(final Friend f){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Display Name");
+        final EditText input = new EditText(getActivity());
+        input.setHint(f.title);
+        builder.setView(input);
+
+        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        dat.deleteFriend(f);
+                        f.title = input.getText().toString();
+                        dat.addFriend(f);
+                        ((Home) getActivity()).selectItem_Async(3);
+                    }};
+                new Thread(runnable).start();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
         builder.show();
     }
 
@@ -430,7 +466,6 @@ public class FriendsFragment extends Fragment {
 
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-
                         friends.get(j).img_profile = BitmapFactory.decodeFile(getActivity().getCacheDir().getPath() + "/" + fbId + ".jpg", options);
                     }
                     catch (InterruptedException e2){e2.printStackTrace();}
@@ -464,7 +499,6 @@ public class FriendsFragment extends Fragment {
                 }
                 if(needSaving)
                     dat.saveFriends(friends);
-
                 downloadProfileImage(friends);
             }catch (Exception e){e.printStackTrace();}
 
