@@ -350,6 +350,7 @@ public class FriendsFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        final Handler handler = new Handler();
         // handle item selection
         switch (item.getItemId()) {
             case R.id.menu_fb_login:
@@ -362,7 +363,6 @@ public class FriendsFragment extends Fragment {
                 showShareAlert();
                 return true;
             case R.id.menu_backup:
-                final Handler handler = new Handler();
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
@@ -375,6 +375,22 @@ public class FriendsFragment extends Fragment {
                         });
                     }};
                 new Thread(runnable).start();
+                return true;
+
+            case R.id.menu_restore:
+                Runnable runnable_restore = new Runnable() {
+                    @Override
+                    public void run() {
+                        dat.loadFriendsfromSDCard();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getActivity(), "Restored from SD card", Toast.LENGTH_LONG).show();
+                                ((Home) getActivity()).selectItem_Async(3);
+                            }
+                        });
+                    }};
+                new Thread(runnable_restore).start();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

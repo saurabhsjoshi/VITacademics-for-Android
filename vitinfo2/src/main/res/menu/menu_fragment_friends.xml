@@ -29,4 +29,12 @@
         android:title="Backup friends"
         app:showAsAction = "collapseActionView">
     </item>
+
+    <item
+        android:id="@+id/menu_restore"
+        android:icon="@drawable/ic_action_share"
+        android:orderInCategory="17"
+        android:title="Restore Friends"
+        app:showAsAction = "collapseActionView">
+    </item>
 </menu>

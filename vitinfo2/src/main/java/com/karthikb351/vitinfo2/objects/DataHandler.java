@@ -12,8 +12,11 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -167,6 +170,7 @@ public class DataHandler {
             int size = preferences.getInt("FRIENDJSONSIZE", 0);
 
             JSONArray fl = new JSONArray();
+
             for(int i = 0; i < size; i++)
                 fl.put(i, preferences.getString("FRIENDJSON"+i,""));
 
@@ -175,13 +179,42 @@ public class DataHandler {
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
-            //PUT ANY STRING AS PASSWORD
+            /*
+             * Create class in objectes called Secret.java and put this in:
+             * public class Secret {public static String backup_password = "ANYSTRINGHERE";}
+             *
+             */
             myOutWriter.append(SimpleCrypto.encrypt(Secret.backup_password, fl.toString()));
             myOutWriter.close();
             fOut.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean loadFriendsfromSDCard(){
+        try {
+            FileInputStream inputStream = new FileInputStream(new File(Environment.getExternalStorageDirectory() + "/VITacademics_friends_backup.bak"));
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String receiveString;
+            StringBuilder stringBuilder = new StringBuilder();
+            while ( (receiveString = bufferedReader.readLine()) != null ) {
+                stringBuilder.append(receiveString);
+            }
+            inputStream.close();
+            JSONArray j = new JSONArray(SimpleCrypto.decrypt(Secret.backup_password,stringBuilder.toString()));
+            Gson gson = new Gson();
+
+            for(int i = 0; i < j.length(); i++){
+                addFriend(gson.fromJson(j.getString(i), Friend.class));
+            }
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     public String getServerStatus(){return  preferences.getString("SERVERSTATUS","");}
