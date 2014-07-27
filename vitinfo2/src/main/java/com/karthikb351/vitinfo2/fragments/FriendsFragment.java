@@ -83,7 +83,6 @@ public class FriendsFragment extends Fragment {
         listView = (RecyclerView) v.findViewById(R.id.enhanced_list);
         listView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
         setHasOptionsMenu(true);
         dat = new DataHandler(getActivity());
         zxingLibConfig = new ZXingLibConfig();
@@ -363,14 +362,20 @@ public class FriendsFragment extends Fragment {
                 showShareAlert();
                 return true;
             case R.id.menu_backup:
+                mPullToRefreshLayout.setRefreshing(true);
                 Runnable runnable = new Runnable() {
+                    boolean isDone = false;
                     @Override
                     public void run() {
-                        dat.saveFriendstoSDCard();
+                        isDone = dat.saveFriendstoSDCard();
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getActivity(), "Friends backed up to SD card", Toast.LENGTH_LONG).show();
+                                if(isDone)
+                                    Toast.makeText(getActivity(), "Friends backed up to SD card", Toast.LENGTH_SHORT).show();
+                                else
+                                    Toast.makeText(getActivity(), "Error occured while backing up. Please try again!", Toast.LENGTH_SHORT).show();
+                                mPullToRefreshLayout.setRefreshing(false);
                             }
                         });
                     }};
@@ -378,14 +383,20 @@ public class FriendsFragment extends Fragment {
                 return true;
 
             case R.id.menu_restore:
+                mPullToRefreshLayout.setRefreshing(true);
                 Runnable runnable_restore = new Runnable() {
+                    boolean isDone = false;
                     @Override
                     public void run() {
-                        dat.loadFriendsfromSDCard();
+                        isDone = dat.loadFriendsfromSDCard();
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getActivity(), "Restored from SD card", Toast.LENGTH_LONG).show();
+                                if(isDone)
+                                    Toast.makeText(getActivity(), "Restored from SD card", Toast.LENGTH_SHORT).show();
+                                else
+                                    Toast.makeText(getActivity(), "Error occured while restoring. Check if backup file is at root of SD Card.", Toast.LENGTH_SHORT).show();
+                                mPullToRefreshLayout.setRefreshing(false);
                                 ((Home) getActivity()).selectItem_Async(3);
                             }
                         });

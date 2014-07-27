@@ -165,7 +165,7 @@ public class DataHandler {
         return t;
     }
 
-    public void saveFriendstoSDCard(){
+    public boolean saveFriendstoSDCard(){
         try {
             int size = preferences.getInt("FRIENDJSONSIZE", 0);
 
@@ -174,7 +174,7 @@ public class DataHandler {
             for(int i = 0; i < size; i++)
                 fl.put(i, preferences.getString("FRIENDJSON"+i,""));
 
-            File myFile = new File(Environment.getExternalStorageDirectory() + "/VITacademics_friends_backup.bak");
+            File myFile = new File(Environment.getExternalStorageDirectory() + "/VITacademics_backup.bak");
             myFile.createNewFile();
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
@@ -187,14 +187,16 @@ public class DataHandler {
             myOutWriter.append(SimpleCrypto.encrypt(Secret.backup_password, fl.toString()));
             myOutWriter.close();
             fOut.close();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
     public boolean loadFriendsfromSDCard(){
         try {
-            FileInputStream inputStream = new FileInputStream(new File(Environment.getExternalStorageDirectory() + "/VITacademics_friends_backup.bak"));
+            FileInputStream inputStream = new FileInputStream(new File(Environment.getExternalStorageDirectory() + "/VITacademics_backup.bak"));
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String receiveString;
