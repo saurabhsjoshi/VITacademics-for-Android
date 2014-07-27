@@ -41,6 +41,6 @@
     <string-array name="friends_details">
         <item>Delete</item>
         <item>Change display name</item>
-        <item>Same classes</item>
+        <item>Common classes</item>
     </string-array>
 </resources>

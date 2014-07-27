@@ -12,6 +12,7 @@ import android.nfc.NfcAdapter;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -293,7 +294,9 @@ public class FriendsFragment extends Fragment {
                                     public void run() {
                                         dat.deleteFriend(f);
                                         ((Home) getActivity()).selectItem_Async(3);
-                                    }};
+                                    }
+                                };
+
                                 new Thread(runnable).start();
                                 Toast.makeText(getActivity(), f.title + " has been deleted.", Toast.LENGTH_SHORT).show();
                                 break;
@@ -357,6 +360,21 @@ public class FriendsFragment extends Fragment {
                 return true;
             case R.id.menu_share_tt:
                 showShareAlert();
+                return true;
+            case R.id.menu_backup:
+                final Handler handler = new Handler();
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        dat.saveFriendstoSDCard();
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getActivity(), "Friends backed up to SD card", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }};
+                new Thread(runnable).start();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -512,5 +530,4 @@ public class FriendsFragment extends Fragment {
             }
         }
     }
-
 }

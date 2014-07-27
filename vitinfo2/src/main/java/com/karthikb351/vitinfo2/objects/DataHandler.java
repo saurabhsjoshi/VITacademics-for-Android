@@ -3,13 +3,18 @@ package com.karthikb351.vitinfo2.objects;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -155,6 +160,28 @@ public class DataHandler {
         }
         Collections.sort(t, new FriendComparator());
         return t;
+    }
+
+    public void saveFriendstoSDCard(){
+        try {
+            int size = preferences.getInt("FRIENDJSONSIZE", 0);
+
+            JSONArray fl = new JSONArray();
+            for(int i = 0; i < size; i++)
+                fl.put(i, preferences.getString("FRIENDJSON"+i,""));
+
+            File myFile = new File(Environment.getExternalStorageDirectory() + "/VITacademics_friends_backup.bak");
+            myFile.createNewFile();
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+
+            //PUT ANY STRING AS PASSWORD
+            myOutWriter.append(SimpleCrypto.encrypt(Secret.backup_password, fl.toString()));
+            myOutWriter.close();
+            fOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String getServerStatus(){return  preferences.getString("SERVERSTATUS","");}
