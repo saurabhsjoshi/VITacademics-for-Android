@@ -1,8 +1,11 @@
 package com.karthikb351.vitinfo2.fragments;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,14 +14,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.karthikb351.vitinfo2.Application;
+import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapters.NotificationListAdapter;
 import com.karthikb351.vitinfo2.objects.DataHandler;
 import com.karthikb351.vitinfo2.objects.PushMessage;
+import com.karthikb351.vitinfo2.objects.RecyclerViewOnClickListener;
 
 import org.json.JSONObject;
 
@@ -61,11 +67,50 @@ public class NotificationFragment extends Fragment {
             return null;
         }
 
+        private void showDeleteDialog(final PushMessage m){
+            final Handler handler = new Handler();
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Display Name");
+            builder.setMessage("Delete push message?");
+            builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Runnable runnable = new Runnable() {
+                        @Override
+                        public void run() {
+                            new DataHandler(getActivity()).deletePushMessage(m);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getActivity(), "Push Message has been deleted.", Toast.LENGTH_SHORT).show();
+                                    ((Home) getActivity()).selectItem_Async(9);
+                                }
+                            });
+                        }};
+                    new Thread(runnable).start();
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            builder.show();
+        }
+
         protected void onPostExecute(Void voids) {
             try {
                 String msg = new JSONObject(new DataHandler(getActivity()).getServerStatus()).getString("msg_content");
-                //String title = new JSONObject(new DataHandler(getActivity()).getServerStatus()).getString("msg_title");
-                listView.setAdapter(new NotificationListAdapter(msgs));
+                NotificationListAdapter nla = new NotificationListAdapter(msgs, new RecyclerViewOnClickListener() {
+                    @Override
+                    public void onClick(final Object obj, boolean isLongPress) {
+                        if(!isLongPress)
+                            showDeleteDialog((PushMessage) obj);
+                    }
+                });
+                listView.setAdapter(nla);
                 listView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 listView.setItemAnimator(new DefaultItemAnimator());
                 lbl_latest.setText(msg);
