@@ -5,8 +5,8 @@
         android:id="@+id/menu_fb_login"
         android:icon="@drawable/menu_fb"
         android:orderInCategory="20"
-        android:title="Login"
-        app:showAsAction = "always">
+        android:title="Facebook Login"
+        app:showAsAction = "ifRoom">
     </item>
     <item
         android:id="@+id/menu_add_person"
@@ -26,7 +26,7 @@
         android:id="@+id/menu_backup"
         android:icon="@drawable/ic_action_share"
         android:orderInCategory="17"
-        android:title="Backup friends"
+        android:title="Backup friend list"
         app:showAsAction = "collapseActionView">
     </item>
 
@@ -34,7 +34,7 @@
         android:id="@+id/menu_restore"
         android:icon="@drawable/ic_action_share"
         android:orderInCategory="17"
-        android:title="Restore Friends"
+        android:title="Restore friend list"
         app:showAsAction = "collapseActionView">
     </item>
 </menu>

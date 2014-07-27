@@ -374,7 +374,7 @@ public class FriendsFragment extends Fragment {
                             @Override
                             public void run() {
                                 if(isDone)
-                                    Toast.makeText(getActivity(), "Friends backed up to SD card", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "Friend list backed up to SD card", Toast.LENGTH_SHORT).show();
                                 else
                                     Toast.makeText(getActivity(), "Error occured while backing up. Please try again!", Toast.LENGTH_SHORT).show();
                                 mPullToRefreshLayout.setRefreshing(false);
