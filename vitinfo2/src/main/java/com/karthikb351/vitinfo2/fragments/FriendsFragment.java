@@ -80,8 +80,10 @@ public class FriendsFragment extends Fragment {
                 getResources().getColor(R.color.HoloOrange),
                 getResources().getColor(R.color.HoloGreen),
                 getResources().getColor(R.color.HoloRed));
+
         listView = (RecyclerView) v.findViewById(R.id.enhanced_list);
         listView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        listView.setHasFixedSize(false);
 
         setHasOptionsMenu(true);
         dat = new DataHandler(getActivity());

@@ -1,6 +1,7 @@
 package com.karthikb351.vitinfo2.adapters;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,15 +35,20 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FriendsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(itemLayout, parent, false);
+        v.setOnClickListener(FriendsAdapter.this);
+        v.setOnLongClickListener(FriendsAdapter.this);
         return new ViewHolder(v);
     }
 
-    @Override public void onBindViewHolder(ViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
         Friend f = friends.get(position);
         if(f.isFb && f.img_profile!=null)
             holder.image.setImageBitmap(f.img_profile);
+        else
+            holder.image.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_action_person));
 
         holder.name.setText(f.title);
         TimeTable t = new TimeTable(context);
@@ -91,7 +97,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
         return true;
     }
 
-    public  class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView image;
         public TextView name;
         public TextView status;
@@ -100,15 +106,11 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(FriendsAdapter.this);
-            itemView.setOnLongClickListener(FriendsAdapter.this);
             image =  (ImageView) itemView.findViewById(R.id.img_profile);
             name = (TextView) itemView.findViewById(R.id.lbl_title);
             status = (TextView) itemView.findViewById(R.id.lbl_status);
             endsin = (TextView) itemView.findViewById(R.id.lbl_endsin);
             venue = (TextView) itemView.findViewById(R.id.lbl_venue);
         }
-
-
     }
 }
