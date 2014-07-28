@@ -18,7 +18,7 @@ public class sqDatabase extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "subjectsManager";
@@ -31,7 +31,7 @@ public class sqDatabase extends SQLiteOpenHelper {
     private static final String KEY_TITLE = "title";
     private static final String KEY_SLOT = "slot";
 
-    private static final String[] COLUMNS = {KEY_CLASNBR,KEY_TITLE,KEY_SLOT,"type","attended", "conducted", "regdate", "details"};
+    private static final String[] COLUMNS = {KEY_CLASNBR,KEY_TITLE,KEY_SLOT,"type","attended", "conducted", "regdate", "details", "code"};
 
     public sqDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,15 +42,20 @@ public class sqDatabase extends SQLiteOpenHelper {
         String CREATE_SUBJECTS_TABLE = "CREATE TABLE " + TABLE_SUBJECTS + "("
                 + KEY_CLASNBR + " INTEGER PRIMARY KEY," + KEY_TITLE + " TEXT,"
                 + KEY_SLOT + " TEXT,"
-                + "type TEXT, attended INTEGER, conducted INTEGER, regdate TEXT, details TEXT)";
-
+                + "type TEXT, attended INTEGER, conducted INTEGER, regdate TEXT, details TEXT, code TEXT)";
         sqLiteDatabase.execSQL(CREATE_SUBJECTS_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_SUBJECTS);
-        onCreate(sqLiteDatabase);
+        if(i == 1 && i2 == 2){
+            String upgradeQuery = "ALTER TABLE " + TABLE_SUBJECTS + " ADD COLUMN code TEXT";
+            sqLiteDatabase.execSQL(upgradeQuery);
+        }
+        else{
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_SUBJECTS);
+            onCreate(sqLiteDatabase);
+        }
     }
 
     public void addSubjects(String SubjectJSON){
@@ -73,6 +78,7 @@ public class sqDatabase extends SQLiteOpenHelper {
                 values.put("attended", Integer.parseInt(sub.getString("attended")));
                 values.put("regdate", sub.getString("regdate"));
                 values.put("details", sub.getJSONArray("details").toString());
+                values.put("code", sub.getString("code"));
                 db.insertWithOnConflict(TABLE_SUBJECTS, null, values, SQLiteDatabase.CONFLICT_REPLACE);
             }
             db.close();
@@ -98,7 +104,7 @@ public class sqDatabase extends SQLiteOpenHelper {
             sub.conducted = cursor.getInt(5);
             sub.regdate = cursor.getString(6);
             sub.detailsString = cursor.getString(7);
-
+            sub.code = cursor.getString(8);
             sub.percentage = (int) DataHandler.getPer(sub.attended, sub.conducted);
 
             if (DataHandler.getPer(sub.attended, sub.conducted) > sub.percentage)
@@ -144,7 +150,7 @@ public class sqDatabase extends SQLiteOpenHelper {
                 sub.conducted = cursor.getInt(5);
                 sub.regdate = cursor.getString(6);
                 sub.detailsString = cursor.getString(7);
-
+                sub.code = cursor.getString(8);
                 sub.percentage = (int) DataHandler.getPer(sub.attended, sub.conducted);
 
                 if (DataHandler.getPer(sub.attended, sub.conducted) > sub.percentage)
