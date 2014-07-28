@@ -465,7 +465,7 @@ public class FriendsFragment extends Fragment {
                     ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
                     f.hideOnClickOutside = false;
                     f.centerText = true;
-                    ShowcaseView.insertShowcaseView(listView, getActivity(), "Delete", "To delete friend swipe from the right", f).setScaleMultiplier(2f);
+                    //ShowcaseView.insertShowcaseView(listView, getActivity(), "Delete", "To delete friend swipe from the right", f).setScaleMultiplier(2f);
                     dat.saveviewShowCaseFrnd(true);
                 }
             }
