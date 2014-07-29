@@ -26,15 +26,28 @@ public class DayByDayListAdapter extends ArrayAdapter<Attendance> {
         this.att = att;
     }
 
-    @Override
-    public View getView ( int position, View view, ViewGroup parent ) {
-        view = inflater.inflate(R.layout.day_by_day_list_item, null );
+    private class ViewHolder{
+        TextView date, status;
+    }
 
-        ((TextView) view.findViewById(R.id.atten_detail_date)).setText(att[position].getDate());
-        TextView status = (TextView) view.findViewById(R.id.atten_detail_status);
-        status.setText(att[position].getStatus());
+    @Override
+    public View getView ( int position, View convertview, ViewGroup parent ) {
+        ViewHolder holder;
+        if(convertview == null){
+            convertview = inflater.inflate(R.layout.day_by_day_list_item, parent, false);
+            holder = new ViewHolder();
+            holder.date = (TextView) convertview.findViewById(R.id.atten_detail_date);
+            holder.status = (TextView) convertview.findViewById(R.id.atten_detail_status);
+            convertview.setTag(holder);
+        }
+        else
+            holder = (ViewHolder) convertview.getTag();
+
+        holder.date.setText(att[position].getDate());
+        holder.status.setText(att[position].getStatus());
         if(att[position].getStatus().equals("Absent"))
-            status.setTextColor(Color.parseColor("#FF0000"));
-        return view;
+            holder.status.setTextColor(Color.parseColor("#FF0000"));
+
+        return convertview;
     }
 }

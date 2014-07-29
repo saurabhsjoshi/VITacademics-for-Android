@@ -3,6 +3,7 @@ package com.karthikb351.vitinfo2.objects.NowListFiles;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
@@ -33,10 +34,10 @@ public class NowListItem implements NowItem {
     }
 
     @Override
-    public View getView(LayoutInflater inflater, View convertView) {
+    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
         View view;
         if(convertView == null)
-            view = inflater.inflate(R.layout.now_list_item_now, null);
+            view = inflater.inflate(R.layout.now_list_item_now, parent, false);
         else
             view = convertView;
 

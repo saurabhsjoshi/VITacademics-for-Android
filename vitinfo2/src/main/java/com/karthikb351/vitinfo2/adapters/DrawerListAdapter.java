@@ -49,7 +49,7 @@ public class DrawerListAdapter extends BaseAdapter{
 
         //Check if the view is empty
         if(vi==null)
-            vi = inflater.inflate(R.layout.drawer_list_item, null);
+            vi = inflater.inflate(R.layout.drawer_list_item, viewGroup, false);
 
         TextView lbl_drawer = (TextView) vi.findViewById(R.id.lbl_drawer_title);
         TextView lbl_drawer_sub = (TextView) vi.findViewById(R.id.lbl_drawer_subtitle);

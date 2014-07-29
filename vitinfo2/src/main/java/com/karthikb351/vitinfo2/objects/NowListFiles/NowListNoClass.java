@@ -2,6 +2,7 @@ package com.karthikb351.vitinfo2.objects.NowListFiles;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
 
@@ -18,10 +19,10 @@ public class NowListNoClass implements NowItem {
     }
 
     @Override
-    public View getView(LayoutInflater inflater, View convertView) {
+    public View getView(LayoutInflater inflater, View convertView, ViewGroup parent) {
         View view;
         /* TODO: Make the textView exactly at center of image in the XML */
-        view = inflater.inflate(R.layout.now_list_item_noclass,null);
+        view = inflater.inflate(R.layout.now_list_item_noclass,parent, false);
         return view;
     }
 }

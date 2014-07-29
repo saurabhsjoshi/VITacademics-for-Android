@@ -31,26 +31,37 @@ public class FullTTListAdapter extends ArrayAdapter<TTSlot> {
         mInflater = LayoutInflater.from(context);
         dat = DataHandler.getInstance(context);
     }
-
+    private class ViewHolder{
+        TextView slot, subject, venue, timing, att;
+    }
     @Override
     public View getView(int pos, View convertView, ViewGroup parent){
-        convertView = mInflater.inflate(R.layout.fulltt_list_item,null);
+        ViewHolder holder;
+        if(convertView == null){
+            convertView = mInflater.inflate(R.layout.fulltt_list_item, parent, false);
+            holder = new ViewHolder();
+            holder.slot = ((TextView) convertView.findViewById(R.id.lbl_now_slot));
+            holder.subject = ((TextView) convertView.findViewById(R.id.lbl_now_subject));
+            holder.venue = ((TextView) convertView.findViewById(R.id.lbl_now_venue));
+            holder.timing = ((TextView) convertView.findViewById(R.id.lbl_now_timing));
+            holder.att = ((TextView) convertView.findViewById(R.id.lbl_now_att_now));
+            convertView.setTag(holder);
+        }
+        else
+            holder = (ViewHolder) convertView.getTag();
 
         TTSlot t = getItem(pos);
         Subject subject = dat.getSubject(t.clsnbr);
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mma", Locale.getDefault());
 
-        ((TextView) convertView.findViewById(R.id.lbl_now_slot)).setText(t.slt);
-        ((TextView) convertView.findViewById(R.id.lbl_now_subject)).setText(subject.title);
-        ((TextView) convertView.findViewById(R.id.lbl_now_venue)).setText(t.venue);
+        holder.slot.setText(t.slt);
+        holder.subject.setText(subject.title);
+        holder.venue.setText(t.venue);
 
-        TextView lbl_timing = (TextView) convertView.findViewById(R.id.lbl_now_timing);
-        TextView lbl_per = (TextView) convertView.findViewById(R.id.lbl_now_att_now);
-
-        lbl_per.setText("Attendance: "+ subject.percentage + "%");
-        lbl_per.setTextColor(DataHandler.getPerColor(subject.percentage));
-        lbl_timing.setText(timeFormat.format(t.frm_time.getTime()) + " - " + timeFormat.format(t.to_time.getTime()));
+        holder.att.setText("Attendance: "+ subject.percentage + "%");
+        holder.att.setTextColor(DataHandler.getPerColor(subject.percentage));
+        holder.timing.setText(timeFormat.format(t.frm_time.getTime()) + " - " + timeFormat.format(t.to_time.getTime()));
         return convertView;
     }
 
