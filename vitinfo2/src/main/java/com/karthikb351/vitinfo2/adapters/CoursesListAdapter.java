@@ -35,48 +35,60 @@ public class CoursesListAdapter extends ArrayAdapter<Subject> {
         this.context = context;
     }
 
-    @Override
-    public View getView ( int position, View view, ViewGroup parent ) {
+    private static class ViewHolder{
+        TextView title, slot, type, atten, status,date;
+        ProgressBar prg;
+    }
 
-        view = inflater.inflate(R.layout.courses_list_item,parent, false);
+    @Override
+    public View getView ( int position, View convertView, ViewGroup parent ) {
+        ViewHolder holder;
+        if(convertView == null)
+        {
+            holder = new ViewHolder();
+            convertView = inflater.inflate(R.layout.courses_list_item,parent, false);
+            holder.title = (TextView) convertView.findViewById(R.id.title);
+            holder.slot = (TextView) convertView.findViewById(R.id.slot);
+            holder.type = (TextView) convertView.findViewById(R.id.type);
+            holder.atten = (TextView) convertView.findViewById(R.id.atten);
+            holder.status = (TextView) convertView.findViewById(R.id.atten_listitem_status);
+            holder.date = (TextView) convertView.findViewById(R.id.atten_listitem_date);
+            holder.prg = (ProgressBar) convertView.findViewById(R.id.progress);
+            convertView.setTag(holder);
+        }
+
+        else
+            holder = (ViewHolder)convertView.getTag();
 
         Subject sub = getItem(position);
 
-        ((TextView) view.findViewById(R.id.title)).setText(sub.title);
-        ((TextView) view.findViewById(R.id.slot)).setText(sub.slot);
-        ((TextView) view.findViewById(R.id.type)).setText(sub.type);
-        ((TextView) view.findViewById(R.id.atten)).setText(sub.attended+"/"+sub.conducted+"\n"+sub.percentage+"%");
-
-        TextView status = (TextView) view.findViewById(R.id.atten_listitem_status);
-        TextView date = (TextView) view.findViewById(R.id.atten_listitem_date);
-
-
+        holder.title.setText(sub.title);
+        holder.slot.setText(sub.slot);
+        holder.type.setText(sub.type);
+        holder.atten.setText(sub.attended+"/"+sub.conducted+"\n"+sub.percentage+"%");
 
         if(sub.att_valid){
-            date.setText("As of: "+sub.atten_last_date);
-            status.setText(sub.atten_last_status);
+            holder.date.setText("As of: "+sub.atten_last_date);
+            holder.status.setText(sub.atten_last_status);
             if(sub.atten_last_status.equalsIgnoreCase("absent"))
-                status.setTextColor(Color.parseColor("#FF0000"));
+                holder.status.setTextColor(Color.parseColor("#FF0000"));
         }
         else {
-            status.setText("");
-            date.setText("");
+            holder.status.setText("");
+            holder.date.setText("");
         }
 
-        ProgressBar pg= (ProgressBar) view.findViewById(R.id.progress);
         float x[]={5,5,5,5,5,5,5,5};
         ShapeDrawable pgDrawable = new ShapeDrawable(new RoundRectShape(x, null,null));
         pgDrawable.getPaint().setColor(DataHandler.getPerColor(sub.percentage));
         ClipDrawable progress = new ClipDrawable(pgDrawable, Gravity.LEFT, ClipDrawable.HORIZONTAL);
-        pg.setProgressDrawable(progress);
+        holder.prg.setProgressDrawable(progress);
 
-        pg.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.progress_bar_green));
+        holder.prg.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.progress_bar_green));
 
-        pg.setMax(sub.conducted);
-        pg.setProgress(sub.attended);
-        pg.invalidate();
-        return view;
+        holder.prg.setMax(sub.conducted);
+        holder.prg.setProgress(sub.attended);
+        holder.prg.invalidate();
+        return convertView;
     }
-
-
 }
