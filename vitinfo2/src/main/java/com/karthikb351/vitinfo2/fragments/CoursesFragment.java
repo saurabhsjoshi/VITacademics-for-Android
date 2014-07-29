@@ -121,7 +121,7 @@ public class CoursesFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try{
-            subs = new DataHandler(getActivity()).getAllSubjects();
+            subs = DataHandler.getInstance(getActivity()).getAllSubjects();
             }catch (Exception e){e.printStackTrace();}
             return null;
         }

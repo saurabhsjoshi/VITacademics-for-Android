@@ -31,7 +31,7 @@ public class Screen2 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_newuser_2,container, false);
 
-        dat = new DataHandler(getActivity());
+        dat = DataHandler.getInstance(getActivity());
 
         ((ActionBarActivity)getActivity()).getSupportActionBar().setTitle("Credentials");
 

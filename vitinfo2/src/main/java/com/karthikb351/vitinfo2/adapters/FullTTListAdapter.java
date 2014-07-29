@@ -29,7 +29,7 @@ public class FullTTListAdapter extends ArrayAdapter<TTSlot> {
     public FullTTListAdapter(Context context, ArrayList<TTSlot> items){
         super(context, 0, items);
         mInflater = LayoutInflater.from(context);
-        dat = new DataHandler(context);
+        dat = DataHandler.getInstance(context);
     }
 
     @Override

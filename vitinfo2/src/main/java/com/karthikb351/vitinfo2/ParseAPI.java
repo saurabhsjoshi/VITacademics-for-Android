@@ -19,7 +19,7 @@ public class ParseAPI {
 
     public ParseAPI(Context context){
         this.context = context;
-        dat = new DataHandler(context);
+        dat = DataHandler.getInstance(context);
     }
 
     public void save_current_user(OnParseFinished listner){

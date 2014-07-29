@@ -153,7 +153,7 @@ public class Screen3 extends Fragment {
 
     private void checkIfDone(){
         if(ATTENDANCE_LOAD && TT_LOAD && PARSE_LOGIN){
-            new DataHandler(getActivity()).setNewUser(false);
+            DataHandler.getInstance(getActivity()).setNewUser(false);
             btn_go.setEnabled(true);
             btn_go.setBackgroundResource(R.drawable.round_shape_green);
             prg.setVisibility(View.GONE);

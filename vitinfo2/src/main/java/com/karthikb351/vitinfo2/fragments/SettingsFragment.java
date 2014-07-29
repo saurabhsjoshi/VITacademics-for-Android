@@ -28,7 +28,7 @@ public class SettingsFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        dat = new DataHandler(getActivity());
+        dat = DataHandler.getInstance(getActivity());
 
         final EditText txt_regno = (EditText) view.findViewById(R.id.txt_settings_regno);
         final DatePicker datePicker = (DatePicker) view.findViewById(R.id.datePicker);

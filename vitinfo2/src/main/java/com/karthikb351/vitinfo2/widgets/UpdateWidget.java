@@ -36,7 +36,7 @@ public class UpdateWidget extends Service {
         int back = intent.getIntExtra("back", 2);
 
         //GET DATA
-        DataHandler dat = new DataHandler(getApplicationContext());
+        DataHandler dat = DataHandler.getInstance(getApplicationContext());
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = preferences.edit();
 

@@ -128,7 +128,7 @@ public class Settings extends PreferenceActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
-                                new DataHandler(context).setNewUser(true);
+                                DataHandler.getInstance(context).setNewUser(true);
                                 DataHandler.DELETE_ALL_DATA(context);
                                 startActivity(new Intent(context, Home.class));
                                 break;
@@ -156,7 +156,7 @@ public class Settings extends PreferenceActivity {
                                     public void onTaskCompleted(ParseException e) {
                                         if(e!=null)
                                             e.printStackTrace();
-                                        new DataHandler(context).setFbLogin(false);
+                                        DataHandler.getInstance(context).setFbLogin(false);
                                         Toast.makeText(context, "Facebook Logout Complete!", Toast.LENGTH_SHORT).show();
                                     }
                                 });

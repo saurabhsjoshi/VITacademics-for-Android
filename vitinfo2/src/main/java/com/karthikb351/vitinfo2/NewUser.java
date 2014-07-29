@@ -53,7 +53,7 @@ public class NewUser extends ActionBarActivity {
 
     //Radio Button in Settings Fragment Callback
     public void onRadioButtonClicked(View view) {
-        DataHandler dat = new DataHandler(this);
+        DataHandler dat = DataHandler.getInstance(this);
         boolean checked = ((RadioButton) view).isChecked();
         // Check which radio button was clicked
         switch(view.getId()) {

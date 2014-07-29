@@ -49,7 +49,7 @@ public class QRCodeFragment extends Fragment{
         int qrCodeDimention = 500;
         String code = ((Home) getActivity()).token;
         lbl_token.setText("PIN: " + code);
-        lbl_timerem.setText(new DataHandler(getActivity()).getTokenExpiryTimeString());
+        lbl_timerem.setText(DataHandler.getInstance(getActivity()).getTokenExpiryTimeString());
 
         QRCodeEncoder qrCodeEncoder = new QRCodeEncoder(code, null,
                 Contents.Type.TEXT, BarcodeFormat.QR_CODE.toString(), qrCodeDimention);
@@ -68,7 +68,7 @@ public class QRCodeFragment extends Fragment{
         diag = new ProgressDialog(getActivity());
         diag.setMessage("Loading");
         diag.setCancelable(false);
-        new DataHandler(getActivity()).saveToken("");
+        DataHandler.getInstance(getActivity()).saveToken("");
         diag.show();
         VITxAPI api = new VITxAPI(getActivity(), new OnTaskComplete() {
             @Override

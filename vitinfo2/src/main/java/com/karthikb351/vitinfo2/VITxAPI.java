@@ -58,7 +58,7 @@ public class VITxAPI {
     public VITxAPI(Context context, OnTaskComplete listner){
         //Initialize with a result listner and context
         this.listner = listner;
-        this.dat = new DataHandler(context);
+        this.dat = DataHandler.getInstance(context);
         setUrls();
     }
 

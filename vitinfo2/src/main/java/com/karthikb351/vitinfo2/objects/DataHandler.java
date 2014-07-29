@@ -32,12 +32,20 @@ public class DataHandler {
     public Context context;
     SharedPreferences preferences;
 
+    private static DataHandler mInstance;
+
     public DataHandler(Context context){
         this.context = context;
         try
         {
             preferences = PreferenceManager.getDefaultSharedPreferences(context);
         }catch (Exception ignore){}
+    }
+
+    public static DataHandler getInstance(Context context){
+        if(mInstance == null)
+            mInstance = new DataHandler(context.getApplicationContext());
+        return mInstance;
     }
 
     public static void DELETE_ALL_DATA(Context context){

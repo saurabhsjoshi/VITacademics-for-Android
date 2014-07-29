@@ -30,7 +30,7 @@ public class CoursesListAdapter extends ArrayAdapter<Subject> {
 
     public CoursesListAdapter(Context context,  ArrayList<Subject> subs){
         super(context,0 , subs);
-        dat = new DataHandler(context);
+        dat = DataHandler.getInstance(context);
         inflater = LayoutInflater.from(context);
         this.context = context;
     }

@@ -55,7 +55,7 @@ public class SubjectDetails extends ActionBarActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            sub = new DataHandler(context).getSubject(clsnbr);
+            sub = DataHandler.getInstance(context).getSubject(clsnbr);
             sub.putAttendanceDetails();
             sub.loadMarks();
             return null;

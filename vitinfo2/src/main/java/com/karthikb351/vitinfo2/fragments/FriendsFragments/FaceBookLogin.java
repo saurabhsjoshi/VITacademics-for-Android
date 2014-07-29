@@ -77,7 +77,7 @@ public class FaceBookLogin extends Fragment{
                                         @Override
                                         public void onTaskCompleted(ParseException e) {
                                             if (e == null) {
-                                                new DataHandler(getActivity()).setFbLogin(true);
+                                                DataHandler.getInstance(getActivity()).setFbLogin(true);
                                                 Toast.makeText(getActivity(), "Signed in!", Toast.LENGTH_SHORT).show();
                                                 ((Home) getActivity()).selectItem_Async(3);
                                                 Log.i("VITacademics PARSE API", "Done");
@@ -99,7 +99,7 @@ public class FaceBookLogin extends Fragment{
                 }
              });
         }
-        else{((Home) getActivity()).selectItem_Async(3); pdia.dismiss();new DataHandler(getActivity()).setFbLogin(true);
+        else{((Home) getActivity()).selectItem_Async(3); pdia.dismiss();DataHandler.getInstance(getActivity()).setFbLogin(true);
             Toast.makeText(getActivity(), "Signed in!" , Toast.LENGTH_SHORT).show();}
     }
 

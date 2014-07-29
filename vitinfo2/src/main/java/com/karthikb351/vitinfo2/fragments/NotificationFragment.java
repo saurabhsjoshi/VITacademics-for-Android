@@ -63,7 +63,7 @@ public class NotificationFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            msgs = new DataHandler(getActivity()).getAllPushMessage();
+            msgs = DataHandler.getInstance(getActivity()).getAllPushMessage();
             return null;
         }
 
@@ -79,7 +79,7 @@ public class NotificationFragment extends Fragment {
                     Runnable runnable = new Runnable() {
                         @Override
                         public void run() {
-                            new DataHandler(getActivity()).deletePushMessage(m);
+                            DataHandler.getInstance(getActivity()).deletePushMessage(m);
                             handler.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -102,7 +102,7 @@ public class NotificationFragment extends Fragment {
 
         protected void onPostExecute(Void voids) {
             try {
-                String msg = new JSONObject(new DataHandler(getActivity()).getServerStatus()).getString("msg_content");
+                String msg = new JSONObject(DataHandler.getInstance(getActivity()).getServerStatus()).getString("msg_content");
                 NotificationListAdapter nla = new NotificationListAdapter(msgs, new RecyclerViewOnClickListener() {
                     @Override
                     public void onClick(final Object obj, boolean isLongPress) {

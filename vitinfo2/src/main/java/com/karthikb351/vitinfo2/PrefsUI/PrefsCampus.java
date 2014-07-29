@@ -21,7 +21,7 @@ public class PrefsCampus extends DialogPreference {
     public PrefsCampus(Context context, AttributeSet attrs){
         super(context, attrs);
         setDialogLayoutResource(R.layout.prefdialog_campus);
-        dat = new DataHandler(context);
+        dat = DataHandler.getInstance(context);
     }
 
     @Override

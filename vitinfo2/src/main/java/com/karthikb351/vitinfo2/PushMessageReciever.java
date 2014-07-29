@@ -27,7 +27,7 @@ public class PushMessageReciever extends BroadcastReceiver {
             msg.title = json.getString("alert");
             msg.message = json.getString("message");
 
-            new DataHandler(context).addPushMessage(msg);
+            DataHandler.getInstance(context).addPushMessage(msg);
         } catch (JSONException e) {
             Log.d(TAG, "JSONException: " + e.getMessage());
         }

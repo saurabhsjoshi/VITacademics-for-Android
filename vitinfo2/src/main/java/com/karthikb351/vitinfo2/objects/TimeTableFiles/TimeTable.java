@@ -20,7 +20,7 @@ public class TimeTable{
     String[] slts_today;
 
     public TimeTable(Context context){
-        dat = new DataHandler(context);
+        dat = DataHandler.getInstance(context);
     }
 
     /* Get slots number for each day */

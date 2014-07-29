@@ -22,7 +22,7 @@ public class PrefsDob extends DialogPreference {
     public PrefsDob(Context context, AttributeSet attrs){
         super(context, attrs);
         setDialogLayoutResource(R.layout.prefdialog_datepicker);
-        dat = new DataHandler(context);
+        dat = DataHandler.getInstance(context);
         setPositiveButtonText("Ok");
         setNegativeButtonText("Cancel");
     }

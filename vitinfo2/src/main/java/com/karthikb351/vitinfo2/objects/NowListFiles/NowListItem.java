@@ -46,7 +46,7 @@ public class NowListItem implements NowItem {
         TextView lbl_per = (TextView) view.findViewById(R.id.lbl_now_att_now);
         TextView lbl_timing = (TextView) view.findViewById(R.id.lbl_now_timing);
 
-        DataHandler dat = new DataHandler(context);
+        DataHandler dat = DataHandler.getInstance(context);
         Subject subject = dat.getSubject(ttSlot.clsnbr);
 
         lbl_subject.setText(subject.title);

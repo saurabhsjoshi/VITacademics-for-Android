@@ -36,7 +36,7 @@ public class AttendanceDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_attendance_details,container, false);
-        dat = new DataHandler(context);
+        dat = DataHandler.getInstance(context);
 
         tv_title=(TextView)v.findViewById(R.id.title_detailed);
         tv_slot=(TextView)v.findViewById(R.id.slot_detailed);

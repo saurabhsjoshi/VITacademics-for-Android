@@ -86,7 +86,7 @@ public class FriendsFragment extends Fragment {
         listView.setHasFixedSize(false);
 
         setHasOptionsMenu(true);
-        dat = new DataHandler(getActivity());
+        dat = DataHandler.getInstance(getActivity());
         zxingLibConfig = new ZXingLibConfig();
         zxingLibConfig.useFrontLight = true;
 
@@ -422,7 +422,7 @@ public class FriendsFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
             try
             {
-                friends = new DataHandler(getActivity()).getFreinds();
+                friends = DataHandler.getInstance(getActivity()).getFreinds();
                 for(int i = 0; i < friends.size(); i++)
                 {
                     if(friends.get(i).isFb){
@@ -527,7 +527,7 @@ public class FriendsFragment extends Fragment {
             if(!haveNetworkConnection())
                 return null;
             try {
-                friends = new DataHandler(getActivity()).getFreinds();
+                friends = DataHandler.getInstance(getActivity()).getFreinds();
                 for(int i = 0; i < friends.size(); i++){
                     if (isCancelled())
                         return null;
