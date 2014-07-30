@@ -48,7 +48,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_list_item, parent, false);
         v.setOnLongClickListener(this);
-        v.setOnLongClickListener(this);
+        v.setOnClickListener(this);
         return new ViewHolder(v);
     }
 
@@ -63,8 +63,8 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
 
         public ViewHolder(View itemView) {
             super(itemView);
-            message = (TextView) itemView.findViewById(R.id.lbl_title);
-            title = (TextView) itemView.findViewById(R.id.lbl_message);
+            message = (TextView) itemView.findViewById(R.id.lbl_message);
+            title = (TextView) itemView.findViewById(R.id.lbl_title);
         }
     }
 

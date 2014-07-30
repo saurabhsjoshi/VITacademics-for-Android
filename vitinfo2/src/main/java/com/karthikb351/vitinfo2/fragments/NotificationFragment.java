@@ -69,7 +69,6 @@ public class NotificationFragment extends Fragment {
 
         private void showDeleteDialog(final PushMessage m){
             final Handler handler = new Handler();
-
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setTitle("Display Name");
             builder.setMessage("Delete push message?");
