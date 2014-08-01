@@ -70,7 +70,8 @@ public class FullTTListFragment extends Fragment{
                 break;
         }
 
-        listView.setAdapter(new FullTTListAdapter(context, ttSlots));
+        if(ttSlots != null && ttSlots.size() != 0)
+            listView.setAdapter(new FullTTListAdapter(context, ttSlots));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

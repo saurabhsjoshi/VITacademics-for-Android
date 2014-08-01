@@ -61,7 +61,9 @@ public class Screen2 extends Fragment {
                         }
                         else {
                             NewUser nw = (NewUser) getActivity();
-                            nw.changeScreen(2);
+                            //Check if dumb user has closed the app
+                            if(nw != null)
+                                nw.changeScreen(2);
                         }
                     }
                 });

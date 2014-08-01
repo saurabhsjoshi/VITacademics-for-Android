@@ -72,6 +72,8 @@ public class CoursesListAdapter extends ArrayAdapter<Subject> {
             holder.status.setText(sub.atten_last_status);
             if(sub.atten_last_status.equalsIgnoreCase("absent"))
                 holder.status.setTextColor(Color.parseColor("#FF0000"));
+            else
+                holder.status.setTextColor(Color.parseColor("#000000"));
         }
         else {
             holder.status.setText("");

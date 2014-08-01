@@ -69,41 +69,44 @@ public class UpdateWidget extends Service {
 
             Subject sub;
 
-            //LOAD THE DATA
-            sub = dat.getSubwithPos(cur);
+            //Dont crash in case there is no data!
+            try {
+                //LOAD THE DATA
+                sub = dat.getSubwithPos(cur);
 
-            //SET DATA OF THE SUBJECT
-            remoteViews.setTextViewText(R.id.lbl_wid_sub , sub.title);
-            remoteViews.setProgressBar(R.id.prg_wid_per, sub.conducted, sub.attended , false);
-            remoteViews.setTextViewText(R.id.lbl_wid_slt, sub.slot+" ");
-            remoteViews.setTextViewText(R.id.lbl_wid_per, String.valueOf(sub.percentage)+"%");
+                //SET DATA OF THE SUBJECT
+                remoteViews.setTextViewText(R.id.lbl_wid_sub, sub.title);
+                remoteViews.setProgressBar(R.id.prg_wid_per, sub.conducted, sub.attended, false);
+                remoteViews.setTextViewText(R.id.lbl_wid_slt, sub.slot + " ");
+                remoteViews.setTextViewText(R.id.lbl_wid_per, String.valueOf(sub.percentage) + "%");
 
-            //ONCLICK LISTENERS DONT CHANGE THESE
-            Intent clickIntent = new Intent(this.getApplicationContext(),ProviderWidget.class);
-            Intent clickIntent2 = new Intent(this.getApplicationContext(),ProviderWidget.class);
-            Intent open_Intent = new Intent(this.getApplicationContext(), SubjectDetails.class);
+                //ONCLICK LISTENERS DONT CHANGE THESE
+                Intent clickIntent = new Intent(this.getApplicationContext(), ProviderWidget.class);
+                Intent clickIntent2 = new Intent(this.getApplicationContext(), ProviderWidget.class);
+                Intent open_Intent = new Intent(this.getApplicationContext(), SubjectDetails.class);
 
-            open_Intent.putExtra("clsnbr", sub.classnbr);
+                open_Intent.putExtra("clsnbr", sub.classnbr);
 
-            clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-            clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,allWidgetIds);
-            clickIntent.putExtra("back",0);
+                clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, allWidgetIds);
+                clickIntent.putExtra("back", 0);
 
-            clickIntent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-            clickIntent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,allWidgetIds);
-            clickIntent2.putExtra("back",1);
+                clickIntent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                clickIntent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, allWidgetIds);
+                clickIntent2.putExtra("back", 1);
 
-            PendingIntent open_pendingIntent = PendingIntent.getActivity(getApplicationContext(), 3, open_Intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, clickIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-            PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getApplicationContext(), 1, clickIntent2,PendingIntent.FLAG_UPDATE_CURRENT);
-            remoteViews.setOnClickPendingIntent(R.id.img_wid_nxt , pendingIntent);
-            remoteViews.setOnClickPendingIntent(R.id.img_wid_bck , pendingIntent2);
-            remoteViews.setOnClickPendingIntent(R.id.lbl_wid_sub, open_pendingIntent);
-            remoteViews.setOnClickPendingIntent(R.id.prg_wid_per, open_pendingIntent);
-            remoteViews.setOnClickPendingIntent(R.id.lbl_wid_slt, open_pendingIntent);
-            remoteViews.setOnClickPendingIntent(R.id.lbl_wid_per, open_pendingIntent);
+                PendingIntent open_pendingIntent = PendingIntent.getActivity(getApplicationContext(), 3, open_Intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, clickIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getApplicationContext(), 1, clickIntent2, PendingIntent.FLAG_UPDATE_CURRENT);
+                remoteViews.setOnClickPendingIntent(R.id.img_wid_nxt, pendingIntent);
+                remoteViews.setOnClickPendingIntent(R.id.img_wid_bck, pendingIntent2);
+                remoteViews.setOnClickPendingIntent(R.id.lbl_wid_sub, open_pendingIntent);
+                remoteViews.setOnClickPendingIntent(R.id.prg_wid_per, open_pendingIntent);
+                remoteViews.setOnClickPendingIntent(R.id.lbl_wid_slt, open_pendingIntent);
+                remoteViews.setOnClickPendingIntent(R.id.lbl_wid_per, open_pendingIntent);
 
-            appWidgetManager.updateAppWidget(widgetId, remoteViews);
+                appWidgetManager.updateAppWidget(widgetId, remoteViews);
+            }catch (Exception e){e.printStackTrace();}
 
         }
         stopSelf();
