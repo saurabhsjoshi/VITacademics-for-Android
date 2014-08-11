@@ -97,6 +97,14 @@ public class Home extends ActionBarActivity {
             overridePendingTransition(R.anim.enter, R.anim.exit);
         }
 
+        if(!dat.isVellore()){
+            Toast.makeText(getApplicationContext(), "Chennai campus no longer supported. Sorry!", Toast.LENGTH_LONG).show();
+            isActive = false;
+            startActivity(new Intent(this, NewUser.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK));
+            overridePendingTransition(R.anim.enter, R.anim.exit);
+
+        }
+
         if(BuildConfig.DEBUG) {
             GoogleAnalytics googleAnalytics = GoogleAnalytics.getInstance(getApplicationContext());
             googleAnalytics.setAppOptOut(true);
