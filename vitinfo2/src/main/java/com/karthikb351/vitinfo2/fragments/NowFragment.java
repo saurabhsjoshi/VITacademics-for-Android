@@ -240,7 +240,8 @@ public class NowFragment extends Fragment {
 
 
             if(!dat.getviewShowCase()){
-                getActivity().startActivity(new Intent(getActivity(), TeamScreen.class));
+                if(getActivity() != null)
+                    getActivity().startActivity(new Intent(getActivity(), TeamScreen.class));
                 ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
                 f.hideOnClickOutside = false;
                 f.centerText = true;
