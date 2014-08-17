@@ -16,18 +16,12 @@ import com.karthikb351.vitinfo2.objects.Subject;
 
 import java.util.ArrayList;
 
-;
-
 /**
  * Created by saurabh on 4/30/14.
  */
 public class MarksDetailsFragment extends Fragment {
     public Subject subject;
     public float total = 0;
-
-    public MarksDetailsFragment(){
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

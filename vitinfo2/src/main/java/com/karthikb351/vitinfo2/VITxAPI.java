@@ -312,8 +312,12 @@ public class VITxAPI {
                 }
 
                 String result = EntityUtils.toString(res.getEntity());
-                if(result.contains("valid"))
+                if(result.contains("valid")){
                     dat.saveJSON(result);
+                    res = getResponse(MARKS_URL);
+                    result = EntityUtils.toString(res.getEntity());
+                    dat.saveMarks(result);
+                }
                 else if(result.equals("timedout"))
                     e = new Exception("needref");
                 else
