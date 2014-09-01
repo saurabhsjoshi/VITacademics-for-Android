@@ -23,15 +23,10 @@ import java.util.ArrayList;
  * Created by saurabh on 4/28/14.
  */
 public class CoursesListAdapter extends ArrayAdapter<Subject> {
-
-    private LayoutInflater inflater;
-    private DataHandler dat;
     private Context context;
 
     public CoursesListAdapter(Context context,  ArrayList<Subject> subs){
         super(context,0 , subs);
-        dat = DataHandler.getInstance(context);
-        inflater = LayoutInflater.from(context);
         this.context = context;
     }
 
@@ -43,8 +38,11 @@ public class CoursesListAdapter extends ArrayAdapter<Subject> {
     @Override
     public View getView ( int position, View convertView, ViewGroup parent ) {
         ViewHolder holder;
-        if(convertView == null)
-        {
+
+        //Recycling of progress bar colors not working :/
+        //if(convertView == null)
+        //{
+            LayoutInflater inflater = LayoutInflater.from(context);
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.courses_list_item,parent, false);
             holder.title = (TextView) convertView.findViewById(R.id.title);
@@ -55,10 +53,11 @@ public class CoursesListAdapter extends ArrayAdapter<Subject> {
             holder.date = (TextView) convertView.findViewById(R.id.atten_listitem_date);
             holder.prg = (ProgressBar) convertView.findViewById(R.id.progress);
             convertView.setTag(holder);
-        }
+        //}
 
-        else
-            holder = (ViewHolder)convertView.getTag();
+
+        //else
+          //  holder = (ViewHolder)convertView.getTag();
 
         Subject sub = getItem(position);
 
@@ -84,13 +83,12 @@ public class CoursesListAdapter extends ArrayAdapter<Subject> {
         ShapeDrawable pgDrawable = new ShapeDrawable(new RoundRectShape(x, null,null));
         pgDrawable.getPaint().setColor(DataHandler.getPerColor(sub.percentage));
         ClipDrawable progress = new ClipDrawable(pgDrawable, Gravity.LEFT, ClipDrawable.HORIZONTAL);
+
         holder.prg.setProgressDrawable(progress);
-
         holder.prg.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.progress_bar_green));
-
         holder.prg.setMax(sub.conducted);
         holder.prg.setProgress(sub.attended);
-        holder.prg.invalidate();
+
         return convertView;
     }
 }
