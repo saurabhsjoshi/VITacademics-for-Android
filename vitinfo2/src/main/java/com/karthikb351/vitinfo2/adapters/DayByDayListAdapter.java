@@ -33,15 +33,15 @@ public class DayByDayListAdapter extends ArrayAdapter<Attendance> {
     @Override
     public View getView ( int position, View convertview, ViewGroup parent ) {
         ViewHolder holder;
-        if(convertview == null){
+        //if(convertview == null){
             convertview = inflater.inflate(R.layout.day_by_day_list_item, parent, false);
             holder = new ViewHolder();
             holder.date = (TextView) convertview.findViewById(R.id.atten_detail_date);
             holder.status = (TextView) convertview.findViewById(R.id.atten_detail_status);
             convertview.setTag(holder);
-        }
-        else
-            holder = (ViewHolder) convertview.getTag();
+        //}
+        //else
+           // holder = (ViewHolder) convertview.getTag();
 
         holder.date.setText(att[position].getDate());
         holder.status.setText(att[position].getStatus());

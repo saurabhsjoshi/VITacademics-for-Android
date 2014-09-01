@@ -22,7 +22,6 @@ public class DayByDayFragment extends Fragment {
     public Context context;
 
     public DayByDayFragment(){
-
     }
 
     @Override
