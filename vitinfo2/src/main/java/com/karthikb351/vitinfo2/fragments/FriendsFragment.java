@@ -28,7 +28,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.espian.showcaseview.ShowcaseView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.karthikb351.vitinfo2.Application;
@@ -45,7 +44,6 @@ import com.karthikb351.vitinfo2.objects.RecyclerViewOnClickListener;
 import com.koushikdutta.ion.Ion;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -462,10 +460,7 @@ public class FriendsFragment extends Fragment {
 
             if(friends.size() >= 1){
                 if(!dat.getviewShowCaseFrnd()){
-                    ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
-                    f.hideOnClickOutside = false;
-                    f.centerText = true;
-                    //ShowcaseView.insertShowcaseView(listView, getActivity(), "Delete", "To delete friend swipe from the right", f).setScaleMultiplier(2f);
+
                     dat.saveviewShowCaseFrnd(true);
                 }
             }

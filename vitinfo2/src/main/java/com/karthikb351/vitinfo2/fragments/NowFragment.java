@@ -4,7 +4,6 @@ package com.karthikb351.vitinfo2.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.espian.showcaseview.ShowcaseView;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.karthikb351.vitinfo2.Application;
@@ -242,13 +240,7 @@ public class NowFragment extends Fragment {
             if(!dat.getviewShowCase()){
                 if(getActivity() != null)
                     getActivity().startActivity(new Intent(getActivity(), TeamScreen.class));
-                ShowcaseView.ConfigOptions f = new ShowcaseView.ConfigOptions();
-                f.hideOnClickOutside = false;
-                f.centerText = true;
 
-                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB) {
-                    ShowcaseView.insertShowcaseView(getActivity().findViewById(android.R.id.home), getActivity(), "Drawer", "Tap the icon or swipe from left to access the menu.", f);
-                }
                 dat.saveviewShowCase(true);
             }
         }
