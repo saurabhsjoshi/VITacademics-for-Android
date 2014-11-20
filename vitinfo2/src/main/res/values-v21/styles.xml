@@ -17,12 +17,15 @@
      limitations under the License.
 -->
 
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_enabled="false"
-        android:drawable="@drawable/spinner_ab_disabled_style1" />
-    <item android:state_pressed="true"
-        android:drawable="@drawable/spinner_ab_pressed_style1" />
-    <item android:state_pressed="false" android:state_focused="true"
-        android:drawable="@drawable/spinner_ab_focused_style1" />
-    <item android:drawable="@drawable/spinner_ab_default_style1" />
-</selector>
+<resources>
+
+    <style name="Theme.Style1" parent="@style/Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/branding</item>
+        <item name="colorAccent">@color/branding</item>
+        <item name="colorPrimaryDark">@color/statusBranding</item>
+        <item name="android:statusBarColor">@color/statusBranding</item>
+        <item name="windowActionBar">false</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+    </style>
+
+</resources>

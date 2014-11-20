@@ -12,13 +12,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.IntentCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,7 +53,12 @@ import org.json.JSONObject;
  * Created by saurabh on 4/22/14.
  */
 
-public class Home extends ActionBarActivity {
+public class Home extends BaseActivity {
+
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_home;
+    }
 
     //Initialize drawer tabs
     private String[] titles = { "Today", "Courses", "Timetable","Friends", "Notifications", "Campus Map", "Settings"};
@@ -82,11 +85,9 @@ public class Home extends ActionBarActivity {
     private boolean mResumed = false;
     private boolean mWriteMode = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         DataHandler dat = DataHandler.getInstance(this);
         new ParseAPI(this).parseInit();
 
@@ -110,38 +111,23 @@ public class Home extends ActionBarActivity {
             googleAnalytics.setAppOptOut(true);
         }
 
-        setContentView(R.layout.activity_home);
+
 
         mTitle = mDrawerTitle = getTitle();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         final Activity a = this;
-        mDrawerToggle = new ActionBarDrawerToggle(this,
-                mDrawerLayout,
-                R.drawable.ic_drawer,
-                R.string.drawer_open,
-                R.string.drawer_close)
-        {
 
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                getSupportActionBar().setTitle(mTitle);
-                ActivityCompat.invalidateOptionsMenu(a); // creates call to onPrepareOptionsMenu()
-            }
-
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                getSupportActionBar().setTitle(mDrawerTitle);
-                ActivityCompat.invalidateOptionsMenu(a); // creates call to onPrepareOptionsMenu()
-            }
-        };
+        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, getToolbar(), R.string.drawer_open, R.string.drawer_close
+        );
 
         //Enable actionbar support for the drawer
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        mDrawerToggle.syncState();
 
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -156,7 +142,7 @@ public class Home extends ActionBarActivity {
             mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
             if(mNfcAdapter!=null){
                 hasNFC = true;
-                mNfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+                mNfcPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, ((Object) this).getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
                 // Intent filters for exchanging over p2p.
                 IntentFilter ndefDetected = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
                 try {
@@ -299,7 +285,7 @@ public class Home extends ActionBarActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
+        //mDrawerToggle.syncState();
     }
 
     @Override
