@@ -56,9 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/lbl_settings_dob"
             android:layout_centerHorizontal="true"
-            android:calendarViewShown="false"
             android:keepScreenOn="true"
-            android:endYear="2015"/>
+            android:endYear="1992"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/lbl_settings_campus"
