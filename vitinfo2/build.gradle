@@ -24,7 +24,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:21.0.0'
     compile 'com.google.android.gms:play-services:+'
     compile project(':facebook')
-    compile project(':showcaseview')
     compile project(':robototextview')
     compile project(":hololib")
 }

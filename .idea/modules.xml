@@ -7,7 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/facebook/facebook.iml" filepath="$PROJECT_DIR$/facebook/facebook.iml" />
       <module fileurl="file://$PROJECT_DIR$/hololib/hololib.iml" filepath="$PROJECT_DIR$/hololib/hololib.iml" />
       <module fileurl="file://$PROJECT_DIR$/robototextview/robototextview.iml" filepath="$PROJECT_DIR$/robototextview/robototextview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/showcaseview/showcaseview.iml" filepath="$PROJECT_DIR$/showcaseview/showcaseview.iml" />
       <module fileurl="file://$PROJECT_DIR$/vitinfo2/vitinfo2.iml" filepath="$PROJECT_DIR$/vitinfo2/vitinfo2.iml" />
     </modules>
   </component>

@@ -22,4 +22,6 @@
     <color name="zxinglib_result_image_border">#ffffffff</color>
     <color name="zxinglib_result_points">#c000ff00</color>
     <color name="zxinglib_status_text">#ffffffff</color>
+    <color name="branding">#03A9F4</color>
+    <color name="statusBranding">#0277BD</color>
 </resources>

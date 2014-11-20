@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.Window;
 
@@ -20,17 +19,21 @@ import com.viewpagerindicator.TitlePageIndicator;
 /**
  * Created by saurabh on 4/30/14.
  */
-public class SubjectDetails extends ActionBarActivity {
+public class SubjectDetails extends BaseActivity {
     private String clsnbr;
     private ViewPager pager;
     private TitlePageIndicator titlePageIndicator;
     Context context;
 
     @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_subjectdetails;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setContentView(R.layout.activity_subjectdetails);
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -50,7 +53,6 @@ public class SubjectDetails extends ActionBarActivity {
 
         protected void onPreExecute(){
             sub = new Subject();
-            setSupportProgressBarIndeterminateVisibility(true);
         }
 
         @Override
@@ -65,7 +67,6 @@ public class SubjectDetails extends ActionBarActivity {
             pager.setAdapter(new SubjecDetailsPagerAdapter(context, sub, ((FragmentActivity)context).getSupportFragmentManager()));
             titlePageIndicator.setViewPager(pager);
             titlePageIndicator.setTextColor(getResources().getColor(R.color.Gray));
-            setSupportProgressBarIndeterminateVisibility(false);
         }
 
     }

@@ -22,24 +22,24 @@
         >
 
         <com.devspark.robototextview.widget.RobotoTextView
-            android:id = "@+id/lbl_drawer_title"
+            android:id="@+id/lbl_drawer_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/White"
-            app:typeface="roboto_light"/>
+            android:textColor="@android:color/black"
+            app:typeface="roboto_regular"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
-            android:id = "@+id/lbl_drawer_subtitle"
+            android:id="@+id/lbl_drawer_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:singleLine="true"
-            android:textColor="@color/LightGrey"
-            app:typeface="roboto_light_italic"/>
+            android:textColor="@android:color/darker_gray"
+            app:typeface="roboto_regular"/>
 
     </LinearLayout>
 

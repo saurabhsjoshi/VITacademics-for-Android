@@ -19,13 +19,11 @@ public class TeamScreen extends ActionBarActivity implements View.OnClickListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
-
         Tracker t = ((Application) getApplication()).getTracker(Application.TrackerName.GLOBAL_TRACKER);
         t.setScreenName("TeamScreen");
         t.send(new HitBuilders.AppViewBuilder().build());
-
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);

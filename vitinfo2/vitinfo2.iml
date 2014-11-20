@@ -98,7 +98,6 @@
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.0" level="project" />
     <orderEntry type="module" module-name="robototextview" exported="" />
     <orderEntry type="module" module-name="hololib" exported="" />
-    <orderEntry type="module" module-name="showcaseview" exported="" />
     <orderEntry type="module" module-name="facebook" exported="" />
   </component>
 </module>

@@ -115,8 +115,8 @@ public class Settings extends PreferenceActivity {
         });
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-            getActionBar().setHomeButtonEnabled(true);
-            getActionBar().setDisplayHomeAsUpEnabled(true);
+            //getActionBar().setHomeButtonEnabled(true);
+           // getActionBar().setDisplayHomeAsUpEnabled(true);
         }
         addPreferencesFromResource(R.xml.activity_settings);
 
