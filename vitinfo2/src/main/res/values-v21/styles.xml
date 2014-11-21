@@ -21,7 +21,7 @@
 
     <style name="Theme.Style1" parent="@style/Theme.AppCompat.Light">
         <item name="colorPrimary">@color/branding</item>
-        <item name="colorAccent">@color/branding</item>
+        <item name="colorAccent">@color/accent</item>
         <item name="colorPrimaryDark">@color/statusBranding</item>
         <item name="android:statusBarColor">@color/statusBranding</item>
         <item name="windowActionBar">false</item>

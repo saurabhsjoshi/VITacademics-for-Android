@@ -68,6 +68,7 @@ public class Home extends BaseActivity {
     //Drawer ListView
     public DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
+    private DrawerListAdapter mDrawerListAdapter;
     private ActionBarDrawerToggle mDrawerToggle;
 
     //Check if this activity is alive still
@@ -130,9 +131,10 @@ public class Home extends BaseActivity {
         mDrawerToggle.syncState();
 
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
+        mDrawerListAdapter = new DrawerListAdapter(this,titles,subtitle,imgs);
         // Set the adapter for the list view
-        mDrawerList.setAdapter(new DrawerListAdapter(this, titles, subtitle, imgs));
+        mDrawerList.setAdapter(mDrawerListAdapter);
+
         //Set listner for actionbar drawer click
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -177,8 +179,11 @@ public class Home extends BaseActivity {
         public void onItemClick(AdapterView parent, View view, int position, long id) {
             // Highlight the selected item, update the title, and close the drawer
             mDrawerList.setItemChecked(position, true);
-            if(position != 6)
+
+            if(position != 6){
                 setTitle(titles[position]);
+                mDrawerListAdapter.setSelectedItem(position);
+            }
             mDrawerLayout.closeDrawer(mDrawerList);
             //Use Handler to avoid lag in the transaction
             if(position == 4)

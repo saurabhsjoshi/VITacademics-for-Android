@@ -27,13 +27,15 @@ public class SubjectDetails extends BaseActivity {
 
     @Override
     protected int getLayoutResource() {
+
+        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         return R.layout.activity_subjectdetails;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
