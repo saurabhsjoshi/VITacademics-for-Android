@@ -1,5 +1,8 @@
 ###VITacademics 2014 Update
 
+[![Build Status](https://travis-ci.org/saurabhsjoshi/VITacademics-for-Android.svg?branch=lollipop)](https://travis-ci.org/saurabhsjoshi/VITacademics-for-Android)
+![alt tag](https://travis-ci.org/saurabhsjoshi/VITacademics-for-Android.svg?branch=lollipop)
+
 - Built using Android Studio
 - Refreshed UI
 - Full scale Timetable support
