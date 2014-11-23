@@ -1,5 +1,35 @@
+#application files
+*.apk
+
+
+#files for dex VM
+*.dex
+
+gradle
 .gradle
-/local.properties
-/.idea/workspace.xml
+gradle.properties
+local.properties
+*.properties
+.idea
 .DS_Store
-/build
+
+#Eclipse
+*.classpath
+*.project
+
+*/proguard-project.txt
+*/proguard-rules.txt
+#Build Files
+build
+facebook/build
+hololib/build
+robototextview/build
+vitinfo2/build
+
+#Intelloj Project Files
+*.iml
+*.ipr
+*.iws
+
+#Log Files
+*.log

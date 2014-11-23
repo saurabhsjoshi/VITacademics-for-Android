@@ -20,7 +20,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:+'
     compile 'com.nineoldandroids:library:2.4.0+'
     compile 'com.android.support:recyclerview-v7:21.0.0'
-    compile 'com.google.android.gms:play-services:+'
+    compile 'com.google.android.gms:play-services:6.+'
     compile project(':facebook')
     compile project(':robototextview')
     compile project(":hololib")
