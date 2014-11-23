@@ -45,7 +45,7 @@
         android:minLines="2"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Data Structures and Algorithms"
-        android:textColor="@color/Black"
+        android:textColor="@android:color/black"
         app:typeface="roboto_light"
         android:textSize="18dp"
         android:layout_below="@+id/lbl_now_slot"

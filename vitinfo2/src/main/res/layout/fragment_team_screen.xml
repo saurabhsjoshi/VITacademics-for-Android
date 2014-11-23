@@ -31,7 +31,7 @@
             android:layout_marginTop="15dp"
             android:textSize="25sp"
             android:layout_below="@id/img_logo"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             android:text="TEAM"
             app:typeface="roboto_regular"
             />
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/lbl_sau_sub"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             android:text="Android | Windows Phone 8"
             android:textSize="13sp"
             android:layout_marginTop="2dp"
@@ -79,7 +79,7 @@
             android:id="@+id/lbl_sid_sub"
             android:text="iOS | Web | App Engine Backend"
             android:textSize="13sp"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             android:layout_marginTop="2dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_sid"
@@ -104,7 +104,7 @@
             android:text="App Engine Backend"
             android:textSize="13sp"
             android:layout_marginTop="2dp"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_kis"
             app:typeface="roboto_regular"/>
@@ -128,7 +128,7 @@
             android:text="Android | Design"
             android:textSize="13sp"
             android:layout_marginTop="2dp"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/lbl_vib"
             app:typeface="roboto_regular"/>
@@ -153,7 +153,7 @@
             android:textSize="13sp"
             android:layout_marginTop="2dp"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             android:layout_below="@id/lbl_kar"
             app:typeface="roboto_regular"/>
 
@@ -210,7 +210,7 @@
             android:textSize="10sp"
             android:layout_marginTop="2dp"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             android:layout_below="@id/iconlabel"
             app:typeface="roboto_regular"/>
 

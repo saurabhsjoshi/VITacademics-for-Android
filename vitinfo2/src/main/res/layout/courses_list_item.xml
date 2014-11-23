@@ -22,7 +22,7 @@
         android:layout_marginBottom="5dp"
         android:textSize="20sp"
         android:text="Really Long Title"
-        android:textColor="@color/Black"
+        android:textColor="@android:color/black"
         app:typeface="roboto_light"/>
 
     <com.devspark.robototextview.widget.RobotoTextView
@@ -33,7 +33,7 @@
         android:gravity="right"
         android:padding="5dp"
         app:typeface="roboto_condensed_light"
-        android:textColor="@color/Black"
+        android:textColor="@android:color/black"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <ProgressBar
@@ -54,7 +54,7 @@
         android:layout_alignParentLeft="true"
         android:padding="5dp"
         app:typeface="roboto_thin"
-        android:textColor="@color/Black"
+        android:textColor="@android:color/black"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Date" />
     <com.devspark.robototextview.widget.RobotoTextView
@@ -65,7 +65,7 @@
         android:layout_alignParentRight="true"
         android:padding="5dp"
         app:typeface="roboto_thin"
-        android:textColor="@color/Black"
+        android:textColor="@android:color/black"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Status" />
     <com.devspark.robototextview.widget.RobotoTextView

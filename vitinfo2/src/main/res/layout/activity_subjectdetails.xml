@@ -5,7 +5,7 @@
     android:id="@+id/ptr_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/light_background_start"
+    android:background="#F5F5F5"
     android:orientation="vertical">
 
     <include

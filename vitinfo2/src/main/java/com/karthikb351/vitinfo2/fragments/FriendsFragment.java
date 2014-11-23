@@ -73,11 +73,7 @@ public class FriendsFragment extends Fragment {
 
         mPullToRefreshLayout.setEnabled(false);
 
-        mPullToRefreshLayout.setColorSchemeColors(
-                getResources().getColor(R.color.HoloBright),
-                getResources().getColor(R.color.HoloOrange),
-                getResources().getColor(R.color.HoloGreen),
-                getResources().getColor(R.color.HoloRed));
+        mPullToRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.accent));
 
         listView = (RecyclerView) v.findViewById(R.id.enhanced_list);
         listView.setLayoutManager(new LinearLayoutManager(getActivity()));

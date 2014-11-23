@@ -91,11 +91,7 @@ public class CoursesFragment extends Fragment {
 
         mPullToRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
 
-        mPullToRefreshLayout.setColorSchemeColors(
-                getResources().getColor(R.color.HoloBright),
-                getResources().getColor(R.color.HoloOrange),
-                getResources().getColor(R.color.HoloGreen),
-                getResources().getColor(R.color.HoloRed));
+        mPullToRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.accent));
 
         mPullToRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

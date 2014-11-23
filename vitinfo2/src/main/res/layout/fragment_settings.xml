@@ -20,7 +20,7 @@
             android:singleLine="true"
             android:text="Registration Number"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             app:typeface="roboto_light" />
 
         <EditText
@@ -46,7 +46,7 @@
             android:singleLine="true"
             android:text="Date of Birth"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             app:typeface="roboto_light" />
 
         <DatePicker
@@ -71,7 +71,7 @@
             android:singleLine="true"
             android:text="Select your campus"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/Black"
+            android:textColor="@android:color/black"
             app:typeface="roboto_light" />
 
         <RadioGroup
