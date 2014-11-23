@@ -1,5 +1,32 @@
+#application files
+*.apk
+
+#files for dex VM
+*.dex
+
 .gradle
-/local.properties
-/.idea/workspace.xml
+gradle
+gradle.properties
+local.properties
+*.properties
+.idea
 .DS_Store
-/build
+
+#Eclipse
+*.classpath
+*.project
+
+
+#Build Files
+build
+facebook/build
+hololib/build
+robototextview/build
+vitinfo2/build
+#Intelloj Project Files
+*.iml
+*.ipr
+*.iws
+
+#Log Files
+*.log
