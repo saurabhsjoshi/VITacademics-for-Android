@@ -2,6 +2,8 @@ language: java
 jdk: 
 - oraclejdk8
 - openjdk7
+notifications:
+    slack: ccode:zXzZiShdgD1CEjP106bI0IOO
 before_install:
 # Install base Android SDK
 - sudo apt-get update -qq
