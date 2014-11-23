@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.RadioButton;
 
@@ -18,12 +17,15 @@ import com.karthikb351.vitinfo2.objects.DataHandler;
 /**
  * Created by saurabh on 4/26/14.
  */
-public class NewUser extends ActionBarActivity {
+public class NewUser extends BaseActivity {
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_newuser;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newuser);
         DataHandler.DELETE_ALL_DATA(this);
         changeScreen(0);
     }

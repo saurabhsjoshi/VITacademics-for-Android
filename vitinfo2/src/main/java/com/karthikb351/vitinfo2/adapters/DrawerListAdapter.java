@@ -1,6 +1,7 @@
 package com.karthikb351.vitinfo2.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +17,15 @@ import com.karthikb351.vitinfo2.R;
  * Created by saurabh on 4/22/14.
  */
 public class DrawerListAdapter extends BaseAdapter{
-
+    private int mSelectedItem = 0;
     String titles[], subtitle[];
     int img_resources[];
     private static LayoutInflater inflater=null;
-
+    private Context context;
 
     public DrawerListAdapter(Context context, String title[], String subtitle[],  int img[]){
         this.titles = title;
+        this.context = context;
         this.img_resources = img;
         this.subtitle = subtitle;
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -55,10 +57,28 @@ public class DrawerListAdapter extends BaseAdapter{
         TextView lbl_drawer_sub = (TextView) vi.findViewById(R.id.lbl_drawer_subtitle);
         ImageView img_drawer = (ImageView) vi.findViewById(R.id.img_drawer);
 
+        if(mSelectedItem < getCount())
+        {
+            if(mSelectedItem == i){
+                lbl_drawer.setTextColor(context.getResources().getColor(R.color.statusBranding));
+                lbl_drawer_sub.setTextColor(context.getResources().getColor(R.color.branding));
+            }
+
+            else{
+                lbl_drawer.setTextColor(Color.BLACK);
+                lbl_drawer_sub.setTextColor(Color.LTGRAY);
+            }
+
+        }
+
         lbl_drawer.setText(titles[i]);
         lbl_drawer_sub.setText(subtitle[i]);
         img_drawer.setImageResource(img_resources[i]);
 
         return vi;
+    }
+
+    public void setSelectedItem(int pos){
+        mSelectedItem = pos;
     }
 }
