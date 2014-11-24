@@ -18,6 +18,7 @@ import com.karthikb351.vitinfo2.objects.DataHandler;
  * Created by saurabh on 4/26/14.
  */
 public class NewUser extends BaseActivity {
+
     @Override
     protected int getLayoutResource() {
         return R.layout.activity_newuser;
