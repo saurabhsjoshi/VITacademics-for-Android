@@ -132,7 +132,7 @@ public class FriendsFragment extends Fragment {
                                         h.selectItem_Async(6);
                                         //NFC
                                     else{
-                                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+                                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
                                             if(((Home) getActivity()).hasNFC){
                                                 ((Home) getActivity()).enableNdefExchangeMode();
                                                 ((Home) getActivity()).selectItem_Async(7);
@@ -256,7 +256,7 @@ public class FriendsFragment extends Fragment {
                             builder.show();
                         }
                         else if(which == 3){
-                            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+                            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
                                 NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
 
                                 if(mNfcAdapter!=null && mNfcAdapter.isEnabled()){

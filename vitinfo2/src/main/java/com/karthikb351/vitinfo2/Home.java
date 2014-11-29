@@ -140,7 +140,7 @@ public class Home extends BaseActivity {
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         selectItem(dat.getDefUi());
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
             mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
             if(mNfcAdapter!=null){
                 hasNFC = true;
@@ -340,7 +340,7 @@ public class Home extends BaseActivity {
     }
 
     NdefMessage[] getNdefMessages(Intent intent) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
             // Parse the intent
             NdefMessage[] msgs = null;
             String action = intent.getAction();
@@ -375,7 +375,7 @@ public class Home extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         // NDEF exchange mode
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
             try{
                 if (!mWriteMode && NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
                     NdefMessage[] msgs = getNdefMessages(intent);
@@ -390,7 +390,7 @@ public class Home extends BaseActivity {
     }
 
     private NdefMessage getNoteAsNdef() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
             byte[] textBytes = token.getBytes();
             NdefRecord textRecord = new NdefRecord(NdefRecord.TNF_MIME_MEDIA, "text/plain".getBytes(),new byte[] {}, textBytes);
             //selectItem(3);
@@ -401,7 +401,7 @@ public class Home extends BaseActivity {
 
     public void disableNdefExchangeMode() {
         try {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
                 //mNfcAdapter.disableForegroundNdefPush(this);
                 //mNfcAdapter.disableForegroundDispatch(this);
             }
@@ -411,7 +411,7 @@ public class Home extends BaseActivity {
 
     public void enableNdefExchangeMode() {
         try{
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
                 mNfcAdapter.enableForegroundNdefPush(Home.this, getNoteAsNdef());
                 mNfcAdapter.enableForegroundDispatch(this, mNfcPendingIntent, mNdefExchangeFilters, null);
             }
@@ -423,7 +423,7 @@ public class Home extends BaseActivity {
         super.onPause();
         mResumed = false;
         try{
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
                 mNfcAdapter.disableForegroundNdefPush(this);
             }
         }catch (Exception ignore){}
@@ -434,7 +434,7 @@ public class Home extends BaseActivity {
         super.onResume();
         mResumed = true;
         try{
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH){
                 if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
                     NdefMessage[] messages = getNdefMessages(getIntent());
                     byte[] payload = messages[0].getRecords()[0].getPayload();
