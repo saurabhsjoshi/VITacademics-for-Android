@@ -56,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/lbl_settings_dob"
             android:layout_centerHorizontal="true"
+            android:datePickerMode="spinner"
             android:calendarViewShown="false"
             android:keepScreenOn="true"
             android:endYear="2015"/>
