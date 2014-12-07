@@ -18,16 +18,15 @@ import com.karthikb351.vitinfo2.R;
  */
 public class DrawerListAdapter extends BaseAdapter{
     private int mSelectedItem = 0;
-    String titles[], subtitle[];
+    String titles[];
     int img_resources[];
     private static LayoutInflater inflater=null;
     private Context context;
 
-    public DrawerListAdapter(Context context, String title[], String subtitle[],  int img[]){
+    public DrawerListAdapter(Context context, String title[], int img[]){
         this.titles = title;
         this.context = context;
         this.img_resources = img;
-        this.subtitle = subtitle;
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
@@ -54,25 +53,22 @@ public class DrawerListAdapter extends BaseAdapter{
             vi = inflater.inflate(R.layout.drawer_list_item, viewGroup, false);
 
         TextView lbl_drawer = (TextView) vi.findViewById(R.id.lbl_drawer_title);
-        TextView lbl_drawer_sub = (TextView) vi.findViewById(R.id.lbl_drawer_subtitle);
         ImageView img_drawer = (ImageView) vi.findViewById(R.id.img_drawer);
 
         if(mSelectedItem < getCount())
         {
             if(mSelectedItem == i){
-                lbl_drawer.setTextColor(context.getResources().getColor(R.color.statusBranding));
-                lbl_drawer_sub.setTextColor(context.getResources().getColor(R.color.branding));
+                lbl_drawer.setTextColor(context.getResources().getColor(R.color.accent));
+                vi.setBackgroundColor(Color.parseColor("#fff4f4f4"));
             }
-
             else{
                 lbl_drawer.setTextColor(Color.BLACK);
-                lbl_drawer_sub.setTextColor(Color.LTGRAY);
+                vi.setBackgroundColor(Color.TRANSPARENT);
             }
 
-        }
 
+        }
         lbl_drawer.setText(titles[i]);
-        lbl_drawer_sub.setText(subtitle[i]);
         img_drawer.setImageResource(img_resources[i]);
 
         return vi;

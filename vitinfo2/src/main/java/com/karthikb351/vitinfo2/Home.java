@@ -1,6 +1,5 @@
 package com.karthikb351.vitinfo2;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -62,7 +61,6 @@ public class Home extends BaseActivity {
 
     //Initialize drawer tabs
     private String[] titles = { "Today", "Courses", "Timetable","Friends", "Notifications", "Campus Map", "Settings"};
-    private String[] subtitle = { "Realtime Overview", "Attendance|Marks|More", "Day|Week", "Check their status","Latest news", "Find your way", "Change credentials"};
     private int[] imgs = new int[]{ R.drawable.ic_action_about, R.drawable.ic_action_sort_by_size, R.drawable.ic_action_event, R.drawable.ic_action_group, R.drawable.ic_action_unread,R.drawable.ic_action_place, R.drawable.ic_action_settings};
 
     //Drawer ListView
@@ -118,8 +116,6 @@ public class Home extends BaseActivity {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        final Activity a = this;
-
         DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, getToolbar(), R.string.drawer_open, R.string.drawer_close
@@ -131,7 +127,7 @@ public class Home extends BaseActivity {
         mDrawerToggle.syncState();
 
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        mDrawerListAdapter = new DrawerListAdapter(this,titles,subtitle,imgs);
+        mDrawerListAdapter = new DrawerListAdapter(this,titles,imgs);
         // Set the adapter for the list view
         mDrawerList.setAdapter(mDrawerListAdapter);
 

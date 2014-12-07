@@ -1,46 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="48dp"
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:id="@+id/img_drawer"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:adjustViewBounds="true"
-        android:padding="15dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
         android:contentDescription="Navigation Drawer Item Icon"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical|left"
-        android:orientation="vertical"
-        >
 
         <com.devspark.robototextview.widget.RobotoTextView
             android:id="@+id/lbl_drawer_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_drawer"
+            android:layout_marginLeft="24dp"
             android:ellipsize="end"
             android:singleLine="true"
+            android:layout_centerVertical="true"
+            android:textSize="14sp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black"
-            app:typeface="roboto_regular"/>
+            app:typeface="roboto_medium"/>
 
-        <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/lbl_drawer_subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:singleLine="true"
-            android:textColor="@android:color/darker_gray"
-            app:typeface="roboto_regular"/>
-
-    </LinearLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
