@@ -55,6 +55,8 @@ public class CoursesFragment extends Fragment {
                             loadData();
                             Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
                         }
+
+                        mPullToRefreshLayout.setRefreshing(false);
                     }
                 });
             }

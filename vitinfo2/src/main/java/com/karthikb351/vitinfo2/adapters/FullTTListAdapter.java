@@ -8,8 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.Subject;
 import com.karthikb351.vitinfo2.objects.TimeTableFiles.TTSlot;
 
 import java.text.SimpleDateFormat;
@@ -51,16 +51,20 @@ public class FullTTListAdapter extends ArrayAdapter<TTSlot> {
             holder = (ViewHolder) convertView.getTag();
 
         TTSlot t = getItem(pos);
-        Subject subject = dat.getSubject(t.clsnbr);
+        Course course = dat.getCourse(t.clsnbr);
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mma", Locale.getDefault());
 
         holder.slot.setText(t.slt);
-        holder.subject.setText(subject.title);
+        holder.subject.setText(course.getCourseTitle());
         holder.venue.setText(t.venue);
 
-        holder.att.setText("Attendance: "+ subject.percentage + "%");
-        holder.att.setTextColor(DataHandler.getPerColor(subject.percentage));
+        holder.att.setText("Attendance: "+ course.getAttendance().getAttendancePercentage());
+        Float tmp = DataHandler.getPer(
+                Integer.parseInt(course.getAttendance().getAttendedClasses()),
+                Integer.parseInt(course.getAttendance().getAttendedClasses())
+        );
+        holder.att.setTextColor(DataHandler.getPerColor(tmp.intValue()));
         holder.timing.setText(timeFormat.format(t.frm_time.getTime()) + " - " + timeFormat.format(t.to_time.getTime()));
         return convertView;
     }

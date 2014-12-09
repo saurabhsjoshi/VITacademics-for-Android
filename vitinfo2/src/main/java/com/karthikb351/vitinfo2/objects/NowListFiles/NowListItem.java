@@ -60,10 +60,10 @@ public class NowListItem implements NowItem {
 
         lbl_per.setText(course.getAttendance().getAttendancePercentage());
 
-        Float per = DataHandler.getPer(Integer.parseInt(course.getAttendance().getAttendedClasses()),
+        float per = DataHandler.getPer(Integer.parseInt(course.getAttendance().getAttendedClasses()),
                 Integer.parseInt(course.getAttendance().getTotalClasses()));
 
-        lbl_per.setTextColor(DataHandler.getPerColor(per.intValue()));
+        lbl_per.setTextColor(DataHandler.getPerColor((int)per));
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mma", Locale.getDefault());
         lbl_timing.setText(timeFormat.format(ttSlot.frm_time.getTime()) + " - " + timeFormat.format(ttSlot.to_time.getTime()));

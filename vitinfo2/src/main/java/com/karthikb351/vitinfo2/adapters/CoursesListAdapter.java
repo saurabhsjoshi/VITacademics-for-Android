@@ -75,14 +75,13 @@ public class CoursesListAdapter extends ArrayAdapter<Course> {
         else
             holder.status.setTextColor(Color.parseColor("#000000"));
 
-
         float x[]={5,5,5,5,5,5,5,5};
         ShapeDrawable pgDrawable = new ShapeDrawable(new RoundRectShape(x, null,null));
-        Float t = DataHandler.getPer(
+        float t = DataHandler.getPer(
                 Integer.parseInt(course.getAttendance().getAttendedClasses()),
                 Integer.parseInt(course.getAttendance().getAttendedClasses())
         );
-        pgDrawable.getPaint().setColor(DataHandler.getPerColor(t.intValue()));
+        pgDrawable.getPaint().setColor(DataHandler.getPerColor((int)t));
         ClipDrawable progress = new ClipDrawable(pgDrawable, Gravity.LEFT, ClipDrawable.HORIZONTAL);
 
         holder.prg.setProgressDrawable(progress);
