@@ -76,6 +76,7 @@ public class VITxApi {
                     Response temp = HomeCall.sendRequest(regno, dob, campus, "/data/first");
                     if(temp.getStatus().getCode() == 0){
                         DataHandler.getInstance(context).saveFirstJSON(HomeCall.json_response);
+                        DataHandler.getInstance(context).saveRefreshJSON(HomeCall.json_response);
                         return temp;
                     }
                     else
