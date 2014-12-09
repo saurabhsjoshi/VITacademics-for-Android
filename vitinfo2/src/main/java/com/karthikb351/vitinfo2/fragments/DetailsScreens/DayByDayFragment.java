@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapters.DayByDayListAdapter;
-import com.karthikb351.vitinfo2.objects.Subject;
+import com.karthikb351.vitinfo2.api.Objects.Course;
 
 ;
 
@@ -18,7 +18,7 @@ import com.karthikb351.vitinfo2.objects.Subject;
  * Created by saurabh on 4/30/14.
  */
 public class DayByDayFragment extends Fragment {
-    public Subject subject;
+    public Course course;
     public Context context;
 
     public DayByDayFragment(){
@@ -29,7 +29,7 @@ public class DayByDayFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_day_by_day,container, false);
         ListView lv=(ListView)v.findViewById(R.id.atten_details_popup_listview);
         lv.setEnabled(true);
-        lv.setAdapter(new DayByDayListAdapter(context, R.layout.day_by_day_list_item, subject.attendance));
+        lv.setAdapter(new DayByDayListAdapter(context, R.layout.day_by_day_list_item, course.getAttendance().getDetails()));
         return v;
     }
 }

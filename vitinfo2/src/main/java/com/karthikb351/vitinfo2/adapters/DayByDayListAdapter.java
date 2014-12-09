@@ -9,21 +9,21 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.objects.Attendance;
+import com.karthikb351.vitinfo2.api.Objects.Detail;
+
+import java.util.List;
 
 ;
 
 /**
  * Created by saurabh on 4/30/14.
  */
-public class DayByDayListAdapter extends ArrayAdapter<Attendance> {
+public class DayByDayListAdapter extends ArrayAdapter<Detail> {
     private LayoutInflater inflater;
-    Attendance[] att;
 
-    public DayByDayListAdapter ( Context ctx,int resid,Attendance[] att) {
+    public DayByDayListAdapter ( Context ctx,int resid,List<Detail> att) {
         super(ctx,resid, att);
         inflater = LayoutInflater.from(ctx);
-        this.att = att;
     }
 
     private class ViewHolder{
@@ -43,9 +43,9 @@ public class DayByDayListAdapter extends ArrayAdapter<Attendance> {
         //else
            // holder = (ViewHolder) convertview.getTag();
 
-        holder.date.setText(att[position].getDate());
-        holder.status.setText(att[position].getStatus());
-        if(att[position].getStatus().equals("Absent"))
+        holder.date.setText(getItem((super.getCount()-1) - position).getDate());
+        holder.status.setText(getItem((super.getCount()-1) -position).getStatus());
+        if(getItem((super.getCount()-1) -position).getStatus().equals("Absent"))
             holder.status.setTextColor(Color.parseColor("#FF0000"));
 
         return convertview;

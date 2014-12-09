@@ -10,8 +10,8 @@ import android.view.MenuItem;
 import android.view.Window;
 
 import com.karthikb351.vitinfo2.adapters.SubjecDetailsPagerAdapter;
+import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.Subject;
 import com.viewpagerindicator.TitlePageIndicator;
 
 ;
@@ -51,22 +51,20 @@ public class SubjectDetails extends BaseActivity {
     }
 
     private class Load_Data extends AsyncTask<Void,Void,Void> {
-        private Subject sub;
+        private Course course;
 
         protected void onPreExecute(){
-            sub = new Subject();
+            course = new Course();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            sub = DataHandler.getInstance(context).getSubject(clsnbr);
-            sub.putAttendanceDetails();
-            sub.loadMarks();
+            course = DataHandler.getInstance(context).getCourse(clsnbr);
             return null;
         }
 
         protected void onPostExecute(Void voids){
-            pager.setAdapter(new SubjecDetailsPagerAdapter(context, sub, ((FragmentActivity)context).getSupportFragmentManager()));
+            pager.setAdapter(new SubjecDetailsPagerAdapter(context, course, ((FragmentActivity)context).getSupportFragmentManager()));
             titlePageIndicator.setViewPager(pager);
             titlePageIndicator.setTextColor(getResources().getColor(R.color.Gray));
         }

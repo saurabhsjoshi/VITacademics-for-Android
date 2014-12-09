@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.fragments.DetailsScreens.AttendanceDetailsFragment;
 import com.karthikb351.vitinfo2.fragments.DetailsScreens.DayByDayFragment;
 import com.karthikb351.vitinfo2.fragments.DetailsScreens.MarksDetailsFragment;
@@ -17,13 +18,13 @@ public class SubjecDetailsPagerAdapter extends FragmentPagerAdapter{
 
     String titles[];
     Context context;
-    Subject subject;
+    Course course;
 
-    public SubjecDetailsPagerAdapter(Context context, Subject subject, FragmentManager mgr){
+    public SubjecDetailsPagerAdapter(Context context, Course subject, FragmentManager mgr){
         super(mgr);
         titles = new String[]{"Attendance", "Marks", "Day By Day"};
         this.context = context;
-        this.subject = subject;
+        this.course = subject;
     }
 
     @Override
@@ -31,19 +32,19 @@ public class SubjecDetailsPagerAdapter extends FragmentPagerAdapter{
         if(position == 0){
             AttendanceDetailsFragment f = new AttendanceDetailsFragment();
             f.context = context;
-            f.subject = subject;
+            f.course = course;
             return f;
         }
         else if(position == 1){
             MarksDetailsFragment f = new MarksDetailsFragment();
-            f.subject = subject;
+            f.course = course;
             return f;
         }
 
         else{
             DayByDayFragment f = new DayByDayFragment();
             f.context = context;
-            f.subject = subject;
+            f.course = course;
             return f;
         }
     }

@@ -13,11 +13,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.Subject;
 
-;import org.json.JSONArray;
-import org.json.JSONObject;
+;
 
 /**
  * Created by saurabh on 4/30/14.
@@ -25,7 +24,7 @@ import org.json.JSONObject;
 public class AttendanceDetailsFragment extends Fragment {
     public Context context;
     DataHandler dat;
-    public Subject subject;
+    public Course course;
 
     Button bunk_add,bunk_sub, makeup_add, makeup_sub;
     TextView tv_title,tv_slot,tv_type,tv_code,tv_atten,tv_net_per,bunk_val,makeup_val, tv_faculty;
@@ -65,20 +64,6 @@ public class AttendanceDetailsFragment extends Fragment {
         return v;
     }
 
-    private String getFacultyName(){
-        try
-        {
-            JSONObject root = new JSONObject(dat.getTimeTable());
-            JSONArray json = root.getJSONArray("subjects");
-            for(int i = 0; i < json.length(); i++){
-                JSONObject t = json.getJSONObject(i);
-                if(t.getString("cnum").equals(subject.classnbr))
-                    return t.getString("faculty");
-            }
-            return "";
-        }catch (Exception ignore){return "";}
-    }
-
     void Per(){
         per = (int) DataHandler.getPer(t_atten, t_max);
         if (DataHandler.getPer(t_atten, t_max) > per)
@@ -87,22 +72,22 @@ public class AttendanceDetailsFragment extends Fragment {
 
     void load(){
         try{
-            tv_title.setText(subject.title);
-            tv_slot.setText(subject.slot);
-            tv_code.setText(subject.code);
-            tv_type.setText(subject.type);
-            tv_faculty.setText(getFacultyName());
-            atten = subject.attended;
-            max = subject.conducted;
+            tv_title.setText(course.getCourseTitle());
+            tv_slot.setText(course.getSlot());
+            tv_code.setText(course.getCourseCode());
+            tv_type.setText(course.getCourseType());
+            tv_faculty.setText(course.getFaculty());
+            atten = Integer.parseInt(course.getAttendance().getAttendedClasses());
+            max = Integer.parseInt(course.getAttendance().getTotalClasses());
 
             bunk_val.setText("If you miss 0 more class(s)");
             makeup_val.setText("If you attend 0 more class(s)");
 
             class_offset = 1;
 
-            if(subject.type.contains("Lab"))
-                for( int i=0; i<subject.slot.length(); i++ ) {
-                    if( subject.slot.charAt(i) == '+' ) {
+            if(course.getCourseType().contains("Lab"))
+                for( int i=0; i<course.getSlot().length(); i++ ) {
+                    if( course.getSlot().charAt(i) == '+' ) {
                         class_offset++;
                     }
                 }

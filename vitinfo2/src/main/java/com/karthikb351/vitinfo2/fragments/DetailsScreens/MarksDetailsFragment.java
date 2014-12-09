@@ -1,35 +1,28 @@
 package com.karthikb351.vitinfo2.fragments.DetailsScreens;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.echo.holographlibrary.Bar;
-import com.echo.holographlibrary.BarGraph;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.objects.Mark;
-import com.karthikb351.vitinfo2.objects.Subject;
-
-import java.util.ArrayList;
+import com.karthikb351.vitinfo2.api.Objects.Course;
 
 /**
  * Created by saurabh on 4/30/14.
  */
 public class MarksDetailsFragment extends Fragment {
-    public Subject subject;
+    public Course course;
     public float total = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v;
-        if(subject.marks_valid){
+        View v;/*
+        if(false){
             v = inflater.inflate(R.layout.fragment_marks,container, false);
             total = 0;
-            Mark m = subject.mark;
+            Mark m  = new Mark();
 
             //FIRST BAR GRAPH
 
@@ -91,7 +84,7 @@ public class MarksDetailsFragment extends Fragment {
             ((TextView) v.findViewById(R.id.lbl_mrk_details)).setText("");
 
         }
-        else
+        else*/
             v = inflater.inflate(R.layout.fragment_nomarks,container, false);
         return v;
     }
