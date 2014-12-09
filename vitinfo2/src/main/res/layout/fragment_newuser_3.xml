@@ -20,57 +20,21 @@
             android:indeterminate="true" />
 
         <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/lbl_fb"
+            android:id="@+id/lbl_load_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Facebook login disabled"
+            android:text="Loading Data"
+            android:textColor="#33b5e5"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/Gray"
             android:layout_marginTop="120dp"
             app:typeface="roboto_thin"/>
 
         <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/lbl_save_data"
+            android:id="@+id/lbl_save_load"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/lbl_fb"
-            android:text="Saving Data"
-            android:textColor="#33b5e5"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginTop="20dp"
-            app:typeface="roboto_thin"/>
-
-        <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/lbl_att_load"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lbl_save_data"
-            android:layout_centerHorizontal="true"
-            android:text="Loading Attendance"
-            android:textColor="#33b5e5"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginTop="20dp"
-            app:typeface="roboto_thin"/>
-
-        <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/lbl_tt_load"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lbl_att_load"
-            android:layout_centerHorizontal="true"
-            android:text="Loading TimeTable"
-            android:textColor="#33b5e5"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginTop="20dp"
-            app:typeface="roboto_thin"/>
-
-        <com.devspark.robototextview.widget.RobotoTextView
-            android:id="@+id/lbl_parse_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lbl_tt_load"
+            android:layout_below="@id/lbl_load_data"
             android:layout_centerHorizontal="true"
             android:text="Parsing Data"
             android:textColor="#33b5e5"
@@ -83,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
-            android:layout_below="@id/lbl_parse_data"
+            android:layout_below="@id/lbl_save_load"
             android:layout_marginTop="20dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             app:typeface="roboto_bold"
@@ -101,9 +65,5 @@
             android:visibility="invisible"
             android:layout_alignTop="@+id/prg_indeterminate"
             android:layout_centerHorizontal="true" />
-
-
     </RelativeLayout>
-
-
 </ScrollView>

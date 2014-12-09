@@ -55,7 +55,7 @@ public class DataHandler {
         }catch (Exception ignore){}
     }
 
-    private void saveString(String key, String string){
+    public void saveString(String key, String string){
         preferences.edit().putString(key, string).commit();
     }
 

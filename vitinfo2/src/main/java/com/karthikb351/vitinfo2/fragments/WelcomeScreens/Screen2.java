@@ -13,9 +13,8 @@ import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.NewUser;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.VITxAPI;
+import com.karthikb351.vitinfo2.api.Objects.VITxApi;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.OnTaskComplete;
 
 ;
 
@@ -24,7 +23,7 @@ import com.karthikb351.vitinfo2.objects.OnTaskComplete;
  */
 public class Screen2 extends Fragment {
     DataHandler dat;
-    VITxAPI api;
+    VITxApi api;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,11 +46,10 @@ public class Screen2 extends Fragment {
                 dat.saveRegNo(reg_no.getText().toString());
                 dat.saveDob(new int[]{dob.getDayOfMonth(),dob.getMonth(),dob.getYear()});
 
-                //Set Listener
-                api = new VITxAPI(getActivity(), new OnTaskComplete() {
-
+                api = VITxApi.getInstance(getActivity());
+                api.loginUser(new VITxApi.onTaskCompleted() {
                     @Override
-                    public void onTaskCompleted(Exception e, Object result) {
+                    public void onCompleted(Object result, Exception e) {
                         if(e !=null )
                         {
                             e.printStackTrace();
@@ -61,15 +59,12 @@ public class Screen2 extends Fragment {
                         }
                         else {
                             NewUser nw = (NewUser) getActivity();
-                            //Check if dumb user has closed the app
                             if(nw != null)
                                 nw.changeScreen(2);
                         }
                     }
                 });
-
-                //Start the Paaartyyy
-                api.CaptchaLessLoad();
+                //Set Listener
             }
         });
 

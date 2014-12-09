@@ -147,7 +147,7 @@ public class TimeTable{
 
     /* Returns list of TTSlots for given Calendar.Day! */
     public ArrayList<TTSlot> getTT(int Day){
-        ArrayList<TTSlot> today = new ArrayList<TTSlot>();
+        ArrayList<TTSlot> today = new ArrayList<>();
 
         //If Sunday or Monday then show Monday
         if(Day == Calendar.SUNDAY || Day == Calendar.SATURDAY)

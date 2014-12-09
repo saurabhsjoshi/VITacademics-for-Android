@@ -22,9 +22,11 @@ public class APITest extends AsyncTask<Void, Void, String> {
             response = HomeCall.sendRequest("11bce0088", "05111993", "vellore", "/login/auto");
             response = HomeCall.sendRequest("11bce0088", "05111993", "vellore", "/data/first");
             List<Course> courses = response.getCourses();
+
             Course course = courses.get(0);
             Course course1 = courses.get(1);
             result = course.getFaculty() + " and " + course1.getFaculty();
+
         }
         catch(Exception e){
             e.printStackTrace();
