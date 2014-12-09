@@ -14,18 +14,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.Subject;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by saurabh on 4/28/14.
  */
-public class CoursesListAdapter extends ArrayAdapter<Subject> {
+public class CoursesListAdapter extends ArrayAdapter<Course> {
     private Context context;
 
-    public CoursesListAdapter(Context context,  ArrayList<Subject> subs){
+    public CoursesListAdapter(Context context,  List<Course> subs){
         super(context,0 , subs);
         this.context = context;
     }
@@ -59,35 +59,36 @@ public class CoursesListAdapter extends ArrayAdapter<Subject> {
         //else
           //  holder = (ViewHolder)convertView.getTag();
 
-        Subject sub = getItem(position);
+        Course course = getItem(position);
 
-        holder.title.setText(sub.title);
-        holder.slot.setText(sub.slot);
-        holder.type.setText(sub.type);
-        holder.atten.setText(sub.attended+"/"+sub.conducted+"\n"+sub.percentage+"%");
+        holder.title.setText(course.getCourseTitle());
+        holder.slot.setText(course.getSlot());
+        holder.type.setText(course.getCourseType());
+        holder.atten.setText(course.getAttendance().getAttendedClasses()+"/"
+                +course.getAttendance().getTotalClasses()+"\n"+course.getAttendance().getAttendancePercentage());
 
-        if(sub.att_valid){
-            holder.date.setText("As of: "+sub.atten_last_date);
-            holder.status.setText(sub.atten_last_status);
-            if(sub.atten_last_status.equalsIgnoreCase("absent"))
-                holder.status.setTextColor(Color.parseColor("#FF0000"));
-            else
-                holder.status.setTextColor(Color.parseColor("#000000"));
-        }
-        else {
-            holder.status.setText("");
-            holder.date.setText("");
-        }
+        int lastIndex = course.getAttendance().getDetails().size() - 1;
+        holder.date.setText("As of: "+course.getAttendance().getDetails().get(lastIndex).getDate());
+        holder.status.setText(course.getAttendance().getDetails().get(lastIndex).getStatus());
+        if(course.getAttendance().getDetails().get(0).getStatus().equalsIgnoreCase("absent"))
+            holder.status.setTextColor(Color.parseColor("#FF0000"));
+        else
+            holder.status.setTextColor(Color.parseColor("#000000"));
+
 
         float x[]={5,5,5,5,5,5,5,5};
         ShapeDrawable pgDrawable = new ShapeDrawable(new RoundRectShape(x, null,null));
-        pgDrawable.getPaint().setColor(DataHandler.getPerColor(sub.percentage));
+        Float t = DataHandler.getPer(
+                Integer.parseInt(course.getAttendance().getAttendedClasses()),
+                Integer.parseInt(course.getAttendance().getAttendedClasses())
+        );
+        pgDrawable.getPaint().setColor(DataHandler.getPerColor(t.intValue()));
         ClipDrawable progress = new ClipDrawable(pgDrawable, Gravity.LEFT, ClipDrawable.HORIZONTAL);
 
         holder.prg.setProgressDrawable(progress);
         holder.prg.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.progress_bar_green));
-        holder.prg.setMax(sub.conducted);
-        holder.prg.setProgress(sub.attended);
+        holder.prg.setMax(Integer.parseInt(course.getAttendance().getTotalClasses()));
+        holder.prg.setProgress(Integer.parseInt(course.getAttendance().getAttendedClasses()));
 
         return convertView;
     }

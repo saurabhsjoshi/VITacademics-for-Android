@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by saurabh on 4/22/14.
@@ -92,6 +93,11 @@ public class DataHandler {
     public Course getCourse(String clsnbr){
         return refresh.getCourse(clsnbr);
     }
+
+    public List<Course> getAllCourses(){return refresh.getCourses();}
+
+
+
 
     public void saveServerStatus(String json){saveString("SERVERSTATUS",json);}
 
