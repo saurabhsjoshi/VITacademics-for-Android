@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.Subject;
 import com.karthikb351.vitinfo2.objects.TimeTableFiles.TTSlot;
 
 import java.text.SimpleDateFormat;
@@ -48,25 +48,30 @@ public class NowListItem implements NowItem {
         TextView lbl_timing = (TextView) view.findViewById(R.id.lbl_now_timing);
 
         DataHandler dat = DataHandler.getInstance(context);
-        Subject subject = dat.getSubject(ttSlot.clsnbr);
+        Course course = dat.getCourse(ttSlot.clsnbr);
 
-        lbl_subject.setText(subject.title);
+        lbl_subject.setText(course.getCourseTitle());
         lbl_slot.setText(ttSlot.slt);
         lbl_venue.setText(ttSlot.venue);
 
 
-        getGo(subject.attended, subject.conducted, (TextView) view.findViewById(R.id.lbl_now_att_go));
-        getMiss(subject.attended, subject.conducted, (TextView) view.findViewById(R.id.lbl_now_att_miss));
+        getGo(course.getAttendance().getAttendedClasses(), course.getAttendance().getTotalClasses(), (TextView) view.findViewById(R.id.lbl_now_att_go));
+        getMiss(course.getAttendance().getAttendedClasses(), course.getAttendance().getTotalClasses(), (TextView) view.findViewById(R.id.lbl_now_att_miss));
 
-        lbl_per.setText(subject.percentage + "%");
-        lbl_per.setTextColor(DataHandler.getPerColor(subject.percentage));
+        lbl_per.setText(course.getAttendance().getAttendancePercentage());
+
+        Float per = DataHandler.getPer(Integer.parseInt(course.getAttendance().getAttendedClasses()),
+                Integer.parseInt(course.getAttendance().getTotalClasses()));
+
+        lbl_per.setTextColor(DataHandler.getPerColor(per.intValue()));
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mma", Locale.getDefault());
         lbl_timing.setText(timeFormat.format(ttSlot.frm_time.getTime()) + " - " + timeFormat.format(ttSlot.to_time.getTime()));
         return view;
     }
 
-    private void getGo(int att, int cond, TextView lbl_go){
+    private void getGo(String attS, String condS, TextView lbl_go){
+        int att = Integer.parseInt(attS), cond = Integer.parseInt(condS);
         att += 1;
         cond += 1;
         int per = (int) DataHandler.getPer(att, cond);
@@ -78,7 +83,8 @@ public class NowListItem implements NowItem {
         lbl_go.setTextColor(DataHandler.getPerColor(per));
     }
 
-    private void getMiss(int att, int cond, TextView lbl_miss){
+    private void getMiss(String attS, String condS, TextView lbl_miss){
+        int att = Integer.parseInt(attS), cond = Integer.parseInt(condS);
         cond += 1;
         int per = (int) DataHandler.getPer(att, cond);
 

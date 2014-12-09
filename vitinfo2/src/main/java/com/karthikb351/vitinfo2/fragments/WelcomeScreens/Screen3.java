@@ -19,6 +19,7 @@ import com.karthikb351.vitinfo2.NewUser;
 import com.karthikb351.vitinfo2.ParseAPI;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.Objects.VITxApi;
+import com.karthikb351.vitinfo2.objects.DataHandler;
 import com.karthikb351.vitinfo2.objects.OnParseFinished;
 import com.parse.ParseException;
 
@@ -81,7 +82,7 @@ public class Screen3 extends Fragment {
                 if(e != null){
                     onError(e);
                 }else{
-                    //DataHandler.getInstance(getActivity()).setNewUser(false);
+                    DataHandler.getInstance(getActivity()).setNewUser(false);
                     btn_go.setEnabled(true);
                     btn_go.setBackgroundResource(R.drawable.round_shape_green);
                     prg.setVisibility(View.GONE);

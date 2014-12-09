@@ -75,7 +75,48 @@ public class VITxApi {
                         throw new Exception("No network connection!");
                     Response temp = HomeCall.sendRequest(regno, dob, campus, "/data/first");
                     if(temp.getStatus().getCode() == 0){
-                        DataHandler.getInstance(context).saveString("dataJSON", HomeCall.json_response);
+                        DataHandler.getInstance(context).saveFirstJSON(HomeCall.json_response);
+                        return temp;
+                    }
+                    else
+                        throw new Exception(temp.getStatus().getMessage());
+                }catch (Exception e){
+                    this.e = e;
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                listener.onCompleted(o, e);
+            }
+        }
+
+        loginUser(new onTaskCompleted() {
+            @Override
+            public void onCompleted(Object result, Exception e) {
+                if(e == null)
+                    new bgTask().execute();
+                else
+                    listener.onCompleted(null, e);
+            }
+        });
+    }
+
+    public void refreshData(final onTaskCompleted listener){
+        refreshCredentials();
+        class bgTask extends AsyncTask<Void, Void, Object>{
+            Exception e;
+
+            @Override
+            protected Object doInBackground(Void... params) {
+                try{
+                    if(!isConnected())
+                        throw new Exception("No network connection!");
+                    Response temp = HomeCall.sendRequest(regno, dob, campus, "/data/refresh");
+                    if(temp.getStatus().getCode() == 0){
+                        DataHandler.getInstance(context).saveRefreshJSON(HomeCall.json_response);
                         return temp;
                     }
                     else

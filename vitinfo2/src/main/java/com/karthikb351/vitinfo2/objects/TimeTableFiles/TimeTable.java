@@ -3,6 +3,7 @@ package com.karthikb351.vitinfo2.objects.TimeTableFiles;
 import android.content.Context;
 import android.text.format.DateUtils;
 
+import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.objects.DataHandler;
 import com.karthikb351.vitinfo2.objects.Subject;
 
@@ -12,6 +13,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class TimeTable{
@@ -160,33 +162,29 @@ public class TimeTable{
             calendar.set(Calendar.DAY_OF_WEEK, Day);
 
             SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
-            JSONObject root = new JSONObject(dat.getTimeTable());
-            JSONArray subs = root.getJSONArray("subjects");
-            root = root.getJSONObject("timetable");
-
-            JSONArray json_slts = root.getJSONArray(dayFormat.format(calendar.getTime()));
 
             TTSlot temp;
             String clsnbr, slt="";
 
-            for(int i = 0; i < json_slts.length(); i++){
+            List<Integer> slots = dat.getTimeTable2().getTimeTableforDay(dayFormat.format(calendar.getTime()));
+
+            for(int i = 0; i < slots.size(); i++){
 
                 //Check if user has class now
-                if(json_slts.getInt(i) != 0){
-                    clsnbr = Integer.toString(json_slts.getInt(i));
+                if(slots.get(i) != 0){
+                    clsnbr = Integer.toString(slots.get(i));
 
                     //Get the subject from data handler
-                    Subject sub = dat.getSubject(clsnbr);
+                    Course course = dat.getCourse(clsnbr);
 
                     //Get the slot for now
-                    if(sub.slot.contains("+")){
+                    if(course.getSlot().contains("+")){
                         int tmp;
 
-                        //Check if two slots and break
-                        String[] parts = sub.slot.split("\\+");
+                        String[] parts = course.getSlot().split("\\+");
                         for(int j = 0; j < parts.length; j++){
-                            //Check if lab and increment accordingly
 
+                            //Check if lab and increment accordingly
                             if(parts[j].charAt(0) == 'L')
                                 tmp = i + 10;
                             else
@@ -203,15 +201,15 @@ public class TimeTable{
                     }
                     //Only one slot wow
                     else
-                        slt = sub.slot;
+                        slt = course.getSlot();
 
                     temp = new TTSlot(slt, clsnbr);
-                    temp.venue = getVenue(subs, clsnbr);
-
+                    temp.venue = course.getVenue();
                     temp.setTime(i);
                     today.add(temp);
                 }
             }
+
         }catch (Exception e){e.printStackTrace();}
         return today;
     }

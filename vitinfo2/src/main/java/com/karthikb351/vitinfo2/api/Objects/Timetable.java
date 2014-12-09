@@ -1,8 +1,9 @@
 package com.karthikb351.vitinfo2.api.Objects;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.annotations.Expose;
 
 public class Timetable {
     @Expose
@@ -124,6 +125,23 @@ public class Timetable {
      */
     public void setSat(List<Integer> sat) {
         this.sat = sat;
+    }
+
+    public List<Integer> getTimeTableforDay(String day){
+        switch (day){
+            case "Monday":
+                return getMon();
+            case "Tuesday":
+                return getTue();
+            case "Wednesday":
+                return getWed();
+            case "Thursday":
+                return getThu();
+            case "Friday":
+                return getFri();
+            default:
+                return getMon();
+        }
     }
 
 }

@@ -8,6 +8,9 @@ import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 
 import com.google.gson.Gson;
+import com.karthikb351.vitinfo2.api.Objects.Course;
+import com.karthikb351.vitinfo2.api.Objects.Response;
+import com.karthikb351.vitinfo2.api.Objects.Timetable;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,6 +34,8 @@ import java.util.Date;
 public class DataHandler {
     public Context context;
     SharedPreferences preferences;
+    private static Response firstJSON;
+    private static Response refresh;
 
     private static DataHandler mInstance;
 
@@ -39,6 +44,13 @@ public class DataHandler {
         try
         {
             preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+            SharedPreferences prefs = context.getSharedPreferences("firstJSON", Context.MODE_PRIVATE);
+            Gson gson = new Gson();
+            firstJSON = gson.fromJson(prefs.getString("firstJSON", ""), Response.class);
+
+            prefs = context.getSharedPreferences("refreshJSON", Context.MODE_PRIVATE);
+            refresh =  gson.fromJson(prefs.getString("refreshJSON", ""), Response.class);
         }catch (Exception ignore){}
     }
 
@@ -57,6 +69,28 @@ public class DataHandler {
 
     public void saveString(String key, String string){
         preferences.edit().putString(key, string).commit();
+    }
+
+    public void saveFirstJSON(String string){
+        SharedPreferences prefs = context.getSharedPreferences("firstJSON", Context.MODE_PRIVATE);
+        prefs.edit().putString("firstJSON", string).commit();
+        Gson gson = new Gson();
+        firstJSON = gson.fromJson(prefs.getString("firstJSON", ""), Response.class);
+    }
+
+    public void saveRefreshJSON(String string){
+        SharedPreferences prefs = context.getSharedPreferences("refreshJSON", Context.MODE_PRIVATE);
+        prefs.edit().putString("refreshJSON", string).commit();
+        Gson gson = new Gson();
+        refresh =  gson.fromJson(prefs.getString("refreshJSON", ""), Response.class);
+    }
+
+    public Timetable getTimeTable2(){
+        return firstJSON.getTimetable();
+    }
+
+    public Course getCourse(String clsnbr){
+        return refresh.getCourse(clsnbr);
     }
 
     public void saveServerStatus(String json){saveString("SERVERSTATUS",json);}

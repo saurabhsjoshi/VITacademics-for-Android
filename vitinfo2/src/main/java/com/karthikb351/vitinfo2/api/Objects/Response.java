@@ -1,8 +1,9 @@
 package com.karthikb351.vitinfo2.api.Objects;
-import java.util.ArrayList;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Response {
 
@@ -166,6 +167,14 @@ public class Response {
      */
     public void setWithdrawn(Boolean withdrawn) {
         this.withdrawn = withdrawn;
+    }
+
+    public Course getCourse(String clsnbr){
+        for(int i = 0; i < courses.size(); i++){
+            if(courses.get(i).getClassNumber().equals(clsnbr))
+                return courses.get(i);
+        }
+        return null;
     }
 
 }

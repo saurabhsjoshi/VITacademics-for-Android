@@ -21,15 +21,13 @@ import com.karthikb351.vitinfo2.Application;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.SubjectDetails;
 import com.karthikb351.vitinfo2.TeamScreen;
-import com.karthikb351.vitinfo2.VITxAPI;
 import com.karthikb351.vitinfo2.adapters.NowFragmentListAdapter;
-import com.karthikb351.vitinfo2.objects.CaptchaDialogListener;
+import com.karthikb351.vitinfo2.api.Objects.VITxApi;
 import com.karthikb351.vitinfo2.objects.DataHandler;
 import com.karthikb351.vitinfo2.objects.NowListFiles.NowItem;
 import com.karthikb351.vitinfo2.objects.NowListFiles.NowListHeader;
 import com.karthikb351.vitinfo2.objects.NowListFiles.NowListItem;
 import com.karthikb351.vitinfo2.objects.NowListFiles.NowListNoClass;
-import com.karthikb351.vitinfo2.objects.OnTaskComplete;
 import com.karthikb351.vitinfo2.objects.TimeTableFiles.TTSlot;
 import com.karthikb351.vitinfo2.objects.TimeTableFiles.TimeTable;
 
@@ -44,51 +42,7 @@ public class NowFragment extends Fragment {
     DataHandler dat;
     Context cntx;
     ListView mainList;
-    private VITxAPI api;
-
-    private OnTaskComplete l1 = new OnTaskComplete() {
-        @Override
-        public void onTaskCompleted(Exception e, Object result) {
-            try {
-                mPullToRefreshLayout.setRefreshing(false);
-                if (e != null && e.getMessage().equals("needref"))
-                    new CaptchaDialog(getActivity(), l2).show();
-                else if (e == null) {
-                    new load_Data().execute();
-                    Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }catch (Exception e1){e1.printStackTrace();}}
-    };
-
-    private CaptchaDialogListener l2 = new CaptchaDialogListener() {
-        @Override
-        public void onTaskCompleted(String Captcha, Boolean Response) {
-            if(Response)
-            {
-                api.changeListner(l3);
-                api.Captcha = Captcha;
-                mPullToRefreshLayout.setRefreshing(true);
-                api.submitCaptcha();
-            }
-        }
-    };
-
-    private OnTaskComplete l3 = new OnTaskComplete() {
-        @Override
-        public void onTaskCompleted(Exception e, Object result) {
-            try {
-                mPullToRefreshLayout.setRefreshing(false);
-                if (e != null && e.getMessage().equals("cape"))
-                    Toast.makeText(getActivity(), "Incorrect Captcha. Please try again!", Toast.LENGTH_SHORT).show();
-                else if (e == null) {
-                    api.changeListner(l1);
-                    api.loadAttendanceWithRegistrationNumber();
-                } else
-                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-            }catch (Exception e1){e1.printStackTrace();}}
-    };
+    private VITxApi api;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -105,8 +59,17 @@ public class NowFragment extends Fragment {
         mPullToRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                api = new VITxAPI(getActivity(), l1);
-                api.loadAttendanceWithRegistrationNumber();
+                api = VITxApi.getInstance(getActivity());
+                api.refreshData(new VITxApi.onTaskCompleted() {
+                    @Override
+                    public void onCompleted(Object result, Exception e) {
+                        if(e!=null)
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                        mPullToRefreshLayout.setRefreshing(false);
+                    }
+                });
             }
         });
 
@@ -121,7 +84,7 @@ public class NowFragment extends Fragment {
         ArrayList<TTSlot> ttSlots;
 
         protected void onPreExecute(){
-            subs = new ArrayList<NowItem>();
+            subs = new ArrayList<>();
             mPullToRefreshLayout.setRefreshing(true);
         }
 
