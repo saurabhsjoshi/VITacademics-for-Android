@@ -35,7 +35,7 @@ import java.util.List;
 public class DataHandler {
     public Context context;
     SharedPreferences preferences;
-    private static Response firstJSON;
+    private static Timetable firstJSON;
     private static Response refresh;
 
     private static DataHandler mInstance;
@@ -48,7 +48,7 @@ public class DataHandler {
 
             SharedPreferences prefs = context.getSharedPreferences("firstJSON", Context.MODE_PRIVATE);
             Gson gson = new Gson();
-            firstJSON = gson.fromJson(prefs.getString("firstJSON", ""), Response.class);
+            firstJSON = gson.fromJson(prefs.getString("firstJSON", ""), Response.class).getTimetable();
 
             prefs = context.getSharedPreferences("refreshJSON", Context.MODE_PRIVATE);
             refresh =  gson.fromJson(prefs.getString("refreshJSON", ""), Response.class);
@@ -76,7 +76,7 @@ public class DataHandler {
         SharedPreferences prefs = context.getSharedPreferences("firstJSON", Context.MODE_PRIVATE);
         prefs.edit().putString("firstJSON", string).commit();
         Gson gson = new Gson();
-        firstJSON = gson.fromJson(prefs.getString("firstJSON", ""), Response.class);
+        firstJSON = gson.fromJson(prefs.getString("firstJSON", ""), Response.class).getTimetable();
     }
 
     public void saveRefreshJSON(String string){
@@ -87,7 +87,7 @@ public class DataHandler {
     }
 
     public Timetable getTimeTable2(){
-        return firstJSON.getTimetable();
+        return firstJSON;
     }
 
     public Course getCourse(String clsnbr){
