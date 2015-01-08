@@ -67,13 +67,22 @@ public class CoursesListAdapter extends ArrayAdapter<Course> {
         holder.atten.setText(course.getAttendance().getAttendedClasses()+"/"
                 +course.getAttendance().getTotalClasses()+"\n"+course.getAttendance().getAttendancePercentage());
 
-        int lastIndex = course.getAttendance().getDetails().size() - 1;
-        holder.date.setText("As of: "+course.getAttendance().getDetails().get(lastIndex).getDate());
-        holder.status.setText(course.getAttendance().getDetails().get(lastIndex).getStatus());
-        if(course.getAttendance().getDetails().get(0).getStatus().equalsIgnoreCase("absent"))
-            holder.status.setTextColor(Color.parseColor("#FF0000"));
-        else
-            holder.status.setTextColor(Color.parseColor("#000000"));
+        if(course.getAttendance().getDetails().size() > 0){
+            int lastIndex = course.getAttendance().getDetails().size() - 1;
+            holder.date.setText("As of: "+course.getAttendance().getDetails().get(lastIndex).getDate());
+            holder.status.setText(course.getAttendance().getDetails().get(lastIndex).getStatus());
+            if(course.getAttendance().getDetails().get(0).getStatus().equalsIgnoreCase("absent"))
+                holder.status.setTextColor(Color.parseColor("#FF0000"));
+            else
+                holder.status.setTextColor(Color.parseColor("#000000"));
+        }
+
+        //Data not yet uploaded
+        else{
+            holder.date.setText("");
+            holder.status.setText("");
+        }
+
 
         float x[]={5,5,5,5,5,5,5,5};
         ShapeDrawable pgDrawable = new ShapeDrawable(new RoundRectShape(x, null,null));

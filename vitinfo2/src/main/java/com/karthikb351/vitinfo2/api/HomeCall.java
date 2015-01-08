@@ -22,7 +22,7 @@ import java.util.List;
  * Created by sreeram on 7/12/14.
  */
 public class HomeCall {
-    public static final String HOST_URL = "vitacademics-rel.herokuapp.com/api/";
+    public static final String HOST_URL = "vitacademics-dev.herokuapp.com/api/";
     public static String json_response;
 
     public static Response sendRequest(String regno, String dob, String campus, String path) throws Exception{
