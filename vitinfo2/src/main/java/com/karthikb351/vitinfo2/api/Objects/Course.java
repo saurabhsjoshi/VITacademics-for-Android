@@ -50,9 +50,22 @@ public class Course {
     @SerializedName("class_number")
     @Expose
     private String classNumber;
+
+    @SerializedName("bill_date")
+    @Expose
+
+    private String billDate;
+
+
     @SerializedName("registration_status")
+
     @Expose
     private String registrationStatus;
+
+    @SerializedName("project_title")
+    @Expose
+    private String ProjectTitle;
+
 
     /**
      * 
@@ -293,5 +306,22 @@ public class Course {
     public void setRegistrationStatus(String registrationStatus) {
         this.registrationStatus = registrationStatus;
     }
+
+    public String getProjectTitle() {
+        return ProjectTitle;
+    }
+
+    public void setProjectTitle(String projectTitle) {
+        ProjectTitle = projectTitle;
+    }
+
+    public String getBillDate() {
+        return billDate;
+    }
+
+    public void setBillDate(String billDate) {
+        this.billDate = billDate;
+    }
+
 
 }
