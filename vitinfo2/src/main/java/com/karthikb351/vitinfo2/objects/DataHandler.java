@@ -68,6 +68,13 @@ public class DataHandler {
         }catch (Exception ignore){}
     }
 
+    public boolean isHeroku(){
+        return preferences.getBoolean("isHeroku", false);
+    }
+
+    public void setIsHeroku(boolean val){
+        preferences.edit().putBoolean("isHeroku", true).commit();
+    }
     public void saveString(String key, String string){
         preferences.edit().putString(key, string).commit();
     }

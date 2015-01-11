@@ -97,12 +97,10 @@ public class Home extends BaseActivity {
             overridePendingTransition(R.anim.enter, R.anim.exit);
         }
 
-        if(!dat.isVellore()){
-            Toast.makeText(getApplicationContext(), "Chennai campus no longer supported. Sorry!", Toast.LENGTH_LONG).show();
-            isActive = false;
+        if(!dat.isHeroku()){
+            Toast.makeText(getApplicationContext(), "We have switched to new server. Please login again!",Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, NewUser.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | IntentCompat.FLAG_ACTIVITY_CLEAR_TASK));
             overridePendingTransition(R.anim.enter, R.anim.exit);
-
         }
 
         if(BuildConfig.DEBUG) {

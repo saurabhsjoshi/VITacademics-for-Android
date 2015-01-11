@@ -83,13 +83,14 @@ public class Screen3 extends Fragment {
                     onError(e);
                 }else{
                     DataHandler.getInstance(getActivity()).setNewUser(false);
+                    DataHandler.getInstance(getActivity()).setIsHeroku(true);
                     btn_go.setEnabled(true);
                     btn_go.setBackgroundResource(R.drawable.round_shape_green);
                     prg.setVisibility(View.GONE);
                     applogo.setVisibility(View.VISIBLE);
+                    txt_done.setText("Data parsed");
                     txt_done.setTextColor(Color.parseColor("#008000"));
                 }
-
             }
         });
         return view;
@@ -99,7 +100,6 @@ public class Screen3 extends Fragment {
         try{
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
             ((NewUser) getActivity()).changeScreen(1);
-
         }catch (Exception e1){e1.printStackTrace();}
     }
 }

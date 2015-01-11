@@ -63,10 +63,14 @@ public class NowFragment extends Fragment {
                 api.refreshData(new VITxApi.onTaskCompleted() {
                     @Override
                     public void onCompleted(Object result, Exception e) {
-                        if(e!=null)
-                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                        //Check if dumb user din't change the fragment
+                        try{
+                            if(e!=null)
+                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            else
+                                Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                        }catch (Exception e1){e1.printStackTrace();}
+
                         mPullToRefreshLayout.setRefreshing(false);
                     }
                 });

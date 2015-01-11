@@ -53,7 +53,7 @@ public class CoursesFragment extends Fragment {
                             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         else{
                             loadData();
-                            Toast.makeText(getActivity(), "Refreshed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Refreshed", Toast.LENGTH_SHORT).show();
                         }
 
                         mPullToRefreshLayout.setRefreshing(false);
