@@ -13,7 +13,7 @@
         <com.karthikb351.vitinfo2.PrefsUI.PrefsCampus android:title="Campus" android:summary="Select your campus" />
     </PreferenceCategory>
 
-    <PreferenceCategory
+    <!--PreferenceCategory
         android:summary=""
         android:title="Notifications" >
         <ListPreference
@@ -24,7 +24,7 @@
             android:title="Reminders"
             android:summary="Set reminder before class begins"
             />
-    </PreferenceCategory>
+    </PreferenceCategory-->
 
     <PreferenceCategory
         android:summary=""

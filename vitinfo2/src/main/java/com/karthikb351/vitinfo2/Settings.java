@@ -22,12 +22,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.karthikb351.vitinfo2.objects.DataHandler;
 import com.karthikb351.vitinfo2.objects.OnParseFinished;
-import com.karthikb351.vitinfo2.objects.TimeTableFiles.TTSlot;
-import com.karthikb351.vitinfo2.objects.TimeTableFiles.TimeTable;
 import com.parse.ParseException;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 ;
@@ -62,7 +59,8 @@ public class Settings extends PreferenceActivity {
         context = this;
 
         sp = PreferenceManager.getDefaultSharedPreferences(context);
-        sp.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+
+        /*sp.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,String key) {
                 if(key.equals("defTimer")){
@@ -112,7 +110,7 @@ public class Settings extends PreferenceActivity {
                     }
                 }
             }
-        });
+        }); */
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
             //getActionBar().setHomeButtonEnabled(true);
