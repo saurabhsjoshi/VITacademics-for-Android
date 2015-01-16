@@ -8,6 +8,8 @@ import android.os.AsyncTask;
 import com.karthikb351.vitinfo2.api.HomeCall;
 import com.karthikb351.vitinfo2.objects.DataHandler;
 
+import org.json.JSONObject;
+
 /**
  * Created by saurabh on 14-12-09.
  */
@@ -67,7 +69,6 @@ public class VITxApi {
         refreshCredentials();
         class bgTask extends AsyncTask<Void, Void, Object>{
             Exception e;
-
             @Override
             protected Object doInBackground(Void... params) {
                 try{
@@ -77,6 +78,10 @@ public class VITxApi {
                     if(temp.getStatus().getCode() == 0){
                         DataHandler.getInstance(context).saveFirstJSON(HomeCall.json_response);
                         DataHandler.getInstance(context).saveRefreshJSON(HomeCall.json_response);
+
+                        //Save share data seperately for further refreshes
+                        DataHandler.getInstance(context).saveShareJSON(
+                                new JSONObject(HomeCall.json_response).getJSONObject("share").toString());
                         return temp;
                     }
                     else

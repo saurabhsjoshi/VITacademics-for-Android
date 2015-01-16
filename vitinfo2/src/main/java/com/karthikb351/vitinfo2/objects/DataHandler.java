@@ -10,6 +10,7 @@ import android.text.format.DateUtils;
 import com.google.gson.Gson;
 import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.api.Objects.Response;
+import com.karthikb351.vitinfo2.api.Objects.Share;
 import com.karthikb351.vitinfo2.api.Objects.Timetable;
 
 import org.json.JSONArray;
@@ -37,7 +38,7 @@ public class DataHandler {
     SharedPreferences preferences;
     private static Timetable firstJSON;
     private static Response refresh;
-
+    private static Share shareJSON;
     private static DataHandler mInstance;
 
     public DataHandler(Context context){
@@ -48,10 +49,17 @@ public class DataHandler {
 
             SharedPreferences prefs = context.getSharedPreferences("firstJSON", Context.MODE_PRIVATE);
             Gson gson = new Gson();
+
+            //Load Timetable from /first
             firstJSON = gson.fromJson(prefs.getString("firstJSON", ""), Response.class).getTimetable();
 
+            //Load refreshed subject data
             prefs = context.getSharedPreferences("refreshJSON", Context.MODE_PRIVATE);
             refresh =  gson.fromJson(prefs.getString("refreshJSON", ""), Response.class);
+
+            //Laod share token data
+            prefs = context.getSharedPreferences("shareJSON", Context.MODE_PRIVATE);
+            shareJSON = gson.fromJson(prefs.getString("shareJSON", ""), Share.class);
         }catch (Exception ignore){}
     }
 
@@ -93,6 +101,13 @@ public class DataHandler {
         refresh =  gson.fromJson(prefs.getString("refreshJSON", ""), Response.class);
     }
 
+    public void saveShareJSON(String json){
+        SharedPreferences prefs = context.getSharedPreferences("shareJSON", Context.MODE_PRIVATE);
+        prefs.edit().putString("refreshJSON", json).commit();
+        Gson gson = new Gson();
+        shareJSON = gson.fromJson(prefs.getString("shareJSON", ""), Share.class);
+    }
+
     public Timetable getTimeTable2(){
         return firstJSON;
     }
@@ -103,8 +118,7 @@ public class DataHandler {
 
     public List<Course> getAllCourses(){return refresh.getCourses();}
 
-
-
+    public Share getShareJSON(){return shareJSON;}
 
     public void saveServerStatus(String json){saveString("SERVERSTATUS",json);}
 
