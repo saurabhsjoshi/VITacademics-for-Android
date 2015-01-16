@@ -99,6 +99,7 @@ public class Screen3 extends Fragment {
     private void onError(Exception e){
         try{
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
             ((NewUser) getActivity()).changeScreen(1);
         }catch (Exception e1){e1.printStackTrace();}
     }

@@ -35,6 +35,7 @@ import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.VITxAPI;
 import com.karthikb351.vitinfo2.adapters.FriendsAdapter;
+import com.karthikb351.vitinfo2.api.Objects.VITxApi;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.IntentIntegrator;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.ZXingLibConfig;
 import com.karthikb351.vitinfo2.objects.DataHandler;
@@ -112,12 +113,12 @@ public class FriendsFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Share TimeTable")
                 .setItems(R.array.freinds_share, new DialogInterface.OnClickListener() {
-
                     public void onClick(final DialogInterface dialog, final int which) {
                         diag.show();
-                        VITxAPI api = new VITxAPI(getActivity(), new OnTaskComplete() {
+
+                        VITxApi.getInstance(getActivity()).getToken(new VITxApi.onTaskCompleted() {
                             @Override
-                            public void onTaskCompleted(Exception e, Object result) {
+                            public void onCompleted(Object result, Exception e) {
                                 if(e != null)
                                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                 else{
@@ -144,8 +145,8 @@ public class FriendsFragment extends Fragment {
                                     }
                                 }
                                 diag.dismiss();
-                            }});
-                        api.getToken();
+                            }
+                        });
                     }});
         builder.show();
     }

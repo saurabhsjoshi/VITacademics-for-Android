@@ -25,6 +25,7 @@ import java.io.OutputStreamWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -59,8 +60,8 @@ public class DataHandler {
 
             //Laod share token data
             prefs = context.getSharedPreferences("shareJSON", Context.MODE_PRIVATE);
-            shareJSON = gson.fromJson(prefs.getString("shareJSON", ""), Share.class);
-        }catch (Exception ignore){}
+            shareJSON = gson.fromJson(prefs.getString("shareJSON", ""), Response.class).getShare();
+        }catch (Exception ignore){ignore.printStackTrace();}
     }
 
     public static DataHandler getInstance(Context context){
@@ -103,9 +104,9 @@ public class DataHandler {
 
     public void saveShareJSON(String json){
         SharedPreferences prefs = context.getSharedPreferences("shareJSON", Context.MODE_PRIVATE);
-        prefs.edit().putString("refreshJSON", json).commit();
+        prefs.edit().putString("shareJSON", json).commit();
         Gson gson = new Gson();
-        shareJSON = gson.fromJson(prefs.getString("shareJSON", ""), Share.class);
+        shareJSON = gson.fromJson(prefs.getString("shareJSON", ""), Response.class).getShare();
     }
 
     public Timetable getTimeTable2(){
@@ -304,17 +305,23 @@ public class DataHandler {
     }
 
     public String getToken(){
+
         try {
-            JSONObject obj = new JSONObject(preferences.getString("PINJSON",""));
-            String dt = obj.getString("expiry");
+            String dt = shareJSON.getIssued();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            Date issue_date =  df.parse(dt);
 
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss");
-            Date expiry_date =  df.parse(dt);
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(issue_date);
 
-            if(expiry_date.after(new Date())){
-                return obj.getString("token");
+            //Add validity
+            cal.add(Calendar.HOUR_OF_DAY, shareJSON.getValidity());
+
+            //Compare Dates
+            if(cal.getTime().after(new Date())){
+                return shareJSON.getToken();
             }
-        }catch (Exception ignore){}
+        }catch (Exception ignore){ignore.printStackTrace();}
         return "expired";
     }
 
@@ -338,7 +345,7 @@ public class DataHandler {
     }
 
     public ArrayList<PushMessage> getAllPushMessage(){
-        ArrayList<PushMessage> temp = new ArrayList<PushMessage>();
+        ArrayList<PushMessage> temp = new ArrayList<>();
         try{
 
             Gson gson = new Gson();
@@ -393,7 +400,6 @@ public class DataHandler {
         Collections.sort(subs, new Comparator<Subject>() {
             @Override
             public int compare(Subject sub1, Subject sub2) {
-
                 return sub1.classnbr.compareTo(sub2.classnbr);
             }
         });
