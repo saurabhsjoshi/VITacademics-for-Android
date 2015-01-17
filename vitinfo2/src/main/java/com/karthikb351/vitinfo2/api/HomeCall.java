@@ -49,4 +49,29 @@ public class HomeCall {
             throw new Exception("Looks like VIT servers are down!");
         }
     }
+
+    public static Response getFriendTimeTable(String campus, String token) throws Exception{
+        try{
+            final String USER_AGENT = "Mozilla/5.0";
+            final String base_host;
+            String path = "/friends/";
+            base_host = HOST_URL + campus;
+
+            final List<NameValuePair> params = new ArrayList<>();
+            params.add(new BasicNameValuePair("token", token));
+            final URI uri = URIUtils.createURI("http", base_host, -1, path, URLEncodedUtils.format(params,"UTF-8"), null);
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpGet request = new HttpGet();
+            request.addHeader("User-Agent", USER_AGENT);
+            request.setURI(uri);
+            final HttpResponse httpResponse = httpClient.execute(request);
+            final HttpEntity responseEntity = httpResponse.getEntity();
+            json_response =  EntityUtils.toString(responseEntity);
+            Gson gson = new Gson();
+            return gson.fromJson(json_response, Response.class);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception("Looks like VIT servers are down!");
+        }
+    }
 }

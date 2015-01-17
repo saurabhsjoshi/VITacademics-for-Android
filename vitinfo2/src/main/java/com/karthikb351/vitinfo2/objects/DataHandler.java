@@ -109,6 +109,10 @@ public class DataHandler {
         shareJSON = gson.fromJson(prefs.getString("shareJSON", ""), Response.class).getShare();
     }
 
+    public void setShareJSON(Share share){
+        shareJSON = share;
+    }
+
     public Timetable getTimeTable2(){
         return firstJSON;
     }
@@ -120,6 +124,31 @@ public class DataHandler {
     public List<Course> getAllCourses(){return refresh.getCourses();}
 
     public Share getShareJSON(){return shareJSON;}
+
+    public String getToken(){
+
+        try {
+            String dt = shareJSON.getIssued();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            Date issue_date =  df.parse(dt);
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(issue_date);
+
+            //Add validity
+            cal.add(Calendar.HOUR_OF_DAY, shareJSON.getValidity());
+
+            //Compare Dates
+            if(cal.getTime().after(new Date())){
+                return shareJSON.getToken();
+            }
+        }catch (Exception ignore){ignore.printStackTrace();}
+        return "expired";
+    }
+
+
+
+
 
     public void saveServerStatus(String json){saveString("SERVERSTATUS",json);}
 
@@ -304,26 +333,7 @@ public class DataHandler {
         return "";
     }
 
-    public String getToken(){
 
-        try {
-            String dt = shareJSON.getIssued();
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            Date issue_date =  df.parse(dt);
-
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(issue_date);
-
-            //Add validity
-            cal.add(Calendar.HOUR_OF_DAY, shareJSON.getValidity());
-
-            //Compare Dates
-            if(cal.getTime().after(new Date())){
-                return shareJSON.getToken();
-            }
-        }catch (Exception ignore){ignore.printStackTrace();}
-        return "expired";
-    }
 
     private String check_dob(int num){
         String t = Integer.toString(num);

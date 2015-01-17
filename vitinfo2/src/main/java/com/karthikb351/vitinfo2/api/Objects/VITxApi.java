@@ -33,6 +33,39 @@ public class VITxApi {
         return mInstance;
     }
 
+    public void addFriend(final String token, final onTaskCompleted listener){
+        refreshCredentials();
+        class bgTask extends AsyncTask<Void, Void, Object>{
+            private Exception e;
+            @Override
+            protected Object doInBackground(Void... params) {
+                try{
+                    if(!isConnected())
+                        throw new Exception("No network connection!");
+
+                    Response temp = HomeCall.sendRequest(regno, dob, campus, "/friends/regenerate");
+                    if(temp.getStatus().getCode() == 0){
+                        DataHandler.getInstance(context).saveShareJSON(HomeCall.json_response);
+                        return DataHandler.getInstance(context).getToken();
+                    }
+                    else
+                        throw new Exception(temp.getStatus().getMessage());
+                }catch (Exception e){
+                    e.printStackTrace();
+                    this.e = e;
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                listener.onCompleted(o, e);
+            }
+        }
+        new bgTask().execute();
+    }
+
     public void getToken(final onTaskCompleted listener){
         refreshCredentials();
 

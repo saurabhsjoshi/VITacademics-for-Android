@@ -18,9 +18,9 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.VITxAPI;
+import com.karthikb351.vitinfo2.api.Objects.Share;
+import com.karthikb351.vitinfo2.api.Objects.VITxApi;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.OnTaskComplete;
 import com.karthikb351.vitinfo2.objects.QRCreator.Contents;
 import com.karthikb351.vitinfo2.objects.QRCreator.QRCodeEncoder;
 
@@ -68,21 +68,29 @@ public class QRCodeFragment extends Fragment{
         diag = new ProgressDialog(getActivity());
         diag.setMessage("Loading");
         diag.setCancelable(false);
-        DataHandler.getInstance(getActivity()).saveToken("");
+        final Share tempShare = DataHandler.getInstance(getActivity()).getShareJSON();
+
+        //Change to oldddd date
+        DataHandler.getInstance(getActivity()).getShareJSON().setIssued("1900-01-01T14:45:21.455Z");
+
         diag.show();
-        VITxAPI api = new VITxAPI(getActivity(), new OnTaskComplete() {
+
+        VITxApi.getInstance(getActivity()).getToken(new VITxApi.onTaskCompleted() {
             @Override
-            public void onTaskCompleted(Exception e, Object result) {
-                if(e != null)
+            public void onCompleted(Object result, Exception e) {
+                if(e != null){
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    //Set Back to original date!
+                    DataHandler.getInstance(getActivity()).setShareJSON(tempShare);
+                }
                 else{
                     Home h = (Home) getActivity();
                     h.token = (String) result;
                     loadAll();
                 }
                 diag.dismiss();
-            }});
-        api.getToken();
+            }
+        });
     }
 
     @Override

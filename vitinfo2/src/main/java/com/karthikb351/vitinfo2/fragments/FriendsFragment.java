@@ -177,17 +177,17 @@ public class FriendsFragment extends Fragment {
         api.submitToken();
     }
 
-
-
     private void showAddAlert(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Add Friend")
                 .setItems(R.array.freinds_add, new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int which) {
+
                         //Scan Barcode
                         if(which == 1)
                             IntentIntegrator.initiateScan(getActivity(), zxingLibConfig);
-                            //Enter PIN
+
+                        //Enter PIN
                         else if(which == 0){
                             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                             builder.setTitle("Enter PIN");
@@ -210,6 +210,7 @@ public class FriendsFragment extends Fragment {
 
                             builder.show();
                         }
+
                         else if(which == 2){
                             final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                             // Get the layout inflater
