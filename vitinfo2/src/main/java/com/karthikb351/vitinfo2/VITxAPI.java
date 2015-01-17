@@ -442,7 +442,7 @@ public class VITxAPI {
                         return null;
                     }
                     //Save friend to memory!
-                    dat.addFriend(f);
+                   // dat.addFriend(f);
                 }
                 else{
                     e = new Exception("Oops! Looks like the token is incorrect or expired.");
@@ -504,7 +504,7 @@ public class VITxAPI {
                     return null;
                 }
                 //Save friend to memory!
-                dat.addFriend(f);
+                //dat.addFriend(f);
 
             }catch (Exception e1){
                 e1.printStackTrace();

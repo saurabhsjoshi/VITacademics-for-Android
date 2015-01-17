@@ -55,7 +55,7 @@ public class HomeCall {
         try{
             final String USER_AGENT = "Mozilla/5.0";
             final String base_host;
-            String path = "/friends/";
+            String path = "/friends/share";
             base_host = HOST_URL + campus;
 
             final List<NameValuePair> params = new ArrayList<>();

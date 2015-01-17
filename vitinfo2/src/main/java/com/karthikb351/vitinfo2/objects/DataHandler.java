@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.text.format.DateUtils;
 
 import com.google.gson.Gson;
+import com.karthikb351.vitinfo2.api.Objects.AddFriendResponse;
 import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.api.Objects.Response;
 import com.karthikb351.vitinfo2.api.Objects.Share;
@@ -146,6 +147,117 @@ public class DataHandler {
         return "expired";
     }
 
+    //Save Friend JSON
+    public void addFriend(AddFriendResponse f){
+        int cur = preferences.getInt("FRIENDJSONSIZE", 0);
+        Gson gson = new Gson();
+        saveString("FRIENDJSON"+cur ,gson.toJson(f));
+        System.out.println(gson.toJson(f));
+        saveInt("FRIENDJSONSIZE", ++cur);
+
+    }
+
+    public ArrayList<AddFriendResponse> getFreinds(){
+        ArrayList<AddFriendResponse> t = new ArrayList<>();
+        int size = preferences.getInt("FRIENDJSONSIZE", 0);
+
+        Gson gson = new Gson();
+
+        for(int i = 0; i < size; i++){
+            t.add(gson.fromJson(preferences.getString("FRIENDJSON"+i,""), AddFriendResponse.class));
+            t.get(i).getData().img_profile = null;
+        }
+        Collections.sort(t, new FriendComparator());
+        return t;
+    }
+
+    public void saveFriends(ArrayList<AddFriendResponse> friends){
+        Gson gson = new Gson();
+        String t;
+        for(int i = 0 ; i < friends.size(); i++){
+            t = gson.toJson(friends.get(i));
+            saveString("FRIENDJSON" + i , t);
+        }
+        saveInt("FRIENDJSONSIZE", friends.size());
+    }
+
+    public void deleteFriend(AddFriendResponse f){
+        try {
+            ArrayList<AddFriendResponse> t = getFreinds();
+
+            for(int i = 0; i < t.size(); i++){
+                if(f.getData().getRegNo().equals(t.get(i).getData().getRegNo())){
+                    t.remove(i);
+                    break;
+                }
+            }
+            saveFriends(t);
+
+        }catch (Exception e){e.printStackTrace();}
+    }
+
+    public boolean loadFriendsfromSDCard(){
+        try {
+            FileInputStream inputStream = new FileInputStream(new File(Environment.getExternalStorageDirectory() + "/VITacademics_backup.bak"));
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            String receiveString;
+            StringBuilder stringBuilder = new StringBuilder();
+            while ( (receiveString = bufferedReader.readLine()) != null ) {
+                stringBuilder.append(receiveString);
+            }
+            inputStream.close();
+            JSONArray j = new JSONArray(SimpleCrypto.decrypt(Secret.backup_password,stringBuilder.toString()));
+
+            for(int i = 0; i < j.length(); i++){
+                addFriend(new Gson().fromJson(j.getString(i), AddFriendResponse.class));
+            }
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    public boolean saveFriendstoSDCard(){
+        try {
+            int size = preferences.getInt("FRIENDJSONSIZE", 0);
+
+            JSONArray fl = new JSONArray();
+
+            for(int i = 0; i < size; i++)
+                fl.put(i, preferences.getString("FRIENDJSON"+i,""));
+
+            File myFile = new File(Environment.getExternalStorageDirectory() + "/VITacademics_backup.bak");
+            myFile.createNewFile();
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+
+            /*
+             * Create class in objectes called Secret.java and put this in:
+             * public class Secret {public static String backup_password = "ANYSTRINGHERE";}
+             *
+             */
+            myOutWriter.append(SimpleCrypto.encrypt(Secret.backup_password, fl.toString()));
+            myOutWriter.close();
+            fOut.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -180,14 +292,7 @@ public class DataHandler {
         saveInt("PUSHMESSAGEJSONSIZE", msgs.size());
     }
 
-    public void addFriend(Friend f){
-        int cur = preferences.getInt("FRIENDJSONSIZE", 0);
-        Gson gson = new Gson();
-        String t = gson.toJson(f);
-        saveString("FRIENDJSON"+cur ,t);
-        cur += 1;
-        saveInt("FRIENDJSONSIZE", cur);
-    }
+
 
     public void saveMarks(String marks){
         saveString("MARKSJSON", marks);
@@ -211,16 +316,6 @@ public class DataHandler {
 
     public void saveToken(String json){saveString("PINJSON", json);}
 
-    public void saveFriends(ArrayList<Friend> friends){
-        Gson gson = new Gson();
-        String t;
-        for(int i = 0 ; i < friends.size(); i++){
-            t = gson.toJson(friends.get(i));
-            saveString("FRIENDJSON" + i , t);
-        }
-        saveInt("FRIENDJSONSIZE", friends.size());
-    }
-
     public String getRegNo(){
         return preferences.getString("REGNO", "").toUpperCase();
     }
@@ -243,79 +338,11 @@ public class DataHandler {
 
     public int getDefUi(){return Integer.parseInt(preferences.getString("defUi","0"));}
 
-    private class FriendComparator implements Comparator<Friend> {
+    private class FriendComparator implements Comparator<AddFriendResponse> {
         @Override
-        public int compare(Friend friend, Friend friend2) {
-            return friend.title.compareTo(friend2.title);
+        public int compare(AddFriendResponse friend, AddFriendResponse friend2) {
+            return friend.getData().title.compareTo(friend2.getData().title);
         }
-    }
-
-    public ArrayList<Friend> getFreinds(){
-        ArrayList<Friend> t = new ArrayList<Friend>();
-        int size = preferences.getInt("FRIENDJSONSIZE", 0);
-
-        Gson gson = new Gson();
-
-        for(int i = 0; i < size; i++){
-            t.add(gson.fromJson(preferences.getString("FRIENDJSON"+i,""), Friend.class));
-            t.get(i).img_profile = null;
-        }
-        Collections.sort(t, new FriendComparator());
-        return t;
-    }
-
-    public boolean saveFriendstoSDCard(){
-        try {
-            int size = preferences.getInt("FRIENDJSONSIZE", 0);
-
-            JSONArray fl = new JSONArray();
-
-            for(int i = 0; i < size; i++)
-                fl.put(i, preferences.getString("FRIENDJSON"+i,""));
-
-            File myFile = new File(Environment.getExternalStorageDirectory() + "/VITacademics_backup.bak");
-            myFile.createNewFile();
-            FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
-
-            /*
-             * Create class in objectes called Secret.java and put this in:
-             * public class Secret {public static String backup_password = "ANYSTRINGHERE";}
-             *
-             */
-            myOutWriter.append(SimpleCrypto.encrypt(Secret.backup_password, fl.toString()));
-            myOutWriter.close();
-            fOut.close();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean loadFriendsfromSDCard(){
-        try {
-            FileInputStream inputStream = new FileInputStream(new File(Environment.getExternalStorageDirectory() + "/VITacademics_backup.bak"));
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String receiveString;
-            StringBuilder stringBuilder = new StringBuilder();
-            while ( (receiveString = bufferedReader.readLine()) != null ) {
-                stringBuilder.append(receiveString);
-            }
-            inputStream.close();
-            JSONArray j = new JSONArray(SimpleCrypto.decrypt(Secret.backup_password,stringBuilder.toString()));
-            Gson gson = new Gson();
-
-            for(int i = 0; i < j.length(); i++){
-                addFriend(gson.fromJson(j.getString(i), Friend.class));
-            }
-            return true;
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-
     }
 
     public String getServerStatus(){return  preferences.getString("SERVERSTATUS","");}
@@ -382,21 +409,6 @@ public class DataHandler {
         }
         savePushMessages(temp);
 
-    }
-
-    public void deleteFriend(Friend f){
-        try {
-            ArrayList<Friend> t = getFreinds();
-
-            for(int i = 0; i < t.size(); i++){
-                if(f.regno.equals(t.get(i).regno)){
-                    t.remove(i);
-                    break;
-                }
-            }
-            saveFriends(t);
-
-        }catch (Exception e){e.printStackTrace();}
     }
 
     public int getSubLength(){

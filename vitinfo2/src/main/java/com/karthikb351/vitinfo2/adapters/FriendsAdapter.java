@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.Objects.AddFriendResponse;
 import com.karthikb351.vitinfo2.objects.Friend;
 import com.karthikb351.vitinfo2.objects.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.objects.TimeTableFiles.TimeTable;
@@ -22,12 +23,12 @@ import java.util.ArrayList;
  */
 public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHolder> implements View.OnClickListener, View.OnLongClickListener{
 
-    private ArrayList<Friend> friends;
+    private ArrayList<AddFriendResponse> friends;
     private int itemLayout;
     private Context context;
     private RecyclerViewOnClickListener listener;
 
-    public FriendsAdapter(Context context, ArrayList<Friend> friends, RecyclerViewOnClickListener l) {
+    public FriendsAdapter(Context context, ArrayList<AddFriendResponse> friends, RecyclerViewOnClickListener l) {
         this.context = context;
         this.friends = friends;
         this.listener = l;
@@ -44,16 +45,16 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Friend f = friends.get(position);
-        if(f.isFb && f.img_profile!=null)
-            holder.image.setImageBitmap(f.img_profile);
+        AddFriendResponse f = friends.get(position);
+        if(f.getData().isFb && f.getData().img_profile!=null)
+            holder.image.setImageBitmap(f.getData().img_profile);
         else
             holder.image.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_action_person));
 
-        holder.name.setText(f.title);
+        holder.name.setText(f.getData().title);
         TimeTable t = new TimeTable(context);
 
-        if(t.getFriendStatus(f.timetable)){
+        if(t.getFriendStatus(f)){
             holder.status.setText("In class");
             holder.status.setTextColor(Color.parseColor("#ffa500"));
             holder.venue.setText("Class ends " + t.FreindEndsIn);
@@ -76,9 +77,9 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
     @Override
     public void onClick(View view) {
-        Friend f = (Friend) view.getTag();
+        AddFriendResponse f = (AddFriendResponse) view.getTag();
         for(int i = 0; i < getItemCount(); i++){
-            if(f.regno.equals(friends.get(i).regno)){
+            if(f.getData().getRegNo().equals(friends.get(i).getData().getRegNo())){
                 listener.onClick(friends.get(i), false);
                 return;
             }
@@ -89,7 +90,7 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
     public boolean onLongClick(View view) {
         Friend f = (Friend) view.getTag();
         for(int i = 0; i < getItemCount(); i++){
-            if(f.regno.equals(friends.get(i).regno)){
+            if(f.regno.equals(friends.get(i).getData().getRegNo())){
                 listener.onClick(friends.get(i), true);
                 return true;
             }

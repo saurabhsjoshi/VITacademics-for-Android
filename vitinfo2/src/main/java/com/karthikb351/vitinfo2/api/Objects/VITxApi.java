@@ -7,6 +7,11 @@ import android.os.AsyncTask;
 
 import com.karthikb351.vitinfo2.api.HomeCall;
 import com.karthikb351.vitinfo2.objects.DataHandler;
+import com.koushikdutta.ion.Ion;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.io.File;
 
 /**
  * Created by saurabh on 14-12-09.
@@ -35,6 +40,7 @@ public class VITxApi {
 
     public void addFriend(final String token, final onTaskCompleted listener){
         refreshCredentials();
+
         class bgTask extends AsyncTask<Void, Void, Object>{
             private Exception e;
             @Override
@@ -43,10 +49,32 @@ public class VITxApi {
                     if(!isConnected())
                         throw new Exception("No network connection!");
 
-                    Response temp = HomeCall.sendRequest(regno, dob, campus, "/friends/regenerate");
+                    AddFriendResponse temp = HomeCall.getFriendTimeTable(campus, token);
                     if(temp.getStatus().getCode() == 0){
-                        DataHandler.getInstance(context).saveShareJSON(HomeCall.json_response);
+                        Data data = temp.getData();
+
+                        ParseQuery<ParseUser> query = ParseUser.getQuery();
+                        ParseUser u = (query.whereEqualTo("username",data.getRegNo())).getFirst();
+
+                        //Is logged in with Facebook
+                        if(u.getString("isSignedIn").equals("true")){
+                            data.isFb = true;
+                            data.fbId = u.getString("facebookID");
+                            data.title = u.getString("facebookName");
+
+                            Ion.with(context)
+                                    .load("http://graph.facebook.com/" + data.fbId + "/picture?type=large")
+                                    .write(new File(context.getCacheDir().getPath() + "/" + data.fbId + ".jpg"))
+                                    .get();
+                        }
+                        else{
+                            data.title = data.getRegNo();
+                        }
+
+                        temp.setData(data);
+                        DataHandler.getInstance(context).addFriend(temp);
                         return DataHandler.getInstance(context).getToken();
+
                     }
                     else
                         throw new Exception(temp.getStatus().getMessage());

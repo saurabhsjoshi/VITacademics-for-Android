@@ -11,4 +11,20 @@ public class AddFriendResponse {
 
     @Expose
     private Data data;
+
+    public Status getStatus(){
+        return status;
+    }
+
+    public Data getData(){
+        return data;
+    }
+
+    public void setStatus(Status status){
+        this.status = status;
+    }
+
+    public void setData(Data data){
+        this.data = data;
+    }
 }

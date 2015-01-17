@@ -35,16 +35,17 @@ import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.VITxAPI;
 import com.karthikb351.vitinfo2.adapters.FriendsAdapter;
+import com.karthikb351.vitinfo2.api.Objects.AddFriendResponse;
 import com.karthikb351.vitinfo2.api.Objects.VITxApi;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.IntentIntegrator;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.ZXingLibConfig;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.Friend;
 import com.karthikb351.vitinfo2.objects.OnTaskComplete;
 import com.karthikb351.vitinfo2.objects.RecyclerViewOnClickListener;
 import com.koushikdutta.ion.Ion;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -160,21 +161,17 @@ public class FriendsFragment extends Fragment {
         pdiag.setTitle("Please wait");
         pdiag.setCancelable(false);
         pdiag.show();
-        VITxAPI api = new VITxAPI(getActivity(), new OnTaskComplete() {
+        VITxApi.getInstance(getActivity()).addFriend(TOKEN, new VITxApi.onTaskCompleted() {
             @Override
-            public void onTaskCompleted(Exception e, Object result) {
-                if(e == null){
+            public void onCompleted(Object result, Exception e) {
+                if (e == null) {
                     Toast.makeText(getActivity(), "Friend Added!", Toast.LENGTH_SHORT).show();
                     ((Home) getActivity()).selectItem_Async(3);
-                }
-                else
+                } else
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 pdiag.dismiss();
             }
         });
-        api.Token = TOKEN;
-
-        api.submitToken();
     }
 
     private void showAddAlert(){
@@ -277,7 +274,7 @@ public class FriendsFragment extends Fragment {
         builder.show();
     }
 
-    private void showFriendClickDetailsDialog(final Friend f){
+    private void showFriendClickDetailsDialog(final AddFriendResponse f){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setItems(R.array.friends_details, new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int which) {
@@ -292,7 +289,7 @@ public class FriendsFragment extends Fragment {
                                 };
 
                                 new Thread(runnable).start();
-                                Toast.makeText(getActivity(), f.title + " has been deleted.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), f.getData().title + " has been deleted.", Toast.LENGTH_SHORT).show();
                                 break;
 
                             case 1:
@@ -306,11 +303,11 @@ public class FriendsFragment extends Fragment {
         builder.show();
     }
 
-    private void showEditFriendName(final Friend f){
+    private void showEditFriendName(final AddFriendResponse f){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Display Name");
         final EditText input = new EditText(getActivity());
-        input.setHint(f.title);
+        input.setHint(f.getData().title);
         builder.setView(input);
 
         builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
@@ -320,7 +317,7 @@ public class FriendsFragment extends Fragment {
                     @Override
                     public void run() {
                         dat.deleteFriend(f);
-                        f.title = input.getText().toString();
+                        f.getData().title = input.getText().toString();
                         dat.addFriend(f);
                         ((Home) getActivity()).selectItem_Async(3);
                     }};
@@ -404,10 +401,10 @@ public class FriendsFragment extends Fragment {
     }
 
     private class Load_Data extends AsyncTask<Void,Void,Void> {
-        private ArrayList<Friend> friends;
+        private ArrayList<AddFriendResponse> friends;
 
         protected void onPreExecute(){
-            friends = new ArrayList<Friend>();
+            friends = new ArrayList<AddFriendResponse>();
             mPullToRefreshLayout.setRefreshing(true);
         }
 
@@ -418,12 +415,12 @@ public class FriendsFragment extends Fragment {
                 friends = DataHandler.getInstance(getActivity()).getFreinds();
                 for(int i = 0; i < friends.size(); i++)
                 {
-                    if(friends.get(i).isFb){
-                        File file = new File(getActivity().getCacheDir().getPath() + "/" + friends.get(i).fbId + ".jpg");
+                    if(friends.get(i).getData().isFb){
+                        File file = new File(getActivity().getCacheDir().getPath() + "/" + friends.get(i).getData().fbId + ".jpg");
                         try {
                             BitmapFactory.Options options = new BitmapFactory.Options();
                             options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                            friends.get(i).img_profile = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
+                            friends.get(i).getData().img_profile = BitmapFactory.decodeStream(new FileInputStream(file), null, options);
                         }catch (Exception e){e.printStackTrace();}
                     }
                 }
@@ -438,7 +435,7 @@ public class FriendsFragment extends Fragment {
                 FriendsAdapter adapter = new FriendsAdapter(getActivity(), friends, new RecyclerViewOnClickListener() {
                     @Override
                     public void onClick(Object result, boolean isLongPress) {
-                        Friend f = (Friend) result;
+                        AddFriendResponse f = (AddFriendResponse) result;
                         //Not long click
                         if(!isLongPress){
                             showFriendClickDetailsDialog(f);
@@ -465,10 +462,10 @@ public class FriendsFragment extends Fragment {
 
     private class Refresh_Data extends AsyncTask<Void,Void,Void>{
 
-        private ArrayList<Friend> friends;
+        private ArrayList<AddFriendResponse> friends;
 
         protected void onPreExecute(){
-            friends = new ArrayList<Friend>();
+            friends = new ArrayList<>();
         }
 
         private boolean haveNetworkConnection() {
@@ -488,12 +485,12 @@ public class FriendsFragment extends Fragment {
             return haveConnectedWifi || haveConnectedMobile;
         }
 
-        private void downloadProfileImage(final ArrayList<Friend> friends){
+        private void downloadProfileImage(final ArrayList<AddFriendResponse> friends){
             for(int i = 0; i < friends.size(); i++){
                 String fbId;
-                fbId = friends.get(i).fbId;
+                fbId = friends.get(i).getData().fbId;
                 final int j = i;
-                if(friends.get(i).isFb && getActivity() != null){
+                if(friends.get(i).getData().isFb && getActivity() != null){
                     try {
                         if(isCancelled())
                         Ion.with(getActivity())
@@ -503,7 +500,7 @@ public class FriendsFragment extends Fragment {
 
                         BitmapFactory.Options options = new BitmapFactory.Options();
                         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                        friends.get(j).img_profile = BitmapFactory.decodeFile(getActivity().getCacheDir().getPath() + "/" + fbId + ".jpg", options);
+                        friends.get(j).getData().img_profile = BitmapFactory.decodeFile(getActivity().getCacheDir().getPath() + "/" + fbId + ".jpg", options);
                     }
                     catch (InterruptedException e2){e2.printStackTrace();}
                     catch (ExecutionException e3){e3.printStackTrace();}
@@ -521,15 +518,15 @@ public class FriendsFragment extends Fragment {
                 for(int i = 0; i < friends.size(); i++){
                     if (isCancelled())
                         return null;
-                    if(!friends.get(i).isFb){
+                    if(!friends.get(i).getData().isFb){
                         ParseQuery<ParseUser> query = ParseUser.getQuery();
-                        ParseUser u = (query.whereEqualTo("username",friends.get(i).regno)).getFirst();
+                        ParseUser u = (query.whereEqualTo("username",friends.get(i).getData().getRegNo())).getFirst();
 
                         String isIt = u.getString("isSignedIn");
                         if(isIt != null && isIt.equals("true")){
-                            friends.get(i).isFb = true;
-                            friends.get(i).fbId = u.get("facebookID").toString();
-                            friends.get(i).title = u.get("facebookName").toString();
+                            friends.get(i).getData().isFb = true;
+                            friends.get(i).getData().fbId = u.get("facebookID").toString();
+                            friends.get(i).getData().title = u.get("facebookName").toString();
                             needSaving = true;
                         }
                     }

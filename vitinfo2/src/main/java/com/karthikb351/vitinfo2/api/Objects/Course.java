@@ -322,6 +322,4 @@ public class Course {
     public void setBillDate(String billDate) {
         this.billDate = billDate;
     }
-
-
 }
