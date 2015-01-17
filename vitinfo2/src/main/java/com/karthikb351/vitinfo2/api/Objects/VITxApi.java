@@ -11,6 +11,12 @@ import com.koushikdutta.ion.Ion;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
+
 import java.io.File;
 
 /**
@@ -89,6 +95,45 @@ public class VITxApi {
             protected void onPostExecute(Object o) {
                 super.onPostExecute(o);
                 listener.onCompleted(o, e);
+            }
+        }
+        new bgTask().execute();
+    }
+
+    public void saveServerStatus(final onTaskCompleted listener){
+
+        class bgTask extends AsyncTask<Void, Void, Object>{
+            private Exception e;
+            boolean ret = false;
+            @Override
+            protected Object doInBackground(Void... params) {
+                try {
+                    HttpClient client = new DefaultHttpClient();
+                    HttpGet request = new HttpGet("http://vitacademicsrel.appspot.com/status");
+                    String res = EntityUtils.toString(client.execute(request).getEntity());
+                    JSONObject obj = new JSONObject(res);
+
+                    int ver = Integer.parseInt(obj.getString("msg_no"));
+                    String saved = DataHandler.getInstance(context).getServerStatus();
+
+                    if(!saved.equals("")){
+                        int sv = Integer.parseInt(new JSONObject(saved).getString("msg_no"));
+                        if(sv != ver)
+                            ret =  true;
+                    }
+                    else
+                        ret = true;
+
+                    if(ret)
+                        DataHandler.getInstance(context).saveServerStatus(res);
+
+                }catch (Exception e){this.e = e;}
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                listener.onCompleted(ret, e);
             }
         }
         new bgTask().execute();

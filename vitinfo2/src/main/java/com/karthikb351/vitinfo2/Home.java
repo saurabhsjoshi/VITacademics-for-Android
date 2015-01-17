@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.karthikb351.vitinfo2.adapters.DrawerListAdapter;
+import com.karthikb351.vitinfo2.api.Objects.VITxApi;
 import com.karthikb351.vitinfo2.fragments.CoursesFragment;
 import com.karthikb351.vitinfo2.fragments.FriendsFragment;
 import com.karthikb351.vitinfo2.fragments.FriendsFragments.FaceBookLogin;
@@ -41,7 +42,6 @@ import com.karthikb351.vitinfo2.fragments.SettingsFragment;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.IntentIntegrator;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.IntentResult;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.OnTaskComplete;
 import com.parse.ParseFacebookUtils;
 
 import org.json.JSONObject;
@@ -148,15 +148,14 @@ public class Home extends BaseActivity {
             }
         }
 
-        VITxAPI api  = new VITxAPI(this, new OnTaskComplete() {
+        VITxApi.getInstance(this).saveServerStatus(new VITxApi.onTaskCompleted() {
             @Override
-            public void onTaskCompleted(Exception e, Object result) {
+            public void onCompleted(Object result, Exception e) {
                 boolean res = (Boolean) result;
                 if(res && isActive)
                     Toast.makeText(getApplicationContext(), "New Notificiation!", Toast.LENGTH_SHORT).show();
             }
         });
-        api.saveServerStatus();
 
         if(getIntent().getExtras() != null){
             try {
@@ -211,11 +210,11 @@ public class Home extends BaseActivity {
             case R.id.radioChen:
                 if (checked)
                     dat.saveCampus(false);
-                    break;
+                break;
             case R.id.radioVel:
                 if (checked)
                     dat.saveCampus(true);
-                    break;
+                break;
         }
     }
 

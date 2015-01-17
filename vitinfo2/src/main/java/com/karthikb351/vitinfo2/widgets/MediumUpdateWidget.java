@@ -11,8 +11,8 @@ import android.widget.RemoteViews;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.SubjectDetails;
+import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.Subject;
 
 /**
  * Created by saurabh on 5/21/14.
@@ -55,8 +55,8 @@ public class MediumUpdateWidget extends Service {
 
         //CHECK IF REACHED LIMITS
         if (cur<0)
-            cur = dat.getSubLength()-1;
-        else if (cur >= dat.getSubLength()){
+            cur = dat.getAllCourses().size()-1;
+        else if (cur >= dat.getAllCourses().size()){
             cur = 0;
         }
 
@@ -68,25 +68,29 @@ public class MediumUpdateWidget extends Service {
         for (int widgetId : allWidgetIds) {
             RemoteViews remoteViews = new RemoteViews(this.getApplicationContext().getPackageName(), R.layout.widget_medium_layout);
 
-            Subject sub;
+            Course sub;
 
             //LOAD THE DATA
             try
             {
-                sub = dat.getSubwithPos(cur);
+                sub = dat.getAllCourses().get(cur);
 
                 //SET DATA OF THE SUBJECT
-                remoteViews.setTextViewText(R.id.lbl_wid_sub , sub.title);
-                remoteViews.setProgressBar(R.id.prg_wid_per, sub.conducted, sub.attended , false);
-                remoteViews.setTextViewText(R.id.lbl_wid_slt, sub.slot+" ");
-                remoteViews.setTextViewText(R.id.lbl_wid_per, String.valueOf(sub.percentage)+"%");
+                remoteViews.setTextViewText(R.id.lbl_wid_sub , sub.getCourseTitle());
+                remoteViews.setProgressBar(R.id.prg_wid_per,
+                        Integer.parseInt(sub.getAttendance().getTotalClasses()),
+                        Integer.parseInt(sub.getAttendance().getAttendedClasses()),
+                        false);
+
+                remoteViews.setTextViewText(R.id.lbl_wid_slt, sub.getSlot()+" ");
+                remoteViews.setTextViewText(R.id.lbl_wid_per, String.valueOf(sub.getAttendance().getAttendancePercentage())+"%");
 
                 //ONCLICK LISTENERS DONT CHANGE THESE
                 Intent clickIntent = new Intent(this.getApplicationContext(),MediumProviderWidget.class);
                 Intent clickIntent2 = new Intent(this.getApplicationContext(),MediumProviderWidget.class);
                 Intent open_Intent = new Intent(this.getApplicationContext(), SubjectDetails.class);
 
-                open_Intent.putExtra("clsnbr", sub.classnbr);
+                open_Intent.putExtra("clsnbr", sub.getClassNumber());
 
                 clickIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
                 clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, allWidgetIds);

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.Objects.AddFriendResponse;
-import com.karthikb351.vitinfo2.objects.Friend;
 import com.karthikb351.vitinfo2.objects.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.objects.TimeTableFiles.TimeTable;
 
@@ -88,9 +87,9 @@ public class FriendsAdapter extends RecyclerView.Adapter<FriendsAdapter.ViewHold
 
     @Override
     public boolean onLongClick(View view) {
-        Friend f = (Friend) view.getTag();
+        AddFriendResponse f = (AddFriendResponse) view.getTag();
         for(int i = 0; i < getItemCount(); i++){
-            if(f.regno.equals(friends.get(i).getData().getRegNo())){
+            if(f.getData().getRegNo().equals(friends.get(i).getData().getRegNo())){
                 listener.onClick(friends.get(i), true);
                 return true;
             }

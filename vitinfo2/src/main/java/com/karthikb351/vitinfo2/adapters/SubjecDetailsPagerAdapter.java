@@ -9,7 +9,6 @@ import com.karthikb351.vitinfo2.api.Objects.Course;
 import com.karthikb351.vitinfo2.fragments.DetailsScreens.AttendanceDetailsFragment;
 import com.karthikb351.vitinfo2.fragments.DetailsScreens.DayByDayFragment;
 import com.karthikb351.vitinfo2.fragments.DetailsScreens.MarksDetailsFragment;
-import com.karthikb351.vitinfo2.objects.Subject;
 
 /**
  * Created by saurabh on 4/30/14.

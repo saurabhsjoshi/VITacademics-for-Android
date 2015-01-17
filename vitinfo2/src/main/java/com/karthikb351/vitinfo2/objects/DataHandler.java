@@ -83,7 +83,7 @@ public class DataHandler {
     }
 
     public void setIsHeroku(boolean val){
-        preferences.edit().putBoolean("isHeroku", true).commit();
+        preferences.edit().putBoolean("isHeroku", val).commit();
     }
     public void saveString(String key, String string){
         preferences.edit().putString(key, string).commit();
@@ -249,29 +249,10 @@ public class DataHandler {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void saveServerStatus(String json){saveString("SERVERSTATUS",json);}
 
     private void saveInt(String key, int num){
         preferences.edit().putInt(key, num).commit();
-    }
-
-    public void saveJSON(String jsonInput){
-        jsonInput = jsonInput.substring(jsonInput.indexOf('%')+1);
-        sqDatabase db = new sqDatabase(context);
-        db.addSubjects(jsonInput);
     }
 
     public void addPushMessage(PushMessage pm){
@@ -293,18 +274,9 @@ public class DataHandler {
     }
 
 
-
-    public void saveMarks(String marks){
-        saveString("MARKSJSON", marks);
-    }
-
     public void saveviewShowCase(Boolean shown){preferences.edit().putBoolean("ViewShowCase",shown).commit();}
 
     public void saveviewShowCaseFrnd(Boolean shown){preferences.edit().putBoolean("ViewShowCaseFrnd",shown).commit();}
-
-    public void saveTimeTable(String tt){
-        saveString("TIMETABLEJSON", tt);
-    }
 
     public void saveRegNo(String regno){ saveString("REGNO", regno.trim());}
 
@@ -313,8 +285,6 @@ public class DataHandler {
     public void saveCampus(Boolean isVellore){preferences.edit().putBoolean("isVellore",isVellore).commit();}
 
     public void setFbLogin(Boolean isFbLogin){preferences.edit().putBoolean("isFbLogin", isFbLogin).commit();}
-
-    public void saveToken(String json){saveString("PINJSON", json);}
 
     public String getRegNo(){
         return preferences.getString("REGNO", "").toUpperCase();
@@ -331,10 +301,6 @@ public class DataHandler {
     public boolean isVellore(){return preferences.getBoolean("isVellore", true);}
 
     public boolean isFacebookLogin(){return preferences.getBoolean("isFbLogin", false);}
-
-    public String getTimeTable(){return  preferences.getString("TIMETABLEJSON", "");}
-
-    public String getMarks(){return  preferences.getString("MARKSJSON","");}
 
     public int getDefUi(){return Integer.parseInt(preferences.getString("defUi","0"));}
 
@@ -360,25 +326,11 @@ public class DataHandler {
         return "";
     }
 
-
-
     private String check_dob(int num){
         String t = Integer.toString(num);
         if(t.length() == 1)
             t = "0"+t;
         return t;
-    }
-
-    public ArrayList<Subject> getAllSubjects(){
-
-        sqDatabase sq = new sqDatabase(context);
-        return sq.getAllSubjects();
-    }
-    public Subject getSubject(String clsnbr){
-        sqDatabase db = new sqDatabase(context);
-        Subject s = db.getSubject(clsnbr);
-        s.marksJSON = getMarks();
-        return s;
     }
 
     public ArrayList<PushMessage> getAllPushMessage(){
@@ -409,25 +361,6 @@ public class DataHandler {
         }
         savePushMessages(temp);
 
-    }
-
-    public int getSubLength(){
-        sqDatabase sq = new sqDatabase(context);
-        return sq.getSubjectsCount();
-    }
-
-    public Subject getSubwithPos(int pos){
-        ArrayList<Subject> subs = getAllSubjects();
-
-        Collections.sort(subs, new Comparator<Subject>() {
-            @Override
-            public int compare(Subject sub1, Subject sub2) {
-                return sub1.classnbr.compareTo(sub2.classnbr);
-            }
-        });
-
-
-        return subs.get(pos);
     }
 
     public boolean isNewUser(){return preferences.getBoolean("NewUser", true);}
