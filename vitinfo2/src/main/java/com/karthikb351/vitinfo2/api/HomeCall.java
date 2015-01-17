@@ -1,6 +1,7 @@
 package com.karthikb351.vitinfo2.api;
 
 import com.google.gson.Gson;
+import com.karthikb351.vitinfo2.api.Objects.AddFriendResponse;
 import com.karthikb351.vitinfo2.api.Objects.Response;
 
 import org.apache.http.HttpEntity;
@@ -50,7 +51,7 @@ public class HomeCall {
         }
     }
 
-    public static Response getFriendTimeTable(String campus, String token) throws Exception{
+    public static AddFriendResponse getFriendTimeTable(String campus, String token) throws Exception{
         try{
             final String USER_AGENT = "Mozilla/5.0";
             final String base_host;
@@ -68,7 +69,7 @@ public class HomeCall {
             final HttpEntity responseEntity = httpResponse.getEntity();
             json_response =  EntityUtils.toString(responseEntity);
             Gson gson = new Gson();
-            return gson.fromJson(json_response, Response.class);
+            return gson.fromJson(json_response, AddFriendResponse.class);
         }catch (Exception e){
             e.printStackTrace();
             throw new Exception("Looks like VIT servers are down!");
