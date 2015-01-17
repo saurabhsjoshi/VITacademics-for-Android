@@ -15,8 +15,7 @@ import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.VITxAPI;
-import com.karthikb351.vitinfo2.objects.OnTaskComplete;
+import com.karthikb351.vitinfo2.api.Objects.VITxApi;
 
 ;
 
@@ -45,9 +44,9 @@ public class NFCAddFragment extends Fragment {
         pdiag.setTitle("Please wait");
         pdiag.setCancelable(false);
         pdiag.show();
-        VITxAPI api = new VITxAPI(getActivity(), new OnTaskComplete() {
+        VITxApi.getInstance(getActivity()).addFriend(TOKEN, new VITxApi.onTaskCompleted() {
             @Override
-            public void onTaskCompleted(Exception e, Object result) {
+            public void onCompleted(Object result, Exception e) {
                 if(e == null){
                     Toast.makeText(getActivity(), "Friend Added!", Toast.LENGTH_SHORT).show();
                     ((Home) getActivity()).selectItem_Async(3);
@@ -57,9 +56,6 @@ public class NFCAddFragment extends Fragment {
                 pdiag.dismiss();
             }
         });
-        api.Token = TOKEN;
-
-        api.submitToken();
     }
     @Override
     public void onCreateOptionsMenu(

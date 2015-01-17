@@ -33,14 +33,12 @@ import com.google.android.gms.analytics.Tracker;
 import com.karthikb351.vitinfo2.Application;
 import com.karthikb351.vitinfo2.Home;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.VITxAPI;
 import com.karthikb351.vitinfo2.adapters.FriendsAdapter;
 import com.karthikb351.vitinfo2.api.Objects.AddFriendResponse;
 import com.karthikb351.vitinfo2.api.Objects.VITxApi;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.IntentIntegrator;
 import com.karthikb351.vitinfo2.objects.BarCodeScanner.ZXingLibConfig;
 import com.karthikb351.vitinfo2.objects.DataHandler;
-import com.karthikb351.vitinfo2.objects.OnTaskComplete;
 import com.karthikb351.vitinfo2.objects.RecyclerViewOnClickListener;
 import com.koushikdutta.ion.Ion;
 import com.parse.ParseQuery;
@@ -222,25 +220,26 @@ public class FriendsFragment extends Fragment {
                                     .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(final DialogInterface dialog, int id) {
-                                            VITxAPI api = new VITxAPI(getActivity(), new OnTaskComplete() {
-                                                @Override
-                                                public void onTaskCompleted(Exception e, Object result) {
-                                                    if (e == null) {
-                                                        Toast.makeText(getActivity(), "Friend Added!", Toast.LENGTH_SHORT).show();
-                                                        ((Home) getActivity()).selectItem_Async(3);
-                                                    } else
-                                                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                                                    pdiag.dismiss();
-                                                }
-                                            });
+                                            VITxApi.getInstance(getActivity()).addFriendWithCredentials(
+                                                    ((EditText) dView.findViewById(R.id.username)).getText().toString().toUpperCase(),
+                                                    ((EditText) dView.findViewById(R.id.password)).getText().toString(),
+                                                    new VITxApi.onTaskCompleted() {
+                                                        @Override
+                                                        public void onCompleted(Object result, Exception e) {
+                                                            if (e == null) {
+                                                                Toast.makeText(getActivity(), "Friend Added!", Toast.LENGTH_SHORT).show();
+                                                                ((Home) getActivity()).selectItem_Async(3);
+                                                            } else
+                                                                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                            pdiag.dismiss();
+                                                        }
+                                                    }
+                                            );
                                             pdiag = new ProgressDialog(getActivity());
                                             pdiag.setMessage("Adding Friend");
                                             pdiag.setTitle("Please wait");
                                             pdiag.setCancelable(false);
                                             pdiag.show();
-                                            api.Friend_regno = ((EditText) dView.findViewById(R.id.username)).getText().toString().toUpperCase();
-                                            api.Friend_dob = ((EditText) dView.findViewById(R.id.password)).getText().toString();
-                                            api.AddFriendwithCredentials();
                                             dialog.dismiss();
                                         }
                                     })

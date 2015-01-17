@@ -38,6 +38,62 @@ public class VITxApi {
         return mInstance;
     }
 
+    public void addFriendWithCredentials(final String regno, final String dob, final onTaskCompleted listener){
+        refreshCredentials();
+
+        class bgTask extends AsyncTask<Void, Void, Object>{
+            private Exception e;
+            @Override
+            protected Object doInBackground(Void... params) {
+                try{
+                    if(!isConnected())
+                        throw new Exception("No network connection!");
+
+                    AddFriendResponse temp = HomeCall.getFriendTimeTableCredentials(campus, regno, dob);
+                    if(temp.getStatus().getCode() == 0){
+                        Data data = temp.getData();
+
+                        ParseQuery<ParseUser> query = ParseUser.getQuery();
+                        ParseUser u = (query.whereEqualTo("username",data.getRegNo())).getFirst();
+
+                        //Is logged in with Facebook
+                        if(u.getString("isSignedIn").equals("true")){
+                            data.isFb = true;
+                            data.fbId = u.getString("facebookID");
+                            data.title = u.getString("facebookName");
+
+                            Ion.with(context)
+                                    .load("http://graph.facebook.com/" + data.fbId + "/picture?type=large")
+                                    .write(new File(context.getCacheDir().getPath() + "/" + data.fbId + ".jpg"))
+                                    .get();
+                        }
+                        else{
+                            data.title = data.getRegNo();
+                        }
+
+                        temp.setData(data);
+                        DataHandler.getInstance(context).addFriend(temp);
+                        return DataHandler.getInstance(context).getToken();
+
+                    }
+                    else
+                        throw new Exception(temp.getStatus().getMessage());
+                }catch (Exception e){
+                    e.printStackTrace();
+                    this.e = e;
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                listener.onCompleted(o, e);
+            }
+        }
+        new bgTask().execute();
+    }
+
     public void addFriend(final String token, final onTaskCompleted listener){
         refreshCredentials();
 
