@@ -17,39 +17,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int barAxisColor=0x7f010000;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static int barShowAxis=0x7f010002;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static int barShowAxisLabel=0x7f010003;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static int barShowPopup=0x7f010005;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static int barShowText=0x7f010004;
+        public static int lineAxisColor=0x7f010001;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -58,16 +26,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int lineAxisColor=0x7f010007;
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static int lineStrokeColor=0x7f010006;
+        public static int lineStrokeColor=0x7f010000;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -77,7 +36,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int lineStrokeSpacing=0x7f010009;
+        public static int lineStrokeSpacing=0x7f010003;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -87,7 +46,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int lineStrokeWidth=0x7f010008;
+        public static int lineStrokeWidth=0x7f010002;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -95,18 +54,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int lineUseDip=0x7f01000a;
-        /** <p>Must be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
-<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
-</table>
-         */
-        public static int orientation=0x7f010001;
+        public static int lineUseDip=0x7f010004;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -114,7 +62,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int pieInnerCircleRatio=0x7f01000b;
+        public static int pieInnerCircleRatio=0x7f010005;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -124,128 +72,12 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int pieSlicePadding=0x7f01000c;
+        public static int pieSlicePadding=0x7f010006;
     }
     public static final class drawable {
         public static int popup_black=0x7f020000;
     }
-    public static final class id {
-        public static int horizontal=0x7f030000;
-        public static int vertical=0x7f030001;
-    }
     public static final class styleable {
-        /** Attributes that can be used with a BarGraph.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #BarGraph_barAxisColor com.echo.holographlibrary:barAxisColor}</code></td><td></td></tr>
-           <tr><td><code>{@link #BarGraph_barShowAxis com.echo.holographlibrary:barShowAxis}</code></td><td></td></tr>
-           <tr><td><code>{@link #BarGraph_barShowAxisLabel com.echo.holographlibrary:barShowAxisLabel}</code></td><td></td></tr>
-           <tr><td><code>{@link #BarGraph_barShowPopup com.echo.holographlibrary:barShowPopup}</code></td><td></td></tr>
-           <tr><td><code>{@link #BarGraph_barShowText com.echo.holographlibrary:barShowText}</code></td><td></td></tr>
-           <tr><td><code>{@link #BarGraph_orientation com.echo.holographlibrary:orientation}</code></td><td></td></tr>
-           </table>
-           @see #BarGraph_barAxisColor
-           @see #BarGraph_barShowAxis
-           @see #BarGraph_barShowAxisLabel
-           @see #BarGraph_barShowPopup
-           @see #BarGraph_barShowText
-           @see #BarGraph_orientation
-         */
-        public static final int[] BarGraph = {
-            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
-            0x7f010004, 0x7f010005
-        };
-        /**
-          <p>This symbol is the offset where the {@link com.echo.holographlibrary.R.attr#barAxisColor}
-          attribute's value can be found in the {@link #BarGraph} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.echo.holographlibrary:barAxisColor
-        */
-        public static final int BarGraph_barAxisColor = 0;
-        /**
-          <p>This symbol is the offset where the {@link com.echo.holographlibrary.R.attr#barShowAxis}
-          attribute's value can be found in the {@link #BarGraph} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.echo.holographlibrary:barShowAxis
-        */
-        public static final int BarGraph_barShowAxis = 2;
-        /**
-          <p>This symbol is the offset where the {@link com.echo.holographlibrary.R.attr#barShowAxisLabel}
-          attribute's value can be found in the {@link #BarGraph} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.echo.holographlibrary:barShowAxisLabel
-        */
-        public static final int BarGraph_barShowAxisLabel = 3;
-        /**
-          <p>This symbol is the offset where the {@link com.echo.holographlibrary.R.attr#barShowPopup}
-          attribute's value can be found in the {@link #BarGraph} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.echo.holographlibrary:barShowPopup
-        */
-        public static final int BarGraph_barShowPopup = 5;
-        /**
-          <p>This symbol is the offset where the {@link com.echo.holographlibrary.R.attr#barShowText}
-          attribute's value can be found in the {@link #BarGraph} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.echo.holographlibrary:barShowText
-        */
-        public static final int BarGraph_barShowText = 4;
-        /**
-          <p>This symbol is the offset where the {@link com.echo.holographlibrary.R.attr#orientation}
-          attribute's value can be found in the {@link #BarGraph} array.
-
-
-          <p>Must be one of the following constant values.</p>
-<table>
-<colgroup align="left" />
-<colgroup align="left" />
-<colgroup align="left" />
-<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
-<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
-<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
-</table>
-          @attr name com.echo.holographlibrary:orientation
-        */
-        public static final int BarGraph_orientation = 1;
         /** Attributes that can be used with a LineGraph.
            <p>Includes the following attributes:</p>
            <table>
@@ -265,8 +97,8 @@ containing a value of this type.
            @see #LineGraph_lineUseDip
          */
         public static final int[] LineGraph = {
-            0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009,
-            0x7f01000a
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
         };
         /**
           <p>This symbol is the offset where the {@link com.echo.holographlibrary.R.attr#lineAxisColor}
@@ -357,7 +189,7 @@ containing a value of this type.
            @see #PieGraph_pieSlicePadding
          */
         public static final int[] PieGraph = {
-            0x7f01000b, 0x7f01000c
+            0x7f010005, 0x7f010006
         };
         /**
           <p>This symbol is the offset where the {@link com.echo.holographlibrary.R.attr#pieInnerCircleRatio}

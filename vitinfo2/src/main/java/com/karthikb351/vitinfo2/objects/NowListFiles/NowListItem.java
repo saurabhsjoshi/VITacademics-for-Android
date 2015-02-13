@@ -54,7 +54,6 @@ public class NowListItem implements NowItem {
         lbl_slot.setText(ttSlot.slt);
         lbl_venue.setText(ttSlot.venue);
 
-
         getGo(course.getAttendance().getAttendedClasses(), course.getAttendance().getTotalClasses(), (TextView) view.findViewById(R.id.lbl_now_att_go));
         getMiss(course.getAttendance().getAttendedClasses(), course.getAttendance().getTotalClasses(), (TextView) view.findViewById(R.id.lbl_now_att_miss));
 

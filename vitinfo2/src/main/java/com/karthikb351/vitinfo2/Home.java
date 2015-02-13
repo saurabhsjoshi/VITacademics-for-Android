@@ -46,8 +46,6 @@ import com.parse.ParseFacebookUtils;
 
 import org.json.JSONObject;
 
-;
-
 /**
  * Created by saurabh on 4/22/14.
  */
