@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BarGraph"><attr format="color" name="barAxisColor"/><attr format="enum" name="orientation"><enum name="horizontal" value="0"/><enum name="vertical" value="1"/></attr><attr format="boolean" name="barShowAxis"/><attr format="boolean" name="barShowAxisLabel"/><attr format="boolean" name="barShowText"/><attr format="boolean" name="barShowPopup"/></declare-styleable>
+    <declare-styleable name="LineGraph"><attr format="color" name="lineStrokeColor"/><attr format="color" name="lineAxisColor"/><attr format="dimension" name="lineStrokeWidth"/><attr format="dimension" name="lineStrokeSpacing"/><attr format="boolean" name="lineUseDip"/></declare-styleable>
+    <declare-styleable name="PieGraph"><attr format="integer" name="pieInnerCircleRatio"/><attr format="dimension" name="pieSlicePadding"/></declare-styleable>
+</resources>

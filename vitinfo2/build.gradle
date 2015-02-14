@@ -10,6 +10,13 @@ android {
         versionCode 33
         versionName "3.5.0"
     }
+
+ buildTypes{
+     debug{
+         minifyEnabled true
+         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+     }
+ }
 }
 
 dependencies {

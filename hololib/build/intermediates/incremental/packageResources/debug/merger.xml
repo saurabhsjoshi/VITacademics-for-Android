@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/aashrai/Documents/AndroidStudioProjects/VITacademics-for-Android/hololib/res"><file path="/home/aashrai/Documents/AndroidStudioProjects/VITacademics-for-Android/hololib/res/values/attrs.xml" qualifiers=""><declare-styleable name="LineGraph">
+        <attr format="color" name="lineStrokeColor"/>
+        <attr format="color" name="lineAxisColor"/>
+        <attr format="dimension" name="lineStrokeWidth"/>
+        <attr format="dimension" name="lineStrokeSpacing"/>
+        <attr format="boolean" name="lineUseDip"/>
+    </declare-styleable><declare-styleable name="PieGraph">
+        <attr format="integer" name="pieInnerCircleRatio"/>
+        <attr format="dimension" name="pieSlicePadding"/>
+    </declare-styleable><declare-styleable name="BarGraph">
+        <attr format="color" name="barAxisColor"/>
+        <attr format="enum" name="orientation">
+            <enum name="horizontal" value="0"/>
+            <enum name="vertical" value="1"/>
+        </attr>
+        <attr format="boolean" name="barShowAxis"/>
+        <attr format="boolean" name="barShowAxisLabel"/>
+        <attr format="boolean" name="barShowText"/>
+        <attr format="boolean" name="barShowPopup"/>
+    </declare-styleable></file><file name="popup_black" path="/home/aashrai/Documents/AndroidStudioProjects/VITacademics-for-Android/hololib/res/drawable-xhdpi/popup_black.9.png" qualifiers="xhdpi-v4" type="drawable"/></source><source path="/home/aashrai/Documents/AndroidStudioProjects/VITacademics-for-Android/hololib/build/generated/res/rs/debug"/><source path="/home/aashrai/Documents/AndroidStudioProjects/VITacademics-for-Android/hololib/build/generated/res/generated/debug"/></dataSet><dataSet config="debug"><source path="/home/aashrai/Documents/AndroidStudioProjects/VITacademics-for-Android/hololib/src/debug/res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="PieGraph"><attr format="integer" name="pieInnerCircleRatio"/><attr format="dimension" name="pieSlicePadding"/></declare-styleable><declare-styleable name="LineGraph"><attr format="color" name="lineStrokeColor"/><attr format="color" name="lineAxisColor"/><attr format="dimension" name="lineStrokeWidth"/><attr format="dimension" name="lineStrokeSpacing"/><attr format="boolean" name="lineUseDip"/></declare-styleable><declare-styleable name="BarGraph"><attr format="color" name="barAxisColor"/><attr format="enum" name="orientation"><enum name="horizontal" value="0"/><enum name="vertical" value="1"/></attr><attr format="boolean" name="barShowAxis"/><attr format="boolean" name="barShowAxisLabel"/><attr format="boolean" name="barShowText"/><attr format="boolean" name="barShowPopup"/></declare-styleable></configuration></mergedItems></merger>
