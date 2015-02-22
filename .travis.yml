@@ -12,16 +12,13 @@ before_install:
 - tar xzf android-sdk_r23-linux.tgz
 - export ANDROID_HOME=$PWD/android-sdk-linux
 - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-
+- wget http://downloads.sourceforge.net/project/proguard/proguard/5.1/proguard5.1.zip?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fproguard%2Ffiles%2Fproguard%2F5.1%2F&ts=1424603316&use_mirror=softlayer-sng 
+- sudo apt-get install unzip
+- unzip proguard5.1.zip -d /home/travis/build/saurabhsjoshi/VITacademics-for-Android/android-sdk-linux/tools
 # Install required Android components.
 #- echo "y" | android update sdk -a --filter build-tools-19.1.0,android-19,platform-tools,extra-android-support,extra-android-m2repository --no-ui --force
 - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --all --force --filter build-tools-20.0.0,android-21,platform-tools,extra-android-support,extra-android-m2repository,extra-google-google_play_services,extra-google-m2repository
 - ./prepare_prerequisites_for_travis.sh
-
-- wget -O proguard5.1.zip http://downloads.sourceforge.net/project/proguard/proguard/5.1/proguard5.1.zip?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fproguard%2Ffiles%2Fproguard%2F5.1%2F&ts=1424603316&use_mirror=softlayer-sng
-- sudo apt-get install unzip
-- unzip proguard5.1.zip -d /home/travis/build/saurabhsjoshi/VITacademics-for-Android/android-sdk-linux/tools
-
 install: echo "Installation done"
 script:
 - ./gradlew assemble -S -q
