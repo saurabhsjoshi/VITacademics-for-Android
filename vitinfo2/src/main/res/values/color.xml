@@ -6,18 +6,6 @@
     <color name="green">#008000</color>
     <color name="Gray">#9E9E9E</color>
 
-    <!-- Barcode Reader -->
-    <color name="zxinglib_transparent">#00000000</color>
-    <color name="zxinglib_viewfinder_frame">#ff000000</color>
-    <color name="zxinglib_viewfinder_laser">#ffff0000</color>
-    <color name="zxinglib_viewfinder_mask">#60000000</color>
-    <color name="zxinglib_result_view">#b0000000</color>
-    <color name="zxinglib_possible_result_points">#c0ffff00</color>
-    <color name="zxinglib_result_image_border">#ffffffff</color>
-    <color name="zxinglib_result_points">#c000ff00</color>
-    <color name="zxinglib_status_text">#ffffffff</color>
-    <!-- Barcode Reader -->
-
     <!--Material Theme -->
     <color name="branding">#03A9F4</color>
     <color name="statusBranding">#0277BD</color>

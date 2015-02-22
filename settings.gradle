@@ -1,1 +1,1 @@
-include ':vitinfo2', ':facebook', ':hololib'
+include ':vitinfo2'

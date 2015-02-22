@@ -19,7 +19,7 @@
 
 <resources>
 
-    <style name="Theme.Style1" parent="@style/Theme.AppCompat.Light">
+    <style name="Theme.VITacademics" parent="@style/Theme.AppCompat.Light">
         <item name="colorPrimary">@color/branding</item>
         <item name="colorPrimaryDark">@color/branding</item>
         <item name="android:windowNoTitle">true</item>

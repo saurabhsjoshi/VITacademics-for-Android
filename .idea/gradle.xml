@@ -9,8 +9,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/facebook" />
-            <option value="$PROJECT_DIR$/hololib" />
             <option value="$PROJECT_DIR$/vitinfo2" />
           </set>
         </option>
