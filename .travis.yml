@@ -12,7 +12,7 @@ before_install:
 - tar xzf android-sdk_r23-linux.tgz
 - export ANDROID_HOME=$PWD/android-sdk-linux
 - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-- wget http://downloads.sourceforge.net/project/proguard/proguard/5.1/proguard5.1.zip?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fproguard%2Ffiles%2Fproguard%2F5.1%2F&ts=1424603316&use_mirror=softlayer-sng 
+- wget -O proguard5.1.zip http://downloads.sourceforge.net/project/proguard/proguard/5.1/proguard5.1.zip?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fproguard%2Ffiles%2Fproguard%2F5.1%2F&ts=1424603316&use_mirror=softlayer-sng 
 - sudo apt-get install unzip
 - unzip proguard5.1.zip -d /home/travis/build/saurabhsjoshi/VITacademics-for-Android/android-sdk-linux/tools
 # Install required Android components.
