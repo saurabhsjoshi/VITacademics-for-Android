@@ -17,7 +17,6 @@ import timber.log.Timber;
 public class VITacademics extends Application {
 
     private Bus mBus = BusProvider.getInstance();
-    private VITacademicsService mVITacademicsService;
     private VITacademicsAPI api;
 
     @Override
@@ -32,6 +31,8 @@ public class VITacademics extends Application {
 
         Timber.tag("VITacademicsApplication");
         Timber.d("Application Created");
+
+        api = new VITacademicsAPI();
 
         mBus.register(this); //listen for "global" events
     }
