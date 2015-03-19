@@ -3,7 +3,6 @@ package com.karthikb351.vitinfo2;
 import android.app.Application;
 
 import com.karthikb351.vitinfo2.api.VITacademicsAPI;
-import com.karthikb351.vitinfo2.api.VITacademicsService;
 import com.karthikb351.vitinfo2.bus.APIErrorEvent;
 import com.karthikb351.vitinfo2.bus.BusProvider;
 import com.squareup.otto.Bus;

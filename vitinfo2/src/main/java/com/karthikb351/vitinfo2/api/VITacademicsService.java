@@ -6,10 +6,8 @@ import com.karthikb351.vitinfo2.api.models.ShareTokenResponse;
 
 import retrofit.Callback;
 import retrofit.http.Field;
-import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Part;
-import retrofit.http.Query;
 
 /**
  * Created by karthikbalakrishnan on 04/02/15.
