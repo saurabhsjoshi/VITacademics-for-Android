@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.karthikb351.vitinfo2.api.models.LoginResponse;
 import com.karthikb351.vitinfo2.api.models.RefreshResponse;
 import com.karthikb351.vitinfo2.api.models.ShareTokenResponse;
+import com.karthikb351.vitinfo2.bus.APIErrorEvent;
 import com.karthikb351.vitinfo2.bus.BusProvider;
 import com.karthikb351.vitinfo2.bus.events.GetShareTokenCompleteEvent;
 import com.karthikb351.vitinfo2.bus.events.GetShareTokenEvent;
@@ -59,7 +60,7 @@ public class VITacademicsAPI {
 
             @Override
             public void failure(RetrofitError error) {
-
+                mBus.post(new APIErrorEvent(error.getMessage()));
             }
         });
     }
@@ -70,12 +71,11 @@ public class VITacademicsAPI {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
                 mBus.post(new LoginCompleteEvent());
-
             }
 
             @Override
             public void failure(RetrofitError error) {
-
+                mBus.post(new APIErrorEvent(error.getMessage()));
             }
         });
 
@@ -91,7 +91,7 @@ public class VITacademicsAPI {
 
             @Override
             public void failure(RetrofitError error) {
-
+                mBus.post(new APIErrorEvent(error.getMessage()));
             }
         });
     }
