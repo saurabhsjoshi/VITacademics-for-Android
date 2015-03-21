@@ -16,6 +16,10 @@ public class Status {
     @SerializedName("code")
     int code;
 
+    public Status(){
+
+    }
+
     public String getMessage() {
         return message;
     }

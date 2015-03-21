@@ -2,7 +2,6 @@ package com.karthikb351.vitinfo2;
 
 import android.app.Application;
 
-import com.karthikb351.vitinfo2.api.VITacademicsAPI;
 import com.karthikb351.vitinfo2.bus.APIErrorEvent;
 import com.karthikb351.vitinfo2.bus.BusProvider;
 import com.karthikb351.vitinfo2.dagger.D2EComponent;
@@ -17,7 +16,6 @@ import timber.log.Timber;
 public class VITacademics extends Application {
 
     private Bus mBus = BusProvider.getInstance();
-    private VITacademicsAPI api;
 
     private D2EComponent component;
 
@@ -41,8 +39,6 @@ public class VITacademics extends Application {
 
         Timber.tag("VITacademicsApplication");
         Timber.d("Application Created");
-
-        api = new VITacademicsAPI();
 
         mBus.register(this); //listen for "global" events
         buildComponentAndInject();

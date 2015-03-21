@@ -2,6 +2,8 @@ package com.karthikb351.vitinfo2.dagger.modules;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.karthikb351.vitinfo2.api.VITacademicsAPI;
+import com.squareup.otto.Bus;
 
 import org.parceler.transfuse.annotations.Provides;
 
@@ -35,6 +37,14 @@ public class NetworkingProvider {
     @Singleton
     public Gson getGsonInstance() {
         return new GsonBuilder().create();
+    }
+
+    @Provides
+    @Singleton
+    public VITacademicsAPI getVITacademicsAPI(RestAdapter adapter,Bus mBus){
+
+        return new VITacademicsAPI(adapter,mBus);
+
     }
 
 }

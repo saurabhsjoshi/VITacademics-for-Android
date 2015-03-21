@@ -3,6 +3,7 @@ package com.karthikb351.vitinfo2.activity;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 
+import com.karthikb351.vitinfo2.api.VITacademicsAPI;
 import com.squareup.otto.Bus;
 
 import org.parceler.javaxinject.Inject;
@@ -18,5 +19,7 @@ public class HomeActivity extends FragmentActivity {
     SharedPreferences.Editor prefEditor;
     @Inject
     Bus mBus;
+    @Inject
+    VITacademicsAPI viTacademicsAPI;
 
 }
