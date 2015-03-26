@@ -6,6 +6,7 @@ import com.karthikb351.vitinfo2.api.models.LoginResponse;
 import com.karthikb351.vitinfo2.api.models.RefreshResponse;
 import com.karthikb351.vitinfo2.api.models.ShareTokenResponse;
 import com.karthikb351.vitinfo2.api.typeadapters.LoginResponseSerializer;
+import com.karthikb351.vitinfo2.api.typeadapters.ShareTokenResponseSerializer;
 import com.karthikb351.vitinfo2.bus.APIErrorEvent;
 import com.karthikb351.vitinfo2.bus.BusProvider;
 import com.karthikb351.vitinfo2.bus.events.GetShareTokenCompleteEvent;
@@ -35,6 +36,7 @@ public class VITacademicsAPI {
     public VITacademicsAPI() {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LoginResponse.class, new LoginResponseSerializer())
+                .registerTypeAdapter(ShareTokenResponse.class, new ShareTokenResponseSerializer())
                 .create();
 
         RestAdapter restAdapter = new RestAdapter.Builder()
