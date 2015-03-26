@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.karthikb351.vitinfo2.api.models.LoginResponse;
 import com.karthikb351.vitinfo2.api.models.RefreshResponse;
 import com.karthikb351.vitinfo2.api.models.ShareTokenResponse;
+import com.karthikb351.vitinfo2.api.typeadapters.LoginResponseSerializer;
 import com.karthikb351.vitinfo2.bus.APIErrorEvent;
 import com.karthikb351.vitinfo2.bus.BusProvider;
 import com.karthikb351.vitinfo2.bus.events.GetShareTokenCompleteEvent;
@@ -32,7 +33,9 @@ public class VITacademicsAPI {
     private Bus mBus;
 
     public VITacademicsAPI() {
-        Gson gson = new GsonBuilder().create();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LoginResponse.class, new LoginResponseSerializer())
+                .create();
 
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setLogLevel(RestAdapter.LogLevel.FULL)
@@ -51,7 +54,7 @@ public class VITacademicsAPI {
     }
 
     @Subscribe
-    void refresh(RefreshDataEvent event) {
+    public void refresh(RefreshDataEvent event) {
         service.refresh("vellore", "11BCE0354", "28011993", new Callback<RefreshResponse>() {
             @Override
             public void success(RefreshResponse refreshResponse, Response response) {
@@ -66,11 +69,11 @@ public class VITacademicsAPI {
     }
 
     @Subscribe
-    void login(LoginEvent event) {
+    public void login(LoginEvent event) {
         service.login("vellore", "11BCE0354", "28011993", new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
-                mBus.post(new LoginCompleteEvent());
+                mBus.post(new LoginCompleteEvent(loginResponse));
             }
 
             @Override
@@ -82,7 +85,7 @@ public class VITacademicsAPI {
     }
 
     @Subscribe
-    void getShareToken(GetShareTokenEvent event) {
+    public void getShareToken(GetShareTokenEvent event) {
         service.getShareToken("vellore", "11BCE0354", "28011993", new Callback<ShareTokenResponse>() {
             @Override
             public void success(ShareTokenResponse shareTokenResponse, Response response) {

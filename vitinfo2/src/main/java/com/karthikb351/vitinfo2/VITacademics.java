@@ -61,7 +61,7 @@ public class VITacademics extends Application {
 
 
     @Subscribe
-    void onAPIErrorEvent(APIErrorEvent event){
+    public void onAPIErrorEvent(APIErrorEvent event){
         Timber.e("An error as occured: %s", event.getMessage());
     }
 }

@@ -6,15 +6,25 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.bus.BusProvider;
+import com.karthikb351.vitinfo2.bus.events.GetShareTokenEvent;
+import com.karthikb351.vitinfo2.bus.events.LoginCompleteEvent;
+import com.karthikb351.vitinfo2.bus.events.LoginEvent;
+import com.karthikb351.vitinfo2.bus.events.RefreshDataEvent;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by karthikbalakrishnan on 19/03/15.
  */
 public class MainActivity extends Activity {
+
+    Bus mBus = BusProvider.getInstance();
 
     public static final String PROPERTY_REG_ID = "registration_id";
     private static final String PROPERTY_APP_VERSION = "appVersion";
@@ -23,6 +33,66 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button login = (Button)findViewById(R.id.login);
+        Button refresh = (Button)findViewById(R.id.refresh);
+        Button register = (Button)findViewById(R.id.shareToken);
+
+        login.setOnClickListener(ocl);
+        refresh.setOnClickListener(ocl);
+        register.setOnClickListener(ocl);
+
+    }
+
+    View.OnClickListener ocl = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+           switch (v.getId()){
+
+               case R.id.login:
+                   mBus.post(new LoginEvent());
+                   break;
+
+               case R.id.refresh:
+                   mBus.post(new RefreshDataEvent());
+
+                   break;
+
+               case R.id.shareToken:
+                   mBus.post(new GetShareTokenEvent());
+                   break;
+
+           }
+        }
+    };
+
+    @Subscribe
+    public void onLoginCompleteEvent(LoginCompleteEvent event)
+    {
+        Toast.makeText(MainActivity.this, "Reg:"+event.getLoginResponse().getRegno()+" Status:"+event.getLoginResponse().getStatus().getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mBus.register(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mBus.unregister(this);
     }
 
     /**
@@ -89,23 +159,4 @@ public class MainActivity extends Activity {
         return getSharedPreferences(MainActivity.class.getSimpleName(), Context.MODE_PRIVATE);
     }
 
-    /**
-     * Check the device to make sure it has the Google Play Services APK. If
-     * it doesn't, display a dialog that allows users to download the APK from
-     * the Google Play Store or enable it in the device's system settings.
-     */
-    private boolean checkPlayServices() {
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if (resultCode != ConnectionResult.SUCCESS) {
-            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
-                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
-                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
-            } else {
-                //Log.i(TAG, "This device is not supported.");
-                finish();
-            }
-            return false;
-        }
-        return true;
-    }
 }

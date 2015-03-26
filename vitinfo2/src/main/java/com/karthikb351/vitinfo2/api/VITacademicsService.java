@@ -6,20 +6,24 @@ import com.karthikb351.vitinfo2.api.models.ShareTokenResponse;
 
 import retrofit.Callback;
 import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
-import retrofit.http.Part;
+import retrofit.http.Path;
 
 /**
  * Created by karthikbalakrishnan on 04/02/15.
  */
 public interface VITacademicsService {
 
+    @FormUrlEncoded
     @POST("/api/v2/{campus}/login")
-    void login(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, Callback<LoginResponse> callback);
+    void login(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, Callback<LoginResponse> callback);
 
+    @FormUrlEncoded
     @POST("/api/v2/{campus}/refresh")
-    void refresh(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, Callback<RefreshResponse> callback);
+    void refresh(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, Callback<RefreshResponse> callback);
 
+    @FormUrlEncoded
     @POST("/api/v2/{campus}/token")
-    void getShareToken(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, Callback<ShareTokenResponse> callback);
+    void getShareToken(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, Callback<ShareTokenResponse> callback);
 }

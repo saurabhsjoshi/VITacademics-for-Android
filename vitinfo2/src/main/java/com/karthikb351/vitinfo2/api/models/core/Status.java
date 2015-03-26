@@ -32,9 +32,5 @@ public class Status {
         this.code = code;
     }
 
-    public Status(String message, int code) {
-        this.message = message;
-        this.code = code;
-    }
 
 }
