@@ -1,7 +1,5 @@
 package com.karthikb351.vitinfo2.api.models.core;
 
-import com.google.gson.annotations.SerializedName;
-
 import org.parceler.Parcel;
 
 /**
@@ -11,13 +9,10 @@ import org.parceler.Parcel;
 @Parcel
 public class ShareToken {
 
-    @SerializedName("token")
     String token;
 
-    @SerializedName("validity")
     String validity;
 
-    @SerializedName("issued")
     String issued;
 
     public String getToken() {
