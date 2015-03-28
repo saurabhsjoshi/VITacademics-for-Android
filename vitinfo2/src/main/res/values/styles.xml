@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- File created by the Android Action Bar Style Generator
+<?xml version="1.0" encoding="utf-8"?><!-- File created by the Android Action Bar Style Generator
 
      Copyright (C) 2011 The Android Open Source Project
      Copyright (C) 2012 readyState Software Ltd
@@ -32,7 +31,20 @@
         <item name="color">@android:color/white</item>
     </style>
 
-    <style name="ButtonBar" parent="@android:style/ButtonBar">
+    <style name="ButtonBar" parent="@android:style/ButtonBar"></style>
+
+    <style name="TimeTableText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:color">@android:color/black</item>
+    </style>
+
+    <style name="TimetableCardTop" parent="TimeTableText">
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="TimeTableCardBottom">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
     </style>
 
 </resources>

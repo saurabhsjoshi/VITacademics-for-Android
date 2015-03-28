@@ -32,6 +32,6 @@ public class TimetableDayFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         rvDay.setLayoutManager(layoutManager);
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return rvDay;
     }
 }

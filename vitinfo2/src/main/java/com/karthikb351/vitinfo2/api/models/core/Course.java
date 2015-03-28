@@ -8,15 +8,15 @@ import org.parceler.Parcel;
 @Parcel
 public class Course {
 
-    public String courseName;
+    private String courseName;
 
-    public String courseSlot;
+    private String courseSlot;
 
-    public String courseRoom;
+    private String courseRoom;
 
-    public String courseAttendance;
+    private String courseAttendance;
 
-    public String courseTime;
+    private String courseTime;
 
 
     public String getCourseName() {
@@ -38,4 +38,30 @@ public class Course {
     public String getCourseTime() {
         return courseTime;
     }
+
+
+    public String getCourse() {
+        return "\n" + courseSlot + courseRoom + "\n" + courseName + "\n\n" + courseAttendance + courseTime + "\n";
+    }
+
+    public int getCourseNameLength() {
+        return courseName.length();
+    }
+
+    public int getCourseSlotLength() {
+        return courseSlot.length();
+    }
+
+    public int getCourseRoomLength() {
+        return courseRoom.length();
+    }
+
+    public int getCourseAttendanceLength() {
+        return courseAttendance.length();
+    }
+
+    public int getCourseTimeLength() {
+        return courseTime.length();
+    }
+
 }
