@@ -15,9 +15,13 @@ android {
 dependencies {
     // Support Library
     compile 'com.android.support:appcompat-v7:22.0.0'
-    compile ('com.android.support:recyclerview-v7:22.0.0'){
-        exclude module : "support-annotations"
-        exclude module : "support-v4"
+    compile('com.android.support:recyclerview-v7:22.0.0') {
+        exclude module: "support-annotations"
+        exclude module: "support-v4"
+    }
+    compile('com.android.support:cardview-v7:22.0.0') {
+        exclude module: "support-annotations"
+        exclude module: "support-v4"
     }
 
     // API - Third Party
