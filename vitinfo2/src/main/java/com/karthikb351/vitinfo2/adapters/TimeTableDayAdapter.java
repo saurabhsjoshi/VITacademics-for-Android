@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.AlignmentSpan;
 import android.text.style.StyleSpan;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -32,11 +33,9 @@ public class TimeTableDayAdapter extends RecyclerView.Adapter<TimeTableDayAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        CardView cardView = new CardView(parent.getContext());
-        cardView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        TextView tvCourse = new TextView(parent.getContext());
-        tvCourse.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        cardView.addView(tvCourse, 0);
+
+        CardView cardView = (CardView) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.base_card_view, parent, false);
         return new ViewHolder(cardView);
     }
 
@@ -89,7 +88,7 @@ public class TimeTableDayAdapter extends RecyclerView.Adapter<TimeTableDayAdapte
 
         public ViewHolder(CardView cardView) {
             super(cardView);
-            tvCourse = (TextView) cardView.getChildAt(0);
+            tvCourse = (TextView) cardView.findViewById(R.id.cardTextView);
         }
     }
 
