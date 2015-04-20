@@ -23,6 +23,9 @@ public class LoginResponse {
     @SerializedName("campus")
     String campus;
 
+    @SerializedName("mobile")
+    String mobile;
+
     public Status getStatus() {
         return status;
     }
@@ -54,4 +57,13 @@ public class LoginResponse {
     public void setCampus(String campus) {
         this.campus = campus;
     }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
 }

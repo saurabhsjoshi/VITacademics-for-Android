@@ -27,6 +27,9 @@ public class ShareTokenResponse {
     @SerializedName("status")
     Status status;
 
+    @SerializedName("mobile")
+    String mobile;
+
     public String getRegno() {
         return regno;
     }
@@ -65,5 +68,13 @@ public class ShareTokenResponse {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getMobile(){
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }

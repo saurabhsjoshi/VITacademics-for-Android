@@ -17,13 +17,13 @@ public interface VITacademicsService {
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/login")
-    void login(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, Callback<LoginResponse> callback);
+    void login(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<LoginResponse> callback);
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/refresh")
-    void refresh(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, Callback<RefreshResponse> callback);
+    void refresh(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<RefreshResponse> callback);
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/token")
-    void getShareToken(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, Callback<ShareTokenResponse> callback);
+    void getShareToken(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<ShareTokenResponse> callback);
 }
