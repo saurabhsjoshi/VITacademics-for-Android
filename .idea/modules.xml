@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/VITacademics.iml" filepath="$PROJECT_DIR$/VITacademics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/VITacademics-Android.iml" filepath="$PROJECT_DIR$/VITacademics-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
+

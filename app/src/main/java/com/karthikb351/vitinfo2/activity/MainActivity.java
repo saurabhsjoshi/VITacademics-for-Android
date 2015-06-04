@@ -18,19 +18,27 @@
 
 package com.karthikb351.vitinfo2.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.karthikb351.vitinfo2.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    Button login,refresh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        login=(Button)findViewById(R.id.bLogin);
+        refresh=(Button)findViewById(R.id.bRefresh);
+        login.setOnClickListener(this);
+        refresh.setOnClickListener(this);
     }
 
 
@@ -54,5 +62,17 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId())
+        {
+            case R.id.bLogin:
+                Intent i=new Intent(LoginActivity.class,this);
+
+                break;
+            case R.id.bRefresh:
+        }
     }
 }
