@@ -28,7 +28,7 @@ import android.widget.Button;
 
 import com.karthikb351.vitinfo2.R;
 
-public class MainActivity extends AppCompatActivity implements{
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
