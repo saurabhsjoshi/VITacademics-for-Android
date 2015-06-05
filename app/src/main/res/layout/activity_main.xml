@@ -29,17 +29,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-   <!-- Place this section in the navigation drawer once implemented-->
-   <Button
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/bLogin"
-    android:text="LOGIN"
-    />
-    <Button
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/bRefresh"
-    android:text="REFRESH"
-    />
+  
   </RelativeLayout>
