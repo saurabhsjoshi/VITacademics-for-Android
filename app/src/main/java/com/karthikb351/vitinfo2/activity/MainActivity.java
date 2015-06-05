@@ -28,18 +28,13 @@ import android.widget.Button;
 
 import com.karthikb351.vitinfo2.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements{
 
-    Button login,refresh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        login=(Button)findViewById(R.id.bLogin);
-        refresh=(Button)findViewById(R.id.bRefresh);
-        login.setOnClickListener(this);
-        refresh.setOnClickListener(this);
-    }
+        }
 
 
     @Override
@@ -62,17 +57,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch(v.getId())
-        {
-            case R.id.bLogin:
-                Intent i=new Intent(MainActivity.this,LoginActivity.class);
-                startActivity(i);
-                break;
-            case R.id.bRefresh:
-        }
     }
 }
