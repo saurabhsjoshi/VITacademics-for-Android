@@ -24,8 +24,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.karthikb351.vitinfo2.R;
-
 public class MainActivityFragment extends Fragment {
 
     public MainActivityFragment() {
