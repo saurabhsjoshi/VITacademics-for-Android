@@ -23,6 +23,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.karthikb351.vitinfo2.R;
+
 
 public class MainActivity extends AppCompatActivity {
 
