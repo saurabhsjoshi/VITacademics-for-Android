@@ -1,4 +1,4 @@
-package com.karthikb351.vitinfo2.activity;
+package com.karthikb351.vitinfo2.fragment;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -23,6 +23,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.model.NavigationDrawerItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -35,7 +39,7 @@ public class NavigationDrawerFragment extends Fragment {
      * Remember the position of the selected item.
      */
     private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
-
+    private static String TAG= NavigationDrawerFragment.class.getSimpleName();
     /**
      * Per the design guidelines, you should show the drawer on launch until the user manually
      * expands it. This shared preference tracks this.
@@ -76,7 +80,6 @@ public class NavigationDrawerFragment extends Fragment {
             mCurrentSelectedPosition = savedInstanceState.getInt(STATE_SELECTED_POSITION);
             mFromSavedInstanceState = true;
         }
-
         // Select either the default item (0) or the last selected item.
         selectItem(mCurrentSelectedPosition);
     }
