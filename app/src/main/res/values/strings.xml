@@ -24,6 +24,7 @@
 <!--MainActivity and its corresponding resources(including its fragments) -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_login">Login</string>
 
     <string name="title_section1">Today</string>
     <string name="title_section2">Courses </string>

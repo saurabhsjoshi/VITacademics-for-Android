@@ -35,7 +35,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.navigation_drawer_item, parent, false);
+        View view = inflater.inflate(R.layout.old_navigation_drawer_item, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
     }
