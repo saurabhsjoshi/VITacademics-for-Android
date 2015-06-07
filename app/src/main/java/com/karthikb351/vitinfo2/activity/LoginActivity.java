@@ -18,21 +18,39 @@
 
 package com.karthikb351.vitinfo2.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.karthikb351.vitinfo2.R;
 
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
-
+    EditText reg,dob,phone,otp;
+    Button login;
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        reg=(EditText)findViewById(R.id.etRegNo);
+        dob=(EditText)findViewById(R.id.etDob);
+        phone=(EditText)findViewById(R.id.etPhone);
+        otp=(EditText)findViewById(R.id.etOTP);
+        login=(Button)findViewById(R.id.bLogin);
+        login.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        /* TODO: @aneesh: Create the thread to verify details from backend here */
+        Intent i= new Intent(LoginActivity.this,MainActivity.class);
+        startActivity(i);
     }
 
     @Override
