@@ -29,6 +29,62 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
+        android:id="@+id/tvLogin"
+        android:layout_centerHorizontal="true"
+        android:text="VIT ACADEMICS"
+        android:textAllCaps="true"
+        android:textSize="@dimen/abc_text_size_large_material"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Registration number"
+        android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
+        android:textColorHint="@color/material_blue_grey_800"
+        android:textSize="@dimen/abc_text_size_small_material"
+        android:layout_below="@+id/tvLogin"
+        android:id="@+id/etRegNo"
+        android:inputType="textCapCharacters"
+        android:layout_centerHorizontal="true"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date of Birth (DDMMYYYY)"
+        android:id="@+id/etDob"
+        android:inputType="date"
+        android:layout_centerHorizontal="true"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone number"
+        android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
+        android:textColorHint="@color/material_blue_grey_800"
+        android:textSize="@dimen/abc_text_size_small_material"
+        android:layout_below="@+id/etDob"
+        android:id="@+id/etPhone"
+        android:inputType="phone"
+        android:layout_centerHorizontal="true"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="One Time Password"
+        android:textColorHint="@color/material_blue_grey_800"
+        android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
+        android:textSize="@dimen/abc_text_size_small_material"
+        android:layout_below="@+id/etPhone"
+        android:id="@+id/etOTP"
+        android:inputType="textNoSuggestions"
+        android:layout_centerHorizontal="true"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:textAppearance="@dimen/abc_button_inset_horizontal_material"
+        android:textSize="@dimen/abc_text_size_button_material"
+        android:layout_below="@+id/etOTP"
+        android:id="@+id/bLogin"
+        />
 </RelativeLayout>
