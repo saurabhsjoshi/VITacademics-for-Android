@@ -21,6 +21,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string-array name="planets_array"><item>Mercury</item><item>Venus</item><item>Earth</item><item>Mars</item><item>Jupiter</item><item>Saturn</item><item>Uranus</item><item>Neptune</item></string-array>
+
 <!--MainActivity and its corresponding resources(including its fragments) -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>

@@ -19,19 +19,37 @@
 package com.karthikb351.vitinfo2.activity;
 
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.model.DrawerItemClickListener;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
+    private String topics[];
+    private DrawerLayout dl;
+    private ListView lv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        topics=new String[]
+                {getResources().getString(R.string.title_section1),
+                getResources().getString(R.string.title_section2),
+                getResources().getString(R.string.title_section3),
+                getResources().getString(R.string.title_section4)};
+        dl=(DrawerLayout)findViewById(R.id.drawer_layout);
+        lv=(ListView)findViewById(R.id.lvDrawer);
+
+        lv.setAdapter(new ArrayAdapter<>(this,R.layout.abc_list_menu_item_layout,topics));
+        lv.setOnItemClickListener(new DrawerItemClickListener());
     }
 
 
