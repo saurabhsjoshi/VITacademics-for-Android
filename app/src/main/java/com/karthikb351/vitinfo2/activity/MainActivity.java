@@ -27,7 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.model.DrawerItemClickListener;
+//import com.karthikb351.vitinfo2.model.DrawerItemClickListener;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity{
         lv=(ListView)findViewById(R.id.lvDrawer);
 
         lv.setAdapter(new ArrayAdapter<>(this,R.layout.abc_list_menu_item_layout,topics));
-        lv.setOnItemClickListener(new DrawerItemClickListener());
+        //lv.setOnItemClickListener(new DrawerItemClickListener());
     }
 
 

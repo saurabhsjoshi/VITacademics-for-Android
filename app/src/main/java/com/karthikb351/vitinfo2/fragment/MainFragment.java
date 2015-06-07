@@ -37,7 +37,7 @@ public class MainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_planet, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         int i = getArguments().getInt(ARG);
         String planet = getResources().getStringArray(R.array.planets_array)[i];
 

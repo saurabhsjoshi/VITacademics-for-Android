@@ -18,6 +18,7 @@
 
 package com.karthikb351.vitinfo2.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,15 +26,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.karthikb351.vitinfo2.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     EditText reg,dob,phone,otp;
     Button login;
+    Calendar calendar = Calendar.getInstance();
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +51,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         otp=(EditText)findViewById(R.id.etOTP);
         login=(Button)findViewById(R.id.bLogin);
         login.setOnClickListener(this);
+       dob.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               showDatePicker(v);
+           }
+       });
     }
 
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            calendar.set(i,i1,i2);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+            dob.setText(sdf.format(calendar.getTime()));
+        }
+    };
     @Override
     public void onClick(View v) {
         /* TODO: @aneesh: Create the thread to verify details from backend here */
@@ -74,4 +95,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         return super.onOptionsItemSelected(item);
     }
+    public void showDatePicker(View view)
+    {
+        new DatePickerDialog(this,date,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
 }
