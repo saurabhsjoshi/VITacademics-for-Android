@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity{
     private String topics[];
     private DrawerLayout dl;
     private ListView lv;
+    int flag=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,18 +88,25 @@ public class MainActivity extends AppCompatActivity{
 
     void initializeLayouts()
     {
+
+        //final class FragClasses=Class.forName("com.karthikb351.vitinfo2.fragment.MainFragment");
+        final int FragmentId[]={R.id.rvCourses,R.id.rvTimeTable,R.id.rvFriends,R.id.lvSettings};
         dl=(DrawerLayout)findViewById(R.id.drawer_layout);
         lv=(ListView)findViewById(R.id.lvDrawer);
         topics = getResources().getStringArray(R.array.title_section);
          ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
-         lv.setAdapter(new NavigationDrawerAdapter(this,R.layout.drawer_menu_item,stringList));
+         lv.setAdapter(new NavigationDrawerAdapter(this, R.layout.drawer_menu_item, stringList));
+
         // When navigation drawer item is clicked
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-             @Override
-             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                getSupportFragmentManager().beginTransaction().replace(FragmentId[position], new MainFragment(), topics[position]);
+                flag = 1;
+            }
+        });
 
-             }
-         });
+        if(flag==0)
          getSupportFragmentManager().beginTransaction().add(R.id.flContent,new MainFragment(),"mainFragment").commit();
     }
 }
