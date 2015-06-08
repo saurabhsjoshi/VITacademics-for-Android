@@ -1,62 +1,53 @@
 package com.karthikb351.vitinfo2.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.model.NavigationDrawerItem;
-
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 /**
- * Created by gaurav on 7/6/15.
+ * Created by pulkit on 08/06/2015.
  */
-public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDrawerAdapter.MyViewHolder> {
+public class NavigationDrawerAdapter extends ArrayAdapter<String> {
 
-    List<NavigationDrawerItem> data = Collections.emptyList();
-    private LayoutInflater inflater;
-    private Context context;
-
-    public NavigationDrawerAdapter(Context context, List<NavigationDrawerItem> data) {
-        this.context = context;
-        inflater = LayoutInflater.from(context);
-        this.data = data;
+    Context context ;
+    ArrayList<String> objects ;
+    class ViewHolder
+    {
+        public ImageView drawerIcon ;
+        public TextView drawerText ;
     }
-
-    public void delete(int position) {
-        data.remove(position);
-        notifyItemRemoved(position);
-    }
-
-    @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.old_navigation_drawer_item, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
-        return holder;
+    public NavigationDrawerAdapter(Context context , int resource , ArrayList<String> objects)
+    {
+        super(context,resource,objects);
+        this.context=context;
+        this.objects = objects ;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        NavigationDrawerItem current = data.get(position);
-        holder.title.setText(current.getTitle());
-    }
-
-    @Override
-    public int getItemCount() {
-        return data.size();
-    }
-
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            title = (TextView) itemView.findViewById(R.id.title);
+    public View getView(int position, View view, ViewGroup parent)
+    {
+        ViewHolder holder ;
+        if(view == null)
+        {
+            view = LayoutInflater.from(context).inflate(R.layout.drawer_menu_item,parent,false);
+            holder = new ViewHolder();
+            holder.drawerIcon = (ImageView)view.findViewById(R.id.drawerIcon);
+            holder.drawerText = (TextView)view.findViewById(R.id.drawerText);
+            view.setTag(holder);
         }
+        else
+         holder = (ViewHolder)view.getTag();
+
+        //    holder.drawerIcon.setImageResource(context.getResources().getIdentifier(objects.get(position),"drawable",context.getPackageName()));
+            holder.drawerText.setText(objects.get(position));
+            return view ;
     }
+
 }

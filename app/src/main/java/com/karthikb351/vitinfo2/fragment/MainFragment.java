@@ -38,13 +38,13 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        int i = getArguments().getInt(ARG);
-        String planet = getResources().getStringArray(R.array.planets_array)[i];
+       // int i = getArguments().getInt(ARG);
+        String planet = getResources().getStringArray(R.array.planets_array)[0];
 
-        int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
-                "drawable", getActivity().getPackageName());
-        ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
-        getActivity().setTitle(planet);
+       int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
+              "drawable", getActivity().getPackageName());
+       // ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
+       getActivity().setTitle(planet);
         return rootView;
     }
 }

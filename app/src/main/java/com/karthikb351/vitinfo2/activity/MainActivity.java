@@ -24,9 +24,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.adapter.NavigationDrawerAdapter;
+import com.karthikb351.vitinfo2.fragment.MainFragment;
+
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 //import com.karthikb351.vitinfo2.model.DrawerItemClickListener;
 
 
@@ -39,17 +47,8 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        topics=new String[]
-                {getResources().getString(R.string.title_section1),
-                getResources().getString(R.string.title_section2),
-                getResources().getString(R.string.title_section3),
-                getResources().getString(R.string.title_section4)};
-        dl=(DrawerLayout)findViewById(R.id.drawer_layout);
-        lv=(ListView)findViewById(R.id.lvDrawer);
-
-        lv.setAdapter(new ArrayAdapter<>(this,R.layout.abc_list_menu_item_layout,topics));
         //lv.setOnItemClickListener(new DrawerItemClickListener());
+        initializeLayouts();
     }
 
 
@@ -62,9 +61,6 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -73,5 +69,27 @@ public class MainActivity extends AppCompatActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onBackPressed()
+    {
+        if(getSupportFragmentManager().getBackStackEntryCount()>0)
+        {
+            getSupportFragmentManager().popBackStack();
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+    }
+
+    void initializeLayouts()
+    {
+        dl=(DrawerLayout)findViewById(R.id.drawer_layout);
+        lv=(ListView)findViewById(R.id.lvDrawer);
+        topics = getResources().getStringArray(R.array.title_section);
+         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
+         lv.setAdapter(new NavigationDrawerAdapter(this,R.layout.drawer_menu_item,stringList));
+         getSupportFragmentManager().beginTransaction().add(R.id.flContent,new MainFragment(),"mainFragment").commit();
     }
 }

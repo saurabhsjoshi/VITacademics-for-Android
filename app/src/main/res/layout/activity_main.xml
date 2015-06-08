@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ VITacademics
   ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
@@ -16,10 +17,32 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment"
     android:name="com.karthikb351.vitinfo2.fragment.MainFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:layout="@layout/fragment_main" />
+    tools:layout="@layout/fragment_main" />!-->
+
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <!-- Content View -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/flContent" />
+    <!-- Navigation Drawer View -->
+    <ListView
+        android:layout_width="260dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:divider="@android:color/transparent"
+        android:choiceMode="singleChoice"
+        android:dividerHeight="0dp"
+        android:background="@color/background_material_light"
+        android:id="@+id/lvDrawer"
+        />
+</android.support.v4.widget.DrawerLayout>
