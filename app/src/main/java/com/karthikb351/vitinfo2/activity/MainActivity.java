@@ -23,6 +23,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
@@ -90,6 +92,13 @@ public class MainActivity extends AppCompatActivity{
         topics = getResources().getStringArray(R.array.title_section);
          ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
          lv.setAdapter(new NavigationDrawerAdapter(this,R.layout.drawer_menu_item,stringList));
+        // When navigation drawer item is clicked
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+             }
+         });
          getSupportFragmentManager().beginTransaction().add(R.id.flContent,new MainFragment(),"mainFragment").commit();
     }
 }
