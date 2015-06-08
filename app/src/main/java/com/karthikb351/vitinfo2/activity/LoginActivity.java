@@ -51,15 +51,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         otp=(EditText)findViewById(R.id.etOTP);
         login=(Button)findViewById(R.id.bLogin);
         login.setOnClickListener(this);
-       dob.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               showDatePicker(v);
-           }
-       });
+        dob.setOnClickListener(this);
     }
 
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+   DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
             calendar.set(i,i1,i2);
@@ -69,9 +64,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     };
     @Override
     public void onClick(View v) {
-        /* TODO: @aneesh: Create the thread to verify details from backend here */
-        Intent i= new Intent(LoginActivity.this,MainActivity.class);
-        startActivity(i);
+        switch(v.getId()){
+            case R.id.bLogin:
+                /* TODO: @aneesh Create the thread to verify details from backend here */
+                Intent i= new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(i);
+                break;
+            case R.id.etDob:
+                showDatePicker(v);
+                break;
+        }
+
+
     }
 
     @Override
