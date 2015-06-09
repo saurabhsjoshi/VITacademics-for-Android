@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cvTimeTable"
-        >
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cvTimeTable"
+    >
+     <LinearLayout
+       android:orientation="vertical" android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,6 +45,6 @@
 
         </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+   </LinearLayout>
 
-</LinearLayout>
+</android.support.v7.widget.CardView>

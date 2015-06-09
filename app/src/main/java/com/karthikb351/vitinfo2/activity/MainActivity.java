@@ -18,6 +18,7 @@
 
 package com.karthikb351.vitinfo2.activity;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +32,11 @@ import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.NavigationDrawerAdapter;
+import com.karthikb351.vitinfo2.fragment.CoursesFragment;
+import com.karthikb351.vitinfo2.fragment.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.MainFragment;
+import com.karthikb351.vitinfo2.fragment.SettingsFragment;
+import com.karthikb351.vitinfo2.fragment.TimeTableFragment;
 
 import java.sql.Array;
 import java.util.ArrayList;
@@ -50,14 +55,12 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //lv.setOnItemClickListener(new DrawerItemClickListener());
         initializeLayouts();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -88,9 +91,7 @@ public class MainActivity extends AppCompatActivity{
 
     void initializeLayouts()
     {
-
         //final class FragClasses=Class.forName("com.karthikb351.vitinfo2.fragment.MainFragment");
-        final int FragmentId[]={R.id.rvCourses,R.id.rvTimeTable,R.id.rvFriends,R.id.lvSettings};
         dl=(DrawerLayout)findViewById(R.id.drawer_layout);
         lv=(ListView)findViewById(R.id.lvDrawer);
         topics = getResources().getStringArray(R.array.title_section);
@@ -101,12 +102,19 @@ public class MainActivity extends AppCompatActivity{
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getSupportFragmentManager().beginTransaction().replace(FragmentId[position], new MainFragment(), topics[position]);
-                flag = 1;
+                android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                android.support.v4.app.Fragment frag = null  ;
+                // settings can be passed in the new instance function
+                switch(position)
+                {
+                    case 0 : frag = TimeTableFragment.newInstance() ; break ;
+                    case 1 : frag = CoursesFragment.newInstance() ; break ;
+                    case 2 : frag = FriendsFragment.newInstance() ; break ;
+                    case 3 : frag = SettingsFragment.newInstance(); break ;
+                }
+                ft.replace(R.id.flContent,frag,topics[position]).addToBackStack(null).commit();
             }
         });
-
-        if(flag==0)
          getSupportFragmentManager().beginTransaction().add(R.id.flContent,new MainFragment(),"mainFragment").commit();
     }
 }
