@@ -29,13 +29,13 @@ import com.karthikb351.vitinfo2.R;
 
 public class FriendsFragment extends Fragment {
 
+    public FriendsFragment() {
+        // Required empty public constructor
+    }
+
     public static FriendsFragment newInstance() {
         FriendsFragment fragment = new FriendsFragment();
         return fragment;
-    }
-
-    public FriendsFragment() {
-        // Required empty public constructor
     }
 
     @Override

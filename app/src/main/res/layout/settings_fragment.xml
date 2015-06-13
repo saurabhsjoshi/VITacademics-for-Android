@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ VITacademics
   ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
   ~
@@ -18,8 +17,8 @@
   -->
 
 <ExpandableListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
     android:id="@+id/lvSettings"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 </ExpandableListView>

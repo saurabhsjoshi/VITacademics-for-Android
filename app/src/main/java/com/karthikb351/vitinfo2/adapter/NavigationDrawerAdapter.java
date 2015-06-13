@@ -33,38 +33,35 @@ import java.util.ArrayList;
 
 public class NavigationDrawerAdapter extends ArrayAdapter<String> {
 
-    Context context ;
-    ArrayList<String> objects ;
-    class ViewHolder
-    {
-        public ImageView drawerIcon ;
-        public TextView drawerText ;
-    }
-    public NavigationDrawerAdapter(Context context , int resource , ArrayList<String> objects)
-    {
-        super(context,resource,objects);
-        this.context=context;
-        this.objects = objects ;
+    Context context;
+    ArrayList<String> objects;
+
+    public NavigationDrawerAdapter(Context context, int resource, ArrayList<String> objects) {
+        super(context, resource, objects);
+        this.context = context;
+        this.objects = objects;
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent)
-    {
-        ViewHolder holder ;
-        if(view == null)
-        {
-            view = LayoutInflater.from(context).inflate(R.layout.drawer_menu_item,parent,false);
+    public View getView(int position, View view, ViewGroup parent) {
+        ViewHolder holder;
+        if (view == null) {
+            view = LayoutInflater.from(context).inflate(R.layout.drawer_menu_item, parent, false);
             holder = new ViewHolder();
-            holder.drawerIcon = (ImageView)view.findViewById(R.id.drawerIcon);
-            holder.drawerText = (TextView)view.findViewById(R.id.drawerText);
+            holder.drawerIcon = (ImageView) view.findViewById(R.id.drawerIcon);
+            holder.drawerText = (TextView) view.findViewById(R.id.drawerText);
             view.setTag(holder);
-        }
-        else
-         holder = (ViewHolder)view.getTag();
+        } else
+            holder = (ViewHolder) view.getTag();
 
         //    holder.drawerIcon.setImageResource(context.getResources().getIdentifier(objects.get(position),"drawable",context.getPackageName()));
-            holder.drawerText.setText(objects.get(position));
-            return view ;
+        holder.drawerText.setText(objects.get(position));
+        return view;
+    }
+
+    class ViewHolder {
+        public ImageView drawerIcon;
+        public TextView drawerText;
     }
 
 }

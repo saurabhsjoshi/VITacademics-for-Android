@@ -44,10 +44,11 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseViewHolder> {
         android.support.v7.widget.CardView rootcard = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(R.layout.course_card, parent, false);
         return new CourseViewHolder(rootcard);
     }
+
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position) {
 
-        CourseViewHolder cvHolder = (CourseViewHolder)holder ;
+        CourseViewHolder cvHolder = (CourseViewHolder) holder;
         cvHolder.courseCode.setText(courses.get(position).courseCode);
         cvHolder.courseName.setText(courses.get(position).courseName);
         cvHolder.photo.setImageResource(courses.get(position).photoResourceId);

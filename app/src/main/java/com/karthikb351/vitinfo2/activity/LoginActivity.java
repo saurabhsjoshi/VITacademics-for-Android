@@ -38,38 +38,39 @@ import java.util.Calendar;
 import java.util.Locale;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText reg,dob,phone,otp;
+    EditText reg, dob, phone, otp;
     Button login;
     Calendar calendar = Calendar.getInstance();
-   @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        reg=(EditText)findViewById(R.id.etRegNo);
-        dob=(EditText)findViewById(R.id.etDob);
-        phone=(EditText)findViewById(R.id.etPhone);
-        otp=(EditText)findViewById(R.id.etOTP);
-        login=(Button)findViewById(R.id.bLogin);
-        login.setOnClickListener(this);
-        dob.setOnClickListener(this);
-    }
-
-   DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-            calendar.set(i,i1,i2);
+            calendar.set(i, i1, i2);
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
             dob.setText(sdf.format(calendar.getTime()));
         }
     };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        reg = (EditText) findViewById(R.id.etRegNo);
+        dob = (EditText) findViewById(R.id.etDob);
+        phone = (EditText) findViewById(R.id.etPhone);
+        otp = (EditText) findViewById(R.id.etOTP);
+        login = (Button) findViewById(R.id.bLogin);
+        login.setOnClickListener(this);
+        dob.setOnClickListener(this);
+    }
+
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.bLogin:
                 /* TODO: @aneesh Create the thread to verify details from backend here */
-                Intent i= new Intent(LoginActivity.this,MainActivity.class);
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(i);
                 break;
             case R.id.etDob:
@@ -99,9 +100,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         return super.onOptionsItemSelected(item);
     }
-    public void showDatePicker(View view)
-    {
-        new DatePickerDialog(this,date,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+
+    public void showDatePicker(View view) {
+        new DatePickerDialog(this, date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
 }

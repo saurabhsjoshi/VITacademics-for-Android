@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ VITacademics
   ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
   ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
@@ -48,10 +47,18 @@
             </intent-filter>
         </activity>
 
-        <meta-data android:name="DATABASE" android:value="vitacademics.db" />
-        <meta-data android:name="VERSION" android:value="1" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.karthikb351.vitinfo2.api.models" />
+        <meta-data
+            android:name="DATABASE"
+            android:value="vitacademics.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.karthikb351.vitinfo2.api.models" />
 
     </application>
 

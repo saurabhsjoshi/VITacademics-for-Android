@@ -29,13 +29,13 @@ import com.karthikb351.vitinfo2.R;
 
 public class TimeTableFragment extends Fragment {
 
-        public static TimeTableFragment newInstance() {
-        TimeTableFragment fragment = new TimeTableFragment();
-        return fragment;
-    }
-
     public TimeTableFragment() {
         // Required empty public constructor
+    }
+
+    public static TimeTableFragment newInstance() {
+        TimeTableFragment fragment = new TimeTableFragment();
+        return fragment;
     }
 
     @Override

@@ -31,14 +31,13 @@ import com.karthikb351.vitinfo2.R;
 public class CoursesFragment extends Fragment {
 
 
+    public CoursesFragment() {
+        // Required empty public constructor
+    }
 
     public static CoursesFragment newInstance() {
         CoursesFragment fragment = new CoursesFragment();
         return fragment;
-    }
-
-    public CoursesFragment() {
-        // Required empty public constructor
     }
 
     @Override

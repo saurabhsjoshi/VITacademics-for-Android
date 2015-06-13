@@ -19,13 +19,12 @@
 package com.karthikb351.vitinfo2.model;
 
 public class CourseModel {
-     public String courseName , courseCode ;
-     public int photoResourceId ;
+    public String courseName, courseCode;
+    public int photoResourceId;
 
-    CourseModel(String courseName , String courseCode , int photoResourceId)
-    {
-        this.courseCode = courseCode ;
-        this.courseName = courseName ;
+    CourseModel(String courseName, String courseCode, int photoResourceId) {
+        this.courseCode = courseCode;
+        this.courseName = courseName;
         this.photoResourceId = photoResourceId;
     }
 }

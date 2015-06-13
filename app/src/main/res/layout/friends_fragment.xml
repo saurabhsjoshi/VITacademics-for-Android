@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ VITacademics
   ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
@@ -19,8 +18,9 @@
   -->
 
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:scrollbars="vertical"
     android:id="@+id/rvFriends"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
 
     />

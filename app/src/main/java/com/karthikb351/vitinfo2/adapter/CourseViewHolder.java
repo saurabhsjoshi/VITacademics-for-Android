@@ -26,15 +26,14 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
-class CourseViewHolder extends RecyclerView.ViewHolder
-{
-    TextView courseName ,courseCode ;
-    ImageView photo ;
-    CourseViewHolder(View v)
-    {
+class CourseViewHolder extends RecyclerView.ViewHolder {
+    TextView courseName, courseCode;
+    ImageView photo;
+
+    CourseViewHolder(View v) {
         super(v);
-        courseName = (TextView)v.findViewById(R.id.tvCourseName);
-        courseCode = (TextView)v.findViewById(R.id.tvCourseCode);
-        photo = (ImageView)v.findViewById(R.id.photo);
+        courseName = (TextView) v.findViewById(R.id.tvCourseName);
+        courseCode = (TextView) v.findViewById(R.id.tvCourseCode);
+        photo = (ImageView) v.findViewById(R.id.photo);
     }
 }

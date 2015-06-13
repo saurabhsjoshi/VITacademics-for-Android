@@ -30,13 +30,13 @@ import com.karthikb351.vitinfo2.R;
 
 public class SettingsFragment extends Fragment {
 
+    public SettingsFragment() {
+        // Required empty public constructor
+    }
+
     public static SettingsFragment newInstance() {
         SettingsFragment fragment = new SettingsFragment();
         return fragment;
-    }
-
-    public SettingsFragment() {
-        // Required empty public constructor
     }
 
     @Override

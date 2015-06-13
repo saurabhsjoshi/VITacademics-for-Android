@@ -42,12 +42,13 @@ import java.util.Arrays;
 //import com.karthikb351.vitinfo2.model.DrawerItemClickListener;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
+    int flag = 0;
     private String topics[];
     private DrawerLayout dl;
     private ListView lv;
-    int flag=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,45 +74,48 @@ public class MainActivity extends AppCompatActivity{
 
         return super.onOptionsItemSelected(item);
     }
+
     @Override
-    public void onBackPressed()
-    {
-        if(getSupportFragmentManager().getBackStackEntryCount()>0)
-        {
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
-        }
-        else
-        {
+        } else {
             super.onBackPressed();
         }
     }
 
-    void initializeLayouts()
-    {
+    void initializeLayouts() {
         //final class FragClasses=Class.forName("com.karthikb351.vitinfo2.fragment.MainFragment");
-        dl=(DrawerLayout)findViewById(R.id.drawer_layout);
-        lv=(ListView)findViewById(R.id.lvDrawer);
+        dl = (DrawerLayout) findViewById(R.id.drawer_layout);
+        lv = (ListView) findViewById(R.id.lvDrawer);
         topics = getResources().getStringArray(R.array.title_section);
-         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
-         lv.setAdapter(new NavigationDrawerAdapter(this, R.layout.drawer_menu_item, stringList));
+        ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
+        lv.setAdapter(new NavigationDrawerAdapter(this, R.layout.drawer_menu_item, stringList));
 
         // When navigation drawer item is clicked
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                android.support.v4.app.Fragment frag = null  ;
+                android.support.v4.app.Fragment frag = null;
                 // settings can be passed in the new instance function
-                switch(position)
-                {
-                    case 0 : frag = TimeTableFragment.newInstance() ; break ;
-                    case 1 : frag = CoursesFragment.newInstance() ; break ;
-                    case 2 : frag = FriendsFragment.newInstance() ; break ;
-                    case 3 : frag = SettingsFragment.newInstance(); break ;
+                switch (position) {
+                    case 0:
+                        frag = TimeTableFragment.newInstance();
+                        break;
+                    case 1:
+                        frag = CoursesFragment.newInstance();
+                        break;
+                    case 2:
+                        frag = FriendsFragment.newInstance();
+                        break;
+                    case 3:
+                        frag = SettingsFragment.newInstance();
+                        break;
                 }
-                ft.replace(R.id.flContent,frag,topics[position]).addToBackStack(null).commit();
+                ft.replace(R.id.flContent, frag, topics[position]).addToBackStack(null).commit();
             }
         });
-         getSupportFragmentManager().beginTransaction().add(R.id.flContent,new MainFragment(),"mainFragment").commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new MainFragment(), "mainFragment").commit();
     }
 }
