@@ -17,31 +17,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment;
+package com.karthikb351.vitinfo2.adapter;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
-public class FriendsFragment extends Fragment {
-
-    public static FriendsFragment newInstance() {
-        FriendsFragment fragment = new FriendsFragment();
-        return fragment;
+class CourseViewHolder extends RecyclerView.ViewHolder
+{
+    TextView courseName ,courseCode ;
+    ImageView photo ;
+    CourseViewHolder(View v)
+    {
+        super(v);
+        courseName = (TextView)v.findViewById(R.id.tvCourseName);
+        courseCode = (TextView)v.findViewById(R.id.tvCourseCode);
+        photo = (ImageView)v.findViewById(R.id.photo);
     }
-
-    public FriendsFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.friends_fragment, container, false);
-    }
-
 }

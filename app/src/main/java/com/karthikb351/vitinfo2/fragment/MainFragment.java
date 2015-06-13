@@ -1,6 +1,8 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+ * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +25,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.karthikb351.vitinfo2.R;
 
@@ -47,4 +48,5 @@ public class MainFragment extends Fragment {
        getActivity().setTitle(planet);
         return rootView;
     }
+
 }

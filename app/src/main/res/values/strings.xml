@@ -1,6 +1,8 @@
 <!--
   ~ VITacademics
   ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+  ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+  ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -23,7 +25,7 @@
 
     <string-array name="planets_array"><item>Mercury</item><item>Venus</item><item>Earth</item><item>Mars</item><item>Jupiter</item><item>Saturn</item><item>Uranus</item><item>Neptune</item></string-array>
 
-<!--MainActivity and its corresponding resources(including its fragments) -->
+    <!--MainActivity and its corresponding resources(including its fragments) -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login">Login</string>

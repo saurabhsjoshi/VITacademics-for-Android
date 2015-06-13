@@ -1,6 +1,8 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+ * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
