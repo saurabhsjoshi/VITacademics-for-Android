@@ -25,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.ViewHolders.CourseViewHolder;
 import com.karthikb351.vitinfo2.model.CourseModel;
 
 import java.util.ArrayList;

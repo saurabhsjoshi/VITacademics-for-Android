@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.adapter;
+package com.karthikb351.vitinfo2.ViewHolders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,11 +26,11 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
-class CourseViewHolder extends RecyclerView.ViewHolder {
-    TextView courseName, courseCode;
-    ImageView photo;
+public class CourseViewHolder extends RecyclerView.ViewHolder {
+    public TextView courseName, courseCode;
+    public ImageView photo;
 
-    CourseViewHolder(View v) {
+    public CourseViewHolder(View v) {
         super(v);
         courseName = (TextView) v.findViewById(R.id.tvCourseName);
         courseCode = (TextView) v.findViewById(R.id.tvCourseCode);

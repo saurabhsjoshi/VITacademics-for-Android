@@ -34,7 +34,7 @@
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/photo"
+                android:id="@+id/FriendPhoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -42,19 +42,19 @@
                 android:layout_marginRight="16dp" />
 
             <TextView
-                android:id="@+id/tvCourseName"
+                android:id="@+id/tvFriendName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/photo"
+                android:layout_toRightOf="@+id/FriendPhoto"
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/tvCourseCode"
+                android:id="@+id/tvFriendRegistrationNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvCourseName"
-                android:layout_toRightOf="@+id/photo" />
+                android:layout_below="@+id/tvFriendName"
+                android:layout_toRightOf="@+id/FriendPhoto" />
 
         </RelativeLayout>
     </LinearLayout>
