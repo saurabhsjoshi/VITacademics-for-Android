@@ -23,15 +23,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string-array name="topic">
+        <item>Today</item>
+        <item>Courses</item>
+        <item>Time Table</item>
+        <item>Friends</item>
+        <item>Settings</item>
     </string-array>
 
     <!--MainActivity and its corresponding resources(including its fragments) -->
@@ -39,19 +36,8 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login">Login</string>
 
-    <string name="title_section1">Today</string>
-    <string name="title_section2">Courses </string>
-    <string name="title_section3">Friends</string>
-    <string name="title_section4">Settings</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
-    <string-array name="title_section">
-        <item>@string/title_section1</item>
-        <item>@string/title_section2</item>
-        <item>@string/title_section3</item>
-        <item>@string/title_section4</item>
-    </string-array>
-</resources>
+ </resources>

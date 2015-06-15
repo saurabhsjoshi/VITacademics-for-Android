@@ -25,6 +25,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
@@ -37,17 +38,25 @@ public class MainFragment extends Fragment {
     public MainFragment() {
     }
 
+    public static MainFragment newInstance() {
+        MainFragment fragment = new MainFragment();
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        //View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         // int i = getArguments().getInt(ARG);
-        String planet = getResources().getStringArray(R.array.planets_array)[0];
+        String topics = getResources().getStringArray(R.array.topic)[0];
 
-        int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
-                "drawable", getActivity().getPackageName());
+        //int imageId = getResources().getIdentifier(topics.toLowerCase(Locale.getDefault()),
+       //         "drawable", getActivity().getPackageName());
         // ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
-        getActivity().setTitle(planet);
-        return rootView;
+        getActivity().setTitle(topics);
+        //return rootView;
+        TextView textView = new TextView(getActivity());
+        textView.setText("Today");
+        return textView;
     }
 
 }

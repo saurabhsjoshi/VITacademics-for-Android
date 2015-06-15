@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         //final class FragClasses=Class.forName("com.karthikb351.vitinfo2.fragment.MainFragment");
         dl = (DrawerLayout) findViewById(R.id.drawer_layout);
         lv = (ListView) findViewById(R.id.lvDrawer);
-        topics = getResources().getStringArray(R.array.title_section);
+        topics = getResources().getStringArray(R.array.topic);
         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
         lv.setAdapter(new NavigationDrawerAdapter(this, R.layout.drawer_menu_item, stringList));
 
@@ -99,17 +99,22 @@ public class MainActivity extends AppCompatActivity {
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 android.support.v4.app.Fragment frag = null;
                 // settings can be passed in the new instance function
+                //TODO: inefficient for already created instances. Fix.
                 switch (position) {
+
                     case 0:
-                        frag = TimeTableFragment.newInstance();
+                        frag=MainFragment.newInstance();
                         break;
                     case 1:
                         frag = CoursesFragment.newInstance();
                         break;
                     case 2:
-                        frag = FriendsFragment.newInstance();
+                        frag= TimeTableFragment.newInstance();
                         break;
                     case 3:
+                        frag = FriendsFragment.newInstance();
+                        break;
+                    case 4:
                         frag = SettingsFragment.newInstance();
                         break;
                 }

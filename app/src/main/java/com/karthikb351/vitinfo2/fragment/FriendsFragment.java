@@ -24,6 +24,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
@@ -41,7 +42,10 @@ public class FriendsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.friends_fragment, container, false);
+        TextView textView = new TextView(getActivity());
+        textView.setText("Friends");
+        return textView;
+        //return inflater.inflate(R.layout.friends_fragment, container, false);
     }
 
 }

@@ -24,6 +24,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
@@ -42,7 +43,10 @@ public class TimeTableFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.timetable_fragment, container, false);
+        TextView textView = new TextView(getActivity());
+        textView.setText("Time Table Fragment");
+        return textView;
+        //return inflater.inflate(R.layout.timetable_fragment, container, false);
     }
 
 }
