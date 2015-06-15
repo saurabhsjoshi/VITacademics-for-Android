@@ -29,8 +29,6 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
-import java.util.Locale;
-
 public class MainFragment extends Fragment {
 
     public static final String ARG = "number";
@@ -45,7 +43,7 @@ public class MainFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         // int i = getArguments().getInt(ARG);
         String topics = getResources().getStringArray(R.array.topic)[0];
 

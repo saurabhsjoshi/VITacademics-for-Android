@@ -21,12 +21,13 @@ package com.karthikb351.vitinfo2.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.LayoutManagers.CourseLayoutManager;
 
 public class CoursesFragment extends Fragment {
 
@@ -43,6 +44,7 @@ public class CoursesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        RecyclerView.LayoutManager courseLayoutManager=new CourseLayoutManager();
         TextView textView = new TextView(getActivity());
         textView.setText("Courses");
         return textView;
