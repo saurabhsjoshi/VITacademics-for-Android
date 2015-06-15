@@ -16,42 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.response;
+package com.karthikb351.vitinfo2.api.contract;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
-public class Status {
-
-    @Expose
-    @SerializedName("code")
-    private int code;
-
-    @Expose
-    @SerializedName("message")
-    private String message;
-
-    public Status() {
-    }
-
-    public Status(int code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
+public class WithdrawnCourse {
 }
