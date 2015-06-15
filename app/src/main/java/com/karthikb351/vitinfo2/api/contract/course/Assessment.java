@@ -16,20 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models.course;
+package com.karthikb351.vitinfo2.api.contract.course;
 
-public class AttendanceDetail {
+public class Assessment {
 
-    private int sl;
+    private String title;
 
-    private String date;
+    private double maxMarks;
 
-    private String slot;
+    private double weightage;
+
+    private String conductedOn;
 
     private String status;
 
-    private int classUnits;
+    private double scoredMarks;
 
-    private String reason;
+    private double scoredPercentage;
 
 }

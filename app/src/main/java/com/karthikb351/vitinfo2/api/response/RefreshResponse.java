@@ -16,14 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models.course;
+package com.karthikb351.vitinfo2.api.response;
 
-public class Timing {
-
-    private int day;
-
-    private String startTime;
-
-    private String endTime;
-
+public class RefreshResponse {
 }

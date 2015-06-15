@@ -16,22 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models.course;
+package com.karthikb351.vitinfo2.api.contract;
 
-public class Assessment {
-
-    private String title;
-
-    private double maxMarks;
-
-    private double weightage;
-
-    private String conductedOn;
-
-    private String status;
-
-    private double scoredMarks;
-
-    private double scoredPercentage;
+public class FriendCourse {
 
 }

@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models;
+package com.karthikb351.vitinfo2.api.response;
 
-public class Grade {
+public class GradesResponse {
 }

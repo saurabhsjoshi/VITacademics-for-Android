@@ -16,20 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api;
+package com.karthikb351.vitinfo2.api.contract.course;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
+public class AttendanceDetail {
 
-public class SyncService extends Service {
+    private int sl;
 
-    private static final String TAG = "VITacademicsSyncService";
+    private String date;
 
-    // TODO
+    private String slot;
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+    private String status;
+
+    private int classUnits;
+
+    private String reason;
+
 }

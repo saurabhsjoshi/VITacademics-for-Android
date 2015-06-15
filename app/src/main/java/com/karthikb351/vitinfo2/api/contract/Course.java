@@ -16,11 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models;
+package com.karthikb351.vitinfo2.api.contract;
 
-import com.karthikb351.vitinfo2.api.models.course.Attendance;
-import com.karthikb351.vitinfo2.api.models.course.Marks;
-import com.karthikb351.vitinfo2.api.models.course.Timing;
+import com.karthikb351.vitinfo2.api.contract.course.Attendance;
+import com.karthikb351.vitinfo2.api.contract.course.Marks;
+import com.karthikb351.vitinfo2.api.contract.course.Timing;
 
 public class Course {
 
