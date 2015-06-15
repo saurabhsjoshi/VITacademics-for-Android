@@ -2,8 +2,11 @@ package com.karthikb351.vitinfo2.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.ViewHolders.CourseViewHolder;
 import com.karthikb351.vitinfo2.ViewHolders.FriendsViewHolder;
 import com.karthikb351.vitinfo2.model.FriendModel;
@@ -19,15 +22,18 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsViewHolder> 
 
     @Override
     public FriendsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.
+                from(parent.getContext()).
+                inflate(R.layout.freinds_card, parent, false);
+
+        return new FriendsViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(FriendsViewHolder holder, int position) {
-        FriendsViewHolder cvHolder = (FriendsViewHolder) holder;
-        cvHolder.FriendName.setText(friends.get(position).FriendName);
-        cvHolder.FriendRegNo.setText(friends.get(position).FriendRegNo);
-        cvHolder.FriendImage.setImageResource(friends.get(position).FriendPhotoId);
+        holder.FriendName.setText(friends.get(position).FriendName);
+        holder.FriendRegNo.setText(friends.get(position).FriendRegNo);
+        holder.FriendImage.setImageResource(friends.get(position).FriendPhotoId);
     }
 
     @Override
