@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 android.support.v4.app.Fragment frag = null;
+                dl.closeDrawers();
                 // settings can be passed in the new instance function
                 //TODO: inefficient for already created instances. Fix.
                 switch (position) {
