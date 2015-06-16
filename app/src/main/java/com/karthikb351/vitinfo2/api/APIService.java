@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +24,7 @@ import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
 import com.karthikb351.vitinfo2.api.response.ShareResponse;
 import com.karthikb351.vitinfo2.api.response.SystemResponse;
+import com.karthikb351.vitinfo2.api.response.TokenResponse;
 
 import retrofit.Callback;
 import retrofit.http.Field;
@@ -42,9 +44,14 @@ public interface APIService {
     void refresh(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<RefreshResponse> callback);
 
     @POST("/api/v2/{campus}/token")
-    void share(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<ShareResponse> callback);
+    void token(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<TokenResponse> callback);
 
     @POST("/api/v2/{campus}/grades")
     void grades(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<GradesResponse> callback);
 
+    @POST("/api/v2/{campus}/share")
+    void share(@Part("campus") String campus, @Field("token") String token, Callback<ShareResponse> callback);
+
+    @POST("/api/v2/{campus}/share")
+    void share(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<ShareResponse> callback);
 }

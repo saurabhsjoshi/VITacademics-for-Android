@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +26,7 @@ import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
 import com.karthikb351.vitinfo2.api.response.ShareResponse;
 import com.karthikb351.vitinfo2.api.response.SystemResponse;
+import com.karthikb351.vitinfo2.api.response.TokenResponse;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -39,7 +41,7 @@ public class VITacademicsAPI {
     private APIService service;
     private static VITacademicsAPI api;
 
-    public VITacademicsAPI() {
+    private VITacademicsAPI() {
         Gson gson = new GsonBuilder().create();
 
         RestAdapter restAdapter = new RestAdapter.Builder()
@@ -49,21 +51,21 @@ public class VITacademicsAPI {
                 .build();
 
         service = restAdapter.create(APIService.class);
-        api=this;
+        api = this;
     }
 
     public static VITacademicsAPI getAPI() {
-        if(api==null)
+        if (api == null) {
             api = new VITacademicsAPI();
+        }
         return api;
     }
 
-    public APIService getAPIService()
-    {
+    public APIService getAPIService() {
         return service;
     }
 
-    void system() {
+    public void system() {
         service.system(new Callback<SystemResponse>() {
             @Override
             public void success(SystemResponse systemResponse, Response response) {
@@ -77,7 +79,7 @@ public class VITacademicsAPI {
         });
     }
 
-    void refresh(String campus, String regno, String dob, String mobile) {
+    public void refresh(String campus, String regno, String dob, String mobile) {
         service.refresh(campus, regno, dob, mobile, new Callback<RefreshResponse>() {
             @Override
             public void success(RefreshResponse refreshResponse, Response response) {
@@ -91,7 +93,7 @@ public class VITacademicsAPI {
         });
     }
 
-    void login(String campus, String regno, String dob, String mobile) {
+    public void login(String campus, String regno, String dob, String mobile) {
         service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
@@ -106,10 +108,10 @@ public class VITacademicsAPI {
 
     }
 
-    void share(String campus, String regno, String dob, String mobile) {
-        service.share(campus, regno, dob, mobile, new Callback<ShareResponse>() {
+    public void token(String campus, String regno, String dob, String mobile) {
+        service.token(campus, regno, dob, mobile, new Callback<TokenResponse>() {
             @Override
-            public void success(ShareResponse shareTokenResponse, Response response) {
+            public void success(TokenResponse tokenResponse, Response response) {
                 // TODO Handle success
             }
 
@@ -120,10 +122,38 @@ public class VITacademicsAPI {
         });
     }
 
-    void grades(String campus, String regno, String dob, String mobile) {
+    public void grades(String campus, String regno, String dob, String mobile) {
         service.grades(campus, regno, dob, mobile, new Callback<GradesResponse>() {
             @Override
             public void success(GradesResponse gradesResponse, Response response) {
+                // TODO Handle success
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                // TODO Handle failure
+            }
+        });
+    }
+
+    public void share(String campus, String token) {
+        service.share(campus, token, new Callback<ShareResponse>() {
+            @Override
+            public void success(ShareResponse shareResponse, Response response) {
+                // TODO Handle success
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                // TODO Handle failure
+            }
+        });
+    }
+
+    public void share(String campus, String regno, String dob, String mobile) {
+        service.share(campus, regno, dob, mobile, new Callback<ShareResponse>() {
+            @Override
+            public void success(ShareResponse shareResponse, Response response) {
                 // TODO Handle success
             }
 
