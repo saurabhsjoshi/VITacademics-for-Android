@@ -22,6 +22,7 @@ public class VITacademicsAPI {
 
     private static final String BASE_URL = "https://vitacademics-dev.herokuapp.com";
     private APIService service;
+    private static VITacademicsAPI api;
 
     public VITacademicsAPI() {
         Gson gson = new GsonBuilder().create();
@@ -33,6 +34,13 @@ public class VITacademicsAPI {
                 .build();
 
         service = restAdapter.create(APIService.class);
+        api=this;
+    }
+
+    public static VITacademicsAPI getAPI() {
+        if(api==null)
+            api = new VITacademicsAPI();
+        return api;
     }
 
     public APIService getAPIService()
