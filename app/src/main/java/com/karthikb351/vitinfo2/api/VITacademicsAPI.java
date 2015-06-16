@@ -136,8 +136,8 @@ public class VITacademicsAPI {
         });
     }
 
-    public void share(String campus, String token) {
-        service.share(campus, token, new Callback<ShareResponse>() {
+    public void share(String campus, String token, String receiver) {
+        service.share(campus, token, receiver, new Callback<ShareResponse>() {
             @Override
             public void success(ShareResponse shareResponse, Response response) {
                 // TODO Handle success
@@ -150,8 +150,8 @@ public class VITacademicsAPI {
         });
     }
 
-    public void share(String campus, String regno, String dob, String mobile) {
-        service.share(campus, regno, dob, mobile, new Callback<ShareResponse>() {
+    public void share(String campus, String regno, String dob, String mobile, String receiver) {
+        service.share(campus, regno, dob, mobile, receiver, new Callback<ShareResponse>() {
             @Override
             public void success(ShareResponse shareResponse, Response response) {
                 // TODO Handle success
