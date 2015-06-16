@@ -53,5 +53,5 @@ public interface APIService {
     void share(@Part("campus") String campus, @Field("token") String token, @Field("receiver") String receiver, Callback<ShareResponse> callback);
 
     @POST("/api/v2/{campus}/share")
-    void share(@Part("campus") String campus, @Field("regno") String regno, @Field("receiver") String receiver, @Field("dob") String dob, @Field("mobile") String mobile, Callback<ShareResponse> callback);
+    void share(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, @Field("receiver") String receiver, Callback<ShareResponse> callback);
 }
