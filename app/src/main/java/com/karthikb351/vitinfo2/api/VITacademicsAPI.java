@@ -2,9 +2,12 @@ package com.karthikb351.vitinfo2.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.karthikb351.vitinfo2.api.contract.Grade;
+import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
 import com.karthikb351.vitinfo2.api.response.ShareResponse;
+import com.karthikb351.vitinfo2.api.response.SystemResponse;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -32,13 +35,27 @@ public class VITacademicsAPI {
         service = restAdapter.create(APIService.class);
     }
 
-    public APIService getApiService()
+    public APIService getAPIService()
     {
         return service;
     }
 
-    void refresh() {
-        service.refresh("vellore", "11BCE0354", "28011993", new Callback<RefreshResponse>() {
+    void system() {
+        service.system(new Callback<SystemResponse>() {
+            @Override
+            public void success(SystemResponse systemResponse, Response response) {
+                // TODO Handle success
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                // TODO Handle failure
+            }
+        });
+    }
+
+    void refresh(String campus, String regno, String dob, String mobile) {
+        service.refresh(campus, regno, dob, mobile, new Callback<RefreshResponse>() {
             @Override
             public void success(RefreshResponse refreshResponse, Response response) {
                 // TODO Handle success
@@ -51,8 +68,8 @@ public class VITacademicsAPI {
         });
     }
 
-    void login() {
-        service.login("vellore", "11BCE0354", "28011993", new Callback<LoginResponse>() {
+    void login(String campus, String regno, String dob, String mobile) {
+        service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
                 // TODO Handle success
@@ -66,10 +83,24 @@ public class VITacademicsAPI {
 
     }
 
-    void getShareToken() {
-        service.getShareToken("vellore", "11BCE0354", "28011993", new Callback<ShareResponse>() {
+    void share(String campus, String regno, String dob, String mobile) {
+        service.share(campus, regno, dob, mobile, new Callback<ShareResponse>() {
             @Override
             public void success(ShareResponse shareTokenResponse, Response response) {
+                // TODO Handle success
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                // TODO Handle failure
+            }
+        });
+    }
+
+    void grades(String campus, String regno, String dob, String mobile) {
+        service.grades(campus, regno, dob, mobile, new Callback<GradesResponse>() {
+            @Override
+            public void success(GradesResponse gradesResponse, Response response) {
                 // TODO Handle success
             }
 
