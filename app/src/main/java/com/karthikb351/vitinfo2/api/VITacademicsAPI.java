@@ -1,8 +1,25 @@
+/*
+ * VITacademics
+ * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.karthikb351.vitinfo2.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.karthikb351.vitinfo2.api.contract.Grade;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
@@ -15,9 +32,6 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
 
-/**
- * Created by karthikbalakrishnan on 16/06/15.
- */
 public class VITacademicsAPI {
 
     private static final String BASE_URL = "https://vitacademics-dev.herokuapp.com";
