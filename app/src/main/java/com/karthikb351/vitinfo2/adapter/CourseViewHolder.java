@@ -26,7 +26,7 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
-class CourseViewHolder extends RecyclerView.ViewHolder {
+public class CourseViewHolder extends RecyclerView.ViewHolder {
     TextView courseName, courseCode;
     ImageView photo;
 
