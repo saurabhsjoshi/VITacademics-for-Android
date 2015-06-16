@@ -18,5 +18,186 @@
 
 package com.karthikb351.vitinfo2.api.response;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import com.karthikb351.vitinfo2.api.contract.Grade;
+import com.karthikb351.vitinfo2.api.contract.GradeSummary;
+import com.karthikb351.vitinfo2.api.contract.SemesterWiseGrade;
+
 public class GradesResponse {
+
+    @Expose
+    @SerializedName("reg_no")
+    private String registerNumber;
+
+    @Expose
+    @SerializedName("dob")
+    private String dateOfBirth;
+
+    @Expose
+    @SerializedName("mobile")
+    private String mobileNumber;
+
+    @Expose
+    @SerializedName("campus")
+    private String campus;
+
+    @Expose
+    @SerializedName("status")
+    private Status status;
+
+    @Expose
+    @SerializedName("grades_refreshed")
+    private String refreshed;
+
+    @Expose
+    @SerializedName("cached")
+    private boolean cached;
+
+    @Expose
+    @SerializedName("grades")
+    private Grade[] grades;
+
+    @Expose
+    @SerializedName("semester_wise")
+    private SemesterWiseGrade[] semesterWiseGrades;
+
+    @Expose
+    @SerializedName("cgpa")
+    private double cgpa;
+
+    @Expose
+    @SerializedName("grade_summary")
+    private GradeSummary gradeSummary;
+
+    @Expose
+    @SerializedName("credits_registered")
+    private int creditsRegistered;
+
+    @Expose
+    @SerializedName("credits_earned")
+    private int creditsEarned;
+
+    public GradesResponse() {
+    }
+
+    public GradesResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String refreshed, boolean cached, Grade[] grades, SemesterWiseGrade[] semesterWiseGrades, double cgpa, GradeSummary gradeSummary, int creditsRegistered, int creditsEarned) {
+        this.registerNumber = registerNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.mobileNumber = mobileNumber;
+        this.campus = campus;
+        this.status = status;
+        this.refreshed = refreshed;
+        this.cached = cached;
+        this.grades = grades;
+        this.semesterWiseGrades = semesterWiseGrades;
+        this.cgpa = cgpa;
+        this.gradeSummary = gradeSummary;
+        this.creditsRegistered = creditsRegistered;
+        this.creditsEarned = creditsEarned;
+    }
+
+    public String getRegisterNumber() {
+        return registerNumber;
+    }
+
+    public void setRegisterNumber(String registerNumber) {
+        this.registerNumber = registerNumber;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public String getCampus() {
+        return campus;
+    }
+
+    public void setCampus(String campus) {
+        this.campus = campus;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getRefreshed() {
+        return refreshed;
+    }
+
+    public void setRefreshed(String refreshed) {
+        this.refreshed = refreshed;
+    }
+
+    public boolean isCached() {
+        return cached;
+    }
+
+    public void setCached(boolean cached) {
+        this.cached = cached;
+    }
+
+    public Grade[] getGrades() {
+        return grades;
+    }
+
+    public void setGrades(Grade[] grades) {
+        this.grades = grades;
+    }
+
+    public SemesterWiseGrade[] getSemesterWiseGrades() {
+        return semesterWiseGrades;
+    }
+
+    public void setSemesterWiseGrades(SemesterWiseGrade[] semesterWiseGrades) {
+        this.semesterWiseGrades = semesterWiseGrades;
+    }
+
+    public double getCgpa() {
+        return cgpa;
+    }
+
+    public void setCgpa(double cgpa) {
+        this.cgpa = cgpa;
+    }
+
+    public GradeSummary getGradeSummary() {
+        return gradeSummary;
+    }
+
+    public void setGradeSummary(GradeSummary gradeSummary) {
+        this.gradeSummary = gradeSummary;
+    }
+
+    public int getCreditsRegistered() {
+        return creditsRegistered;
+    }
+
+    public void setCreditsRegistered(int creditsRegistered) {
+        this.creditsRegistered = creditsRegistered;
+    }
+
+    public int getCreditsEarned() {
+        return creditsEarned;
+    }
+
+    public void setCreditsEarned(int creditsEarned) {
+        this.creditsEarned = creditsEarned;
+    }
 }
