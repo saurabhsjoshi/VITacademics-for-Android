@@ -18,5 +18,81 @@
 
 package com.karthikb351.vitinfo2.api.response;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import com.karthikb351.vitinfo2.api.contract.Client;
+import com.karthikb351.vitinfo2.api.contract.Message;
+
 public class SystemResponse {
+
+    @Expose
+    @SerializedName("android")
+    private Client android;
+
+    @Expose
+    @SerializedName("ios")
+    private Client ios;
+
+    @Expose
+    @SerializedName("windows")
+    private Client windows;
+
+    @Expose
+    @SerializedName("messages")
+    private Message[] messages;
+
+    @Expose
+    @SerializedName("status")
+    private Status status;
+
+    public SystemResponse() {
+    }
+
+    public SystemResponse(Client android, Client ios, Client windows, Message[] messages, Status status) {
+        this.android = android;
+        this.ios = ios;
+        this.windows = windows;
+        this.messages = messages;
+        this.status = status;
+    }
+
+    public Client getAndroid() {
+        return android;
+    }
+
+    public void setAndroid(Client android) {
+        this.android = android;
+    }
+
+    public Client getIos() {
+        return ios;
+    }
+
+    public void setIos(Client ios) {
+        this.ios = ios;
+    }
+
+    public Client getWindows() {
+        return windows;
+    }
+
+    public void setWindows(Client windows) {
+        this.windows = windows;
+    }
+
+    public Message[] getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Message[] messages) {
+        this.messages = messages;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }
