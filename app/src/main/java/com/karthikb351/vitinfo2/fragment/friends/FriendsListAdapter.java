@@ -1,14 +1,13 @@
-package com.karthikb351.vitinfo2.adapter;
+package com.karthikb351.vitinfo2.fragment.friends;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.ViewHolders.CourseViewHolder;
-import com.karthikb351.vitinfo2.ViewHolders.FriendsViewHolder;
 import com.karthikb351.vitinfo2.model.FriendModel;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by gaurav on 15/6/15.
  */
-public class FriendsListAdapter extends RecyclerView.Adapter<FriendsViewHolder> {
+public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder> {
 
         ArrayList<FriendModel> friends;
 
@@ -39,5 +38,17 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsViewHolder> 
     @Override
     public int getItemCount() {
         return friends.size();
+    }
+
+    public static class FriendsViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView FriendName, FriendRegNo;
+        public ImageView FriendImage;
+        public FriendsViewHolder(View itemView) {
+            super(itemView);
+            FriendRegNo=(TextView)itemView.findViewById(R.id.tvFriendRegistrationNumber);
+            FriendName=(TextView)itemView.findViewById(R.id.tvFriendName);
+            FriendImage=(ImageView)itemView.findViewById(R.id.FriendPhoto);
+        }
     }
 }

@@ -17,20 +17,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.adapter;
+package com.karthikb351.vitinfo2.fragment.courses;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.ViewHolders.CourseViewHolder;
 import com.karthikb351.vitinfo2.model.CourseModel;
 
 import java.util.ArrayList;
 
-public class CourseListAdapter extends RecyclerView.Adapter<CourseViewHolder> {
+public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {
 
     Context context;
     ArrayList<CourseModel> courses;
@@ -58,6 +60,19 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseViewHolder> {
     @Override
     public int getItemCount() {
         return courses.size();
+    }
+
+
+    public class CourseViewHolder extends RecyclerView.ViewHolder {
+        public TextView courseName, courseCode;
+        public ImageView photo;
+
+        public CourseViewHolder(View v) {
+            super(v);
+            courseName = (TextView) v.findViewById(R.id.tvCourseName);
+            courseCode = (TextView) v.findViewById(R.id.tvCourseCode);
+            photo = (ImageView) v.findViewById(R.id.photo);
+        }
     }
 
 }

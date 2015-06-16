@@ -17,35 +17,55 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment;
+package com.karthikb351.vitinfo2.fragment.courses;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
-public class FriendsFragment extends Fragment {
+public class CoursesFragment extends Fragment {
 
-    public FriendsFragment() {
+
+    public CoursesFragment() {
         // Required empty public constructor
     }
 
-    public static FriendsFragment newInstance() {
-        FriendsFragment fragment = new FriendsFragment();
+    public static CoursesFragment newInstance() {
+        CoursesFragment fragment = new CoursesFragment();
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        RecyclerView.LayoutManager courseLayoutManager=new CourseLayoutManager();
         TextView textView = new TextView(getActivity());
-        textView.setText("Friends");
+        textView.setText("Courses");
         return textView;
-        //return inflater.inflate(R.layout.friends_fragment, container, false);
+    }
+
+    public class CourseLayoutManager extends RecyclerView.LayoutManager {
+
+        @Override
+        public RecyclerView.LayoutParams generateDefaultLayoutParams() {
+            return null;
+        }
+        @Override
+        public void scrollToPosition(int position) {
+
+        }
+
+        @Override
+        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+            super.onLayoutChildren(recycler, state);
+        }
     }
 
 }
