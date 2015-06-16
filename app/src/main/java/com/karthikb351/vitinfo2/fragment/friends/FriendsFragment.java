@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment;
+package com.karthikb351.vitinfo2.fragment.friends;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,29 +25,47 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.karthikb351.vitinfo2.LayoutManagers.CourseLayoutManager;
+import com.karthikb351.vitinfo2.R;
 
-public class CoursesFragment extends Fragment {
+public class FriendsFragment extends Fragment {
 
-
-    public CoursesFragment() {
+    public FriendsFragment() {
         // Required empty public constructor
     }
 
-    public static CoursesFragment newInstance() {
-        CoursesFragment fragment = new CoursesFragment();
+    public static FriendsFragment newInstance() {
+        FriendsFragment fragment = new FriendsFragment();
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RecyclerView.LayoutManager courseLayoutManager=new CourseLayoutManager();
         TextView textView = new TextView(getActivity());
-        textView.setText("Courses");
+        textView.setText("Friends");
         return textView;
+        //return inflater.inflate(R.layout.friends_fragment, container, false);
     }
 
+    public static class FriendsLayoutManager extends RecyclerView.LayoutManager {
+
+        @Override
+        public RecyclerView.LayoutParams generateDefaultLayoutParams() {
+
+            return null;
+        }
+
+        @Override
+        public void scrollToPosition(int position) {
+
+        }
+
+        @Override
+        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+            super.onLayoutChildren(recycler, state);
+        }
+    }
 }

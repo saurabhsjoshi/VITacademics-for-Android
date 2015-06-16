@@ -31,8 +31,8 @@ import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.NavigationDrawerAdapter;
-import com.karthikb351.vitinfo2.fragment.CoursesFragment;
-import com.karthikb351.vitinfo2.fragment.FriendsFragment;
+import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
+import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.MainFragment;
 import com.karthikb351.vitinfo2.fragment.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.TimeTableFragment;
