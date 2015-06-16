@@ -52,10 +52,14 @@ public class ShareResponse {
     @SerializedName("courses")
     private FriendCourse[] courses;
 
+    @Expose
+    @SerializedName("refreshed")
+    private String refreshed;
+
     public ShareResponse() {
     }
 
-    public ShareResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String semester, FriendCourse[] courses) {
+    public ShareResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String semester, FriendCourse[] courses, String refreshed) {
         this.registerNumber = registerNumber;
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
@@ -63,6 +67,7 @@ public class ShareResponse {
         this.status = status;
         this.semester = semester;
         this.courses = courses;
+        this.refreshed = refreshed;
     }
 
     public String getRegisterNumber() {
@@ -119,5 +124,13 @@ public class ShareResponse {
 
     public void setCourses(FriendCourse[] courses) {
         this.courses = courses;
+    }
+
+    public String getRefreshed() {
+        return refreshed;
+    }
+
+    public void setRefreshed(String refreshed) {
+        this.refreshed = refreshed;
     }
 }
