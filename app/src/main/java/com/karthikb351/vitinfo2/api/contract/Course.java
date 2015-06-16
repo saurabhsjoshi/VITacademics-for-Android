@@ -44,7 +44,7 @@ public class Course {
 
     @Expose
     @SerializedName("ltpc")
-    private String LTPC;
+    private String ltpc;
 
     @Expose
     @SerializedName("course_mode")
@@ -101,12 +101,12 @@ public class Course {
     public Course() {
     }
 
-    public Course(int classNumber, String courseCode, String courseTitle, String subjectType, String LTPC, String courseMode, String courseOption, String slot, String venue, String faculty, String registrationStatus, String billDate, int billNumber, String projectTitle, int courseType, Attendance attendance, Marks marks, Timing[] timings) {
+    public Course(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpc, String courseMode, String courseOption, String slot, String venue, String faculty, String registrationStatus, String billDate, int billNumber, String projectTitle, int courseType, Attendance attendance, Marks marks, Timing[] timings) {
         this.classNumber = classNumber;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
         this.subjectType = subjectType;
-        this.LTPC = LTPC;
+        this.ltpc = ltpc;
         this.courseMode = courseMode;
         this.courseOption = courseOption;
         this.slot = slot;
@@ -154,12 +154,12 @@ public class Course {
         this.subjectType = subjectType;
     }
 
-    public String getLTPC() {
-        return LTPC;
+    public String getLtpc() {
+        return ltpc;
     }
 
-    public void setLTPC(String LTPC) {
-        this.LTPC = LTPC;
+    public void setLtpc(String ltpc) {
+        this.ltpc = ltpc;
     }
 
     public String getCourseMode() {
