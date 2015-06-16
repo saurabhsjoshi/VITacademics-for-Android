@@ -18,12 +18,53 @@
 
 package com.karthikb351.vitinfo2.api.contract.course;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Timing {
 
+    @Expose
+    @SerializedName("day")
     private int day;
 
+    @Expose
+    @SerializedName("start_time")
     private String startTime;
 
+    @Expose
+    @SerializedName("end_time")
     private String endTime;
 
+    public Timing() {
+    }
+
+    public Timing(int day, String startTime, String endTime) {
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
 }

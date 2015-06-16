@@ -18,16 +18,92 @@
 
 package com.karthikb351.vitinfo2.api.contract.course;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Marks {
 
+    @Expose
+    @SerializedName("max_marks")
     private double maxMarks;
 
+    @Expose
+    @SerializedName("max_percentage")
+    private double maxPercentage;
+
+    @Expose
+    @SerializedName("scored_marks")
     private double scoredMarks;
 
+    @Expose
+    @SerializedName("scored_percentage")
     private double scoredPercentage;
 
+    @Expose
+    @SerializedName("assessments")
     private Assessment[] assessments;
 
+    @Expose
+    @SerializedName("supported")
     private boolean supported;
 
+    public Marks() {
+    }
+
+    public Marks(double maxMarks, double maxPercentage, double scoredMarks, double scoredPercentage, Assessment[] assessments, boolean supported) {
+        this.maxMarks = maxMarks;
+        this.maxPercentage = maxPercentage;
+        this.scoredMarks = scoredMarks;
+        this.scoredPercentage = scoredPercentage;
+        this.assessments = assessments;
+        this.supported = supported;
+    }
+
+    public double getMaxMarks() {
+        return maxMarks;
+    }
+
+    public void setMaxMarks(double maxMarks) {
+        this.maxMarks = maxMarks;
+    }
+
+    public double getMaxPercentage() {
+        return maxPercentage;
+    }
+
+    public void setMaxPercentage(double maxPercentage) {
+        this.maxPercentage = maxPercentage;
+    }
+
+    public double getScoredMarks() {
+        return scoredMarks;
+    }
+
+    public void setScoredMarks(double scoredMarks) {
+        this.scoredMarks = scoredMarks;
+    }
+
+    public double getScoredPercentage() {
+        return scoredPercentage;
+    }
+
+    public void setScoredPercentage(double scoredPercentage) {
+        this.scoredPercentage = scoredPercentage;
+    }
+
+    public Assessment[] getAssessments() {
+        return assessments;
+    }
+
+    public void setAssessments(Assessment[] assessments) {
+        this.assessments = assessments;
+    }
+
+    public boolean isSupported() {
+        return supported;
+    }
+
+    public void setSupported(boolean supported) {
+        this.supported = supported;
+    }
 }

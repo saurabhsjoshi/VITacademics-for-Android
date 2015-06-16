@@ -18,18 +18,92 @@
 
 package com.karthikb351.vitinfo2.api.contract.course;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Attendance {
 
+    @Expose
+    @SerializedName("registration_date")
     private String registrationDate;
 
+    @Expose
+    @SerializedName("attended_classes")
     private int attendedClasses;
 
+    @Expose
+    @SerializedName("total_classes")
     private int totalClasses;
 
+    @Expose
+    @SerializedName("attendance_percentage")
     private int attendancePercentage;
 
+    @Expose
+    @SerializedName("details")
     private AttendanceDetail[] details;
 
+    @Expose
+    @SerializedName("supported")
     private boolean supported;
 
+    public Attendance() {
+    }
+
+    public Attendance(String registrationDate, int attendedClasses, int totalClasses, int attendancePercentage, AttendanceDetail[] details, boolean supported) {
+        this.registrationDate = registrationDate;
+        this.attendedClasses = attendedClasses;
+        this.totalClasses = totalClasses;
+        this.attendancePercentage = attendancePercentage;
+        this.details = details;
+        this.supported = supported;
+    }
+
+    public String getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public int getAttendedClasses() {
+        return attendedClasses;
+    }
+
+    public void setAttendedClasses(int attendedClasses) {
+        this.attendedClasses = attendedClasses;
+    }
+
+    public int getTotalClasses() {
+        return totalClasses;
+    }
+
+    public void setTotalClasses(int totalClasses) {
+        this.totalClasses = totalClasses;
+    }
+
+    public int getAttendancePercentage() {
+        return attendancePercentage;
+    }
+
+    public void setAttendancePercentage(int attendancePercentage) {
+        this.attendancePercentage = attendancePercentage;
+    }
+
+    public AttendanceDetail[] getDetails() {
+        return details;
+    }
+
+    public void setDetails(AttendanceDetail[] details) {
+        this.details = details;
+    }
+
+    public boolean isSupported() {
+        return supported;
+    }
+
+    public void setSupported(boolean supported) {
+        this.supported = supported;
+    }
 }
