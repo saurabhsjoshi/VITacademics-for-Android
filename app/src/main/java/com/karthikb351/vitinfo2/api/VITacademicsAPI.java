@@ -34,7 +34,8 @@ import retrofit.converter.GsonConverter;
 
 public class VITacademicsAPI {
 
-    private static final String BASE_URL = "https://vitacademics-dev.herokuapp.com";
+    private static final String BASE_URL = "https://vitacademics-staging.herokuapp.com";
+
     private APIService service;
     private static VITacademicsAPI api;
 
