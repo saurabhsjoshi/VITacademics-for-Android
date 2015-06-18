@@ -38,6 +38,20 @@ public class VITacademicsAPI {
 
     private static final String BASE_URL = "https://vitacademics-staging.herokuapp.com";
 
+    private static final int CODE_SUCCESS = 0;
+    private static final int CODE_TIMEDOUT = 11;
+    private static final int CODE_INVALID = 12;
+    private static final int CODE_CAPTCHAPARSING = 13;
+    private static final int CODE_TOKENEXPIRED = 14;
+    private static final int CODE_NODATA = 15;
+    private static final int CODE_DATAPARSING = 16;
+    private static final int CODE_TODO = 50;
+    private static final int CODE_DEPRECATED = 60;
+    private static final int CODE_VITDOWN = 89;
+    private static final int CODE_MONGODOWM = 97;
+    private static final int CODE_MAINTENANCE = 98;
+    private static final int CODE_UNKNOWN = 99;
+
     private APIService service;
     private static VITacademicsAPI api;
 
