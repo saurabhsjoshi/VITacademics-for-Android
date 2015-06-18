@@ -16,20 +16,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models.course;
+package com.karthikb351.vitinfo2.api.contract;
 
-public class Attendance {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private String registrationDate;
+public class Message {
 
-    private int attendedClasses;
+    @Expose
+    @SerializedName("_id")
+    private int id;
 
-    private int totalClasses;
+    @Expose
+    @SerializedName("message")
+    private String message;
 
-    private int attendancePercentage;
+    public Message() {
+    }
 
-    private AttendanceDetail[] details;
+    public Message(int id, String message) {
+        this.id = id;
+        this.message = message;
+    }
 
-    private boolean supported;
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

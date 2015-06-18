@@ -16,14 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models.course;
+package com.karthikb351.vitinfo2;
 
-public class Timing {
+import com.orm.SugarApp;
 
-    private int day;
-
-    private String startTime;
-
-    private String endTime;
-
+public class MainApplication extends SugarApp {
 }

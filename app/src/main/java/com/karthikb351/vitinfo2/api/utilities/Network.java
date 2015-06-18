@@ -16,20 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models.course;
+package com.karthikb351.vitinfo2.api.utilities;
 
-public class AttendanceDetail {
-
-    private int sl;
-
-    private String date;
-
-    private String slot;
-
-    private String status;
-
-    private int classUnits;
-
-    private String reason;
-
+public class Network {
 }

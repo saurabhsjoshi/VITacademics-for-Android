@@ -16,7 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models;
+package com.karthikb351.vitinfo2.api;
 
-public class Grade {
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+
+public class SyncService extends Service {
+
+    private static final String TAG = "VITacademicsSyncService";
+
+    // TODO
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 }

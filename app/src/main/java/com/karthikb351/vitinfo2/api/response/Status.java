@@ -16,18 +16,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.models.course;
+package com.karthikb351.vitinfo2.api.response;
 
-public class Marks {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    private double maxMarks;
+public class Status {
 
-    private double scoredMarks;
+    @Expose
+    @SerializedName("code")
+    private int code;
 
-    private double scoredPercentage;
+    @Expose
+    @SerializedName("message")
+    private String message;
 
-    private Assessment[] assessments;
+    public Status() {
+    }
 
-    private boolean supported;
+    public Status(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
 
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
