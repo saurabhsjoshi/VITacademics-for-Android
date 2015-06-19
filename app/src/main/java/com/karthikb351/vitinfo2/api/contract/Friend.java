@@ -16,13 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.response;
+package com.karthikb351.vitinfo2.api.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.karthikb351.vitinfo2.api.models.Status;
+import com.orm.SugarRecord;
 
-public class LoginResponse {
+public class Friend extends SugarRecord<Friend> {
 
     @Expose
     @SerializedName("reg_no")
@@ -44,15 +45,30 @@ public class LoginResponse {
     @SerializedName("status")
     private Status status;
 
-    public LoginResponse() {
+    @Expose
+    @SerializedName("semester")
+    private String semester;
+
+    @Expose
+    @SerializedName("courses")
+    private FriendCourse[] courses;
+
+    @Expose
+    @SerializedName("refreshed")
+    private String refreshed;
+
+    public Friend() {
     }
 
-    public LoginResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status) {
+    public Friend(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String semester, FriendCourse[] courses, String refreshed) {
         this.registerNumber = registerNumber;
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
         this.campus = campus;
         this.status = status;
+        this.semester = semester;
+        this.courses = courses;
+        this.refreshed = refreshed;
     }
 
     public String getRegisterNumber() {
@@ -93,5 +109,29 @@ public class LoginResponse {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    public FriendCourse[] getCourses() {
+        return courses;
+    }
+
+    public void setCourses(FriendCourse[] courses) {
+        this.courses = courses;
+    }
+
+    public String getRefreshed() {
+        return refreshed;
+    }
+
+    public void setRefreshed(String refreshed) {
+        this.refreshed = refreshed;
     }
 }

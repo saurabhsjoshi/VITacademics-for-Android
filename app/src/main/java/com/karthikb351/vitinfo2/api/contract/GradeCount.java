@@ -20,38 +20,52 @@ package com.karthikb351.vitinfo2.api.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
 
-public class Client {
-
-    @Expose
-    @SerializedName("supported")
-    private String earliestSupportedVersion;
+public class GradeCount extends SugarRecord<GradeCount> {
 
     @Expose
-    @SerializedName("latest")
-    private String latestVersion;
+    @SerializedName("grade")
+    private char grade;
 
-    public Client() {
+    @Expose
+    @SerializedName("value")
+    private double value;
+
+    @Expose
+    @SerializedName("count")
+    private int count;
+
+    public GradeCount() {
     }
 
-    public Client(String earliestSupportedVersion, String latestVersion) {
-        this.earliestSupportedVersion = earliestSupportedVersion;
-        this.latestVersion = latestVersion;
+    public GradeCount(char grade, double value, int count) {
+        this.grade = grade;
+        this.value = value;
+        this.count = count;
     }
 
-    public String getEarliestSupportedVersion() {
-        return earliestSupportedVersion;
+    public char getGrade() {
+        return grade;
     }
 
-    public void setEarliestSupportedVersion(String earliestSupportedVersion) {
-        this.earliestSupportedVersion = earliestSupportedVersion;
+    public void setGrade(char grade) {
+        this.grade = grade;
     }
 
-    public String getLatestVersion() {
-        return latestVersion;
+    public double getValue() {
+        return value;
     }
 
-    public void setLatestVersion(String latestVersion) {
-        this.latestVersion = latestVersion;
+    public void setValue(double value) {
+        this.value = value;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

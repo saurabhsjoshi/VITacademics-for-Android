@@ -16,42 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.response;
+package com.karthikb351.vitinfo2.api;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+public class StatusCodes {
 
-public class Status {
-
-    @Expose
-    @SerializedName("code")
-    private int code;
-
-    @Expose
-    @SerializedName("message")
-    private String message;
-
-    public Status() {
-    }
-
-    public Status(int code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    public static final int SUCCESS = 0;
+    public static final int TIMED_OUT = 11;
+    public static final int INVALID = 12;
+    public static final int CAPTCHA_PARSING = 13;
+    public static final int TOKEN_EXPIRED = 14;
+    public static final int NO_DATA = 15;
+    public static final int DATA_PARSING = 16;
+    public static final int TODO = 50;
+    public static final int DEPRECATED = 60;
+    public static final int VIT_DOWN = 89;
+    public static final int MONGO_DOWN = 97;
+    public static final int MAINTENANCE = 98;
+    public static final int UNKNOWN = 99;
 }

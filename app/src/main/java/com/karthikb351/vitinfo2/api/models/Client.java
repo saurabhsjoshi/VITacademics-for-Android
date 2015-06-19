@@ -16,43 +16,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.contract;
+package com.karthikb351.vitinfo2.api.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.orm.SugarRecord;
 
-public class Message extends SugarRecord<Message> {
-
-    @Expose
-    @SerializedName("_id")
-    private int messageId;
+public class Client {
 
     @Expose
-    @SerializedName("message")
-    private String message;
+    @SerializedName("supported")
+    private String earliestSupportedVersion;
 
-    public Message() {
+    @Expose
+    @SerializedName("latest")
+    private String latestVersion;
+
+    public Client() {
     }
 
-    public Message(int messageId, String message) {
-        this.messageId = messageId;
-        this.message = message;
+    public Client(String earliestSupportedVersion, String latestVersion) {
+        this.earliestSupportedVersion = earliestSupportedVersion;
+        this.latestVersion = latestVersion;
     }
 
-    public int getMessageId() {
-        return messageId;
+    public String getEarliestSupportedVersion() {
+        return earliestSupportedVersion;
     }
 
-    public void setMessageId(int messageId) {
-        this.messageId = messageId;
+    public void setEarliestSupportedVersion(String earliestSupportedVersion) {
+        this.earliestSupportedVersion = earliestSupportedVersion;
     }
 
-    public String getMessage() {
-        return message;
+    public String getLatestVersion() {
+        return latestVersion;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setLatestVersion(String latestVersion) {
+        this.latestVersion = latestVersion;
     }
 }

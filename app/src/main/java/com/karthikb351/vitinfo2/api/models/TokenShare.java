@@ -16,55 +16,55 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.contract.course;
+package com.karthikb351.vitinfo2.api.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Timing {
+public class TokenShare {
 
     @Expose
-    @SerializedName("day")
-    private int day;
+    @SerializedName("token")
+    private String token;
 
     @Expose
-    @SerializedName("start_time")
-    private String startTime;
+    @SerializedName("validity")
+    private int validity;
 
     @Expose
-    @SerializedName("end_time")
-    private String endTime;
+    @SerializedName("issued")
+    private String issued;
 
-    public Timing() {
+    public TokenShare() {
     }
 
-    public Timing(int day, String startTime, String endTime) {
-        this.day = day;
-        this.startTime = startTime;
-        this.endTime = endTime;
+    public TokenShare(String token, int validity, String issued) {
+        this.token = token;
+        this.validity = validity;
+        this.issued = issued;
     }
 
-    public int getDay() {
-        return day;
+    public String getToken() {
+        return token;
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public int getValidity() {
+        return validity;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setValidity(int validity) {
+        this.validity = validity;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getIssued() {
+        return issued;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setIssued(String issued) {
+        this.issued = issued;
     }
 }

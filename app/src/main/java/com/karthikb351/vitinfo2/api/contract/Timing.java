@@ -20,51 +20,52 @@ package com.karthikb351.vitinfo2.api.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
 
-public class TokenShare {
-
-    @Expose
-    @SerializedName("token")
-    private String token;
+public class Timing extends SugarRecord<Timing> {
 
     @Expose
-    @SerializedName("validity")
-    private int validity;
+    @SerializedName("day")
+    private int day;
 
     @Expose
-    @SerializedName("issued")
-    private String issued;
+    @SerializedName("start_time")
+    private String startTime;
 
-    public TokenShare() {
+    @Expose
+    @SerializedName("end_time")
+    private String endTime;
+
+    public Timing() {
     }
 
-    public TokenShare(String token, int validity, String issued) {
-        this.token = token;
-        this.validity = validity;
-        this.issued = issued;
+    public Timing(int day, String startTime, String endTime) {
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    public String getToken() {
-        return token;
+    public int getDay() {
+        return day;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setDay(int day) {
+        this.day = day;
     }
 
-    public int getValidity() {
-        return validity;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setValidity(int validity) {
-        this.validity = validity;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public String getIssued() {
-        return issued;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public void setIssued(String issued) {
-        this.issued = issued;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

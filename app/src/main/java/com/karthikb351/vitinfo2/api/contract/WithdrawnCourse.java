@@ -20,8 +20,9 @@ package com.karthikb351.vitinfo2.api.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
 
-public class WithdrawnCourse {
+public class WithdrawnCourse extends SugarRecord<WithdrawnCourse> {
 
     @Expose
     @SerializedName("class_number")

@@ -19,4 +19,6 @@
 package com.karthikb351.vitinfo2.api.utilities;
 
 public class Network {
+
+    // TODO Network Helper functions
 }

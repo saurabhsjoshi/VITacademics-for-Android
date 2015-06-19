@@ -19,14 +19,18 @@
 
 package com.karthikb351.vitinfo2.api;
 
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
 import com.karthikb351.vitinfo2.api.response.ShareResponse;
+import com.karthikb351.vitinfo2.api.models.Status;
 import com.karthikb351.vitinfo2.api.response.SystemResponse;
 import com.karthikb351.vitinfo2.api.response.TokenResponse;
+import com.karthikb351.vitinfo2.api.utilities.Database;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -38,24 +42,14 @@ public class VITacademicsAPI {
 
     private static final String BASE_URL = "https://vitacademics-staging.herokuapp.com";
 
-    private static final int CODE_SUCCESS = 0;
-    private static final int CODE_TIMEDOUT = 11;
-    private static final int CODE_INVALID = 12;
-    private static final int CODE_CAPTCHAPARSING = 13;
-    private static final int CODE_TOKENEXPIRED = 14;
-    private static final int CODE_NODATA = 15;
-    private static final int CODE_DATAPARSING = 16;
-    private static final int CODE_TODO = 50;
-    private static final int CODE_DEPRECATED = 60;
-    private static final int CODE_VITDOWN = 89;
-    private static final int CODE_MONGODOWM = 97;
-    private static final int CODE_MAINTENANCE = 98;
-    private static final int CODE_UNKNOWN = 99;
+    private Database database;
 
     private APIService service;
     private static VITacademicsAPI api;
 
-    private VITacademicsAPI() {
+    private VITacademicsAPI(Context context) {
+
+        this.database = new Database(context);
         Gson gson = new GsonBuilder().create();
 
         RestAdapter restAdapter = new RestAdapter.Builder()
@@ -68,9 +62,9 @@ public class VITacademicsAPI {
         api = this;
     }
 
-    public static VITacademicsAPI getAPI() {
+    public static VITacademicsAPI getAPI(Context context) {
         if (api == null) {
-            api = new VITacademicsAPI();
+            api = new VITacademicsAPI(context);
         }
         return api;
     }
@@ -176,5 +170,30 @@ public class VITacademicsAPI {
                 // TODO Handle failure
             }
         });
+    }
+
+    private int parseStatus(Status status) {
+
+        int result;
+        switch (status.getCode()) {
+            case StatusCodes.SUCCESS:
+                result = 0;
+                break;
+            case StatusCodes.TIMED_OUT:
+            case StatusCodes.TOKEN_EXPIRED:
+                result = 1;
+                break;
+            case StatusCodes.INVALID:
+            case StatusCodes.DATA_PARSING:
+                result = 2;
+                break;
+            case StatusCodes.NO_DATA:
+                result = 3;
+                break;
+            default:
+                result = 4;
+                break;
+        }
+        return result;
     }
 }

@@ -20,8 +20,9 @@ package com.karthikb351.vitinfo2.api.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.orm.SugarRecord;
 
-public class Grade {
+public class Grade extends SugarRecord<Grade> {
 
     @Expose
     @SerializedName("course_code")

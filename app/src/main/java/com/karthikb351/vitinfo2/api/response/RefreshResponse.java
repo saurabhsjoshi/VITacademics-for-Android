@@ -22,6 +22,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.karthikb351.vitinfo2.api.contract.Course;
 import com.karthikb351.vitinfo2.api.contract.WithdrawnCourse;
+import com.karthikb351.vitinfo2.api.models.Status;
 
 public class RefreshResponse {
 

@@ -21,8 +21,9 @@ package com.karthikb351.vitinfo2.api.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.karthikb351.vitinfo2.api.contract.Grade;
-import com.karthikb351.vitinfo2.api.contract.GradeSummary;
+import com.karthikb351.vitinfo2.api.contract.GradeCount;
 import com.karthikb351.vitinfo2.api.contract.SemesterWiseGrade;
+import com.karthikb351.vitinfo2.api.models.Status;
 
 public class GradesResponse {
 
@@ -67,8 +68,8 @@ public class GradesResponse {
     private double cgpa;
 
     @Expose
-    @SerializedName("grade_summary")
-    private GradeSummary gradeSummary;
+    @SerializedName("grade_count")
+    private GradeCount[] gradeCount;
 
     @Expose
     @SerializedName("credits_registered")
@@ -81,7 +82,7 @@ public class GradesResponse {
     public GradesResponse() {
     }
 
-    public GradesResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String refreshed, boolean cached, Grade[] grades, SemesterWiseGrade[] semesterWiseGrades, double cgpa, GradeSummary gradeSummary, int creditsRegistered, int creditsEarned) {
+    public GradesResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String refreshed, boolean cached, Grade[] grades, SemesterWiseGrade[] semesterWiseGrades, double cgpa, GradeCount[] gradeCount, int creditsRegistered, int creditsEarned) {
         this.registerNumber = registerNumber;
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
@@ -92,7 +93,7 @@ public class GradesResponse {
         this.grades = grades;
         this.semesterWiseGrades = semesterWiseGrades;
         this.cgpa = cgpa;
-        this.gradeSummary = gradeSummary;
+        this.gradeCount = gradeCount;
         this.creditsRegistered = creditsRegistered;
         this.creditsEarned = creditsEarned;
     }
@@ -177,12 +178,12 @@ public class GradesResponse {
         this.cgpa = cgpa;
     }
 
-    public GradeSummary getGradeSummary() {
-        return gradeSummary;
+    public GradeCount[] getGradeCount() {
+        return gradeCount;
     }
 
-    public void setGradeSummary(GradeSummary gradeSummary) {
-        this.gradeSummary = gradeSummary;
+    public void setGradeCount(GradeCount[] gradeCount) {
+        this.gradeCount = gradeCount;
     }
 
     public int getCreditsRegistered() {

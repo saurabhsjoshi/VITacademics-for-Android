@@ -20,8 +20,9 @@ package com.karthikb351.vitinfo2.api.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.karthikb351.vitinfo2.api.contract.Client;
+import com.karthikb351.vitinfo2.api.models.Client;
 import com.karthikb351.vitinfo2.api.contract.Message;
+import com.karthikb351.vitinfo2.api.models.Status;
 
 public class SystemResponse {
 
