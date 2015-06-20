@@ -23,6 +23,7 @@ package com.karthikb351.vitinfo2.activity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,11 +32,11 @@ import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.NavigationDrawerAdapter;
-import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
-import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.MainFragment;
 import com.karthikb351.vitinfo2.fragment.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.TimeTableFragment;
+import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
+import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,9 +87,15 @@ public class MainActivity extends AppCompatActivity {
 
     void initializeLayouts() {
         //final class FragClasses=Class.forName("com.karthikb351.vitinfo2.fragment.MainFragment");
+        Toolbar toolbar =(Toolbar)findViewById(R.id.toolbar);
         dl = (DrawerLayout) findViewById(R.id.drawer_layout);
         lv = (ListView) findViewById(R.id.lvDrawer);
         topics = getResources().getStringArray(R.array.topic);
+        //Toolbar
+        setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setHomeButtonEnabled(true);
+
         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
         lv.setAdapter(new NavigationDrawerAdapter(this, R.layout.drawer_menu_item, stringList));
 
