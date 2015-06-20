@@ -61,6 +61,9 @@ public class CoursesFragment extends Fragment {
 
     public class CourseLayoutManager extends RecyclerView.LayoutManager {
 
+       public CourseLayoutManager(){
+
+       }
         @Override
         public RecyclerView.LayoutParams generateDefaultLayoutParams() {
             return null;
