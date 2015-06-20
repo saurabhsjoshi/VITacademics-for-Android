@@ -30,7 +30,7 @@ import com.karthikb351.vitinfo2.model.FriendModel;
 
 import java.util.ArrayList;
 
-public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder> {
+public class    FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder> {
 
         ArrayList<FriendModel> friends;
 
