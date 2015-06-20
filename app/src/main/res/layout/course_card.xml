@@ -20,13 +20,14 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cvCourse"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content" >
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="0dp">
+            android:padding="5dp"
+            >
 
 
 
@@ -43,12 +44,13 @@
                 android:layout_width="60sp"
                 android:layout_height="60sp"
                 android:text="75%"
-                android:gravity="center_vertical"
+                android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
+                android:elevation="@dimen/cardview_default_elevation"
+                android:gravity="center"
+                android:layout_centerVertical="true"
                 android:background="@drawable/circle"
-                android:id="@+id/tvAttendance"
-                android:layout_alignBottom="@+id/pbAttendance"
-                android:layout_below="@+id/tvCourseCode"
-                />
+
+                android:id="@+id/tvAttendance" />
             <TextView
                 android:id="@+id/tvCourseName"
                 android:layout_width="wrap_content"
@@ -64,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/pbAttendance"
+                android:elevation="@dimen/cardview_default_elevation"
                 android:layout_below="@+id/tvCourseName"
                 android:layout_centerHorizontal="true"
                 android:layout_toRightOf="@+id/tvAttendance"/>
@@ -74,6 +77,7 @@
                 android:text="C1"
                 android:id="@+id/tvSlot"
                 android:layout_below="@+id/pbAttendance"
+                android:textSize="20sp"
                 android:layout_toRightOf="@+id/tvAttendance"
                 />
 
@@ -82,9 +86,17 @@
                 android:layout_height="wrap_content"
                 android:text="SJT 104"
                 android:id="@+id/tvVenue"
+                android:textSize="20sp"
                 android:layout_below="@+id/pbAttendance"
                 android:layout_alignParentRight="true"
                 />
+
+            <Space
+                android:layout_width="20px"
+                android:layout_height="10sp"
+                android:layout_below="@+id/tvSlot"
+                android:layout_toRightOf="@+id/tvAttendance"
+                android:layout_toEndOf="@+id/tvCourseCode" />
 
 
         </RelativeLayout>
