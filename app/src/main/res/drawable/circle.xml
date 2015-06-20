@@ -20,7 +20,7 @@
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
-    <corners android:radius="10dip" />
+    <corners android:radius="8dp" />
     <solid android:color="#e74c3c" />
     <padding
         android:bottom="10dp"
