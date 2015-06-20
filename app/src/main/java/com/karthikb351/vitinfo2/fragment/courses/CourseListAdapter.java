@@ -25,19 +25,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.api.contract.Course;
 import com.karthikb351.vitinfo2.model.CourseModel;
-
 import java.util.ArrayList;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {
 
     Context context;
-    ArrayList<CourseModel> courses;
+    ArrayList<Course> courses;
+    RecyclerViewOnClickListener<Course> OnclickListener ;
 
-    public CourseListAdapter(Context context, ArrayList<CourseModel> courses) {
+    public CourseListAdapter(Context context, ArrayList<Course> courses) {
         this.context = context;
         this.courses = courses;
     }
@@ -51,10 +53,19 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     @Override
     public void onBindViewHolder(CourseViewHolder holder, int position) {
 
+        int AttendanceP = courses.get(position).getAttendance().getAttendancePercentage();
         CourseViewHolder cvHolder = (CourseViewHolder) holder;
-        cvHolder.courseCode.setText(courses.get(position).courseCode);
-        cvHolder.courseName.setText(courses.get(position).courseName);
-        cvHolder.photo.setImageResource(courses.get(position).photoResourceId);
+        cvHolder.courseCode.setText(courses.get(position).getCourseCode());
+        cvHolder.courseName.setText(courses.get(position).getCourseTitle());
+        cvHolder.Venue.setText(courses.get(position).getVenue());
+        cvHolder.Slot.setText(courses.get(position).getSlot());
+        cvHolder.Attendance.setText(Integer.toString(AttendanceP));
+        cvHolder.pbAttendance.setProgress(AttendanceP);
+    }
+
+    public void setOnclickListener(RecyclerViewOnClickListener<Course> listener)
+    {
+     OnclickListener = listener ;
     }
 
     @Override
@@ -63,15 +74,24 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     }
 
 
-    public class CourseViewHolder extends RecyclerView.ViewHolder {
-        public TextView courseName, courseCode;
-        public ImageView photo;
-
+    public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView courseName, courseCode , Attendance , Slot ,Venue;
+        public ProgressBar pbAttendance;
         public CourseViewHolder(View v) {
             super(v);
             courseName = (TextView) v.findViewById(R.id.tvCourseName);
             courseCode = (TextView) v.findViewById(R.id.tvCourseCode);
-            photo = (ImageView) v.findViewById(R.id.photo);
+            Attendance = (TextView)v.findViewById(R.id.tvAttendance);
+            Slot = (TextView)v.findViewById(R.id.tvSlot);
+            Venue = (TextView)v.findViewById(R.id.tvVenue);
+            pbAttendance = (ProgressBar)v.findViewById(R.id.pbAttendance);
+            pbAttendance.setMax(100);
+        }
+
+        public  void onClick(View v)
+        {
+            Course course = courses.get(getAdapterPosition());
+            OnclickListener.onItemClick(course);
         }
     }
 

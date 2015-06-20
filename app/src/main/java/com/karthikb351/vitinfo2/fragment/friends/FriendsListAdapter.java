@@ -18,6 +18,7 @@
 
 package com.karthikb351.vitinfo2.fragment.friends;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,14 +27,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.api.contract.Friend;
 import com.karthikb351.vitinfo2.model.FriendModel;
 
 import java.util.ArrayList;
 
-public class    FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder> {
+public class  FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder>
+{
 
-        ArrayList<FriendModel> friends;
+    ArrayList<Friend> friends;
+    Context context ;
+    RecyclerViewOnClickListener<Friend> OnclickListener ;
 
+    public FriendsListAdapter(Context context , ArrayList<Friend> friends)
+    {
+        this.context = context ;
+        this.friends = friends ;
+    }
     @Override
     public FriendsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.
@@ -45,9 +56,14 @@ public class    FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapt
 
     @Override
     public void onBindViewHolder(FriendsViewHolder holder, int position) {
-        holder.FriendName.setText(friends.get(position).FriendName);
-        holder.FriendRegNo.setText(friends.get(position).FriendRegNo);
-        holder.FriendImage.setImageResource(friends.get(position).FriendPhotoId);
+        holder.FriendName.setText(friends.get(position).getSqlName());
+        holder.FriendRegNo.setText(friends.get(position).getRegisterNumber());
+        //holder.FriendImage.setImageResource(friends.get(position).FriendPhotoId);
+    }
+
+    public void setOnclickListener(RecyclerViewOnClickListener<Friend> listener)
+    {
+        OnclickListener = listener ;
     }
 
     @Override
@@ -55,7 +71,8 @@ public class    FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapt
         return friends.size();
     }
 
-    public static class FriendsViewHolder extends RecyclerView.ViewHolder {
+    public class FriendsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
 
         public TextView FriendName, FriendRegNo;
         public ImageView FriendImage;
@@ -64,6 +81,11 @@ public class    FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapt
             FriendRegNo=(TextView)itemView.findViewById(R.id.tvFriendRegistrationNumber);
             FriendName=(TextView)itemView.findViewById(R.id.tvFriendName);
             FriendImage=(ImageView)itemView.findViewById(R.id.FriendPhoto);
+        }
+        public  void onClick(View v)
+        {
+            Friend friend = friends.get(getAdapterPosition());
+            OnclickListener.onItemClick(friend);
         }
     }
 }
