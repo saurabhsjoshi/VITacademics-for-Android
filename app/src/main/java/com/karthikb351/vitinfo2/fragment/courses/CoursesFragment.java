@@ -25,13 +25,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
+import java.util.ArrayList;
+
 public class CoursesFragment extends Fragment {
 
+    RecyclerView  recyclerView;
+    CourseListAdapter courseListAdapter;
+    ArrayList courses;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -47,8 +51,12 @@ public class CoursesFragment extends Fragment {
                              Bundle savedInstanceState) {
         RecyclerView.LayoutManager courseLayoutManager=new CourseLayoutManager();
         TextView textView = new TextView(getActivity());
-        textView.setText("Courses");
-        return textView;
+        View view=inflater.inflate(R.layout.courses,container,false);
+        courseListAdapter=new CourseListAdapter(getActivity(),courses);
+        recyclerView=(RecyclerView)view.findViewById(R.id.rvCourses);
+        recyclerView.setAdapter(courseListAdapter);
+        recyclerView.setLayoutManager(courseLayoutManager);
+        return view;
     }
 
     public class CourseLayoutManager extends RecyclerView.LayoutManager {
