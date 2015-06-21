@@ -23,11 +23,11 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.karthikb351.vitinfo2.api.contract.Friend;
+import com.karthikb351.vitinfo2.api.models.Status;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
-import com.karthikb351.vitinfo2.api.response.ShareResponse;
-import com.karthikb351.vitinfo2.api.models.Status;
 import com.karthikb351.vitinfo2.api.response.SystemResponse;
 import com.karthikb351.vitinfo2.api.response.TokenResponse;
 import com.karthikb351.vitinfo2.api.utilities.Database;
@@ -145,9 +145,9 @@ public class VITacademicsAPI {
     }
 
     public void share(String campus, String token, String receiver) {
-        service.share(campus, token, receiver, new Callback<ShareResponse>() {
+        service.share(campus, token, receiver, new Callback<Friend>() {
             @Override
-            public void success(ShareResponse shareResponse, Response response) {
+            public void success(Friend friend, Response response) {
                 // TODO Handle success
             }
 
@@ -159,9 +159,9 @@ public class VITacademicsAPI {
     }
 
     public void share(String campus, String regno, String dob, String mobile, String receiver) {
-        service.share(campus, regno, dob, mobile, receiver, new Callback<ShareResponse>() {
+        service.share(campus, regno, dob, mobile, receiver, new Callback<Friend>() {
             @Override
-            public void success(ShareResponse shareResponse, Response response) {
+            public void success(Friend friend, Response response) {
                 // TODO Handle success
             }
 
