@@ -28,6 +28,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.api.contract.Course;
 
 import java.util.ArrayList;
 
@@ -35,7 +37,7 @@ public class CoursesFragment extends Fragment {
 
     RecyclerView  recyclerView;
     CourseListAdapter courseListAdapter;
-    ArrayList courses;
+    ArrayList<Course> courses;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -54,8 +56,14 @@ public class CoursesFragment extends Fragment {
         View view=inflater.inflate(R.layout.courses,container,false);
         courseListAdapter=new CourseListAdapter(getActivity(),courses);
         recyclerView=(RecyclerView)view.findViewById(R.id.rvCourses);
-        recyclerView.setAdapter(courseListAdapter);
+        courseListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
+            @Override
+            public void onItemClick(Course data) {
+                // add on item click functionality
+            }
+        });
         recyclerView.setLayoutManager(courseLayoutManager);
+        recyclerView.setAdapter(courseListAdapter);
         return view;
     }
 

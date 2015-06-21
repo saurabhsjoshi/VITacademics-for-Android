@@ -29,8 +29,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.api.contract.Friend;
+
+import java.util.ArrayList;
 
 public class FriendsFragment extends Fragment {
+
+    ArrayList<Friend> friends ;
+    RecyclerView friendsRecyclerView;
+    FriendsListAdapter adapter ;
 
     public FriendsFragment() {
         // Required empty public constructor
@@ -42,12 +50,21 @@ public class FriendsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText("Friends");
-        return textView;
-        //return inflater.inflate(R.layout.friends_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    {
+        View view = inflater.inflate(R.layout.friends_fragment, container, false);
+        FriendsLayoutManager layoutManager = new FriendsLayoutManager();
+        adapter = new FriendsListAdapter(getActivity(),friends);
+        adapter.setOnclickListener(new RecyclerViewOnClickListener<Friend>() {
+            @Override
+            public void onItemClick(Friend data) {
+                // on item click functionality
+            }
+        });
+        friendsRecyclerView = (RecyclerView)view.findViewById(R.id.rvFriends);
+        friendsRecyclerView.setLayoutManager(layoutManager);
+        friendsRecyclerView.setAdapter(adapter);
+        return view ;
     }
 
     public static class FriendsLayoutManager extends RecyclerView.LayoutManager {
