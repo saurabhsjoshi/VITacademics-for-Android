@@ -23,11 +23,11 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.karthikb351.vitinfo2.api.contract.Friend;
+import com.karthikb351.vitinfo2.api.models.Status;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
-import com.karthikb351.vitinfo2.api.response.ShareResponse;
-import com.karthikb351.vitinfo2.api.models.Status;
 import com.karthikb351.vitinfo2.api.response.SystemResponse;
 import com.karthikb351.vitinfo2.api.response.TokenResponse;
 import com.karthikb351.vitinfo2.api.utilities.Database;
@@ -42,61 +42,81 @@ public class VITacademicsAPI {
 
     private static final String BASE_URL = "https://vitacademics-staging.herokuapp.com";
 
+    private Context context;
+
     private Database database;
 
     private APIService service;
-    private static VITacademicsAPI api;
 
-    private VITacademicsAPI(Context context) {
+    private static final int CODE_SUCCESS = 0;
+    private static final int CODE_EXPIRED_TRY_AGAIN = 1;
+    private static final int CODE_INVALID = 2;
+    private static final int CODE_UNAVAILABLE = 3;
+    private static final int CODE_ERROR = 4;
 
+    public VITacademicsAPI(Context context) {
+
+        this.context = context;
         this.database = new Database(context);
-        Gson gson = new GsonBuilder().create();
 
+        Gson gson = new GsonBuilder().create();
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setEndpoint(BASE_URL)
                 .setConverter(new GsonConverter(gson))
                 .build();
 
-        service = restAdapter.create(APIService.class);
-        api = this;
-    }
-
-    public static VITacademicsAPI getAPI(Context context) {
-        if (api == null) {
-            api = new VITacademicsAPI(context);
-        }
-        return api;
+        this.service = restAdapter.create(APIService.class);
     }
 
     public APIService getAPIService() {
-        return service;
+        return this.service;
     }
 
     public void system() {
         service.system(new Callback<SystemResponse>() {
             @Override
             public void success(SystemResponse systemResponse, Response response) {
-                // TODO Handle success
+                switch (parseStatus(systemResponse.getStatus())) {
+                    case CODE_SUCCESS:
+                        database.saveSystem(systemResponse);
+                        break;
+                    default:
+                        // TODO Handle System Failure
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle failure
+                // TODO Handle System Failure
             }
         });
     }
 
-    public void refresh(String campus, String regno, String dob, String mobile) {
+    public void refresh(final String campus, final String regno, final String dob, final String mobile) {
         service.refresh(campus, regno, dob, mobile, new Callback<RefreshResponse>() {
             @Override
             public void success(RefreshResponse refreshResponse, Response response) {
-                // TODO Handle success
+                switch (parseStatus(refreshResponse.getStatus())) {
+                    case CODE_SUCCESS:
+                        database.saveCourses(refreshResponse);
+                        break;
+                    case CODE_EXPIRED_TRY_AGAIN:
+                        login(campus, regno, dob, mobile);
+                        refresh(campus, regno, dob, mobile);
+                        break;
+                    case CODE_INVALID:
+                        // TODO Handle Invalid Credentials/Data Parsing
+                        break;
+                    default:
+                        // TODO Handle Course Refresh Failure
+                        break;
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle failure
+                // TODO Handle Course Refresh Failure
             }
         });
     }
@@ -105,7 +125,17 @@ public class VITacademicsAPI {
         service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
-                // TODO Handle success
+                switch (parseStatus(loginResponse.getStatus())) {
+                    case CODE_SUCCESS:
+                        database.saveLogin(loginResponse);
+                        break;
+                    case CODE_INVALID:
+                        // TODO Handle Invalid Credentials
+                        break;
+                    default:
+                        // TODO Handle Course Refresh Failure
+                        break;
+                }
             }
 
             @Override
@@ -116,58 +146,114 @@ public class VITacademicsAPI {
 
     }
 
-    public void token(String campus, String regno, String dob, String mobile) {
+    public void token(final String campus, final String regno, final String dob, final String mobile) {
         service.token(campus, regno, dob, mobile, new Callback<TokenResponse>() {
             @Override
             public void success(TokenResponse tokenResponse, Response response) {
-                // TODO Handle success
+                switch (parseStatus(tokenResponse.getStatus())) {
+                    case CODE_SUCCESS:
+                        database.saveToken(tokenResponse);
+                        break;
+                    case CODE_INVALID:
+                        // TODO Handle Invalid Credentials
+                        break;
+                    default:
+                        // TODO Handle Token Refresh Failure
+                        break;
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle failure
+                // TODO Handle token failure
             }
         });
     }
 
-    public void grades(String campus, String regno, String dob, String mobile) {
+    public void grades(final String campus, final String regno, final String dob, final String mobile) {
         service.grades(campus, regno, dob, mobile, new Callback<GradesResponse>() {
             @Override
             public void success(GradesResponse gradesResponse, Response response) {
-                // TODO Handle success
+                switch (parseStatus(gradesResponse.getStatus())) {
+                    case CODE_SUCCESS:
+                        database.saveGrades(gradesResponse);
+                        break;
+                    case CODE_EXPIRED_TRY_AGAIN:
+                        login(campus, regno, dob, mobile);
+                        grades(campus, regno, dob, mobile);
+                        break;
+                    case CODE_INVALID:
+                        // TODO Handle Invalid Credentials/Data Parsing
+                        break;
+                    default:
+                        // TODO Handle Grades Refresh Failure
+                        break;
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle failure
+                // TODO Handle Grades Refresh Failure
             }
         });
     }
 
-    public void share(String campus, String token, String receiver) {
-        service.share(campus, token, receiver, new Callback<ShareResponse>() {
+    public void share(final String campus, final String token, final String receiver) {
+        service.share(campus, token, receiver, new Callback<Friend>() {
             @Override
-            public void success(ShareResponse shareResponse, Response response) {
-                // TODO Handle success
+            public void success(Friend friend, Response response) {
+                switch (parseStatus(friend.getStatus())) {
+                    case CODE_SUCCESS:
+                        database.saveFriend(friend);
+                        break;
+                    case CODE_EXPIRED_TRY_AGAIN:
+                        // TODO Handle Expired Token
+                        break;
+                    case CODE_INVALID:
+                        // TODO Handle Invalid Credentials
+                        break;
+                    case CODE_UNAVAILABLE:
+                        // TODO Handle No User Data Available
+                        break;
+                    default:
+                        // TODO Handle Friend Refresh Failure
+                        break;
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle failure
+                // TODO Handle Friend Refresh Failure
             }
         });
     }
 
-    public void share(String campus, String regno, String dob, String mobile, String receiver) {
-        service.share(campus, regno, dob, mobile, receiver, new Callback<ShareResponse>() {
+    public void share(final String campus, final String regno, final String dob, final String mobile, final String receiver) {
+        service.share(campus, regno, dob, mobile, receiver, new Callback<Friend>() {
             @Override
-            public void success(ShareResponse shareResponse, Response response) {
-                // TODO Handle success
+            public void success(Friend friend, Response response) {
+                switch (parseStatus(friend.getStatus())) {
+                    case CODE_SUCCESS:
+                        database.saveFriend(friend);
+                        break;
+                    case CODE_EXPIRED_TRY_AGAIN:
+                        // TODO Handle Expired Token
+                        break;
+                    case CODE_INVALID:
+                        // TODO Handle Invalid Credentials
+                        break;
+                    case CODE_UNAVAILABLE:
+                        // TODO Handle No User Data Available
+                        break;
+                    default:
+                        // TODO Handle Friend Refresh Failure
+                        break;
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle failure
+                // TODO Handle Friend Refresh Failure
             }
         });
     }
@@ -177,21 +263,21 @@ public class VITacademicsAPI {
         int result;
         switch (status.getCode()) {
             case StatusCodes.SUCCESS:
-                result = 0;
+                result = CODE_SUCCESS;
                 break;
             case StatusCodes.TIMED_OUT:
             case StatusCodes.TOKEN_EXPIRED:
-                result = 1;
+                result = CODE_EXPIRED_TRY_AGAIN;
                 break;
             case StatusCodes.INVALID:
             case StatusCodes.DATA_PARSING:
-                result = 2;
+                result = CODE_INVALID;
                 break;
             case StatusCodes.NO_DATA:
-                result = 3;
+                result = CODE_UNAVAILABLE;
                 break;
             default:
-                result = 4;
+                result = CODE_ERROR;
                 break;
         }
         return result;

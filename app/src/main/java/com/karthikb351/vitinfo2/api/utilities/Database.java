@@ -33,20 +33,21 @@ import com.karthikb351.vitinfo2.api.contract.WithdrawnCourse;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
-import com.karthikb351.vitinfo2.api.response.ShareResponse;
 import com.karthikb351.vitinfo2.api.response.SystemResponse;
 import com.karthikb351.vitinfo2.api.response.TokenResponse;
 import com.orm.SugarTransactionHelper;
 
+import java.util.List;
+
 public class Database {
 
-    private Context context;
+    private SharedPreferences sharedPreferences;
 
     public Database(Context context) {
-        this.context = context;
+        this.sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
     }
 
-    public void save(final SystemResponse systemResponse) {
+    public void saveSystem(final SystemResponse systemResponse) {
 
         SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
             @Override
@@ -56,19 +57,17 @@ public class Database {
                 for (Message message : systemResponse.getMessages()) {
                     message.save();
                 }
-
-                SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
-                Editor editor = sharedPreferences.edit();
-                editor.putString(Constants.KEY_ANDROID_SUPPORTED_VERSION, systemResponse.getAndroid().getEarliestSupportedVersion());
-                editor.putString(Constants.KEY_ANDROID_LATEST_VERSION, systemResponse.getAndroid().getLatestVersion());
-                editor.apply();
             }
         });
+
+        Editor editor = sharedPreferences.edit();
+        editor.putString(Constants.KEY_ANDROID_SUPPORTED_VERSION, systemResponse.getAndroid().getEarliestSupportedVersion());
+        editor.putString(Constants.KEY_ANDROID_LATEST_VERSION, systemResponse.getAndroid().getLatestVersion());
+        editor.apply();
     }
 
-    public void save(LoginResponse loginResponse) {
+    public void saveLogin(LoginResponse loginResponse) {
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_CAMPUS, loginResponse.getCampus());
         editor.putString(Constants.KEY_REGISTERNUMBER, loginResponse.getRegisterNumber());
@@ -77,7 +76,7 @@ public class Database {
         editor.apply();
     }
 
-    public void save(final RefreshResponse refreshResponse) {
+    public void saveCourses(final RefreshResponse refreshResponse) {
 
         SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
             @Override
@@ -94,14 +93,13 @@ public class Database {
             }
         });
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_SEMESTER, refreshResponse.getSemester());
         editor.putString(Constants.KEY_COURSES_REFRESHED, refreshResponse.getRefreshed());
         editor.apply();
     }
 
-    public void save(final GradesResponse gradesResponse) {
+    public void saveGrades(final GradesResponse gradesResponse) {
 
         SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
             @Override
@@ -121,29 +119,29 @@ public class Database {
             }
         });
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_GRADES_REFRESHED, gradesResponse.getRefreshed());
         editor.apply();
     }
 
-    public void save(TokenResponse tokenResponse) {
+    public void saveToken(TokenResponse tokenResponse) {
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_SHARE_TOKEN, tokenResponse.getTokenShare().getToken());
         editor.putString(Constants.KEY_SHARE_TOKEN_ISSUED, tokenResponse.getTokenShare().getIssued());
         editor.apply();
     }
 
-    public void save(final ShareResponse shareResponse) {
+    public void saveFriend(final Friend friend) {
 
         SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
             @Override
             public void manipulateInTransaction() {
-                Friend.deleteAll(Friend.class);
-
-                shareResponse.save(); // @karthikb351: Does this work?
+                List<Friend> friends = Friend.find(Friend.class, "campus = ? and reg_no = ?", friend.getCampus(), friend.getRegisterNumber());
+                if (friends.size() != 0) {
+                    friend.setId(friends.get(0).getId());
+                }
+                friend.save();
             }
         });
     }
