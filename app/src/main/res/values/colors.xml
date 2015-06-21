@@ -23,5 +23,7 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#ff8888f5</color>
-
+    <color name="lowAttend">#e74c3c</color>
+    <color name="midAttend">#ffffac41</color>
+    <color name="highAttend">#ff7ee73a</color>
 </resources>

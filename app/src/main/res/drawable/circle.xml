@@ -21,7 +21,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
     <corners android:radius="8dp" />
-    <solid android:color="#e74c3c" />
+    <solid android:color="@color/lowAttend" />
     <padding
         android:bottom="10dp"
         android:left="15dp"
