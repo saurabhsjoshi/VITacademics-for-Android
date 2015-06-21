@@ -22,6 +22,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.karthikb351.vitinfo2.api.models.Status;
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
 public class Friend extends SugarRecord<Friend> {
 
@@ -43,6 +44,7 @@ public class Friend extends SugarRecord<Friend> {
 
     @Expose
     @SerializedName("status")
+    @Ignore
     private Status status;
 
     @Expose
