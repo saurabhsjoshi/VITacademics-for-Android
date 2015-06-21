@@ -74,11 +74,14 @@ public class Network {
         }
         List<Friend> friends = Friend.listAll(Friend.class);
         for(Friend friend : friends) {
-            getFriend(friend);
+            getFriend(false, friend);
         }
     }
 
-    public void getFriend(Friend friend) {
+    public void getFriend(boolean callSystem, Friend friend) {
+        if (callSystem) {
+            viTacademicsAPI.system();
+        }
         viTacademicsAPI.share(friend.getCampus(), friend.getRegisterNumber(), friend.getDateOfBirth(), friend.getMobileNumber(), this.registerNumber);
     }
 
