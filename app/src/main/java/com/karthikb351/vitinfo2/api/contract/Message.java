@@ -32,12 +32,17 @@ public class Message extends SugarRecord<Message> {
     @SerializedName("message")
     private String message;
 
+    @Expose
+    @SerializedName("timestamp")
+    private String timestamp;
+
     public Message() {
     }
 
-    public Message(int messageId, String message) {
+    public Message(int messageId, String message, String timestamp) {
         this.messageId = messageId;
         this.message = message;
+        this.timestamp = timestamp;
     }
 
     public int getMessageId() {
@@ -54,5 +59,13 @@ public class Message extends SugarRecord<Message> {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }
