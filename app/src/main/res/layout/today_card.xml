@@ -93,7 +93,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@id/tvGoAttend"
+            android:id="@+id/tvGoAttend"
             android:layout_alignLeft="@+id/pbAttendance"
             android:text="Go: 60%"
             android:layout_marginTop="5dp"
@@ -103,7 +103,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@id/tvNoGoAttend"
+            android:id="@+id/tvNoGoAttend"
             android:text="Miss: 55%"
             android:layout_alignTop="@+id/tvGoAttend"
             android:layout_marginTop="5dp"
@@ -111,7 +111,7 @@
             android:layout_marginLeft="6dp"
             android:layout_below="@+id/pbAttendance"
             />
-        <Space
+        <android.support.v4.widget.Space
             android:layout_width="20dp"
             android:layout_height="10sp"
             android:layout_below="@+id/tvSlot"
