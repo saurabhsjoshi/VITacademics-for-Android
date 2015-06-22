@@ -21,6 +21,7 @@ package com.karthikb351.vitinfo2.fragment.courses;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,8 +52,9 @@ public class CoursesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RecyclerView.LayoutManager courseLayoutManager=new CourseLayoutManager();
+        RecyclerView.LayoutManager courseLayoutManager=new LinearLayoutManager(getActivity());
         TextView textView = new TextView(getActivity());
+        courses = new ArrayList<>();
         View view=inflater.inflate(R.layout.courses,container,false);
         courseListAdapter=new CourseListAdapter(getActivity(),courses);
         recyclerView=(RecyclerView)view.findViewById(R.id.rvCourses);
@@ -65,26 +67,6 @@ public class CoursesFragment extends Fragment {
         recyclerView.setLayoutManager(courseLayoutManager);
         recyclerView.setAdapter(courseListAdapter);
         return view;
-    }
-
-    public class CourseLayoutManager extends RecyclerView.LayoutManager {
-
-       public CourseLayoutManager(){
-
-       }
-        @Override
-        public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-            return null;
-        }
-        @Override
-        public void scrollToPosition(int position) {
-
-        }
-
-        @Override
-        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
-            super.onLayoutChildren(recycler, state);
-        }
     }
 
 }

@@ -27,8 +27,6 @@ import android.widget.TextView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.api.contract.Course;
-import com.karthikb351.vitinfo2.fragment.today.TodayListAdapter;
-
 import java.util.ArrayList;
 /**
  * Created by Hemant on 22-06-2015.
@@ -36,7 +34,6 @@ import java.util.ArrayList;
 public class TodayFragment extends Fragment {
 
     RecyclerView recyclerView;
-    TodayListAdapter todayListAdapter;
     ArrayList<Course> courses;
 
     public TodayFragment() {
@@ -54,16 +51,7 @@ public class TodayFragment extends Fragment {
         RecyclerView.LayoutManager todayLayoutManager=new TodayLayoutManager();
         TextView textView = new TextView(getActivity());
         View view=inflater.inflate(R.layout.today,container,false);
-        todayListAdapter=new TodayListAdapter(getActivity(),courses);
         recyclerView=(RecyclerView)view.findViewById(R.id.rvToday);
-        todayListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
-            @Override
-            public void onItemClick(Course data) {
-                // add on item click functionality
-            }
-        });
-        recyclerView.setLayoutManager(todayLayoutManager);
-        recyclerView.setAdapter(todayListAdapter);
         return view;
     }
 
