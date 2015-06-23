@@ -1,7 +1,7 @@
-package com.karthikb351.vitinfo2.fragment.today;
- /*
+/*
  * VITacademics
- * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+ * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,43 +16,40 @@ package com.karthikb351.vitinfo2.fragment.today;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package com.karthikb351.vitinfo2.fragment.TimeTable;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
-import com.karthikb351.vitinfo2.api.contract.Course;
-import java.util.ArrayList;
-/**
- * Created by Hemant on 22-06-2015.
- */
-public class TodayFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    ArrayList<Course> courses;
+public class TimeTableFragment extends Fragment {
 
-    public TodayFragment() {
+    ViewPager viewpager;
+    TimeTablePagerAdapter pageradapter;
+    public TimeTableFragment() {
         // Required empty public constructor
     }
 
-    public static TodayFragment newInstance() {
-        TodayFragment fragment = new TodayFragment();
+    public static TimeTableFragment newInstance() {
+        TimeTableFragment fragment = new TimeTableFragment();
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RecyclerView.LayoutManager todayLayoutManager=new LinearLayoutManager(getActivity());
-        TextView textView = new TextView(getActivity());
-        View view=inflater.inflate(R.layout.today,container,false);
-        recyclerView=(RecyclerView)view.findViewById(R.id.rvToday);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.timetable_fragment, container, false);
+        viewpager = (ViewPager)view.findViewById(R.id.vpTimeTable);
+        pageradapter = new TimeTablePagerAdapter(getActivity().getSupportFragmentManager(),getActivity());
+        viewpager.setAdapter(pageradapter);
         return view;
     }
 

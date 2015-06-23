@@ -42,7 +42,7 @@ import com.karthikb351.vitinfo2.api.contract.Message;
 import com.karthikb351.vitinfo2.api.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.api.contract.WithdrawnCourse;
 import com.karthikb351.vitinfo2.fragment.MainFragment;
-import com.karthikb351.vitinfo2.fragment.TimeTableFragment;
+import com.karthikb351.vitinfo2.fragment.TimeTable.TimeTableFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;

@@ -86,6 +86,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             Venue = (TextView)v.findViewById(R.id.tvVenue);
             pbAttendance = (ProgressBar)v.findViewById(R.id.pbAttendance);
             pbAttendance.setMax(100);
+            v.setOnClickListener(this);
         }
 
         public  void onClick(View v)
