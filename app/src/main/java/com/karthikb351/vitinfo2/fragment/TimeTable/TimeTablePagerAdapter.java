@@ -12,6 +12,7 @@ public class TimeTablePagerAdapter extends FragmentStatePagerAdapter {
 
     Context context ;
     int NUM_VALUES = 5;
+    private String tabTitles[] = new String[]{"Monday","Tuesday","Wednesday","Thursday","Friday"};
 
     TimeTablePagerAdapter(FragmentManager fm , Context context)
     {
@@ -26,5 +27,11 @@ public class TimeTablePagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         return TimeTableDayFragment.newInstance(position);
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        // Generate title based on item position
+        return tabTitles[position];
     }
 }

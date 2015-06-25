@@ -38,7 +38,7 @@ public class TimeTableDayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_time_table_day, container, false);
+        View view =  inflater.inflate(R.layout.timetable_day_fragment, container, false);
         recyclerview = (RecyclerView)view.findViewById(R.id.rvTimeTable);
         TextView header = (TextView)view.findViewById(R.id.tvDayHeader);
         header.setText(daysOfWeek[dayOfWeek]);

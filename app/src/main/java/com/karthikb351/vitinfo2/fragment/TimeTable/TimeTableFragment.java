@@ -20,6 +20,7 @@
 package com.karthikb351.vitinfo2.fragment.TimeTable;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -50,6 +51,8 @@ public class TimeTableFragment extends Fragment {
         viewpager = (ViewPager)view.findViewById(R.id.vpTimeTable);
         pageradapter = new TimeTablePagerAdapter(getActivity().getSupportFragmentManager(),getActivity());
         viewpager.setAdapter(pageradapter);
+        TabLayout tabLayout = (TabLayout)view.findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewpager);
         return view;
     }
 
