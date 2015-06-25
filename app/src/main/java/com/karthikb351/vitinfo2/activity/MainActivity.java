@@ -34,6 +34,7 @@ import android.widget.ListView;
 import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.NavigationDrawerAdapter;
+import com.karthikb351.vitinfo2.api.contract.Contributor;
 import com.karthikb351.vitinfo2.api.contract.Course;
 import com.karthikb351.vitinfo2.api.contract.Friend;
 import com.karthikb351.vitinfo2.api.contract.Grade;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private String latestVersion;
     private String earliestSupportedVersion;
     private List<Message> messages;
+    private List<Contributor> contributors;
     private String semester;
     private List<Course> courses;
     private List<WithdrawnCourse> withdrawnCourses;
@@ -177,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void manipulateInTransaction() {
                 MainActivity.this.messages = Message.listAll(Message.class);
+                MainActivity.this.contributors = Contributor.listAll(Contributor.class);
                 MainActivity.this.courses = Course.listAll(Course.class);
                 MainActivity.this.withdrawnCourses = WithdrawnCourse.listAll(WithdrawnCourse.class);
                 MainActivity.this.grades = Grade.listAll(Grade.class);
@@ -257,5 +260,9 @@ public class MainActivity extends AppCompatActivity {
 
     public String getTokenIssued() {
         return this.tokenIssued;
+    }
+
+    public List<Contributor> getContributors() {
+        return this.contributors;
     }
 }

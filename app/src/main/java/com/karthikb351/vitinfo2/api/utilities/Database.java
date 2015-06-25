@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import com.karthikb351.vitinfo2.Constants;
+import com.karthikb351.vitinfo2.api.contract.Contributor;
 import com.karthikb351.vitinfo2.api.contract.Course;
 import com.karthikb351.vitinfo2.api.contract.Friend;
 import com.karthikb351.vitinfo2.api.contract.Grade;
@@ -53,9 +54,13 @@ public class Database {
             @Override
             public void manipulateInTransaction() {
                 Message.deleteAll(Message.class);
+                Contributor.deleteAll(Contributor.class);
 
                 for (Message message : systemResponse.getMessages()) {
                     message.save();
+                }
+                for (Contributor contributor : systemResponse.getContributors()) {
+                    contributor.save();
                 }
             }
         });

@@ -20,6 +20,7 @@ package com.karthikb351.vitinfo2.api.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.karthikb351.vitinfo2.api.contract.Contributor;
 import com.karthikb351.vitinfo2.api.models.Client;
 import com.karthikb351.vitinfo2.api.contract.Message;
 import com.karthikb351.vitinfo2.api.models.Status;
@@ -43,17 +44,22 @@ public class SystemResponse {
     private Message[] messages;
 
     @Expose
+    @SerializedName("contributors")
+    private Contributor[] contributors;
+
+    @Expose
     @SerializedName("status")
     private Status status;
 
     public SystemResponse() {
     }
 
-    public SystemResponse(Client android, Client ios, Client windows, Message[] messages, Status status) {
+    public SystemResponse(Client android, Client ios, Client windows, Message[] messages, Contributor[] contributors, Status status) {
         this.android = android;
         this.ios = ios;
         this.windows = windows;
         this.messages = messages;
+        this.contributors = contributors;
         this.status = status;
     }
 
@@ -95,5 +101,13 @@ public class SystemResponse {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Contributor[] getContributors() {
+        return contributors;
+    }
+
+    public void setContributors(Contributor[] contributors) {
+        this.contributors = contributors;
     }
 }
