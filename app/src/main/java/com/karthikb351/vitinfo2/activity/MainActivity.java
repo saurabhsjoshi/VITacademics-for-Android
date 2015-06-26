@@ -23,8 +23,12 @@ package com.karthikb351.vitinfo2.activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -104,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        else if(id==android.R.id.home)
+        {
+            dl.openDrawer(GravityCompat.START);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -119,41 +128,56 @@ public class MainActivity extends AppCompatActivity {
 
     void initializeLayouts() {
         dl = (DrawerLayout) findViewById(R.id.drawer_layout);
-        lv = (ListView) findViewById(R.id.lvDrawer);
-        topics = getResources().getStringArray(R.array.topic);
-        ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
-        lv.setAdapter(new NavigationDrawerAdapter(this, R.layout.drawer_menu_item, stringList));
-
-        // When navigation drawer item is clicked
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("VitAcademics");
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.mipmap.ic_hamburger);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
+        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override public boolean onNavigationItemSelected(MenuItem menuItem) {
+                String navString = (String)menuItem.getTitle();
+                menuItem.setChecked(true);
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 android.support.v4.app.Fragment frag = null;
-                dl.closeDrawers();
+                int pos=0;
                 // settings can be passed in the new instance function
                 //TODO: inefficient for already created instances. Fix.
-                switch (position) {
+                switch (navString) {
 
-                    case 0:
+                    case "Today":
                         frag=MainFragment.newInstance();
+                        pos = 0;
                         break;
-                    case 1:
+                    case "Courses":
                         frag = CoursesFragment.newInstance();
+                        pos=1;
                         break;
-                    case 2:
+                    case "Time Table":
                         frag= TimeTableFragment.newInstance();
+                        pos=2;
                         break;
-                    case 3:
+                    case "Friends":
                         frag = FriendsFragment.newInstance();
+                        pos=3;
                         break;
-                    case 4:
+                    case "Settings":
                         frag = SettingsFragment.newInstance();
+                        pos=4;
                         break;
                 }
-                ft.replace(R.id.flContent, frag, topics[position]).addToBackStack(null).commit();
+                ft.replace(R.id.flContent, frag, topics[pos]).addToBackStack(null).commit();
+
+                dl.closeDrawers();
+                return true;
             }
         });
+        //lv = (ListView) findViewById(R.id.lvDrawer);
+        topics = getResources().getStringArray(R.array.topic);
+        ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
         getSupportFragmentManager().beginTransaction().add(R.id.flContent, new MainFragment(), "mainFragment").commit();
     }
 
