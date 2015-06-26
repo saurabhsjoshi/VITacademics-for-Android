@@ -41,6 +41,31 @@
         android:textAllCaps="true"
         android:textSize="@dimen/abc_text_size_large_material" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="Vellore Campus"
+            android:id="@+id/rbVellore"
+            android:textAppearance="@dimen/abc_text_size_small_material"
+            android:checked="false" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="Chennai Campus"
+            android:textAppearance="@dimen/abc_text_size_small_material"
+            android:id="@+id/rbChennai"
+            android:checked="false" />
+
+    </LinearLayout>
+
+
     <EditText
         android:id="@+id/etRegNo"
         android:layout_width="match_parent"
@@ -49,9 +74,9 @@
         android:layout_margin="5dp"
         android:hint="Registration number"
         android:inputType="textCapCharacters"
-        android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
+       android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
         android:textColorHint="@color/material_blue_grey_800"
-        android:textSize="@dimen/abc_text_size_small_material" />
+        android:textSize="@dimen/abc_text_size_small_material"/>
 
     <EditText
         android:id="@+id/etDob"
@@ -64,7 +89,7 @@
         android:inputType="date"
         android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
         android:textColorHint="@color/material_blue_grey_800"
-        android:textSize="@dimen/abc_text_size_small_material" />
+        android:textSize="@dimen/abc_text_size_small_material"/>
 
     <EditText
         android:id="@+id/etPhone"
@@ -72,13 +97,13 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
-        android:hint="Phone number"
+        android:hint="Parent Phone Number"
         android:inputType="phone"
         android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
         android:textColorHint="@color/material_blue_grey_800"
         android:textSize="@dimen/abc_text_size_small_material" />
 
-    <EditText
+   <!--<EditText
         android:id="@+id/etOTP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,9 +111,9 @@
         android:layout_margin="5dp"
         android:hint="One Time Password"
         android:inputType="textNoSuggestions"
-        android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
-        android:textColorHint="@color/material_blue_grey_800"
-        android:textSize="@dimen/abc_text_size_small_material" />
+    android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
+    android:textColorHint="@color/material_blue_grey_800"
+    android:textSize="@dimen/abc_text_size_small_material"--> />
 
     <Button
         android:id="@+id/bLogin"

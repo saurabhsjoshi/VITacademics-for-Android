@@ -21,12 +21,11 @@ package com.karthikb351.vitinfo2.fragment.friends;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
@@ -53,36 +52,17 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.friends_fragment, container, false);
-        FriendsLayoutManager layoutManager = new FriendsLayoutManager();
+        RecyclerView.LayoutManager friendsLayoutManager = new LinearLayoutManager(getActivity());
         adapter = new FriendsListAdapter(getActivity(),friends);
+        friendsRecyclerView = (RecyclerView)view.findViewById(R.id.rvFriends);
+        friendsRecyclerView.setLayoutManager(friendsLayoutManager);
+        friendsRecyclerView.setAdapter(adapter);
         adapter.setOnclickListener(new RecyclerViewOnClickListener<Friend>() {
             @Override
             public void onItemClick(Friend data) {
                 // on item click functionality
             }
         });
-        friendsRecyclerView = (RecyclerView)view.findViewById(R.id.rvFriends);
-        friendsRecyclerView.setLayoutManager(layoutManager);
-        friendsRecyclerView.setAdapter(adapter);
         return view ;
-    }
-
-    public static class FriendsLayoutManager extends RecyclerView.LayoutManager {
-
-        @Override
-        public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-
-            return null;
-        }
-
-        @Override
-        public void scrollToPosition(int position) {
-
-        }
-
-        @Override
-        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
-            super.onLayoutChildren(recycler, state);
-        }
     }
 }
