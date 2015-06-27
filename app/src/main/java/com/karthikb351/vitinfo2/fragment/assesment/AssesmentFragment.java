@@ -8,11 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.contract.Assessment;
+
+import java.util.ArrayList;
 
 /**
  * Created by gaurav on 27/6/15.
  */
 public class AssesmentFragment extends Fragment{
+
+    ArrayList<Assessment> assessments;
 
     public AssesmentFragment(){
 
