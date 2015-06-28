@@ -70,7 +70,7 @@
         <TextView
             android:layout_width="60sp"
             android:layout_height="60sp"
-            android:text="75%"
+            android:text="N.A"
             android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
             android:elevation="@dimen/cardview_default_elevation"
             android:gravity="center"
