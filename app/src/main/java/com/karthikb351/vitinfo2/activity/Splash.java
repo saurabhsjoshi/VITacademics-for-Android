@@ -1,4 +1,3 @@
-package com.karthikb351.vitinfo2.activity;
 /*
  * VITacademics
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
@@ -16,6 +15,8 @@ package com.karthikb351.vitinfo2.activity;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package com.karthikb351.vitinfo2.activity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;

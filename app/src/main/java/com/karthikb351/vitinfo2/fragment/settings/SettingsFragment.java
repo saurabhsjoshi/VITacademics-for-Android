@@ -26,9 +26,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.karthikb351.vitinfo2.R;
 
-public class SettingsFragment extends Fragment {
+import java.util.ArrayList;
 
+
+public class SettingsFragment extends Fragment implements View.OnClickListener {
+
+    ArrayList<String> settingTopics;
     ListView listView;
     public SettingsFragment() {
         // Required empty public constructor
@@ -41,7 +46,19 @@ public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.settings_list,container,false);
+        listView=(ListView)view.findViewById(R.id.lvSettings);
+        settingTopics.add("Licenses");
+        settingTopics.add("Contributors");
+        settingTopics.add("Log Out");
+        settingTopics.add("About");
+        listView.setAdapter(new SettingsListAdapter(getActivity(),R.layout.list_item_settings,settingTopics));
+        listView.setOnClickListener(this);
+        return view;
+    }
 
-        return null;
+    @Override
+    public void onClick(View v) {
+
     }
 }
