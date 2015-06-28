@@ -56,5 +56,4 @@ public class MainFragment extends Fragment {
         textView.setText("Today");
         return textView;
     }
-
 }
