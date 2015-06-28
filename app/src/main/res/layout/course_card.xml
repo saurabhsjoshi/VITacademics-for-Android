@@ -95,7 +95,7 @@
                 android:layout_alignParentRight="true"
                 />
 
-            <Space
+            <android.widget.Space
                 android:layout_width="20dp"
                 android:layout_height="10sp"
                 android:layout_below="@+id/tvSlot"
