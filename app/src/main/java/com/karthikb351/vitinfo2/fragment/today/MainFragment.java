@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment;
+package com.karthikb351.vitinfo2.fragment.today;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

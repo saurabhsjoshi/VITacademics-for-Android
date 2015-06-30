@@ -20,26 +20,20 @@ package com.karthikb351.vitinfo2.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.os.Bundle;
 
 import com.karthikb351.vitinfo2.R;
 
 public class Splash extends Activity {
 
-    SoundPool sp;
-    int sound=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
-        sp=new SoundPool(5, AudioManager.STREAM_MUSIC,00);
-        //sound==sp.load(this,R.raw.something);
         Thread timer= new Thread(){
             public void run(){
                 try{
-                    sleep(5000);
+                    sleep(2000);
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }finally{
@@ -53,7 +47,6 @@ public class Splash extends Activity {
 
     protected void onPause(){
         super.onPause();
-        sp.release();
         finish();
     }
 }

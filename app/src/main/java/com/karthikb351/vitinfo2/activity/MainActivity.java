@@ -43,11 +43,11 @@ import com.karthikb351.vitinfo2.api.contract.GradeCount;
 import com.karthikb351.vitinfo2.api.contract.Message;
 import com.karthikb351.vitinfo2.api.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.api.contract.WithdrawnCourse;
-import com.karthikb351.vitinfo2.fragment.MainFragment;
-import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
+import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
+import com.karthikb351.vitinfo2.fragment.today.MainFragment;
 import com.orm.SugarTransactionHelper;
 
 import java.util.ArrayList;
