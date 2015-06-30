@@ -1,7 +1,7 @@
-package com.karthikb351.vitinfo2.fragment.today;
- /*
+/*
  * VITacademics
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+ * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,9 @@ package com.karthikb351.vitinfo2.fragment.today;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+package com.karthikb351.vitinfo2.fragment.today;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,8 +29,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.api.contract.Course;
+
 import java.util.ArrayList;
 
 public class TodayFragment extends Fragment {

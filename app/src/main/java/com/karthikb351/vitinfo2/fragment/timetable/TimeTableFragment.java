@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.TimeTable;
+package com.karthikb351.vitinfo2.fragment.timetable;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -26,7 +26,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 

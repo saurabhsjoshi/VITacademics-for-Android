@@ -21,7 +21,6 @@
             android:id="@+id/tvMarks"
             android:layout_alignBottom="@id/tvMarksType"
             android:textSize="@dimen/abc_text_size_large_material"
-            android:layout_toLeftOf="@id/tvMaxMarks"
             android:text="40/"
             />
         <TextView
