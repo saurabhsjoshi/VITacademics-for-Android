@@ -33,9 +33,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:text="CSE101"
+                android:text="@string/subCode"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
-                android:textColor="@color/primary_text_default_material_light"
                 android:layout_centerHorizontal="true"/>
 
             <TextView
@@ -45,18 +46,21 @@
                 android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
                 android:elevation="@dimen/cardview_default_elevation"
                 android:gravity="center"
-                android:layout_centerVertical="true"
                 android:background="@drawable/circle"
                 android:textColor="@color/bright_foreground_material_light"
-                android:id="@+id/tvAttendance" />
+                android:id="@+id/tvAttendance"
+                android:layout_alignTop="@+id/tvCourseName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
             <TextView
                 android:id="@+id/tvCourseName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvCourseCode"
-                android:text="Computer Programming and Problem Solving"
+                android:text="@string/subName"
+                android:textStyle="italic"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/secondary_text_default_material_light"
+                android:textColor="@color/primary_text_default_material_light"
                 android:layout_toRightOf="@+id/tvAttendance"
                 />
 
@@ -66,6 +70,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/pbAttendance"
                 android:elevation="@dimen/cardview_default_elevation"
+                android:progress="80"
+                android:layout_marginTop="5dp"
                 android:layout_below="@+id/tvCourseName"
                 android:layout_centerHorizontal="true"
                 android:layout_toRightOf="@+id/tvAttendance"/>
@@ -73,8 +79,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="C1"
+                android:text="@string/slot"
                 android:id="@+id/tvSlot"
+                android:paddingTop="5dp"
                 android:layout_below="@+id/pbAttendance"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="20sp"
@@ -84,8 +91,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SJT 104"
+                android:text="@string/classNo"
                 android:id="@+id/tvVenue"
+                android:paddingTop="5dp"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="20sp"
                 android:layout_below="@+id/pbAttendance"
@@ -98,7 +106,6 @@
                 android:layout_below="@+id/tvSlot"
                 android:layout_toRightOf="@+id/tvAttendance"
                 android:layout_toEndOf="@+id/tvCourseCode" />
-
 
         </RelativeLayout>
 

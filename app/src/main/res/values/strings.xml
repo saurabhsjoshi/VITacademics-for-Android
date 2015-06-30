@@ -22,6 +22,17 @@
     <string name="app_name">VITacademics</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="assessType1">QUIZ 1</string>
+    <string name="assessType2">CAT 1</string>
+    <string name="assessType3">QUIZ 2</string>
+    <string name="assessType4">CAT 2</string>
+    <string name="assessType5">QUIZ 3</string>
+    <string name="cat1Sc">40</string>
+    <string name="catTotal">/50</string>
+    <string name="slot">H1</string>
+    <string name="subCode">CSE 101</string>
+    <string name="subName">Computer Programming and Problem Solving</string>
+    <string name="classNo">SJT 424</string>
 
     <string-array name="topic">
         <item>Today</item>

@@ -13,30 +13,41 @@
             android:id="@+id/tvMarksType"
             android:textSize="@dimen/abc_text_size_display_1_material"
             android:gravity="center"
-            android:text="CAT 1"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/assessType2"
+            android:textStyle="bold"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvMarks"
-            android:layout_alignBottom="@id/tvMarksType"
             android:textSize="@dimen/abc_text_size_large_material"
-            android:text="40/"
-            />
+            android:text="@string/cat1Sc"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_alignBaseline="@+id/tvMarksType"
+            android:layout_alignBottom="@+id/tvMarksType"
+            android:layout_toLeftOf="@+id/tvMaxMarks"
+            android:layout_toStartOf="@+id/tvMaxMarks" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvMaxMarks"
-            android:layout_alignBottom="@id/tvMarksType"
             android:textSize="@dimen/abc_text_size_large_material"
-            android:layout_alignParentRight="true"
-            android:text="50"
-            />
+            android:text="@string/catTotal"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_alignBaseline="@+id/tvMarks"
+            android:layout_alignBottom="@+id/tvMarks"
+            android:layout_alignRight="@+id/progressBar"
+            android:layout_alignEnd="@+id/progressBar" />
         <ProgressBar
+            style="@style/BarraProgreso"
             android:layout_width="match_parent"
             android:layout_height="15sp"
-            android:layout_below="@id/tvMarks"
-            />
+            android:progress="80"
+            android:layout_below="@+id/tvMarks"
+            android:id="@+id/progressBar" />
         <!--Assesment percentage, scored percentage, contribution to
         final marks to be included -->
         </RelativeLayout>
