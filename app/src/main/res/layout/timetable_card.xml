@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ VITacademics
   ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
-  ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -17,48 +16,87 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cvTimeTable"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content" >
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        >
+        <TextView
+            android:id="@+id/tvCourseCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="CSE101"
+            android:textSize="20sp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_centerHorizontal="true"/>
 
+        <TextView
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:text="75%"
+            android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
+            android:elevation="@dimen/cardview_default_elevation"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle"
+            android:textColor="@color/bright_foreground_material_light"
+            android:id="@+id/tvAttendance" />
+        <TextView
+            android:id="@+id/tvCourseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvCourseCode"
+            android:text="Computer Programming and Problem Solving"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/secondary_text_default_material_light"
+            android:layout_toRightOf="@+id/tvAttendance"
+            />
 
-        <RelativeLayout
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:id="@+id/pbAttendance"
+            android:elevation="@dimen/cardview_default_elevation"
+            android:layout_below="@+id/tvCourseName"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/tvAttendance"/>
 
-            <ImageView
-                android:id="@+id/photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C1"
+            android:id="@+id/tvSlot"
+            android:layout_below="@+id/pbAttendance"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="20sp"
+            android:layout_toRightOf="@+id/tvAttendance"
+            />
 
-            <TextView
-                android:id="@+id/tvCourseName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/photo"
-                android:textSize="30sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SJT 104"
+            android:id="@+id/tvVenue"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="20sp"
+            android:layout_below="@+id/pbAttendance"
+            android:layout_alignParentRight="true"
+            />
 
-            <TextView
-                android:id="@+id/tvCourseCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvCourseName"
-                android:layout_toRightOf="@+id/photo" />
-
-        </RelativeLayout>
-
-    </LinearLayout>
+        <android.widget.Space
+            android:layout_width="20dp"
+            android:layout_height="10sp"
+            android:layout_below="@+id/tvSlot"
+            android:layout_toRightOf="@+id/tvAttendance"
+            android:layout_toEndOf="@+id/tvCourseCode" />
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

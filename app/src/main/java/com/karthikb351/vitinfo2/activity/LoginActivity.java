@@ -30,6 +30,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.karthikb351.vitinfo2.R;
 
@@ -42,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     EditText reg, dob, phone, otp;
     Button login;
+    RadioGroup campus;
+    RadioButton vellore,chennai;
     Calendar calendar = Calendar.getInstance();
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -59,11 +63,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         reg = (EditText) findViewById(R.id.etRegNo);
         dob = (EditText) findViewById(R.id.etDob);
         phone = (EditText) findViewById(R.id.etPhone);
-        otp = (EditText) findViewById(R.id.etOTP);
+        campus=(RadioGroup) findViewById(R.id.rgCampus);
+        vellore=(RadioButton) findViewById(R.id.rbVellore);
+        chennai=(RadioButton) findViewById(R.id.rbChennai);
+        //otp = (EditText) findViewById(R.id.etOTP);
         login = (Button) findViewById(R.id.bLogin);
         login.setOnClickListener(this);
         dob.setOnClickListener(this);
+
+        // To disable EditText phone for Chennai Campus
+        campus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.rbChennai: phone.setFocusable(false);
+                        break;
+
+                }
+            }
+        });
     }
+
 
     @Override
     public void onClick(View v) {

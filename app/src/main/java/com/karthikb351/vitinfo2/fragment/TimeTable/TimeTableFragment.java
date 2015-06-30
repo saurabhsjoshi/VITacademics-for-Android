@@ -17,48 +17,43 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.settings;
+package com.karthikb351.vitinfo2.fragment.TimeTable;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
-import java.util.ArrayList;
+public class TimeTableFragment extends Fragment {
 
-
-public class SettingsFragment extends Fragment implements View.OnClickListener {
-
-    ArrayList<String> settingTopics;
-    ListView listView;
-    public SettingsFragment() {
+    ViewPager viewpager;
+    TimeTablePagerAdapter pageradapter;
+    public TimeTableFragment() {
         // Required empty public constructor
     }
 
-    public static SettingsFragment newInstance() {
-        SettingsFragment fragment = new SettingsFragment();
+    public static TimeTableFragment newInstance() {
+        TimeTableFragment fragment = new TimeTableFragment();
         return fragment;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.settings_list,container,false);
-        listView=(ListView)view.findViewById(R.id.lvSettings);
-        settingTopics.add("Licenses");
-        settingTopics.add("Contributors");
-        settingTopics.add("Log Out");
-        settingTopics.add("About");
-        listView.setAdapter(new SettingsListAdapter(getActivity(),R.layout.list_item_settings,settingTopics));
-        listView.setOnClickListener(this);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.timetable_fragment, container, false);
+        viewpager = (ViewPager)view.findViewById(R.id.vpTimeTable);
+        pageradapter = new TimeTablePagerAdapter(getActivity().getSupportFragmentManager(),getActivity());
+        viewpager.setAdapter(pageradapter);
+        TabLayout tabLayout = (TabLayout)view.findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewpager);
         return view;
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 }

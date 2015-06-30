@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/cvAssesmnet">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5sp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMarksType"
+            android:textSize="@dimen/abc_text_size_display_1_material"
+            android:gravity="center"
+            android:text="CAT 1"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMarks"
+            android:layout_alignBottom="@id/tvMarksType"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:layout_toLeftOf="@id/tvMaxMarks"
+            android:text="40/"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMaxMarks"
+            android:layout_alignBottom="@id/tvMarksType"
+            android:textSize="@dimen/abc_text_size_large_material"
+            android:layout_alignParentRight="true"
+            android:text="50"
+            />
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="15sp"
+            android:layout_below="@id/tvMarks"
+            />
+        <!--Assesment percentage, scored percentage, contribution to
+        final marks to be included -->
+        </RelativeLayout>
+
+</android.support.v7.widget.CardView>
