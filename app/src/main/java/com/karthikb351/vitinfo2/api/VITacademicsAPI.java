@@ -23,16 +23,18 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.contract.Friend;
+import com.karthikb351.vitinfo2.api.event.MessageEvent;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
 import com.karthikb351.vitinfo2.api.response.SystemResponse;
 import com.karthikb351.vitinfo2.api.response.TokenResponse;
-import com.karthikb351.vitinfo2.api.utilities.AndroidToast;
 import com.karthikb351.vitinfo2.api.utilities.Database;
 
+import de.greenrobot.event.EventBus;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -40,8 +42,6 @@ import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
 
 public class VITacademicsAPI {
-
-    private static final String BASE_URL = "https://vitacademics-rel.herokuapp.com";
 
     private Context context;
     private Database database;
@@ -55,7 +55,7 @@ public class VITacademicsAPI {
         Gson gson = new GsonBuilder().create();
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setLogLevel(RestAdapter.LogLevel.FULL)
-                .setEndpoint(BASE_URL)
+                .setEndpoint(Constants.API_BASE_URL)
                 .setConverter(new GsonConverter(gson))
                 .build();
 
@@ -75,14 +75,13 @@ public class VITacademicsAPI {
                         database.saveSystem(systemResponse);
                         break;
                     default:
-                        AndroidToast.showToast(context, systemResponse.getStatus().getMessage());
+                        EventBus.getDefault().post(new MessageEvent(systemResponse.getStatus().getMessage()));
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                error.printStackTrace();
-                AndroidToast.showToast(context, R.string.api_system_fail);
+                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
             }
         });
     }
@@ -96,41 +95,38 @@ public class VITacademicsAPI {
                         database.saveCourses(refreshResponse);
                         break;
                     case StatusCodes.TIMED_OUT:
-                        login(campus, regno, dob, mobile);
-                        refresh(campus, regno, dob, mobile);
+                        login(campus, regno, dob, mobile, Constants.EVENT_PATH_LOGIN_REFRESH);
                         break;
                     default:
-                        AndroidToast.showToast(context, refreshResponse.getStatus().getMessage());
+                        EventBus.getDefault().post(new MessageEvent(refreshResponse.getStatus().getMessage()));
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                error.printStackTrace();
-                AndroidToast.showToast(context, R.string.api_system_fail);
+                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
             }
         });
     }
 
-    public void login(String campus, String regno, String dob, String mobile) {
+    public void login(final String campus, final String regno, final String dob, final String mobile, final int path) {
         service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
                 switch (loginResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveLogin(loginResponse);
+                        database.saveLogin(loginResponse, path);
                         break;
                     default:
-                        AndroidToast.showToast(context, loginResponse.getStatus().getMessage());
+                        EventBus.getDefault().post(new MessageEvent(loginResponse.getStatus().getMessage()));
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                error.printStackTrace();
-                AndroidToast.showToast(context, R.string.api_system_fail);
+                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
             }
         });
 
@@ -145,15 +141,14 @@ public class VITacademicsAPI {
                         database.saveToken(tokenResponse);
                         break;
                     default:
-                        AndroidToast.showToast(context, tokenResponse.getStatus().getMessage());
+                        EventBus.getDefault().post(new MessageEvent(tokenResponse.getStatus().getMessage()));
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                error.printStackTrace();
-                AndroidToast.showToast(context, R.string.api_system_fail);
+                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
             }
         });
     }
@@ -167,19 +162,17 @@ public class VITacademicsAPI {
                         database.saveGrades(gradesResponse);
                         break;
                     case StatusCodes.TIMED_OUT:
-                        login(campus, regno, dob, mobile);
-                        grades(campus, regno, dob, mobile);
+                        login(campus, regno, dob, mobile, Constants.EVENT_PATH_LOGIN_GRADES);
                         break;
                     default:
-                        AndroidToast.showToast(context, gradesResponse.getStatus().getMessage());
+                        EventBus.getDefault().post(new MessageEvent(gradesResponse.getStatus().getMessage()));
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                error.printStackTrace();
-                AndroidToast.showToast(context, R.string.api_system_fail);
+                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
             }
         });
     }
@@ -193,15 +186,14 @@ public class VITacademicsAPI {
                         database.saveFriend(friend);
                         break;
                     default:
-                        AndroidToast.showToast(context, friend.getStatus().getMessage());
+                        EventBus.getDefault().post(new MessageEvent(friend.getStatus().getMessage()));
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                error.printStackTrace();
-                AndroidToast.showToast(context, R.string.api_system_fail);
+                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
             }
         });
     }
@@ -215,15 +207,14 @@ public class VITacademicsAPI {
                         database.saveFriend(friend);
                         break;
                     default:
-                        AndroidToast.showToast(context, friend.getStatus().getMessage());
+                        EventBus.getDefault().post(new MessageEvent(friend.getStatus().getMessage()));
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                error.printStackTrace();
-                AndroidToast.showToast(context, R.string.api_system_fail);
+                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
             }
         });
     }

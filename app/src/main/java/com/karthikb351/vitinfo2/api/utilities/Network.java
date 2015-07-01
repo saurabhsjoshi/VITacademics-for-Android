@@ -24,8 +24,11 @@ import android.content.SharedPreferences;
 import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.api.VITacademicsAPI;
 import com.karthikb351.vitinfo2.api.contract.Friend;
+import com.karthikb351.vitinfo2.api.event.LoginEvent;
 
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 public class Network {
 
@@ -43,6 +46,8 @@ public class Network {
         this.mobileNumber = mobileNumber;
 
         this.viTacademicsAPI = new VITacademicsAPI(context);
+
+        EventBus.getDefault().register(this);
     }
 
     public Network(Context context) {
@@ -55,63 +60,35 @@ public class Network {
         this.viTacademicsAPI = new VITacademicsAPI(context);
     }
 
-    public void getCourses(boolean callSystem) {
-        if (callSystem) {
-            viTacademicsAPI.system();
-        }
-        viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber);
-    }
-
-    public void getGrades(boolean callSystem) {
-        if (callSystem) {
-            viTacademicsAPI.system();
-        }
-        viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber);
-    }
-
-    public void getToken(boolean callSystem) {
-        if (callSystem) {
-            viTacademicsAPI.system();
-        }
-        viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber);
-    }
-
-    public void getAllFriends(boolean callSystem) {
-        if (callSystem) {
-            viTacademicsAPI.system();
-        }
+    public void getAllFriends() {
         List<Friend> friends = Friend.listAll(Friend.class);
         for(Friend friend : friends) {
-            getFriend(false, friend);
+            viTacademicsAPI.share(friend.getCampus(), friend.getRegisterNumber(), friend.getDateOfBirth(), friend.getMobileNumber(), this.registerNumber);
         }
-    }
-
-    public void getFriend(boolean callSystem, Friend friend) {
-        if (callSystem) {
-            viTacademicsAPI.system();
-        }
-        viTacademicsAPI.share(friend.getCampus(), friend.getRegisterNumber(), friend.getDateOfBirth(), friend.getMobileNumber(), this.registerNumber);
-    }
-
-    public void getFriend(boolean callSystem, String campus, String token) {
-        if (callSystem) {
-            viTacademicsAPI.system();
-        }
-        viTacademicsAPI.share(campus, token, this.registerNumber);
-    }
-
-    public void getFriend(boolean callSystem, String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
-        if (callSystem) {
-            viTacademicsAPI.system();
-        }
-        viTacademicsAPI.share(campus, registerNumber, dateOfBirth, mobileNumber, this.registerNumber);
     }
 
     public void refreshAll() {
         viTacademicsAPI.system();
-        getCourses(false);
-        getGrades(false);
-        getToken(false);
-        getAllFriends(false);
+        viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber);
+        viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber);
+        viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber);
+        getAllFriends();
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        EventBus.getDefault().unregister(this);
+        super.finalize();
+    }
+
+    public void onEvent(LoginEvent loginEvent) {
+        switch (loginEvent.path) {
+            case Constants.EVENT_PATH_LOGIN_REFRESH:
+                viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber);
+                break;
+            case Constants.EVENT_PATH_LOGIN_GRADES:
+                viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber);
+                break;
+        }
     }
 }

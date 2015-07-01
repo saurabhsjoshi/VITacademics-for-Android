@@ -16,18 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.api.utilities;
+package com.karthikb351.vitinfo2.api.event;
 
-import android.content.Context;
-import android.widget.Toast;
+public class SuccessEvent {
 
-public class AndroidToast {
+    public final int type;
 
-    public static void showToast(Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    public static void showToast(Context context, int resId) {
-        Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
+    public SuccessEvent(int type) {
+        this.type = type;
     }
 }

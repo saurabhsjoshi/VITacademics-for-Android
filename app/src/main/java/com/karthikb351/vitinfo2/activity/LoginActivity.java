@@ -32,16 +32,26 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.event.MessageEvent;
+import com.karthikb351.vitinfo2.api.event.SuccessEvent;
 import com.karthikb351.vitinfo2.api.utilities.Network;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import de.greenrobot.event.EventBus;
+
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private int refreshStatus;
+
+    private Network network;
 
     EditText reg, dob, phone, otp;
     Button login;
@@ -56,12 +66,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             dob.setText(sdf.format(calendar.getTime()));
         }
     };
-    private Network network;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         reg = (EditText) findViewById(R.id.etRegNo);
         dob = (EditText) findViewById(R.id.etDob);
         phone = (EditText) findViewById(R.id.etPhone);
@@ -86,14 +96,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogin:
-                /* TODO: @aneesh Create the thread to verify details from backend here */
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(i);
+                refreshStatus = 0;
+                // TODO get values and fill in below code
+                // new Network(LoginActivity.this, ).refreshAll();
                 break;
             case R.id.etDob:
                 showDatePicker(v);
@@ -127,4 +148,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         new DatePickerDialog(this, date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
+    public void onEventMainThread(SuccessEvent successEvent) {
+        refreshStatus = refreshStatus + successEvent.type;
+        if (refreshStatus == Constants.EVENT_CODE_REFRESH_ALL) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
+    }
+
+    public void onEventMainThread(MessageEvent messageEvent) {
+        Toast.makeText(LoginActivity.this, messageEvent.message, Toast.LENGTH_SHORT).show();
+    }
 }

@@ -31,6 +31,9 @@ import com.karthikb351.vitinfo2.api.contract.GradeCount;
 import com.karthikb351.vitinfo2.api.contract.Message;
 import com.karthikb351.vitinfo2.api.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.api.contract.WithdrawnCourse;
+import com.karthikb351.vitinfo2.api.event.FriendEvent;
+import com.karthikb351.vitinfo2.api.event.LoginEvent;
+import com.karthikb351.vitinfo2.api.event.SuccessEvent;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
@@ -39,6 +42,8 @@ import com.karthikb351.vitinfo2.api.response.TokenResponse;
 import com.orm.SugarTransactionHelper;
 
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 public class Database {
 
@@ -69,9 +74,11 @@ public class Database {
         editor.putString(Constants.KEY_ANDROID_SUPPORTED_VERSION, systemResponse.getAndroid().getEarliestSupportedVersion());
         editor.putString(Constants.KEY_ANDROID_LATEST_VERSION, systemResponse.getAndroid().getLatestVersion());
         editor.apply();
+
+        EventBus.getDefault().post(new SuccessEvent(Constants.EVENT_CODE_SYSTEM));
     }
 
-    public void saveLogin(LoginResponse loginResponse) {
+    public void saveLogin(LoginResponse loginResponse, int path) {
 
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_CAMPUS, loginResponse.getCampus());
@@ -79,6 +86,8 @@ public class Database {
         editor.putString(Constants.KEY_DATEOFBIRTH, loginResponse.getDateOfBirth());
         editor.putString(Constants.KEY_MOBILE, loginResponse.getMobileNumber());
         editor.apply();
+
+        EventBus.getDefault().post(new LoginEvent(path));
     }
 
     public void saveCourses(final RefreshResponse refreshResponse) {
@@ -102,6 +111,8 @@ public class Database {
         editor.putString(Constants.KEY_SEMESTER, refreshResponse.getSemester());
         editor.putString(Constants.KEY_COURSES_REFRESHED, refreshResponse.getRefreshed());
         editor.apply();
+
+        EventBus.getDefault().post(new SuccessEvent(Constants.EVENT_CODE_REFRESH));
     }
 
     public void saveGrades(final GradesResponse gradesResponse) {
@@ -127,6 +138,8 @@ public class Database {
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_GRADES_REFRESHED, gradesResponse.getRefreshed());
         editor.apply();
+
+        EventBus.getDefault().post(new SuccessEvent(Constants.EVENT_CODE_GRADES));
     }
 
     public void saveToken(TokenResponse tokenResponse) {
@@ -135,6 +148,8 @@ public class Database {
         editor.putString(Constants.KEY_SHARE_TOKEN, tokenResponse.getTokenShare().getToken());
         editor.putString(Constants.KEY_SHARE_TOKEN_ISSUED, tokenResponse.getTokenShare().getIssued());
         editor.apply();
+
+        EventBus.getDefault().post(new SuccessEvent(Constants.EVENT_CODE_TOKEN));
     }
 
     public void saveFriend(final Friend friend) {
@@ -149,5 +164,7 @@ public class Database {
                 friend.save();
             }
         });
+
+        EventBus.getDefault().post(new FriendEvent(Constants.EVENT_CODE_SHARE));
     }
 }

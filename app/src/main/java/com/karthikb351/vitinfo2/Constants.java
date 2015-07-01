@@ -20,21 +20,32 @@ package com.karthikb351.vitinfo2;
 
 public class Constants {
 
-    public static String FILENAME_SHAREDPREFERENCES = "vitacademics.prefs";
+    public static final String API_BASE_URL = "https://vitacademics-rel.herokuapp.com";
 
-    public static String KEY_COURSES_REFRESHED = "refreshed_courses";
-    public static String KEY_GRADES_REFRESHED = "refreshed_grades";
+    public final static String FILENAME_SHAREDPREFERENCES = "vitacademics.prefs";
 
-    public static String KEY_CAMPUS = "campus";
-    public static String KEY_REGISTERNUMBER = "reg_no";
-    public static String KEY_DATEOFBIRTH = "dob";
-    public static String KEY_MOBILE = "mobile";
+    public final static String KEY_COURSES_REFRESHED = "refreshed_courses";
+    public final static String KEY_GRADES_REFRESHED = "refreshed_grades";
 
-    public static String KEY_SEMESTER = "semester";
+    public final static String KEY_CAMPUS = "campus";
+    public final static String KEY_REGISTERNUMBER = "reg_no";
+    public final static String KEY_DATEOFBIRTH = "dob";
+    public final static String KEY_MOBILE = "mobile";
 
-    public static String KEY_ANDROID_LATEST_VERSION = "latest_version";
-    public static String KEY_ANDROID_SUPPORTED_VERSION = "supported_version";
+    public final static String KEY_SEMESTER = "semester";
 
-    public static String KEY_SHARE_TOKEN = "token";
-    public static String KEY_SHARE_TOKEN_ISSUED = "token_issued";
+    public final static String KEY_ANDROID_LATEST_VERSION = "latest_version";
+    public final static String KEY_ANDROID_SUPPORTED_VERSION = "supported_version";
+
+    public final static String KEY_SHARE_TOKEN = "token";
+    public final static String KEY_SHARE_TOKEN_ISSUED = "token_issued";
+
+    public final static int EVENT_CODE_SYSTEM = 1;
+    public final static int EVENT_CODE_REFRESH = 10;
+    public final static int EVENT_CODE_GRADES = 100;
+    public final static int EVENT_CODE_TOKEN = 1000;
+    public final static int EVENT_CODE_SHARE = 1;
+    public final static int EVENT_CODE_REFRESH_ALL = 1111;
+    public final static int EVENT_PATH_LOGIN_REFRESH = 1;
+    public final static int EVENT_PATH_LOGIN_GRADES = 2;
 }
