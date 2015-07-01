@@ -52,6 +52,7 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.friends_fragment, container, false);
+        friends = new ArrayList<Friend>();
         RecyclerView.LayoutManager friendsLayoutManager = new LinearLayoutManager(getActivity());
         adapter = new FriendsListAdapter(getActivity(),friends);
         friendsRecyclerView = (RecyclerView)view.findViewById(R.id.rvFriends);
