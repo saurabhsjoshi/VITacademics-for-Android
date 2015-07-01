@@ -51,4 +51,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
+
+    <!--VITacademics API Messages-->
+    <string name="api_system_fail">The VITacademics Server is down or has encountered an error</string>
  </resources>

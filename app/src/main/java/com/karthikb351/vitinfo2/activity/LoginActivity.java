@@ -34,6 +34,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.utilities.Network;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -55,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             dob.setText(sdf.format(calendar.getTime()));
         }
     };
+    private Network network;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

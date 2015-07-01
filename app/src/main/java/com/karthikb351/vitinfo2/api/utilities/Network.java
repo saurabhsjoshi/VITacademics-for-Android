@@ -36,8 +36,16 @@ public class Network {
 
     private VITacademicsAPI viTacademicsAPI;
 
-    public Network(Context context) {
+    public Network(Context context, String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
+        this.campus = campus;
+        this.registerNumber = registerNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.mobileNumber = mobileNumber;
 
+        this.viTacademicsAPI = new VITacademicsAPI(context);
+    }
+
+    public Network(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
         this.campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
         this.registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);

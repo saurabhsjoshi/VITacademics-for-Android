@@ -43,6 +43,7 @@ import com.karthikb351.vitinfo2.api.contract.GradeCount;
 import com.karthikb351.vitinfo2.api.contract.Message;
 import com.karthikb351.vitinfo2.api.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.api.contract.WithdrawnCourse;
+import com.karthikb351.vitinfo2.api.utilities.Network;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
@@ -59,6 +60,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     int flag = 0;
+    private Network network;
     private String topics[];
     private DrawerLayout dl;
     private ListView lv;

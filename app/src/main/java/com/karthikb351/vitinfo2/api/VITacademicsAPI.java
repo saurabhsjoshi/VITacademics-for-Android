@@ -23,13 +23,14 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.contract.Friend;
-import com.karthikb351.vitinfo2.api.models.Status;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
 import com.karthikb351.vitinfo2.api.response.SystemResponse;
 import com.karthikb351.vitinfo2.api.response.TokenResponse;
+import com.karthikb351.vitinfo2.api.utilities.AndroidToast;
 import com.karthikb351.vitinfo2.api.utilities.Database;
 
 import retrofit.Callback;
@@ -40,19 +41,11 @@ import retrofit.converter.GsonConverter;
 
 public class VITacademicsAPI {
 
-    private static final String BASE_URL = "https://vitacademics-staging.herokuapp.com";
+    private static final String BASE_URL = "https://vitacademics-rel.herokuapp.com";
 
     private Context context;
-
     private Database database;
-
     private APIService service;
-
-    private static final int CODE_SUCCESS = 0;
-    private static final int CODE_EXPIRED_TRY_AGAIN = 1;
-    private static final int CODE_INVALID = 2;
-    private static final int CODE_UNAVAILABLE = 3;
-    private static final int CODE_ERROR = 4;
 
     public VITacademicsAPI(Context context) {
 
@@ -77,18 +70,19 @@ public class VITacademicsAPI {
         service.system(new Callback<SystemResponse>() {
             @Override
             public void success(SystemResponse systemResponse, Response response) {
-                switch (parseStatus(systemResponse.getStatus())) {
-                    case CODE_SUCCESS:
+                switch (systemResponse.getStatus().getCode()) {
+                    case StatusCodes.SUCCESS:
                         database.saveSystem(systemResponse);
                         break;
                     default:
-                        // TODO Handle System Failure
+                        AndroidToast.showToast(context, systemResponse.getStatus().getMessage());
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle System Failure
+                error.printStackTrace();
+                AndroidToast.showToast(context, R.string.api_system_fail);
             }
         });
     }
@@ -97,26 +91,24 @@ public class VITacademicsAPI {
         service.refresh(campus, regno, dob, mobile, new Callback<RefreshResponse>() {
             @Override
             public void success(RefreshResponse refreshResponse, Response response) {
-                switch (parseStatus(refreshResponse.getStatus())) {
-                    case CODE_SUCCESS:
+                switch (refreshResponse.getStatus().getCode()) {
+                    case StatusCodes.SUCCESS:
                         database.saveCourses(refreshResponse);
                         break;
-                    case CODE_EXPIRED_TRY_AGAIN:
+                    case StatusCodes.TIMED_OUT:
                         login(campus, regno, dob, mobile);
                         refresh(campus, regno, dob, mobile);
                         break;
-                    case CODE_INVALID:
-                        // TODO Handle Invalid Credentials/Data Parsing
-                        break;
                     default:
-                        // TODO Handle Course Refresh Failure
+                        AndroidToast.showToast(context, refreshResponse.getStatus().getMessage());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle Course Refresh Failure
+                error.printStackTrace();
+                AndroidToast.showToast(context, R.string.api_system_fail);
             }
         });
     }
@@ -125,22 +117,20 @@ public class VITacademicsAPI {
         service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
-                switch (parseStatus(loginResponse.getStatus())) {
-                    case CODE_SUCCESS:
+                switch (loginResponse.getStatus().getCode()) {
+                    case StatusCodes.SUCCESS:
                         database.saveLogin(loginResponse);
                         break;
-                    case CODE_INVALID:
-                        // TODO Handle Invalid Credentials
-                        break;
                     default:
-                        // TODO Handle Course Refresh Failure
+                        AndroidToast.showToast(context, loginResponse.getStatus().getMessage());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle error
+                error.printStackTrace();
+                AndroidToast.showToast(context, R.string.api_system_fail);
             }
         });
 
@@ -150,22 +140,20 @@ public class VITacademicsAPI {
         service.token(campus, regno, dob, mobile, new Callback<TokenResponse>() {
             @Override
             public void success(TokenResponse tokenResponse, Response response) {
-                switch (parseStatus(tokenResponse.getStatus())) {
-                    case CODE_SUCCESS:
+                switch (tokenResponse.getStatus().getCode()) {
+                    case StatusCodes.SUCCESS:
                         database.saveToken(tokenResponse);
                         break;
-                    case CODE_INVALID:
-                        // TODO Handle Invalid Credentials
-                        break;
                     default:
-                        // TODO Handle Token Refresh Failure
+                        AndroidToast.showToast(context, tokenResponse.getStatus().getMessage());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle token failure
+                error.printStackTrace();
+                AndroidToast.showToast(context, R.string.api_system_fail);
             }
         });
     }
@@ -174,26 +162,24 @@ public class VITacademicsAPI {
         service.grades(campus, regno, dob, mobile, new Callback<GradesResponse>() {
             @Override
             public void success(GradesResponse gradesResponse, Response response) {
-                switch (parseStatus(gradesResponse.getStatus())) {
-                    case CODE_SUCCESS:
+                switch (gradesResponse.getStatus().getCode()) {
+                    case StatusCodes.SUCCESS:
                         database.saveGrades(gradesResponse);
                         break;
-                    case CODE_EXPIRED_TRY_AGAIN:
+                    case StatusCodes.TIMED_OUT:
                         login(campus, regno, dob, mobile);
                         grades(campus, regno, dob, mobile);
                         break;
-                    case CODE_INVALID:
-                        // TODO Handle Invalid Credentials/Data Parsing
-                        break;
                     default:
-                        // TODO Handle Grades Refresh Failure
+                        AndroidToast.showToast(context, gradesResponse.getStatus().getMessage());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle Grades Refresh Failure
+                error.printStackTrace();
+                AndroidToast.showToast(context, R.string.api_system_fail);
             }
         });
     }
@@ -202,28 +188,20 @@ public class VITacademicsAPI {
         service.share(campus, token, receiver, new Callback<Friend>() {
             @Override
             public void success(Friend friend, Response response) {
-                switch (parseStatus(friend.getStatus())) {
-                    case CODE_SUCCESS:
+                switch (friend.getStatus().getCode()) {
+                    case StatusCodes.SUCCESS:
                         database.saveFriend(friend);
                         break;
-                    case CODE_EXPIRED_TRY_AGAIN:
-                        // TODO Handle Expired Token
-                        break;
-                    case CODE_INVALID:
-                        // TODO Handle Invalid Credentials
-                        break;
-                    case CODE_UNAVAILABLE:
-                        // TODO Handle No User Data Available
-                        break;
                     default:
-                        // TODO Handle Friend Refresh Failure
+                        AndroidToast.showToast(context, friend.getStatus().getMessage());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle Friend Refresh Failure
+                error.printStackTrace();
+                AndroidToast.showToast(context, R.string.api_system_fail);
             }
         });
     }
@@ -232,54 +210,21 @@ public class VITacademicsAPI {
         service.share(campus, regno, dob, mobile, receiver, new Callback<Friend>() {
             @Override
             public void success(Friend friend, Response response) {
-                switch (parseStatus(friend.getStatus())) {
-                    case CODE_SUCCESS:
+                switch (friend.getStatus().getCode()) {
+                    case StatusCodes.SUCCESS:
                         database.saveFriend(friend);
                         break;
-                    case CODE_EXPIRED_TRY_AGAIN:
-                        // TODO Handle Expired Token
-                        break;
-                    case CODE_INVALID:
-                        // TODO Handle Invalid Credentials
-                        break;
-                    case CODE_UNAVAILABLE:
-                        // TODO Handle No User Data Available
-                        break;
                     default:
-                        // TODO Handle Friend Refresh Failure
+                        AndroidToast.showToast(context, friend.getStatus().getMessage());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO Handle Friend Refresh Failure
+                error.printStackTrace();
+                AndroidToast.showToast(context, R.string.api_system_fail);
             }
         });
-    }
-
-    private int parseStatus(Status status) {
-
-        int result;
-        switch (status.getCode()) {
-            case StatusCodes.SUCCESS:
-                result = CODE_SUCCESS;
-                break;
-            case StatusCodes.TIMED_OUT:
-            case StatusCodes.TOKEN_EXPIRED:
-                result = CODE_EXPIRED_TRY_AGAIN;
-                break;
-            case StatusCodes.INVALID:
-            case StatusCodes.DATA_PARSING:
-                result = CODE_INVALID;
-                break;
-            case StatusCodes.NO_DATA:
-                result = CODE_UNAVAILABLE;
-                break;
-            default:
-                result = CODE_ERROR;
-                break;
-        }
-        return result;
     }
 }
