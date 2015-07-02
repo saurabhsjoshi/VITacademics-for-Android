@@ -58,13 +58,13 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     public void onBindViewHolder(TodayViewHolder holder, int position) {
 
         int AttendanceP = courses.get(position).first.getAttendance().getAttendancePercentage();
-        TodayViewHolder cvHolder = (TodayViewHolder) holder;
-        cvHolder.courseCode.setText(courses.get(position).first.getCourseCode());
-        cvHolder.courseName.setText(courses.get(position).first.getCourseTitle());
-        cvHolder.Venue.setText(courses.get(position).first.getVenue());
-        cvHolder.Slot.setText(courses.get(position).first.getSlot());
-        cvHolder.Attendance.setText(Integer.toString(AttendanceP));
-        cvHolder.pbAttendance.setProgress(AttendanceP);
+        TodayViewHolder todayViewHolder = (TodayViewHolder) holder;
+        todayViewHolder.courseCode.setText(courses.get(position).first.getCourseCode());
+        todayViewHolder.courseName.setText(courses.get(position).first.getCourseTitle());
+        todayViewHolder.Venue.setText(courses.get(position).first.getVenue());
+        todayViewHolder.Slot.setText(courses.get(position).first.getSlot());
+        todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
+        todayViewHolder.pbAttendance.setProgress(AttendanceP);
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         Timing time = courses.get(position).first.getTimings()[courses.get(position).second];
         //calculate time gap from now to next instance of class
@@ -83,18 +83,18 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView courseName, courseCode, Attendance, Slot ,Venue;
         public ProgressBar pbAttendance;
-        public TodayViewHolder(View v) {
-            super(v);
-            courseName = (TextView) v.findViewById(R.id.tvCourseName);
-            courseCode = (TextView) v.findViewById(R.id.tvCourseCode);
-            Attendance = (TextView)v.findViewById(R.id.tvAttendance);
-            Slot = (TextView)v.findViewById(R.id.tvSlot);
-            Venue = (TextView)v.findViewById(R.id.tvVenue);
-            pbAttendance = (ProgressBar)v.findViewById(R.id.pbAttendance);
+        public TodayViewHolder(View view) {
+            super(view);
+            courseName = (TextView) view.findViewById(R.id.tvCourseName);
+            courseCode = (TextView) view.findViewById(R.id.tvCourseCode);
+            Attendance = (TextView)view.findViewById(R.id.tvAttendance);
+            Slot = (TextView)view.findViewById(R.id.tvSlot);
+            Venue = (TextView)view.findViewById(R.id.tvVenue);
+            pbAttendance = (ProgressBar)view.findViewById(R.id.pbAttendance);
             pbAttendance.setMax(100);
         }
 
-        public  void onClick(View v)
+        public  void onClick(View view)
         {
             Course course = courses.get(getAdapterPosition()).first;
             OnclickListener.onItemClick(course);

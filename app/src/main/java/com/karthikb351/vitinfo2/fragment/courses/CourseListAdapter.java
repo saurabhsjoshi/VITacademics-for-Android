@@ -53,13 +53,13 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     public void onBindViewHolder(CourseViewHolder holder, int position) {
 
         int AttendanceP = courses.get(position).getAttendance().getAttendancePercentage();
-        CourseViewHolder cvHolder = (CourseViewHolder) holder;
-        cvHolder.courseCode.setText(courses.get(position).getCourseCode());
-        cvHolder.courseName.setText(courses.get(position).getCourseTitle());
-        cvHolder.Venue.setText(courses.get(position).getVenue());
-        cvHolder.Slot.setText(courses.get(position).getSlot());
-        cvHolder.Attendance.setText(Integer.toString(AttendanceP));
-        cvHolder.pbAttendance.setProgress(AttendanceP);
+        CourseViewHolder courseViewHolder = (CourseViewHolder) holder;
+        courseViewHolder.courseCode.setText(courses.get(position).getCourseCode());
+        courseViewHolder.courseName.setText(courses.get(position).getCourseTitle());
+        courseViewHolder.Venue.setText(courses.get(position).getVenue());
+        courseViewHolder.Slot.setText(courses.get(position).getSlot());
+        courseViewHolder.Attendance.setText(Integer.toString(AttendanceP));
+        courseViewHolder.pbAttendance.setProgress(AttendanceP);
     }
 
     public void setOnclickListener(RecyclerViewOnClickListener<Course> listener)
