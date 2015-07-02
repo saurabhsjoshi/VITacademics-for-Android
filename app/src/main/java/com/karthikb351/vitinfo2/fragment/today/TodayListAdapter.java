@@ -2,6 +2,7 @@
  * VITacademics
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +22,7 @@ package com.karthikb351.vitinfo2.fragment.today;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,16 +32,18 @@ import android.widget.TextView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.contract.Timing;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
 
     Context context;
-    ArrayList<Course> courses;
+    ArrayList<Pair<Course,Integer>> courses;
     RecyclerViewOnClickListener<Course> OnclickListener ;
 
-    public TodayListAdapter(Context context, ArrayList<Course> courses) {
+    public TodayListAdapter(Context context, ArrayList<Pair<Course,Integer>> courses) {
         this.context = context;
         this.courses = courses;
     }
@@ -53,14 +57,17 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     @Override
     public void onBindViewHolder(TodayViewHolder holder, int position) {
 
-        int AttendanceP = courses.get(position).getAttendance().getAttendancePercentage();
+        int AttendanceP = courses.get(position).first.getAttendance().getAttendancePercentage();
         TodayViewHolder cvHolder = (TodayViewHolder) holder;
-        cvHolder.courseCode.setText(courses.get(position).getCourseCode());
-        cvHolder.courseName.setText(courses.get(position).getCourseTitle());
-        cvHolder.Venue.setText(courses.get(position).getVenue());
-        cvHolder.Slot.setText(courses.get(position).getSlot());
+        cvHolder.courseCode.setText(courses.get(position).first.getCourseCode());
+        cvHolder.courseName.setText(courses.get(position).first.getCourseTitle());
+        cvHolder.Venue.setText(courses.get(position).first.getVenue());
+        cvHolder.Slot.setText(courses.get(position).first.getSlot());
         cvHolder.Attendance.setText(Integer.toString(AttendanceP));
         cvHolder.pbAttendance.setProgress(AttendanceP);
+        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        Timing time = courses.get(position).first.getTimings()[courses.get(position).second];
+        //calculate time gap from now to next instance of class
     }
 
     public void setOnclickListener(RecyclerViewOnClickListener<Course> listener){
@@ -89,7 +96,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
         public  void onClick(View v)
         {
-            Course course = courses.get(getAdapterPosition());
+            Course course = courses.get(getAdapterPosition()).first;
             OnclickListener.onItemClick(course);
         }
     }

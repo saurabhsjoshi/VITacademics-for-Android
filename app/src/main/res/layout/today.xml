@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ VITacademics
   ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
   ~
@@ -15,7 +16,19 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <ProgressBar
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:id="@+id/todayProgressBar"
+        />
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rvToday"
     android:layout_width="match_parent"
@@ -23,3 +36,4 @@
     android:scrollbars="vertical"
 
     />
+</LinearLayout>
