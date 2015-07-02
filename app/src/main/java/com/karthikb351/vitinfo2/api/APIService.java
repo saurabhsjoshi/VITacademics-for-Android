@@ -28,30 +28,37 @@ import com.karthikb351.vitinfo2.api.response.TokenResponse;
 
 import retrofit.Callback;
 import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.POST;
-import retrofit.http.Part;
+import retrofit.http.Path;
 
 public interface APIService {
 
     @GET("/api/v2/system")
     void system(Callback<SystemResponse> callback);
 
+    @FormUrlEncoded
     @POST("/api/v2/{campus}/login")
-    void login(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<LoginResponse> callback);
+    void login(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<LoginResponse> callback);
 
+    @FormUrlEncoded
     @POST("/api/v2/{campus}/refresh")
-    void refresh(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<RefreshResponse> callback);
+    void refresh(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<RefreshResponse> callback);
 
+    @FormUrlEncoded
     @POST("/api/v2/{campus}/token")
-    void token(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<TokenResponse> callback);
+    void token(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<TokenResponse> callback);
 
+    @FormUrlEncoded
     @POST("/api/v2/{campus}/grades")
-    void grades(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<GradesResponse> callback);
+    void grades(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<GradesResponse> callback);
 
+    @FormUrlEncoded
     @POST("/api/v2/{campus}/share")
-    void share(@Part("campus") String campus, @Field("token") String token, @Field("receiver") String receiver, Callback<Friend> callback);
+    void share(@Path("campus") String campus, @Field("token") String token, @Field("receiver") String receiver, Callback<Friend> callback);
 
+    @FormUrlEncoded
     @POST("/api/v2/{campus}/share")
-    void share(@Part("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, @Field("receiver") String receiver, Callback<Friend> callback);
+    void share(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, @Field("receiver") String receiver, Callback<Friend> callback);
 }
