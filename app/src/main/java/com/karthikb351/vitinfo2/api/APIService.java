@@ -19,12 +19,12 @@
 
 package com.karthikb351.vitinfo2.api;
 
-import com.karthikb351.vitinfo2.api.contract.Friend;
-import com.karthikb351.vitinfo2.api.response.GradesResponse;
-import com.karthikb351.vitinfo2.api.response.LoginResponse;
-import com.karthikb351.vitinfo2.api.response.RefreshResponse;
-import com.karthikb351.vitinfo2.api.response.SystemResponse;
-import com.karthikb351.vitinfo2.api.response.TokenResponse;
+import com.karthikb351.vitinfo2.contract.Friend;
+import com.karthikb351.vitinfo2.response.GradesResponse;
+import com.karthikb351.vitinfo2.response.LoginResponse;
+import com.karthikb351.vitinfo2.response.RefreshResponse;
+import com.karthikb351.vitinfo2.response.SystemResponse;
+import com.karthikb351.vitinfo2.response.TokenResponse;
 
 import retrofit.Callback;
 import retrofit.http.Field;

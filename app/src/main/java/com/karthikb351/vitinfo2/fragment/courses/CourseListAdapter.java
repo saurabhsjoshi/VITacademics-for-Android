@@ -24,13 +24,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
-import com.karthikb351.vitinfo2.api.contract.Course;
-import com.karthikb351.vitinfo2.model.CourseModel;
+import com.karthikb351.vitinfo2.contract.Course;
+
 import java.util.ArrayList;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {

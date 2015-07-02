@@ -23,7 +23,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.karthikb351.vitinfo2.api.contract.Contributor;
+import com.karthikb351.vitinfo2.contract.Contributor;
 
 import java.util.List;
 

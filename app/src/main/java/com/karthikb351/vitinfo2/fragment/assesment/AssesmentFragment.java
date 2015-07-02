@@ -26,7 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.api.contract.Assessment;
+import com.karthikb351.vitinfo2.contract.Assessment;
 
 import java.util.ArrayList;
 

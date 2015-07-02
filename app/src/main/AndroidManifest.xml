@@ -61,7 +61,7 @@
             android:value="true" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="com.karthikb351.vitinfo2.api.contract" />
+            android:value="com.karthikb351.vitinfo2.contract" />
 
     </application>
 

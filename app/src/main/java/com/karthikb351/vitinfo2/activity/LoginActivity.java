@@ -35,9 +35,9 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.api.event.MessageEvent;
-import com.karthikb351.vitinfo2.api.event.RefreshActivityEvent;
-import com.karthikb351.vitinfo2.api.utilities.Network;
+import com.karthikb351.vitinfo2.event.MessageEvent;
+import com.karthikb351.vitinfo2.event.RefreshActivityEvent;
+import com.karthikb351.vitinfo2.utility.Network;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

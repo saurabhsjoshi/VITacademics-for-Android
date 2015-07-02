@@ -29,7 +29,7 @@ import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
-import com.karthikb351.vitinfo2.api.contract.Course;
+import com.karthikb351.vitinfo2.contract.Course;
 
 import java.util.ArrayList;
 
