@@ -17,11 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.TimeTable;
+package com.karthikb351.vitinfo2.fragment.timetable;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.content.Context;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class TimeTablePagerAdapter extends FragmentStatePagerAdapter {

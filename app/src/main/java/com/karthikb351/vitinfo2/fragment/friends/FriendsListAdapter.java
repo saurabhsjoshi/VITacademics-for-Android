@@ -29,11 +29,10 @@ import android.widget.TextView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.api.contract.Friend;
-import com.karthikb351.vitinfo2.model.FriendModel;
 
 import java.util.ArrayList;
 
-public class  FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder>
+public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder>
 {
 
     ArrayList<Friend> friends;
