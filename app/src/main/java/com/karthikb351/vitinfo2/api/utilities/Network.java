@@ -120,6 +120,7 @@ public class Network {
             else {
                 if (successEvent.isRefreshDone() && successEvent.isGradesDone()) {
                     if (successEvent.isTokenDone()) {
+                        refreshed = true;
                         EventBus.getDefault().post(new RefreshEvent());
                     }
                     else {

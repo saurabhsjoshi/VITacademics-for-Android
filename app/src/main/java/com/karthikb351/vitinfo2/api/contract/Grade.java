@@ -42,7 +42,7 @@ public class Grade extends SugarRecord<Grade> {
 
     @Expose
     @SerializedName("grade")
-    private char grade;
+    private String grade;
 
     @Expose
     @SerializedName("exam_held")
@@ -59,7 +59,7 @@ public class Grade extends SugarRecord<Grade> {
     public Grade() {
     }
 
-    public Grade(String courseCode, String courseTitle, String courseType, int credits, char grade, String examHeld, String resultDate, String option) {
+    public Grade(String courseCode, String courseTitle, String courseType, int credits, String grade, String examHeld, String resultDate, String option) {
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
         this.courseType = courseType;
@@ -102,11 +102,11 @@ public class Grade extends SugarRecord<Grade> {
         this.credits = credits;
     }
 
-    public char getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(char grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 
