@@ -31,7 +31,7 @@
     tools:context="com.karthikb351.vitinfo2.fragment.LoginFragment">
 
     <TextView
-        android:id="@+id/tvLogin"
+        android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -46,24 +46,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:id="@+id/rgCampus" >
+            android:id="@+id/select_campus" >
          <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:text="Vellore"
-            android:id="@+id/rbVellore"
+            android:id="@+id/select_vellore"
             android:checked="false" />
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="22dp"
             android:text="Chennai"
-            android:id="@+id/rbChennai"
+            android:id="@+id/select_chennai"
             android:checked="false"/>
         </RadioGroup>
 
 
     <EditText
-        android:id="@+id/etRegNo"
+        android:id="@+id/input_reg_no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -75,7 +75,7 @@
         android:textSize="@dimen/abc_text_size_small_material"-->/>
 
     <EditText
-        android:id="@+id/etDob"
+        android:id="@+id/input_dob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -88,7 +88,7 @@
         android:textSize="@dimen/abc_text_size_small_material"--> />
 
     <EditText
-        android:id="@+id/etPhone"
+        android:id="@+id/input_phone_no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -112,7 +112,7 @@
     android:textSize="@dimen/abc_text_size_small_material"--> />
 
     <Button
-        android:id="@+id/bLogin"
+        android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"

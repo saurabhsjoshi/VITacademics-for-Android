@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:textSize="30dp"/>
   <android.support.v7.widget.RecyclerView
-    android:id="@+id/rvTimeTable"
+    android:id="@+id/recycler_view_timetable"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"

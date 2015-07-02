@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:id="@+id/cvAssesmnet">
+    android:id="@+id/card_view_assessmnet">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -10,7 +10,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvMarksType"
+            android:id="@+id/tv_marks_type"
             android:textSize="@dimen/abc_text_size_display_1_material"
             android:gravity="center"
             android:textColor="@color/colorPrimary"
@@ -20,34 +20,34 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvMarks"
+            android:id="@+id/tv_scored_marks"
             android:textSize="@dimen/abc_text_size_large_material"
             android:text="@string/cat1Sc"
             android:textColor="@color/primary_text_default_material_light"
-            android:layout_alignBaseline="@+id/tvMarksType"
-            android:layout_alignBottom="@+id/tvMarksType"
-            android:layout_toLeftOf="@+id/tvMaxMarks"
-            android:layout_toStartOf="@+id/tvMaxMarks" />
+            android:layout_alignBaseline="@+id/tv_marks_type"
+            android:layout_alignBottom="@+id/tv_marks_type"
+            android:layout_toLeftOf="@+id/tv_max_marks"
+            android:layout_toStartOf="@+id/tv_max_marks" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvMaxMarks"
+            android:id="@+id/tv_max_marks"
             android:textSize="@dimen/abc_text_size_large_material"
             android:text="@string/catTotal"
             android:textColor="@color/primary_text_default_material_light"
             android:layout_marginRight="5dp"
             android:layout_marginEnd="5dp"
-            android:layout_alignBaseline="@+id/tvMarks"
-            android:layout_alignBottom="@+id/tvMarks"
-            android:layout_alignRight="@+id/progressBar"
-            android:layout_alignEnd="@+id/progressBar" />
+            android:layout_alignBaseline="@+id/tv_scored_marks"
+            android:layout_alignBottom="@+id/tv_scored_marks"
+            android:layout_alignRight="@+id/progress_bar_marks"
+            android:layout_alignEnd="@+id/progress_bar_marks" />
         <ProgressBar
             style="@style/BarraProgreso"
             android:layout_width="match_parent"
             android:layout_height="15sp"
             android:progress="80"
-            android:layout_below="@+id/tvMarks"
-            android:id="@+id/progressBar" />
+            android:layout_below="@+id/tv_scored_marks"
+            android:id="@+id/progress_bar_marks" />
         <!--Assesment percentage, scored percentage, contribution to
         final marks to be included -->
         </RelativeLayout>

@@ -46,7 +46,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
     @Override
     public TodayViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        android.support.v7.widget.CardView rootCard = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(R.layout.today_card, parent, false);
+        android.support.v7.widget.CardView rootCard = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(R.layout.card_today, parent, false);
         return new TodayViewHolder(rootCard);
     }
 
@@ -78,12 +78,12 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         public ProgressBar pbAttendance;
         public TodayViewHolder(View v) {
             super(v);
-            courseName = (TextView) v.findViewById(R.id.tvCourseName);
-            courseCode = (TextView) v.findViewById(R.id.tvCourseCode);
-            Attendance = (TextView)v.findViewById(R.id.tvAttendance);
-            Slot = (TextView)v.findViewById(R.id.tvSlot);
-            Venue = (TextView)v.findViewById(R.id.tvVenue);
-            pbAttendance = (ProgressBar)v.findViewById(R.id.pbAttendance);
+            courseName = (TextView) v.findViewById(R.id.tv_course_name);
+            courseCode = (TextView) v.findViewById(R.id.tv_course_code);
+            Attendance = (TextView)v.findViewById(R.id.tv_attendance);
+            Slot = (TextView)v.findViewById(R.id.tv_slot);
+            Venue = (TextView)v.findViewById(R.id.tv_venue);
+            pbAttendance = (ProgressBar)v.findViewById(R.id.process_bar_attendance);
             pbAttendance.setMax(100);
         }
 

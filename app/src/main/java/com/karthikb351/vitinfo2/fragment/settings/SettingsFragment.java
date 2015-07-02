@@ -46,7 +46,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.settings_list,container,false);
-        listView=(ListView)view.findViewById(R.id.lvSettings);
+        listView=(ListView)view.findViewById(R.id.list_view_settings);
         settingTopics.add("Licenses");
         settingTopics.add("Contributors");
         settingTopics.add("Log Out");

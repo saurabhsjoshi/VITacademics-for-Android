@@ -16,7 +16,7 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cardToday"
+    android:id="@+id/card_view_today"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
@@ -25,10 +25,10 @@
         android:layout_height="wrap_content"
         android:padding="5dp">
         <TextView
-            android:id="@+id/tvCourseCode"
+            android:id="@+id/tv_course_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvCourseName"
+            android:layout_below="@+id/tv_course_name"
             android:layout_marginTop="5dp"
             android:text="@string/subCode"
             android:textColor="@color/bright_foreground_material_light"
@@ -41,7 +41,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="3dp"
             android:layout_alignParentTop="true"
-            android:id="@+id/tvSlot"
+            android:id="@+id/tv_slot"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             />
@@ -54,17 +54,17 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="5dp"
             android:layout_marginRight="3dp"
-            android:id="@+id/tvVenue"
+            android:id="@+id/tv_venue"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
             android:layout_alignParentRight="true"
             />
 
         <TextView
-            android:id="@+id/tvCourseName"
+            android:id="@+id/tv_course_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvSlot"
+            android:layout_below="@+id/tv_slot"
             android:text="@string/subName"
             android:textStyle="italic"
             android:textColor="@color/bright_foreground_material_light"
@@ -79,51 +79,51 @@
             android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
             android:elevation="@dimen/cardview_default_elevation"
             android:gravity="center"
-            android:layout_alignTop="@+id/tvCourseCode"
+            android:layout_alignTop="@+id/tv_course_code"
             android:layout_centerVertical="true"
             android:background="@drawable/circle"
             android:textColor="@color/bright_foreground_material_light"
-            android:id="@+id/tvAttendance" />
+            android:id="@+id/tv_attendance" />
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/pbAttendance"
+            android:id="@+id/process_bar_attendance"
             android:layout_marginTop="5dp"
             android:elevation="@dimen/cardview_default_elevation"
-            android:layout_below="@+id/tvCourseCode"
+            android:layout_below="@+id/tv_course_code"
             android:progress="80"
             android:layout_centerHorizontal="true"
-            android:layout_toRightOf="@+id/tvAttendance"/>
+            android:layout_toRightOf="@+id/tv_attendance"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvGoAttend"
-            android:layout_alignLeft="@+id/pbAttendance"
+            android:id="@+id/tv_go_attend"
+            android:layout_alignLeft="@+id/process_bar_attendance"
             android:textColor="@color/bright_foreground_material_light"
             android:text="Go: 80%"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="6dp"
-            android:layout_below="@+id/pbAttendance"
+            android:layout_below="@+id/process_bar_attendance"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvNoGoAttend"
+            android:id="@+id/tv_no_go_attend"
             android:text="Miss: 70%"
-            android:layout_alignTop="@+id/tvGoAttend"
+            android:layout_alignTop="@+id/tv_go_attend"
             android:textColor="@color/bright_foreground_material_light"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="6dp"
-            android:layout_below="@+id/pbAttendance"
+            android:layout_below="@+id/process_bar_attendance"
             />
         <android.support.v4.widget.Space
             android:layout_width="20dp"
             android:layout_height="10dp"
-            android:layout_below="@+id/tvSlot"
-            android:layout_toRightOf="@+id/tvAttendance"
-            android:layout_toEndOf="@+id/tvCourseCode" />
+            android:layout_below="@+id/tv_slot"
+            android:layout_toRightOf="@+id/tv_attendance"
+            android:layout_toEndOf="@+id/tv_course_code" />
 
 
     </RelativeLayout>

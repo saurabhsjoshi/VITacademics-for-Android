@@ -57,7 +57,7 @@ public class TimeTableDayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.timetable_day_fragment, container, false);
-        recyclerview = (RecyclerView)view.findViewById(R.id.rvTimeTable);
+        recyclerview = (RecyclerView)view.findViewById(R.id.recycler_view_timetable);
         TextView header = (TextView)view.findViewById(R.id.tvDayHeader);
         header.setText(daysOfWeek[dayOfWeek]);
         // get courses for day based on dayOfWeek;
