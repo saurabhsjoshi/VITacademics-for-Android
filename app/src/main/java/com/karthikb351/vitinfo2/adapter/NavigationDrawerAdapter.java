@@ -48,13 +48,13 @@ public class NavigationDrawerAdapter extends ArrayAdapter<String> {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.drawer_menu_item, parent, false);
             holder = new ViewHolder();
-            holder.drawerIcon = (ImageView) view.findViewById(R.id.drawerIcon);
-            holder.drawerText = (TextView) view.findViewById(R.id.drawerText);
+            holder.drawerIcon = (ImageView) view.findViewById(R.id.drawer_icon);
+            holder.drawerText = (TextView) view.findViewById(R.id.drawer_text);
             view.setTag(holder);
         } else
             holder = (ViewHolder) view.getTag();
 
-        //    holder.drawerIcon.setImageResource(context.getResources().getIdentifier(objects.get(position),"drawable",context.getPackageName()));
+        //    holder.drawer_icon.setImageResource(context.getResources().getIdentifier(objects.get(position),"drawable",context.getPackageName()));
         holder.drawerText.setText(objects.get(position));
         return view;
     }

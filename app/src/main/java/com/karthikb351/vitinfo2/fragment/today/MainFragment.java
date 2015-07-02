@@ -67,7 +67,7 @@ public class MainFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         load = (ProgressBar)rootView.findViewById(R.id.todayProgressBar);
-        todayRecyclerView = (RecyclerView)rootView.findViewById(R.id.rvToday);
+        todayRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_today);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Today");
         // int i = getArguments().getInt(ARG);
         //int imageId = getResources().getIdentifier(topics.toLowerCase(Locale.getDefault()),

@@ -46,8 +46,8 @@ public class TimeTableFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.timetable_fragment, container, false);
-        viewpager = (ViewPager)view.findViewById(R.id.vpTimeTable);
+        View view = inflater.inflate(R.layout.fragment_timetable, container, false);
+        viewpager = (ViewPager)view.findViewById(R.id.view_pager_timetable);
         pageradapter = new TimeTablePagerAdapter(getActivity().getSupportFragmentManager(),getActivity());
         viewpager.setAdapter(pageradapter);
         TabLayout tabLayout = (TabLayout)view.findViewById(R.id.sliding_tabs);

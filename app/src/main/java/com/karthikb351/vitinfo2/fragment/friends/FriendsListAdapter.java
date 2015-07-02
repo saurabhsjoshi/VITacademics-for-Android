@@ -48,7 +48,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     public FriendsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.
                 from(parent.getContext()).
-                inflate(R.layout.freinds_card, parent, false);
+                inflate(R.layout.card_friends, parent, false);
 
         return new FriendsViewHolder(itemView);
     }
@@ -77,9 +77,9 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         public ImageView FriendImage;
         public FriendsViewHolder(View itemView) {
             super(itemView);
-            FriendRegNo=(TextView)itemView.findViewById(R.id.tvFriendRegistrationNumber);
-            FriendName=(TextView)itemView.findViewById(R.id.tvFriendName);
-            FriendImage=(ImageView)itemView.findViewById(R.id.FriendPhoto);
+            FriendRegNo=(TextView)itemView.findViewById(R.id.tv_friend_reg_no);
+            FriendName=(TextView)itemView.findViewById(R.id.tv_friend_name);
+            FriendImage=(ImageView)itemView.findViewById(R.id.photo_friend);
         }
         public  void onClick(View v)
         {

@@ -20,7 +20,7 @@
 
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cvFriends"
+    android:id="@+id/card_view_friends"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -35,7 +35,7 @@
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/FriendPhoto"
+                android:id="@+id/photo_friend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -43,19 +43,19 @@
                 android:layout_marginRight="16dp" />
 
             <TextView
-                android:id="@+id/tvFriendName"
+                android:id="@+id/tv_friend_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/FriendPhoto"
+                android:layout_toRightOf="@+id/photo_friend"
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/tvFriendRegistrationNumber"
+                android:id="@+id/tv_friend_reg_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvFriendName"
-                android:layout_toRightOf="@+id/FriendPhoto" />
+                android:layout_below="@+id/tv_friend_name"
+                android:layout_toRightOf="@+id/photo_friend" />
 
         </RelativeLayout>
     </LinearLayout>

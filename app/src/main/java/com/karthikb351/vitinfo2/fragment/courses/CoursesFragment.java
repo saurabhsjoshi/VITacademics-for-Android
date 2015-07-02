@@ -55,7 +55,7 @@ public class CoursesFragment extends Fragment {
         courses = new ArrayList<>();
         View view=inflater.inflate(R.layout.courses,container,false);
         courseListAdapter=new CourseListAdapter(getActivity(),courses);
-        recyclerView=(RecyclerView)view.findViewById(R.id.rvCourses);
+        recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_courses);
         courseListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
             @Override
             public void onItemClick(Course data) {

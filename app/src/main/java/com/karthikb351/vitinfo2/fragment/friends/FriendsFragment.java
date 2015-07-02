@@ -51,11 +51,11 @@ public class FriendsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.friends_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_friends, container, false);
         friends = new ArrayList<Friend>();
         RecyclerView.LayoutManager friendsLayoutManager = new LinearLayoutManager(getActivity());
         adapter = new FriendsListAdapter(getActivity(),friends);
-        friendsRecyclerView = (RecyclerView)view.findViewById(R.id.rvFriends);
+        friendsRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_friends);
         friendsRecyclerView.setLayoutManager(friendsLayoutManager);
         friendsRecyclerView.setAdapter(adapter);
         adapter.setOnclickListener(new RecyclerViewOnClickListener<Friend>() {

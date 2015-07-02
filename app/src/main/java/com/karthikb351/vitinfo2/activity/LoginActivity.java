@@ -81,12 +81,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bLogin:
+            case R.id.button_login:
                 refreshStatus = 0;
                 // TODO get values and fill in below code
                 // new Network(LoginActivity.this, ).refreshAll();
                 break;
-            case R.id.etDob:
+            case R.id.input_dob:
                 showDatePicker(v);
                 break;
         }
@@ -113,13 +113,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void initializeLayouts() {
-        editTextRegisterNumber = (EditText) findViewById(R.id.etRegNo);
-        editTextDateOfBirth = (EditText) findViewById(R.id.etDob);
-        editTextMobileNumber = (EditText) findViewById(R.id.etPhone);
-        radioGroupCampus = (RadioGroup) findViewById(R.id.rgCampus);
-        radioVelloreCampus = (RadioButton) findViewById(R.id.rbVellore);
-        radioChennaiCampus = (RadioButton) findViewById(R.id.rbChennai);
-        buttonLogin = (Button) findViewById(R.id.bLogin);
+        editTextRegisterNumber = (EditText) findViewById(R.id.input_reg_no);
+        editTextDateOfBirth = (EditText) findViewById(R.id.input_dob);
+        editTextMobileNumber = (EditText) findViewById(R.id.input_phone_no);
+        radioGroupCampus = (RadioGroup) findViewById(R.id.select_campus);
+        radioVelloreCampus = (RadioButton) findViewById(R.id.select_vellore);
+        radioChennaiCampus = (RadioButton) findViewById(R.id.select_chennai);
+        buttonLogin = (Button) findViewById(R.id.button_login);
         buttonLogin.setOnClickListener(this);
         editTextDateOfBirth.setOnClickListener(this);
 
@@ -128,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
-                    case R.id.rbChennai:
+                    case R.id.select_chennai:
                         editTextMobileNumber.setFocusable(false);
                         break;
 
