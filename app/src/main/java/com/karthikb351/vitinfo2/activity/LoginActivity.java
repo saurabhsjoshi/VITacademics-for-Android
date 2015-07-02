@@ -46,54 +46,25 @@ import java.util.Locale;
 
 import de.greenrobot.event.EventBus;
 
-
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int refreshStatus;
 
     private Network network;
 
-    EditText reg, dob, phone, otp;
-    Button login;
-    RadioGroup campus;
-    RadioButton vellore,chennai;
-    Calendar calendar = Calendar.getInstance();
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-            calendar.set(i, i1, i2);
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-            dob.setText(sdf.format(calendar.getTime()));
-        }
-    };
+    private EditText editTextRegisterNumber, editTextDateOfBirth, editTextMobileNumber;
+    private Button buttonLogin;
+    private RadioGroup radioGroupCampus;
+    private RadioButton radioVelloreCampus, radioChennaiCampus;
+    private Calendar calendar;
+    private DatePickerDialog.OnDateSetListener date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        reg = (EditText) findViewById(R.id.etRegNo);
-        dob = (EditText) findViewById(R.id.etDob);
-        phone = (EditText) findViewById(R.id.etPhone);
-        campus=(RadioGroup) findViewById(R.id.rgCampus);
-        vellore=(RadioButton) findViewById(R.id.rbVellore);
-        chennai=(RadioButton) findViewById(R.id.rbChennai);
-        //otp = (EditText) findViewById(R.id.etOTP);
-        login = (Button) findViewById(R.id.bLogin);
-        login.setOnClickListener(this);
-        dob.setOnClickListener(this);
-
-        // To disable EditText phone for Chennai Campus
-        campus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch(checkedId){
-                    case R.id.rbChennai: phone.setFocusable(false);
-                        break;
-
-                }
-            }
-        });
+        initializeLayouts();
     }
 
     @Override
@@ -120,8 +91,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 showDatePicker(v);
                 break;
         }
-
-
     }
 
     @Override
@@ -142,6 +111,41 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void initializeLayouts() {
+        editTextRegisterNumber = (EditText) findViewById(R.id.etRegNo);
+        editTextDateOfBirth = (EditText) findViewById(R.id.etDob);
+        editTextMobileNumber = (EditText) findViewById(R.id.etPhone);
+        radioGroupCampus = (RadioGroup) findViewById(R.id.rgCampus);
+        radioVelloreCampus = (RadioButton) findViewById(R.id.rbVellore);
+        radioChennaiCampus = (RadioButton) findViewById(R.id.rbChennai);
+        buttonLogin = (Button) findViewById(R.id.bLogin);
+        buttonLogin.setOnClickListener(this);
+        editTextDateOfBirth.setOnClickListener(this);
+
+        // To disable EditText editTextMobileNumber for Chennai Campus
+        radioGroupCampus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rbChennai:
+                        editTextMobileNumber.setFocusable(false);
+                        break;
+
+                }
+            }
+        });
+
+        calendar = Calendar.getInstance();
+        date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                calendar.set(i, i1, i2);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+                editTextDateOfBirth.setText(sdf.format(calendar.getTime()));
+            }
+        };
     }
 
     public void showDatePicker(View view) {
