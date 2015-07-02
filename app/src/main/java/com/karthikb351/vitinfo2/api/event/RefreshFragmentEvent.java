@@ -18,11 +18,5 @@
 
 package com.karthikb351.vitinfo2.api.event;
 
-public class LoginEvent {
-
-    public final int path;
-
-    public LoginEvent(int path) {
-        this.path = path;
-    }
+public class RefreshFragmentEvent {
 }

@@ -26,7 +26,7 @@ public class GradeCount extends SugarRecord<GradeCount> {
 
     @Expose
     @SerializedName("grade")
-    private char grade;
+    private String grade;
 
     @Expose
     @SerializedName("value")
@@ -39,17 +39,17 @@ public class GradeCount extends SugarRecord<GradeCount> {
     public GradeCount() {
     }
 
-    public GradeCount(char grade, double value, int count) {
+    public GradeCount(String grade, double value, int count) {
         this.grade = grade;
         this.value = value;
         this.count = count;
     }
 
-    public char getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(char grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 

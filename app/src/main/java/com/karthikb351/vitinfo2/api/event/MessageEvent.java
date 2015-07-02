@@ -20,9 +20,13 @@ package com.karthikb351.vitinfo2.api.event;
 
 public class MessageEvent {
 
-    public final String message;
+    private String message;
 
     public MessageEvent(String message) {
         this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

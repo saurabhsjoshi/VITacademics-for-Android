@@ -24,7 +24,10 @@ import android.content.SharedPreferences;
 import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.api.VITacademicsAPI;
 import com.karthikb351.vitinfo2.api.contract.Friend;
-import com.karthikb351.vitinfo2.api.event.LoginEvent;
+import com.karthikb351.vitinfo2.api.event.FriendEvent;
+import com.karthikb351.vitinfo2.api.event.RefreshActivityEvent;
+import com.karthikb351.vitinfo2.api.event.RefreshEvent;
+import com.karthikb351.vitinfo2.api.event.SuccessEvent;
 
 import java.util.List;
 
@@ -38,19 +41,25 @@ public class Network {
     private String mobileNumber;
 
     private VITacademicsAPI viTacademicsAPI;
+    private static Network network;
 
-    public Network(Context context, String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
+    private int friendCount;
+    private int refreshedFriends;
+    private boolean refreshed;
+
+    private Network(Context context, String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
         this.campus = campus;
         this.registerNumber = registerNumber;
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
 
         this.viTacademicsAPI = new VITacademicsAPI(context);
+        network = this;
 
         EventBus.getDefault().register(this);
     }
 
-    public Network(Context context) {
+    private Network(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
         this.campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
         this.registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
@@ -58,21 +67,43 @@ public class Network {
         this.mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, null);
 
         this.viTacademicsAPI = new VITacademicsAPI(context);
+        network = this;
+    }
+
+    public static Network getNetworkSingleton(Context context) {
+        if (network != null) {
+            network.viTacademicsAPI = new VITacademicsAPI(context);
+            return network;
+        }
+        return new Network(context);
+    }
+
+    public static Network getNetworkSingleton(Context context, String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
+        if (network != null) {
+            network.viTacademicsAPI = new VITacademicsAPI(context);
+
+            network.campus = campus;
+            network.registerNumber = registerNumber;
+            network.dateOfBirth = dateOfBirth;
+            network.mobileNumber = mobileNumber;
+            return network;
+        }
+        return new Network(context, campus, registerNumber, dateOfBirth, mobileNumber);
     }
 
     public void getAllFriends() {
         List<Friend> friends = Friend.listAll(Friend.class);
+        friendCount = friends.size();
         for(Friend friend : friends) {
             viTacademicsAPI.share(friend.getCampus(), friend.getRegisterNumber(), friend.getDateOfBirth(), friend.getMobileNumber(), this.registerNumber);
         }
     }
 
     public void refreshAll() {
-        viTacademicsAPI.system();
-        viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber);
-        viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber);
-        viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber);
-        getAllFriends();
+        refreshed = false;
+        refreshedFriends = 0;
+        SuccessEvent successEvent = new SuccessEvent(false, false, false, false, false);
+        viTacademicsAPI.system(successEvent);
     }
 
     @Override
@@ -81,14 +112,44 @@ public class Network {
         super.finalize();
     }
 
-    public void onEvent(LoginEvent loginEvent) {
-        switch (loginEvent.path) {
-            case Constants.EVENT_PATH_LOGIN_REFRESH:
-                viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber);
-                break;
-            case Constants.EVENT_PATH_LOGIN_GRADES:
-                viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber);
-                break;
+    public void onEvent(SuccessEvent successEvent) {
+        if (successEvent.isSystemDone()) {
+            if (successEvent.isLoginRequired()) {
+                viTacademicsAPI.login(campus, registerNumber, dateOfBirth, mobileNumber, successEvent);
+            }
+            else {
+                if (successEvent.isRefreshDone() && successEvent.isGradesDone()) {
+                    if (successEvent.isTokenDone()) {
+                        EventBus.getDefault().post(new RefreshEvent());
+                    }
+                    else {
+                        viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber, successEvent);
+                    }
+                }
+                else {
+                    if (successEvent.isRefreshDone()) {
+                        viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber, successEvent);
+                    }
+                    else {
+                        viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber, successEvent);
+                    }
+                }
+            }
+            getAllFriends();
+        }
+        else {
+            viTacademicsAPI.system(successEvent);
+        }
+    }
+
+    public void onEvent(FriendEvent friendEvent) {
+        refreshedFriends = refreshedFriends + 1;
+        EventBus.getDefault().post(new RefreshEvent());
+    }
+
+    public void onEvent(RefreshEvent refreshEvent) {
+        if (friendCount == refreshedFriends && refreshed) {
+            EventBus.getDefault().post(new RefreshActivityEvent());
         }
     }
 }

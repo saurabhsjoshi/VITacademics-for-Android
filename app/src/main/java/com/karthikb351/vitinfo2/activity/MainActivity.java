@@ -43,8 +43,8 @@ import com.karthikb351.vitinfo2.api.contract.GradeCount;
 import com.karthikb351.vitinfo2.api.contract.Message;
 import com.karthikb351.vitinfo2.api.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.api.contract.WithdrawnCourse;
-import com.karthikb351.vitinfo2.api.event.RefreshEvent;
-import com.karthikb351.vitinfo2.api.event.SuccessEvent;
+import com.karthikb351.vitinfo2.api.event.RefreshActivityEvent;
+import com.karthikb351.vitinfo2.api.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.api.utilities.Network;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
@@ -225,13 +225,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void onEventMainThread(SuccessEvent successEvent) {
-        refreshStatus = refreshStatus + successEvent.type;
-        if (refreshStatus == Constants.EVENT_CODE_REFRESH_ALL) {
-            initializeData();
-            initializeLayouts();
-            EventBus.getDefault().post(new RefreshEvent(true));
-        }
+    public void onEventMainThread(RefreshActivityEvent refreshActivityEvent) {
+        initializeData();
+        initializeLayouts();
+        EventBus.getDefault().post(new RefreshFragmentEvent());
     }
 
     public String getRegisterNumber() {

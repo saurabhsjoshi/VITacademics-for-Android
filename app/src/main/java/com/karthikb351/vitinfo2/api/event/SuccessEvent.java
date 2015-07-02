@@ -20,9 +20,61 @@ package com.karthikb351.vitinfo2.api.event;
 
 public class SuccessEvent {
 
-    public final int type;
+    private boolean systemDone;
 
-    public SuccessEvent(int type) {
-        this.type = type;
+    private boolean loginRequired;
+
+    private boolean refreshDone;
+
+    private boolean gradesDone;
+
+    private boolean tokenDone;
+
+    public SuccessEvent(boolean systemDone, boolean loginRequired, boolean refreshDone, boolean gradesDone, boolean tokenDone) {
+        this.systemDone = systemDone;
+        this.loginRequired = loginRequired;
+        this.refreshDone = refreshDone;
+        this.gradesDone = gradesDone;
+        this.tokenDone = tokenDone;
+    }
+
+    public boolean isSystemDone() {
+        return systemDone;
+    }
+
+    public void setSystemDone(boolean systemDone) {
+        this.systemDone = systemDone;
+    }
+
+    public boolean isLoginRequired() {
+        return loginRequired;
+    }
+
+    public void setLoginRequired(boolean loginRequired) {
+        this.loginRequired = loginRequired;
+    }
+
+    public boolean isRefreshDone() {
+        return refreshDone;
+    }
+
+    public void setRefreshDone(boolean refreshDone) {
+        this.refreshDone = refreshDone;
+    }
+
+    public boolean isGradesDone() {
+        return gradesDone;
+    }
+
+    public void setGradesDone(boolean gradesDone) {
+        this.gradesDone = gradesDone;
+    }
+
+    public boolean isTokenDone() {
+        return tokenDone;
+    }
+
+    public void setTokenDone(boolean tokenDone) {
+        this.tokenDone = tokenDone;
     }
 }

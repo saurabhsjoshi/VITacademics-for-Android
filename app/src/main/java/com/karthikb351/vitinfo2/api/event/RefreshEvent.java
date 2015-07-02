@@ -19,10 +19,4 @@
 package com.karthikb351.vitinfo2.api.event;
 
 public class RefreshEvent {
-
-    public final boolean result;
-
-    public RefreshEvent(boolean result) {
-        this.result = result;
-    }
 }

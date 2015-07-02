@@ -27,6 +27,7 @@ import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.contract.Friend;
 import com.karthikb351.vitinfo2.api.event.MessageEvent;
+import com.karthikb351.vitinfo2.api.event.SuccessEvent;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
 import com.karthikb351.vitinfo2.api.response.RefreshResponse;
@@ -66,13 +67,13 @@ public class VITacademicsAPI {
         return this.service;
     }
 
-    public void system() {
+    public void system(final SuccessEvent successEvent) {
         service.system(new Callback<SystemResponse>() {
             @Override
             public void success(SystemResponse systemResponse, Response response) {
                 switch (systemResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveSystem(systemResponse);
+                        database.saveSystem(systemResponse, successEvent);
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(systemResponse.getStatus().getMessage()));
@@ -86,16 +87,17 @@ public class VITacademicsAPI {
         });
     }
 
-    public void refresh(final String campus, final String regno, final String dob, final String mobile) {
+    public void refresh(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent) {
         service.refresh(campus, regno, dob, mobile, new Callback<RefreshResponse>() {
             @Override
             public void success(RefreshResponse refreshResponse, Response response) {
                 switch (refreshResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveCourses(refreshResponse);
+                        database.saveCourses(refreshResponse, successEvent);
                         break;
                     case StatusCodes.TIMED_OUT:
-                        login(campus, regno, dob, mobile, Constants.EVENT_PATH_LOGIN_REFRESH);
+                        successEvent.setLoginRequired(true);
+                        login(campus, regno, dob, mobile, successEvent);
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(refreshResponse.getStatus().getMessage()));
@@ -110,13 +112,13 @@ public class VITacademicsAPI {
         });
     }
 
-    public void login(final String campus, final String regno, final String dob, final String mobile, final int path) {
+    public void login(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent) {
         service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
                 switch (loginResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveLogin(loginResponse, path);
+                        database.saveLogin(loginResponse, successEvent);
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(loginResponse.getStatus().getMessage()));
@@ -132,13 +134,13 @@ public class VITacademicsAPI {
 
     }
 
-    public void token(final String campus, final String regno, final String dob, final String mobile) {
+    public void token(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent) {
         service.token(campus, regno, dob, mobile, new Callback<TokenResponse>() {
             @Override
             public void success(TokenResponse tokenResponse, Response response) {
                 switch (tokenResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveToken(tokenResponse);
+                        database.saveToken(tokenResponse, successEvent);
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(tokenResponse.getStatus().getMessage()));
@@ -153,16 +155,17 @@ public class VITacademicsAPI {
         });
     }
 
-    public void grades(final String campus, final String regno, final String dob, final String mobile) {
+    public void grades(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent) {
         service.grades(campus, regno, dob, mobile, new Callback<GradesResponse>() {
             @Override
             public void success(GradesResponse gradesResponse, Response response) {
                 switch (gradesResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveGrades(gradesResponse);
+                        database.saveGrades(gradesResponse, successEvent);
                         break;
                     case StatusCodes.TIMED_OUT:
-                        login(campus, regno, dob, mobile, Constants.EVENT_PATH_LOGIN_GRADES);
+                        successEvent.setLoginRequired(true);
+                        login(campus, regno, dob, mobile, successEvent);
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(gradesResponse.getStatus().getMessage()));

@@ -18,21 +18,5 @@
 
 package com.karthikb351.vitinfo2.api.event;
 
-public class FriendEvent {
-
-    private String campus;
-    private String registerNumber;
-
-    public FriendEvent(String campus, String registerNumber) {
-        this.campus = campus;
-        this.registerNumber = registerNumber;
-    }
-
-    public String getCampus() {
-        return campus;
-    }
-
-    public String getRegisterNumber() {
-        return registerNumber;
-    }
+public class RefreshActivityEvent {
 }

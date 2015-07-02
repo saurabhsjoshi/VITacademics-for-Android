@@ -32,7 +32,6 @@ import com.karthikb351.vitinfo2.api.contract.Message;
 import com.karthikb351.vitinfo2.api.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.api.contract.WithdrawnCourse;
 import com.karthikb351.vitinfo2.api.event.FriendEvent;
-import com.karthikb351.vitinfo2.api.event.LoginEvent;
 import com.karthikb351.vitinfo2.api.event.SuccessEvent;
 import com.karthikb351.vitinfo2.api.response.GradesResponse;
 import com.karthikb351.vitinfo2.api.response.LoginResponse;
@@ -53,7 +52,7 @@ public class Database {
         this.sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
     }
 
-    public void saveSystem(final SystemResponse systemResponse) {
+    public void saveSystem(final SystemResponse systemResponse, SuccessEvent successEvent) {
 
         SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
             @Override
@@ -75,10 +74,11 @@ public class Database {
         editor.putString(Constants.KEY_ANDROID_LATEST_VERSION, systemResponse.getAndroid().getLatestVersion());
         editor.apply();
 
-        EventBus.getDefault().post(new SuccessEvent(Constants.EVENT_CODE_SYSTEM));
+        successEvent.setSystemDone(true);
+        EventBus.getDefault().post(successEvent);
     }
 
-    public void saveLogin(LoginResponse loginResponse, int path) {
+    public void saveLogin(final LoginResponse loginResponse, SuccessEvent successEvent) {
 
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_CAMPUS, loginResponse.getCampus());
@@ -87,10 +87,11 @@ public class Database {
         editor.putString(Constants.KEY_MOBILE, loginResponse.getMobileNumber());
         editor.apply();
 
-        EventBus.getDefault().post(new LoginEvent(path));
+        successEvent.setLoginRequired(false);
+        EventBus.getDefault().post(successEvent);
     }
 
-    public void saveCourses(final RefreshResponse refreshResponse) {
+    public void saveCourses(final RefreshResponse refreshResponse, SuccessEvent successEvent) {
 
         SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
             @Override
@@ -112,10 +113,11 @@ public class Database {
         editor.putString(Constants.KEY_COURSES_REFRESHED, refreshResponse.getRefreshed());
         editor.apply();
 
-        EventBus.getDefault().post(new SuccessEvent(Constants.EVENT_CODE_REFRESH));
+        successEvent.setRefreshDone(true);
+        EventBus.getDefault().post(successEvent);
     }
 
-    public void saveGrades(final GradesResponse gradesResponse) {
+    public void saveGrades(final GradesResponse gradesResponse, SuccessEvent successEvent) {
 
         SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
             @Override
@@ -139,17 +141,19 @@ public class Database {
         editor.putString(Constants.KEY_GRADES_REFRESHED, gradesResponse.getRefreshed());
         editor.apply();
 
-        EventBus.getDefault().post(new SuccessEvent(Constants.EVENT_CODE_GRADES));
+        successEvent.setGradesDone(true);
+        EventBus.getDefault().post(successEvent);
     }
 
-    public void saveToken(TokenResponse tokenResponse) {
+    public void saveToken(final TokenResponse tokenResponse, SuccessEvent successEvent) {
 
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_SHARE_TOKEN, tokenResponse.getTokenShare().getToken());
         editor.putString(Constants.KEY_SHARE_TOKEN_ISSUED, tokenResponse.getTokenShare().getIssued());
         editor.apply();
 
-        EventBus.getDefault().post(new SuccessEvent(Constants.EVENT_CODE_TOKEN));
+        successEvent.setTokenDone(true);
+        EventBus.getDefault().post(successEvent);
     }
 
     public void saveFriend(final Friend friend) {
@@ -165,6 +169,6 @@ public class Database {
             }
         });
 
-        EventBus.getDefault().post(new FriendEvent(Constants.EVENT_CODE_SHARE));
+        EventBus.getDefault().post(new FriendEvent(friend.getCampus(), friend.getRegisterNumber()));
     }
 }

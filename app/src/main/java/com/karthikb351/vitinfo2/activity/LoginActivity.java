@@ -34,10 +34,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.event.MessageEvent;
-import com.karthikb351.vitinfo2.api.event.SuccessEvent;
+import com.karthikb351.vitinfo2.api.event.RefreshActivityEvent;
 import com.karthikb351.vitinfo2.api.utilities.Network;
 
 import java.text.SimpleDateFormat;
@@ -152,14 +151,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         new DatePickerDialog(this, date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    public void onEventMainThread(SuccessEvent successEvent) {
-        refreshStatus = refreshStatus + successEvent.type;
-        if (refreshStatus == Constants.EVENT_CODE_REFRESH_ALL) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        }
+    public void onEventMainThread(RefreshActivityEvent refreshActivityEvent) {
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     public void onEventMainThread(MessageEvent messageEvent) {
-        Toast.makeText(LoginActivity.this, messageEvent.message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, messageEvent.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }
