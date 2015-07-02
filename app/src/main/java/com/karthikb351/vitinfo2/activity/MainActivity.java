@@ -43,6 +43,8 @@ import com.karthikb351.vitinfo2.api.contract.GradeCount;
 import com.karthikb351.vitinfo2.api.contract.Message;
 import com.karthikb351.vitinfo2.api.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.api.contract.WithdrawnCourse;
+import com.karthikb351.vitinfo2.api.event.RefreshEvent;
+import com.karthikb351.vitinfo2.api.event.SuccessEvent;
 import com.karthikb351.vitinfo2.api.utilities.Network;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
@@ -54,15 +56,16 @@ import com.orm.SugarTransactionHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-//import com.karthikb351.vitinfo2.model.DrawerItemClickListener;
 
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
 
-    int flag = 0;
+    private int flag = 0;
+    private int refreshStatus;
     private Network network;
     private String topics[];
-    private DrawerLayout dl;
+    private DrawerLayout drawerLayout;
     private ListView lv;
 
     // User data
@@ -90,10 +93,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loadAllData();
+        initializeData();
         initializeLayouts();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -108,10 +122,8 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
-        else if(id==android.R.id.home)
-        {
-            dl.openDrawer(GravityCompat.START);
+        } else if (id == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START);
             return true;
         }
 
@@ -127,8 +139,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void initializeLayouts() {
-        dl = (DrawerLayout) findViewById(R.id.drawer_layout);
+    public void initializeLayouts() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
@@ -139,40 +151,41 @@ public class MainActivity extends AppCompatActivity {
         }
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override public boolean onNavigationItemSelected(MenuItem menuItem) {
-                String navString = (String)menuItem.getTitle();
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                String navString = (String) menuItem.getTitle();
                 menuItem.setChecked(true);
                 android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 android.support.v4.app.Fragment frag = null;
-                int pos=0;
+                int pos = 0;
                 // settings can be passed in the new instance function
                 //TODO: inefficient for already created instances. Fix.
                 switch (navString) {
 
                     case "Today":
-                        frag=MainFragment.newInstance();
+                        frag = MainFragment.newInstance();
                         pos = 0;
                         break;
                     case "Courses":
                         frag = CoursesFragment.newInstance();
-                        pos=1;
+                        pos = 1;
                         break;
                     case "Time Table":
-                        frag= TimeTableFragment.newInstance();
-                        pos=2;
+                        frag = TimeTableFragment.newInstance();
+                        pos = 2;
                         break;
                     case "Friends":
                         frag = FriendsFragment.newInstance();
-                        pos=3;
+                        pos = 3;
                         break;
                     case "Settings":
                         frag = SettingsFragment.newInstance();
-                        pos=4;
+                        pos = 4;
                         break;
                 }
                 ft.replace(R.id.flContent, frag, topics[pos]).addToBackStack(null).commit();
 
-                dl.closeDrawers();
+                drawerLayout.closeDrawers();
                 return true;
             }
         });
@@ -182,8 +195,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.flContent, new MainFragment(), "mainFragment").commit();
     }
 
-    public void loadAllData() {
-
+    public void initializeData() {
         SharedPreferences sharedPreferences = MainActivity.this.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
 
         MainActivity.this.campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
@@ -211,6 +223,15 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.friends = Friend.listAll(Friend.class);
             }
         });
+    }
+
+    public void onEventMainThread(SuccessEvent successEvent) {
+        refreshStatus = refreshStatus + successEvent.type;
+        if (refreshStatus == Constants.EVENT_CODE_REFRESH_ALL) {
+            initializeData();
+            initializeLayouts();
+            EventBus.getDefault().post(new RefreshEvent(true));
+        }
     }
 
     public String getRegisterNumber() {
