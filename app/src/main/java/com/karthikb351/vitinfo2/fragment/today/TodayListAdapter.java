@@ -34,8 +34,12 @@ import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
 
@@ -65,9 +69,8 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         todayViewHolder.Slot.setText(courses.get(position).first.getSlot());
         todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
         todayViewHolder.pbAttendance.setProgress(AttendanceP);
-        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        Timing time = courses.get(position).first.getTimings()[courses.get(position).second];
-        //calculate time gap from now to next instance of class
+        String  start  =  courses.get(position).first.getTimings()[courses.get(position).second].getStartTime();
+        todayViewHolder.TimeLeft.setText(timediff(start));
     }
 
     public void setOnclickListener(RecyclerViewOnClickListener<Course> listener){
@@ -81,7 +84,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
 
     public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView courseName, courseCode, Attendance, Slot ,Venue;
+        public TextView courseName, courseCode, Attendance, Slot ,Venue,TimeLeft;
         public ProgressBar pbAttendance;
 
         public TodayViewHolder(View view) {
@@ -91,6 +94,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             Attendance = (TextView)view.findViewById(R.id.tv_attendance);
             Slot = (TextView)view.findViewById(R.id.tv_slot);
             Venue = (TextView)view.findViewById(R.id.tv_venue);
+            TimeLeft = (TextView)view.findViewById(R.id.tvTimeLeft);
             pbAttendance = (ProgressBar)view.findViewById(R.id.process_bar_attendance);
             pbAttendance.setMax(100);
         }
@@ -100,5 +104,44 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             Course course = courses.get(getAdapterPosition()).first;
             OnclickListener.onItemClick(course);
         }
+    }
+
+    public String timediff(String date)
+    {
+        String result = "";
+        try
+        {
+            int hours=0 , minutes=0 ;
+            Date now = new Date();
+            Date startTime = new SimpleDateFormat("MM/dd/yyyy KK:mm:ss a Z").parse(date);
+            long timediff = startTime.getTime() - now.getTime();
+            if(timediff>60000)
+            {
+                hours = (int)TimeUnit.MILLISECONDS.toHours(timediff);
+                minutes=(int)(TimeUnit.MILLISECONDS.toMinutes(timediff)-TimeUnit.HOURS.toMinutes(hours));
+            }
+            else
+            {
+                result = "Right now";
+            }
+            if(hours == 0)
+            {
+                result = Integer.toString(minutes) + " minutes later";
+            }
+            else if(minutes == 0 )
+            {
+                result = Integer.toString(minutes) + " hours later";
+            }
+            else
+            {
+                result =Integer.toString(hours)+" hours and "+ Integer.toString(minutes) + " minutes later";
+            }
+        }
+
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

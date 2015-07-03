@@ -102,9 +102,7 @@ public class MainFragment extends Fragment {
                 for(int i = 0 ; i < c.getTimings().length ; i++)
                 {
                   if(c.getTimings()[i].getDay() == dayOfWeek)
-                  {
-                      finalArray.insert(new Pair<Course, Integer>(c, i));
-                  }
+                      finalArray.insert(new Pair<>(c, i));
                 }
             }
             return finalArray;
