@@ -30,10 +30,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.event.MessageEvent;
 import com.karthikb351.vitinfo2.event.RefreshActivityEvent;
@@ -57,6 +59,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private RadioButton radioVelloreCampus, radioChennaiCampus;
     private Calendar calendar;
     private DatePickerDialog.OnDateSetListener date;
+    private ProgressBar progressBar;
+    private int progress;
+    String campus= Constants.CAMPUS_VELLORE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +88,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.button_login:
                 refreshStatus = 0;
-                // TODO get values and fill in below code
-                // new Network(LoginActivity.this, ).refreshAll();
+                progress=0;
+                network =Network.getNetworkSingleton(LoginActivity.this,campus,
+                        editTextRegisterNumber.getText().toString(),
+                        editTextDateOfBirth.getText().toString(),
+                        editTextMobileNumber.getText().toString());
+                progressBar.setProgress(progress);
+                network.refreshAll();
                 break;
             case R.id.input_dob:
                 showDatePicker(v);
@@ -120,6 +130,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         radioVelloreCampus = (RadioButton) findViewById(R.id.select_vellore);
         radioChennaiCampus = (RadioButton) findViewById(R.id.select_chennai);
         buttonLogin = (Button) findViewById(R.id.button_login);
+        progressBar=(ProgressBar)findViewById(R.id.progress_bar_login);
         buttonLogin.setOnClickListener(this);
         editTextDateOfBirth.setOnClickListener(this);
 
@@ -129,7 +140,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
                     case R.id.select_chennai:
+                        campus=Constants.CAMPUS_CHENNAI;
                         editTextMobileNumber.setFocusable(false);
+                        break;
+                    case R.id.select_vellore:
+                        campus=Constants.CAMPUS_VELLORE;
+                        editTextMobileNumber.setFocusable(true);
                         break;
 
                 }

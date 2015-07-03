@@ -99,18 +99,6 @@
         android:textColorHint="@color/material_blue_grey_800"
         android:textSize="@dimen/abc_text_size_small_material" -->
 
-   <!--<EditText
-        android:id="@+id/etOTP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
-        android:hint="One Time Password"
-        android:inputType="textNoSuggestions"
-    android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
-    android:textColorHint="@color/material_blue_grey_800"
-    android:textSize="@dimen/abc_text_size_small_material"--> />
-
     <Button
         android:id="@+id/button_login"
         android:layout_width="match_parent"
@@ -119,4 +107,10 @@
         android:text="LOGIN" />
        <!-- android:textAppearance="@dimen/abc_button_inset_horizontal_material"
         android:textSize="@dimen/abc_text_size_button_material"--> />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar_login"
+        android:indeterminate="true"
+        />
 </LinearLayout>
