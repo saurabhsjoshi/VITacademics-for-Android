@@ -23,29 +23,61 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#59c3fdb5"
+        android:background="#80c3fdb5"
         android:padding="5dp"
         >
+        <TextView
+            android:id="@+id/contributor_id"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:text="#1"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_alignTop="@+id/contributor_name"
+            android:textColor="#cf0033bf"
+            android:background="@drawable/circle"
+            android:backgroundTint="#ff2fc700"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/contributor_email"
+            android:text="contributor@mail.com"
+            android:layout_below="@+id/contributor_role"
+            android:textColor="#cf001755"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            />
         <TextView
             android:id="@+id/contributor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/contributor_image"
-            android:text="Contributor Name"
             android:textStyle="bold"
+            android:text="Contributor Name"
             android:textColor="#e0000000"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:layout_centerHorizontal="true"/>
         <TextView
-            android:id="@+id/contributor_details"
+            android:id="@+id/contributor_role"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/contributor_name"
-            android:text="Contributor Details"
+            android:text="Contributor Role"
             android:textStyle="bold"
             android:textColor="#cf001755"
             android:textSize="16sp"
             android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/contributor_github_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contributor_email"
+            android:text="Github Profile"
+            android:textColor="#cf001755"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"/>
+
+
         <!--<TextView
             android:id="@+id/contributor_more"
             android:layout_width="wrap_content"
@@ -56,12 +88,12 @@
             android:textColor="#cf001755"
             android:textSize="16sp"
             android:layout_centerHorizontal="true"/>-->
-       <ImageView
+      <!-- <ImageView
            android:layout_width="150dp"
            android:layout_height="150dp"
            android:id="@+id/contributor_image"
            android:layout_centerHorizontal="true"
            android:src="@drawable/ic_launcher"
-           />
+           />-->
     </RelativeLayout>
 </android.support.v7.widget.CardView>
