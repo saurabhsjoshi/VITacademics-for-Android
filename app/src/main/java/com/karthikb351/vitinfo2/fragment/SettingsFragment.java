@@ -20,15 +20,19 @@ package com.karthikb351.vitinfo2.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.artitk.licensefragment.model.LicenseID;
+import com.artitk.licensefragment.support.v4.RecyclerViewLicenseFragment;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.LoginActivity;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,6 +55,7 @@ public class SettingsFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        getActivity().setTitle("Settings");
         settingsTopics=getResources().getStringArray(R.array.settingsTopic);
         settingsList=Arrays.asList(settingsTopics);
         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(getActivity(),R.layout.list_item_settings,R.id.text_view_settings,settingsList);
@@ -77,6 +82,15 @@ public class SettingsFragment extends ListFragment {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case 1: //Licenses
+                ArrayList<Integer> LicenseIds = new ArrayList<>();
+                LicenseIds.add(LicenseID.GSON);
+                LicenseIds.add(LicenseID.RETROFIT);
+                //License eventbus=new License(getActivity(),"Event Bus", LicenseType.APACHE_LICENSE_20,"2002","greenrobot");
+                //LicenseIds.add(eventbus.i);
+                Fragment LicenseFragment= RecyclerViewLicenseFragment.newInstance(LicenseIds);
+                this.getFragmentManager().beginTransaction()
+                        .replace(R.id.flContent,LicenseFragment,null)
+                        .addToBackStack(null).commit();
                 break;
             case 2: //Contributors
                 ContributorsFragment contributorsFragment=new ContributorsFragment();
