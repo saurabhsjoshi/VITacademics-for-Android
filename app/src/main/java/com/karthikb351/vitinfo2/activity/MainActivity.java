@@ -45,12 +45,12 @@ import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.contract.WithdrawnCourse;
 import com.karthikb351.vitinfo2.event.RefreshActivityEvent;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.utility.Network;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
 import com.karthikb351.vitinfo2.fragment.today.MainFragment;
+import com.karthikb351.vitinfo2.utility.Network;
 import com.orm.SugarTransactionHelper;
 
 import java.util.ArrayList;
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("VitAcademics");
+        //  actionBar.setTitle("VitAcademics");
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.mipmap.ic_hamburger);
             actionBar.setDisplayHomeAsUpEnabled(true);

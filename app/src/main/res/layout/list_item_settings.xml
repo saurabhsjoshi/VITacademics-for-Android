@@ -6,12 +6,15 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ivSettings"
+        android:id="@+id/image_view_settings"
+        android:src="@drawable/ic_launcher"
+
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:id="@+id/tvSettings"
+        android:id="@+id/text_view_settings"
+        android:textSize="@dimen/abc_text_size_headline_material"
         />
 </LinearLayout>

@@ -23,8 +23,6 @@ package com.karthikb351.vitinfo2.fragment.today;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
@@ -32,13 +30,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
-import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.utility.SortedArrayList;
 
 import java.util.ArrayList;
@@ -68,7 +64,7 @@ public class MainFragment extends Fragment {
 
         load = (ProgressBar)rootView.findViewById(R.id.todayProgressBar);
         todayRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_today);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Today");
+        getActivity().setTitle("Today");
         // int i = getArguments().getInt(ARG);
         //int imageId = getResources().getIdentifier(topics.toLowerCase(Locale.getDefault()),
        //         "drawable", getActivity().getPackageName());

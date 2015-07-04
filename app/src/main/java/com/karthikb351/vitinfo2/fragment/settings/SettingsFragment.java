@@ -18,22 +18,28 @@
 
 package com.karthikb351.vitinfo2.fragment.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.activity.Splash;
+import com.karthikb351.vitinfo2.fragment.AboutFrament;
+import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
-public class SettingsFragment extends Fragment implements View.OnClickListener {
+public class SettingsFragment extends ListFragment {
 
-    ArrayList<String> settingTopics;
-    ListView listView;
+    List<String> settingsList;
+    //ListView listView;
+    String settingsTopics[];
+
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -44,20 +50,50 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        settingsTopics=getResources().getStringArray(R.array.settingsTopic);
+        settingsList=Arrays.asList(settingsTopics);
+        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(getActivity(),R.layout.list_item_settings,R.id.text_view_settings,settingsList);
+        setListAdapter(arrayAdapter);
+    }
+
+    /* @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.settings_list,container,false);
         listView=(ListView)view.findViewById(R.id.list_view_settings);
-        settingTopics.add("Licenses");
-        settingTopics.add("Contributors");
-        settingTopics.add("Log Out");
-        settingTopics.add("About");
-        listView.setAdapter(new SettingsListAdapter(getActivity(),R.layout.list_item_settings,settingTopics));
-        listView.setOnClickListener(this);
+        settingsTopics=getResources().getStringArray(R.array.settingsTopic);
+        settingTopics=new ArrayList<>(Arrays.asList(settingsTopics));
+        listView.setAdapter(new SettingsListAdapter(this,R.layout.list_item_settings,settingTopics));
         return view;
-    }
+    }*/
 
     @Override
-    public void onClick(View v) {
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        switch (position){
+            case 0: //Log Out
+                // TODO: Clear Database
+                startActivity(new Intent(getActivity(), Splash.class));
+                break;
+            case 1: //Licenses
+                break;
+            case 2: //Contributors
+                getActivity().setTitle("Contributors");
+                ContributorsFragment contributorsFragment=new ContributorsFragment();
+                this.getFragmentManager().beginTransaction()
+                        .replace(R.id.flContent,contributorsFragment,null)
+                        .addToBackStack(null).commit();
+                break;
+            case 3: //About
+                getActivity().setTitle("About");
+                AboutFrament aboutFrament=new AboutFrament();
+                this.getFragmentManager().beginTransaction()
+                        .replace(R.id.flContent,aboutFrament,null)
+                        .addToBackStack(null).commit();
+                break;
+        }
 
     }
 }
