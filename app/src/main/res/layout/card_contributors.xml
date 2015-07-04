@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ VITacademics
+  ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view_contributors"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#59c3fdb5"
+        android:padding="5dp"
+        >
+        <TextView
+            android:id="@+id/contributor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contributor_image"
+            android:text="Contributor Name"
+            android:textStyle="bold"
+            android:textColor="#e0000000"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/contributor_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contributor_name"
+            android:text="Contributor Details"
+            android:textStyle="bold"
+            android:textColor="#cf001755"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"/>
+        <!--<TextView
+            android:id="@+id/contributor_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contributor_details"
+            android:text="More Contributor Details"
+            android:textStyle="bold"
+            android:textColor="#cf001755"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"/>-->
+       <ImageView
+           android:layout_width="150dp"
+           android:layout_height="150dp"
+           android:id="@+id/contributor_image"
+           android:layout_centerHorizontal="true"
+           android:src="@drawable/ic_launcher"
+           />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
