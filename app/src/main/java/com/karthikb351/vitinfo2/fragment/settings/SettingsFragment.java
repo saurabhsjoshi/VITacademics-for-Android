@@ -27,7 +27,7 @@ import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.Splash;
-import com.karthikb351.vitinfo2.fragment.AboutFrament;
+import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
 
 import java.util.Arrays;
@@ -80,17 +80,15 @@ public class SettingsFragment extends ListFragment {
             case 1: //Licenses
                 break;
             case 2: //Contributors
-                getActivity().setTitle("Contributors");
                 ContributorsFragment contributorsFragment=new ContributorsFragment();
                 this.getFragmentManager().beginTransaction()
                         .replace(R.id.flContent,contributorsFragment,null)
                         .addToBackStack(null).commit();
                 break;
             case 3: //About
-                getActivity().setTitle("About");
-                AboutFrament aboutFrament=new AboutFrament();
+                AboutFragment aboutFragment=new AboutFragment();
                 this.getFragmentManager().beginTransaction()
-                        .replace(R.id.flContent,aboutFrament,null)
+                        .replace(R.id.flContent,aboutFragment,null)
                         .addToBackStack(null).commit();
                 break;
         }
