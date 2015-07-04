@@ -19,33 +19,41 @@
 
 package com.karthikb351.vitinfo2.fragment.timetable;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.fragment.today.TodayListAdapter;
+import com.karthikb351.vitinfo2.utility.SortedArrayList;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 
 public class TimeTableDayFragment extends Fragment {
 
-    ArrayList<Course> subjectsForTheDay ;
     String [] daysOfWeek = new String[]{"Monday","Tuesday","Wednesday","Thursday","Friday"};
     TimeTableListAdapter adapter ;
     RecyclerView recyclerview;
+    ProgressBar load ;
     int dayOfWeek;
 
     public static TimeTableDayFragment newInstance(int dayOfWeek) {
         TimeTableDayFragment fragment = new TimeTableDayFragment();
-        fragment.dayOfWeek = dayOfWeek;
+        fragment.dayOfWeek = dayOfWeek+1;
         return fragment;
     }
 
@@ -58,21 +66,53 @@ public class TimeTableDayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.timetable_day_fragment, container, false);
         recyclerview = (RecyclerView)view.findViewById(R.id.recycler_view_timetable);
-        TextView header = (TextView)view.findViewById(R.id.tvDayHeader);
-        header.setText(daysOfWeek[dayOfWeek]);
-        // get courses for day based on dayOfWeek;
-        subjectsForTheDay = new ArrayList<Course>();
-        adapter = new TimeTableListAdapter(getActivity(),subjectsForTheDay);
-        adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
-            @Override
-            public void onItemClick(Course data) {
-                //implement on click functionality
-            }
-        });
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerview.setLayoutManager(layoutManager);
-        recyclerview.setAdapter(adapter);
+        load = (ProgressBar)view.findViewById(R.id.timeTableProgressBar);
+        new LoadData().execute();
         return view;
     }
 
+    void onListItemClicked(Course course)
+    {
+        //TODO: implement redirection on itemclick
+    }
+
+    class LoadData extends AsyncTask<Void,Void,ArrayList<Course>>
+    {
+        @Override
+        protected void onPreExecute()
+        {
+            load.setVisibility(View.VISIBLE);
+        }
+        @Override
+        protected ArrayList<Course> doInBackground(Void... params)
+        {
+            ArrayList<Course> finalArray = new ArrayList<>();
+            List<Course> courses =  ((MainActivity) getActivity()).getCourses();
+            for(Course c : courses)
+            {
+                for(int i = 0 ; i < c.getTimings().length ; i++)
+                {
+                    if(c.getTimings()[i].getDay() == dayOfWeek)
+                        finalArray.add(c);
+                }
+            }
+            return finalArray;
+        }
+        @Override
+        protected void onPostExecute(ArrayList<Course> res)
+        {
+            load.setVisibility(View.GONE);
+            adapter = new TimeTableListAdapter(getActivity(),res);
+            adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
+                @Override
+                public void onItemClick(Course data) {
+                    onListItemClicked(data);
+                }
+            });
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            recyclerview.setLayoutManager(layoutManager);
+            recyclerview.setAdapter(adapter);
+        }
+
+    }
 }

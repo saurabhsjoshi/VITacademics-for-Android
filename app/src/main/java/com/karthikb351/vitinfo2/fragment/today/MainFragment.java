@@ -61,17 +61,10 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
         load = (ProgressBar)rootView.findViewById(R.id.todayProgressBar);
         todayRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_today);
         getActivity().setTitle("Today");
-        // int i = getArguments().getInt(ARG);
-        //int imageId = getResources().getIdentifier(topics.toLowerCase(Locale.getDefault()),
-       //         "drawable", getActivity().getPackageName());
-        // ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
-        String topics = getResources().getStringArray(R.array.topic)[0];
-        getActivity().setTitle(topics);
-        //return rootView;
+        new loadToday().execute();
         return rootView;
     }
 
@@ -106,6 +99,7 @@ public class MainFragment extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<Pair<Course,Integer>> res)
         {
+           load.setVisibility(View.GONE);
            todayListAdapter  = new TodayListAdapter(getActivity(),res);
            todayListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
                @Override
@@ -116,6 +110,12 @@ public class MainFragment extends Fragment {
            todayRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
            todayRecyclerView.setAdapter(todayListAdapter);
         }
+
+    }
+
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState)
+    {
 
     }
 }

@@ -3,14 +3,17 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    android:orientation="vertical"
     android:layout_height="wrap_content"
     >
-    <TextView
-        android:layout_width="wrap_content"
+    <ProgressBar
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tvDayHeader"
+        android:visibility="gone"
         android:layout_gravity="center"
-        android:textSize="30dp"/>
+        android:indeterminate="true"
+        android:id="@+id/timeTableProgressBar"
+        />
   <android.support.v7.widget.RecyclerView
     android:id="@+id/recycler_view_timetable"
     android:layout_width="match_parent"
