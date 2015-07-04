@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.settings;
+package com.karthikb351.vitinfo2.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +27,6 @@ import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.LoginActivity;
-import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
 
 import java.util.Arrays;

@@ -27,12 +27,6 @@
     <string name="assessType3">QUIZ 2</string>
     <string name="assessType4">CAT 2</string>
     <string name="assessType5">QUIZ 3</string>
-    <string name="cat1Sc">40</string>
-    <string name="catTotal">/50</string>
-    <string name="slot">H1</string>
-    <string name="subCode">CSE 101</string>
-    <string name="subName">Computer Programming and Problem Solving</string>
-    <string name="classNo">SJT 424</string>
 
     <string-array name="topic">
         <item>Today</item>
@@ -58,6 +52,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_example">Example action</string>
+
+    <!--Messages for undeveloped feautures-->
+    <string name="not_avaialable">This information is not available at the moment</string>
 
     <!--VITacademics API Messages-->
     <string name="api_system_fail">The VITacademics Server is down or has encountered an error</string>

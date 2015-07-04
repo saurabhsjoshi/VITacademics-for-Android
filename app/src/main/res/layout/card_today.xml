@@ -42,13 +42,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_course_name"
             android:layout_marginTop="5dp"
-            android:text="@string/subCode"
             android:textColor="@color/bright_foreground_material_light"
             android:layout_centerHorizontal="true"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/slot"
             android:textStyle="bold"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="3dp"
@@ -61,7 +59,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/classNo"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
             android:layout_marginTop="5dp"
@@ -77,7 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_slot"
-            android:text="@string/subName"
             android:textStyle="italic"
             android:textColor="@color/bright_foreground_material_light"
             android:textSize="18sp"
@@ -86,7 +82,7 @@
         <TextView
             android:layout_width="60sp"
             android:layout_height="60sp"
-            android:text="70%"
+            android:text="N.A"
             android:textStyle="bold"
             android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
             android:elevation="@dimen/cardview_default_elevation"
@@ -104,17 +100,17 @@
             android:layout_marginTop="5dp"
             android:elevation="@dimen/cardview_default_elevation"
             android:layout_below="@+id/tv_course_code"
-            android:progress="80"
+            android:progress="100"
             android:layout_centerHorizontal="true"
             android:layout_toRightOf="@+id/tv_attendance"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_go_attend"
             android:layout_alignLeft="@+id/process_bar_attendance"
             android:textColor="@color/bright_foreground_material_light"
-            android:text="Go: 80%"
+            android:text="Go: "
+            android:id="@+id/fixed_go"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="6dp"
             android:layout_below="@+id/process_bar_attendance"
@@ -122,14 +118,33 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_no_go_attend"
-            android:text="Miss: 70%"
+            android:id="@+id/tv_go_attend"
+            android:textColor="@color/bright_foreground_material_light"
+            android:text="N.A"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/process_bar_attendance"
+            android:layout_toRightOf="@+id/fixed_go"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fixed_miss"
+            android:text="Miss: "
+            android:layout_alignTop="@+id/tv_go_attend"
+            android:textColor="@color/bright_foreground_material_light"
+            android:layout_below="@+id/process_bar_attendance"
+            android:layout_toLeftOf="@+id/tv_miss_attend"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_miss_attend"
+            android:text="N.A"
             android:layout_alignTop="@+id/tv_go_attend"
             android:textColor="@color/bright_foreground_material_light"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="6dp"
             android:layout_below="@+id/process_bar_attendance"
             />
+
         <android.support.v4.widget.Space
             android:layout_width="20dp"
             android:layout_height="10dp"
