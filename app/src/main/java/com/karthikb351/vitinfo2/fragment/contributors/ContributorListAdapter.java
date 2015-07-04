@@ -19,26 +19,39 @@
 
 package com.karthikb351.vitinfo2.fragment.contributors;
 
+import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Contributor;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ContributorListAdapter extends RecyclerView.Adapter<ContributorListAdapter.ContributorViewHolder> {
 
-    List<Contributor> contributors;
+    ArrayList<Contributor> contributors;
+    Context context;
+
+    public ContributorListAdapter(Context context,ArrayList<Contributor> contributors){
+        this.context=context;
+        this.contributors=contributors;
+
+    }
     @Override
     public ContributorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-     return null;
+        CardView cardView=(CardView) LayoutInflater.from(context).inflate(R.layout.contributors_card,parent,false);
+        return new ContributorViewHolder(cardView);
     }
 
     @Override
     public void onBindViewHolder(ContributorViewHolder holder, int position) {
 
     }
+
 
     @Override
     public int getItemCount() {

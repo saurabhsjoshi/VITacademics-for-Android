@@ -28,16 +28,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CoursesFragment extends Fragment {
 
     RecyclerView  recyclerView;
     CourseListAdapter courseListAdapter;
     ArrayList<Course> courses;
+    List<Course> courseList;
+    MainActivity mainActivity;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -52,7 +56,8 @@ public class CoursesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RecyclerView.LayoutManager courseLayoutManager=new LinearLayoutManager(getActivity());
-        courses = new ArrayList<>();
+        courseList=mainActivity.getCourses();
+        courses = new ArrayList<>(courseList);
         View view=inflater.inflate(R.layout.courses,container,false);
         courseListAdapter=new CourseListAdapter(getActivity(),courses);
         recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_courses);

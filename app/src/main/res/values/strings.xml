@@ -54,7 +54,7 @@
     <string name="action_example">Example action</string>
 
     <!--Messages for undeveloped feautures-->
-    <string name="not_avaialable">This information is not available at the moment</string>
+    <string name="not_available">This information is not available at the moment</string>
 
     <!--VITacademics API Messages-->
     <string name="api_system_fail">The VITacademics Server is down or has encountered an error</string>
