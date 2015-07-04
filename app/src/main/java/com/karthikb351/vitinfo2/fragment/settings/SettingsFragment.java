@@ -26,7 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.activity.Splash;
+import com.karthikb351.vitinfo2.activity.LoginActivity;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
 
@@ -75,7 +75,7 @@ public class SettingsFragment extends ListFragment {
         switch (position){
             case 0: //Log Out
                 // TODO: Clear Database
-                startActivity(new Intent(getActivity(), Splash.class));
+                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case 1: //Licenses
                 break;
