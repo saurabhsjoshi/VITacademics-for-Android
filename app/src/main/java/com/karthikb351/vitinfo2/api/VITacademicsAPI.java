@@ -34,7 +34,7 @@ import com.karthikb351.vitinfo2.response.RefreshResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
 import com.karthikb351.vitinfo2.utility.Database;
-import com.karthikb351.vitinfo2.utility.ResultCallback;
+import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import de.greenrobot.event.EventBus;
 import retrofit.Callback;
@@ -68,7 +68,7 @@ public class VITacademicsAPI {
         return this.service;
     }
 
-    public void system(final SuccessEvent successEvent, final ResultCallback resultCallback) {
+    public void system(final SuccessEvent successEvent, final ResultListener resultListener) {
         service.system(new Callback<SystemResponse>() {
             @Override
             public void success(SystemResponse systemResponse, Response response) {
@@ -79,18 +79,18 @@ public class VITacademicsAPI {
                     default:
                         EventBus.getDefault().post(new MessageEvent(systemResponse.getStatus().getMessage()));
                 }
-                resultCallback.success();
+                resultListener.onSuccess();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 EventBus.getDefault().post(context.getString(R.string.api_system_fail));
-                resultCallback.failure();
+                resultListener.onFailure();
             }
         });
     }
 
-    public void refresh(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultCallback resultCallback) {
+    public void refresh(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultListener resultListener) {
         service.refresh(campus, regno, dob, mobile, new Callback<RefreshResponse>() {
             @Override
             public void success(RefreshResponse refreshResponse, Response response) {
@@ -100,24 +100,24 @@ public class VITacademicsAPI {
                         break;
                     case StatusCodes.TIMED_OUT:
                         successEvent.setLoginRequired(true);
-                        login(campus, regno, dob, mobile, successEvent);
+                        login(campus, regno, dob, mobile, successEvent, resultListener);
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(refreshResponse.getStatus().getMessage()));
                         break;
                 }
-                resultCallback.success();
+                resultListener.onSuccess();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 EventBus.getDefault().post(context.getString(R.string.api_system_fail));
-                resultCallback.failure();
+                resultListener.onFailure();
             }
         });
     }
 
-    public void login(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultCallback resultCallback) {
+    public void login(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultListener resultListener) {
         service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
@@ -129,19 +129,19 @@ public class VITacademicsAPI {
                         EventBus.getDefault().post(new MessageEvent(loginResponse.getStatus().getMessage()));
                         break;
                 }
-                resultCallback.success();
+                resultListener.onSuccess();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 EventBus.getDefault().post(context.getString(R.string.api_system_fail));
-                resultCallback.failure();
+                resultListener.onFailure();
             }
         });
 
     }
 
-    public void token(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultCallback resultCallback) {
+    public void token(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultListener resultListener) {
         service.token(campus, regno, dob, mobile, new Callback<TokenResponse>() {
             @Override
             public void success(TokenResponse tokenResponse, Response response) {
@@ -153,18 +153,18 @@ public class VITacademicsAPI {
                         EventBus.getDefault().post(new MessageEvent(tokenResponse.getStatus().getMessage()));
                         break;
                 }
-                resultCallback.success();
+                resultListener.onSuccess();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 EventBus.getDefault().post(context.getString(R.string.api_system_fail));
-                resultCallback.failure();
+                resultListener.onFailure();
             }
         });
     }
 
-    public void grades(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultCallback resultCallback) {
+    public void grades(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultListener resultListener) {
         service.grades(campus, regno, dob, mobile, new Callback<GradesResponse>() {
             @Override
             public void success(GradesResponse gradesResponse, Response response) {
@@ -174,24 +174,24 @@ public class VITacademicsAPI {
                         break;
                     case StatusCodes.TIMED_OUT:
                         successEvent.setLoginRequired(true);
-                        login(campus, regno, dob, mobile, successEvent);
+                        login(campus, regno, dob, mobile, successEvent, resultListener);
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(gradesResponse.getStatus().getMessage()));
                         break;
                 }
-                resultCallback.success();
+                resultListener.onSuccess();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 EventBus.getDefault().post(context.getString(R.string.api_system_fail));
-                resultCallback.failure();
+                resultListener.onFailure();
             }
         });
     }
 
-    public void share(final String campus, final String token, final String receiver, final ResultCallback resultCallback) {
+    public void share(final String campus, final String token, final String receiver, final ResultListener resultListener) {
         service.share(campus, token, receiver, new Callback<Friend>() {
             @Override
             public void success(Friend friend, Response response) {
@@ -203,18 +203,18 @@ public class VITacademicsAPI {
                         EventBus.getDefault().post(new MessageEvent(friend.getStatus().getMessage()));
                         break;
                 }
-                resultCallback.success();
+                resultListener.onSuccess();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 EventBus.getDefault().post(context.getString(R.string.api_system_fail));
-                resultCallback.failure();
+                resultListener.onFailure();
             }
         });
     }
 
-    public void share(final String campus, final String regno, final String dob, final String mobile, final String receiver, final ResultCallback resultCallback) {
+    public void share(final String campus, final String regno, final String dob, final String mobile, final String receiver, final ResultListener resultListener) {
         service.share(campus, regno, dob, mobile, receiver, new Callback<Friend>() {
             @Override
             public void success(Friend friend, Response response) {
@@ -226,13 +226,13 @@ public class VITacademicsAPI {
                         EventBus.getDefault().post(new MessageEvent(friend.getStatus().getMessage()));
                         break;
                 }
-                resultCallback.success();
+                resultListener.onSuccess();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 EventBus.getDefault().post(context.getString(R.string.api_system_fail));
-                resultCallback.failure();
+                resultListener.onFailure();
             }
         });
     }

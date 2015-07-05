@@ -14,9 +14,11 @@ public class RequestConfig  {
     public final static int ALL = 3;
 
     List<Integer> requests;
+    ResultListener resultListener;
 
-    RequestConfig() {
+    RequestConfig(ResultListener resultListener) {
         requests = new ArrayList<Integer>();
+        this.resultListener = resultListener;
     }
 
     public void addRequest(int request) {

@@ -91,22 +91,38 @@ public class Network {
         return new Network(context, campus, registerNumber, dateOfBirth, mobileNumber);
     }
 
-    public void dispatchRequests(RequestConfig requestConfig) {
+    public static void dispatch(RequestConfig requestConfig) {
+        RequestConfig config = new RequestConfig(new ResultListener() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
+        config.addRequest(RequestConfig.REFRESH);
+        config.addRequest(RequestConfig.GRADES);
+        Network.dispatch(config);
 
     }
+
+
 
     public void getAllFriends() {
         List<Friend> friends = Friend.listAll(Friend.class);
         friendCount = friends.size();
         for(Friend friend : friends) {
-            viTacademicsAPI.share(friend.getCampus(), friend.getRegisterNumber(), friend.getDateOfBirth(), friend.getMobileNumber(), this.registerNumber, new ResultCallback() {
+            viTacademicsAPI.share(friend.getCampus(), friend.getRegisterNumber(), friend.getDateOfBirth(), friend.getMobileNumber(), this.registerNumber, new ResultListener() {
                 @Override
-                public void success() {
+                public void onSuccess() {
 
                 }
 
                 @Override
-                public void failure() {
+                public void onFailure() {
 
                 }
             });
@@ -117,14 +133,14 @@ public class Network {
         refreshed = false;
         refreshedFriends = 0;
         SuccessEvent successEvent = new SuccessEvent(false, false, false, false, false);
-        viTacademicsAPI.system(successEvent, new ResultCallback() {
+        viTacademicsAPI.system(successEvent, new ResultListener() {
             @Override
-            public void success() {
+            public void onSuccess() {
 
             }
 
             @Override
-            public void failure() {
+            public void onFailure() {
 
             }
         });
@@ -139,14 +155,14 @@ public class Network {
     public void onEvent(SuccessEvent successEvent) {
         if (successEvent.isSystemDone()) {
             if (successEvent.isLoginRequired()) {
-                viTacademicsAPI.login(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultCallback() {
+                viTacademicsAPI.login(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultListener() {
                     @Override
-                    public void success() {
+                    public void onSuccess() {
 
                     }
 
                     @Override
-                    public void failure() {
+                    public void onFailure() {
 
                     }
                 });
@@ -158,14 +174,14 @@ public class Network {
                         EventBus.getDefault().post(new RefreshEvent());
                     }
                     else {
-                        viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultCallback() {
+                        viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultListener() {
                             @Override
-                            public void success() {
+                            public void onSuccess() {
 
                             }
 
                             @Override
-                            public void failure() {
+                            public void onFailure() {
 
                             }
                         });
@@ -173,27 +189,27 @@ public class Network {
                 }
                 else {
                     if (successEvent.isRefreshDone()) {
-                        viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultCallback() {
+                        viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultListener() {
                             @Override
-                            public void success() {
+                            public void onSuccess() {
 
                             }
 
                             @Override
-                            public void failure() {
+                            public void onFailure() {
 
                             }
                         });
                     }
                     else {
-                        viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultCallback() {
+                        viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultListener() {
                             @Override
-                            public void success() {
+                            public void onSuccess() {
 
                             }
 
                             @Override
-                            public void failure() {
+                            public void onFailure() {
 
                             }
                         });
@@ -203,14 +219,14 @@ public class Network {
             getAllFriends();
         }
         else {
-            viTacademicsAPI.system(successEvent, new ResultCallback() {
+            viTacademicsAPI.system(successEvent, new ResultListener() {
                 @Override
-                public void success() {
+                public void onSuccess() {
 
                 }
 
                 @Override
-                public void failure() {
+                public void onFailure() {
 
                 }
             });
