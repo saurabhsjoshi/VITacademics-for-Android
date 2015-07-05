@@ -21,6 +21,7 @@ package com.karthikb351.vitinfo2.utility;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.AsyncTask;
 
 import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.contract.Contributor;
@@ -52,33 +53,53 @@ public class Database {
         this.sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
     }
 
-    public void saveSystem(final SystemResponse systemResponse, SuccessEvent successEvent) {
+    public void saveSystem(final SystemResponse systemResponse, final ResultListener resultListener) {
 
-        SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
+        new AsyncTask<Boolean, Void, Boolean>() {
+
             @Override
-            public void manipulateInTransaction() {
-                Message.deleteAll(Message.class);
-                Contributor.deleteAll(Contributor.class);
+            protected Boolean doInBackground(Boolean... params) {
+                try {
+                    SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
+                        @Override
+                        public void manipulateInTransaction() {
+                            Message.deleteAll(Message.class);
+                            Contributor.deleteAll(Contributor.class);
 
-                for (Message message : systemResponse.getMessages()) {
-                    message.save();
+                            for (Message message : systemResponse.getMessages()) {
+                                message.save();
+                            }
+                            for (Contributor contributor : systemResponse.getContributors()) {
+                                contributor.save();
+                            }
+                        }
+                    });
+                    return true;
                 }
-                for (Contributor contributor : systemResponse.getContributors()) {
-                    contributor.save();
+                catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
                 }
             }
-        });
 
-        Editor editor = sharedPreferences.edit();
-        editor.putString(Constants.KEY_ANDROID_SUPPORTED_VERSION, systemResponse.getAndroid().getEarliestSupportedVersion());
-        editor.putString(Constants.KEY_ANDROID_LATEST_VERSION, systemResponse.getAndroid().getLatestVersion());
-        editor.apply();
-
-        successEvent.setSystemDone(true);
-        EventBus.getDefault().post(successEvent);
+            @Override
+            protected void onPostExecute(Boolean s) {
+                super.onPostExecute(s);
+                if(s) {
+                    Editor editor = sharedPreferences.edit();
+                    editor.putString(Constants.KEY_ANDROID_SUPPORTED_VERSION, systemResponse.getAndroid().getEarliestSupportedVersion());
+                    editor.putString(Constants.KEY_ANDROID_LATEST_VERSION, systemResponse.getAndroid().getLatestVersion());
+                    editor.apply();
+                    resultListener.onSuccess();
+                }
+                else {
+                    resultListener.onFailure();
+                }
+            }
+        }.execute(true);
     }
 
-    public void saveLogin(final LoginResponse loginResponse, SuccessEvent successEvent) {
+    public void saveLogin(final LoginResponse loginResponse, ResultListener resultListener) {
 
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_CAMPUS, loginResponse.getCampus());
@@ -87,88 +108,142 @@ public class Database {
         editor.putString(Constants.KEY_MOBILE, loginResponse.getMobileNumber());
         editor.apply();
 
-        successEvent.setLoginRequired(false);
-        EventBus.getDefault().post(successEvent);
+        resultListener.onSuccess();
     }
 
-    public void saveCourses(final RefreshResponse refreshResponse, SuccessEvent successEvent) {
+    public void saveCourses(final RefreshResponse refreshResponse, final ResultListener resultListener) {
 
-        SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
+        new AsyncTask<Boolean, Void, Boolean>() {
+
             @Override
-            public void manipulateInTransaction() {
-                Course.deleteAll(Course.class);
-                WithdrawnCourse.deleteAll(WithdrawnCourse.class);
+            protected Boolean doInBackground(Boolean... params) {
+                try {
+                    SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
+                        @Override
+                        public void manipulateInTransaction() {
+                            Course.deleteAll(Course.class);
+                            WithdrawnCourse.deleteAll(WithdrawnCourse.class);
 
-                for (Course course : refreshResponse.getCourses()) {
-                    course.save();
-                }
-                for (WithdrawnCourse withdrawnCourse : refreshResponse.getWithdrawnCourses()) {
-                    withdrawnCourse.save();
+                            for (Course course : refreshResponse.getCourses()) {
+                                course.save();
+                            }
+                            for (WithdrawnCourse withdrawnCourse : refreshResponse.getWithdrawnCourses()) {
+                                withdrawnCourse.save();
+                            }
+                        }
+                    });
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
                 }
             }
-        });
 
-        Editor editor = sharedPreferences.edit();
-        editor.putString(Constants.KEY_SEMESTER, refreshResponse.getSemester());
-        editor.putString(Constants.KEY_COURSES_REFRESHED, refreshResponse.getRefreshed());
-        editor.apply();
-
-        successEvent.setRefreshDone(true);
-        EventBus.getDefault().post(successEvent);
-    }
-
-    public void saveGrades(final GradesResponse gradesResponse, SuccessEvent successEvent) {
-
-        SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
             @Override
-            public void manipulateInTransaction() {
-                Grade.deleteAll(Grade.class);
-                SemesterWiseGrade.deleteAll(SemesterWiseGrade.class);
-
-                for (Grade grade : gradesResponse.getGrades()) {
-                    grade.save();
+            protected void onPostExecute(Boolean r) {
+                if(r){
+                    Editor editor = sharedPreferences.edit();
+                    editor.putString(Constants.KEY_SEMESTER, refreshResponse.getSemester());
+                    editor.putString(Constants.KEY_COURSES_REFRESHED, refreshResponse.getRefreshed());
+                    editor.apply();
+                    resultListener.onSuccess();
                 }
-                for (SemesterWiseGrade semesterWiseGrade : gradesResponse.getSemesterWiseGrades()) {
-                    semesterWiseGrade.save();
-                }
-                for (GradeCount gradeCount : gradesResponse.getGradeCount()) {
-                    gradeCount.save();
+                else {
+                    resultListener.onFailure();
                 }
             }
-        });
+        }.execute(true);
 
-        Editor editor = sharedPreferences.edit();
-        editor.putString(Constants.KEY_GRADES_REFRESHED, gradesResponse.getRefreshed());
-        editor.apply();
-
-        successEvent.setGradesDone(true);
-        EventBus.getDefault().post(successEvent);
     }
 
-    public void saveToken(final TokenResponse tokenResponse, SuccessEvent successEvent) {
+    public void saveGrades(final GradesResponse gradesResponse, final ResultListener resultListener) {
+
+        new AsyncTask<Boolean, Void, Boolean>() {
+
+            @Override
+            protected Boolean doInBackground(Boolean... params) {
+                try {
+                    SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
+                        @Override
+                        public void manipulateInTransaction() {
+                            Grade.deleteAll(Grade.class);
+                            SemesterWiseGrade.deleteAll(SemesterWiseGrade.class);
+
+                            for (Grade grade : gradesResponse.getGrades()) {
+                                grade.save();
+                            }
+                            for (SemesterWiseGrade semesterWiseGrade : gradesResponse.getSemesterWiseGrades()) {
+                                semesterWiseGrade.save();
+                            }
+                            for (GradeCount gradeCount : gradesResponse.getGradeCount()) {
+                                gradeCount.save();
+                            }
+                        }
+                    });
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Boolean r) {
+                if (r) {
+                    Editor editor = sharedPreferences.edit();
+                    editor.putString(Constants.KEY_GRADES_REFRESHED, gradesResponse.getRefreshed());
+                    editor.apply();
+                    resultListener.onSuccess();
+                } else {
+                    resultListener.onFailure();
+                }
+            }
+        }.execute(false);
+
+    }
+
+    public void saveToken(final TokenResponse tokenResponse, ResultListener resultListener) {
 
         Editor editor = sharedPreferences.edit();
         editor.putString(Constants.KEY_SHARE_TOKEN, tokenResponse.getTokenShare().getToken());
         editor.putString(Constants.KEY_SHARE_TOKEN_ISSUED, tokenResponse.getTokenShare().getIssued());
         editor.apply();
 
-        successEvent.setTokenDone(true);
-        EventBus.getDefault().post(successEvent);
+        resultListener.onSuccess();
     }
 
-    public void saveFriend(final Friend friend) {
+    public void saveFriend(final Friend friend, final ResultListener resultListener) {
 
-        SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
+        new AsyncTask<Boolean, Void, Boolean>() {
+
             @Override
-            public void manipulateInTransaction() {
-                List<Friend> friends = Friend.find(Friend.class, "campus = ? and reg_no = ?", friend.getCampus(), friend.getRegisterNumber());
-                if (friends.size() != 0) {
-                    friend.setId(friends.get(0).getId());
+            protected Boolean doInBackground(Boolean... params) {
+                try {
+                    SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
+                        @Override
+                        public void manipulateInTransaction() {
+                            List<Friend> friends = Friend.find(Friend.class, "campus = ? and reg_no = ?", friend.getCampus(), friend.getRegisterNumber());
+                            if (friends.size() != 0) {
+                                friend.setId(friends.get(0).getId());
+                            }
+                            friend.save();
+                        }
+                    });
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
                 }
-                friend.save();
             }
-        });
 
-        EventBus.getDefault().post(new FriendEvent(friend.getCampus(), friend.getRegisterNumber()));
+            @Override
+            protected void onPostExecute(Boolean r) {
+                if (r) {
+                    resultListener.onSuccess();
+                } else {
+                    resultListener.onFailure();
+                }
+            }
+        }.execute(false);
     }
 }

@@ -68,18 +68,41 @@ public class VITacademicsAPI {
         return this.service;
     }
 
+    public void system(final ResultListener resultListener) {
+        service.system(new Callback<SystemResponse>() {
+            @Override
+            public void success(SystemResponse systemResponse, Response response) {
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
+    }
+
     public void system(final SuccessEvent successEvent, final ResultListener resultListener) {
         service.system(new Callback<SystemResponse>() {
             @Override
             public void success(SystemResponse systemResponse, Response response) {
                 switch (systemResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveSystem(systemResponse, successEvent);
+                        database.saveSystem(systemResponse, new ResultListener() {
+                            @Override
+                            public void onSuccess() {
+                                resultListener.onSuccess();
+                            }
+
+                            @Override
+                            public void onFailure() {
+                                resultListener.onFailure();
+                            }
+                        });
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(systemResponse.getStatus().getMessage()));
                 }
-                resultListener.onSuccess();
             }
 
             @Override
@@ -96,7 +119,17 @@ public class VITacademicsAPI {
             public void success(RefreshResponse refreshResponse, Response response) {
                 switch (refreshResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveCourses(refreshResponse, successEvent);
+                        database.saveCourses(refreshResponse, new ResultListener() {
+                            @Override
+                            public void onSuccess() {
+                                resultListener.onSuccess();
+                            }
+
+                            @Override
+                            public void onFailure() {
+                                resultListener.onFailure();
+                            }
+                        });
                         break;
                     case StatusCodes.TIMED_OUT:
                         successEvent.setLoginRequired(true);
@@ -106,7 +139,6 @@ public class VITacademicsAPI {
                         EventBus.getDefault().post(new MessageEvent(refreshResponse.getStatus().getMessage()));
                         break;
                 }
-                resultListener.onSuccess();
             }
 
             @Override
@@ -123,13 +155,22 @@ public class VITacademicsAPI {
             public void success(LoginResponse loginResponse, Response response) {
                 switch (loginResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveLogin(loginResponse, successEvent);
+                        database.saveLogin(loginResponse, new ResultListener() {
+                            @Override
+                            public void onSuccess() {
+                                resultListener.onSuccess();
+                            }
+
+                            @Override
+                            public void onFailure() {
+                                resultListener.onFailure();
+                            }
+                        });
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(loginResponse.getStatus().getMessage()));
                         break;
                 }
-                resultListener.onSuccess();
             }
 
             @Override
@@ -147,7 +188,17 @@ public class VITacademicsAPI {
             public void success(TokenResponse tokenResponse, Response response) {
                 switch (tokenResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveToken(tokenResponse, successEvent);
+                        database.saveToken(tokenResponse, new ResultListener() {
+                            @Override
+                            public void onSuccess() {
+                                resultListener.onSuccess();
+                            }
+
+                            @Override
+                            public void onFailure() {
+                                resultListener.onFailure();
+                            }
+                        });
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(tokenResponse.getStatus().getMessage()));
@@ -170,7 +221,17 @@ public class VITacademicsAPI {
             public void success(GradesResponse gradesResponse, Response response) {
                 switch (gradesResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveGrades(gradesResponse, successEvent);
+                        database.saveGrades(gradesResponse, new ResultListener() {
+                            @Override
+                            public void onSuccess() {
+                                resultListener.onSuccess();
+                            }
+
+                            @Override
+                            public void onFailure() {
+                                resultListener.onFailure();
+                            }
+                        });
                         break;
                     case StatusCodes.TIMED_OUT:
                         successEvent.setLoginRequired(true);
@@ -180,7 +241,6 @@ public class VITacademicsAPI {
                         EventBus.getDefault().post(new MessageEvent(gradesResponse.getStatus().getMessage()));
                         break;
                 }
-                resultListener.onSuccess();
             }
 
             @Override
@@ -197,13 +257,22 @@ public class VITacademicsAPI {
             public void success(Friend friend, Response response) {
                 switch (friend.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveFriend(friend);
+                        database.saveFriend(friend, new ResultListener() {
+                            @Override
+                            public void onSuccess() {
+                                resultListener.onSuccess();
+                            }
+
+                            @Override
+                            public void onFailure() {
+                                resultListener.onFailure();
+                            }
+                        });
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(friend.getStatus().getMessage()));
                         break;
                 }
-                resultListener.onSuccess();
             }
 
             @Override
@@ -220,13 +289,22 @@ public class VITacademicsAPI {
             public void success(Friend friend, Response response) {
                 switch (friend.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveFriend(friend);
+                        database.saveFriend(friend, new ResultListener() {
+                        @Override
+                        public void onSuccess() {
+                            resultListener.onSuccess();
+                        }
+
+                        @Override
+                        public void onFailure() {
+                            resultListener.onFailure();
+                        }
+                    });
                         break;
                     default:
                         EventBus.getDefault().post(new MessageEvent(friend.getStatus().getMessage()));
                         break;
                 }
-                resultListener.onSuccess();
             }
 
             @Override
