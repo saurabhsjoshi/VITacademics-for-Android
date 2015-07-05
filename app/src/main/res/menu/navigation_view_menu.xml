@@ -10,14 +10,14 @@
             android:title="Today"/>
 
         <item
-            android:id="@+id/drawer_favourite"
-            android:icon="@mipmap/ic_launcher"
-            android:title="Time Table"/>
-
-        <item
             android:id="@+id/drawer_courses"
             android:icon="@mipmap/ic_school_black_24dp"
             android:title="Courses"/>
+
+        <item
+            android:id="@+id/drawer_favourite"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Time Table"/>
 
         <item
             android:id="@+id/drawer_friends"
@@ -25,9 +25,20 @@
             android:title="Friends"/>
 
         <item
+            android:id="@+id/drawer_messages"
+            android:icon="@mipmap/ic_settings_black_24dp"
+            android:title="Messages"/>
+
+    </group>
+    <group
+        android:checkableBehavior="single">
+        <item
             android:id="@+id/drawer_settings"
             android:icon="@mipmap/ic_settings_black_24dp"
             android:title="Settings"/>
-
+        <item
+            android:id="@+id/drawer_about"
+            android:icon="@mipmap/ic_settings_black_24dp"
+            android:title="About"/>
     </group>
 </menu>

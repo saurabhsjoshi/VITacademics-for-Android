@@ -33,9 +33,11 @@ import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
+import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
+import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
 import com.karthikb351.vitinfo2.fragment.today.MainFragment;
 import com.karthikb351.vitinfo2.utility.DataHolder;
@@ -139,10 +141,16 @@ public class MainActivity extends AppCompatActivity {
                         frag = FriendsFragment.newInstance();
                         pos = 3;
                         break;
+                    case "Messages":
+                        frag = MessagesFragment.newInstance();
+                        pos = 4;
                     case "Settings":
                         frag = SettingsFragment.newInstance();
-                        pos = 4;
+                        pos = 5;
                         break;
+                    case "About":
+                        frag= AboutFragment.newInstance();
+                        pos = 6;
                 }
                 ft.replace(R.id.flContent, frag, topics[pos]).addToBackStack(null).commit();
 

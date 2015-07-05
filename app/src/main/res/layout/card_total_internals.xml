@@ -53,7 +53,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_scored_marks"
+            android:id="@+id/tv_scored_marks_total"
             android:text="35/"
             android:textSize="40dp"
             android:textColor="@color/primary_text_default_material_light"
@@ -65,7 +65,7 @@
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_max_marks"
+        android:id="@+id/tv_max_marks_total"
         android:textSize="40dp"
         android:text="50"
         android:paddingRight="10dp"

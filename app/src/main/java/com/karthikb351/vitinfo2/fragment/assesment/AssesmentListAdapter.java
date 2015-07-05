@@ -1,3 +1,21 @@
+/*
+ * VITacademics
+ * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.karthikb351.vitinfo2.fragment.assesment;
 
 import android.content.Context;
@@ -13,9 +31,8 @@ import com.karthikb351.vitinfo2.contract.Assessment;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Marks;
 
-/**
- * Created by gaurav on 5/7/15.
- */
+import org.w3c.dom.Text;
+
 public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdapter.AssesmentViewHolder> {
 
 
@@ -41,7 +58,6 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
 
     @Override
     public void onBindViewHolder(AssesmentViewHolder holder, int position) {
-        //TODO: Set text for Marks card
         holder.assessmentType.setText(assesments[position-1].getTitle());
         holder.maxMarks.setText(Double.toString(assesments[position-1].getMaxMarks()));
         holder.scoredMarks.setText(Double.toString(assesments[position-1].getScoredMarks())+"/");
@@ -49,6 +65,8 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
         Double contribution=assesments[position-1].getScoredPercentage()*assesments[position-1].getWeightage();
         holder.contribution.setText(Double.toString(contribution));
         holder.marksProgressBar.setProgress((int)assesments[position-1].getScoredPercentage());
+        holder.totalScored.setText(Double.toString(marks.getScoredMarks()));
+        holder.totalMax.setText(Double.toString(marks.getMaxMarks()));
     }
 
     @Override
@@ -67,17 +85,20 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
 
     public class AssesmentViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView assessmentType,maxMarks,scoredMarks,weightage,contribution;
+        public TextView assessmentType,maxMarks,scoredMarks,weightage,contribution,courseCode,courseName,totalScored,totalMax;
         public ProgressBar marksProgressBar;
         public AssesmentViewHolder(View view){
             super(view);
-            // TODO: Intialise marks card attributes
             assessmentType=(TextView)view.findViewById(R.id.tv_marks_type);
             maxMarks=(TextView)view.findViewById(R.id.tv_max_marks);
             scoredMarks=(TextView)view.findViewById(R.id.tv_scored_marks);
             weightage=(TextView)view.findViewById(R.id.tv_weightage);
             contribution=(TextView)view.findViewById(R.id.tv_contribution);
             marksProgressBar=(ProgressBar)view.findViewById(R.id.progress_bar_marks);
+            courseCode=(TextView)view.findViewById(R.id.course_code);
+            courseName=(TextView)view.findViewById(R.id.course_name);
+            totalMax=(TextView)view.findViewById(R.id.tv_max_marks_total);
+            totalScored=(TextView)view.findViewById(R.id.tv_scored_marks_total);
 
         }
     }
