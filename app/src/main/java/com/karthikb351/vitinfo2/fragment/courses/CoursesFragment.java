@@ -28,7 +28,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
@@ -45,7 +44,6 @@ public class CoursesFragment extends Fragment {
     CourseListAdapter courseListAdapter;
     ArrayList<Course> courses;
     List<Course> courseList;
-    MainActivity mainActivity;
     View rootView ;
 
     public CoursesFragment() {
