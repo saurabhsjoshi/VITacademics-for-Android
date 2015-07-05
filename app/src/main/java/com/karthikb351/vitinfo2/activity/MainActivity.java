@@ -20,8 +20,6 @@
 
 package com.karthikb351.vitinfo2.activity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -33,17 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.contract.Contributor;
-import com.karthikb351.vitinfo2.contract.Course;
-import com.karthikb351.vitinfo2.contract.Friend;
-import com.karthikb351.vitinfo2.contract.Grade;
-import com.karthikb351.vitinfo2.contract.GradeCount;
-import com.karthikb351.vitinfo2.contract.Message;
-import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
-import com.karthikb351.vitinfo2.contract.WithdrawnCourse;
-import com.karthikb351.vitinfo2.event.RefreshActivityEvent;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
@@ -53,11 +41,9 @@ import com.karthikb351.vitinfo2.fragment.today.MainFragment;
 import com.karthikb351.vitinfo2.utility.DataHolder;
 import com.karthikb351.vitinfo2.utility.Network;
 import com.karthikb351.vitinfo2.utility.ResultListener;
-import com.orm.SugarTransactionHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
@@ -69,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     private String topics[];
     private DrawerLayout drawerLayout;
     private ListView lv;
-
 
 
     @Override
@@ -87,18 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
     }
 
     @Override
@@ -187,7 +160,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.flContent, new MainFragment(), "mainFragment").commit();
     }
 
-    public void onEventMainThread(RefreshActivityEvent refreshActivityEvent) {
+    public void pullToRefresh() {
+        // TODO Put this where it is appropriate
+        // TODO progress
         DataHolder.refreshData(MainActivity.this, new ResultListener() {
             @Override
             public void onSuccess() {
@@ -197,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure() {
-
+                // TODO handle error
             }
         });
     }

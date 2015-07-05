@@ -33,13 +33,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.event.MessageEvent;
-import com.karthikb351.vitinfo2.event.RefreshActivityEvent;
+import com.karthikb351.vitinfo2.utility.DataHolder;
 import com.karthikb351.vitinfo2.utility.Network;
+import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -49,10 +48,9 @@ import de.greenrobot.event.EventBus;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    String campus = Constants.CAMPUS_VELLORE;
     private int refreshStatus;
-
     private Network network;
-
     private EditText editTextRegisterNumber, editTextDateOfBirth, editTextMobileNumber;
     private Button buttonLogin;
     private RadioGroup radioGroupCampus;
@@ -61,7 +59,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private DatePickerDialog.OnDateSetListener date;
     private ProgressBar progressBar;
     private int progress;
-    String campus= Constants.CAMPUS_VELLORE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +85,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.button_login:
                 refreshStatus = 0;
-                progress=0;
-                network =Network.getNetworkSingleton(LoginActivity.this,campus,
+                progress = 0;
+                network = Network.getNetworkSingleton(LoginActivity.this, campus,
                         editTextRegisterNumber.getText().toString(),
                         editTextDateOfBirth.getText().toString(),
                         editTextMobileNumber.getText().toString());
@@ -130,7 +127,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         radioVelloreCampus = (RadioButton) findViewById(R.id.select_vellore);
         radioChennaiCampus = (RadioButton) findViewById(R.id.select_chennai);
         buttonLogin = (Button) findViewById(R.id.button_login);
-        progressBar=(ProgressBar)findViewById(R.id.progress_bar_login);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar_login);
         buttonLogin.setOnClickListener(this);
         editTextDateOfBirth.setOnClickListener(this);
 
@@ -140,11 +137,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 switch (checkedId) {
                     case R.id.select_chennai:
-                        campus=Constants.CAMPUS_CHENNAI;
+                        campus = Constants.CAMPUS_CHENNAI;
                         editTextMobileNumber.setFocusable(false);
                         break;
                     case R.id.select_vellore:
-                        campus=Constants.CAMPUS_VELLORE;
+                        campus = Constants.CAMPUS_VELLORE;
                         editTextMobileNumber.setFocusable(true);
                         break;
 
@@ -167,11 +164,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         new DatePickerDialog(this, date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    public void onEventMainThread(RefreshActivityEvent refreshActivityEvent) {
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-    }
+    public void loginToServer() {
+        // TODO put this where it is appropriate
+        // TODO progress and progress steps as well
+        DataHolder.refreshData(LoginActivity.this, new ResultListener() {
+            @Override
+            public void onSuccess() {
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            }
 
-    public void onEventMainThread(MessageEvent messageEvent) {
-        Toast.makeText(LoginActivity.this, messageEvent.getMessage(), Toast.LENGTH_SHORT).show();
+            @Override
+            public void onFailure() {
+                // TODO handle error
+            }
+        });
     }
 }
