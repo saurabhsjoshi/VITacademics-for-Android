@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ VITacademics
+  ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content">
     <LinearLayout
@@ -9,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/course_name"
+            android:id="@+id/course_code"
             android:text="CSE101"
             android:textStyle="bold"
             android:textSize="30sp"
@@ -19,12 +35,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/course_code"
+            android:id="@+id/course_name"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="Computer Programming and Problem Solving"
             android:textStyle="italic"
             android:textAlignment="center"
+            android:gravity="center"
             android:textSize="20sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary"
@@ -112,51 +129,50 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Miss - "
+            android:text="Miss (-) "
             android:textSize="17sp"
             android:textColor="@color/primary_text_default_material_light"
             android:layout_weight="1"
             android:id="@+id/button_miss"
             android:layout_below="@+id/tv_attendance_status"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_toLeftOf="@+id/button_attend"
+            android:layout_toStartOf="@+id/button_attend" />
 
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Attend +"
+            android:text="Attend (+)"
             android:textSize="17sp"
-            android:layout_marginTop="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/button_miss"
             android:textColor="@color/primary_text_default_material_light"
             android:id="@+id/button_attend"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_below="@+id/tv_attendance_status"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20"
-            android:textSize="20sp"
+            android:text="20/"
+            android:textSize="30sp"
             android:textColor="@color/primary_text_default_material_light"
             android:id="@+id/tv_attended"
-            android:layout_above="@+id/tv_total_classes"
+            android:layout_below="@+id/tv_attendance_status"
             android:layout_toRightOf="@+id/tv_attendance_percent"
             android:layout_toEndOf="@+id/tv_attendance_percent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp" />
+            android:layout_marginLeft="23dp"
+            android:layout_marginStart="23dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_total_classes"
             android:text="30"
-            android:layout_marginTop="6dp"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:textColor="@color/primary_text_default_material_light"
-            android:layout_alignTop="@+id/button_attend"
-            android:layout_alignLeft="@+id/tv_attended"
-            android:layout_alignStart="@+id/tv_attended" />
+            android:layout_alignTop="@+id/button_miss"
+            android:layout_toRightOf="@+id/tv_attended"
+            android:layout_toEndOf="@+id/tv_attended" />
 
 
 

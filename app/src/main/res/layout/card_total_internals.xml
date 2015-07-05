@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/card_view_assessment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5sp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/course_code"
+            android:text="CSE101"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/course_name"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Computer Programming and Problem Solving"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimary"
+            android:layout_below="@+id/course_code"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_total_score"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Total Internal Marks:"
+            android:textAlignment="center"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_alignTop="@+id/tv_scored_marks"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_scored_marks"
+            android:text="35/"
+            android:textSize="40dp"
+            android:style="bold"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_alignTop="@+id/tv_max_marks"
+            android:layout_toLeftOf="@+id/tv_max_marks"
+            android:layout_toStartOf="@+id/tv_max_marks" />
+
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_max_marks"
+        android:textSize="40dp"
+        android:style="bold"
+        android:text="50"
+        android:paddingRight="10dp"
+        android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/course_name"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+        <!-- <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_quiz1"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="QUIZ 1 : "
+            android:paddingLeft="10dp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tv_scored_marks" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_quiz1_marks"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="5"
+            android:layout_toRightOf="@+id/tv_quiz1"
+            android:layout_toEndOf="@+id/tv_quiz1"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_scored_marks" />
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_quiz2"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="QUIZ 2 : "
+            android:paddingLeft="10dp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tv_quiz1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_quiz2_marks"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="5"
+            android:layout_toRightOf="@+id/tv_quiz2"
+            android:layout_toEndOf="@+id/tv_quiz2"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_quiz1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_quiz3"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="QUIZ 3 : "
+            android:paddingLeft="10dp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tv_quiz2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_quiz3_marks"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="4"
+            android:layout_toRightOf="@+id/tv_quiz3"
+            android:layout_toEndOf="@+id/tv_quiz3"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_quiz2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_cat1"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="CAT 1 : "
+            android:layout_toLeftOf="@+id/tv_cat1_marks"
+            android:layout_toStartOf="@+id/tv_cat1_marks"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_quiz1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_cat1_marks"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="45"
+            android:paddingRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_quiz1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_cat2"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="CAT 2 : "
+            android:layout_toLeftOf="@+id/tv_cat2_marks"
+            android:layout_toStartOf="@+id/tv_cat2_marks"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_quiz2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_cat2_marks"
+            android:textSize="25dp"
+            android:style="bold"
+            android:text="35"
+            android:paddingRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_quiz2" />-->
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
