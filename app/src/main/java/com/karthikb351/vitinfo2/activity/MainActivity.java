@@ -39,7 +39,6 @@ import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
 import com.karthikb351.vitinfo2.fragment.today.MainFragment;
 import com.karthikb351.vitinfo2.utility.DataHolder;
-import com.karthikb351.vitinfo2.utility.Network;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.ArrayList;
@@ -49,18 +48,15 @@ import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int flag = 0;
-    private int refreshStatus;
-    private Network network;
     private String topics[];
     private DrawerLayout drawerLayout;
     private ListView lv;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         DataHolder.refreshData(MainActivity.this, new ResultListener() {
             @Override
             public void onSuccess() {
@@ -176,6 +172,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
