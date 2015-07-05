@@ -24,10 +24,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.karthikb351.vitinfo2.Constants;
-import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Friend;
-import com.karthikb351.vitinfo2.event.MessageEvent;
-import com.karthikb351.vitinfo2.event.SuccessEvent;
 import com.karthikb351.vitinfo2.response.GradesResponse;
 import com.karthikb351.vitinfo2.response.LoginResponse;
 import com.karthikb351.vitinfo2.response.RefreshResponse;
@@ -36,7 +33,6 @@ import com.karthikb351.vitinfo2.response.TokenResponse;
 import com.karthikb351.vitinfo2.utility.Database;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
-import de.greenrobot.event.EventBus;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
@@ -45,13 +41,11 @@ import retrofit.converter.GsonConverter;
 
 public class VITacademicsAPI {
 
-    private Context context;
     private Database database;
     private APIService service;
 
     public VITacademicsAPI(Context context) {
 
-        this.context = context;
         this.database = Database.getDatabaseSingleton(context);
 
         Gson gson = new GsonBuilder().create();
@@ -72,20 +66,6 @@ public class VITacademicsAPI {
         service.system(new Callback<SystemResponse>() {
             @Override
             public void success(SystemResponse systemResponse, Response response) {
-
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-            }
-        });
-    }
-
-    public void system(final SuccessEvent successEvent, final ResultListener resultListener) {
-        service.system(new Callback<SystemResponse>() {
-            @Override
-            public void success(SystemResponse systemResponse, Response response) {
                 switch (systemResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
                         database.saveSystem(systemResponse, new ResultListener() {
@@ -96,24 +76,26 @@ public class VITacademicsAPI {
 
                             @Override
                             public void onFailure() {
+                                // TODO Database error message
                                 resultListener.onFailure();
                             }
                         });
                         break;
                     default:
-                        EventBus.getDefault().post(new MessageEvent(systemResponse.getStatus().getMessage()));
+                        // TODO Server error message
+                        resultListener.onFailure();
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
+                // TODO HTTP client error message
                 resultListener.onFailure();
             }
         });
     }
 
-    public void refresh(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultListener resultListener) {
+    public void refresh(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
         service.refresh(campus, regno, dob, mobile, new Callback<RefreshResponse>() {
             @Override
             public void success(RefreshResponse refreshResponse, Response response) {
@@ -127,29 +109,31 @@ public class VITacademicsAPI {
 
                             @Override
                             public void onFailure() {
+                                // TODO Database error message
                                 resultListener.onFailure();
                             }
                         });
                         break;
                     case StatusCodes.TIMED_OUT:
-                        successEvent.setLoginRequired(true);
-                        login(campus, regno, dob, mobile, successEvent, resultListener);
+                        // TODO VITacademics session timed out
+                        resultListener.onFailure();
                         break;
                     default:
-                        EventBus.getDefault().post(new MessageEvent(refreshResponse.getStatus().getMessage()));
+                        // TODO Server error message
+                        resultListener.onFailure();
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
+                // TODO HTTP client error message
                 resultListener.onFailure();
             }
         });
     }
 
-    public void login(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultListener resultListener) {
+    public void login(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
         service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
@@ -163,26 +147,28 @@ public class VITacademicsAPI {
 
                             @Override
                             public void onFailure() {
+                                // TODO Database error message
                                 resultListener.onFailure();
                             }
                         });
                         break;
                     default:
-                        EventBus.getDefault().post(new MessageEvent(loginResponse.getStatus().getMessage()));
+                        // TODO Server error message
+                        resultListener.onFailure();
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
+                // TODO HTTP client error message
                 resultListener.onFailure();
             }
         });
 
     }
 
-    public void token(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultListener resultListener) {
+    public void token(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
         service.token(campus, regno, dob, mobile, new Callback<TokenResponse>() {
             @Override
             public void success(TokenResponse tokenResponse, Response response) {
@@ -196,26 +182,27 @@ public class VITacademicsAPI {
 
                             @Override
                             public void onFailure() {
+                                // TODO Database error message
                                 resultListener.onFailure();
                             }
                         });
                         break;
                     default:
-                        EventBus.getDefault().post(new MessageEvent(tokenResponse.getStatus().getMessage()));
+                        // TODO Server error message
+                        resultListener.onFailure();
                         break;
                 }
-                resultListener.onSuccess();
             }
 
             @Override
             public void failure(RetrofitError error) {
-                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
+                // TODO HTTP client error message
                 resultListener.onFailure();
             }
         });
     }
 
-    public void grades(final String campus, final String regno, final String dob, final String mobile, final SuccessEvent successEvent, final ResultListener resultListener) {
+    public void grades(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
         service.grades(campus, regno, dob, mobile, new Callback<GradesResponse>() {
             @Override
             public void success(GradesResponse gradesResponse, Response response) {
@@ -229,23 +216,25 @@ public class VITacademicsAPI {
 
                             @Override
                             public void onFailure() {
+                                // TODO Database error message
                                 resultListener.onFailure();
                             }
                         });
                         break;
                     case StatusCodes.TIMED_OUT:
-                        successEvent.setLoginRequired(true);
-                        login(campus, regno, dob, mobile, successEvent, resultListener);
+                        // TODO VITacademics session timed out
+                        resultListener.onFailure();
                         break;
                     default:
-                        EventBus.getDefault().post(new MessageEvent(gradesResponse.getStatus().getMessage()));
+                        // TODO Server error message
+                        resultListener.onFailure();
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
+                // TODO HTTP client error message
                 resultListener.onFailure();
             }
         });
@@ -265,19 +254,21 @@ public class VITacademicsAPI {
 
                             @Override
                             public void onFailure() {
+                                // TODO Database error
                                 resultListener.onFailure();
                             }
                         });
                         break;
                     default:
-                        EventBus.getDefault().post(new MessageEvent(friend.getStatus().getMessage()));
+                        // TODO Server error message
+                        resultListener.onFailure();
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
+                // TODO HTTP client error message
                 resultListener.onFailure();
             }
         });
@@ -290,26 +281,28 @@ public class VITacademicsAPI {
                 switch (friend.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
                         database.saveFriend(friend, new ResultListener() {
-                        @Override
-                        public void onSuccess() {
-                            resultListener.onSuccess();
-                        }
+                            @Override
+                            public void onSuccess() {
+                                resultListener.onSuccess();
+                            }
 
-                        @Override
-                        public void onFailure() {
-                            resultListener.onFailure();
-                        }
-                    });
+                            @Override
+                            public void onFailure() {
+                                // TODO Database error
+                                resultListener.onFailure();
+                            }
+                        });
                         break;
                     default:
-                        EventBus.getDefault().post(new MessageEvent(friend.getStatus().getMessage()));
+                        // TODO Server error message
+                        resultListener.onFailure();
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                EventBus.getDefault().post(context.getString(R.string.api_system_fail));
+                // TODO HTTP client error message
                 resultListener.onFailure();
             }
         });
