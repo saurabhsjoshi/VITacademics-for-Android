@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ VITacademics
+  ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/card_view_assessment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5sp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_course_code"
+            android:text="CSE101"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/course_name"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Computer Programming and Problem Solving"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimary"
+            android:layout_below="@+id/course_code"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/course_type"
+            android:text="CBL"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_alignTop="@+id/course_name"
+            android:layout_marginTop="45dp"
+            android:textSize="23sp"
+            android:style="bold"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/primary_text_default_material_light"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_course_credit"
+            android:paddingLeft="5dp"
+            android:layout_alignTop="@+id/course_name"
+            android:textSize="23sp"
+            android:layout_marginTop="45dp"
+            android:paddingRight="5dp"
+            android:text="4"
+            android:style="bold"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/primary_text_default_material_light"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_grade"
+            android:textSize="30dp"
+            android:style="bold"
+            android:layout_centerHorizontal="true"
+            android:text="GRADE : "
+            android:paddingLeft="10dp"
+            android:textColor="#ff2fc700"
+            android:layout_below="@+id/tv_course_credit" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_grade_result"
+            android:textSize="30dp"
+            android:style="bold"
+            android:text="A"
+            android:layout_toRightOf="@+id/tv_grade"
+            android:layout_toEndOf="@+id/tv_grade"
+            android:textColor="#ff2fc700"
+            android:layout_below="@+id/tv_course_credit" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_exam_held"
+            android:textSize="23dp"
+            android:style="bold"
+            android:text="Exam Held"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_grade_result" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_result_date"
+            android:textSize="23dp"
+            android:style="bold"
+            android:text="Result Date"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_grade_result" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_option"
+            android:textSize="23dp"
+            android:style="bold"
+            android:text="option"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_below="@+id/tv_result_date" />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
