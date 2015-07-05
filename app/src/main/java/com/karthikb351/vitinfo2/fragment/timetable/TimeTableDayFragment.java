@@ -36,6 +36,7 @@ import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.fragment.today.TodayListAdapter;
+import com.karthikb351.vitinfo2.utility.DataHolder;
 import com.karthikb351.vitinfo2.utility.SortedArrayList;
 
 import java.util.ArrayList;
@@ -87,7 +88,7 @@ public class TimeTableDayFragment extends Fragment {
         protected ArrayList<Course> doInBackground(Void... params)
         {
             ArrayList<Course> finalArray = new ArrayList<>();
-            List<Course> courses =  ((MainActivity) getActivity()).getCourses();
+            List<Course> courses =  DataHolder.getCourses();
             for(Course c : courses)
             {
                 for(int i = 0 ; i < c.getTimings().length ; i++)

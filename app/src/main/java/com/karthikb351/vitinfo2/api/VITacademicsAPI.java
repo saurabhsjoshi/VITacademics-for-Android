@@ -52,7 +52,7 @@ public class VITacademicsAPI {
     public VITacademicsAPI(Context context) {
 
         this.context = context;
-        this.database = new Database(context);
+        this.database = Database.getDatabaseSingleton(context);
 
         Gson gson = new GsonBuilder().create();
         RestAdapter restAdapter = new RestAdapter.Builder()

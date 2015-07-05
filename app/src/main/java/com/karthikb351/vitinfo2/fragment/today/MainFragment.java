@@ -35,6 +35,7 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.utility.DataHolder;
 import com.karthikb351.vitinfo2.utility.SortedArrayList;
 
 import java.util.ArrayList;
@@ -85,7 +86,7 @@ public class MainFragment extends Fragment {
         {
             int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
             SortedArrayList finalArray =  new SortedArrayList();
-            List<Course> courses =  ((MainActivity) getActivity()).getCourses();
+            List<Course> courses =  DataHolder.getCourses();
             for(Course c : courses)
             {
                 for(int i = 0 ; i < c.getTimings().length ; i++)

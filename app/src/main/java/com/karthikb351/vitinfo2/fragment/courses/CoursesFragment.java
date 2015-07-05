@@ -31,6 +31,7 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.utility.DataHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class CoursesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RecyclerView.LayoutManager courseLayoutManager=new LinearLayoutManager(getActivity());
-        courseList=mainActivity.getCourses();
+        courseList= DataHolder.getCourses();
         courses = new ArrayList<>(courseList);
         View view=inflater.inflate(R.layout.courses,container,false);
         courseListAdapter=new CourseListAdapter(getActivity(),courses);

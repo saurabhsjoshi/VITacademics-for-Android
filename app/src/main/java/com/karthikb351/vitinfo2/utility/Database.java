@@ -47,10 +47,19 @@ import de.greenrobot.event.EventBus;
 
 public class Database {
 
+    public static Database database;
+
     private SharedPreferences sharedPreferences;
 
-    public Database(Context context) {
+    private Database(Context context) {
         this.sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+    }
+
+    public static Database getDatabaseSingleton(Context context) {
+        if (database != null) {
+            database = new Database(context);
+        }
+        return database;
     }
 
     public void saveSystem(final SystemResponse systemResponse, final ResultListener resultListener) {

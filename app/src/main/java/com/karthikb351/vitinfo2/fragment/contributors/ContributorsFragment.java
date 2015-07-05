@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Contributor;
+import com.karthikb351.vitinfo2.utility.DataHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,7 @@ public class ContributorsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         RecyclerView.LayoutManager contributorsLayoutManager=new LinearLayoutManager(getActivity());
-        contributorsList=mainActivity.getContributors();
+        contributorsList= DataHolder.getContributors();
         contributors=new ArrayList<>(contributorsList);
         View view=inflater.inflate(R.layout.contributors,container,false);
         contributorsListAdapter=new ContributorListAdapter(getActivity(),contributors);
