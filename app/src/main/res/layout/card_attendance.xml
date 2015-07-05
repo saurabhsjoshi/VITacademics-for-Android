@@ -1,110 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content">
-  <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="vertical">
-
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/course_name"
-        android:text="CSE101"
-        android:textSize="34sp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_gravity="center"/>
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/course_code"
-          android:text="Computer Programming and Problem Solving"
-          android:textSize="24sp"
-          android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-          android:textColor="@color/colorPrimary"
-          android:layout_gravity="center_horizontal"
-          />
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="Room: "
-              android:textSize="20sp"/>
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="SJT 405"
-              android:id="@+id/tv_course_room"
-              android:textSize="20sp"
-              android:layout_weight="1"/>
-          <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Slot: "
-          android:textSize="20sp"/>
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="A1"
-              android:id="@+id/course_slot"
-              android:textSize="20sp"/>
-      </LinearLayout>
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="DEBARRED"
-          android:id="@+id/tv_attendance_status"
-          android:textSize="@dimen/abc_text_size_headline_material"
-          android:layout_gravity="center"/>
-      <ProgressBar
-          style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:progress="80"
-          />
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/course_name"
+            android:text="CSE101"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/course_code"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Computer Programming and Problem Solving"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/colorPrimary"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room: "
+                android:textColor="@color/primary_text_default_material_light"
+                android:textSize="20sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SJT 405"
+                android:textColor="@color/primary_text_default_material_light"
+                android:id="@+id/tv_course_room"
+                android:textSize="20sp"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text_default_material_light"
+                android:text="Slot: "
+                android:textSize="20sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A1"
+                android:textColor="@color/primary_text_default_material_light"
+                android:id="@+id/course_slot"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_course_details"
+            android:layout_alignTop="@+id/net_per">
+            <ProgressBar
+                android:id="@+id/progress_bar_attendance"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:indeterminate="false"
+                android:layout_width="fill_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_height="150dp"
+                android:layout_margin="7dp"
+                android:max="100"
+                android:progress="60"
+                android:progressDrawable="@drawable/ring_attendance_red" />
+
+            <TextView
+                android:id="@+id/net_per"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:text="60%"
+                android:textSize="35sp"
+                android:layout_gravity="center_horizontal" />
+        </RelativeLayout>
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DEBARRED"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text_default_material_light"
+            android:id="@+id/tv_attendance_status"
+            android:textSize="@dimen/abc_text_size_headline_material"
+            android:gravity="center"
+            android:layout_centerHorizontal="true" />
         <Button
-          style="?android:attr/buttonStyleSmall"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Miss - "
-          android:textColor="@color/button_material_dark"
-          android:layout_weight="1"
-          android:id="@+id/button_miss" />
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Miss - "
+            android:textSize="17sp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_weight="1"
+            android:id="@+id/button_miss"
+            android:layout_below="@+id/tv_attendance_status"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <Button
-          style="?android:attr/buttonStyleSmall"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Attend +"
-          android:textColor="@color/button_material_dark"
-          android:id="@+id/button_attend"
-          android:layout_weight="1"
-          android:layout_gravity="center_horizontal" />
-      </LinearLayout>
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/tv_attended"/>
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Attend +"
+            android:textSize="17sp"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/button_miss"
+            android:textColor="@color/primary_text_default_material_light"
+            android:id="@+id/button_attend"
+            android:layout_weight="1" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:textSize="20sp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:id="@+id/tv_attended"
+            android:layout_above="@+id/tv_total_classes"
+            android:layout_toRightOf="@+id/tv_attendance_percent"
+            android:layout_toEndOf="@+id/tv_attendance_percent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp" />
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/tv_total_classes"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_total_classes"
+            android:text="30"
+            android:layout_marginTop="6dp"
+            android:textSize="20sp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:layout_alignTop="@+id/button_attend"
+            android:layout_alignLeft="@+id/tv_attended"
+            android:layout_alignStart="@+id/tv_attended" />
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/tv_attendance_percent"/>
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/tv_registered_on"/>
-  </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_attendance_percent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_registered_on"/>
+       </RelativeLayout>
+
+        </LinearLayout>
 </android.support.v7.widget.CardView>
