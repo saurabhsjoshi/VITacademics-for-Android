@@ -91,11 +91,25 @@ public class Network {
         return new Network(context, campus, registerNumber, dateOfBirth, mobileNumber);
     }
 
+    public void dispatchRequests(RequestConfig requestConfig) {
+
+    }
+
     public void getAllFriends() {
         List<Friend> friends = Friend.listAll(Friend.class);
         friendCount = friends.size();
         for(Friend friend : friends) {
-            viTacademicsAPI.share(friend.getCampus(), friend.getRegisterNumber(), friend.getDateOfBirth(), friend.getMobileNumber(), this.registerNumber);
+            viTacademicsAPI.share(friend.getCampus(), friend.getRegisterNumber(), friend.getDateOfBirth(), friend.getMobileNumber(), this.registerNumber, new ResultCallback() {
+                @Override
+                public void success() {
+
+                }
+
+                @Override
+                public void failure() {
+
+                }
+            });
         }
     }
 
@@ -103,7 +117,17 @@ public class Network {
         refreshed = false;
         refreshedFriends = 0;
         SuccessEvent successEvent = new SuccessEvent(false, false, false, false, false);
-        viTacademicsAPI.system(successEvent);
+        viTacademicsAPI.system(successEvent, new ResultCallback() {
+            @Override
+            public void success() {
+
+            }
+
+            @Override
+            public void failure() {
+
+            }
+        });
     }
 
     @Override
@@ -115,7 +139,17 @@ public class Network {
     public void onEvent(SuccessEvent successEvent) {
         if (successEvent.isSystemDone()) {
             if (successEvent.isLoginRequired()) {
-                viTacademicsAPI.login(campus, registerNumber, dateOfBirth, mobileNumber, successEvent);
+                viTacademicsAPI.login(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultCallback() {
+                    @Override
+                    public void success() {
+
+                    }
+
+                    @Override
+                    public void failure() {
+
+                    }
+                });
             }
             else {
                 if (successEvent.isRefreshDone() && successEvent.isGradesDone()) {
@@ -124,22 +158,62 @@ public class Network {
                         EventBus.getDefault().post(new RefreshEvent());
                     }
                     else {
-                        viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber, successEvent);
+                        viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultCallback() {
+                            @Override
+                            public void success() {
+
+                            }
+
+                            @Override
+                            public void failure() {
+
+                            }
+                        });
                     }
                 }
                 else {
                     if (successEvent.isRefreshDone()) {
-                        viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber, successEvent);
+                        viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultCallback() {
+                            @Override
+                            public void success() {
+
+                            }
+
+                            @Override
+                            public void failure() {
+
+                            }
+                        });
                     }
                     else {
-                        viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber, successEvent);
+                        viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultCallback() {
+                            @Override
+                            public void success() {
+
+                            }
+
+                            @Override
+                            public void failure() {
+
+                            }
+                        });
                     }
                 }
             }
             getAllFriends();
         }
         else {
-            viTacademicsAPI.system(successEvent);
+            viTacademicsAPI.system(successEvent, new ResultCallback() {
+                @Override
+                public void success() {
+
+                }
+
+                @Override
+                public void failure() {
+
+                }
+            });
         }
     }
 
@@ -153,4 +227,6 @@ public class Network {
             EventBus.getDefault().post(new RefreshActivityEvent());
         }
     }
+
+
 }
