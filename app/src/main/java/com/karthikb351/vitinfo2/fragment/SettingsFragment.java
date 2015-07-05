@@ -30,8 +30,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.Kartitk.licensefragment.model.LicenseID;
-import com.Kartitk.licensefragment.support.v4.RecyclerViewLicenseFragment;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.LoginActivity;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;

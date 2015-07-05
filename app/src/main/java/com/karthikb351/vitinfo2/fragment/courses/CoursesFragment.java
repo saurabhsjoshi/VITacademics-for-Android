@@ -31,10 +31,13 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.utility.DataHolder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 public class CoursesFragment extends Fragment {
 
@@ -43,6 +46,7 @@ public class CoursesFragment extends Fragment {
     ArrayList<Course> courses;
     List<Course> courseList;
     MainActivity mainActivity;
+    View rootView ;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -54,23 +58,51 @@ public class CoursesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        rootView=inflater.inflate(R.layout.courses,container,false);
+        initialize();
+        return rootView;
+    }
+
+    void initialize()
+    {
         RecyclerView.LayoutManager courseLayoutManager=new LinearLayoutManager(getActivity());
         courseList= DataHolder.getCourses();
         courses = new ArrayList<>(courseList);
-        View view=inflater.inflate(R.layout.courses,container,false);
         courseListAdapter=new CourseListAdapter(getActivity(),courses);
-        recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_courses);
+        recyclerView=(RecyclerView)rootView.findViewById(R.id.recycler_view_courses);
         courseListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
             @Override
-            public void onItemClick(Course data) {
-                // add on item click functionality
+            public void onItemClick(Course data)
+            {
+             onListItemClick(data);
             }
         });
         recyclerView.setLayoutManager(courseLayoutManager);
         recyclerView.setAdapter(courseListAdapter);
-        return view;
     }
 
+    void onListItemClick(Course course)
+    {
+        // add on item click functionality
+    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause()
+    {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+    }
+
+    // This method will be called when a RefreshFragmentEvent is posted
+    public void onEvent(RefreshFragmentEvent event)
+    {
+     initialize();
+    }
 }

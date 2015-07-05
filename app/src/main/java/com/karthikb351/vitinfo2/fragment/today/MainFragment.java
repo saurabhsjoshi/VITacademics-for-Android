@@ -35,12 +35,15 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.utility.DataHolder;
 import com.karthikb351.vitinfo2.utility.SortedArrayList;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 public class MainFragment extends Fragment {
 
@@ -49,6 +52,7 @@ public class MainFragment extends Fragment {
     RecyclerView todayRecyclerView;
     TodayListAdapter todayListAdapter;
     ProgressBar load ;
+    View rootView ;
 
     public MainFragment() {
     }
@@ -61,17 +65,22 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        load = (ProgressBar)rootView.findViewById(R.id.todayProgressBar);
-        todayRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_today);
-        getActivity().setTitle("Today");
-        new loadToday().execute();
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        initialize();
         return rootView;
     }
 
      void onListItemClicked(Course course)
      {
          //TODO: implement redirection on itemclick
+     }
+
+     void initialize()
+     {
+         load = (ProgressBar)rootView.findViewById(R.id.todayProgressBar);
+         todayRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_today);
+         getActivity().setTitle("Today");
+         new loadToday().execute();
      }
 
     class loadToday extends AsyncTask<Void,Void,ArrayList<Pair<Course,Integer>>>
@@ -112,6 +121,26 @@ public class MainFragment extends Fragment {
            todayRecyclerView.setAdapter(todayListAdapter);
         }
 
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause()
+    {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+    }
+
+    // This method will be called when a RefreshFragmentEvent is posted
+    public void onEvent(RefreshFragmentEvent event)
+    {
+        initialize();
     }
 
     @Override

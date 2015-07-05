@@ -35,6 +35,8 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.contract.Friend;
+import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.today.TodayListAdapter;
 import com.karthikb351.vitinfo2.utility.DataHolder;
 import com.karthikb351.vitinfo2.utility.SortedArrayList;
@@ -42,6 +44,8 @@ import com.karthikb351.vitinfo2.utility.SortedArrayList;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 
 public class TimeTableDayFragment extends Fragment {
@@ -51,6 +55,7 @@ public class TimeTableDayFragment extends Fragment {
     RecyclerView recyclerview;
     ProgressBar load ;
     int dayOfWeek;
+    View rootView;
 
     public static TimeTableDayFragment newInstance(int dayOfWeek) {
         TimeTableDayFragment fragment = new TimeTableDayFragment();
@@ -65,16 +70,48 @@ public class TimeTableDayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.timetable_day_fragment, container, false);
-        recyclerview = (RecyclerView)view.findViewById(R.id.recycler_view_timetable);
-        load = (ProgressBar)view.findViewById(R.id.timeTableProgressBar);
-        new LoadData().execute();
-        return view;
+        View rootView =  inflater.inflate(R.layout.timetable_day_fragment, container, false);
+        initialize();
+        return rootView;
     }
+
+    void initialize()
+    {
+        recyclerview = (RecyclerView)rootView.findViewById(R.id.recycler_view_timetable);
+        load = (ProgressBar)rootView.findViewById(R.id.timeTableProgressBar);
+        new LoadData().execute();
+    }
+
+
 
     void onListItemClicked(Course course)
     {
         //TODO: implement redirection on itemclick
+    }
+
+    void onListItemClick(Friend friend)
+    {
+        // add on item click functionality
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause()
+    {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+    }
+
+    // This method will be called when a RefreshFragmentEvent is posted
+    public void onEvent(RefreshFragmentEvent event)
+    {
+        initialize();
     }
 
     class LoadData extends AsyncTask<Void,Void,ArrayList<Course>>

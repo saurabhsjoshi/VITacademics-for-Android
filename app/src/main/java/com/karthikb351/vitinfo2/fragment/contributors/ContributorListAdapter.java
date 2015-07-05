@@ -65,4 +65,5 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
 
         }
     }
+
 }

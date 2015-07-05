@@ -29,15 +29,20 @@ import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Friend;
+import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 
 import java.util.ArrayList;
+
+import de.greenrobot.event.EventBus;
 
 public class FriendsFragment extends Fragment {
 
     ArrayList<Friend> friends ;
     RecyclerView friendsRecyclerView;
     FriendsListAdapter adapter ;
+    View rootView;
 
     public FriendsFragment() {
         // Required empty public constructor
@@ -51,19 +56,49 @@ public class FriendsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_friends, container, false);
+        rootView = inflater.inflate(R.layout.fragment_friends, container, false);
+        initialize();
+        return rootView ;
+    }
+
+    void initialize()
+    {
         friends = new ArrayList<Friend>();
         RecyclerView.LayoutManager friendsLayoutManager = new LinearLayoutManager(getActivity());
         adapter = new FriendsListAdapter(getActivity(),friends);
-        friendsRecyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_friends);
+        friendsRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_friends);
         friendsRecyclerView.setLayoutManager(friendsLayoutManager);
         friendsRecyclerView.setAdapter(adapter);
         adapter.setOnclickListener(new RecyclerViewOnClickListener<Friend>() {
             @Override
             public void onItemClick(Friend data) {
-                // on item click functionality
+                onListItemClick(data);
             }
         });
-        return view ;
+    }
+
+    void onListItemClick(Friend friend)
+    {
+        // add on item click functionality
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause()
+    {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+    }
+
+    // This method will be called when a RefreshFragmentEvent is posted
+    public void onEvent(RefreshFragmentEvent event)
+    {
+        initialize();
     }
 }

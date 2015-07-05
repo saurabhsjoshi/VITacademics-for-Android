@@ -86,6 +86,6 @@ public class ContributorsFragment extends Fragment {
 
     // This method will be called when a RefreshFragmentEvent is posted
     public void onEvent(RefreshFragmentEvent event) {
-        // get data and reinitialize layouts
+        getDataAndInitailse();
     }
 }
