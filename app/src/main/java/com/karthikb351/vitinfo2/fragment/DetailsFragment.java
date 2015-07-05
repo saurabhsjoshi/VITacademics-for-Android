@@ -1,4 +1,4 @@
-package com.karthikb351.vitinfo2.fragment.details;
+package com.karthikb351.vitinfo2.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
