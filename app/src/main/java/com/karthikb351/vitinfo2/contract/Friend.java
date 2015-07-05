@@ -52,7 +52,7 @@ public class Friend extends SugarRecord<Friend> {
     private String semester;
 
     @Expose
-    @SerializedName("course")
+    @SerializedName("courses")
     private FriendCourse[] courses;
 
     @Expose
