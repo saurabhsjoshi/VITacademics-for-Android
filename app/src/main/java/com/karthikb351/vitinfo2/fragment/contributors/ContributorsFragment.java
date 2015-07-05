@@ -74,14 +74,14 @@ public class ContributorsFragment extends Fragment {
 
     @Override
     public void onResume() {
-        super.onStart();
+        super.onResume();
         EventBus.getDefault().register(this);
     }
 
     @Override
     public void onPause() {
         EventBus.getDefault().unregister(this);
-        super.onStop();
+        super.onPause();
     }
 
     // This method will be called when a RefreshFragmentEvent is posted
