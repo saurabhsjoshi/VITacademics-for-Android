@@ -59,7 +59,7 @@ public class SettingsFragment extends ListFragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+           super.onActivityCreated(savedInstanceState);
         getActivity().setTitle("Settings");
         settingsTopics = getResources().getStringArray(R.array.settingsTopic);
         settingsList = Arrays.asList(settingsTopics);
@@ -79,15 +79,7 @@ public class SettingsFragment extends ListFragment {
                 break;
             case 1: //Licenses
                 getActivity().setTitle("Open Source Licenses");
-                ArrayList<Integer> LicenseIds = new ArrayList<>();
-                LicenseIds.add(LicenseID.GSON);
-                LicenseIds.add(LicenseID.RETROFIT);
-                //License eventbus=new License(getActivity(),"Event Bus", LicenseType.APACHE_LICENSE_20,"2002","greenrobot");
-                //LicenseIds.add(eventbus.i);
-                Fragment LicenseFragment = RecyclerViewLicenseFragment.newInstance(LicenseIds);
-                this.getFragmentManager().beginTransaction()
-                        .replace(R.id.flContent, LicenseFragment, null)
-                        .addToBackStack(null).commit();
+                LicensesFragment.displayLicensesFragment(getFragmentManager());
                 break;
             case 2: //Contributors
                 ContributorsFragment contributorsFragment = new ContributorsFragment();
