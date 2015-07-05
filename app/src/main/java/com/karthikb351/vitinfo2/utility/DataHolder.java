@@ -1,3 +1,22 @@
+/*
+ * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+ * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.karthikb351.vitinfo2.utility;
 
 import android.content.Context;
@@ -17,11 +36,8 @@ import com.orm.SugarTransactionHelper;
 
 import java.util.List;
 
-/**
- * Created by karthikbalakrishnan on 05/07/15.
- */
 public class DataHolder {
-    // User data
+
     private static String registerNumber;
     private static String dateOfBirth;
     private static String mobileNumber;
@@ -42,7 +58,7 @@ public class DataHolder {
     private static String token;
     private static String tokenIssued;
 
-    public static void refreshData(final Context c, final ResultListener resultListener) {
+    public static void refreshData(final Context context, final ResultListener resultListener) {
 
         new AsyncTask<Boolean, Void, Boolean>() {
 
@@ -70,11 +86,11 @@ public class DataHolder {
             }
 
             @Override
-            protected void onPostExecute(Boolean s) {
-                super.onPostExecute(s);
-                if (s) {
+            protected void onPostExecute(Boolean result) {
+                super.onPostExecute(result);
+                if (result) {
 
-                    SharedPreferences sharedPreferences = c.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+                    SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
 
                     campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
                     registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
