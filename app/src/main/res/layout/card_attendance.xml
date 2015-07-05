@@ -1,5 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/course_name"
+        android:text="CSE101"
+        android:textSize="34sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_gravity="center"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/course_code"
+          android:text="Computer Programming and Problem Solving"
+          android:textSize="24sp"
+          android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+          android:textColor="@color/colorPrimary"
+          android:layout_gravity="center_horizontal"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Room: "
+              android:textSize="20sp"/>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="SJT 405"
+              android:id="@+id/tv_course_room"
+              android:textSize="20sp"
+              android:layout_weight="1"/>
+          <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Slot: "
+          android:textSize="20sp"/>
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="A1"
+              android:id="@+id/course_slot"
+              android:textSize="20sp"/>
+      </LinearLayout>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="DEBARRED"
+          android:id="@+id/tv_attendance_status"
+          android:textSize="@dimen/abc_text_size_headline_material"
+          android:layout_gravity="center"/>
+      <ProgressBar
+          style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:progress="80"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+        <Button
+          style="?android:attr/buttonStyleSmall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Miss - "
+          android:textColor="@color/button_material_dark"
+          android:layout_weight="1"
+          android:id="@+id/button_miss" />
+
+        <Button
+          style="?android:attr/buttonStyleSmall"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Attend +"
+          android:textColor="@color/button_material_dark"
+          android:id="@+id/button_attend"
+          android:layout_weight="1"
+          android:layout_gravity="center_horizontal" />
+      </LinearLayout>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/tv_attended"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/tv_total_classes"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/tv_attendance_percent"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/tv_registered_on"/>
+  </LinearLayout>
 </android.support.v7.widget.CardView>

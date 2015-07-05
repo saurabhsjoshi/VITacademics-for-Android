@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Attendance;
@@ -37,7 +39,29 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
     @Override
     public void onBindViewHolder(AttendanceViewHolder holder, int position) {
-
+        holder.date.setText(attendanceDetail[position-1].getDate());
+        holder.statusDetails.setText(attendanceDetail[position-1].getStatus());
+        holder.classUnits.setText(attendanceDetail[position-1].getClassUnits());
+        holder.reason.setText(attendanceDetail[position-1].getReason());
+        holder.courseName.setText(course.getCourseTitle());
+        holder.courseCode.setText(course.getCourseCode());
+        holder.courseRoom.setText(course.getVenue());
+        holder.courseSlot.setText(course.getSlot());
+        holder.attended.setText(attendance.getAttendedClasses());
+        holder.totalClasses.setText(attendance.getTotalClasses());
+        holder.attendancePercent.setText(attendance.getAttendancePercentage());
+        holder.registeredOn.setText(attendance.getRegistrationDate());
+        if(attendance.getAttendancePercentage()<=75) {
+            holder.status.setTextColor(R.color.error_color);
+            holder.status.setText("DEBARRED");
+            holder.progressBarAttendance.setBackgroundColor(R.color.error_color);
+        }
+        else {
+            holder.status.setTextColor(R.color.colorPrimaryDark);
+            holder.status.setText("SAFE");
+            holder.progressBarAttendance.setBackgroundColor(R.color.colorPrimaryDark);
+        }
+        holder.progressBarAttendance.setProgress(attendance.getAttendancePercentage());
     }
 
     @Override
@@ -56,8 +80,25 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
     public class AttendanceViewHolder extends RecyclerView.ViewHolder{
 
+        public TextView date,statusDetails,classUnits,reason,courseName,courseCode,courseRoom,courseSlot,status,
+                attended,totalClasses,attendancePercent,registeredOn;
+        public ProgressBar progressBarAttendance;
         public AttendanceViewHolder(View view){
             super(view);
+            date=(TextView)view.findViewById(R.id.tv_date);
+            statusDetails=(TextView)view.findViewById(R.id.tv_status_details);
+            classUnits=(TextView)view.findViewById(R.id.tv_class_units);
+            reason=(TextView)view.findViewById(R.id.tv_attendance_reason);
+            courseName=(TextView)view.findViewById(R.id.course_name);
+            courseCode=(TextView)view.findViewById(R.id.course_code);
+            courseRoom=(TextView)view.findViewById(R.id.tv_course_room);
+            courseSlot=(TextView)view.findViewById(R.id.course_slot);
+            status=(TextView)view.findViewById(R.id.tv_attendance_status);
+            attended=(TextView)view.findViewById(R.id.tv_attended);
+            totalClasses=(TextView)view.findViewById(R.id.tv_total_classes);
+            attendancePercent=(TextView)view.findViewById(R.id.tv_attendance_percent);
+            registeredOn=(TextView)view.findViewById(R.id.tv_registered_on);
+            progressBarAttendance=(ProgressBar)view.findViewById(R.id.progress_bar_marks);
         }
     }
 
