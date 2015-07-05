@@ -45,8 +45,8 @@ public class RequestConfig {
         requests.add(request);
     }
 
-    public void removeRequest(int r) {
-        for (Integer request : requests) {
+    public void removeRequest(int request) {
+        for (Integer r : requests) {
             if (request == r) {
                 requests.remove(request);
             }
