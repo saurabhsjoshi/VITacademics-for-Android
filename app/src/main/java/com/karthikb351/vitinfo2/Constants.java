@@ -43,12 +43,7 @@ public class Constants {
     public final static String KEY_SHARE_TOKEN = "token";
     public final static String KEY_SHARE_TOKEN_ISSUED = "token_issued";
 
-    public final static int EVENT_CODE_SYSTEM = 1;
-    public final static int EVENT_CODE_REFRESH = 10;
-    public final static int EVENT_CODE_GRADES = 100;
-    public final static int EVENT_CODE_TOKEN = 1000;
-    public final static int EVENT_CODE_SHARE = 1;
-    public final static int EVENT_CODE_REFRESH_ALL = 1111;
-    public final static int EVENT_PATH_LOGIN_REFRESH = 1;
-    public final static int EVENT_PATH_LOGIN_GRADES = 2;
+    public final static String KEY_GRADES_CGPA = "grades_cgpa";
+    public final static String KEY_GRADES_CREDITS_EARNED = "grades_credits_earned";
+    public final static String KEY_GRADES_CREDITS_REGISTERED = "grades_credits_registered";
 }
