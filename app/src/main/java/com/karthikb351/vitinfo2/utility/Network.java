@@ -92,20 +92,6 @@ public class Network {
     }
 
     public static void dispatch(RequestConfig requestConfig) {
-        RequestConfig config = new RequestConfig(new ResultListener() {
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onFailure() {
-
-            }
-        });
-        config.addRequest(RequestConfig.REFRESH);
-        config.addRequest(RequestConfig.GRADES);
-        Network.dispatch(config);
 
     }
 
