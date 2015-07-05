@@ -32,8 +32,6 @@ import com.karthikb351.vitinfo2.contract.GradeCount;
 import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.contract.WithdrawnCourse;
-import com.karthikb351.vitinfo2.event.FriendEvent;
-import com.karthikb351.vitinfo2.event.SuccessEvent;
 import com.karthikb351.vitinfo2.response.GradesResponse;
 import com.karthikb351.vitinfo2.response.LoginResponse;
 import com.karthikb351.vitinfo2.response.RefreshResponse;
@@ -42,8 +40,6 @@ import com.karthikb351.vitinfo2.response.TokenResponse;
 import com.orm.SugarTransactionHelper;
 
 import java.util.List;
-
-import de.greenrobot.event.EventBus;
 
 public class Database {
 
@@ -201,6 +197,9 @@ public class Database {
                 if (r) {
                     Editor editor = sharedPreferences.edit();
                     editor.putString(Constants.KEY_GRADES_REFRESHED, gradesResponse.getRefreshed());
+                    editor.putFloat(Constants.KEY_GRADES_CGPA, gradesResponse.getCgpa());
+                    editor.putInt(Constants.KEY_GRADES_CREDITS_EARNED, gradesResponse.getCreditsEarned());
+                    editor.putInt(Constants.KEY_GRADES_CREDITS_REGISTERED, gradesResponse.getCreditsRegistered());
                     editor.apply();
                     resultListener.onSuccess();
                 } else {

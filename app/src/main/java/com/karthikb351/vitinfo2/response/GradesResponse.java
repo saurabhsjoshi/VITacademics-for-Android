@@ -65,7 +65,7 @@ public class GradesResponse {
 
     @Expose
     @SerializedName("cgpa")
-    private double cgpa;
+    private float cgpa;
 
     @Expose
     @SerializedName("grade_count")
@@ -82,7 +82,7 @@ public class GradesResponse {
     public GradesResponse() {
     }
 
-    public GradesResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String refreshed, boolean cached, Grade[] grades, SemesterWiseGrade[] semesterWiseGrades, double cgpa, GradeCount[] gradeCount, int creditsRegistered, int creditsEarned) {
+    public GradesResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String refreshed, boolean cached, Grade[] grades, SemesterWiseGrade[] semesterWiseGrades, float cgpa, GradeCount[] gradeCount, int creditsRegistered, int creditsEarned) {
         this.registerNumber = registerNumber;
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
@@ -170,11 +170,11 @@ public class GradesResponse {
         this.semesterWiseGrades = semesterWiseGrades;
     }
 
-    public double getCgpa() {
+    public float getCgpa() {
         return cgpa;
     }
 
-    public void setCgpa(double cgpa) {
+    public void setCgpa(float cgpa) {
         this.cgpa = cgpa;
     }
 

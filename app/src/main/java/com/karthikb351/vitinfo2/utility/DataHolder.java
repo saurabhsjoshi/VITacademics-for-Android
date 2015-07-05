@@ -53,6 +53,9 @@ public class DataHolder {
     private static List<Grade> grades;
     private static List<GradeCount> gradeCounts;
     private static List<SemesterWiseGrade> semesterWiseGrades;
+    private static float cgpa;
+    private static int creditsEarned;
+    private static int creditsRegistered;
     private static String gradesRefreshed;
     private static List<Friend> friends;
     private static String token;
@@ -103,6 +106,9 @@ public class DataHolder {
                     gradesRefreshed = sharedPreferences.getString(Constants.KEY_GRADES_REFRESHED, null);
                     token = sharedPreferences.getString(Constants.KEY_SHARE_TOKEN, null);
                     tokenIssued = sharedPreferences.getString(Constants.KEY_SHARE_TOKEN_ISSUED, null);
+                    cgpa = sharedPreferences.getFloat(Constants.KEY_GRADES_CGPA, 0);
+                    creditsEarned = sharedPreferences.getInt(Constants.KEY_GRADES_CREDITS_EARNED, 0);
+                    creditsRegistered = sharedPreferences.getInt(Constants.KEY_GRADES_CREDITS_REGISTERED, 0);
                     resultListener.onSuccess();
                 } else {
                     resultListener.onFailure();
@@ -262,5 +268,29 @@ public class DataHolder {
 
     public static void setTokenIssued(String tokenIssued) {
         DataHolder.tokenIssued = tokenIssued;
+    }
+
+    public static float getCgpa() {
+        return cgpa;
+    }
+
+    public static void setCgpa(float cgpa) {
+        DataHolder.cgpa = cgpa;
+    }
+
+    public static int getCreditsEarned() {
+        return creditsEarned;
+    }
+
+    public static void setCreditsEarned(int creditsEarned) {
+        DataHolder.creditsEarned = creditsEarned;
+    }
+
+    public static int getCreditsRegistered() {
+        return creditsRegistered;
+    }
+
+    public static void setCreditsRegistered(int creditsRegistered) {
+        DataHolder.creditsRegistered = creditsRegistered;
     }
 }
