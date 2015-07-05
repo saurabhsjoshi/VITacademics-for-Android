@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -50,10 +51,9 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     }
 
     @Override
-    public void onBindViewHolder(CourseViewHolder holder, int position) {
+    public void onBindViewHolder(CourseViewHolder courseViewHolder, int position) {
 
         int AttendanceP = courses.get(position).getAttendance().getAttendancePercentage();
-        CourseViewHolder courseViewHolder = (CourseViewHolder) holder;
         courseViewHolder.courseCode.setText(courses.get(position).getCourseCode());
         courseViewHolder.courseName.setText(courses.get(position).getCourseTitle());
         courseViewHolder.Venue.setText(courses.get(position).getVenue());

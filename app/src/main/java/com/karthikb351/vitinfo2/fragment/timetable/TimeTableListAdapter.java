@@ -53,10 +53,10 @@ public class TimeTableListAdapter extends RecyclerView.Adapter<TimeTableListAdap
     }
 
     @Override
-    public void onBindViewHolder(TimeTableViewHolder holder, int position) {
+    public void onBindViewHolder(TimeTableViewHolder cvHolder, int position) {
 
         int AttendanceP = coursesForTheDay.get(position).getAttendance().getAttendancePercentage();
-        TimeTableViewHolder cvHolder = (TimeTableViewHolder) holder;
+        //TimeTableViewHolder cvHolder = (TimeTableViewHolder) holder;
         cvHolder.courseCode.setText(coursesForTheDay.get(position).getCourseCode());
         cvHolder.courseName.setText(coursesForTheDay.get(position).getCourseTitle());
         cvHolder.Venue.setText(coursesForTheDay.get(position).getVenue());

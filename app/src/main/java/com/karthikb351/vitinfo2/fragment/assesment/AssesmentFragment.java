@@ -21,31 +21,40 @@ package com.karthikb351.vitinfo2.fragment.assesment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.contract.Assessment;
-
-import java.util.ArrayList;
+import com.karthikb351.vitinfo2.contract.Course;
 
 public class AssesmentFragment extends Fragment{
 
-    ArrayList<Assessment> assessments;
+    RecyclerView recyclerView;
+    AssesmentListAdapter listAdapter;
+    Course course;
 
     public AssesmentFragment(){
 
     }
 
-    public static AssesmentFragment newInstance(){
-        return new AssesmentFragment();
+    public static AssesmentFragment newInstance(Course course){
+        AssesmentFragment fragment=new AssesmentFragment();
+        fragment.course=course;
+        return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.assesment,container,false);
+        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity());
+        listAdapter=new AssesmentListAdapter(getActivity(),course);
+        recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_assessments);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(listAdapter);
         return view;
     }
 }

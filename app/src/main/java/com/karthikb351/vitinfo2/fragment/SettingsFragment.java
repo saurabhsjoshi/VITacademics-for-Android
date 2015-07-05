@@ -62,16 +62,6 @@ public class SettingsFragment extends ListFragment {
         setListAdapter(arrayAdapter);
     }
 
-    /* @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.settings_list,container,false);
-        listView=(ListView)view.findViewById(R.id.list_view_settings);
-        settingsTopics=getResources().getStringArray(R.array.settingsTopic);
-        settingTopics=new ArrayList<>(Arrays.asList(settingsTopics));
-        listView.setAdapter(new SettingsListAdapter(this,R.layout.list_item_settings,settingTopics));
-        return view;
-    }*/
-
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
@@ -82,6 +72,7 @@ public class SettingsFragment extends ListFragment {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case 1: //Licenses
+                getActivity().setTitle("Open Source Licenses");
                 ArrayList<Integer> LicenseIds = new ArrayList<>();
                 LicenseIds.add(LicenseID.GSON);
                 LicenseIds.add(LicenseID.RETROFIT);
