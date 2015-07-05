@@ -55,6 +55,7 @@ public class NavigationDrawerAdapter extends ArrayAdapter<String> {
             holder = (ViewHolder) view.getTag();
 
         //    holder.drawer_icon.setImageResource(context.getResources().getIdentifier(objects.get(position),"drawable",context.getPackageName()));
+        holder.drawerIcon.setImageResource(R.mipmap.ic_face_black_24dp);
         holder.drawerText.setText(objects.get(position));
         return view;
     }

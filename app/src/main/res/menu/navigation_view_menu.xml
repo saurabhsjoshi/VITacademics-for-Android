@@ -16,17 +16,17 @@
 
         <item
             android:id="@+id/drawer_courses"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_school_black_24dp"
             android:title="Courses"/>
 
         <item
             android:id="@+id/drawer_friends"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_people_black_24dp"
             android:title="Friends"/>
 
         <item
             android:id="@+id/drawer_settings"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_settings_black_24dp"
             android:title="Settings"/>
 
     </group>

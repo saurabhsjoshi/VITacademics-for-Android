@@ -18,11 +18,15 @@
 
 package com.karthikb351.vitinfo2.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -43,6 +47,7 @@ public class SettingsFragment extends ListFragment {
     //ListView listView;
     String settingsTopics[];
 
+
     public SettingsFragment() {
         // Required empty public constructor
     }
@@ -56,17 +61,18 @@ public class SettingsFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle("Settings");
-        settingsTopics=getResources().getStringArray(R.array.settingsTopic);
-        settingsList=Arrays.asList(settingsTopics);
-        ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>(getActivity(),R.layout.list_item_settings,R.id.text_view_settings,settingsList);
+        settingsTopics = getResources().getStringArray(R.array.settingsTopic);
+        settingsList = Arrays.asList(settingsTopics);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), R.layout.list_item_settings, R.id.text_view_settings, settingsList);
         setListAdapter(arrayAdapter);
     }
+
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        switch (position){
+        switch (position) {
             case 0: //Log Out
                 // TODO: Clear Database
                 startActivity(new Intent(getActivity(), LoginActivity.class));
@@ -78,21 +84,21 @@ public class SettingsFragment extends ListFragment {
                 LicenseIds.add(LicenseID.RETROFIT);
                 //License eventbus=new License(getActivity(),"Event Bus", LicenseType.APACHE_LICENSE_20,"2002","greenrobot");
                 //LicenseIds.add(eventbus.i);
-                Fragment LicenseFragment= RecyclerViewLicenseFragment.newInstance(LicenseIds);
+                Fragment LicenseFragment = RecyclerViewLicenseFragment.newInstance(LicenseIds);
                 this.getFragmentManager().beginTransaction()
-                        .replace(R.id.flContent,LicenseFragment,null)
+                        .replace(R.id.flContent, LicenseFragment, null)
                         .addToBackStack(null).commit();
                 break;
             case 2: //Contributors
-                ContributorsFragment contributorsFragment=new ContributorsFragment();
+                ContributorsFragment contributorsFragment = new ContributorsFragment();
                 this.getFragmentManager().beginTransaction()
-                        .replace(R.id.flContent,contributorsFragment,null)
+                        .replace(R.id.flContent, contributorsFragment, null)
                         .addToBackStack(null).commit();
                 break;
             case 3: //About
-                AboutFragment aboutFragment=new AboutFragment();
+                AboutFragment aboutFragment = new AboutFragment();
                 this.getFragmentManager().beginTransaction()
-                        .replace(R.id.flContent,aboutFragment,null)
+                        .replace(R.id.flContent, aboutFragment, null)
                         .addToBackStack(null).commit();
                 break;
         }
