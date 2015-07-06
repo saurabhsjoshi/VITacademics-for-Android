@@ -34,7 +34,7 @@ import android.widget.ListView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
-import com.karthikb351.vitinfo2.fragment.CGPAcalculatorFragment;
+import com.karthikb351.vitinfo2.fragment.CGPAcalculator.CGPAcalculatorFragment;
 import com.karthikb351.vitinfo2.fragment.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;

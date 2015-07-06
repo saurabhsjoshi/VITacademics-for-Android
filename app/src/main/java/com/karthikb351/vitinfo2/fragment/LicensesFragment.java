@@ -31,18 +31,12 @@ package com.karthikb351.vitinfo2.fragment;
  limitations under the License.
  */
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-//TODO If you don't support Android 2.x, you should use the non-support version!
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -53,6 +47,13 @@ import android.webkit.WebView;
 import android.widget.ProgressBar;
 
 import com.karthikb351.vitinfo2.R;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+//TODO If you don't support Android 2.x, you should use the non-support version!
 
 /**
  * Created by Adam Speakman on 24/09/13.
@@ -197,7 +198,7 @@ public class LicensesFragment extends DialogFragment {
                     }
                     bufferedReader.close();
                 } catch (IOException e) {
-                    // TODO You may want to include some logging here.
+                    e.printStackTrace();
                 }
 
                 return sb.toString();
