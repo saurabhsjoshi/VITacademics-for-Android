@@ -35,7 +35,16 @@
         <item>Friends</item>
         <item>Settings</item>
     </string-array>
-
+    <string-array name="setGrade">
+        <item>S</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>N</item>
+    </string-array>
     <string-array name="settingsTopic">
         <item>Log Out</item>
         <item>Licenses</item>
