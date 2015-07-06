@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,12 +22,20 @@ package com.karthikb351.vitinfo2.fragment.grades;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
+import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Grade;
+import android.widget.TableRow.LayoutParams;
 import com.karthikb351.vitinfo2.contract.GradeCount;
 import com.karthikb351.vitinfo2.utility.DataHolder;
 
@@ -35,14 +44,15 @@ import java.util.List;
 
 public class GradesFragment extends Fragment {
 
-    List<Course> coursesList;
-    List<Grade> gradesList;
-    List<GradeCount> gradeCountList;
     ArrayList<GradeCount> gradeCounts;
-    ArrayList<Course> courses;
     ArrayList<Grade> grades;
+    View rootView ;
+    TextView CGPA ;
+    RecyclerView gradeListRecyclerview;
+    TableLayout gradeCountTable ;
+    GradesListAdapter adapter ;
 
-    public GradesFragment(){
+    public GradesFragment() {
 
     }
 
@@ -53,17 +63,45 @@ public class GradesFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
+        rootView = inflater.inflate(R.layout.fragment_grade,container,false);
+        initialize();
+        return rootView;
     }
 
-    public void initialize(){
-        coursesList= DataHolder.getCourses();
-        gradesList=DataHolder.getGrades();
-        gradeCountList=DataHolder.getGradeCounts();
-        courses=new ArrayList<>(coursesList);
-        grades=new ArrayList<>(gradesList);
-        gradeCounts=new ArrayList<>(gradeCountList);
+    public void initialize()
+    {
+      CGPA = (TextView)rootView.findViewById(R.id.text_view_CGPA);
+      gradeCountTable = (TableLayout)rootView.findViewById(R.id.table_grade_count);
+      gradeCounts = new ArrayList<>(DataHolder.getGradeCounts());
+      grades = new ArrayList<>(DataHolder.getGrades());
+      fillGradeCountData()  ;
+      gradeListRecyclerview = (RecyclerView)rootView.findViewById(R.id.recycler_view_grades);
+      gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+      adapter =  new GradesListAdapter(getActivity(),grades);
+        gradeListRecyclerview.setAdapter(adapter);
+    }
 
+    void fillGradeCountData()
+    {
+        for (int i = 0; i < gradeCounts.size() ; i++) {
+
+            TableRow row = new TableRow(getActivity());
+            row.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            row.addView(createTextView(gradeCounts.get(i).getGrade()));
+            row.addView(createTextView(Integer.toString(gradeCounts.get(i).getCount())));
+        }
+    }
+
+    TextView createTextView(String text)
+    {
+        TextView tv = new TextView(getActivity());
+        tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+        tv.setGravity(Gravity.CENTER);
+        tv.setTextSize(18);
+        tv.setPadding(0, 5, 0, 5);
+        tv.setText(text);
+        return tv;
     }
 }

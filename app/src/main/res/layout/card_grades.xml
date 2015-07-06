@@ -15,11 +15,9 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:id="@+id/card_view_assessment">
+
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5sp">
@@ -88,5 +86,3 @@
             android:textColor="#ff2fc700"
             android:layout_below="@+id/tv_course_credit" />
     </RelativeLayout>
-
-</android.support.v7.widget.CardView>
