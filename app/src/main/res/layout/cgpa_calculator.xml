@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<android.support.v7.widget.RecyclerView
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
     android:id="@+id/recycler_view_cgpa_calculator"
     android:scrollbars="vertical"
     android:fadeScrollbars="true">
+    <ImageView
+        android:layout_width="@dimen/fab_size_normal"
+        android:layout_height="@dimen/fab_size_normal"
+        android:id="@+id/iv_calculate"
+        android:layout_marginBottom="@dimen/fab_border_width"
+        android:layout_marginRight="@dimen/fab_border_width"
+        android:background="@drawable/circle" />
 
 </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>

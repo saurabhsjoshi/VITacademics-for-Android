@@ -30,7 +30,7 @@ import com.karthikb351.vitinfo2.utility.DataHolder;
 
 import java.util.ArrayList;
 
-public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculatorListAdapter.CGPAcalculatorViewHolder> implements View.OnClickListener{
+public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculatorListAdapter.CGPAcalculatorViewHolder>{
 
     ArrayList<Course> courses;
     ArrayList<Grade> grades;
@@ -70,11 +70,6 @@ public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculat
             else;
         return layoutId;
         }
-
-    @Override
-    public void onClick(View v) {
-
-    }
 
     public class CGPAcalculatorViewHolder extends RecyclerView.ViewHolder{
 
