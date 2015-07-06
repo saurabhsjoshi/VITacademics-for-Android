@@ -20,6 +20,16 @@
             android:title="Time Table"/>
 
         <item
+            android:id="@+id/drawer_grades"
+            android:icon="@mipmap/ic_people_black_24dp"
+            android:title="Grades"/>
+
+        <item
+            android:id="@+id/drawer_cgpa_calculator"
+            android:icon="@mipmap/ic_people_black_24dp"
+            android:title="CGPA Calculator"/>
+
+        <item
             android:id="@+id/drawer_friends"
             android:icon="@mipmap/ic_people_black_24dp"
             android:title="Friends"/>
@@ -28,6 +38,7 @@
             android:id="@+id/drawer_messages"
             android:icon="@mipmap/ic_settings_black_24dp"
             android:title="Messages"/>
+
 
     </group>
     <group

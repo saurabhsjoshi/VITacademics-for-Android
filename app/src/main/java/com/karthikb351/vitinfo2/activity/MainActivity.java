@@ -34,9 +34,11 @@ import android.widget.ListView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
+import com.karthikb351.vitinfo2.fragment.CGPAcalculatorFragment;
 import com.karthikb351.vitinfo2.fragment.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
+import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
 import com.karthikb351.vitinfo2.fragment.today.MainFragment;
@@ -137,20 +139,26 @@ public class MainActivity extends AppCompatActivity {
                         frag = TimeTableFragment.newInstance();
                         pos = 2;
                         break;
+                    case "Grades":
+                        frag = GradesFragment.newInstance();
+                        pos = 3;
+                    case "CGPA Calculator":
+                        frag = CGPAcalculatorFragment.newInstance();
+                        pos=4;
                     case "Friends":
                         frag = FriendsFragment.newInstance();
-                        pos = 3;
+                        pos = 5;
                         break;
                     case "Messages":
                         frag = MessagesFragment.newInstance();
-                        pos = 4;
+                        pos = 6;
                     case "Settings":
                         frag = SettingsFragment.newInstance();
-                        pos = 5;
+                        pos = 7;
                         break;
                     case "About":
                         frag= AboutFragment.newInstance();
-                        pos = 6;
+                        pos = 8;
                 }
                 ft.replace(R.id.flContent, frag, topics[pos]).addToBackStack(null).commit();
 

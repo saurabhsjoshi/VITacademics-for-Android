@@ -25,7 +25,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.contract.Grade;
+import com.karthikb351.vitinfo2.contract.GradeCount;
+import com.karthikb351.vitinfo2.utility.DataHolder;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class GradesFragment extends Fragment {
+
+    List<Course> coursesList;
+    List<Grade> gradesList;
+    List<GradeCount> gradeCountList;
+    ArrayList<GradeCount> gradeCounts;
+    ArrayList<Course> courses;
+    ArrayList<Grade> grades;
 
     public GradesFragment(){
 
@@ -42,4 +57,13 @@ public class GradesFragment extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+    public void initialize(){
+        coursesList= DataHolder.getCourses();
+        gradesList=DataHolder.getGrades();
+        gradeCountList=DataHolder.getGradeCounts();
+        courses=new ArrayList<>(coursesList);
+        grades=new ArrayList<>(gradesList);
+        gradeCounts=new ArrayList<>(gradeCountList);
+
+    }
 }
