@@ -23,7 +23,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Grade;
 import com.karthikb351.vitinfo2.utility.DataHolder;
@@ -39,6 +43,9 @@ public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculat
     int earnedCreds;
     float cgpa;
     int layoutId;
+    float totalCGP;
+    float newCGPA;
+    int newCredits;
 
     public CGPAcalculatorListAdapter(Context context,ArrayList<Course> courses,ArrayList<Grade> grades){
         this.context=context;
@@ -47,6 +54,7 @@ public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculat
         this.regCreds= DataHolder.getCreditsRegistered();
         this.earnedCreds=DataHolder.getCreditsEarned();
         this.cgpa=DataHolder.getCgpa();
+        totalCGP=cgpa*regCreds;
     }
     @Override
     public CGPAcalculatorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -56,6 +64,7 @@ public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculat
 
     @Override
     public void onBindViewHolder(CGPAcalculatorViewHolder holder, int position) {
+        holder.newCGPA.setText(Float.toString(totalCGP/(regCreds+newCredits)));
     }
 
     @Override
@@ -71,10 +80,26 @@ public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculat
         return layoutId;
         }
 
-    public class CGPAcalculatorViewHolder extends RecyclerView.ViewHolder{
+    public class CGPAcalculatorViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnItemClickListener{
 
+
+        public TextView courseCode,courseName,courseCredits,newCGPA;
+        public Spinner spinner;
         public CGPAcalculatorViewHolder(View view){
             super(view);
+            courseCode=(TextView)view.findViewById(R.id.tv_course_code);
+            courseName=(TextView)view.findViewById(R.id.tv_course_name);
+            courseCredits=(TextView)view.findViewById(R.id.tv_course_credit);
+            spinner=(Spinner)view.findViewById(R.id.spinner_course_grade);
+            spinner.setOnItemClickListener(this);
+        }
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+           totalCGP=totalCGP+position;
+           String ltpc=courses.get(position).getLtpc();
+           int credits=(int)ltpc.charAt(3);
+           newCredits+=credits;
         }
 
     }

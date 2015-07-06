@@ -27,6 +27,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -39,13 +40,14 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
-public class CGPAcalculatorFragment extends Fragment {
+public class CGPAcalculatorFragment extends Fragment implements View.OnClickListener{
 
     List<Grade> gradeList;
     List<Course> courseList;
     ArrayList<Grade> grades;
     ArrayList<Course> courses;
     RecyclerView recyclerView;
+    ImageButton imageButton;
     View view;
     CGPAcalculatorListAdapter listAdapter;
 
@@ -67,12 +69,20 @@ public class CGPAcalculatorFragment extends Fragment {
     public void initialize(){
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity());
         listAdapter=new CGPAcalculatorListAdapter(getActivity(),courses,grades);
+        recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_cgpa_calculator);
+        imageButton=(ImageButton)view.findViewById(R.id.iv_calculate);
+        imageButton.setOnClickListener(this);
         gradeList= DataHolder.getGrades();
         courseList=DataHolder.getCourses();
         grades=new ArrayList<>(gradeList);
         courses=new ArrayList<>(courseList);
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(layoutManager);
+    }
+
+    @Override
+    public void onClick(View v) {
+        
     }
 
     @Override
