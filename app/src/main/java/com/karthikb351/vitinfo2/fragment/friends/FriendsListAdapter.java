@@ -57,7 +57,6 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     public void onBindViewHolder(FriendsViewHolder holder, int position) {
         holder.FriendName.setText(friends.get(position).getSqlName());
         holder.FriendRegNo.setText(friends.get(position).getRegisterNumber());
-        //holder.FriendImage.setImageResource(friends.get(position).FriendPhotoId);
     }
 
     public void setOnclickListener(RecyclerViewOnClickListener<Friend> listener)

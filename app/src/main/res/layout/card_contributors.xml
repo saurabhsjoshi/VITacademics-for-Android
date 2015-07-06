@@ -26,7 +26,7 @@
         android:background="#80c3fdb5"
         android:padding="5dp"
         >
-        <TextView
+       <!-- <TextView
             android:id="@+id/contributor_id"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -37,7 +37,7 @@
             android:textColor="#cf0033bf"
             android:background="@drawable/circle"
             android:backgroundTint="#ff2fc700"
-            android:textSize="16sp" />
+            android:textSize="16sp" /> -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

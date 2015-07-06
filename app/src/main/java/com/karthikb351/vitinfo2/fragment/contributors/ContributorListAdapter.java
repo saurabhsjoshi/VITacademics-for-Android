@@ -25,6 +25,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Contributor;
@@ -49,7 +50,11 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
 
     @Override
     public void onBindViewHolder(ContributorViewHolder holder, int position) {
-
+        holder.contributorMail.setText(contributors.get(position).getEmail());
+        holder.contributorGit.setText(contributors.get(position).getGithubProfile());
+        holder.contributorRole.setText(contributors.get(position).getRole());
+        holder.contributorName.setText(contributors.get(position).getName());
+        holder.contributorId.setText(contributors.get(position).getContributorId());
     }
 
 
@@ -60,9 +65,15 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
 
     public class ContributorViewHolder extends RecyclerView.ViewHolder{
 
+        public TextView contributorId,contributorName,contributorRole,contributorGit,contributorMail;
+
         public ContributorViewHolder(View view){
             super(view);
-
+            //contributorId=(TextView)view.findViewById(R.id.contributor_id);
+            contributorName=(TextView)view.findViewById(R.id.contributor_name);
+            contributorRole=(TextView)view.findViewById(R.id.contributor_role);
+            contributorGit=(TextView)view.findViewById(R.id.contributor_github_profile);
+            contributorMail=(TextView)view.findViewById(R.id.contributor_email);
         }
     }
 

@@ -31,8 +31,6 @@ import com.karthikb351.vitinfo2.contract.Assessment;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Marks;
 
-import org.w3c.dom.Text;
-
 public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdapter.AssesmentViewHolder> {
 
 
@@ -72,7 +70,7 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
     @Override
     public int getItemViewType(int position) {
         if(position==0)
-            layoutId=R.layout.card_marks;
+            layoutId=R.layout.card_total_internals;
         else
             layoutId= R.layout.card_assessment;
         return layoutId;
