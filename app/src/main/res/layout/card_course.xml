@@ -33,6 +33,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:textStyle="bold"
+                android:
+                android:background="#ffe7ffc1"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 android:layout_centerHorizontal="true"/>

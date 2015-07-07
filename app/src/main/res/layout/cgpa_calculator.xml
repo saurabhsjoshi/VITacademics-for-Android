@@ -9,6 +9,7 @@
     android:id="@+id/recycler_view_cgpa_calculator"
     android:scrollbars="vertical"
     android:fadeScrollbars="true"/>
+
     <ImageButton
         android:layout_width="@dimen/fab_size_normal"
         android:layout_height="@dimen/fab_size_normal"
@@ -20,6 +21,6 @@
         android:layout_marginRight="10sp"
         android:elevation="@dimen/fab_elevation"
         android:layout_gravity="end|bottom"
-        android:background="@drawable/circle" />
+        android:background="@drawable/cgpa_icon" />
 
     </RelativeLayout>

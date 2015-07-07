@@ -17,8 +17,8 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#ff121ff5</color>
-    <color name="colorPrimaryDark">#ff0b1188</color>
+    <color name="colorPrimary">#ff828583</color>
+    <color name="colorPrimaryDark">#ff535150</color>
     <color name="textColorPrimary">#ff000349</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
@@ -26,4 +26,5 @@
     <color name="lowAttend">#e74c3c</color>
     <color name="midAttend">#ffffac41</color>
     <color name="highAttend">#ff7ee73a</color>
+    <color name="highlight">#ffe7ffc1</color>
 </resources>
