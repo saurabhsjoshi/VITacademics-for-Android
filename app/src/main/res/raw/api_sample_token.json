@@ -1,0 +1,15 @@
+{
+  "reg_no": "13BCE0139",
+  "dob": "16011995",
+  "mobile": "9830051893",
+  "campus": "vellore",
+  "share": {
+    "token": "BHCNPG",
+    "validity": 24,
+    "issued": "2015-04-20T18:37:27.569Z"
+  },
+  "status": {
+    "message": "Successful execution",
+    "code": 0
+  }
+}
