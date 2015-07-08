@@ -99,6 +99,12 @@ public class NetworkController {
             @Override
             public void onSuccess() {
                 requestConfig.getRequests().remove(requestConfig.getRequests().get(0));
+                if (requestConfig.getRequests().size() > 0) {
+                    performRequest(requestConfig.getRequests().get(0), this);
+                }
+                else {
+                    requestConfig.getResultListener().onSuccess();
+                }
             }
 
             @Override
@@ -111,12 +117,7 @@ public class NetworkController {
                 }
             }
         };
-
-        while (requestConfig.getRequests().size() > 0) {
-            performRequest(requestConfig.getRequests().get(0), resultListener);
-        }
-
-        requestConfig.getResultListener().onSuccess();
+        performRequest(requestConfig.getRequests().get(0), resultListener);
     }
 
     private void performRequest(int request, ResultListener resultListener) {
