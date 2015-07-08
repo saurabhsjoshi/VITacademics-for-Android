@@ -19,13 +19,16 @@
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
+        android:background="#ffffffff"
         android:layout_height="wrap_content"
-        android:padding="5sp">
+        >
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tv_course_code"
             android:text="CSE101"
+            android:gravity="center"
+            android:background="@color/highlight"
             android:textStyle="bold"
             android:textSize="30sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -37,6 +40,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/course_name"
             android:paddingLeft="5dp"
+            android:background="@color/highlight"
             android:paddingRight="5dp"
             android:text="Computer Programming and Problem Solving"
             android:textStyle="italic"
@@ -54,8 +58,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/course_type"
             android:text="CBL"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:padding="5dp"
             android:layout_alignTop="@+id/course_name"
             android:layout_marginTop="45dp"
             android:textSize="23sp"
@@ -66,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_course_credit"
-            android:paddingLeft="5dp"
+            android:padding="5dp"
             android:layout_alignTop="@+id/course_name"
             android:textSize="23sp"
             android:layout_marginTop="45dp"
@@ -76,13 +79,16 @@
             android:textColor="@color/primary_text_default_material_light"
             />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tv_grade"
+            android:gravity="center"
+            android:background="@color/colorPrimaryDark"
             android:textSize="30dp"
+            android:textStyle="bold"
             android:layout_centerHorizontal="true"
             android:text="GRADE : A"
             android:paddingLeft="10dp"
-            android:textColor="#ff2fc700"
+            android:textColor="@color/colorAccent"
             android:layout_below="@+id/tv_course_credit" />
     </RelativeLayout>

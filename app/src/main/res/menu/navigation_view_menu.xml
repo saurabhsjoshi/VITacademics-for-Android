@@ -6,7 +6,7 @@
         <item
             android:id="@+id/drawer_home"
             android:checked="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/ic_today_black_48dp"
             android:title="Today"/>
 
         <item
@@ -16,17 +16,17 @@
 
         <item
             android:id="@+id/drawer_favourite"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@mipmap/timetable"
             android:title="Time Table"/>
 
         <item
             android:id="@+id/drawer_grades"
-            android:icon="@mipmap/ic_people_black_24dp"
+            android:icon="@mipmap/ic_assessment_black_48dp"
             android:title="Grades"/>
 
         <item
             android:id="@+id/drawer_cgpa_calculator"
-            android:icon="@mipmap/ic_people_black_24dp"
+            android:icon="@drawable/calculator"
             android:title="CGPA Calculator"/>
 
         <item
@@ -36,7 +36,7 @@
 
         <item
             android:id="@+id/drawer_messages"
-            android:icon="@mipmap/ic_settings_black_24dp"
+            android:icon="@mipmap/ic_message_black_48dp"
             android:title="Messages"/>
 
 
@@ -49,7 +49,7 @@
             android:title="Settings"/>
         <item
             android:id="@+id/drawer_about"
-            android:icon="@mipmap/ic_settings_black_24dp"
+            android:icon="@mipmap/ic_search_black_48dp"
             android:title="About"/>
     </group>
 </menu>

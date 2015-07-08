@@ -54,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Room:SJT 405 "
+                android:text="Room: "
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="20sp"/>
             <TextView
@@ -147,6 +147,7 @@
             android:textColor="@color/primary_text_default_material_light"
             android:id="@+id/button_attend"
             android:layout_weight="1"
+            android:paddingRight="10dp"
             android:layout_below="@+id/tv_attendance_status"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
