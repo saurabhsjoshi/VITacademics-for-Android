@@ -27,7 +27,6 @@ import java.util.List;
 
 public class RequestConfig {
 
-    public final static int REQUEST_ALL = 0;
     public final static int REQUEST_SYSTEM = 1;
     public final static int REQUEST_LOGIN = 2;
     public final static int REQUEST_REFRESH = 3;
