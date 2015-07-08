@@ -2,22 +2,22 @@
  * VITacademics
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  *
- * This program is free software: you can redistribute it and/or modify
+ * This file is part of VITacademics.
+ * VITacademics is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * VITacademics is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-package com.karthikb351.vitinfo2.fragment.CGPAcalculator;
+package com.karthikb351.vitinfo2.fragment.cgpaCalculator;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -40,7 +40,7 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
-public class CGPAcalculatorFragment extends Fragment implements View.OnClickListener {
+public class CGPACalculatorFragment extends Fragment implements View.OnClickListener {
 
     List<Grade> gradeList;
     List<Course> courseList;
@@ -49,14 +49,14 @@ public class CGPAcalculatorFragment extends Fragment implements View.OnClickList
     RecyclerView recyclerView;
     ImageButton imageButton;
     View view;
-    CGPAcalculatorListAdapter listAdapter;
+    CGPACalculatorListAdapter listAdapter;
 
-    public CGPAcalculatorFragment() {
+    public CGPACalculatorFragment() {
         //empty default constructor
     }
 
-    public static CGPAcalculatorFragment newInstance() {
-        return new CGPAcalculatorFragment();
+    public static CGPACalculatorFragment newInstance() {
+        return new CGPACalculatorFragment();
     }
 
     @Nullable
@@ -69,7 +69,7 @@ public class CGPAcalculatorFragment extends Fragment implements View.OnClickList
 
     public void initialize() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        listAdapter = new CGPAcalculatorListAdapter(getActivity(), courses, grades);
+        listAdapter = new CGPACalculatorListAdapter(getActivity(), courses, grades);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_cgpa_calculator);
         imageButton = (ImageButton) view.findViewById(R.id.iv_calculate);
         imageButton.setOnClickListener(this);

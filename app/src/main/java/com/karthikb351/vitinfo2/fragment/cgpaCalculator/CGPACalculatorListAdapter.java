@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.CGPAcalculator;
+package com.karthikb351.vitinfo2.fragment.cgpaCalculator;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -35,7 +35,7 @@ import com.karthikb351.vitinfo2.api.DataHolder;
 
 import java.util.ArrayList;
 
-public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculatorListAdapter.CGPAcalculatorViewHolder> {
+public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculatorListAdapter.CGPAcalculatorViewHolder> {
 
     ArrayList<Course> courses;
     ArrayList<Grade> grades;
@@ -48,7 +48,7 @@ public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculat
     float newCGPA;
     int newCredits;
 
-    public CGPAcalculatorListAdapter(Context context, ArrayList<Course> courses, ArrayList<Grade> grades) {
+    public CGPACalculatorListAdapter(Context context, ArrayList<Course> courses, ArrayList<Grade> grades) {
         this.context = context;
         this.grades = grades;
         this.courses = courses;

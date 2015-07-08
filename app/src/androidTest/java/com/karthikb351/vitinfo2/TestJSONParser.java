@@ -23,7 +23,7 @@ import android.test.AndroidTestCase;
 
 import com.google.gson.Gson;
 
-public class testJSONParser extends AndroidTestCase {
+public class TestJSONParser extends AndroidTestCase {
 
     private Gson gson;
 

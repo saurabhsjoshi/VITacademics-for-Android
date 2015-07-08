@@ -2,20 +2,23 @@
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+ * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
  *
- * This program is free software: you can redistribute it and/or modify
+ * This file is part of VITacademics.
+ * VITacademics is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * VITacademics is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package com.karthikb351.vitinfo2.activity;
@@ -38,14 +41,14 @@ import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
-import com.karthikb351.vitinfo2.fragment.CGPAcalculator.CGPAcalculatorFragment;
+import com.karthikb351.vitinfo2.fragment.cgpaCalculator.CGPACalculatorFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
-import com.karthikb351.vitinfo2.fragment.today.MainFragment;
+import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
@@ -132,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (navString) {
 
                     case "Today":
-                        frag = MainFragment.newInstance();
+                        frag = TodayFragment.newInstance();
                         pos = 0;
                         break;
                     case "Courses":
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         frag = GradesFragment.newInstance();
                         pos = 3;
                     case "CGPA Calculator":
-                        frag = CGPAcalculatorFragment.newInstance();
+                        frag = CGPACalculatorFragment.newInstance();
                         pos = 4;
                     case "Friends":
                         frag = FriendsFragment.newInstance();
@@ -173,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         //lv = (ListView) findViewById(R.id.lvDrawer);
         topics = getResources().getStringArray(R.array.topic);
         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
-        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new MainFragment(), "mainFragment").commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "mainFragment").commit();
     }
 
     public void pullToRefresh() {
