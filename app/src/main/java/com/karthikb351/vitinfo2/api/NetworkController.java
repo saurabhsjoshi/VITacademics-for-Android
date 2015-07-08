@@ -22,6 +22,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.karthikb351.vitinfo2.Constants;
+import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.model.Status;
+import com.karthikb351.vitinfo2.utility.ResultListener;
 
 public class NetworkController {
 
@@ -32,6 +35,7 @@ public class NetworkController {
     private String dateOfBirth;
     private String mobileNumber;
 
+    private Context context;
     private VITacademicsAPI viTacademicsAPI;
 
     private NetworkController(Context context, String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
@@ -40,6 +44,7 @@ public class NetworkController {
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
 
+        this.context = context;
         this.viTacademicsAPI = new VITacademicsAPI(context);
         networkController = this;
     }
@@ -51,18 +56,22 @@ public class NetworkController {
         this.dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);
         this.mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, null);
 
+        this.context = context;
         this.viTacademicsAPI = new VITacademicsAPI(context);
         networkController = this;
     }
 
     public static NetworkController getNetworkControllerSingleton(Context context) {
         if (networkController != null) {
-            SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+            networkController.context = context;
             networkController.viTacademicsAPI = new VITacademicsAPI(context);
+
+            SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
             networkController.campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
             networkController.registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
             networkController.dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);
             networkController.mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, null);
+
             return networkController;
         }
         return new NetworkController(context);
@@ -70,18 +79,63 @@ public class NetworkController {
 
     public static NetworkController getNetworkControllerSingleton(Context context, String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
         if (networkController != null) {
+            networkController.context = context;
             networkController.viTacademicsAPI = new VITacademicsAPI(context);
 
             networkController.campus = campus;
             networkController.registerNumber = registerNumber;
             networkController.dateOfBirth = dateOfBirth;
             networkController.mobileNumber = mobileNumber;
+
             return networkController;
         }
         return new NetworkController(context, campus, registerNumber, dateOfBirth, mobileNumber);
     }
 
-    public void dispatch(RequestConfig requestConfig) {
-        // TODO Dispatch API requests
+    public void dispatch(final RequestConfig requestConfig) {
+        final ResultListener resultListener = new ResultListener() {
+            @Override
+            public void onSuccess() {
+                requestConfig.getRequests().remove(requestConfig.getRequests().get(0));
+            }
+
+            @Override
+            public void onFailure(Status status) {
+                if (status.getCode() == StatusCodes.TIMED_OUT) {
+                    requestConfig.getRequests().add(RequestConfig.REQUEST_LOGIN);
+                }
+                else {
+                    requestConfig.getResultListener().onFailure(status);
+                }
+            }
+        };
+
+        while (requestConfig.getRequests().size() > 0) {
+            performRequest(requestConfig.getRequests().get(0), resultListener);
+        }
+
+        requestConfig.getResultListener().onSuccess();
+    }
+
+    private void performRequest(int request, ResultListener resultListener) {
+        switch (request) {
+            case RequestConfig.REQUEST_SYSTEM:
+                viTacademicsAPI.system(resultListener);
+                break;
+            case RequestConfig.REQUEST_LOGIN:
+                viTacademicsAPI.login(campus, registerNumber, dateOfBirth, mobileNumber, resultListener);
+                break;
+            case RequestConfig.REQUEST_REFRESH:
+                viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber, resultListener);
+                break;
+            case RequestConfig.REQUEST_GRADES:
+                viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber, resultListener);
+                break;
+            case RequestConfig.REQUEST_TOKEN:
+                viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber, resultListener);
+                break;
+            default:
+                resultListener.onFailure(new Status(StatusCodes.UNKNOWN, context.getResources().getString(R.string.api_unknown_error)));
+        }
     }
 }
