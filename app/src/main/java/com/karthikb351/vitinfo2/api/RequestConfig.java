@@ -23,6 +23,7 @@ package com.karthikb351.vitinfo2.api;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RequestConfig {
@@ -42,16 +43,15 @@ public class RequestConfig {
         this.resultListener = resultListener;
     }
 
-    public void addRequest(int request) {
-        requests.add(request);
+    public void addRequest(Integer request) {
+        if (!requests.contains(request)) {
+            requests.add(request);
+        }
+        Collections.sort(requests);
     }
 
-    public void removeRequest(int request) {
-        for (Integer r : requests) {
-            if (request == r) {
-                requests.remove(request);
-            }
-        }
+    public void removeRequest(Integer request) {
+        requests.remove(request);
     }
 
     public List<Integer> getRequests() {
