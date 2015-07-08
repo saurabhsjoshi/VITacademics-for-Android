@@ -53,6 +53,7 @@ public class RequestConfig {
 
     public void removeRequest(Integer request) {
         requests.remove(request);
+        Collections.sort(requests);
     }
 
     public List<Integer> getRequests() {
@@ -61,9 +62,18 @@ public class RequestConfig {
 
     public void setRequests(List<Integer> requests) {
         this.requests = requests;
+        Collections.sort(this.requests);
     }
 
     public ResultListener getResultListener() {
         return resultListener;
+    }
+
+    public int getRequestsLeft() {
+        return requests.size();
+    }
+
+    public int getFirstRequest() {
+        return requests.get(0);
     }
 }

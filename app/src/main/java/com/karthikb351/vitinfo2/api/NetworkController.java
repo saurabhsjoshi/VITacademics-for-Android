@@ -98,9 +98,9 @@ public class NetworkController {
         final ResultListener resultListener = new ResultListener() {
             @Override
             public void onSuccess() {
-                requestConfig.getRequests().remove(requestConfig.getRequests().get(0));
-                if (requestConfig.getRequests().size() > 0) {
-                    performRequest(requestConfig.getRequests().get(0), this);
+                requestConfig.removeRequest(requestConfig.getFirstRequest());
+                if (requestConfig.getRequestsLeft() > 0) {
+                    performRequest(requestConfig.getFirstRequest(), this);
                 }
                 else {
                     requestConfig.getResultListener().onSuccess();
@@ -110,16 +110,17 @@ public class NetworkController {
             @Override
             public void onFailure(Status status) {
                 if (status.getCode() == StatusCodes.TIMED_OUT) {
-                    requestConfig.getRequests().add(RequestConfig.REQUEST_LOGIN);
-                    performRequest(requestConfig.getRequests().get(0), this);
+                    requestConfig.addRequest(RequestConfig.REQUEST_LOGIN);
+                    performRequest(requestConfig.getFirstRequest(), this);
                 }
                 else {
                     requestConfig.getResultListener().onFailure(status);
                 }
             }
         };
-        if (requestConfig.getRequests().size() > 0) {
-            performRequest(requestConfig.getRequests().get(0), resultListener);
+
+        if (requestConfig.getRequestsLeft() > 0) {
+            performRequest(requestConfig.getFirstRequest(), resultListener);
         }
         else {
             requestConfig.getResultListener().onSuccess();
