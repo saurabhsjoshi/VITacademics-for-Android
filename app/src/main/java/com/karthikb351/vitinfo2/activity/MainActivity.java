@@ -35,11 +35,11 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.CGPAcalculator.CGPAcalculatorFragment;
-import com.karthikb351.vitinfo2.fragment.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
+import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
 import com.karthikb351.vitinfo2.fragment.today.MainFragment;
 import com.karthikb351.vitinfo2.utility.DataHolder;
@@ -50,7 +50,7 @@ import java.util.Arrays;
 
 import de.greenrobot.event.EventBus;
 
-public class MainActivity extends AppCompatActivity {
+public class    MainActivity extends AppCompatActivity {
 
     private String topics[];
     private DrawerLayout drawerLayout;

@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.adapter;
+package com.karthikb351.vitinfo2;
 
 public interface RecyclerViewOnClickListener<T> {
 

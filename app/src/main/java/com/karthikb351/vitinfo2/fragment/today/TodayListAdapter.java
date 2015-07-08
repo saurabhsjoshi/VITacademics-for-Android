@@ -30,14 +30,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
-import com.karthikb351.vitinfo2.contract.Timing;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 

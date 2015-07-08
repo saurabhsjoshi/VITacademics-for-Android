@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+ * Copyright (C) 2015 Gaurav Agerwala <gauravagerwala@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,4 +47,6 @@ public class Constants {
     public final static String KEY_GRADES_CGPA = "grades_cgpa";
     public final static String KEY_GRADES_CREDITS_EARNED = "grades_credits_earned";
     public final static String KEY_GRADES_CREDITS_REGISTERED = "grades_credits_registered";
+
+    public final static int SPLASH_TIME_OUT = 2000;
 }

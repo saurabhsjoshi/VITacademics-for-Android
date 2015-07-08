@@ -16,13 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment;
+package com.karthikb351.vitinfo2.fragment.settings;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -30,19 +29,17 @@ import android.widget.ListView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.LoginActivity;
+import com.karthikb351.vitinfo2.fragment.AboutFragment;
+import com.karthikb351.vitinfo2.fragment.LicensesFragment;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class SettingsFragment extends ListFragment {
 
-    List<String> settingsList;
+
     //ListView listView;
     String settingsTopics[];
-
+    String settingsMessages[];
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -58,10 +55,12 @@ public class SettingsFragment extends ListFragment {
            super.onActivityCreated(savedInstanceState);
         getActivity().setTitle("Settings");
         settingsTopics = getResources().getStringArray(R.array.settingsTopic);
-        settingsList = Arrays.asList(settingsTopics);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), R.layout.list_item_settings, R.id.text_view_settings, settingsList);
-        setListAdapter(arrayAdapter);
+        //TODO: Change
+        settingsMessages=getResources().getStringArray(R.array.settingsTopic);
+        SettingsAdapter adapter=new SettingsAdapter(getActivity(),0);
+        setListAdapter(adapter);
     }
+
 
 
     @Override
@@ -92,4 +91,19 @@ public class SettingsFragment extends ListFragment {
         }
 
     }
+
+    public class SettingsAdapter extends ArrayAdapter<String> {
+
+        Context context;
+        public SettingsAdapter(Context context, int resource) {
+            super(context, resource);
+            this.context=context;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+           return super.getView(position, convertView, parent);
+        }
+    }
+
 }

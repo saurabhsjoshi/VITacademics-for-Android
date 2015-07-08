@@ -24,25 +24,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.activity.MainActivity;
-import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Friend;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.fragment.today.TodayListAdapter;
 import com.karthikb351.vitinfo2.utility.DataHolder;
-import com.karthikb351.vitinfo2.utility.SortedArrayList;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;

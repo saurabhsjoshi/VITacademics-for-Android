@@ -27,7 +27,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.adapter.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Friend;
 
 import java.util.ArrayList;

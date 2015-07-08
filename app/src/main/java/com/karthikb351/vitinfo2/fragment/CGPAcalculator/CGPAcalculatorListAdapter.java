@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -64,7 +65,11 @@ public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculat
 
     @Override
     public void onBindViewHolder(CGPAcalculatorViewHolder holder, int position) {
-        holder.newCGPA.setText(Float.toString(totalCGP/(regCreds+newCredits)));
+        holder.tvNewCGPA.setText(Float.toString(newCGPA));
+        holder.oldCGPA.setText(Float.toString(cgpa));
+        holder.courseName.setText(courses.get(position-1).getCourseTitle());
+        holder.courseCode.setText(courses.get(position-1).getCourseCode());
+        holder.courseCredits.setText(courses.get(position-1).getLtpc().charAt(3));
     }
 
     @Override
@@ -74,24 +79,35 @@ public class CGPAcalculatorListAdapter extends RecyclerView.Adapter<CGPAcalculat
 
     @Override
     public int getItemViewType(int position) {
-        if (position==courses.size())
-            ;
-            else;
+        if (position==0)
+            layoutId=R.layout.card_cgpa_calculate;
+            else
+            layoutId=R.layout.card_cgpa_subjects;
         return layoutId;
         }
 
     public class CGPAcalculatorViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnItemClickListener{
 
 
-        public TextView courseCode,courseName,courseCredits,newCGPA;
+        public TextView courseCode,courseName,courseCredits,tvNewCGPA,oldCGPA;
         public Spinner spinner;
+        public ImageButton calculate;
         public CGPAcalculatorViewHolder(View view){
             super(view);
+            calculate=(ImageButton)view.findViewById(R.id.iv_calculate);
+            tvNewCGPA=(TextView)view.findViewById(R.id.tv_cgpa_new);
+            oldCGPA=(TextView)view.findViewById(R.id.tv_cgpa_old);
             courseCode=(TextView)view.findViewById(R.id.tv_course_code);
             courseName=(TextView)view.findViewById(R.id.tv_course_name);
             courseCredits=(TextView)view.findViewById(R.id.tv_course_credit);
             spinner=(Spinner)view.findViewById(R.id.spinner_course_grade);
             spinner.setOnItemClickListener(this);
+            calculate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   newCGPA=totalCGP/newCredits;
+                }
+            });
         }
 
         @Override

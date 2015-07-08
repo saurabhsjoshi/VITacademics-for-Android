@@ -21,7 +21,9 @@ package com.karthikb351.vitinfo2.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
+import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
 
 public class Splash extends Activity {
@@ -30,19 +32,14 @@ public class Splash extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
-        Thread timer= new Thread(){
-            public void run(){
-                try{
-                    sleep(1500);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }finally{
-                    Intent openDa = new Intent("com.karthikb351.vitinfo2.activity.LoginActivity");
-                    startActivity(openDa);
-                }
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent openDa = new Intent("com.karthikb351.vitinfo2.activity.LoginActivity");
+                startActivity(openDa);
             }
-        };
-        timer.start();
+        }, Constants.SPLASH_TIME_OUT);
     }
 
     protected void onPause(){
