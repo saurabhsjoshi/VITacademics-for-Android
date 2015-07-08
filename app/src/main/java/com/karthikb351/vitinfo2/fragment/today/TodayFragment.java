@@ -64,7 +64,7 @@ public class TodayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        rootView = inflater.inflate(R.layout.fragment_today, container, false);
         initialize();
         return rootView;
     }
@@ -75,6 +75,7 @@ public class TodayFragment extends Fragment {
 
     void initialize() {
         load = (ProgressBar) rootView.findViewById(R.id.todayProgressBar);
+        // TODO, there is no progressbar in the layout
         todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
         getActivity().setTitle("Today");
         new loadToday().execute();
