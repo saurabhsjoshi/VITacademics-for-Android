@@ -111,13 +111,19 @@ public class NetworkController {
             public void onFailure(Status status) {
                 if (status.getCode() == StatusCodes.TIMED_OUT) {
                     requestConfig.getRequests().add(RequestConfig.REQUEST_LOGIN);
+                    performRequest(requestConfig.getRequests().get(0), this);
                 }
                 else {
                     requestConfig.getResultListener().onFailure(status);
                 }
             }
         };
-        performRequest(requestConfig.getRequests().get(0), resultListener);
+        if (requestConfig.getRequests().size() > 0) {
+            performRequest(requestConfig.getRequests().get(0), resultListener);
+        }
+        else {
+            requestConfig.getResultListener().onSuccess();
+        }
     }
 
     private void performRequest(int request, ResultListener resultListener) {
