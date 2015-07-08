@@ -23,8 +23,6 @@ import android.content.SharedPreferences;
 
 import com.karthikb351.vitinfo2.Constants;
 
-import de.greenrobot.event.EventBus;
-
 public class NetworkController {
 
     private static NetworkController networkController;
@@ -44,8 +42,6 @@ public class NetworkController {
 
         this.viTacademicsAPI = new VITacademicsAPI(context);
         networkController = this;
-
-        EventBus.getDefault().register(this);
     }
 
     private NetworkController(Context context) {
