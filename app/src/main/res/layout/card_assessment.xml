@@ -1,81 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:id="@+id/card_view_assessmnet">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view_assessmnet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5sp">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/tv_marks_type"
-            android:textSize="@dimen/abc_text_size_display_1_material"
-            android:gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/assessType2"
-            android:textStyle="bold"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/assessType2"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/abc_text_size_display_1_material"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/tv_scored_marks"
-            android:textSize="@dimen/abc_text_size_large_material"
-            android:text="-/"
-            android:textColor="@color/primary_text_default_material_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/tv_marks_type"
             android:layout_alignBottom="@+id/tv_marks_type"
             android:layout_toLeftOf="@+id/tv_max_marks"
-            android:layout_toStartOf="@+id/tv_max_marks" />
+            android:layout_toStartOf="@+id/tv_max_marks"
+            android:text="-/"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
         <TextView
+            android:id="@+id/tv_max_marks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_max_marks"
-            android:textSize="@dimen/abc_text_size_large_material"
-            android:text="-"
-            android:textColor="@color/primary_text_default_material_light"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"
             android:layout_alignBaseline="@+id/tv_scored_marks"
             android:layout_alignBottom="@+id/tv_scored_marks"
+            android:layout_alignEnd="@+id/progress_bar_marks"
             android:layout_alignRight="@+id/progress_bar_marks"
-            android:layout_alignEnd="@+id/progress_bar_marks" />
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:text="-"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="@dimen/abc_text_size_large_material" />
+
         <ProgressBar
+            android:id="@+id/progress_bar_marks"
             style="@style/BarraProgreso"
             android:layout_width="match_parent"
             android:layout_height="15sp"
-            android:layout_below="@+id/tv_scored_marks"
-            android:id="@+id/progress_bar_marks" />
+            android:layout_below="@+id/tv_scored_marks" />
+
         <TextView
+            android:id="@+id/fixed_weightage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weightage: "
             android:layout_below="@+id/progress_bar_marks"
-            android:id="@+id/fixed_weightage"/>
+            android:text="Weightage: " />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
             android:id="@+id/tv_weightage"
-            android:layout_below="@+id/progress_bar_marks"
-            android:layout_toRightOf="@id/fixed_weightage"/>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contribution: "
             android:layout_below="@+id/progress_bar_marks"
+            android:layout_toRightOf="@id/fixed_weightage"
+            android:text="-" />
+
+        <TextView
             android:id="@+id/fixed_contribution"
-            android:layout_toLeftOf="@+id/tv_contribution"/>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            android:id="@+id/tv_contribution"
             android:layout_below="@+id/progress_bar_marks"
-            android:layout_alignParentRight="true"/>
+            android:layout_toLeftOf="@+id/tv_contribution"
+            android:text="Contribution: " />
+
+        <TextView
+            android:id="@+id/tv_contribution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/progress_bar_marks"
+            android:text="-" />
         <!--Assesment percentage, scored percentage, contribution to
         final marks to be included -->
-        </RelativeLayout>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

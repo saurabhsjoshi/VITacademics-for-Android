@@ -26,15 +26,15 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class TimeTablePagerAdapter extends FragmentStatePagerAdapter {
 
-    Context context ;
+    Context context;
     int NUM_VALUES = 5;
-    private String tabTitles[] = new String[]{"Monday","Tuesday","Wednesday","Thursday","Friday"};
+    private String tabTitles[] = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 
-    TimeTablePagerAdapter(FragmentManager fm , Context context)
-    {
+    TimeTablePagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
     }
+
     @Override
     public int getCount() {
         return NUM_VALUES;

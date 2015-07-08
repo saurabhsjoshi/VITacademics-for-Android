@@ -35,14 +35,12 @@ import de.greenrobot.event.EventBus;
 
 public class Network {
 
+    private static Network network;
     private String campus;
     private String registerNumber;
     private String dateOfBirth;
     private String mobileNumber;
-
     private VITacademicsAPI viTacademicsAPI;
-    private static Network network;
-
     private int friendCount;
     private int refreshedFriends;
     private boolean refreshed;
@@ -99,7 +97,7 @@ public class Network {
     public void getAllFriends() {
         List<Friend> friends = Friend.listAll(Friend.class);
         friendCount = friends.size();
-        for(Friend friend : friends) {
+        for (Friend friend : friends) {
             viTacademicsAPI.share(friend.getCampus(), friend.getRegisterNumber(), friend.getDateOfBirth(), friend.getMobileNumber(), this.registerNumber, new ResultListener() {
                 @Override
                 public void onSuccess() {
@@ -151,14 +149,12 @@ public class Network {
 
                     }
                 });
-            }
-            else {
+            } else {
                 if (successEvent.isRefreshDone() && successEvent.isGradesDone()) {
                     if (successEvent.isTokenDone()) {
                         refreshed = true;
                         EventBus.getDefault().post(new RefreshEvent());
-                    }
-                    else {
+                    } else {
                         viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultListener() {
                             @Override
                             public void onSuccess() {
@@ -171,8 +167,7 @@ public class Network {
                             }
                         });
                     }
-                }
-                else {
+                } else {
                     if (successEvent.isRefreshDone()) {
                         viTacademicsAPI.grades(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultListener() {
                             @Override
@@ -185,8 +180,7 @@ public class Network {
 
                             }
                         });
-                    }
-                    else {
+                    } else {
                         viTacademicsAPI.refresh(campus, registerNumber, dateOfBirth, mobileNumber, successEvent, new ResultListener() {
                             @Override
                             public void onSuccess() {
@@ -202,8 +196,7 @@ public class Network {
                 }
             }
             getAllFriends();
-        }
-        else {
+        } else {
             viTacademicsAPI.system(successEvent, new ResultListener() {
                 @Override
                 public void onSuccess() {

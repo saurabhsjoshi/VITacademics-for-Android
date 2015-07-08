@@ -40,7 +40,7 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
-public class CGPAcalculatorFragment extends Fragment implements View.OnClickListener{
+public class CGPAcalculatorFragment extends Fragment implements View.OnClickListener {
 
     List<Grade> gradeList;
     List<Course> courseList;
@@ -51,57 +51,55 @@ public class CGPAcalculatorFragment extends Fragment implements View.OnClickList
     View view;
     CGPAcalculatorListAdapter listAdapter;
 
-    public CGPAcalculatorFragment(){
+    public CGPAcalculatorFragment() {
         //empty default constructor
     }
-    public static CGPAcalculatorFragment newInstance(){
+
+    public static CGPAcalculatorFragment newInstance() {
         return new CGPAcalculatorFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.cgpa_calculator,container,false);
+        view = inflater.inflate(R.layout.cgpa_calculator, container, false);
         initialize();
         return view;
     }
 
-    public void initialize(){
-        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity());
-        listAdapter=new CGPAcalculatorListAdapter(getActivity(),courses,grades);
-        recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_cgpa_calculator);
-        imageButton=(ImageButton)view.findViewById(R.id.iv_calculate);
+    public void initialize() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        listAdapter = new CGPAcalculatorListAdapter(getActivity(), courses, grades);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_cgpa_calculator);
+        imageButton = (ImageButton) view.findViewById(R.id.iv_calculate);
         imageButton.setOnClickListener(this);
-        gradeList= DataHolder.getGrades();
-        courseList=DataHolder.getCourses();
-        grades=new ArrayList<>(gradeList);
-        courses=new ArrayList<>(courseList);
+        gradeList = DataHolder.getGrades();
+        courseList = DataHolder.getCourses();
+        grades = new ArrayList<>(gradeList);
+        courses = new ArrayList<>(courseList);
         recyclerView.setAdapter(listAdapter);
         recyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
     public void onClick(View v) {
-        
+
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         EventBus.getDefault().unregister(this);
         super.onPause();
     }
 
     // This method will be called when a RefreshFragmentEvent is posted
-    public void onEvent(RefreshFragmentEvent event)
-    {
+    public void onEvent(RefreshFragmentEvent event) {
         initialize();
     }
 }

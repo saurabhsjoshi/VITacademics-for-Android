@@ -32,22 +32,22 @@ public class DetailsAdapter extends FragmentStatePagerAdapter {
     Fragment fragment;
     Context context;
     Course course;
-    int TAB_COUNT_DETAILS=3;
+    int TAB_COUNT_DETAILS = 3;
 
-    public DetailsAdapter(FragmentManager fragmentManager,Context context, Course course){
+    public DetailsAdapter(FragmentManager fragmentManager, Context context, Course course) {
         super(fragmentManager);
-        this.context=context;
-        this.course=course;
+        this.context = context;
+        this.course = course;
     }
 
     @Override
     public Fragment getItem(int position) {
-        if(position==0)
-            fragment= OverviewFragment.newInstance(course);
-        else if (position==1)
-            fragment= AttendanceFragment.newInstance(course);
-        else if(position==2)
-            fragment= AssesmentFragment.newInstance(course);
+        if (position == 0)
+            fragment = OverviewFragment.newInstance(course);
+        else if (position == 1)
+            fragment = AttendanceFragment.newInstance(course);
+        else if (position == 2)
+            fragment = AssesmentFragment.newInstance(course);
         return null;
     }
 
@@ -58,7 +58,7 @@ public class DetailsAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        String detailsTitles[]={"Overview","Attendance","Marks"};
+        String detailsTitles[] = {"Overview", "Attendance", "Marks"};
         return detailsTitles[position];
     }
 }

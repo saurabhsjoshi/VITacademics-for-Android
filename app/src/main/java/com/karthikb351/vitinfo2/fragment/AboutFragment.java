@@ -29,15 +29,14 @@ import com.karthikb351.vitinfo2.R;
 
 public class AboutFragment extends Fragment {
 
-    public static AboutFragment newInstance() {
-        AboutFragment fragment = new AboutFragment();
-        return fragment;
-    }
-
     public AboutFragment() {
         // Required empty public constructor
     }
 
+    public static AboutFragment newInstance() {
+        AboutFragment fragment = new AboutFragment();
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

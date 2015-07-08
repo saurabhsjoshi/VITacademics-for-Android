@@ -20,90 +20,89 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_view_course"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
 
-        <RelativeLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tv_course_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:
+            android:background="#ffe7ffc1"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_attendance"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/tv_course_name"
+            android:background="@drawable/circle"
+            android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
+            android:elevation="@dimen/cardview_default_elevation"
+            android:gravity="center"
+            android:text="N.A"
+            android:textColor="@color/bright_foreground_material_light" />
+
+        <TextView
+            android:id="@+id/tv_course_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_course_code"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/tv_attendance"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textStyle="italic" />
+
+        <ProgressBar
+            android:id="@+id/process_bar_attendance"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp">
-            <TextView
-                android:id="@+id/tv_course_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:textStyle="bold"
-                android:
-                android:background="#ffe7ffc1"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
-                android:layout_centerHorizontal="true"/>
+            android:layout_below="@+id/tv_course_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/tv_attendance"
+            android:elevation="@dimen/cardview_default_elevation"
+            android:progress="0" />
 
-            <TextView
-                android:layout_width="60sp"
-                android:layout_height="60sp"
-                android:text="N.A"
-                android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
-                android:elevation="@dimen/cardview_default_elevation"
-                android:gravity="center"
-                android:background="@drawable/circle"
-                android:textColor="@color/bright_foreground_material_light"
-                android:id="@+id/tv_attendance"
-                android:layout_alignTop="@+id/tv_course_name"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-            <TextView
-                android:id="@+id/tv_course_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_course_code"
-                android:textStyle="italic"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/primary_text_default_material_light"
-                android:layout_toRightOf="@+id/tv_attendance"
-                />
+        <TextView
+            android:id="@+id/tv_slot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/process_bar_attendance"
+            android:layout_toRightOf="@+id/tv_attendance"
+            android:paddingTop="5dp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="20sp" />
 
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/process_bar_attendance"
-                android:elevation="@dimen/cardview_default_elevation"
-                android:progress="0"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/tv_course_name"
-                android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@+id/tv_attendance"/>
+        <TextView
+            android:id="@+id/tv_venue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/process_bar_attendance"
+            android:paddingTop="5dp"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="20sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_slot"
-                android:paddingTop="5dp"
-                android:layout_below="@+id/process_bar_attendance"
-                android:textColor="@color/primary_text_default_material_light"
-                android:textSize="20sp"
-                android:layout_toRightOf="@+id/tv_attendance"
-                />
+        <android.widget.Space
+            android:layout_width="20dp"
+            android:layout_height="10sp"
+            android:layout_below="@+id/tv_slot"
+            android:layout_toEndOf="@+id/tv_course_code"
+            android:layout_toRightOf="@+id/tv_attendance" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_venue"
-                android:paddingTop="5dp"
-                android:textColor="@color/primary_text_default_material_light"
-                android:textSize="20sp"
-                android:layout_below="@+id/process_bar_attendance"
-                android:layout_alignParentRight="true"
-                />
-
-            <android.widget.Space
-                android:layout_width="20dp"
-                android:layout_height="10sp"
-                android:layout_below="@+id/tv_slot"
-                android:layout_toRightOf="@+id/tv_attendance"
-                android:layout_toEndOf="@+id/tv_course_code" />
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

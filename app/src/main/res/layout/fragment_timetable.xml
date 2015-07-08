@@ -17,9 +17,10 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"
@@ -29,7 +30,7 @@
         app:tabMode="scrollable" />
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_timetable"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/view_pager_timetable"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>

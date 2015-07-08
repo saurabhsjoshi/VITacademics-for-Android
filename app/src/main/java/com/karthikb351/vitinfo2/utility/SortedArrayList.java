@@ -13,9 +13,9 @@ import java.util.Date;
 /**
  * Created by pulkit on 03/07/2015.
  */
-public class SortedArrayList extends ArrayList<Pair<Course,Integer>> {
+public class SortedArrayList extends ArrayList<Pair<Course, Integer>> {
 
-    public void insert(Pair<Course,Integer> data) {
+    public void insert(Pair<Course, Integer> data) {
         try {
             Date date = new Date();
             Timing thistime = data.first.getTimings()[data.second];
@@ -23,18 +23,17 @@ public class SortedArrayList extends ArrayList<Pair<Course,Integer>> {
             Date startDate = simpleDateFormat.parse(thistime.getStartTime());
             Date endDate = simpleDateFormat.parse(thistime.getEndTime());
             if (date.after(endDate))
-                return ;
-                int i = 0;
+                return;
+            int i = 0;
             for (; i < size(); i++) {
                 Date time = simpleDateFormat.parse(get(i).first.getTimings()[get(i).second].getStartTime());
-                if(time.before(startDate))
+                if (time.before(startDate))
                     continue;
                 else
                     break;
             }
             add(i, data);
-        }
-        catch(ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }

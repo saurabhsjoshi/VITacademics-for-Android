@@ -42,10 +42,10 @@ import java.util.concurrent.TimeUnit;
 public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
 
     Context context;
-    ArrayList<Pair<Course,Integer>> courses;
-    RecyclerViewOnClickListener<Course> OnclickListener ;
+    ArrayList<Pair<Course, Integer>> courses;
+    RecyclerViewOnClickListener<Course> OnclickListener;
 
-    public TodayListAdapter(Context context, ArrayList<Pair<Course,Integer>> courses) {
+    public TodayListAdapter(Context context, ArrayList<Pair<Course, Integer>> courses) {
         this.context = context;
         this.courses = courses;
     }
@@ -67,12 +67,12 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         todayViewHolder.Slot.setText(courses.get(position).first.getSlot());
         todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
         todayViewHolder.pbAttendance.setProgress(AttendanceP);
-        String  start  =  courses.get(position).first.getTimings()[courses.get(position).second].getStartTime();
+        String start = courses.get(position).first.getTimings()[courses.get(position).second].getStartTime();
         todayViewHolder.TimeLeft.setText(timediff(start));
     }
 
-    public void setOnclickListener(RecyclerViewOnClickListener<Course> listener){
-        OnclickListener = listener ;
+    public void setOnclickListener(RecyclerViewOnClickListener<Course> listener) {
+        OnclickListener = listener;
     }
 
     @Override
@@ -80,66 +80,51 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         return courses.size();
     }
 
+    public String timediff(String date) {
+        String result = "";
+        try {
+            int hours = 0, minutes = 0;
+            Date now = new Date();
+            Date startTime = new SimpleDateFormat("MM/dd/yyyy KK:mm:ss a Z").parse(date);
+            long timediff = startTime.getTime() - now.getTime();
+            if (timediff > 60000) {
+                hours = (int) TimeUnit.MILLISECONDS.toHours(timediff);
+                minutes = (int) (TimeUnit.MILLISECONDS.toMinutes(timediff) - TimeUnit.HOURS.toMinutes(hours));
+            } else {
+                result = "Right now";
+            }
+            if (hours == 0) {
+                result = Integer.toString(minutes) + " minutes later";
+            } else if (minutes == 0) {
+                result = Integer.toString(minutes) + " hours later";
+            } else {
+                result = Integer.toString(hours) + " hours and " + Integer.toString(minutes) + " minutes later";
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
     public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView courseName, courseCode, Attendance, Slot ,Venue,TimeLeft;
+        public TextView courseName, courseCode, Attendance, Slot, Venue, TimeLeft;
         public ProgressBar pbAttendance;
 
         public TodayViewHolder(View view) {
             super(view);
             courseName = (TextView) view.findViewById(R.id.tv_course_name);
             courseCode = (TextView) view.findViewById(R.id.tv_course_code);
-            Attendance = (TextView)view.findViewById(R.id.tv_attendance);
-            Slot = (TextView)view.findViewById(R.id.tv_slot);
-            Venue = (TextView)view.findViewById(R.id.tv_venue);
-            TimeLeft = (TextView)view.findViewById(R.id.tvTimeLeft);
-            pbAttendance = (ProgressBar)view.findViewById(R.id.process_bar_attendance);
+            Attendance = (TextView) view.findViewById(R.id.tv_attendance);
+            Slot = (TextView) view.findViewById(R.id.tv_slot);
+            Venue = (TextView) view.findViewById(R.id.tv_venue);
+            TimeLeft = (TextView) view.findViewById(R.id.tvTimeLeft);
+            pbAttendance = (ProgressBar) view.findViewById(R.id.process_bar_attendance);
             pbAttendance.setMax(100);
         }
 
-        public  void onClick(View view)
-        {
+        public void onClick(View view) {
             Course course = courses.get(getAdapterPosition()).first;
             OnclickListener.onItemClick(course);
         }
-    }
-
-    public String timediff(String date)
-    {
-        String result = "";
-        try
-        {
-            int hours=0 , minutes=0 ;
-            Date now = new Date();
-            Date startTime = new SimpleDateFormat("MM/dd/yyyy KK:mm:ss a Z").parse(date);
-            long timediff = startTime.getTime() - now.getTime();
-            if(timediff>60000)
-            {
-                hours = (int)TimeUnit.MILLISECONDS.toHours(timediff);
-                minutes=(int)(TimeUnit.MILLISECONDS.toMinutes(timediff)-TimeUnit.HOURS.toMinutes(hours));
-            }
-            else
-            {
-                result = "Right now";
-            }
-            if(hours == 0)
-            {
-                result = Integer.toString(minutes) + " minutes later";
-            }
-            else if(minutes == 0 )
-            {
-                result = Integer.toString(minutes) + " hours later";
-            }
-            else
-            {
-                result =Integer.toString(hours)+" hours and "+ Integer.toString(minutes) + " minutes later";
-            }
-        }
-
-        catch (ParseException e)
-        {
-            e.printStackTrace();
-        }
-        return result;
     }
 }

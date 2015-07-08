@@ -1,55 +1,53 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group
-        android:checkableBehavior="single">
+    <group android:checkableBehavior="single">
 
         <item
             android:id="@+id/drawer_home"
             android:checked="true"
             android:icon="@mipmap/ic_today_black_48dp"
-            android:title="Today"/>
+            android:title="Today" />
 
         <item
             android:id="@+id/drawer_courses"
             android:icon="@mipmap/ic_school_black_24dp"
-            android:title="Courses"/>
+            android:title="Courses" />
 
         <item
             android:id="@+id/drawer_favourite"
             android:icon="@mipmap/timetable"
-            android:title="Time Table"/>
+            android:title="Time Table" />
 
         <item
             android:id="@+id/drawer_grades"
             android:icon="@mipmap/ic_assessment_black_48dp"
-            android:title="Grades"/>
+            android:title="Grades" />
 
         <item
             android:id="@+id/drawer_cgpa_calculator"
             android:icon="@drawable/calculator"
-            android:title="CGPA Calculator"/>
+            android:title="CGPA Calculator" />
 
         <item
             android:id="@+id/drawer_friends"
             android:icon="@mipmap/ic_people_black_24dp"
-            android:title="Friends"/>
+            android:title="Friends" />
 
         <item
             android:id="@+id/drawer_messages"
             android:icon="@mipmap/ic_message_black_48dp"
-            android:title="Messages"/>
+            android:title="Messages" />
 
 
     </group>
-    <group
-        android:checkableBehavior="single">
+    <group android:checkableBehavior="single">
         <item
             android:id="@+id/drawer_settings"
             android:icon="@mipmap/ic_settings_black_24dp"
-            android:title="Settings"/>
+            android:title="Settings" />
         <item
             android:id="@+id/drawer_about"
             android:icon="@mipmap/ic_search_black_48dp"
-            android:title="About"/>
+            android:title="About" />
     </group>
 </menu>

@@ -47,26 +47,27 @@ public class ContributorsFragment extends Fragment {
     RecyclerView.LayoutManager contributorsLayoutManager;
     View view;
 
-    public ContributorsFragment(){
+    public ContributorsFragment() {
         //empty constructor
     }
 
-    public ContributorsFragment newInstance(){
+    public ContributorsFragment newInstance() {
         return new ContributorsFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.contributors,container,false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.contributors, container, false);
         getDataAndInitailse();
         return view;
     }
-    public void getDataAndInitailse(){
-        contributorsLayoutManager=new LinearLayoutManager(getActivity());
-        contributorsList= DataHolder.getContributors();
-        contributors=new ArrayList<>(contributorsList);
-        contributorsListAdapter=new ContributorListAdapter(getActivity(),contributors);
-        recyclerView = (RecyclerView)view.findViewById(R.id.recycler_view_contributors);
+
+    public void getDataAndInitailse() {
+        contributorsLayoutManager = new LinearLayoutManager(getActivity());
+        contributorsList = DataHolder.getContributors();
+        contributors = new ArrayList<>(contributorsList);
+        contributorsListAdapter = new ContributorListAdapter(getActivity(), contributors);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_contributors);
         recyclerView.setLayoutManager(contributorsLayoutManager);
         recyclerView.setAdapter(contributorsListAdapter);
 

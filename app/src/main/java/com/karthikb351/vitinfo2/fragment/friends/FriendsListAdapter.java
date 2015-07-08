@@ -32,18 +32,17 @@ import com.karthikb351.vitinfo2.contract.Friend;
 
 import java.util.ArrayList;
 
-public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder>
-{
+public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder> {
 
     ArrayList<Friend> friends;
-    Context context ;
-    RecyclerViewOnClickListener<Friend> OnclickListener ;
+    Context context;
+    RecyclerViewOnClickListener<Friend> OnclickListener;
 
-    public FriendsListAdapter(Context context , ArrayList<Friend> friends)
-    {
-        this.context = context ;
-        this.friends = friends ;
+    public FriendsListAdapter(Context context, ArrayList<Friend> friends) {
+        this.context = context;
+        this.friends = friends;
     }
+
     @Override
     public FriendsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.
@@ -59,9 +58,8 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         holder.FriendRegNo.setText(friends.get(position).getRegisterNumber());
     }
 
-    public void setOnclickListener(RecyclerViewOnClickListener<Friend> listener)
-    {
-        OnclickListener = listener ;
+    public void setOnclickListener(RecyclerViewOnClickListener<Friend> listener) {
+        OnclickListener = listener;
     }
 
     @Override
@@ -69,19 +67,19 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         return friends.size();
     }
 
-    public class FriendsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
+    public class FriendsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView FriendName, FriendRegNo;
         public ImageView FriendImage;
+
         public FriendsViewHolder(View itemView) {
             super(itemView);
-            FriendRegNo=(TextView)itemView.findViewById(R.id.tv_friend_reg_no);
-            FriendName=(TextView)itemView.findViewById(R.id.tv_friend_name);
-            FriendImage=(ImageView)itemView.findViewById(R.id.photo_friend);
+            FriendRegNo = (TextView) itemView.findViewById(R.id.tv_friend_reg_no);
+            FriendName = (TextView) itemView.findViewById(R.id.tv_friend_name);
+            FriendImage = (ImageView) itemView.findViewById(R.id.photo_friend);
         }
-        public  void onClick(View v)
-        {
+
+        public void onClick(View v) {
             Friend friend = friends.get(getAdapterPosition());
             OnclickListener.onItemClick(friend);
         }

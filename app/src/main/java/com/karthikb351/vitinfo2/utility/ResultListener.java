@@ -6,7 +6,9 @@ package com.karthikb351.vitinfo2.utility;
 public abstract class ResultListener {
 
     public abstract void onSuccess();
+
     public abstract void onFailure();
+
     public void onProgress() {
 
     }

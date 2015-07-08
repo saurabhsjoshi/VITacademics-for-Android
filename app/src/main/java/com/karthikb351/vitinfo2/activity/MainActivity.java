@@ -50,7 +50,7 @@ import java.util.Arrays;
 
 import de.greenrobot.event.EventBus;
 
-public class    MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private String topics[];
     private DrawerLayout drawerLayout;
@@ -144,7 +144,7 @@ public class    MainActivity extends AppCompatActivity {
                         pos = 3;
                     case "CGPA Calculator":
                         frag = CGPAcalculatorFragment.newInstance();
-                        pos=4;
+                        pos = 4;
                     case "Friends":
                         frag = FriendsFragment.newInstance();
                         pos = 5;
@@ -157,7 +157,7 @@ public class    MainActivity extends AppCompatActivity {
                         pos = 7;
                         break;
                     case "About":
-                        frag= AboutFragment.newInstance();
+                        frag = AboutFragment.newInstance();
                         pos = 8;
                 }
                 ft.replace(R.id.flContent, frag, topics[pos]).addToBackStack(null).commit();

@@ -33,34 +33,35 @@ import com.karthikb351.vitinfo2.contract.Course;
 
 public class DetailsFragment extends Fragment {
 
+    final ActionBar actionBar = getActivity().getActionBar();
     TabLayout tabLayout;
     ViewPager viewPager;
     DetailsAdapter adapter;
     Course course;
-    final ActionBar actionBar= getActivity().getActionBar();
 
-    public DetailsFragment(){
+    public DetailsFragment() {
 
     }
 
-    public DetailsFragment newInstance(Course course){
-        DetailsFragment detailsFragment=new DetailsFragment();
-        detailsFragment.course=course;
+    public DetailsFragment newInstance(Course course) {
+        DetailsFragment detailsFragment = new DetailsFragment();
+        detailsFragment.course = course;
         return new DetailsFragment();
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_details,container,false);
+        View view = inflater.inflate(R.layout.fragment_details, container, false);
 
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setDisplayShowTitleEnabled(false);
         getActivity().setTitle(course.getCourseCode());
 
-        tabLayout=(TabLayout)view.findViewById(R.id.tabs_details);
-        viewPager=(ViewPager)view.findViewById(R.id.view_pager_details);
+        tabLayout = (TabLayout) view.findViewById(R.id.tabs_details);
+        viewPager = (ViewPager) view.findViewById(R.id.view_pager_details);
 
-        adapter=new DetailsAdapter(getActivity().getSupportFragmentManager(),getActivity(),course);
+        adapter = new DetailsAdapter(getActivity().getSupportFragmentManager(), getActivity(), course);
         viewPager.setAdapter(adapter);
 
         tabLayout.setupWithViewPager(viewPager);

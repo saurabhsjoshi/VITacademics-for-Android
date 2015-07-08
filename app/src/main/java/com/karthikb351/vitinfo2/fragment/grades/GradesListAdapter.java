@@ -35,30 +35,27 @@ import java.util.ArrayList;
 public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.GradesViewHolder> {
 
     ArrayList<Grade> gradeList;
-    Context context ;
-    RecyclerViewOnClickListener<Grade> onClickListener ;
+    Context context;
+    RecyclerViewOnClickListener<Grade> onClickListener;
 
-    GradesListAdapter(Context context , ArrayList<Grade> grades)
-    {
-        this.context=context;
-        gradeList = grades ;
+    GradesListAdapter(Context context, ArrayList<Grade> grades) {
+        this.context = context;
+        gradeList = grades;
     }
 
     @Override
-    public GradesViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
-    {
-        View view = LayoutInflater.from(context).inflate(R.layout.card_grades,parent,false);
+    public GradesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.card_grades, parent, false);
         return new GradesViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(GradesViewHolder holder, int position)
-    {
-      holder.courseCode.setText(gradeList.get(position).getCourseCode());
-      holder.courseName.setText(gradeList.get(position).getCourseTitle());
-      holder.credits.setText(gradeList.get(position).getCredits());
-      holder.courseType.setText(gradeList.get(position).getCourseType());
-      holder.grade.setText(gradeList.get(position).getGrade());
+    public void onBindViewHolder(GradesViewHolder holder, int position) {
+        holder.courseCode.setText(gradeList.get(position).getCourseCode());
+        holder.courseName.setText(gradeList.get(position).getCourseTitle());
+        holder.credits.setText(gradeList.get(position).getCredits());
+        holder.courseType.setText(gradeList.get(position).getCourseType());
+        holder.grade.setText(gradeList.get(position).getGrade());
     }
 
     @Override
@@ -66,26 +63,24 @@ public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.Gr
         return gradeList.size();
     }
 
-    public class GradesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
-        TextView courseCode ,
-                courseName ,
-                courseType ,
-                credits ,
+    public class GradesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView courseCode,
+                courseName,
+                courseType,
+                credits,
                 grade;
-        public GradesViewHolder(View itemView)
-        {
+
+        public GradesViewHolder(View itemView) {
             super(itemView);
-            courseCode = (TextView)itemView.findViewById(R.id.course_code);
-            courseName = (TextView)itemView.findViewById(R.id.course_name);
-            courseType = (TextView)itemView.findViewById(R.id.course_type);
-            credits = (TextView)itemView.findViewById(R.id.tv_course_credit);
-            grade =(TextView)itemView.findViewById(R.id.tv_grade);
+            courseCode = (TextView) itemView.findViewById(R.id.course_code);
+            courseName = (TextView) itemView.findViewById(R.id.course_name);
+            courseType = (TextView) itemView.findViewById(R.id.course_type);
+            credits = (TextView) itemView.findViewById(R.id.tv_course_credit);
+            grade = (TextView) itemView.findViewById(R.id.tv_grade);
             itemView.setOnClickListener(this);
         }
 
-        public void onClick(View view)
-        {
+        public void onClick(View view) {
 
         }
     }

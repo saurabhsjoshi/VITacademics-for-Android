@@ -42,7 +42,7 @@ public class Splash extends Activity {
         }, Constants.SPLASH_TIME_OUT);
     }
 
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
         finish();
     }

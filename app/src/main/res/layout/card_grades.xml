@@ -16,79 +16,79 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:background="#ffffffff"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffffff">
+
+    <TextView
+        android:id="@+id/tv_course_code"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        >
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_course_code"
-            android:text="CSE101"
-            android:gravity="center"
-            android:background="@color/highlight"
-            android:textStyle="bold"
-            android:textSize="30sp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_centerHorizontal="true"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/course_name"
-            android:paddingLeft="5dp"
-            android:background="@color/highlight"
-            android:paddingRight="5dp"
-            android:text="Computer Programming and Problem Solving"
-            android:textStyle="italic"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:layout_marginTop="30dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/colorPrimary"
-            android:layout_below="@+id/course_code"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/course_type"
-            android:text="CBL"
-            android:padding="5dp"
-            android:layout_alignTop="@+id/course_name"
-            android:layout_marginTop="45dp"
-            android:textSize="23sp"
-            android:layout_alignParentLeft="true"
-            android:textColor="@color/primary_text_default_material_light"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_course_credit"
-            android:padding="5dp"
-            android:layout_alignTop="@+id/course_name"
-            android:textSize="23sp"
-            android:layout_marginTop="45dp"
-            android:paddingRight="5dp"
-            android:text="4"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/primary_text_default_material_light"
-            />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_grade"
-            android:gravity="center"
-            android:background="@color/colorPrimaryDark"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:text="GRADE : A"
-            android:paddingLeft="10dp"
-            android:textColor="@color/colorAccent"
-            android:layout_below="@+id/tv_course_credit" />
-    </RelativeLayout>
+        android:layout_centerHorizontal="true"
+        android:background="@color/highlight"
+        android:gravity="center"
+        android:text="CSE101"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/course_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/course_code"
+        android:layout_marginTop="30dp"
+        android:background="@color/highlight"
+        android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:text="Computer Programming and Problem Solving"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/course_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/course_name"
+        android:layout_marginTop="45dp"
+        android:padding="5dp"
+        android:text="CBL"
+        android:textColor="@color/primary_text_default_material_light"
+        android:textSize="23sp" />
+
+    <TextView
+        android:id="@+id/tv_course_credit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/course_name"
+        android:layout_marginTop="45dp"
+        android:padding="5dp"
+        android:paddingRight="5dp"
+        android:text="4"
+        android:textColor="@color/primary_text_default_material_light"
+        android:textSize="23sp" />
+
+    <TextView
+        android:id="@+id/tv_grade"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_course_credit"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:text="GRADE : A"
+        android:textColor="@color/colorAccent"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+</RelativeLayout>

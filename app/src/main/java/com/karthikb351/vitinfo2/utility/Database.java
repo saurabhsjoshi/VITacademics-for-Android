@@ -80,8 +80,7 @@ public class Database {
                         }
                     });
                     return true;
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     return false;
                 }
@@ -90,14 +89,13 @@ public class Database {
             @Override
             protected void onPostExecute(Boolean s) {
                 super.onPostExecute(s);
-                if(s) {
+                if (s) {
                     Editor editor = sharedPreferences.edit();
                     editor.putString(Constants.KEY_ANDROID_SUPPORTED_VERSION, systemResponse.getAndroid().getEarliestSupportedVersion());
                     editor.putString(Constants.KEY_ANDROID_LATEST_VERSION, systemResponse.getAndroid().getLatestVersion());
                     editor.apply();
                     resultListener.onSuccess();
-                }
-                else {
+                } else {
                     resultListener.onFailure();
                 }
             }
@@ -146,14 +144,13 @@ public class Database {
 
             @Override
             protected void onPostExecute(Boolean r) {
-                if(r){
+                if (r) {
                     Editor editor = sharedPreferences.edit();
                     editor.putString(Constants.KEY_SEMESTER, refreshResponse.getSemester());
                     editor.putString(Constants.KEY_COURSES_REFRESHED, refreshResponse.getRefreshed());
                     editor.apply();
                     resultListener.onSuccess();
-                }
-                else {
+                } else {
                     resultListener.onFailure();
                 }
             }

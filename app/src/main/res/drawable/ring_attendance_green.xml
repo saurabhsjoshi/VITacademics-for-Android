@@ -15,15 +15,15 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@android:id/progress">
         <shape
             android:shape="ring"
             android:thicknessRatio="14.0">
             <gradient
-                android:startColor="#ff29e200"
-                android:endColor="#ff29e200"
                 android:centerColor="#ff29e200"
+                android:endColor="#ff29e200"
+                android:startColor="#ff29e200"
                 android:type="sweep" />
         </shape>
     </item>

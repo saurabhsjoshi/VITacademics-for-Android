@@ -39,27 +39,29 @@
         android:layout_weight="3"
         android:text="Logo Goes Here "
         android:textAllCaps="true" />
-        <!--android:textSize="@dimen/abc_text_size_large_material" -->/>
+    <!--android:textSize="@dimen/abc_text_size_large_material" -->/>
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:id="@+id/select_campus" >
-         <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:text="Vellore"
-            android:id="@+id/select_vellore"
-            android:checked="false" />
+    <RadioGroup
+        android:id="@+id/select_campus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
         <RadioButton
+            android:id="@+id/select_vellore"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
-            android:text="Chennai"
+            android:checked="false"
+            android:text="Vellore" />
+
+        <RadioButton
             android:id="@+id/select_chennai"
-            android:checked="false"/>
-        </RadioGroup>
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:checked="false"
+            android:text="Chennai" />
+    </RadioGroup>
 
 
     <EditText
@@ -70,9 +72,9 @@
         android:layout_margin="5dp"
         android:hint="Registration number"
         android:inputType="textCapCharacters" />
-        <!--android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
-        android:textColorHint="@color/material_blue_grey_800"
-        android:textSize="@dimen/abc_text_size_small_material"-->/>
+    <!--android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
+    android:textColorHint="@color/material_blue_grey_800"
+    android:textSize="@dimen/abc_text_size_small_material"-->/>
 
     <EditText
         android:id="@+id/input_dob"
@@ -82,10 +84,10 @@
         android:layout_margin="5dp"
         android:focusable="false"
         android:hint="Date of Birth (DDMMYYYY)"
-        android:inputType="date"/>
-        <!--android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
-        android:textColorHint="@color/material_blue_grey_800"
-        android:textSize="@dimen/abc_text_size_small_material"--> />
+        android:inputType="date" />
+    <!--android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
+    android:textColorHint="@color/material_blue_grey_800"
+    android:textSize="@dimen/abc_text_size_small_material"--> />
 
     <EditText
         android:id="@+id/input_phone_no"
@@ -94,10 +96,10 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
         android:hint="Parent Phone Number"
-        android:inputType="phone"/>
-        <!--android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
-        android:textColorHint="@color/material_blue_grey_800"
-        android:textSize="@dimen/abc_text_size_small_material" -->
+        android:inputType="phone" />
+    <!--android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
+    android:textColorHint="@color/material_blue_grey_800"
+    android:textSize="@dimen/abc_text_size_small_material" -->
 
     <Button
         android:id="@+id/button_login"
@@ -105,12 +107,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="LOGIN" />
-       <!-- android:textAppearance="@dimen/abc_button_inset_horizontal_material"
-        android:textSize="@dimen/abc_text_size_button_material"--> />
+    <!-- android:textAppearance="@dimen/abc_button_inset_horizontal_material"
+     android:textSize="@dimen/abc_text_size_button_material"--> />
+
     <ProgressBar
+        android:id="@+id/progress_bar_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progress_bar_login"
-        android:indeterminate="true"
-        />
+        android:indeterminate="true" />
 </LinearLayout>

@@ -28,25 +28,25 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 
 
-public class OverviewFragment extends Fragment{
+public class OverviewFragment extends Fragment {
 
     Course course;
 
 
-    public OverviewFragment(){
+    public OverviewFragment() {
         // required default constructor
     }
 
-    public static OverviewFragment newInstance(Course course){
-        OverviewFragment overviewFragment= new OverviewFragment();
-        overviewFragment.course=course;
+    public static OverviewFragment newInstance(Course course) {
+        OverviewFragment overviewFragment = new OverviewFragment();
+        overviewFragment.course = course;
         return new OverviewFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View view =inflater.inflate(R.layout.fragment_overview,container,false);
-       return view;
+        View view = inflater.inflate(R.layout.fragment_overview, container, false);
+        return view;
     }
 }

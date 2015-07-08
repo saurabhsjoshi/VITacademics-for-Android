@@ -30,29 +30,29 @@ import android.view.ViewGroup;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 
-public class AttendanceFragment extends Fragment{
+public class AttendanceFragment extends Fragment {
 
     Course course;
     RecyclerView recyclerView;
     AttendanceListAdapter listAdapter;
 
-    public AttendanceFragment(){
+    public AttendanceFragment() {
 
     }
 
-    public static AttendanceFragment newInstance(Course course){
-        AttendanceFragment attendanceFragment= new AttendanceFragment();
-        attendanceFragment.course=course;
+    public static AttendanceFragment newInstance(Course course) {
+        AttendanceFragment attendanceFragment = new AttendanceFragment();
+        attendanceFragment.course = course;
         return attendanceFragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.attendance,container,false);
-        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity());
-        listAdapter=new AttendanceListAdapter(getActivity(),course);
-        recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_attendance);
+        View view = inflater.inflate(R.layout.attendance, container, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        listAdapter = new AttendanceListAdapter(getActivity(), course);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_attendance);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listAdapter);
         return super.onCreateView(inflater, container, savedInstanceState);

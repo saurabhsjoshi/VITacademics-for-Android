@@ -37,13 +37,12 @@ public class TimeTableListAdapter extends RecyclerView.Adapter<TimeTableListAdap
 
 
     RecyclerViewOnClickListener<Course> onClickListener;
-    ArrayList<Course> coursesForTheDay ;
-    Context context ;
+    ArrayList<Course> coursesForTheDay;
+    Context context;
 
-    TimeTableListAdapter(Context context , ArrayList<Course> objects)
-    {
-        this.context=context;
-        this.coursesForTheDay = objects ;
+    TimeTableListAdapter(Context context, ArrayList<Course> objects) {
+        this.context = context;
+        this.coursesForTheDay = objects;
     }
 
     @Override
@@ -65,9 +64,8 @@ public class TimeTableListAdapter extends RecyclerView.Adapter<TimeTableListAdap
         cvHolder.pbAttendance.setProgress(AttendanceP);
     }
 
-    public void setOnclickListener(RecyclerViewOnClickListener<Course> listener)
-    {
-        onClickListener = listener ;
+    public void setOnclickListener(RecyclerViewOnClickListener<Course> listener) {
+        onClickListener = listener;
     }
 
     @Override
@@ -79,21 +77,22 @@ public class TimeTableListAdapter extends RecyclerView.Adapter<TimeTableListAdap
 
         //data to be changed based on format of timetable card
 
-        public TextView courseName, courseCode , Attendance , Slot ,Venue;
+        public TextView courseName, courseCode, Attendance, Slot, Venue;
         public ProgressBar pbAttendance;
+
         public TimeTableViewHolder(View v) {
             super(v);
             courseName = (TextView) v.findViewById(R.id.tv_course_name);
             courseCode = (TextView) v.findViewById(R.id.tv_course_code);
-            Attendance = (TextView)v.findViewById(R.id.tv_attendance);
-            Slot = (TextView)v.findViewById(R.id.tv_slot);
-            Venue = (TextView)v.findViewById(R.id.tv_venue);
-            pbAttendance = (ProgressBar)v.findViewById(R.id.process_bar_attendance);
+            Attendance = (TextView) v.findViewById(R.id.tv_attendance);
+            Slot = (TextView) v.findViewById(R.id.tv_slot);
+            Venue = (TextView) v.findViewById(R.id.tv_venue);
+            pbAttendance = (ProgressBar) v.findViewById(R.id.process_bar_attendance);
             pbAttendance.setMax(100);
             v.setOnClickListener(this);
         }
-        public  void onClick(View v)
-        {
+
+        public void onClick(View v) {
             Course course = coursesForTheDay.get(getAdapterPosition());
             onClickListener.onItemClick(course);
         }

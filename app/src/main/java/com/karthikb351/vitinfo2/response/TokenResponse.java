@@ -20,8 +20,8 @@ package com.karthikb351.vitinfo2.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.karthikb351.vitinfo2.model.TokenShare;
 import com.karthikb351.vitinfo2.model.Status;
+import com.karthikb351.vitinfo2.model.TokenShare;
 
 public class TokenResponse {
 

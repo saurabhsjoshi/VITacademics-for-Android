@@ -21,8 +21,8 @@ package com.karthikb351.vitinfo2.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.karthikb351.vitinfo2.contract.Contributor;
-import com.karthikb351.vitinfo2.model.Client;
 import com.karthikb351.vitinfo2.contract.Message;
+import com.karthikb351.vitinfo2.model.Client;
 import com.karthikb351.vitinfo2.model.Status;
 
 public class SystemResponse {

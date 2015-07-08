@@ -52,15 +52,14 @@ public class SettingsFragment extends ListFragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-           super.onActivityCreated(savedInstanceState);
+        super.onActivityCreated(savedInstanceState);
         getActivity().setTitle("Settings");
         settingsTopics = getResources().getStringArray(R.array.settingsTopic);
         //TODO: Change
-        settingsMessages=getResources().getStringArray(R.array.settingsTopic);
-        SettingsAdapter adapter=new SettingsAdapter(getActivity(),0);
+        settingsMessages = getResources().getStringArray(R.array.settingsTopic);
+        SettingsAdapter adapter = new SettingsAdapter(getActivity(), 0);
         setListAdapter(adapter);
     }
-
 
 
     @Override
@@ -95,14 +94,15 @@ public class SettingsFragment extends ListFragment {
     public class SettingsAdapter extends ArrayAdapter<String> {
 
         Context context;
+
         public SettingsAdapter(Context context, int resource) {
             super(context, resource);
-            this.context=context;
+            this.context = context;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-           return super.getView(position, convertView, parent);
+            return super.getView(position, convertView, parent);
         }
     }
 

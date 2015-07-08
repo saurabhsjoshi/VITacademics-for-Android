@@ -33,8 +33,8 @@ public class Constants {
     public final static String KEY_DATEOFBIRTH = "dob";
     public final static String KEY_MOBILE = "mobile";
 
-    public final static String CAMPUS_VELLORE="vellore";
-    public final static String CAMPUS_CHENNAI="chennai";
+    public final static String CAMPUS_VELLORE = "vellore";
+    public final static String CAMPUS_CHENNAI = "chennai";
 
     public final static String KEY_SEMESTER = "semester";
 

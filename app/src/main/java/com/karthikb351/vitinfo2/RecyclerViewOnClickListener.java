@@ -21,5 +21,5 @@ package com.karthikb351.vitinfo2;
 
 public interface RecyclerViewOnClickListener<T> {
 
-    public void onItemClick(T data) ;
+    public void onItemClick(T data);
 }

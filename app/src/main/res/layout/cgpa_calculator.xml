@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<android.support.v7.widget.RecyclerView
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:id="@+id/recycler_view_cgpa_calculator"
-    android:scrollbars="vertical"
-    android:fadeScrollbars="true"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_cgpa_calculator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical" />
 
     <ImageButton
+        android:id="@+id/iv_calculate"
         android:layout_width="@dimen/fab_size_normal"
         android:layout_height="@dimen/fab_size_normal"
-        android:id="@+id/iv_calculate"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_gravity="end|bottom"
         android:layout_marginBottom="10sp"
         android:layout_marginRight="10sp"
-        android:elevation="@dimen/fab_elevation"
-        android:layout_gravity="end|bottom"
-        android:background="@drawable/cgpa_icon" />
+        android:background="@drawable/cgpa_icon"
+        android:elevation="@dimen/fab_elevation" />
 
-    </RelativeLayout>
+</RelativeLayout>

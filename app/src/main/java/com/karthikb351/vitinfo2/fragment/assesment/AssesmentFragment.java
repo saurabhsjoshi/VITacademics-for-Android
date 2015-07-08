@@ -30,36 +30,36 @@ import android.view.ViewGroup;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 
-public class AssesmentFragment extends Fragment{
+public class AssesmentFragment extends Fragment {
 
     RecyclerView recyclerView;
     AssesmentListAdapter listAdapter;
     Course course;
 
-    public AssesmentFragment(){
+    public AssesmentFragment() {
 
     }
 
-    public static AssesmentFragment newInstance(Course course){
-        AssesmentFragment fragment=new AssesmentFragment();
-        fragment.course=course;
+    public static AssesmentFragment newInstance(Course course) {
+        AssesmentFragment fragment = new AssesmentFragment();
+        fragment.course = course;
         return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.assesment,container,false);
-        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity());
-        listAdapter=new AssesmentListAdapter(getActivity(),course);
-        recyclerView=(RecyclerView)view.findViewById(R.id.recycler_view_assessments);
+        View view = inflater.inflate(R.layout.assesment, container, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        listAdapter = new AssesmentListAdapter(getActivity(), course);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_assessments);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listAdapter);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView rv, int newState) {
                 super.onScrollStateChanged(rv, newState);
-                if(newState==1){
+                if (newState == 1) {
                     getActivity().getActionBar().hide();
                 }
             }

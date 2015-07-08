@@ -45,20 +45,20 @@ public class MessagesFragment extends Fragment {
     MessageListAdapter listAdapter;
     View rootView;
 
-    public MessagesFragment(){
-    //required empty public constructor
+    public MessagesFragment() {
+        //required empty public constructor
     }
 
-    public static MessagesFragment newInstance(){
+    public static MessagesFragment newInstance() {
         return new MessagesFragment();
     }
 
-    public void initialize(){
-        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity());
-        messageList= DataHolder.getMessages();
-        messages=new ArrayList<>(messageList);
-        listAdapter=new MessageListAdapter(getActivity(),messages);
-        recyclerView=(RecyclerView)rootView.findViewById(R.id.recycler_view_messages);
+    public void initialize() {
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        messageList = DataHolder.getMessages();
+        messages = new ArrayList<>(messageList);
+        listAdapter = new MessageListAdapter(getActivity(), messages);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_messages);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listAdapter);
     }
@@ -66,28 +66,25 @@ public class MessagesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView=inflater.inflate(R.layout.card_message,container,false);
+        rootView = inflater.inflate(R.layout.card_message, container, false);
         initialize();
         return rootView;
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         EventBus.getDefault().unregister(this);
         super.onPause();
     }
 
     // This method will be called when a RefreshFragmentEvent is posted
-    public void onEvent(RefreshFragmentEvent event)
-    {
+    public void onEvent(RefreshFragmentEvent event) {
         initialize();
     }
 

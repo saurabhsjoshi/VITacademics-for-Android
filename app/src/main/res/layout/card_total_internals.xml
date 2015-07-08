@@ -1,78 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:id="@+id/card_view_assessment">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view_assessment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5sp">
+
         <TextView
+            android:id="@+id/course_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/course_code"
+            android:layout_centerHorizontal="true"
             android:text="CSE101"
-            android:textStyle="bold"
-            android:textSize="30sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimaryDark"
-            android:layout_centerHorizontal="true"
-            />
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/course_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/course_name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/course_code"
+            android:gravity="center"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="Computer Programming and Problem Solving"
-            android:textStyle="italic"
             android:textAlignment="center"
-            android:gravity="center"
-            android:textSize="20sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary"
-            android:layout_below="@+id/course_code"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textSize="20sp"
+            android:textStyle="italic" />
+
         <TextView
+            android:id="@+id/tv_total_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_total_score"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/tv_scored_marks_total"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="Total Internal Marks:"
             android:textAlignment="center"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:textSize="20sp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/primary_text_default_material_light"
-            android:layout_alignTop="@+id/tv_scored_marks_total"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textSize="20sp" />
+
         <TextView
+            android:id="@+id/tv_scored_marks_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_scored_marks_total"
-            android:text="35/"
-            android:textSize="40dp"
-            android:textColor="@color/primary_text_default_material_light"
             android:layout_alignTop="@+id/tv_max_marks_total"
             android:layout_toLeftOf="@+id/tv_max_marks_total"
-            android:layout_toStartOf="@+id/tv_max_marks_total" />
+            android:layout_toStartOf="@+id/tv_max_marks_total"
+            android:text="35/"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="40dp" />
 
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_max_marks_total"
-        android:textSize="40dp"
-        android:text="50"
-        android:paddingRight="10dp"
-        android:textColor="@color/primary_text_default_material_light"
-            android:layout_below="@+id/course_name"
+            android:id="@+id/tv_max_marks_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_below="@+id/course_name"
+            android:paddingRight="10dp"
+            android:text="50"
+            android:textColor="@color/primary_text_default_material_light"
+            android:textSize="40dp" />
         <!-- <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

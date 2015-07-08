@@ -33,6 +33,7 @@ public class TimeTableFragment extends Fragment {
 
     ViewPager viewpager;
     TimeTablePagerAdapter pageradapter;
+
     public TimeTableFragment() {
         // Required empty public constructor
     }
@@ -43,14 +44,13 @@ public class TimeTableFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_timetable, container, false);
-        viewpager = (ViewPager)view.findViewById(R.id.view_pager_timetable);
-        pageradapter = new TimeTablePagerAdapter(getActivity().getSupportFragmentManager(),getActivity());
+        viewpager = (ViewPager) view.findViewById(R.id.view_pager_timetable);
+        pageradapter = new TimeTablePagerAdapter(getActivity().getSupportFragmentManager(), getActivity());
         viewpager.setAdapter(pageradapter);
-        TabLayout tabLayout = (TabLayout)view.findViewById(R.id.sliding_tabs);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewpager);
         return view;
     }

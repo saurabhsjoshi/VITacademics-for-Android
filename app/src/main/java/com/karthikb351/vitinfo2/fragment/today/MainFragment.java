@@ -50,8 +50,8 @@ public class MainFragment extends Fragment {
 
     RecyclerView todayRecyclerView;
     TodayListAdapter todayListAdapter;
-    ProgressBar load ;
-    View rootView ;
+    ProgressBar load;
+    View rootView;
 
     public MainFragment() {
     }
@@ -62,89 +62,78 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
         initialize();
         return rootView;
     }
 
-     void onListItemClicked(Course course)
-     {
-         //TODO: implement redirection on itemclick
-     }
+    void onListItemClicked(Course course) {
+        //TODO: implement redirection on itemclick
+    }
 
-     void initialize()
-     {
-         load = (ProgressBar)rootView.findViewById(R.id.todayProgressBar);
-         todayRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_today);
-         getActivity().setTitle("Today");
-         new loadToday().execute();
-     }
-
-    class loadToday extends AsyncTask<Void,Void,ArrayList<Pair<Course,Integer>>>
-    {
-        @Override
-        protected void onPreExecute()
-        {
-            load.setVisibility(View.VISIBLE);
-        }
-        @Override
-        protected ArrayList<Pair<Course,Integer>> doInBackground(Void... params)
-        {
-            int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1 ;
-            SortedArrayList finalArray =  new SortedArrayList();
-            List<Course> courses =  DataHolder.getCourses();
-            for(Course c : courses)
-            {
-                for(int i = 0 ; i < c.getTimings().length ; i++)
-                {
-                  if(c.getTimings()[i].getDay() == dayOfWeek)
-                      finalArray.insert(new Pair<>(c, i));
-                }
-            }
-            return finalArray;
-        }
-        @Override
-        protected void onPostExecute(ArrayList<Pair<Course,Integer>> res)
-        {
-           load.setVisibility(View.GONE);
-           todayListAdapter  = new TodayListAdapter(getActivity(),res);
-           todayListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
-               @Override
-               public void onItemClick(Course data) {
-                   onListItemClicked(data);
-               }
-           });
-           todayRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-           todayRecyclerView.setAdapter(todayListAdapter);
-        }
-
+    void initialize() {
+        load = (ProgressBar) rootView.findViewById(R.id.todayProgressBar);
+        todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
+        getActivity().setTitle("Today");
+        new loadToday().execute();
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         EventBus.getDefault().unregister(this);
         super.onPause();
     }
 
     // This method will be called when a RefreshFragmentEvent is posted
-    public void onEvent(RefreshFragmentEvent event)
-    {
+    public void onEvent(RefreshFragmentEvent event) {
         initialize();
     }
 
     @Override
-    public void onViewStateRestored(Bundle savedInstanceState)
-    {
+    public void onViewStateRestored(Bundle savedInstanceState) {
+
+    }
+
+    class loadToday extends AsyncTask<Void, Void, ArrayList<Pair<Course, Integer>>> {
+        @Override
+        protected void onPreExecute() {
+            load.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected ArrayList<Pair<Course, Integer>> doInBackground(Void... params) {
+            int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
+            SortedArrayList finalArray = new SortedArrayList();
+            List<Course> courses = DataHolder.getCourses();
+            for (Course c : courses) {
+                for (int i = 0; i < c.getTimings().length; i++) {
+                    if (c.getTimings()[i].getDay() == dayOfWeek)
+                        finalArray.insert(new Pair<>(c, i));
+                }
+            }
+            return finalArray;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Pair<Course, Integer>> res) {
+            load.setVisibility(View.GONE);
+            todayListAdapter = new TodayListAdapter(getActivity(), res);
+            todayListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
+                @Override
+                public void onItemClick(Course data) {
+                    onListItemClicked(data);
+                }
+            });
+            todayRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            todayRecyclerView.setAdapter(todayListAdapter);
+        }
 
     }
 }

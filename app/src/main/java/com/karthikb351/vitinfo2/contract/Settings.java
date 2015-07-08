@@ -8,19 +8,19 @@ public class Settings {
     private String[] topic;
     private String[] message;
 
-    public void setTopic(){
+    public void setTopic() {
 
     }
 
-    public void setMessage(){
+    public void setMessage() {
 
     }
 
-    public void getTopic(){
+    public void getTopic() {
 
     }
 
-    public void getMessage(){
+    public void getMessage() {
 
     }
 }

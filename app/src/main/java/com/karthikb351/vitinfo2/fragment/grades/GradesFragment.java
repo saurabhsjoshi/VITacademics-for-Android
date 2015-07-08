@@ -30,62 +30,57 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Grade;
-import android.widget.TableRow.LayoutParams;
 import com.karthikb351.vitinfo2.contract.GradeCount;
 import com.karthikb351.vitinfo2.utility.DataHolder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GradesFragment extends Fragment {
 
     ArrayList<GradeCount> gradeCounts;
     ArrayList<Grade> grades;
-    View rootView ;
-    TextView CGPA ;
+    View rootView;
+    TextView CGPA;
     RecyclerView gradeListRecyclerview;
-    TableLayout gradeCountTable ;
-    GradesListAdapter adapter ;
+    TableLayout gradeCountTable;
+    GradesListAdapter adapter;
 
     public GradesFragment() {
 
     }
 
-    public static GradesFragment newInstance(){
+    public static GradesFragment newInstance() {
 
-     return new GradesFragment();
+        return new GradesFragment();
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
-    {
-        rootView = inflater.inflate(R.layout.fragment_grade,container,false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_grade, container, false);
         initialize();
         return rootView;
     }
 
-    public void initialize()
-    {
-      CGPA = (TextView)rootView.findViewById(R.id.text_view_CGPA);
-      gradeCountTable = (TableLayout)rootView.findViewById(R.id.table_grade_count);
-      gradeCounts = new ArrayList<>(DataHolder.getGradeCounts());
-      grades = new ArrayList<>(DataHolder.getGrades());
-      fillGradeCountData()  ;
-      gradeListRecyclerview = (RecyclerView)rootView.findViewById(R.id.recycler_view_grades);
-      gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-      adapter =  new GradesListAdapter(getActivity(),grades);
+    public void initialize() {
+        CGPA = (TextView) rootView.findViewById(R.id.text_view_CGPA);
+        gradeCountTable = (TableLayout) rootView.findViewById(R.id.table_grade_count);
+        gradeCounts = new ArrayList<>(DataHolder.getGradeCounts());
+        grades = new ArrayList<>(DataHolder.getGrades());
+        fillGradeCountData();
+        gradeListRecyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_grades);
+        gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new GradesListAdapter(getActivity(), grades);
         gradeListRecyclerview.setAdapter(adapter);
     }
 
-    void fillGradeCountData()
-    {
-        for (int i = 0; i < gradeCounts.size() ; i++) {
+    void fillGradeCountData() {
+        for (int i = 0; i < gradeCounts.size(); i++) {
 
             TableRow row = new TableRow(getActivity());
             row.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
@@ -94,10 +89,9 @@ public class GradesFragment extends Fragment {
         }
     }
 
-    TextView createTextView(String text)
-    {
+    TextView createTextView(String text) {
         TextView tv = new TextView(getActivity());
-        tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+        tv.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         tv.setGravity(Gravity.CENTER);
         tv.setTextSize(18);
         tv.setPadding(0, 5, 0, 5);

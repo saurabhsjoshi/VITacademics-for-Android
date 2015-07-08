@@ -44,97 +44,85 @@ import de.greenrobot.event.EventBus;
 
 public class TimeTableDayFragment extends Fragment {
 
-    String [] daysOfWeek = new String[]{"Monday","Tuesday","Wednesday","Thursday","Friday"};
-    TimeTableListAdapter adapter ;
+    String[] daysOfWeek = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+    TimeTableListAdapter adapter;
     RecyclerView recyclerview;
-    ProgressBar load ;
+    ProgressBar load;
     int dayOfWeek;
     View rootView;
-
-    public static TimeTableDayFragment newInstance(int dayOfWeek) {
-        TimeTableDayFragment fragment = new TimeTableDayFragment();
-        fragment.dayOfWeek = dayOfWeek+1;
-        return fragment;
-    }
 
     public TimeTableDayFragment() {
         // Required empty public constructor
     }
 
+    public static TimeTableDayFragment newInstance(int dayOfWeek) {
+        TimeTableDayFragment fragment = new TimeTableDayFragment();
+        fragment.dayOfWeek = dayOfWeek + 1;
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView =  inflater.inflate(R.layout.timetable_day_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.timetable_day_fragment, container, false);
         initialize();
         return rootView;
     }
 
-    void initialize()
-    {
-        recyclerview = (RecyclerView)rootView.findViewById(R.id.recycler_view_timetable);
-        load = (ProgressBar)rootView.findViewById(R.id.timeTableProgressBar);
+    void initialize() {
+        recyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_timetable);
+        load = (ProgressBar) rootView.findViewById(R.id.timeTableProgressBar);
         new LoadData().execute();
     }
 
 
-
-    void onListItemClicked(Course course)
-    {
+    void onListItemClicked(Course course) {
         //TODO: implement redirection on itemclick
     }
 
-    void onListItemClick(Friend friend)
-    {
+    void onListItemClick(Friend friend) {
         // add on item click functionality
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         EventBus.getDefault().unregister(this);
         super.onPause();
     }
 
     // This method will be called when a RefreshFragmentEvent is posted
-    public void onEvent(RefreshFragmentEvent event)
-    {
+    public void onEvent(RefreshFragmentEvent event) {
         initialize();
     }
 
-    class LoadData extends AsyncTask<Void,Void,ArrayList<Course>>
-    {
+    class LoadData extends AsyncTask<Void, Void, ArrayList<Course>> {
         @Override
-        protected void onPreExecute()
-        {
+        protected void onPreExecute() {
             load.setVisibility(View.VISIBLE);
         }
+
         @Override
-        protected ArrayList<Course> doInBackground(Void... params)
-        {
+        protected ArrayList<Course> doInBackground(Void... params) {
             ArrayList<Course> finalArray = new ArrayList<>();
-            List<Course> courses =  DataHolder.getCourses();
-            for(Course c : courses)
-            {
-                for(int i = 0 ; i < c.getTimings().length ; i++)
-                {
-                    if(c.getTimings()[i].getDay() == dayOfWeek)
+            List<Course> courses = DataHolder.getCourses();
+            for (Course c : courses) {
+                for (int i = 0; i < c.getTimings().length; i++) {
+                    if (c.getTimings()[i].getDay() == dayOfWeek)
                         finalArray.add(c);
                 }
             }
             return finalArray;
         }
+
         @Override
-        protected void onPostExecute(ArrayList<Course> res)
-        {
+        protected void onPostExecute(ArrayList<Course> res) {
             load.setVisibility(View.GONE);
-            adapter = new TimeTableListAdapter(getActivity(),res);
+            adapter = new TimeTableListAdapter(getActivity(), res);
             adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
                 @Override
                 public void onItemClick(Course data) {

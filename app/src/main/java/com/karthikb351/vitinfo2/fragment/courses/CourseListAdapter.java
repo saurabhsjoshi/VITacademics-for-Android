@@ -37,7 +37,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     Context context;
     ArrayList<Course> courses;
-    RecyclerViewOnClickListener<Course> OnclickListener ;
+    RecyclerViewOnClickListener<Course> OnclickListener;
 
     public CourseListAdapter(Context context, ArrayList<Course> courses) {
         this.context = context;
@@ -62,9 +62,8 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         courseViewHolder.pbAttendance.setProgress(AttendanceP);
     }
 
-    public void setOnclickListener(RecyclerViewOnClickListener<Course> listener)
-    {
-     OnclickListener = listener ;
+    public void setOnclickListener(RecyclerViewOnClickListener<Course> listener) {
+        OnclickListener = listener;
     }
 
     @Override
@@ -74,22 +73,22 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
 
     public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView courseName, courseCode , Attendance , Slot ,Venue;
+        public TextView courseName, courseCode, Attendance, Slot, Venue;
         public ProgressBar pbAttendance;
+
         public CourseViewHolder(View v) {
             super(v);
             courseName = (TextView) v.findViewById(R.id.tv_course_name);
             courseCode = (TextView) v.findViewById(R.id.tv_course_code);
-            Attendance = (TextView)v.findViewById(R.id.tv_attendance);
-            Slot = (TextView)v.findViewById(R.id.tv_slot);
-            Venue = (TextView)v.findViewById(R.id.tv_venue);
-            pbAttendance = (ProgressBar)v.findViewById(R.id.process_bar_attendance);
+            Attendance = (TextView) v.findViewById(R.id.tv_attendance);
+            Slot = (TextView) v.findViewById(R.id.tv_slot);
+            Venue = (TextView) v.findViewById(R.id.tv_venue);
+            pbAttendance = (ProgressBar) v.findViewById(R.id.process_bar_attendance);
             pbAttendance.setMax(100);
             v.setOnClickListener(this);
         }
 
-        public  void onClick(View v)
-        {
+        public void onClick(View v) {
             Course course = courses.get(getAdapterPosition());
             OnclickListener.onItemClick(course);
         }

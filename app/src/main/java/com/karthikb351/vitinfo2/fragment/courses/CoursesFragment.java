@@ -40,11 +40,11 @@ import de.greenrobot.event.EventBus;
 
 public class CoursesFragment extends Fragment {
 
-    RecyclerView  recyclerView;
+    RecyclerView recyclerView;
     CourseListAdapter courseListAdapter;
     ArrayList<Course> courses;
     List<Course> courseList;
-    View rootView ;
+    View rootView;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -56,51 +56,46 @@ public class CoursesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        rootView=inflater.inflate(R.layout.courses,container,false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.courses, container, false);
         initialize();
         return rootView;
     }
 
-    void initialize()
-    {
-        RecyclerView.LayoutManager courseLayoutManager=new LinearLayoutManager(getActivity());
-        courseList= DataHolder.getCourses();
+    void initialize() {
+        RecyclerView.LayoutManager courseLayoutManager = new LinearLayoutManager(getActivity());
+        courseList = DataHolder.getCourses();
         courses = new ArrayList<>(courseList);
-        courseListAdapter=new CourseListAdapter(getActivity(),courses);
-        recyclerView=(RecyclerView)rootView.findViewById(R.id.recycler_view_courses);
+        courseListAdapter = new CourseListAdapter(getActivity(), courses);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_courses);
         courseListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
             @Override
-            public void onItemClick(Course data)
-            {
-             onListItemClick(data);
+            public void onItemClick(Course data) {
+                onListItemClick(data);
             }
         });
         recyclerView.setLayoutManager(courseLayoutManager);
         recyclerView.setAdapter(courseListAdapter);
     }
 
-    void onListItemClick(Course course)
-    {
+    void onListItemClick(Course course) {
         // add on item click functionality
     }
+
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         EventBus.getDefault().unregister(this);
         super.onPause();
     }
 
     // This method will be called when a RefreshFragmentEvent is posted
-    public void onEvent(RefreshFragmentEvent event)
-    {
-     initialize();
+    public void onEvent(RefreshFragmentEvent event) {
+        initialize();
     }
 }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ VITacademics
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~
@@ -16,43 +15,47 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      android:orientation="vertical" android:layout_width="match_parent"
-      android:layout_height="match_parent">
-     <RelativeLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:background="#34495e"
-         android:layout_marginBottom="5dp"
-         android:padding="10dp">
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentLeft="true"
-             android:textColor="#FFFFFF"
-             android:text="CGPA"/>
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentRight="true"
-             android:id="@+id/text_view_CGPA"
-             android:text="8.2"
-             android:textColor="#FFFFFF"
-             />
-     </RelativeLayout>
-      <TableLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/table_grade_count"
-          android:padding="10dp"
-          android:shrinkColumns="*"
-          android:stretchColumns="*" >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-      </TableLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="#34495e"
+            android:padding="10dp">
 
-  </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="CGPA"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/text_view_CGPA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="8.2"
+                android:textColor="#FFFFFF" />
+        </RelativeLayout>
+
+        <TableLayout
+            android:id="@+id/table_grade_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:shrinkColumns="*"
+            android:stretchColumns="*">
+
+        </TableLayout>
+
+    </LinearLayout>
 </android.support.v7.widget.CardView>

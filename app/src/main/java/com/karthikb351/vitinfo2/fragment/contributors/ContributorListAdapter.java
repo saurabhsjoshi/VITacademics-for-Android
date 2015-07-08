@@ -36,14 +36,15 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
     ArrayList<Contributor> contributors;
     Context context;
 
-    public ContributorListAdapter(Context context,ArrayList<Contributor> contributors){
-        this.context=context;
-        this.contributors=contributors;
+    public ContributorListAdapter(Context context, ArrayList<Contributor> contributors) {
+        this.context = context;
+        this.contributors = contributors;
 
     }
+
     @Override
     public ContributorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardView cardView=(CardView) LayoutInflater.from(context).inflate(R.layout.card_contributors,parent,false);
+        CardView cardView = (CardView) LayoutInflater.from(context).inflate(R.layout.card_contributors, parent, false);
         return new ContributorViewHolder(cardView);
     }
 
@@ -62,17 +63,17 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
         return contributors.size();
     }
 
-    public class ContributorViewHolder extends RecyclerView.ViewHolder{
+    public class ContributorViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView contributorId,contributorName,contributorRole,contributorGit,contributorMail;
+        public TextView contributorId, contributorName, contributorRole, contributorGit, contributorMail;
 
-        public ContributorViewHolder(View view){
+        public ContributorViewHolder(View view) {
             super(view);
             //contributorId=(TextView)view.findViewById(R.id.contributor_id);
-            contributorName=(TextView)view.findViewById(R.id.contributor_name);
-            contributorRole=(TextView)view.findViewById(R.id.contributor_role);
-            contributorGit=(TextView)view.findViewById(R.id.contributor_github_profile);
-            contributorMail=(TextView)view.findViewById(R.id.contributor_email);
+            contributorName = (TextView) view.findViewById(R.id.contributor_name);
+            contributorRole = (TextView) view.findViewById(R.id.contributor_role);
+            contributorGit = (TextView) view.findViewById(R.id.contributor_github_profile);
+            contributorMail = (TextView) view.findViewById(R.id.contributor_email);
         }
     }
 
