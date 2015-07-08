@@ -24,13 +24,14 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.karthikb351.vitinfo2.Constants;
+import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Friend;
+import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.response.GradesResponse;
 import com.karthikb351.vitinfo2.response.LoginResponse;
 import com.karthikb351.vitinfo2.response.RefreshResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
-import com.karthikb351.vitinfo2.utility.Database;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import retrofit.Callback;
@@ -41,12 +42,14 @@ import retrofit.converter.GsonConverter;
 
 public class VITacademicsAPI {
 
-    private Database database;
+    private Context context;
     private APIService service;
+    private DatabaseController databaseController;
 
     public VITacademicsAPI(Context context) {
 
-        this.database = Database.getDatabaseSingleton(context);
+        this.context = context;
+        this.databaseController = DatabaseController.getDatabaseSingleton(context);
 
         Gson gson = new GsonBuilder().create();
         RestAdapter restAdapter = new RestAdapter.Builder()
@@ -65,32 +68,29 @@ public class VITacademicsAPI {
     public void system(final ResultListener resultListener) {
         service.system(new Callback<SystemResponse>() {
             @Override
-            public void success(SystemResponse systemResponse, Response response) {
+            public void success(final SystemResponse systemResponse, Response response) {
                 switch (systemResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveSystem(systemResponse, new ResultListener() {
+                        databaseController.saveSystem(systemResponse, new ResultListener() {
                             @Override
                             public void onSuccess() {
                                 resultListener.onSuccess();
                             }
 
                             @Override
-                            public void onFailure() {
-                                // TODO Database error message
-                                resultListener.onFailure();
+                            public void onFailure(Status status) {
+                                resultListener.onFailure(status);
                             }
                         });
                         break;
                     default:
-                        // TODO Server error message
-                        resultListener.onFailure();
+                        resultListener.onFailure(systemResponse.getStatus());
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO HTTP client error message
-                resultListener.onFailure();
+                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
             }
         });
     }
@@ -98,37 +98,33 @@ public class VITacademicsAPI {
     public void refresh(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
         service.refresh(campus, regno, dob, mobile, new Callback<RefreshResponse>() {
             @Override
-            public void success(RefreshResponse refreshResponse, Response response) {
+            public void success(final RefreshResponse refreshResponse, Response response) {
                 switch (refreshResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveCourses(refreshResponse, new ResultListener() {
+                        databaseController.saveCourses(refreshResponse, new ResultListener() {
                             @Override
                             public void onSuccess() {
                                 resultListener.onSuccess();
                             }
 
                             @Override
-                            public void onFailure() {
-                                // TODO Database error message
-                                resultListener.onFailure();
+                            public void onFailure(Status status) {
+                                resultListener.onFailure(status);
                             }
                         });
                         break;
                     case StatusCodes.TIMED_OUT:
-                        // TODO VITacademics session timed out
-                        resultListener.onFailure();
+                        resultListener.onFailure(refreshResponse.getStatus());
                         break;
                     default:
-                        // TODO Server error message
-                        resultListener.onFailure();
+                        resultListener.onFailure(refreshResponse.getStatus());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO HTTP client error message
-                resultListener.onFailure();
+                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
             }
         });
     }
@@ -136,33 +132,30 @@ public class VITacademicsAPI {
     public void login(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
         service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
             @Override
-            public void success(LoginResponse loginResponse, Response response) {
+            public void success(final LoginResponse loginResponse, Response response) {
                 switch (loginResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveLogin(loginResponse, new ResultListener() {
+                        databaseController.saveLogin(loginResponse, new ResultListener() {
                             @Override
                             public void onSuccess() {
                                 resultListener.onSuccess();
                             }
 
                             @Override
-                            public void onFailure() {
-                                // TODO Database error message
-                                resultListener.onFailure();
+                            public void onFailure(Status status) {
+                                resultListener.onFailure(status);
                             }
                         });
                         break;
                     default:
-                        // TODO Server error message
-                        resultListener.onFailure();
+                        resultListener.onFailure(loginResponse.getStatus());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO HTTP client error message
-                resultListener.onFailure();
+                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
             }
         });
 
@@ -171,33 +164,30 @@ public class VITacademicsAPI {
     public void token(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
         service.token(campus, regno, dob, mobile, new Callback<TokenResponse>() {
             @Override
-            public void success(TokenResponse tokenResponse, Response response) {
+            public void success(final TokenResponse tokenResponse, Response response) {
                 switch (tokenResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveToken(tokenResponse, new ResultListener() {
+                        databaseController.saveToken(tokenResponse, new ResultListener() {
                             @Override
                             public void onSuccess() {
                                 resultListener.onSuccess();
                             }
 
                             @Override
-                            public void onFailure() {
-                                // TODO Database error message
-                                resultListener.onFailure();
+                            public void onFailure(Status status) {
+                                resultListener.onFailure(status);
                             }
                         });
                         break;
                     default:
-                        // TODO Server error message
-                        resultListener.onFailure();
+                        resultListener.onFailure(tokenResponse.getStatus());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO HTTP client error message
-                resultListener.onFailure();
+                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
             }
         });
     }
@@ -208,34 +198,30 @@ public class VITacademicsAPI {
             public void success(GradesResponse gradesResponse, Response response) {
                 switch (gradesResponse.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveGrades(gradesResponse, new ResultListener() {
+                        databaseController.saveGrades(gradesResponse, new ResultListener() {
                             @Override
                             public void onSuccess() {
                                 resultListener.onSuccess();
                             }
 
                             @Override
-                            public void onFailure() {
-                                // TODO Database error message
-                                resultListener.onFailure();
+                            public void onFailure(Status status) {
+                                resultListener.onFailure(status);
                             }
                         });
                         break;
                     case StatusCodes.TIMED_OUT:
-                        // TODO VITacademics session timed out
-                        resultListener.onFailure();
+                        resultListener.onFailure(gradesResponse.getStatus());
                         break;
                     default:
-                        // TODO Server error message
-                        resultListener.onFailure();
+                        resultListener.onFailure(gradesResponse.getStatus());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO HTTP client error message
-                resultListener.onFailure();
+                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
             }
         });
     }
@@ -246,30 +232,27 @@ public class VITacademicsAPI {
             public void success(Friend friend, Response response) {
                 switch (friend.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveFriend(friend, new ResultListener() {
+                        databaseController.saveFriend(friend, new ResultListener() {
                             @Override
                             public void onSuccess() {
                                 resultListener.onSuccess();
                             }
 
                             @Override
-                            public void onFailure() {
-                                // TODO Database error
-                                resultListener.onFailure();
+                            public void onFailure(Status status) {
+                                resultListener.onFailure(status);
                             }
                         });
                         break;
                     default:
-                        // TODO Server error message
-                        resultListener.onFailure();
+                        resultListener.onFailure(friend.getStatus());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO HTTP client error message
-                resultListener.onFailure();
+                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
             }
         });
     }
@@ -280,30 +263,27 @@ public class VITacademicsAPI {
             public void success(Friend friend, Response response) {
                 switch (friend.getStatus().getCode()) {
                     case StatusCodes.SUCCESS:
-                        database.saveFriend(friend, new ResultListener() {
+                        databaseController.saveFriend(friend, new ResultListener() {
                             @Override
                             public void onSuccess() {
                                 resultListener.onSuccess();
                             }
 
                             @Override
-                            public void onFailure() {
-                                // TODO Database error
-                                resultListener.onFailure();
+                            public void onFailure(Status status) {
+                                resultListener.onFailure(status);
                             }
                         });
                         break;
                     default:
-                        // TODO Server error message
-                        resultListener.onFailure();
+                        resultListener.onFailure(friend.getStatus());
                         break;
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                // TODO HTTP client error message
-                resultListener.onFailure();
+                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
             }
         });
     }

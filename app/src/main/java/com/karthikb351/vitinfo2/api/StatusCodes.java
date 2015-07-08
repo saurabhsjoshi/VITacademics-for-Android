@@ -31,6 +31,6 @@ public class StatusCodes {
     public static final int DEPRECATED = 60;
     public static final int VIT_DOWN = 89;
     public static final int MONGO_DOWN = 97;
-    public static final int MAINTENANCE = 98;
+    public static final int MAINTENANCE_DOWN = 98;
     public static final int UNKNOWN = 99;
 }

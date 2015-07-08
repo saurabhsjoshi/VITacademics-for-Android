@@ -33,7 +33,7 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Grade;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.utility.DataHolder;
+import com.karthikb351.vitinfo2.api.DataHolder;
 
 import java.util.ArrayList;
 import java.util.List;

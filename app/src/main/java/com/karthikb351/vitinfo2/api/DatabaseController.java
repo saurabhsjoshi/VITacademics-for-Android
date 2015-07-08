@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.utility;
+package com.karthikb351.vitinfo2.api;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,6 +24,7 @@ import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 
 import com.karthikb351.vitinfo2.Constants;
+import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Contributor;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Friend;
@@ -37,25 +38,27 @@ import com.karthikb351.vitinfo2.response.LoginResponse;
 import com.karthikb351.vitinfo2.response.RefreshResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
+import com.karthikb351.vitinfo2.utility.ResultListener;
 import com.orm.SugarTransactionHelper;
 
 import java.util.List;
 
-public class Database {
+public class DatabaseController {
 
-    public static Database database;
-
+    public static DatabaseController databaseController;
+    private Context context;
     private SharedPreferences sharedPreferences;
 
-    private Database(Context context) {
+    private DatabaseController(Context context) {
+        this.context = context;
         this.sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
     }
 
-    public static Database getDatabaseSingleton(Context context) {
-        if (database != null) {
-            database = new Database(context);
+    public static DatabaseController getDatabaseSingleton(Context context) {
+        if (databaseController != null) {
+            databaseController = new DatabaseController(context);
         }
-        return database;
+        return databaseController;
     }
 
     public void saveSystem(final SystemResponse systemResponse, final ResultListener resultListener) {
@@ -87,16 +90,16 @@ public class Database {
             }
 
             @Override
-            protected void onPostExecute(Boolean s) {
-                super.onPostExecute(s);
-                if (s) {
+            protected void onPostExecute(Boolean result) {
+                super.onPostExecute(result);
+                if (result) {
                     Editor editor = sharedPreferences.edit();
                     editor.putString(Constants.KEY_ANDROID_SUPPORTED_VERSION, systemResponse.getAndroid().getEarliestSupportedVersion());
                     editor.putString(Constants.KEY_ANDROID_LATEST_VERSION, systemResponse.getAndroid().getLatestVersion());
                     editor.apply();
                     resultListener.onSuccess();
                 } else {
-                    resultListener.onFailure();
+                    resultListener.onFailure(new com.karthikb351.vitinfo2.model.Status(StatusCodes.UNKNOWN, context.getResources().getString(R.string.api_unknown_error)));
                 }
             }
         }.execute(true);
@@ -143,15 +146,15 @@ public class Database {
             }
 
             @Override
-            protected void onPostExecute(Boolean r) {
-                if (r) {
+            protected void onPostExecute(Boolean result) {
+                if (result) {
                     Editor editor = sharedPreferences.edit();
                     editor.putString(Constants.KEY_SEMESTER, refreshResponse.getSemester());
                     editor.putString(Constants.KEY_COURSES_REFRESHED, refreshResponse.getRefreshed());
                     editor.apply();
                     resultListener.onSuccess();
                 } else {
-                    resultListener.onFailure();
+                    resultListener.onFailure(new com.karthikb351.vitinfo2.model.Status(StatusCodes.UNKNOWN, context.getResources().getString(R.string.api_unknown_error)));
                 }
             }
         }.execute(true);
@@ -190,8 +193,8 @@ public class Database {
             }
 
             @Override
-            protected void onPostExecute(Boolean r) {
-                if (r) {
+            protected void onPostExecute(Boolean result) {
+                if (result) {
                     Editor editor = sharedPreferences.edit();
                     editor.putString(Constants.KEY_GRADES_REFRESHED, gradesResponse.getRefreshed());
                     editor.putFloat(Constants.KEY_GRADES_CGPA, gradesResponse.getCgpa());
@@ -200,7 +203,7 @@ public class Database {
                     editor.apply();
                     resultListener.onSuccess();
                 } else {
-                    resultListener.onFailure();
+                    resultListener.onFailure(new com.karthikb351.vitinfo2.model.Status(StatusCodes.UNKNOWN, context.getResources().getString(R.string.api_unknown_error)));
                 }
             }
         }.execute(false);
@@ -242,11 +245,11 @@ public class Database {
             }
 
             @Override
-            protected void onPostExecute(Boolean r) {
-                if (r) {
+            protected void onPostExecute(Boolean result) {
+                if (result) {
                     resultListener.onSuccess();
                 } else {
-                    resultListener.onFailure();
+                    resultListener.onFailure(new com.karthikb351.vitinfo2.model.Status(StatusCodes.UNKNOWN, context.getResources().getString(R.string.api_unknown_error)));
                 }
             }
         }.execute(false);

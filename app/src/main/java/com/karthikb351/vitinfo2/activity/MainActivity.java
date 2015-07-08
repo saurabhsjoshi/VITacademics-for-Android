@@ -30,8 +30,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.DataHolder;
+import com.karthikb351.vitinfo2.api.NetworkController;
+import com.karthikb351.vitinfo2.api.RequestConfig;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.CGPAcalculator.CGPAcalculatorFragment;
@@ -42,7 +46,7 @@ import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
 import com.karthikb351.vitinfo2.fragment.today.MainFragment;
-import com.karthikb351.vitinfo2.utility.DataHolder;
+import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.ArrayList;
@@ -68,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure() {
-
+            public void onFailure(Status status) {
+                Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -173,19 +177,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pullToRefresh() {
-        // TODO Put this where it is appropriate
-        // TODO progress
-        DataHolder.refreshData(MainActivity.this, new ResultListener() {
+
+        NetworkController networkController = NetworkController.getNetworkControllerSingleton(MainActivity.this);
+        // TODO Progress Ring Start
+        final ResultListener resultListener = new ResultListener() {
             @Override
             public void onSuccess() {
                 initializeLayouts();
+                // TODO Progress Ring Stop
                 EventBus.getDefault().post(new RefreshFragmentEvent());
             }
 
             @Override
-            public void onFailure() {
-                // TODO handle error
+            public void onFailure(Status status) {
+                // TODO Progress Ring Stop
+                Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        RequestConfig requestConfig = new RequestConfig(new ResultListener() {
+            @Override
+            public void onSuccess() {
+                DataHolder.refreshData(MainActivity.this, resultListener);
+            }
+
+            @Override
+            public void onFailure(Status status) {
+                resultListener.onFailure(status);
             }
         });
+        requestConfig.addRequest(RequestConfig.REQUEST_SYSTEM);
+        requestConfig.addRequest(RequestConfig.REQUEST_REFRESH);
+        requestConfig.addRequest(RequestConfig.REQUEST_GRADES);
+        requestConfig.addRequest(RequestConfig.REQUEST_TOKEN);
+
+        networkController.dispatch(requestConfig);
     }
 }

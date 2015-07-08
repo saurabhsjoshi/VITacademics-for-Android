@@ -17,13 +17,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.utility;
+package com.karthikb351.vitinfo2.api;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import com.karthikb351.vitinfo2.Constants;
+import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Contributor;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Friend;
@@ -32,6 +33,7 @@ import com.karthikb351.vitinfo2.contract.GradeCount;
 import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.contract.WithdrawnCourse;
+import com.karthikb351.vitinfo2.utility.ResultListener;
 import com.orm.SugarTransactionHelper;
 
 import java.util.List;
@@ -111,7 +113,7 @@ public class DataHolder {
                     creditsRegistered = sharedPreferences.getInt(Constants.KEY_GRADES_CREDITS_REGISTERED, 0);
                     resultListener.onSuccess();
                 } else {
-                    resultListener.onFailure();
+                    resultListener.onFailure(new com.karthikb351.vitinfo2.model.Status(StatusCodes.UNKNOWN, context.getResources().getString(R.string.api_unknown_error)));
                 }
             }
         }.execute(true);

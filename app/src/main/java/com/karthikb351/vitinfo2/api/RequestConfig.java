@@ -18,7 +18,9 @@
  */
 
 
-package com.karthikb351.vitinfo2.utility;
+package com.karthikb351.vitinfo2.api;
+
+import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class RequestConfig {
     List<Integer> requests;
     ResultListener resultListener;
 
-    RequestConfig(ResultListener resultListener) {
+    public RequestConfig(ResultListener resultListener) {
         requests = new ArrayList<Integer>();
         this.resultListener = resultListener;
     }

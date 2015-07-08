@@ -1,7 +1,6 @@
 /*
  * VITacademics
- * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
- * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+ * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  *
  * This file is part of VITacademics.
  * VITacademics is free software: you can redistribute it and/or modify
@@ -18,17 +17,26 @@
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.utility;
+package com.karthikb351.vitinfo2.model;
 
-import com.karthikb351.vitinfo2.model.Status;
+public class Settings {
 
-public abstract class ResultListener {
+    private String[] topic;
+    private String[] message;
 
-    public abstract void onSuccess();
+    public void setTopic() {
 
-    public abstract void onFailure(Status status);
+    }
 
-    public void onProgress() {
+    public void setMessage() {
+
+    }
+
+    public void getTopic() {
+
+    }
+
+    public void getMessage() {
 
     }
 }

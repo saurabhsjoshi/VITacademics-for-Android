@@ -33,24 +33,22 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.Constants;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.utility.DataHolder;
-import com.karthikb351.vitinfo2.utility.Network;
+import com.karthikb351.vitinfo2.api.DataHolder;
+import com.karthikb351.vitinfo2.api.NetworkController;
+import com.karthikb351.vitinfo2.api.RequestConfig;
+import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import de.greenrobot.event.EventBus;
-
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    String campus = Constants.CAMPUS_VELLORE;
-    private int refreshStatus;
-    private Network network;
     private EditText editTextRegisterNumber, editTextDateOfBirth, editTextMobileNumber;
     private Button buttonLogin;
     private RadioGroup radioGroupCampus;
@@ -58,7 +56,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Calendar calendar;
     private DatePickerDialog.OnDateSetListener date;
     private ProgressBar progressBar;
+
     private int progress;
+    private String campus;
+
+    private final int PROGRESS_START = 0;
+    private final int PROGRESS_INCREMENT = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,29 +72,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_login:
-                refreshStatus = 0;
-                progress = 0;
-                network = Network.getNetworkSingleton(LoginActivity.this, campus,
-                        editTextRegisterNumber.getText().toString(),
-                        editTextDateOfBirth.getText().toString(),
-                        editTextMobileNumber.getText().toString());
-                progressBar.setProgress(progress);
-                network.refreshAll();
+                String registerNumber = editTextRegisterNumber.getText().toString();
+                String dateOfBirth = editTextDateOfBirth.getText().toString();
+                String mobileNumber = editTextMobileNumber.getText().toString();
+                loginToServer(campus, registerNumber, dateOfBirth, mobileNumber);
                 break;
             case R.id.input_dob:
                 showDatePicker(v);
@@ -119,7 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return super.onOptionsItemSelected(item);
     }
 
-    public void initializeLayouts() {
+    private void initializeLayouts() {
         editTextRegisterNumber = (EditText) findViewById(R.id.input_reg_no);
         editTextDateOfBirth = (EditText) findViewById(R.id.input_dob);
         editTextMobileNumber = (EditText) findViewById(R.id.input_phone_no);
@@ -160,23 +147,58 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         };
     }
 
-    public void showDatePicker(View view) {
+    private void showDatePicker(View view) {
         new DatePickerDialog(this, date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    public void loginToServer() {
-        // TODO put this where it is appropriate
-        // TODO progress and progress steps as well
-        DataHolder.refreshData(LoginActivity.this, new ResultListener() {
+    private void loginToServer(String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
+
+        NetworkController networkController = NetworkController.getNetworkControllerSingleton(LoginActivity.this, campus, registerNumber, dateOfBirth, mobileNumber);
+
+        final ResultListener resultListener = new ResultListener() {
             @Override
             public void onSuccess() {
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
 
             @Override
-            public void onFailure() {
-                // TODO handle error
+            public void onFailure(Status status) {
+                Toast.makeText(LoginActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
+                progress = PROGRESS_START;
+                progressBar.setProgress(progress);
+            }
+
+            @Override
+            public void onProgress() {
+                progress = progress + PROGRESS_INCREMENT;
+                progressBar.setProgress(progress);
+
+            }
+        };
+
+        RequestConfig requestConfig = new RequestConfig(new ResultListener() {
+            @Override
+            public void onSuccess() {
+                DataHolder.refreshData(LoginActivity.this, resultListener);
+            }
+
+            @Override
+            public void onFailure(Status status) {
+                resultListener.onFailure(status);
+            }
+
+            @Override
+            public void onProgress() {
+                progress = progress + PROGRESS_INCREMENT;
+                progressBar.setProgress(progress);
+
             }
         });
+        requestConfig.addRequest(RequestConfig.REQUEST_SYSTEM);
+        requestConfig.addRequest(RequestConfig.REQUEST_REFRESH);
+        requestConfig.addRequest(RequestConfig.REQUEST_GRADES);
+        requestConfig.addRequest(RequestConfig.REQUEST_TOKEN);
+
+        networkController.dispatch(requestConfig);
     }
 }
