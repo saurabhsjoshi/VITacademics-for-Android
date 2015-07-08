@@ -35,8 +35,8 @@ public class RequestConfig {
     public final static int REQUEST_TOKEN = 5;
     public final static int REQUEST_FRIENDS = 6;
 
-    List<Integer> requests;
-    ResultListener resultListener;
+    private List<Integer> requests;
+    private ResultListener resultListener;
 
     public RequestConfig(ResultListener resultListener) {
         requests = new ArrayList<Integer>();
@@ -60,5 +60,9 @@ public class RequestConfig {
 
     public void setRequests(List<Integer> requests) {
         this.requests = requests;
+    }
+
+    public ResultListener getResultListener() {
+        return resultListener;
     }
 }
