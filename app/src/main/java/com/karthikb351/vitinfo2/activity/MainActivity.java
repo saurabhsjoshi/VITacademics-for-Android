@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
         courses=DataHolder.getCourses();
         if(courses!=null){
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent,new UnaivalableFragment(),"Unavailable").commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent,new UnavailableFragment(),"Unavailable").commit();
         }
         else
             getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "TodayFragment").commit();
