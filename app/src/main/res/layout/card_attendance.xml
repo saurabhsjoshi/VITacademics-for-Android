@@ -31,6 +31,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="5dp"
         android:orientation="vertical">
 
         <TextView
@@ -38,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="CSE101"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp"
@@ -51,7 +51,6 @@
             android:gravity="center"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="Computer Programming and Problem Solving"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary"
@@ -76,7 +75,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="SJT 405"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="20sp" />
 
@@ -91,7 +89,6 @@
                 android:id="@+id/course_slot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="A1"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -180,7 +177,7 @@
                 android:layout_marginStart="23dp"
                 android:layout_toEndOf="@+id/tv_attendance_percent"
                 android:layout_toRightOf="@+id/tv_attendance_percent"
-                android:text="20/"
+                android:text="-"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="30sp" />
 
@@ -191,7 +188,7 @@
                 android:layout_alignTop="@+id/button_miss"
                 android:layout_toEndOf="@+id/tv_attended"
                 android:layout_toRightOf="@+id/tv_attended"
-                android:text="30"
+                android:text="/-"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="30sp" />
 
