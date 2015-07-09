@@ -42,7 +42,7 @@ import com.karthikb351.vitinfo2.api.RequestConfig;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
-import com.karthikb351.vitinfo2.fragment.UnaivalableFragment;
+import com.karthikb351.vitinfo2.fragment.UnavailableFragment;
 import com.karthikb351.vitinfo2.fragment.cgpaCalculator.CGPACalculatorFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
         courses=DataHolder.getCourses();
         if(courses!=null){
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent,new UnaivalableFragment(),"Unavailable").commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent,new UnavailableFragment(),"Unavailable").commit();
         }
         else
             getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "TodayFragment").commit();
