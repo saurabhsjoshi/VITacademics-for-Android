@@ -32,6 +32,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<Course> courses;
     private String topics[];
+    public LinearLayout mainContent ;
     private DrawerLayout drawerLayout;
     private ListView lv;
 
@@ -117,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void initializeLayouts() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mainContent = (LinearLayout) findViewById(R.id.llMainContent);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();

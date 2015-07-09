@@ -64,13 +64,15 @@ public class TimeTableDayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.timetable_day_fragment, container, false);
+        rootView = inflater.inflate(R.layout.timetable_day_fragment, container, false);
         initialize();
         return rootView;
     }
 
     void initialize() {
         recyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_timetable);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerview.setLayoutManager(layoutManager);
         load = (ProgressBar) rootView.findViewById(R.id.timeTableProgressBar);
         new LoadData().execute();
     }
@@ -80,9 +82,6 @@ public class TimeTableDayFragment extends Fragment {
         //TODO: implement redirection on itemclick
     }
 
-    void onListItemClick(Friend friend) {
-        // add on item click functionality
-    }
 
     @Override
     public void onResume() {
@@ -130,8 +129,6 @@ public class TimeTableDayFragment extends Fragment {
                     onListItemClicked(data);
                 }
             });
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-            recyclerview.setLayoutManager(layoutManager);
             recyclerview.setAdapter(adapter);
         }
 
