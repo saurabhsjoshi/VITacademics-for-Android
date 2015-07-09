@@ -181,11 +181,11 @@ public class MainActivity extends AppCompatActivity {
         topics = getResources().getStringArray(R.array.topic);
         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
         courses=DataHolder.getCourses();
-        if(courses!=null){
+        if(courses==null){
             getSupportFragmentManager().beginTransaction().add(R.id.flContent,new UnavailableFragment(),"Unavailable").commit();
         }
         else
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "TodayFragment").commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new CoursesFragment(), "TodayFragment").commit();
     }
 
     public void pullToRefresh() {

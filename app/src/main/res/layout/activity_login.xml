@@ -112,13 +112,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="LOGIN" />
+        android:text="LOGIN" >
+    </Button>
     <!-- android:textAppearance="@dimen/abc_button_inset_horizontal_material"
      android:textSize="@dimen/abc_text_size_button_material"--> />
-
     <ProgressBar
         android:id="@+id/progress_bar_login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:indeterminate="true" />
+        style="?android:attr/progressBarStyleHorizontal"/>
+
+
 </LinearLayout>
