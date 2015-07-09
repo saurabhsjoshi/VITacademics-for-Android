@@ -59,7 +59,7 @@ public class SettingsFragment extends ListFragment {
         settingsTopics = getResources().getStringArray(R.array.settingsTopic);
         //TODO: Change
         settingsMessages = getResources().getStringArray(R.array.settingsTopic);
-        SettingsAdapter adapter = new SettingsAdapter(getActivity(), 0);
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),R.layout.list_item_settings,settingsTopics);
         setListAdapter(adapter);
     }
 
