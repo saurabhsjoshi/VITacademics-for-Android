@@ -36,6 +36,8 @@ public class Splash extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -47,18 +49,18 @@ public class Splash extends Activity {
 
                 if (Constants.CAMPUS_VELLORE.equals(campus)) {
                     if (registerNumber != null && dateOfBirth != null && mobileNumber != null) {
-                        startActivity(new Intent("com.karthikb351.vitinfo2.activity.MainActivity"));
+                        startActivity(new Intent(Splash.this,MainActivity.class));
                     } else {
-                        startActivity(new Intent("com.karthikb351.vitinfo2.activity.LoginActivity"));
+                        startActivity(new Intent(Splash.this,LoginActivity.class));
                     }
                 } else if (Constants.CAMPUS_CHENNAI.equals(campus)) {
                     if (registerNumber != null && dateOfBirth != null) {
-                        startActivity(new Intent("com.karthikb351.vitinfo2.activity.MainActivity"));
+                        startActivity(new Intent(Splash.this,MainActivity.class));
                     } else {
-                        startActivity(new Intent("com.karthikb351.vitinfo2.activity.LoginActivity"));
+                        startActivity(new Intent(Splash.this,LoginActivity.class));
                     }
                 } else {
-                    startActivity(new Intent("com.karthikb351.vitinfo2.activity.LoginActivity"));
+                    startActivity(new Intent(Splash.this,LoginActivity.class));
                 }
             }
         }, Constants.SPLASH_TIME_OUT);

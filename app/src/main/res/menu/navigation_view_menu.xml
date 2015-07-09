@@ -63,16 +63,20 @@
             android:icon="@mipmap/ic_message_black_48dp"
             android:title="Messages" />
 
+    </group>
 
-    </group>
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/drawer_settings"
-            android:icon="@mipmap/ic_settings_black_24dp"
-            android:title="Settings" />
-        <item
-            android:id="@+id/drawer_about"
-            android:icon="@mipmap/ic_search_black_48dp"
-            android:title="About" />
-    </group>
+    <item android:title="Others">
+        <menu
+            android:menuCategory="alternative"
+            android:checkableBehavior="single">
+            <item
+                android:id="@+id/drawer_settings"
+                android:icon="@mipmap/ic_settings_black_24dp"
+                android:title="Settings" />
+            <item
+                android:id="@+id/drawer_about"
+                android:icon="@mipmap/ic_search_black_48dp"
+                android:title="About" />
+        </menu>
+    </item>
 </menu>
