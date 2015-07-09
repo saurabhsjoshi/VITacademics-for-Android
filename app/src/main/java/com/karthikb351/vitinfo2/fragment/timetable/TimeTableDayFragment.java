@@ -19,7 +19,7 @@
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.TimeTable;
+package com.karthikb351.vitinfo2.fragment.timetable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -32,11 +32,11 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Friend;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.api.DataHolder;
+import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.util.ArrayList;
 import java.util.List;

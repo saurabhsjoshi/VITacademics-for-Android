@@ -47,7 +47,7 @@ import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
-import com.karthikb351.vitinfo2.fragment.TimeTable.TimeTableFragment;
+import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
 import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.ResultListener;

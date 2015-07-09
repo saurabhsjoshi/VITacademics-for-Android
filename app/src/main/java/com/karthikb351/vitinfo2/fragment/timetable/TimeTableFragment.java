@@ -19,7 +19,7 @@
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.TimeTable;
+package com.karthikb351.vitinfo2.fragment.timetable;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
