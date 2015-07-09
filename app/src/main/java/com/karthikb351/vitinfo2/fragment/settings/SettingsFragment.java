@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.karthikb351.vitinfo2.fragment.settings.SettingsAdapter;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.LoginActivity;
@@ -42,6 +43,7 @@ public class SettingsFragment extends ListFragment {
     //ListView listView;
     String settingsTopics[];
     String settingsMessages[];
+    SettingsAdapter adapter ;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -58,7 +60,7 @@ public class SettingsFragment extends ListFragment {
         getActivity().setTitle("Settings");
         settingsTopics = getResources().getStringArray(R.array.settingsTopic);
         settingsMessages = getResources().getStringArray(R.array.settingsMessage);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),R.layout.list_item_settings,settingsTopics);
+        adapter = new SettingsAdapter(getActivity(),R.layout.list_item_settings,settingsTopics,settingsMessages);
         setListAdapter(adapter);
     }
 
@@ -90,21 +92,6 @@ public class SettingsFragment extends ListFragment {
                 break;
         }
 
-    }
-
-    public class SettingsAdapter extends ArrayAdapter<String> {
-
-        Context context;
-
-        public SettingsAdapter(Context context, int resource) {
-            super(context, resource);
-            this.context = context;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return super.getView(position, convertView, parent);
-        }
     }
 
 }

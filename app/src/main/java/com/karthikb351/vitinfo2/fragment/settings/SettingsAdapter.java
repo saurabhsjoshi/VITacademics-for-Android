@@ -37,7 +37,7 @@ public class SettingsAdapter extends ArrayAdapter<String> {
     String [] messages ;
     Context context ;
 
-    SettingsAdapter(Context context , int Rid , String[] topics , String [] messages)
+    public SettingsAdapter(Context context , int Rid , String[] topics , String [] messages)
     {
         super(context,Rid,topics);
         this.topics = topics ;
