@@ -68,6 +68,8 @@ public class TodayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.card_today, container, false);
+        //load = (ProgressBar) rootView.findViewById(R.id.progress_bar_today);
+        todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
         initialize();
         return rootView;
     }
@@ -78,8 +80,6 @@ public class TodayFragment extends Fragment {
 
     void initialize() {
             getActivity().setTitle("Today");
-            load = (ProgressBar) rootView.findViewById(R.id.progress_bar_today);
-            todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
             new loadToday().execute();
     }
 
@@ -108,7 +108,7 @@ public class TodayFragment extends Fragment {
     class loadToday extends AsyncTask<Void, Void, ArrayList<Pair<Course, Integer>>> {
         @Override
         protected void onPreExecute() {
-            load.setVisibility(View.VISIBLE);
+            //load.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -116,10 +116,12 @@ public class TodayFragment extends Fragment {
             int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
             SortedArrayList finalArray = new SortedArrayList();
             courses=DataHolder.getCourses();
-            for (Course c : courses) {
-                for (int i = 0; i < c.getTimings().length; i++) {
-                    if (c.getTimings()[i].getDay() == dayOfWeek)
-                        finalArray.insert(new Pair<>(c, i));
+            if(courses!=null) {
+                for (Course c : courses) {
+                    for (int i = 0; i < c.getTimings().length; i++) {
+                        if (c.getTimings()[i].getDay() == dayOfWeek)
+                            finalArray.insert(new Pair<>(c, i));
+                    }
                 }
             }
             return finalArray;
@@ -127,16 +129,18 @@ public class TodayFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ArrayList<Pair<Course, Integer>> res) {
-            load.setVisibility(View.GONE);
+            //load.setVisibility(View.GONE);
             todayListAdapter = new TodayListAdapter(getActivity(), res);
+            RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(getActivity());
+            todayRecyclerView.setLayoutManager(layoutManager);
+            todayRecyclerView.setAdapter(todayListAdapter);
+
             todayListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
                 @Override
                 public void onItemClick(Course data) {
                     onListItemClicked(data);
                 }
             });
-            todayRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            todayRecyclerView.setAdapter(todayListAdapter);
         }
 
     }

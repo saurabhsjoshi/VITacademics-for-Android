@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         topics = getResources().getStringArray(R.array.topic);
         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
         courses=DataHolder.getCourses();
-        if(courses!=null){
+        if(courses==null){
             getSupportFragmentManager().beginTransaction().add(R.id.flContent,new UnaivalableFragment(),"Unavailable").commit();
         }
         else
