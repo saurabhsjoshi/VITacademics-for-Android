@@ -144,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 calendar.set(i, i1, i2);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+                SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy", Locale.US);
                 editTextDateOfBirth.setText(sdf.format(calendar.getTime()));
             }
         };
