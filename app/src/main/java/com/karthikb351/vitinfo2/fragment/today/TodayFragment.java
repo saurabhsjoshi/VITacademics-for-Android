@@ -118,8 +118,8 @@ public class TodayFragment extends Fragment {
             courses=DataHolder.getCourses();
             if(courses!=null) {
                 for (Course c : courses) {
-                    for (int i = 0; i < c.getTimings().length; i++) {
-                        if (c.getTimings()[i].getDay() == dayOfWeek)
+                    for (int i = 0; i < c.getTimings().size(); i++) {
+                        if (c.getTimings().get(i).getDay() == dayOfWeek)
                             finalArray.insert(new Pair<>(c, i));
                     }
                 }

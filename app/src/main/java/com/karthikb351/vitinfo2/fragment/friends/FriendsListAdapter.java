@@ -57,7 +57,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     @Override
     public void onBindViewHolder(FriendsViewHolder holder, int position) {
-        holder.FriendName.setText(friends.get(position).getSqlName());
+        holder.FriendName.setText(friends.get(position).getCampus()); // TODO what is getSqlName()?
         holder.FriendRegNo.setText(friends.get(position).getRegisterNumber());
     }
 

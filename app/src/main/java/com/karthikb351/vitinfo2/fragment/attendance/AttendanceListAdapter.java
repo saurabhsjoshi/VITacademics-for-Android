@@ -32,13 +32,15 @@ import com.karthikb351.vitinfo2.contract.Attendance;
 import com.karthikb351.vitinfo2.contract.AttendanceDetail;
 import com.karthikb351.vitinfo2.contract.Course;
 
+import java.util.List;
+
 public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAdapter.AttendanceViewHolder> {
 
     int layoutId;
     Context context;
     Course course;
     Attendance attendance;
-    AttendanceDetail attendanceDetail[];
+    List<AttendanceDetail> attendanceDetail;
 
     public AttendanceListAdapter(Context context, Course course) {
         this.context = context;
@@ -55,10 +57,10 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
     @Override
     public void onBindViewHolder(AttendanceViewHolder holder, int position) {
-        holder.date.setText(attendanceDetail[position - 1].getDate());
-        holder.statusDetails.setText(attendanceDetail[position - 1].getStatus());
-        holder.classUnits.setText(attendanceDetail[position - 1].getClassUnits());
-        holder.reason.setText(attendanceDetail[position - 1].getReason());
+        holder.date.setText(attendanceDetail.get(position - 1).getDate());
+        holder.statusDetails.setText(attendanceDetail.get(position - 1).getStatus());
+        holder.classUnits.setText(attendanceDetail.get(position - 1).getClassUnits());
+        holder.reason.setText(attendanceDetail.get(position - 1).getReason());
         holder.courseName.setText(course.getCourseTitle());
         holder.courseCode.setText(course.getCourseCode());
         holder.courseRoom.setText(course.getVenue());
@@ -81,7 +83,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
     @Override
     public int getItemCount() {
-        return (attendanceDetail.length + 1);
+        return (attendanceDetail.size() + 1);
     }
 
     @Override

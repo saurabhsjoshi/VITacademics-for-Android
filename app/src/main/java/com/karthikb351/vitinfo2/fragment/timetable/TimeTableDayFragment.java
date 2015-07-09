@@ -112,8 +112,8 @@ public class TimeTableDayFragment extends Fragment {
             ArrayList<Course> finalArray = new ArrayList<>();
             List<Course> courses = DataHolder.getCourses();
             for (Course c : courses) {
-                for (int i = 0; i < c.getTimings().length; i++) {
-                    if (c.getTimings()[i].getDay() == dayOfWeek)
+                for (int i = 0; i < c.getTimings().size(); i++) {
+                    if (c.getTimings().get(i).getDay() == dayOfWeek)
                         finalArray.add(c);
                 }
             }

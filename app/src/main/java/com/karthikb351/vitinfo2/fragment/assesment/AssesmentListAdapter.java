@@ -33,6 +33,8 @@ import com.karthikb351.vitinfo2.contract.Assessment;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Marks;
 
+import java.util.List;
+
 public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdapter.AssesmentViewHolder> {
 
 
@@ -40,7 +42,7 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
     Context context;
     Marks marks;
     Course course;
-    Assessment[] assesments;
+    List<Assessment> assesments;
 
 
     public AssesmentListAdapter(Context context, Course course) {
@@ -59,13 +61,13 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
 
     @Override
     public void onBindViewHolder(AssesmentViewHolder holder, int position) {
-        holder.assessmentType.setText(assesments[position - 1].getTitle());
-        holder.maxMarks.setText(Double.toString(assesments[position - 1].getMaxMarks()));
-        holder.scoredMarks.setText(Double.toString(assesments[position - 1].getScoredMarks()) + "/");
-        holder.weightage.setText(Double.toString(assesments[position - 1].getWeightage()));
-        Double contribution = assesments[position - 1].getScoredPercentage() * assesments[position - 1].getWeightage();
+        holder.assessmentType.setText(assesments.get(position - 1).getTitle());
+        holder.maxMarks.setText(Double.toString(assesments.get(position - 1).getMaxMarks()));
+        holder.scoredMarks.setText(Double.toString(assesments.get(position - 1).getScoredMarks()) + "/");
+        holder.weightage.setText(Double.toString(assesments.get(position - 1).getWeightage()));
+        Double contribution = assesments.get(position - 1).getScoredPercentage() * assesments.get(position - 1).getWeightage();
         holder.contribution.setText(Double.toString(contribution));
-        holder.marksProgressBar.setProgress((int) assesments[position - 1].getScoredPercentage());
+        holder.marksProgressBar.setProgress((int) assesments.get(position - 1).getScoredPercentage());
         holder.totalScored.setText(Double.toString(marks.getScoredMarks()));
         holder.totalMax.setText(Double.toString(marks.getMaxMarks()));
     }
@@ -81,7 +83,7 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
 
     @Override
     public int getItemCount() {
-        return (assesments.length + 1);
+        return (assesments.size() + 1);
     }
 
     public class AssesmentViewHolder extends RecyclerView.ViewHolder {

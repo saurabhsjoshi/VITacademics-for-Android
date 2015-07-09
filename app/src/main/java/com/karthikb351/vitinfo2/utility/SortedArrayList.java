@@ -36,7 +36,7 @@ public class SortedArrayList extends ArrayList<Pair<Course, Integer>> {
     public void insert(Pair<Course, Integer> data) {
         try {
             Date date = new Date();
-            Timing thisTime = data.first.getTimings()[data.second];
+            Timing thisTime = data.first.getTimings().get(data.second);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy KK:mm:ss a Z", Locale.US);
             Date startDate = simpleDateFormat.parse(thisTime.getStartTime());
             Date endDate = simpleDateFormat.parse(thisTime.getEndTime());
@@ -44,7 +44,7 @@ public class SortedArrayList extends ArrayList<Pair<Course, Integer>> {
                 return;
             int i = 0;
             for (; i < size(); i++) {
-                Date time = simpleDateFormat.parse(get(i).first.getTimings()[get(i).second].getStartTime());
+                Date time = simpleDateFormat.parse(get(i).first.getTimings().get(get(i).second).getStartTime());
                 if (!(time.before(startDate)))
                     break;
             }

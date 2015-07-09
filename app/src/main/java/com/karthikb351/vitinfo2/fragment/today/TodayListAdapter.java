@@ -68,7 +68,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         todayViewHolder.Slot.setText(courses.get(position).first.getSlot());
         todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
         todayViewHolder.pbAttendance.setProgress(AttendanceP);
-        String start = courses.get(position).first.getTimings()[courses.get(position).second].getStartTime();
+        String start = courses.get(position).first.getTimings().get(courses.get(position).second).getStartTime();
         todayViewHolder.TimeLeft.setText(timediff(start));
     }
 
