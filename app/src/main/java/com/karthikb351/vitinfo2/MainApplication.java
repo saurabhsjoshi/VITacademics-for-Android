@@ -19,7 +19,21 @@
 
 package com.karthikb351.vitinfo2;
 
-import com.orm.SugarApp;
+import android.app.Application;
 
-public class MainApplication extends SugarApp {
+import co.uk.rushorm.android.AndroidInitializeConfig;
+import co.uk.rushorm.core.RushCore;
+
+public class MainApplication extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        // Rush is initialized asynchronously to recieve a callback after it initialized
+        // set an InitializeListener on the config object
+
+        AndroidInitializeConfig config = new AndroidInitializeConfig(getApplicationContext());
+        RushCore.initialize(config);
+    }
 }
