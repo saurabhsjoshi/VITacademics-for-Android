@@ -21,9 +21,10 @@ package com.karthikb351.vitinfo2.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.orm.SugarRecord;
 
-public class SemesterWiseGrade extends SugarRecord<SemesterWiseGrade> {
+import co.uk.rushorm.core.RushObject;
+
+public class SemesterWiseGrade extends RushObject {
 
     @Expose
     @SerializedName("exam_held")

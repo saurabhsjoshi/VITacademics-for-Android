@@ -21,9 +21,10 @@ package com.karthikb351.vitinfo2.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.orm.SugarRecord;
 
-public class Timing extends SugarRecord<Timing> {
+import co.uk.rushorm.core.RushObject;
+
+public class Timing extends RushObject {
 
     @Expose
     @SerializedName("day")

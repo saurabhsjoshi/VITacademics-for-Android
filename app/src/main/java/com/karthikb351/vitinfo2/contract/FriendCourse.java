@@ -21,9 +21,13 @@ package com.karthikb351.vitinfo2.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.orm.SugarRecord;
 
-public class FriendCourse extends SugarRecord<FriendCourse> {
+import java.util.List;
+
+import co.uk.rushorm.core.RushObject;
+import co.uk.rushorm.core.annotations.RushList;
+
+public class FriendCourse extends RushObject {
 
     @Expose
     @SerializedName("class_number")
@@ -75,12 +79,13 @@ public class FriendCourse extends SugarRecord<FriendCourse> {
 
     @Expose
     @SerializedName("timings")
-    private Timing[] timings;
+    @RushList(classType = Timing.class)
+    private List<Timing> timings;
 
     public FriendCourse() {
     }
 
-    public FriendCourse(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpc, String courseMode, String courseOption, String slot, String venue, String faculty, String projectTitle, int courseType, Timing[] timings) {
+    public FriendCourse(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpc, String courseMode, String courseOption, String slot, String venue, String faculty, String projectTitle, int courseType, List<Timing> timings) {
         this.classNumber = classNumber;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
@@ -192,11 +197,11 @@ public class FriendCourse extends SugarRecord<FriendCourse> {
         this.courseType = courseType;
     }
 
-    public Timing[] getTimings() {
+    public List<Timing> getTimings() {
         return timings;
     }
 
-    public void setTimings(Timing[] timings) {
+    public void setTimings(List<Timing> timings) {
         this.timings = timings;
     }
 }

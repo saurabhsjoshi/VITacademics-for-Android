@@ -21,9 +21,10 @@ package com.karthikb351.vitinfo2.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.orm.SugarRecord;
 
-public class Grade extends SugarRecord<Grade> {
+import co.uk.rushorm.core.RushObject;
+
+public class Grade extends RushObject {
 
     @Expose
     @SerializedName("course_code")

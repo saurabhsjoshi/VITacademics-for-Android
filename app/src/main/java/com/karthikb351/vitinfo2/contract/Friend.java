@@ -22,10 +22,14 @@ package com.karthikb351.vitinfo2.contract;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.karthikb351.vitinfo2.model.Status;
-import com.orm.SugarRecord;
-import com.orm.dsl.Ignore;
 
-public class Friend extends SugarRecord<Friend> {
+import java.util.List;
+
+import co.uk.rushorm.core.RushObject;
+import co.uk.rushorm.core.annotations.RushIgnore;
+import co.uk.rushorm.core.annotations.RushList;
+
+public class Friend extends RushObject {
 
     @Expose
     @SerializedName("reg_no")
@@ -45,7 +49,7 @@ public class Friend extends SugarRecord<Friend> {
 
     @Expose
     @SerializedName("status")
-    @Ignore
+    @RushIgnore
     private Status status;
 
     @Expose
@@ -54,7 +58,8 @@ public class Friend extends SugarRecord<Friend> {
 
     @Expose
     @SerializedName("courses")
-    private FriendCourse[] courses;
+    @RushList(classType = FriendCourse.class)
+    private List<FriendCourse> courses;
 
     @Expose
     @SerializedName("refreshed")
@@ -63,7 +68,7 @@ public class Friend extends SugarRecord<Friend> {
     public Friend() {
     }
 
-    public Friend(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String semester, FriendCourse[] courses, String refreshed) {
+    public Friend(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String semester, List<FriendCourse> courses, String refreshed) {
         this.registerNumber = registerNumber;
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
@@ -122,11 +127,11 @@ public class Friend extends SugarRecord<Friend> {
         this.semester = semester;
     }
 
-    public FriendCourse[] getCourses() {
+    public List<FriendCourse> getCourses() {
         return courses;
     }
 
-    public void setCourses(FriendCourse[] courses) {
+    public void setCourses(List<FriendCourse> courses) {
         this.courses = courses;
     }
 

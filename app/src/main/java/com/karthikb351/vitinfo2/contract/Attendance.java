@@ -21,9 +21,13 @@ package com.karthikb351.vitinfo2.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.orm.SugarRecord;
 
-public class Attendance extends SugarRecord<Attendance> {
+import java.util.List;
+
+import co.uk.rushorm.core.RushObject;
+import co.uk.rushorm.core.annotations.RushList;
+
+public class Attendance extends RushObject {
 
     @Expose
     @SerializedName("registration_date")
@@ -43,7 +47,8 @@ public class Attendance extends SugarRecord<Attendance> {
 
     @Expose
     @SerializedName("details")
-    private AttendanceDetail[] details;
+    @RushList(classType = AttendanceDetail.class)
+    private List<AttendanceDetail> details;
 
     @Expose
     @SerializedName("supported")
@@ -52,7 +57,7 @@ public class Attendance extends SugarRecord<Attendance> {
     public Attendance() {
     }
 
-    public Attendance(String registrationDate, int attendedClasses, int totalClasses, int attendancePercentage, AttendanceDetail[] details, boolean supported) {
+    public Attendance(String registrationDate, int attendedClasses, int totalClasses, int attendancePercentage, List<AttendanceDetail> details, boolean supported) {
         this.registrationDate = registrationDate;
         this.attendedClasses = attendedClasses;
         this.totalClasses = totalClasses;
@@ -93,11 +98,11 @@ public class Attendance extends SugarRecord<Attendance> {
         this.attendancePercentage = attendancePercentage;
     }
 
-    public AttendanceDetail[] getDetails() {
+    public List<AttendanceDetail> getDetails() {
         return details;
     }
 
-    public void setDetails(AttendanceDetail[] details) {
+    public void setDetails(List<AttendanceDetail> details) {
         this.details = details;
     }
 

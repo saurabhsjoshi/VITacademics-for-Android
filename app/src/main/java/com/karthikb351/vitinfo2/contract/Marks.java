@@ -21,9 +21,13 @@ package com.karthikb351.vitinfo2.contract;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.orm.SugarRecord;
 
-public class Marks extends SugarRecord<Marks> {
+import java.util.List;
+
+import co.uk.rushorm.core.RushObject;
+import co.uk.rushorm.core.annotations.RushList;
+
+public class Marks extends RushObject {
 
     @Expose
     @SerializedName("max_marks")
@@ -43,7 +47,8 @@ public class Marks extends SugarRecord<Marks> {
 
     @Expose
     @SerializedName("assessments")
-    private Assessment[] assessments;
+    @RushList(classType = Assessment.class)
+    private List<Assessment> assessments;
 
     @Expose
     @SerializedName("supported")
@@ -52,7 +57,7 @@ public class Marks extends SugarRecord<Marks> {
     public Marks() {
     }
 
-    public Marks(double maxMarks, double maxPercentage, double scoredMarks, double scoredPercentage, Assessment[] assessments, boolean supported) {
+    public Marks(double maxMarks, double maxPercentage, double scoredMarks, double scoredPercentage, List<Assessment> assessments, boolean supported) {
         this.maxMarks = maxMarks;
         this.maxPercentage = maxPercentage;
         this.scoredMarks = scoredMarks;
@@ -93,11 +98,11 @@ public class Marks extends SugarRecord<Marks> {
         this.scoredPercentage = scoredPercentage;
     }
 
-    public Assessment[] getAssessments() {
+    public List<Assessment> getAssessments() {
         return assessments;
     }
 
-    public void setAssessments(Assessment[] assessments) {
+    public void setAssessments(List<Assessment> assessments) {
         this.assessments = assessments;
     }
 
