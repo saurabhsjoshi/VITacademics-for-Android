@@ -54,13 +54,16 @@ public class DatabaseController {
     private DatabaseController(Context context) {
         this.context = context;
         this.sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+
+        databaseController = this;
     }
 
     public static DatabaseController getDatabaseSingleton(Context context) {
         if (databaseController != null) {
-            databaseController = new DatabaseController(context);
+            databaseController.context = context;
+            return databaseController;
         }
-        return databaseController;
+        return new DatabaseController(context);
     }
 
     public void saveSystem(final SystemResponse systemResponse, final ResultListener resultListener) {
