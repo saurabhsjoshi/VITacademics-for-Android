@@ -74,8 +74,7 @@ public class TodayFragment extends Fragment {
     }
 
     void initialize() {
-        load = (ProgressBar) rootView.findViewById(R.id.todayProgressBar);
-        // TODO, there is no progressbar in the layout
+        load = (ProgressBar) rootView.findViewById(R.id.progress_bar_today);
         todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
         getActivity().setTitle("Today");
         new loadToday().execute();

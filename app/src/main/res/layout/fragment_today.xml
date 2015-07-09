@@ -24,10 +24,26 @@
 
 <!--// TODO Use string resources-->
 
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+  <ProgressBar
+      android:id="@+id/progress_bar_today"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:indeterminate="true"
+      android:visibility="gone" />
+
+<android.support.v7.widget.RecyclerView
     android:id="@+id/recyclerViewToday"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
 
     />
+
+</LinearLayout>

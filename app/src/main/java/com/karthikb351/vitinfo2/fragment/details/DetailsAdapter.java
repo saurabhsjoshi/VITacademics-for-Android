@@ -22,6 +22,7 @@ package com.karthikb351.vitinfo2.fragment.details;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.karthikb351.vitinfo2.contract.Course;
@@ -29,7 +30,7 @@ import com.karthikb351.vitinfo2.fragment.OverviewFragment;
 import com.karthikb351.vitinfo2.fragment.assesment.AssesmentFragment;
 import com.karthikb351.vitinfo2.fragment.attendance.AttendanceFragment;
 
-public class DetailsAdapter extends FragmentStatePagerAdapter {
+public class DetailsAdapter extends FragmentPagerAdapter {
 
     Fragment fragment;
     Context context;
