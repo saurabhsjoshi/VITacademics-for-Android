@@ -34,9 +34,14 @@
         <item>Today</item>
         <item>Courses</item>
         <item>Time Table</item>
+        <item>Grades</item>
+        <item>CGPA Calculator</item>
         <item>Friends</item>
+        <item>Messages</item>
         <item>Settings</item>
+        <item>About</item>
     </string-array>
+
     <string-array name="setGrade">
         <item>S</item>
         <item>A</item>
@@ -47,6 +52,7 @@
         <item>F</item>
         <item>N</item>
     </string-array>
+
     <string-array name="settingsTopic">
         <item>Log Out</item>
         <item>Licenses</item>
