@@ -33,10 +33,10 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.api.DataHolder;
+import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.utility.SortedArrayList;
 
 import java.util.ArrayList;
@@ -53,8 +53,11 @@ public class TodayFragment extends Fragment {
     TodayListAdapter todayListAdapter;
     ProgressBar load;
     View rootView;
+    List<Course> courses;
+    int layoutId;
 
     public TodayFragment() {
+
     }
 
     public static TodayFragment newInstance() {
@@ -64,7 +67,7 @@ public class TodayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_today, container, false);
+        rootView = inflater.inflate(R.layout.card_today, container, false);
         initialize();
         return rootView;
     }
@@ -74,10 +77,10 @@ public class TodayFragment extends Fragment {
     }
 
     void initialize() {
-        load = (ProgressBar) rootView.findViewById(R.id.progress_bar_today);
-        todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
-        getActivity().setTitle("Today");
-        new loadToday().execute();
+            getActivity().setTitle("Today");
+            load = (ProgressBar) rootView.findViewById(R.id.progress_bar_today);
+            todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
+            new loadToday().execute();
     }
 
     @Override
@@ -99,7 +102,7 @@ public class TodayFragment extends Fragment {
 
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
-
+        super.onViewStateRestored(savedInstanceState);
     }
 
     class loadToday extends AsyncTask<Void, Void, ArrayList<Pair<Course, Integer>>> {
@@ -112,7 +115,7 @@ public class TodayFragment extends Fragment {
         protected ArrayList<Pair<Course, Integer>> doInBackground(Void... params) {
             int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
             SortedArrayList finalArray = new SortedArrayList();
-            List<Course> courses = DataHolder.getCourses();
+            courses=DataHolder.getCourses();
             for (Course c : courses) {
                 for (int i = 0; i < c.getTimings().length; i++) {
                     if (c.getTimings()[i].getDay() == dayOfWeek)

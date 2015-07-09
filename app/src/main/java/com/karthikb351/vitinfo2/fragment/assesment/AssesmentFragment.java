@@ -57,7 +57,7 @@ public class AssesmentFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_assessments);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listAdapter);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+       /* recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView rv, int newState) {
                 super.onScrollStateChanged(rv, newState);
@@ -71,7 +71,7 @@ public class AssesmentFragment extends Fragment {
                 super.onScrolled(recyclerView, dx, dy);
                 getActivity().getActionBar().show();
             }
-        });
+        });*/
         return view;
     }
 

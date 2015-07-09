@@ -39,8 +39,10 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
+import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
+import com.karthikb351.vitinfo2.fragment.UnaivalableFragment;
 import com.karthikb351.vitinfo2.fragment.cgpaCalculator.CGPACalculatorFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
@@ -54,6 +56,7 @@ import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private String topics[];
     private DrawerLayout drawerLayout;
     private ListView lv;
+    List<Course> courses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,7 +180,12 @@ public class MainActivity extends AppCompatActivity {
         //lv = (ListView) findViewById(R.id.lvDrawer);
         topics = getResources().getStringArray(R.array.topic);
         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
-        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "mainFragment").commit();
+        courses=DataHolder.getCourses();
+        if(courses!=null){
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent,new UnaivalableFragment(),"Unavailable").commit();
+        }
+        else
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "TodayFragment").commit();
     }
 
     public void pullToRefresh() {
