@@ -35,9 +35,10 @@ import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.contract.WithdrawnCourse;
 import com.karthikb351.vitinfo2.utility.ResultListener;
-import com.orm.SugarTransactionHelper;
 
 import java.util.List;
+
+import co.uk.rushorm.core.RushSearch;
 
 public class DataHolder {
 
@@ -71,19 +72,14 @@ public class DataHolder {
             @Override
             protected Boolean doInBackground(Boolean... params) {
                 try {
-                    SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
-                        @Override
-                        public void manipulateInTransaction() {
-                            messages = Message.listAll(Message.class);
-                            contributors = Contributor.listAll(Contributor.class);
-                            courses = Course.listAll(Course.class);
-                            withdrawnCourses = WithdrawnCourse.listAll(WithdrawnCourse.class);
-                            grades = Grade.listAll(Grade.class);
-                            gradeCounts = GradeCount.listAll(GradeCount.class);
-                            semesterWiseGrades = SemesterWiseGrade.listAll(SemesterWiseGrade.class);
-                            friends = Friend.listAll(Friend.class);
-                        }
-                    });
+                    messages = new RushSearch().find(Message.class);
+                    contributors = new RushSearch().find(Contributor.class);
+                    courses = new RushSearch().find(Course.class);
+                    withdrawnCourses = new RushSearch().find(WithdrawnCourse.class);
+                    grades = new RushSearch().find(Grade.class);
+                    gradeCounts = new RushSearch().find(GradeCount.class);
+                    semesterWiseGrades = new RushSearch().find(SemesterWiseGrade.class);
+                    friends = new RushSearch().find(Friend.class);
                     return true;
                 } catch (Exception e) {
                     e.printStackTrace();

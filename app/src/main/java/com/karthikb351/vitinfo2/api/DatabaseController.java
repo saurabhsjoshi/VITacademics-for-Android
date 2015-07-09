@@ -41,9 +41,10 @@ import com.karthikb351.vitinfo2.response.RefreshResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
 import com.karthikb351.vitinfo2.utility.ResultListener;
-import com.orm.SugarTransactionHelper;
 
 import java.util.List;
+
+import co.uk.rushorm.core.RushSearch;
 
 public class DatabaseController {
 
@@ -73,20 +74,19 @@ public class DatabaseController {
             @Override
             protected Boolean doInBackground(Boolean... params) {
                 try {
-                    SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
-                        @Override
-                        public void manipulateInTransaction() {
-                            Message.deleteAll(Message.class);
-                            Contributor.deleteAll(Contributor.class);
+                    for (Message message : new RushSearch().find(Message.class)) {
+                        message.delete();
+                    }
+                    for (Contributor contributor : new RushSearch().find(Contributor.class)) {
+                        contributor.delete();
+                    }
 
-                            for (Message message : systemResponse.getMessages()) {
-                                message.save();
-                            }
-                            for (Contributor contributor : systemResponse.getContributors()) {
-                                contributor.save();
-                            }
-                        }
-                    });
+                    for (Message message : systemResponse.getMessages()) {
+                        message.save();
+                    }
+                    for (Contributor contributor : systemResponse.getContributors()) {
+                        contributor.save();
+                    }
                     return true;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -129,20 +129,19 @@ public class DatabaseController {
             @Override
             protected Boolean doInBackground(Boolean... params) {
                 try {
-                    SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
-                        @Override
-                        public void manipulateInTransaction() {
-                            Course.deleteAll(Course.class);
-                            WithdrawnCourse.deleteAll(WithdrawnCourse.class);
+                    for (Course course : new RushSearch().find(Course.class)) {
+                        course.delete();
+                    }
+                    for (WithdrawnCourse withdrawnCourse : new RushSearch().find(WithdrawnCourse.class)) {
+                        withdrawnCourse.delete();
+                    }
 
-                            for (Course course : refreshResponse.getCourses()) {
-                                course.save();
-                            }
-                            for (WithdrawnCourse withdrawnCourse : refreshResponse.getWithdrawnCourses()) {
-                                withdrawnCourse.save();
-                            }
-                        }
-                    });
+                    for (Course course : refreshResponse.getCourses()) {
+                        course.save();
+                    }
+                    for (WithdrawnCourse withdrawnCourse : refreshResponse.getWithdrawnCourses()) {
+                        withdrawnCourse.save();
+                    }
                     return true;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -173,23 +172,25 @@ public class DatabaseController {
             @Override
             protected Boolean doInBackground(Boolean... params) {
                 try {
-                    SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
-                        @Override
-                        public void manipulateInTransaction() {
-                            Grade.deleteAll(Grade.class);
-                            SemesterWiseGrade.deleteAll(SemesterWiseGrade.class);
+                    for (Grade grade : new RushSearch().find(Grade.class)) {
+                        grade.delete();
+                    }
+                    for (SemesterWiseGrade semesterWiseGrade : new RushSearch().find(SemesterWiseGrade.class)) {
+                        semesterWiseGrade.delete();
+                    }
+                    for (GradeCount gradeCount : new RushSearch().find(GradeCount.class)) {
+                        gradeCount.delete();
+                    }
 
-                            for (Grade grade : gradesResponse.getGrades()) {
-                                grade.save();
-                            }
-                            for (SemesterWiseGrade semesterWiseGrade : gradesResponse.getSemesterWiseGrades()) {
-                                semesterWiseGrade.save();
-                            }
-                            for (GradeCount gradeCount : gradesResponse.getGradeCount()) {
-                                gradeCount.save();
-                            }
-                        }
-                    });
+                    for (Grade grade : gradesResponse.getGrades()) {
+                        grade.save();
+                    }
+                    for (SemesterWiseGrade semesterWiseGrade : gradesResponse.getSemesterWiseGrades()) {
+                        semesterWiseGrade.save();
+                    }
+                    for (GradeCount gradeCount : gradesResponse.getGradeCount()) {
+                        gradeCount.save();
+                    }
                     return true;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -232,16 +233,11 @@ public class DatabaseController {
             @Override
             protected Boolean doInBackground(Boolean... params) {
                 try {
-                    SugarTransactionHelper.doInTansaction(new SugarTransactionHelper.Callback() {
-                        @Override
-                        public void manipulateInTransaction() {
-                            List<Friend> friends = Friend.find(Friend.class, "campus = ? and reg_no = ?", friend.getCampus(), friend.getRegisterNumber());
-                            if (friends.size() != 0) {
-                                friend.setId(friends.get(0).getId());
-                            }
-                            friend.save();
-                        }
-                    });
+                    Friend oldFriend = new RushSearch().whereEqual(Constants.SQL_FIELD_CAMPUS, friend.getCampus()).whereEqual(Constants.SQL_FIELD_REGISTER_NUMBER, friend.getRegisterNumber()).findSingle(Friend.class);
+                    if (oldFriend != null) {
+                        oldFriend.delete();
+                    }
+                    friend.save();
                     return true;
                 } catch (Exception e) {
                     e.printStackTrace();
