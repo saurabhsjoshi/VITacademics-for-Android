@@ -20,6 +20,58 @@
 
 package com.karthikb351.vitinfo2.fragment.settings;
 
-public class SettingsAdapter {
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
+import com.karthikb351.vitinfo2.R;
+
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+
+public class SettingsAdapter extends ArrayAdapter<String> {
+
+    String []  topics ;
+    String [] messages ;
+    Context context ;
+
+    SettingsAdapter(Context context , int Rid , String[] topics , String [] messages)
+    {
+        super(context,Rid,topics);
+        this.topics = topics ;
+        this.context = context;
+        this.messages = messages ;
+    }
+
+    public class SettingsViewHolder
+    {
+        public View rootView ;
+        public TextView topic , message ;
+
+        SettingsViewHolder(View view)
+        {
+            topic = (TextView)view.findViewById(R.id.tv_settings_topic);
+            message = (TextView)view.findViewById(R.id.tv_settings_message);
+            rootView = view ;
+        }
+    }
+
+    @Override
+    public View getView(int position, View view, ViewGroup parent) {
+        SettingsViewHolder holder ;
+
+        if(view == null)
+        {
+            holder = new SettingsViewHolder(view);
+            view.setTag(holder);
+        }
+        else
+            holder = (SettingsViewHolder)view.getTag();
+        holder.topic.setText(topics[position]);
+        holder.message.setText(messages[position]);
+
+        return view ;
+    }
 }

@@ -57,8 +57,7 @@ public class SettingsFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         getActivity().setTitle("Settings");
         settingsTopics = getResources().getStringArray(R.array.settingsTopic);
-        //TODO: Change
-        settingsMessages = getResources().getStringArray(R.array.settingsTopic);
+        settingsMessages = getResources().getStringArray(R.array.settingsMessage);
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),R.layout.list_item_settings,settingsTopics);
         setListAdapter(adapter);
     }
