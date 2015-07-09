@@ -62,10 +62,10 @@ import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
 
+    List<Course> courses;
     private String topics[];
     private DrawerLayout drawerLayout;
     private ListView lv;
-    List<Course> courses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,9 +153,11 @@ public class MainActivity extends AppCompatActivity {
                     case "Grades":
                         frag = GradesFragment.newInstance();
                         pos = 3;
+                        break;
                     case "CGPA Calculator":
                         frag = CGPACalculatorFragment.newInstance();
                         pos = 4;
+                        break;
                     case "Friends":
                         frag = FriendsFragment.newInstance();
                         pos = 5;
@@ -163,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                     case "Messages":
                         frag = MessagesFragment.newInstance();
                         pos = 6;
+                        break;
                     case "Settings":
                         frag = SettingsFragment.newInstance();
                         pos = 7;
@@ -170,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
                     case "About":
                         frag = AboutFragment.newInstance();
                         pos = 8;
+                        break;
                 }
                 ft.replace(R.id.flContent, frag, topics[pos]).addToBackStack(null).commit();
 
@@ -180,12 +184,12 @@ public class MainActivity extends AppCompatActivity {
         //lv = (ListView) findViewById(R.id.lvDrawer);
         topics = getResources().getStringArray(R.array.topic);
         ArrayList<String> stringList = new ArrayList<String>(Arrays.asList(topics));
-        courses=DataHolder.getCourses();
-        if(courses==null){
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent,new UnavailableFragment(),"Unavailable").commit();
+        courses = DataHolder.getCourses();
+        if (courses.size() == 0) {
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new UnavailableFragment(), "Unavailable").commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "TodayFragment").commit();
         }
-        else
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new CoursesFragment(), "TodayFragment").commit();
     }
 
     public void pullToRefresh() {

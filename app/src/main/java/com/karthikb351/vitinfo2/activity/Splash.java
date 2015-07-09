@@ -20,12 +20,14 @@
 package com.karthikb351.vitinfo2.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.utility.Constants;
 
 public class Splash extends Activity {
 
@@ -37,8 +39,27 @@ public class Splash extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent openDa = new Intent("com.karthikb351.vitinfo2.activity.LoginActivity");
-                startActivity(openDa);
+                SharedPreferences sharedPreferences = getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+                String campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
+                String registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
+                String dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);
+                String mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, null);
+
+                if (Constants.CAMPUS_VELLORE.equals(campus)) {
+                    if (registerNumber != null && dateOfBirth != null && mobileNumber != null) {
+                        startActivity(new Intent("com.karthikb351.vitinfo2.activity.MainActivity"));
+                    } else {
+                        startActivity(new Intent("com.karthikb351.vitinfo2.activity.LoginActivity"));
+                    }
+                } else if (Constants.CAMPUS_CHENNAI.equals(campus)) {
+                    if (registerNumber != null && dateOfBirth != null) {
+                        startActivity(new Intent("com.karthikb351.vitinfo2.activity.MainActivity"));
+                    } else {
+                        startActivity(new Intent("com.karthikb351.vitinfo2.activity.LoginActivity"));
+                    }
+                } else {
+                    startActivity(new Intent("com.karthikb351.vitinfo2.activity.LoginActivity"));
+                }
             }
         }, Constants.SPLASH_TIME_OUT);
     }
