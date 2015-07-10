@@ -75,7 +75,6 @@ public class SettingsFragment extends ListFragment {
                 break;
             case 1:
                 // Show licenses of libraries
-                getActivity().setTitle(getActivity().getString(R.string.licenses_title));
                 LicensesFragment.displayLicensesFragment(getFragmentManager());
                 break;
             case 2:
