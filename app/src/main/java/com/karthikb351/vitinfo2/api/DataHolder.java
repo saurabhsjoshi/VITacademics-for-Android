@@ -118,178 +118,90 @@ public class DataHolder {
     }
 
     public static String getRegisterNumber() {
-        return registerNumber;
-    }
-
-    public static void setRegisterNumber(String registerNumber) {
-        DataHolder.registerNumber = registerNumber;
+        return DataHolder.registerNumber;
     }
 
     public static String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public static void setDateOfBirth(String dateOfBirth) {
-        DataHolder.dateOfBirth = dateOfBirth;
+        return DataHolder.dateOfBirth;
     }
 
     public static String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public static void setMobileNumber(String mobileNumber) {
-        DataHolder.mobileNumber = mobileNumber;
+        return DataHolder.mobileNumber;
     }
 
     public static String getCampus() {
-        return campus;
-    }
-
-    public static void setCampus(String campus) {
-        DataHolder.campus = campus;
+        return DataHolder.campus;
     }
 
     public static String getLatestVersion() {
-        return latestVersion;
-    }
-
-    public static void setLatestVersion(String latestVersion) {
-        DataHolder.latestVersion = latestVersion;
+        return DataHolder.latestVersion;
     }
 
     public static String getEarliestSupportedVersion() {
-        return earliestSupportedVersion;
-    }
-
-    public static void setEarliestSupportedVersion(String earliestSupportedVersion) {
-        DataHolder.earliestSupportedVersion = earliestSupportedVersion;
+        return DataHolder.earliestSupportedVersion;
     }
 
     public static List<Message> getMessages() {
-        return messages;
-    }
-
-    public static void setMessages(List<Message> messages) {
-        DataHolder.messages = messages;
+        return DataHolder.messages;
     }
 
     public static List<Contributor> getContributors() {
-        return contributors;
-    }
-
-    public static void setContributors(List<Contributor> contributors) {
-        DataHolder.contributors = contributors;
+        return DataHolder.contributors;
     }
 
     public static String getSemester() {
-        return semester;
-    }
-
-    public static void setSemester(String semester) {
-        DataHolder.semester = semester;
+        return DataHolder.semester;
     }
 
     public static List<Course> getCourses() {
-        return courses;
-    }
-
-    public static void setCourses(List<Course> courses) {
-        DataHolder.courses = courses;
+        return DataHolder.courses;
     }
 
     public static List<WithdrawnCourse> getWithdrawnCourses() {
-        return withdrawnCourses;
-    }
-
-    public static void setWithdrawnCourses(List<WithdrawnCourse> withdrawnCourses) {
-        DataHolder.withdrawnCourses = withdrawnCourses;
+        return DataHolder.withdrawnCourses;
     }
 
     public static String getCoursesRefreshed() {
-        return coursesRefreshed;
-    }
-
-    public static void setCoursesRefreshed(String coursesRefreshed) {
-        DataHolder.coursesRefreshed = coursesRefreshed;
+        return DataHolder.coursesRefreshed;
     }
 
     public static List<Grade> getGrades() {
-        return grades;
-    }
-
-    public static void setGrades(List<Grade> grades) {
-        DataHolder.grades = grades;
+        return DataHolder.grades;
     }
 
     public static List<GradeCount> getGradeCounts() {
-        return gradeCounts;
-    }
-
-    public static void setGradeCounts(List<GradeCount> gradeCounts) {
-        DataHolder.gradeCounts = gradeCounts;
+        return DataHolder.gradeCounts;
     }
 
     public static List<SemesterWiseGrade> getSemesterWiseGrades() {
-        return semesterWiseGrades;
-    }
-
-    public static void setSemesterWiseGrades(List<SemesterWiseGrade> semesterWiseGrades) {
-        DataHolder.semesterWiseGrades = semesterWiseGrades;
-    }
-
-    public static String getGradesRefreshed() {
-        return gradesRefreshed;
-    }
-
-    public static void setGradesRefreshed(String gradesRefreshed) {
-        DataHolder.gradesRefreshed = gradesRefreshed;
-    }
-
-    public static List<Friend> getFriends() {
-        return friends;
-    }
-
-    public static void setFriends(List<Friend> friends) {
-        DataHolder.friends = friends;
-    }
-
-    public static String getToken() {
-        return token;
-    }
-
-    public static void setToken(String token) {
-        DataHolder.token = token;
-    }
-
-    public static String getTokenIssued() {
-        return tokenIssued;
-    }
-
-    public static void setTokenIssued(String tokenIssued) {
-        DataHolder.tokenIssued = tokenIssued;
+        return DataHolder.semesterWiseGrades;
     }
 
     public static float getCgpa() {
-        return cgpa;
-    }
-
-    public static void setCgpa(float cgpa) {
-        DataHolder.cgpa = cgpa;
+        return DataHolder.cgpa;
     }
 
     public static int getCreditsEarned() {
-        return creditsEarned;
-    }
-
-    public static void setCreditsEarned(int creditsEarned) {
-        DataHolder.creditsEarned = creditsEarned;
+        return DataHolder.creditsEarned;
     }
 
     public static int getCreditsRegistered() {
-        return creditsRegistered;
+        return DataHolder.creditsRegistered;
     }
 
-    public static void setCreditsRegistered(int creditsRegistered) {
-        DataHolder.creditsRegistered = creditsRegistered;
+    public static String getGradesRefreshed() {
+        return DataHolder.gradesRefreshed;
+    }
+
+    public static List<Friend> getFriends() {
+        return DataHolder.friends;
+    }
+
+    public static String getToken() {
+        return DataHolder.token;
+    }
+
+    public static String getTokenIssued() {
+        return DataHolder.tokenIssued;
     }
 }
