@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         if (courses==null || courses.isEmpty()) {
             getSupportFragmentManager().beginTransaction().add(R.id.flContent, new UnavailableFragment(), "Unavailable").commit();
         } else {
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "TodayFragment").commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new SettingsFragment(), "TodayFragment").commit();
         }
     }
 

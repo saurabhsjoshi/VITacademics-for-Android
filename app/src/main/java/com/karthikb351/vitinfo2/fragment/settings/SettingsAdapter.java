@@ -29,8 +29,6 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 
 public class SettingsAdapter extends ArrayAdapter<String> {
 

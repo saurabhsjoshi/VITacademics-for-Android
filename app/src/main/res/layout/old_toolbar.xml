@@ -22,12 +22,12 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!--// TODO Use string resources-->
+    <!--// TODO Use string resources-->
 
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
-    android:elevation="4dp"
-    android:minHeight="?attr/actionBarSize" />
+android:id="@+id/toolbar"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="?attr/colorPrimaryDark"
+android:elevation="4dp"
+android:minHeight="?attr/actionBarSize" />

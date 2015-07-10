@@ -29,9 +29,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Grade;
-import com.karthikb351.vitinfo2.api.DataHolder;
 
 import java.util.ArrayList;
 
@@ -75,7 +75,7 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
 
     @Override
     public int getItemCount() {
-        return courses.size() + 1;
+        return (courses.size() + 1);
     }
 
     @Override
