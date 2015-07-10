@@ -40,7 +40,7 @@
 
         <item
             android:id="@+id/drawer_favourite"
-            android:icon="@mipmap/timetable"
+            android:icon="@mipmap/ic_timetable"
             android:title="Time Table" />
 
         <item
@@ -75,7 +75,7 @@
                 android:title="Settings" />
             <item
                 android:id="@+id/drawer_about"
-                android:icon="@mipmap/ic_search_black_48dp"
+                android:icon="@mipmap/about_us"
                 android:title="About" />
         </menu>
     </item>
