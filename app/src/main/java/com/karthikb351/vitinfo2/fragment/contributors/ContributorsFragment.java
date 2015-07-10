@@ -71,7 +71,8 @@ public class ContributorsFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_contributors);
         recyclerView.setLayoutManager(contributorsLayoutManager);
         recyclerView.setAdapter(contributorsListAdapter);
-        getActivity().setTitle("Our Team");
+        String Title = getActivity().getResources().getString(R.string.contributors_title);
+        getActivity().setTitle(Title);
 
     }
 

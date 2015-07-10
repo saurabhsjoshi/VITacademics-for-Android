@@ -53,7 +53,8 @@ public class TimeTableFragment extends Fragment {
         viewpager.setAdapter(pageradapter);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewpager);
-        getActivity().setTitle("Time table");
+        String Title = getActivity().getResources().getString(R.string.time_table_title);
+        getActivity().setTitle(Title);
         return view;
     }
 

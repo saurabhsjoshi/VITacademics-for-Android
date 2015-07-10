@@ -60,13 +60,10 @@ public class DetailsFragment extends Fragment {
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setDisplayShowTitleEnabled(false);
         getActivity().setTitle(course.getCourseCode());
-
         tabLayout = (TabLayout) view.findViewById(R.id.tabs_details);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager_details);
-
         adapter = new DetailsAdapter(getActivity().getSupportFragmentManager(), getActivity(), course);
         viewPager.setAdapter(adapter);
-
         tabLayout.setupWithViewPager(viewPager);
 
         return super.onCreateView(inflater, container, savedInstanceState);

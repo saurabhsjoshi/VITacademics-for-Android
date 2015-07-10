@@ -55,12 +55,14 @@ public class MessagesFragment extends Fragment {
 
     public void initialize() {
         messages = DataHolder.getMessages();
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         listAdapter = new MessageListAdapter(getActivity(), messages);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_messages);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listAdapter);
+        String Title = getActivity().getResources().getString(R.string.messages_title);
+        getActivity().setTitle(Title);
+
     }
 
     @Nullable

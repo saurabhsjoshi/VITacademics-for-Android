@@ -68,7 +68,6 @@ public class CGPACalculatorFragment extends Fragment implements View.OnClickList
     public void initialize() {
         this.grades = DataHolder.getGrades();
         this.courses = DataHolder.getCourses();
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         this.listAdapter = new CGPACalculatorListAdapter(getActivity(), courses, grades);
         this.recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_cgpa_calculator);
@@ -76,7 +75,8 @@ public class CGPACalculatorFragment extends Fragment implements View.OnClickList
         this.imageButton.setOnClickListener(this);
         this.recyclerView.setAdapter(listAdapter);
         this.recyclerView.setLayoutManager(layoutManager);
-        getActivity().setTitle("CGPA Calculator");
+        String Title = getActivity().getResources().getString(R.string.CGPA_calculator_title);
+        getActivity().setTitle(Title);
     }
 
     @Override

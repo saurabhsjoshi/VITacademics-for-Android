@@ -54,7 +54,8 @@ public class SettingsFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().setTitle("Settings");
+        String Title = getActivity().getResources().getString(R.string.settings_title);
+        getActivity().setTitle(Title);
         settingsTopics = getResources().getStringArray(R.array.settings_topic);
         settingsMessages = getResources().getStringArray(R.array.settings_message);
         adapter = new SettingsAdapter(getActivity(),R.layout.list_item_settings,settingsTopics,settingsMessages);

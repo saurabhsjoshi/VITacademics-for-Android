@@ -24,21 +24,21 @@
 <resources>
     <string-array name="navigation_tab">
         <item>Today</item>
-        <item>Courses</item>
-        <item>Time Table</item>
-        <item>Grades</item>
-        <item>CGPA Calculator</item>
-        <item>Friends</item>
-        <item>Messages</item>
-        <item>Settings</item>
-        <item>About</item>
+        <item>@string/course_title</item>
+        <item>@string/time_table_title</item>
+        <item>@string/time_table_title</item>
+        <item>@string/CGPA_calculator_title</item>
+        <item>@string/friends_title</item>
+        <item>@string/messages_title</item>
+        <item>@string/settings_title</item>
+        <item>@string/about_title</item>
     </string-array>
 
     <string-array name="settings_topic">
         <item>Reset</item>
-        <item>Licenses</item>
-        <item>Contributors</item>
-        <item>About</item>
+        <item>@string/licence_title</item>
+        <item>@string/contributors_title</item>
+        <item>@string/about_title</item>
     </string-array>
 
     <string-array name="settings_message">
@@ -54,5 +54,7 @@
         <item>Wednesday</item>
         <item>Thursday</item>
         <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
     </string-array>
 </resources>

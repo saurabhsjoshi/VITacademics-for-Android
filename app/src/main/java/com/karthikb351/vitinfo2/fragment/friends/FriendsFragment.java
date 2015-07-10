@@ -76,7 +76,8 @@ public class FriendsFragment extends Fragment {
                 onListItemClick(data);
             }
         });
-        getActivity().setTitle("Friends");
+        String Title = getActivity().getResources().getString(R.string.friends_title);
+        getActivity().setTitle(Title);
     }
 
     void onListItemClick(Friend friend) {

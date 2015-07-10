@@ -76,7 +76,8 @@ public class CoursesFragment extends Fragment {
         });
         recyclerView.setLayoutManager(courseLayoutManager);
         recyclerView.setAdapter(courseListAdapter);
-        getActivity().setTitle("Courses");
+        String Title = getActivity().getResources().getString(R.string.course_title);
+        getActivity().setTitle(Title);
     }
 
     void onListItemClick(Course course) {

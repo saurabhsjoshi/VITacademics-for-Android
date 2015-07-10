@@ -86,7 +86,8 @@ public class GradesFragment extends Fragment {
         gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         gradesListAdapter = new GradesListAdapter(getActivity(), grades);
         gradeListRecyclerview.setAdapter(gradesListAdapter);
-        getActivity().setTitle("Grades");
+        String Title = getActivity().getResources().getString(R.string.grades_title);
+        getActivity().setTitle(Title);
     }
 
     void fillGradeCountData() {
@@ -96,6 +97,7 @@ public class GradesFragment extends Fragment {
             row.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             row.addView(createTextView(gradeCounts.get(i).getGrade()));
             row.addView(createTextView(Integer.toString(gradeCounts.get(i).getCount())));
+            gradeCountTable.addView(row);
         }
     }
 
