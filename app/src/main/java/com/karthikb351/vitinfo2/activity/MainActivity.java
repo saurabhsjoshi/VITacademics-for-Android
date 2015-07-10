@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 // settings can be passed in the new instance function
                 //TODO: inefficient for already created instances. Fix.
                 switch (navString) {
-
+                    // TODO Use String resources to compare. This should work even if app is in a different language
                     case "Today":
                         frag = TodayFragment.newInstance();
                         pos = 0;
