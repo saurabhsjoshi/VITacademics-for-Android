@@ -19,7 +19,6 @@
 
 package com.karthikb351.vitinfo2.fragment.details;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -34,7 +33,7 @@ import com.karthikb351.vitinfo2.contract.Course;
 
 public class DetailsFragment extends Fragment {
 
-    final ActionBar actionBar = getActivity().getActionBar();
+//    final ActionBar actionBar = getActivity().getActionBar();
     TabLayout tabLayout;
     ViewPager viewPager;
     DetailsAdapter adapter;
@@ -44,7 +43,7 @@ public class DetailsFragment extends Fragment {
 
     }
 
-    public DetailsFragment newInstance(Course course) {
+    public static DetailsFragment newInstance(Course course) {
         DetailsFragment detailsFragment = new DetailsFragment();
         detailsFragment.course = course;
         return new DetailsFragment();
@@ -55,9 +54,9 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
 
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
-        getActivity().setTitle(course.getCourseCode());
+        //actionBar.setDisplayHomeAsUpEnabled(false);
+        //actionBar.setDisplayShowTitleEnabled(false);
+        getActivity().setTitle("Test");//course.getCourseCode());
 
         tabLayout = (TabLayout) view.findViewById(R.id.tabs_details);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager_details);

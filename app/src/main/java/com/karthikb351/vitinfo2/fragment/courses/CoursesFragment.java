@@ -30,10 +30,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.api.DataHolder;
+import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
+import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,9 @@ public class CoursesFragment extends Fragment {
     }
 
     void onListItemClick(Course course) {
-        // add on item click functionality
+        android.support.v4.app.Fragment frag = DetailsFragment.newInstance(course);
+        android.support.v4.app.FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.flContent,frag,course.getCourseCode()).addToBackStack(null).commit();
     }
 
     @Override
