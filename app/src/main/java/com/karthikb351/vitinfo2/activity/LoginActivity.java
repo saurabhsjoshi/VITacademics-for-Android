@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void loginToServer(String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
 
-        NetworkController networkController = NetworkController.getNetworkControllerSingleton(LoginActivity.this, campus, registerNumber, dateOfBirth, mobileNumber);
+        NetworkController networkController = NetworkController.getInstance(LoginActivity.this, campus, registerNumber, dateOfBirth, mobileNumber);
 
         final ResultListener resultListener = new ResultListener() {
             @Override

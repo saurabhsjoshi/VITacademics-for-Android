@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void pullToRefresh() {
 
-        NetworkController networkController = NetworkController.getNetworkControllerSingleton(MainActivity.this);
+        NetworkController networkController = NetworkController.getInstance(MainActivity.this);
         // TODO Progress Ring Start
         final ResultListener resultListener = new ResultListener() {
             @Override
