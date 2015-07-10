@@ -32,6 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -108,7 +109,7 @@ public class TimeTableDayFragment extends Fragment {
         @Override
         protected List<Course> doInBackground(Void... params) {
             List<Course> finalArray = new ArrayList<>();
-            List<Course> courses = DataHolder.getCourses();
+            List<Course> courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
             for (Course c : courses) {
                 for (int i = 0; i < c.getTimings().size(); i++) {
                     if (c.getTimings().get(i).getDay() == dayOfWeek)

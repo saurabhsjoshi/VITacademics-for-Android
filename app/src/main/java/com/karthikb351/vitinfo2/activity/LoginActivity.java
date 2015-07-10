@@ -38,6 +38,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.api.NetworkController;
@@ -182,7 +183,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         RequestConfig requestConfig = new RequestConfig(new ResultListener() {
             @Override
             public void onSuccess() {
-                DataHolder.refreshData(LoginActivity.this, resultListener);
+                ((MainApplication)getApplication()).getDataHolderInstance().refreshData(LoginActivity.this, resultListener);
             }
 
             @Override

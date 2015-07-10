@@ -30,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -63,7 +64,7 @@ public class CoursesFragment extends Fragment {
     }
 
     void initialize() {
-        courses = DataHolder.getCourses();
+        courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
 
         RecyclerView.LayoutManager courseLayoutManager = new LinearLayoutManager(getActivity());
         courseListAdapter = new CourseListAdapter(getActivity(), courses);

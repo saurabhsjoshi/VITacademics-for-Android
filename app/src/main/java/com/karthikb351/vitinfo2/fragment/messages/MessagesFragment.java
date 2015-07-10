@@ -29,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
@@ -54,7 +55,7 @@ public class MessagesFragment extends Fragment {
     }
 
     public void initialize() {
-        messages = DataHolder.getMessages();
+        messages = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getMessages();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         listAdapter = new MessageListAdapter(getActivity(), messages);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_messages);

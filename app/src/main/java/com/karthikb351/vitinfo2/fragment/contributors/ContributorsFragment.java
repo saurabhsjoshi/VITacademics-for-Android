@@ -30,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Contributor;
@@ -64,7 +65,7 @@ public class ContributorsFragment extends Fragment {
     }
 
     public void initialize() {
-        contributors = DataHolder.getContributors();
+        contributors = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getContributors();
 
         contributorsLayoutManager = new LinearLayoutManager(getActivity());
         contributorsListAdapter = new ContributorListAdapter(getActivity(), contributors);

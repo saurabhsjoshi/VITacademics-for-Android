@@ -38,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.api.NetworkController;
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void initialize() {
         navigationTabs = Arrays.asList(getResources().getStringArray(R.array.navigation_tab));
-        courses = DataHolder.getCourses();
+        courses = ((MainApplication)getApplication()).getDataHolderInstance().getCourses();
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mainContent = (LinearLayout) findViewById(R.id.llMainContent);
@@ -209,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
         RequestConfig requestConfig = new RequestConfig(new ResultListener() {
             @Override
             public void onSuccess() {
-                DataHolder.refreshData(MainActivity.this, resultListener);
+                ((MainApplication)getApplication()).getDataHolderInstance().refreshData(MainActivity.this, resultListener);
             }
 
             @Override

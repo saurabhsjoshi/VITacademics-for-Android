@@ -33,6 +33,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -115,7 +116,7 @@ public class TodayFragment extends Fragment {
         protected List<Pair<Course, Integer>> doInBackground(Void... params) {
             int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
             SortedArrayList finalArray = new SortedArrayList();
-            courses = DataHolder.getCourses();
+            courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
             if (courses != null) {
                 for (Course c : courses) {
                     for (int i = 0; i < c.getTimings().size(); i++) {

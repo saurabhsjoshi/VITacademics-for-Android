@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.model.Status;
@@ -49,7 +50,7 @@ public class Splash extends Activity {
         // TODO Progress start
 
         if (isLoggedIn) {
-            DataHolder.refreshData(Splash.this, new ResultListener() {
+            ((MainApplication)getApplication()).getDataHolderInstance().refreshData(Splash.this, new ResultListener() {
                 @Override
                 public void onSuccess() {
                     // TODO Progress stop

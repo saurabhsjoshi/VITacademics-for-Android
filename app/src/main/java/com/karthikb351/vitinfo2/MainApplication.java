@@ -21,10 +21,14 @@ package com.karthikb351.vitinfo2;
 
 import android.app.Application;
 
+import com.karthikb351.vitinfo2.api.DataHolder;
+
 import co.uk.rushorm.android.AndroidInitializeConfig;
 import co.uk.rushorm.core.RushCore;
 
 public class MainApplication extends Application {
+
+    private DataHolder dataHolder;
 
     @Override
     public void onCreate() {
@@ -34,5 +38,15 @@ public class MainApplication extends Application {
         // set an InitializeListener on the config object
         AndroidInitializeConfig config = new AndroidInitializeConfig(getApplicationContext());
         RushCore.initialize(config);
+
+        this.dataHolder = new DataHolder();
+    }
+
+    public DataHolder getDataHolderInstance() {
+        if (this.dataHolder != null) {
+            return this.dataHolder;
+        }
+        this.dataHolder = new DataHolder();
+        return this.dataHolder;
     }
 }

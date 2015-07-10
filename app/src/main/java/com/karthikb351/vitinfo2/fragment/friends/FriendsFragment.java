@@ -30,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
@@ -63,7 +64,7 @@ public class FriendsFragment extends Fragment {
     }
 
     void initialize() {
-        friends = DataHolder.getFriends();
+        friends = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getFriends();
 
         RecyclerView.LayoutManager friendsLayoutManager = new LinearLayoutManager(getActivity());
         adapter = new FriendsListAdapter(getActivity(), friends);

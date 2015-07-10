@@ -35,6 +35,7 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Grade;
 import com.karthikb351.vitinfo2.contract.GradeCount;
@@ -74,10 +75,10 @@ public class GradesFragment extends Fragment {
     }
 
     public void initialize() {
-        cgpa = DataHolder.getCgpa();
-        grades = DataHolder.getGrades();
-        gradeCounts = DataHolder.getGradeCounts();
-        semesterWiseGrades = DataHolder.getSemesterWiseGrades();
+        cgpa = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCgpa();
+        grades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGrades();
+        gradeCounts = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGradeCounts();
+        semesterWiseGrades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getSemesterWiseGrades();
 
         cgpaTextView = (TextView) rootView.findViewById(R.id.text_view_cgpa);
         gradeCountTable = (TableLayout) rootView.findViewById(R.id.table_grade_count);

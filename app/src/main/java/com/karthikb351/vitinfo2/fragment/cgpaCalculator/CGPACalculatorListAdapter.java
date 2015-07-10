@@ -30,7 +30,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Grade;
 
@@ -42,20 +41,20 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
     private List<Grade> grades;
     private Context context;
     private int creditsRegistered;
-    private int earnedCredits;
+    private int creditsEarned;
     private float cgpa;
     private int layoutId;
     private float totalgradeValue;
     private float newCGPA;
     private int newCredits;
 
-    public CGPACalculatorListAdapter(Context context, List<Course> courses, List<Grade> grades) {
+    public CGPACalculatorListAdapter(Context context, List<Course> courses, List<Grade> grades, int creditsRegistered, int creditsEarned, float cgpa) {
         this.context = context;
         this.grades = grades;
         this.courses = courses;
-        this.creditsRegistered = DataHolder.getCreditsRegistered();
-        this.earnedCredits = DataHolder.getCreditsEarned();
-        this.cgpa = DataHolder.getCgpa();
+        this.creditsRegistered = creditsRegistered;
+        this.creditsEarned = creditsEarned;
+        this.cgpa = cgpa;
         this.totalgradeValue = cgpa * creditsRegistered;
     }
 
