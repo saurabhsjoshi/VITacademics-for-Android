@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 //TODO: inefficient for already created instances. Fix.
                 switch (navString) {
                     // TODO Use String resources to compare. This should work even if app is in a different language
+                    // TODO Check https://developer.android.com/training/implementing-navigation/nav-drawer.html
                     case "Today":
                         frag = TodayFragment.newInstance();
                         pos = 0;
