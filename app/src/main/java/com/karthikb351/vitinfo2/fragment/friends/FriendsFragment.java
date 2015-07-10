@@ -76,6 +76,7 @@ public class FriendsFragment extends Fragment {
                 onListItemClick(data);
             }
         });
+        getActivity().setTitle("Friends");
     }
 
     void onListItemClick(Friend friend) {

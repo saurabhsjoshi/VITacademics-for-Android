@@ -33,7 +33,7 @@ public class TimeTablePagerAdapter extends FragmentStatePagerAdapter {
     private Context context;
     private String tabTitles[];
 
-    private final int DAYS_COUNT = 7;
+    private final int DAYS_COUNT = 5;
 
     public TimeTablePagerAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);

@@ -76,6 +76,7 @@ public class CGPACalculatorFragment extends Fragment implements View.OnClickList
         this.imageButton.setOnClickListener(this);
         this.recyclerView.setAdapter(listAdapter);
         this.recyclerView.setLayoutManager(layoutManager);
+        getActivity().setTitle("CGPA Calculator");
     }
 
     @Override

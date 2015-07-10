@@ -57,7 +57,7 @@ public class TimeTableDayFragment extends Fragment {
 
     public static TimeTableDayFragment newInstance(int dayOfWeek) {
         TimeTableDayFragment fragment = new TimeTableDayFragment();
-        fragment.dayOfWeek = dayOfWeek + 1;
+        fragment.dayOfWeek = dayOfWeek ;
         return fragment;
     }
 

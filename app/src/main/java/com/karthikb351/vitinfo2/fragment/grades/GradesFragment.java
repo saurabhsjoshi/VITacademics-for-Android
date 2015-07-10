@@ -86,6 +86,7 @@ public class GradesFragment extends Fragment {
         gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         gradesListAdapter = new GradesListAdapter(getActivity(), grades);
         gradeListRecyclerview.setAdapter(gradesListAdapter);
+        getActivity().setTitle("Grades");
     }
 
     void fillGradeCountData() {
