@@ -59,16 +59,16 @@
     <string name="api_unknown_error">The VITacademics app has encountered an error</string>
 
     <!-- Fragment Titles !-->
-    <string name = "course_title">Courses</string>
-    <string name = "CGPA_calculator_title">CGPA Calculator</string>
-    <string name = "contributors_title">Our Team</string>
-    <string name= "details_title">Details</string>
-    <string name = "friends_title">Friends</string>
-    <string name = "grades_title">Grades</string>
-    <string name = "settings_title">Settings</string>
-    <string name = "time_table_title">Time Table</string>
-    <string name = "messages_title">Messages</string>
-    <string name = "about_title">About the App</string>
-    <string name = "licence_title">Licenses</string>
+    <string name="course_title">Courses</string>
+    <string name="CGPA_calculator_title">CGPA Calculator</string>
+    <string name="contributors_title">Contributors</string>
+    <string name="details_title">Details</string>
+    <string name="friends_title">Friends</string>
+    <string name="grades_title">Grades</string>
+    <string name="settings_title">Settings</string>
+    <string name="time_table_title">Time Table</string>
+    <string name="messages_title">Messages</string>
+    <string name="about_title">About</string>
+    <string name="licence_title">Licenses</string>
 
 </resources>
