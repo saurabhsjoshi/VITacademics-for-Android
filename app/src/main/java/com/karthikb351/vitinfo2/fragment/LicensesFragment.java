@@ -167,10 +167,10 @@ public class LicensesFragment extends DialogFragment {
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Open Source licenses");
+        builder.setTitle(getActivity().getString(R.string.licenses_title));
         builder.setView(content);
         if (showCloseButton) {
-            builder.setNegativeButton("Close",
+            builder.setNegativeButton(getActivity().getString(R.string.close_dialog),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {

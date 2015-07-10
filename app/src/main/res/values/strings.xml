@@ -30,35 +30,42 @@
     <string name="hello_world">Hello world!</string>
     <string name="fragment_blank_hello">Hello blank fragment</string>
 
-    <!--LoginActivity-->
+    <!-- LoginActivity -->
     <string name="activity_login_title">Login</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
-    <!-- Licenses Fragment -->
-    <string name="fragment_licenses_title">Licenses</string>
+    <!-- Dialog Message -->
+    <string name="close_dialog">Close</string>
 
     <!-- Attendance Messages -->
     <string name="attendance_safe">Safe</string>
     <string name="attendance_debarred">Debarred</string>
 
-    <!-- Assessment Labels -->
+    <!-- Labels -->
+    <string name="courses_attendance">Attendance</string>
+    <string name="courses_marks">Marks</string>
+    <string name="courses_assessment">Assessment</string>
+    <string name="courses_assessments">Assessments</string>
+    <string name="grade_char">Grade</string>
+    <string name="grade_value">Grade Value</string>
+    <string name="grade_cgpa">CGPA</string>
     <string name="assessment_weightage">Weightage</string>
     <string name="assessment_contribution">Contribution</string>
-
-    <!-- Grade Labels -->
-    <string name="grade_cgpa">CGPA</string>
+    <string name="percentage">Percentage</string>
 
     <!--Messages for unavailable or incomplete features-->
-    <string name="not_available">This information is not available at the moment</string>
+    <string name="not_available">This is not available at the moment</string>
+    <string name="not_applicable">This is not applicable</string>
 
     <!--VITacademics API Messages-->
     <string name="api_server_error">The VITacademics Server is down or has encountered an error</string>
     <string name="api_unknown_error">The VITacademics app has encountered an error</string>
 
     <!-- Fragment Titles !-->
+    <string name="today_title">Today</string>
     <string name="course_title">Courses</string>
     <string name="CGPA_calculator_title">CGPA Calculator</string>
     <string name="contributors_title">Contributors</string>
@@ -69,6 +76,6 @@
     <string name="time_table_title">Time Table</string>
     <string name="messages_title">Messages</string>
     <string name="about_title">About</string>
-    <string name="licence_title">Licenses</string>
+    <string name="licenses_title">Licenses</string>
 
 </resources>
