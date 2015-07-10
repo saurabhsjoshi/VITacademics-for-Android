@@ -30,9 +30,8 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // Rush is initialized asynchronously to recieve a callback after it initialized
+        // Rush is initialized asynchronously to receive a callback after it initialized
         // set an InitializeListener on the config object
-
         AndroidInitializeConfig config = new AndroidInitializeConfig(getApplicationContext());
         RushCore.initialize(config);
     }

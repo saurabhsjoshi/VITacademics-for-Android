@@ -63,7 +63,7 @@ public class NetworkController {
         networkController = this;
     }
 
-    public static NetworkController getNetworkControllerSingleton(Context context) {
+    public static NetworkController getInstance(Context context) {
         if (networkController != null) {
             networkController.context = context;
             networkController.viTacademicsAPI = new VITacademicsAPI(context);
@@ -79,7 +79,7 @@ public class NetworkController {
         return new NetworkController(context);
     }
 
-    public static NetworkController getNetworkControllerSingleton(Context context, String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
+    public static NetworkController getInstance(Context context, String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
         if (networkController != null) {
             networkController.context = context;
             networkController.viTacademicsAPI = new VITacademicsAPI(context);
