@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -39,7 +40,6 @@ import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.utility.SortedArrayList;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -79,8 +79,8 @@ public class TodayFragment extends Fragment {
     }
 
     void initialize() {
-            getActivity().setTitle("Today");
-            new loadToday().execute();
+        getActivity().setTitle("Today");
+        new loadToday().execute();
     }
 
     @Override
@@ -105,18 +105,18 @@ public class TodayFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
     }
 
-    class loadToday extends AsyncTask<Void, Void, ArrayList<Pair<Course, Integer>>> {
+    class loadToday extends AsyncTask<Void, Void, List<Pair<Course, Integer>>> {
         @Override
         protected void onPreExecute() {
             //load.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected ArrayList<Pair<Course, Integer>> doInBackground(Void... params) {
+        protected List<Pair<Course, Integer>> doInBackground(Void... params) {
             int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
             SortedArrayList finalArray = new SortedArrayList();
-            courses=DataHolder.getCourses();
-            if(courses!=null) {
+            courses = DataHolder.getCourses();
+            if (courses != null) {
                 for (Course c : courses) {
                     for (int i = 0; i < c.getTimings().size(); i++) {
                         if (c.getTimings().get(i).getDay() == dayOfWeek)
@@ -128,10 +128,10 @@ public class TodayFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Pair<Course, Integer>> res) {
+        protected void onPostExecute(List<Pair<Course, Integer>> res) {
             //load.setVisibility(View.GONE);
             todayListAdapter = new TodayListAdapter(getActivity(), res);
-            RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(getActivity());
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             todayRecyclerView.setLayoutManager(layoutManager);
             todayRecyclerView.setAdapter(todayListAdapter);
 

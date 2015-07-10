@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  *
  * This file is part of VITacademics.
  * VITacademics is free software: you can redistribute it and/or modify
@@ -32,10 +33,11 @@ import com.karthikb351.vitinfo2.fragment.attendance.AttendanceFragment;
 
 public class DetailsAdapter extends FragmentPagerAdapter {
 
-    Fragment fragment;
-    Context context;
-    Course course;
-    int TAB_COUNT_DETAILS = 3;
+    private Fragment fragment;
+    private Context context;
+    private Course course;
+
+    private final int TAB_COUNT_DETAILS = 3;
 
     public DetailsAdapter(FragmentManager fragmentManager, Context context, Course course) {
         super(fragmentManager);
@@ -45,13 +47,22 @@ public class DetailsAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0)
-            fragment = OverviewFragment.newInstance(course);
-        else if (position == 1)
-            fragment = AttendanceFragment.newInstance(course);
-        else if (position == 2)
-            fragment = AssesmentFragment.newInstance(course);
-        return null;
+
+        switch (position) {
+            case 0:
+                fragment = OverviewFragment.newInstance(course);
+                break;
+            case 1:
+                fragment = AttendanceFragment.newInstance(course);
+                break;
+            case 2:
+                fragment = AssesmentFragment.newInstance(course);
+                break;
+            default:
+                fragment = null;
+                break;
+        }
+        return fragment;
     }
 
     @Override

@@ -34,17 +34,18 @@ import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TimeTableListAdapter extends RecyclerView.Adapter<TimeTableListAdapter.TimeTableViewHolder> {
 
 
-    RecyclerViewOnClickListener<Course> onClickListener;
-    ArrayList<Course> coursesForTheDay;
-    Context context;
+    private RecyclerViewOnClickListener<Course> onClickListener;
+    private List<Course> coursesForTheDay;
+    private Context context;
 
-    TimeTableListAdapter(Context context, ArrayList<Course> objects) {
+    TimeTableListAdapter(Context context, List<Course> coursesForTheDay) {
         this.context = context;
-        this.coursesForTheDay = objects;
+        this.coursesForTheDay = coursesForTheDay;
     }
 
     @Override
@@ -66,8 +67,8 @@ public class TimeTableListAdapter extends RecyclerView.Adapter<TimeTableListAdap
         cvHolder.pbAttendance.setProgress(AttendanceP);
     }
 
-    public void setOnclickListener(RecyclerViewOnClickListener<Course> listener) {
-        onClickListener = listener;
+    public void setOnclickListener(RecyclerViewOnClickListener<Course> onClickListener) {
+        this.onClickListener = onClickListener;
     }
 
     @Override

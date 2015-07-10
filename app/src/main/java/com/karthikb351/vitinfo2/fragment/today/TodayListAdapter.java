@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -36,17 +37,17 @@ import com.karthikb351.vitinfo2.contract.Course;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
 
     Context context;
-    ArrayList<Pair<Course, Integer>> courses;
+    List<Pair<Course, Integer>> courses;
     RecyclerViewOnClickListener<Course> OnclickListener;
 
-    public TodayListAdapter(Context context, ArrayList<Pair<Course, Integer>> courses) {
+    public TodayListAdapter(Context context, List<Pair<Course, Integer>> courses) {
         this.context = context;
         this.courses = courses;
     }

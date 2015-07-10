@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
@@ -34,9 +35,9 @@ import com.karthikb351.vitinfo2.contract.Course;
 
 public class AssesmentFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    AssesmentListAdapter listAdapter;
-    Course course;
+    private RecyclerView recyclerView;
+    private AssesmentListAdapter listAdapter;
+    private Course course;
 
     public AssesmentFragment() {
 

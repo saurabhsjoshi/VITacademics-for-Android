@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
@@ -31,17 +32,17 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Grade;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.GradesViewHolder> {
 
-    ArrayList<Grade> gradeList;
-    Context context;
-    RecyclerViewOnClickListener<Grade> onClickListener;
+    private List<Grade> grades;
+    private Context context;
+    private RecyclerViewOnClickListener<Grade> onClickListener;
 
-    GradesListAdapter(Context context, ArrayList<Grade> grades) {
+    GradesListAdapter(Context context, List<Grade> grades) {
         this.context = context;
-        gradeList = grades;
+        this.grades = grades;
     }
 
     @Override
@@ -52,16 +53,16 @@ public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.Gr
 
     @Override
     public void onBindViewHolder(GradesViewHolder holder, int position) {
-        holder.courseCode.setText(gradeList.get(position).getCourseCode());
-        holder.courseName.setText(gradeList.get(position).getCourseTitle());
-        holder.credits.setText(gradeList.get(position).getCredits());
-        holder.courseType.setText(gradeList.get(position).getCourseType());
-        holder.grade.setText(gradeList.get(position).getGrade());
+        holder.courseCode.setText(grades.get(position).getCourseCode());
+        holder.courseName.setText(grades.get(position).getCourseTitle());
+        holder.credits.setText(grades.get(position).getCredits());
+        holder.courseType.setText(grades.get(position).getCourseType());
+        holder.grade.setText(grades.get(position).getGrade());
     }
 
     @Override
     public int getItemCount() {
-        return gradeList.size();
+        return grades.size();
     }
 
     public class GradesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

@@ -26,20 +26,24 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.karthikb351.vitinfo2.R;
+
 public class TimeTablePagerAdapter extends FragmentStatePagerAdapter {
 
-    Context context;
-    int NUM_VALUES = 5;
-    private String tabTitles[] = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"}; // TODO, put under arrays.xml
+    private Context context;
+    private String tabTitles[];
 
-    TimeTablePagerAdapter(FragmentManager fm, Context context) {
-        super(fm);
+    private final int DAYS_COUNT = 7;
+
+    public TimeTablePagerAdapter(FragmentManager fragmentManager, Context context) {
+        super(fragmentManager);
         this.context = context;
+        this.tabTitles = context.getResources().getStringArray(R.array.days_of_week);
     }
 
     @Override
     public int getCount() {
-        return NUM_VALUES;
+        return DAYS_COUNT;
     }
 
     @Override

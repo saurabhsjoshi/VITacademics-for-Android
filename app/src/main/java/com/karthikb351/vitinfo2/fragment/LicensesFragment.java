@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  *
  * This file is part of VITacademics.
@@ -64,8 +65,9 @@ import java.io.InputStreamReader;
  */
 public class LicensesFragment extends DialogFragment {
 
-    private static final String FRAGMENT_TAG = "com.karthikb351.vitinfo2.fragment.LicensesFragment";
+    private static final String FRAGMENT_TAG = LicensesFragment.class.getCanonicalName();
     private static final String KEY_SHOW_CLOSE_BUTTON = "keyShowCloseButton";
+
     private AsyncTask<Void, Void, String> mLicenseLoader;
     private WebView mWebView;
     private ProgressBar mIndeterminateProgress;

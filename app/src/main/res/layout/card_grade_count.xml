@@ -46,15 +46,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="CGPA"
+                android:text="@string/grade_cgpa"
                 android:textColor="#FFFFFF" />
 
             <TextView
-                android:id="@+id/text_view_CGPA"
+                android:id="@+id/text_view_cgpa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="8.2"
                 android:textColor="#FFFFFF" />
         </RelativeLayout>
 

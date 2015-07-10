@@ -25,24 +25,21 @@ import android.widget.LinearLayout;
 
 import com.karthikb351.vitinfo2.activity.MainActivity;
 
-/**
- * Created by pulkit on 10/07/2015.
- */
 public abstract class HidingScrollListener extends RecyclerView.OnScrollListener {
 
     private static final float HIDE_THRESHOLD = 10;
     private static final float SHOW_THRESHOLD = 70;
 
     private int mToolbarOffset = 0;
-    Context context ;
+    private Context context ;
     private int mToolbarHeight;
     boolean toolbarVisible = true ;
-    LinearLayout mainContent;
+    private LinearLayout mainContent;
 
     public HidingScrollListener(Context context)
     {
         this.context = context ;
-        mainContent = ((MainActivity)context).mainContent;
+        mainContent = ((MainActivity)context).getMainContent();
         mToolbarHeight = ((MainActivity)context).getSupportActionBar().getHeight();
     }
 
@@ -68,7 +65,7 @@ public abstract class HidingScrollListener extends RecyclerView.OnScrollListener
 
     public void Move(int distance)
     {
-     // need to increase api level for call
+     // TODO, rethink this. Must not change Minimum API Level
      mainContent.setTranslationY(-distance);
     }
 

@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,29 +34,29 @@ import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Grade;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculatorListAdapter.CGPAcalculatorViewHolder> {
 
-    ArrayList<Course> courses;
-    ArrayList<Grade> grades;
-    Context context;
-    int regCreds;
-    int earnedCreds;
-    float cgpa;
-    int layoutId;
-    float totalCGP;
-    float newCGPA;
-    int newCredits;
+    private List<Course> courses;
+    private List<Grade> grades;
+    private Context context;
+    private int creditsRegistered;
+    private int earnedCredits;
+    private float cgpa;
+    private int layoutId;
+    private float totalgradeValue;
+    private float newCGPA;
+    private int newCredits;
 
-    public CGPACalculatorListAdapter(Context context, ArrayList<Course> courses, ArrayList<Grade> grades) {
+    public CGPACalculatorListAdapter(Context context, List<Course> courses, List<Grade> grades) {
         this.context = context;
         this.grades = grades;
         this.courses = courses;
-        this.regCreds = DataHolder.getCreditsRegistered();
-        this.earnedCreds = DataHolder.getCreditsEarned();
+        this.creditsRegistered = DataHolder.getCreditsRegistered();
+        this.earnedCredits = DataHolder.getCreditsEarned();
         this.cgpa = DataHolder.getCgpa();
-        totalCGP = cgpa * regCreds;
+        this.totalgradeValue = cgpa * creditsRegistered;
     }
 
     @Override
@@ -107,14 +108,14 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
             calculate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    newCGPA = totalCGP / newCredits;
+                    newCGPA = totalgradeValue / newCredits;
                 }
             });
         }
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            totalCGP = totalCGP + position;
+            totalgradeValue = totalgradeValue + position;
             String ltpc = courses.get(position).getLtpc();
             int credits = (int) ltpc.charAt(3);
             newCredits += credits;
@@ -122,4 +123,3 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
 
     }
 }
-

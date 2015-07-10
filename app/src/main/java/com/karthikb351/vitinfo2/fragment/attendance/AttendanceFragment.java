@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  *
  * This file is part of VITacademics.
@@ -33,9 +34,9 @@ import com.karthikb351.vitinfo2.contract.Course;
 
 public class AttendanceFragment extends Fragment {
 
-    Course course;
-    RecyclerView recyclerView;
-    AttendanceListAdapter listAdapter;
+    private Course course;
+    private RecyclerView recyclerView;
+    private AttendanceListAdapter listAdapter;
 
     public AttendanceFragment() {
 

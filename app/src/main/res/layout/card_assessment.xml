@@ -36,38 +36,37 @@
         android:padding="5sp">
 
         <TextView
-            android:id="@+id/tv_marks_type"
+            android:id="@+id/value_marks_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/assessType2"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/abc_text_size_display_1_material"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_scored_marks"
+            android:id="@+id/value_scored_marks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tv_marks_type"
-            android:layout_alignBottom="@+id/tv_marks_type"
-            android:layout_toLeftOf="@+id/tv_max_marks"
-            android:layout_toStartOf="@+id/tv_max_marks"
-            android:text="-/"
+            android:layout_alignBaseline="@+id/value_marks_type"
+            android:layout_alignBottom="@+id/value_marks_type"
+            android:layout_toLeftOf="@+id/value_max_marks"
+            android:layout_toStartOf="@+id/value_max_marks"
+            android:text=""
             android:textColor="@color/primary_text_default_material_light"
             android:textSize="@dimen/abc_text_size_large_material" />
 
         <TextView
-            android:id="@+id/tv_max_marks"
+            android:id="@+id/value_max_marks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/tv_scored_marks"
-            android:layout_alignBottom="@+id/tv_scored_marks"
+            android:layout_alignBaseline="@+id/value_scored_marks"
+            android:layout_alignBottom="@+id/value_scored_marks"
             android:layout_alignEnd="@+id/progress_bar_marks"
             android:layout_alignRight="@+id/progress_bar_marks"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
-            android:text="-"
+            android:text=""
             android:textColor="@color/primary_text_default_material_light"
             android:textSize="@dimen/abc_text_size_large_material" />
 
@@ -76,38 +75,38 @@
             style="@style/BarraProgreso"
             android:layout_width="match_parent"
             android:layout_height="15sp"
-            android:layout_below="@+id/tv_scored_marks" />
+            android:layout_below="@+id/value_scored_marks" />
 
         <TextView
-            android:id="@+id/fixed_weightage"
+            android:id="@+id/label_weightage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/progress_bar_marks"
-            android:text="Weightage: " />
+            android:text="@string/assessment_weightage" />
 
         <TextView
-            android:id="@+id/tv_weightage"
+            android:id="@+id/value_weightage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/progress_bar_marks"
-            android:layout_toRightOf="@id/fixed_weightage"
+            android:layout_toRightOf="@id/label_weightage"
             android:text="-" />
 
         <TextView
-            android:id="@+id/fixed_contribution"
+            android:id="@+id/label_contribution"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/progress_bar_marks"
-            android:layout_toLeftOf="@+id/tv_contribution"
-            android:text="Contribution: " />
+            android:layout_toLeftOf="@+id/value_contribution"
+            android:text="@string/assessment_contribution" />
 
         <TextView
-            android:id="@+id/tv_contribution"
+            android:id="@+id/value_contribution"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/progress_bar_marks"
-            android:text="-" />
+            android:text="" />
         <!--Assesment percentage, scored percentage, contribution to
         final marks to be included -->
     </RelativeLayout>

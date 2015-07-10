@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -43,15 +44,13 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
-
 public class TimeTableDayFragment extends Fragment {
 
-    String[] daysOfWeek = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"}; // TODO, put under arrays.xml
-    TimeTableListAdapter adapter;
-    RecyclerView recyclerview;
-    ProgressBar load;
-    int dayOfWeek;
-    View rootView;
+    private TimeTableListAdapter adapter;
+    private RecyclerView recyclerview;
+    private ProgressBar load;
+    private int dayOfWeek;
+    private View rootView;
 
     public TimeTableDayFragment() {
     }
@@ -100,15 +99,15 @@ public class TimeTableDayFragment extends Fragment {
         initialize();
     }
 
-    class LoadData extends AsyncTask<Void, Void, ArrayList<Course>> {
+    class LoadData extends AsyncTask<Void, Void, List<Course>> {
         @Override
         protected void onPreExecute() {
             load.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected ArrayList<Course> doInBackground(Void... params) {
-            ArrayList<Course> finalArray = new ArrayList<>();
+        protected List<Course> doInBackground(Void... params) {
+            List<Course> finalArray = new ArrayList<>();
             List<Course> courses = DataHolder.getCourses();
             for (Course c : courses) {
                 for (int i = 0; i < c.getTimings().size(); i++) {
@@ -120,7 +119,7 @@ public class TimeTableDayFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Course> res) {
+        protected void onPostExecute(List<Course> res) {
             load.setVisibility(View.GONE);
             adapter = new TimeTableListAdapter(getActivity(), res);
             adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {

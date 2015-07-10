@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        initializeLayouts();
+        initialize();
     }
 
     @Override
@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return super.onOptionsItemSelected(item);
     }
 
-    private void initializeLayouts() {
+    private void initialize() {
         editTextRegisterNumber = (EditText) findViewById(R.id.input_reg_no);
         editTextDateOfBirth = (EditText) findViewById(R.id.input_dob);
         editTextMobileNumber = (EditText) findViewById(R.id.input_phone_no);

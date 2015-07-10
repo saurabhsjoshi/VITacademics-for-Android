@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  *
  * This file is part of VITacademics.
  * VITacademics is free software: you can redistribute it and/or modify
@@ -28,14 +29,14 @@ import android.widget.TextView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Message;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.MessageViewHolder> {
 
-    Context context;
-    ArrayList<Message> messages;
+    private Context context;
+    private List<Message> messages;
 
-    public MessageListAdapter(Context context, ArrayList<Message> messages) {
+    public MessageListAdapter(Context context, List<Message> messages) {
         this.context = context;
         this.messages = messages;
     }

@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -33,15 +34,15 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Friend;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.FriendsViewHolder> {
 
-    ArrayList<Friend> friends;
-    Context context;
-    RecyclerViewOnClickListener<Friend> OnclickListener;
+    private List<Friend> friends;
+    private Context context;
+    private RecyclerViewOnClickListener<Friend> OnclickListener;
 
-    public FriendsListAdapter(Context context, ArrayList<Friend> friends) {
+    public FriendsListAdapter(Context context, List<Friend> friends) {
         this.context = context;
         this.friends = friends;
     }

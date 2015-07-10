@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -32,14 +33,14 @@ import android.widget.TextView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Contributor;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ContributorListAdapter extends RecyclerView.Adapter<ContributorListAdapter.ContributorViewHolder> {
 
-    ArrayList<Contributor> contributors;
+    List<Contributor> contributors;
     Context context;
 
-    public ContributorListAdapter(Context context, ArrayList<Contributor> contributors) {
+    public ContributorListAdapter(Context context, List<Contributor> contributors) {
         this.context = context;
         this.contributors = contributors;
 
