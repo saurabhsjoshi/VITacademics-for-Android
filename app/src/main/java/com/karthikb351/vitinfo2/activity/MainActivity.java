@@ -74,17 +74,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DataHolder.refreshData(MainActivity.this, new ResultListener() {
-            @Override
-            public void onSuccess() {
-                initializeLayouts();
-            }
-
-            @Override
-            public void onFailure(Status status) {
-                Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        initializeLayouts();
     }
 
     @Override
