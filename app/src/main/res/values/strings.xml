@@ -23,9 +23,6 @@
 <resources>
     <string name="app_name">VITacademics</string>
 
-    <!-- Actions -->
-    <string name="action_settings">Settings</string>
-
     <!-- Sample text -->
     <string name="hello_world">Hello world!</string>
     <string name="fragment_blank_hello">Hello blank fragment</string>
@@ -44,6 +41,7 @@
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="navigation_drawer_others_group">Others</string>
 
     <!-- Dialog Message -->
     <string name="button_close_dialog">Close</string>

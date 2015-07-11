@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include layout="@layout/old_toolbar" />
+            <include layout="@layout/navigation_toolbar" />
             <!-- Content View -->
             <FrameLayout
                 android:id="@+id/flContent"

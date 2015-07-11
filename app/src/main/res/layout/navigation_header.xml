@@ -27,7 +27,7 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/button_material_dark"
     android:gravity="bottom"
     android:padding="100dp"
     android:text="Username"></TextView>
