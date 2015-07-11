@@ -31,6 +31,6 @@
                 android:top="10dp" />
         </shape>
     </item>
-    <item android:drawable="@drawable/calculator" />
+    <item android:drawable="@mipmap/calculator" />
 
 </layer-list>

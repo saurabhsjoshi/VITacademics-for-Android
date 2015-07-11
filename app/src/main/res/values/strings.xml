@@ -38,7 +38,7 @@
     <string name="label_campus_vellore">Vellore</string>
     <string name="input_hint_register_number">Register Number</string>
     <string name="input_hint_date_of_birth">Date of Birth</string>
-    <string name="input_hint_parent_number">Registered Parent's Phone Number</string>
+    <string name="input_hint_parent_number">Registered Parent\'s Phone Number</string>
     <string name="button_login">Login</string>
 
     <!-- Navigation Drawer -->
@@ -52,6 +52,7 @@
     <string name="label_attendance_safe">Safe</string>
     <string name="label_attendance_debarred">Debarred</string>
     <string name="button_class_attend">Attend (+)</string>
+    <string name="button_class_miss">Miss (-)</string>
     <string name="label_class_attend">Go</string>
     <string name="label_class_miss">Miss</string>
 
