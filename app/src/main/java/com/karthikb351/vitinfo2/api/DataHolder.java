@@ -24,7 +24,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
-import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Contributor;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -34,6 +33,7 @@ import com.karthikb351.vitinfo2.contract.GradeCount;
 import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.contract.WithdrawnCourse;
+import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.List;
