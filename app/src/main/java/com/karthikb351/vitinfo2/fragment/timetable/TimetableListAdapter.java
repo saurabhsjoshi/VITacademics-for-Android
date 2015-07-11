@@ -33,17 +33,16 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TimeTableListAdapter extends RecyclerView.Adapter<TimeTableListAdapter.TimeTableViewHolder> {
+public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdapter.TimeTableViewHolder> {
 
 
     private RecyclerViewOnClickListener<Course> onClickListener;
     private List<Course> coursesForTheDay;
     private Context context;
 
-    TimeTableListAdapter(Context context, List<Course> coursesForTheDay) {
+    TimetableListAdapter(Context context, List<Course> coursesForTheDay) {
         this.context = context;
         this.coursesForTheDay = coursesForTheDay;
     }

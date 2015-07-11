@@ -34,9 +34,7 @@ import android.widget.ProgressBar;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
-import com.karthikb351.vitinfo2.contract.Friend;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
@@ -45,19 +43,19 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
-public class TimeTableDayFragment extends Fragment {
+public class TimetableDayFragment extends Fragment {
 
-    private TimeTableListAdapter adapter;
+    private TimetableListAdapter adapter;
     private RecyclerView recyclerview;
     private ProgressBar load;
     private int dayOfWeek;
     private View rootView;
 
-    public TimeTableDayFragment() {
+    public TimetableDayFragment() {
     }
 
-    public static TimeTableDayFragment newInstance(int dayOfWeek) {
-        TimeTableDayFragment fragment = new TimeTableDayFragment();
+    public static TimetableDayFragment newInstance(int dayOfWeek) {
+        TimetableDayFragment fragment = new TimetableDayFragment();
         fragment.dayOfWeek = dayOfWeek ;
         return fragment;
     }
@@ -122,7 +120,7 @@ public class TimeTableDayFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Course> res) {
             load.setVisibility(View.GONE);
-            adapter = new TimeTableListAdapter(getActivity(), res);
+            adapter = new TimetableListAdapter(getActivity(), res);
             adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
                 @Override
                 public void onItemClick(Course data) {

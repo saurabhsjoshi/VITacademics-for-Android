@@ -39,7 +39,6 @@ import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Grade;
 import com.karthikb351.vitinfo2.contract.GradeCount;
-import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 
 import java.util.List;
@@ -87,7 +86,7 @@ public class GradesFragment extends Fragment {
         gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         gradesListAdapter = new GradesListAdapter(getActivity(), grades);
         gradeListRecyclerview.setAdapter(gradesListAdapter);
-        String Title = getActivity().getResources().getString(R.string.grades_title);
+        String Title = getActivity().getResources().getString(R.string.fragment_grades_title);
         getActivity().setTitle(Title);
     }
 

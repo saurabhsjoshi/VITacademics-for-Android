@@ -32,16 +32,16 @@ import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
 
-public class TimeTableFragment extends Fragment {
+public class TimetableFragment extends Fragment {
 
     private ViewPager viewpager;
-    private TimeTablePagerAdapter pageradapter;
+    private TimetablePagerAdapter pageradapter;
 
-    public TimeTableFragment() {
+    public TimetableFragment() {
     }
 
-    public static TimeTableFragment newInstance() {
-        return new TimeTableFragment();
+    public static TimetableFragment newInstance() {
+        return new TimetableFragment();
     }
 
     @Override
@@ -49,11 +49,11 @@ public class TimeTableFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_timetable, container, false);
         viewpager = (ViewPager) view.findViewById(R.id.view_pager_timetable);
-        pageradapter = new TimeTablePagerAdapter(getActivity().getSupportFragmentManager(), getActivity());
+        pageradapter = new TimetablePagerAdapter(getActivity().getSupportFragmentManager(), getActivity());
         viewpager.setAdapter(pageradapter);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewpager);
-        String Title = getActivity().getResources().getString(R.string.time_table_title);
+        String Title = getActivity().getResources().getString(R.string.fragment_timetable_title);
         getActivity().setTitle(Title);
         return view;
     }

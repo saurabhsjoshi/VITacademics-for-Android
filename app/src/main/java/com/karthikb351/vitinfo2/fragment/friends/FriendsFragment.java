@@ -32,7 +32,6 @@ import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Friend;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
@@ -77,7 +76,7 @@ public class FriendsFragment extends Fragment {
                 onListItemClick(data);
             }
         });
-        String Title = getActivity().getResources().getString(R.string.friends_title);
+        String Title = getActivity().getResources().getString(R.string.fragment_friends_title);
         getActivity().setTitle(Title);
     }
 

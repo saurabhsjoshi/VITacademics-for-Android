@@ -82,15 +82,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/progress_bar_marks"
-            android:text="@string/assessment_weightage" />
+            android:text="@string/label_assessment_weightage" />
 
         <TextView
             android:id="@+id/value_weightage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/progress_bar_marks"
-            android:layout_toRightOf="@id/label_weightage"
-            android:text="-" />
+            android:layout_toRightOf="@id/label_weightage" />
 
         <TextView
             android:id="@+id/label_contribution"
@@ -98,15 +97,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/progress_bar_marks"
             android:layout_toLeftOf="@+id/value_contribution"
-            android:text="@string/assessment_contribution" />
+            android:text="@string/label_assessment_contribution" />
 
         <TextView
             android:id="@+id/value_contribution"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/progress_bar_marks"
-            android:text="" />
+            android:layout_below="@+id/progress_bar_marks" />
         <!--Assesment percentage, scored percentage, contribution to
         final marks to be included -->
     </RelativeLayout>

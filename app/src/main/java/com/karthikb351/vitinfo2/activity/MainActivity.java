@@ -40,7 +40,6 @@ import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -53,7 +52,7 @@ import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
-import com.karthikb351.vitinfo2.fragment.timetable.TimeTableFragment;
+import com.karthikb351.vitinfo2.fragment.timetable.TimetableFragment;
 import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.ResultListener;
@@ -145,8 +144,8 @@ public class MainActivity extends AppCompatActivity {
                         frag = CoursesFragment.newInstance();
                         pos = 1;
                         break;
-                    case "Time Table":
-                        frag = TimeTableFragment.newInstance();
+                    case "Timetable":
+                        frag = TimetableFragment.newInstance();
                         pos = 2;
                         break;
                     case "Grades":
@@ -161,12 +160,12 @@ public class MainActivity extends AppCompatActivity {
                         frag = FriendsFragment.newInstance();
                         pos = 5;
                         break;
-                    case "Messages":
-                        frag = MessagesFragment.newInstance();
-                        pos = 6;
-                        break;
                     case "Settings":
                         frag = SettingsFragment.newInstance();
+                        pos = 6;
+                        break;
+                    case "Messages":
+                        frag = MessagesFragment.newInstance();
                         pos = 7;
                         break;
                     case "About":

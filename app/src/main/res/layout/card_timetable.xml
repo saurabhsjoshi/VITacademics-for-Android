@@ -57,7 +57,6 @@
             android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
             android:elevation="@dimen/cardview_default_elevation"
             android:gravity="center"
-            android:text="N.A"
             android:textColor="@color/bright_foreground_material_light"
             android:textStyle="bold" />
 
