@@ -160,12 +160,12 @@ public class MainActivity extends AppCompatActivity {
                         frag = FriendsFragment.newInstance();
                         pos = 5;
                         break;
-                    case "Messages":
-                        frag = MessagesFragment.newInstance();
-                        pos = 6;
-                        break;
                     case "Settings":
                         frag = SettingsFragment.newInstance();
+                        pos = 6;
+                        break;
+                    case "Messages":
+                        frag = MessagesFragment.newInstance();
                         pos = 7;
                         break;
                     case "About":
