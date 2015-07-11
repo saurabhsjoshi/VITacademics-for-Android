@@ -35,7 +35,6 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.api.DataHolder;
 
 import java.util.List;
 
@@ -77,7 +76,7 @@ public class CoursesFragment extends Fragment {
         });
         recyclerView.setLayoutManager(courseLayoutManager);
         recyclerView.setAdapter(courseListAdapter);
-        String Title = getActivity().getResources().getString(R.string.course_title);
+        String Title = getActivity().getResources().getString(R.string.fragment_courses_title);
         getActivity().setTitle(Title);
     }
 

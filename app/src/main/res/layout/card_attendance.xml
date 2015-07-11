@@ -121,7 +121,6 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="5dp"
-                android:text="60%"
                 android:textSize="35sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -136,7 +135,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="DEBARRED"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="@dimen/abc_text_size_headline_material"
                 android:textStyle="bold" />
@@ -150,7 +148,7 @@
                 android:layout_toLeftOf="@+id/button_attend"
                 android:layout_toStartOf="@+id/button_attend"
                 android:layout_weight="1"
-                android:text="Miss (-) "
+                android:text="@string/button_class_miss"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="17sp" />
 
@@ -164,7 +162,7 @@
                 android:layout_below="@+id/tv_attendance_status"
                 android:layout_weight="1"
                 android:paddingRight="10dp"
-                android:text="Attend (+)"
+                android:text="@string/button_class_attend"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="17sp" />
 
@@ -177,7 +175,6 @@
                 android:layout_marginStart="23dp"
                 android:layout_toEndOf="@+id/tv_attendance_percent"
                 android:layout_toRightOf="@+id/tv_attendance_percent"
-                android:text="-"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="30sp" />
 
@@ -188,7 +185,6 @@
                 android:layout_alignTop="@+id/button_miss"
                 android:layout_toEndOf="@+id/tv_attended"
                 android:layout_toRightOf="@+id/tv_attended"
-                android:text="/-"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="30sp" />
 

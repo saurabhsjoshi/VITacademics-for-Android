@@ -30,31 +30,50 @@
     <string name="hello_world">Hello world!</string>
     <string name="fragment_blank_hello">Hello blank fragment</string>
 
-    <!-- LoginActivity -->
-    <string name="activity_login_title">Login</string>
+    <!-- Activity Titles -->
+    <string name="activity_login_title">VITacademics Login</string>
+
+    <!-- Login Page -->
+    <string name="label_campus_chennai">Chennai</string>
+    <string name="label_campus_vellore">Vellore</string>
+    <string name="input_hint_register_number">Register Number</string>
+    <string name="input_hint_date_of_birth">Date of Birth</string>
+    <string name="input_hint_parent_number">Registered Parent's Phone Number</string>
+    <string name="button_login">Login</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
     <!-- Dialog Message -->
-    <string name="close_dialog">Close</string>
+    <string name="button_close_dialog">Close</string>
 
-    <!-- Attendance Messages -->
-    <string name="attendance_safe">Safe</string>
-    <string name="attendance_debarred">Debarred</string>
+    <!-- Course Attendance -->
+    <string name="label_attendance_safe">Safe</string>
+    <string name="label_attendance_debarred">Debarred</string>
+    <string name="button_class_attend">Attend (+)</string>
+    <string name="label_class_attend">Go</string>
+    <string name="label_class_miss">Miss</string>
 
-    <!-- Labels -->
-    <string name="courses_attendance">Attendance</string>
-    <string name="courses_marks">Marks</string>
-    <string name="courses_assessment">Assessment</string>
-    <string name="courses_assessments">Assessments</string>
-    <string name="grade_char">Grade</string>
-    <string name="grade_value">Grade Value</string>
-    <string name="grade_cgpa">CGPA</string>
-    <string name="assessment_weightage">Weightage</string>
-    <string name="assessment_contribution">Contribution</string>
-    <string name="percentage">Percentage</string>
+    <!-- Course Marks -->
+    <string name="label_total_internals">Total Internals</string>
+
+    <!-- CGPA Calculator -->
+    <string name="label_cgpa_current">Current CGPA</string>
+    <string name="label_cgpa_expected">Expected CGPA</string>
+    <string name="button_cgpa_calculate">Calculate</string>
+
+    <!-- Misc Labels -->
+    <string name="label_courses_attendance">Attendance</string>
+    <string name="label_courses_marks">Marks</string>
+    <string name="label_courses_assessment">Assessment</string>
+    <string name="label_courses_assessments">Assessments</string>
+    <string name="label_grade_char">Grade</string>
+    <string name="label_grade_value">Grade Value</string>
+    <string name="label_grade_cgpa">CGPA</string>
+    <string name="label_assessment_weightage">Weightage</string>
+    <string name="label_assessment_contribution">Contribution</string>
+    <string name="label_percentage">Percentage</string>
 
     <!--Messages for unavailable or incomplete features-->
     <string name="not_available">This is not available at the moment</string>
@@ -65,17 +84,17 @@
     <string name="api_unknown_error">The VITacademics app has encountered an error</string>
 
     <!-- Fragment Titles !-->
-    <string name="today_title">Today</string>
-    <string name="course_title">Courses</string>
-    <string name="CGPA_calculator_title">CGPA Calculator</string>
-    <string name="contributors_title">Contributors</string>
-    <string name="details_title">Details</string>
-    <string name="friends_title">Friends</string>
-    <string name="grades_title">Grades</string>
-    <string name="settings_title">Settings</string>
-    <string name="time_table_title">Time Table</string>
-    <string name="messages_title">Messages</string>
-    <string name="about_title">About</string>
-    <string name="licenses_title">Licenses</string>
+    <string name="fragment_today_title">Today</string>
+    <string name="fragment_courses_title">Courses</string>
+    <string name="fragment_cgpa_calculator_title">CGPA Calculator</string>
+    <string name="fragment_contributors_title">Contributors</string>
+    <string name="fragment_details_title">Course Details</string>
+    <string name="fragment_friends_title">Friends</string>
+    <string name="fragment_grades_title">Grades</string>
+    <string name="fragment_settings_title">Settings</string>
+    <string name="fragment_timetable_title">Timetable</string>
+    <string name="fragment_messages_title">Messages</string>
+    <string name="fragment_about_title">About</string>
+    <string name="fragment_licenses_title">Licenses</string>
 
 </resources>

@@ -33,7 +33,6 @@ import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.api.DataHolder;
 
 import java.util.List;
 
@@ -61,7 +60,7 @@ public class MessagesFragment extends Fragment {
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_messages);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listAdapter);
-        String Title = getActivity().getResources().getString(R.string.messages_title);
+        String Title = getActivity().getResources().getString(R.string.fragment_messages_title);
         getActivity().setTitle(Title);
 
     }

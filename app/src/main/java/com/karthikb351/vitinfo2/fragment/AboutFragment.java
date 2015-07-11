@@ -40,7 +40,7 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        String Title = getActivity().getResources().getString(R.string.about_title);
+        String Title = getActivity().getResources().getString(R.string.fragment_about_title);
         getActivity().setTitle(Title);
         return inflater.inflate(R.layout.fragment_about, container, false);
     }

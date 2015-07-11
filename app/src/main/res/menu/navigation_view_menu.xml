@@ -27,6 +27,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
 
+        <!--TODO, change this. Use the array in arrays.xml-->
+
         <item
             android:id="@+id/drawer_home"
             android:checked="true"
@@ -41,7 +43,7 @@
         <item
             android:id="@+id/drawer_favourite"
             android:icon="@mipmap/ic_timetable"
-            android:title="Time Table" />
+            android:title="Timetable" />
 
         <item
             android:id="@+id/drawer_grades"
@@ -50,7 +52,7 @@
 
         <item
             android:id="@+id/drawer_cgpa_calculator"
-            android:icon="@drawable/calculator"
+            android:icon="@mipmap/calculator"
             android:title="CGPA Calculator" />
 
         <item

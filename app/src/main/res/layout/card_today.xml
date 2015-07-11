@@ -100,7 +100,6 @@
                 android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
                 android:elevation="@dimen/cardview_default_elevation"
                 android:gravity="center"
-                android:text="N.A"
                 android:textColor="@color/bright_foreground_material_light"
                 android:textStyle="bold" />
 
@@ -124,7 +123,7 @@
                 android:layout_below="@+id/process_bar_attendance"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="10dp"
-                android:text="Go: "
+                android:text="@string/label_class_attend"
                 android:textColor="@color/bright_foreground_material_light" />
 
             <TextView
@@ -134,7 +133,6 @@
                 android:layout_below="@+id/process_bar_attendance"
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/fixed_go"
-                android:text="N.A"
                 android:textColor="@color/bright_foreground_material_light" />
 
             <TextView
@@ -144,7 +142,7 @@
                 android:layout_alignTop="@+id/tv_go_attend"
                 android:layout_below="@+id/process_bar_attendance"
                 android:layout_toLeftOf="@+id/tv_miss_attend"
-                android:text="Miss: "
+                android:text="@string/label_class_miss"
                 android:textColor="@color/bright_foreground_material_light" />
 
             <TextView
@@ -155,7 +153,6 @@
                 android:layout_alignTop="@+id/tv_go_attend"
                 android:layout_below="@+id/process_bar_attendance"
                 android:layout_marginLeft="6dp"
-                android:text="N.A"
                 android:textColor="@color/bright_foreground_material_light" />
 
             <android.support.v4.widget.Space

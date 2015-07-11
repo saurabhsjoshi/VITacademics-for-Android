@@ -35,7 +35,6 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Contributor;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.api.DataHolder;
 
 import java.util.List;
 
@@ -72,7 +71,7 @@ public class ContributorsFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_contributors);
         recyclerView.setLayoutManager(contributorsLayoutManager);
         recyclerView.setAdapter(contributorsListAdapter);
-        String Title = getActivity().getResources().getString(R.string.contributors_title);
+        String Title = getActivity().getResources().getString(R.string.fragment_contributors_title);
         getActivity().setTitle(Title);
 
     }

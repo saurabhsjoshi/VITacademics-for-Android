@@ -82,7 +82,7 @@ public class CGPACalculatorFragment extends Fragment implements View.OnClickList
         this.imageButton.setOnClickListener(this);
         this.recyclerView.setAdapter(listAdapter);
         this.recyclerView.setLayoutManager(layoutManager);
-        String Title = getActivity().getResources().getString(R.string.CGPA_calculator_title);
+        String Title = getActivity().getResources().getString(R.string.fragment_cgpa_calculator_title);
         getActivity().setTitle(Title);
     }
 

@@ -28,14 +28,14 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.karthikb351.vitinfo2.R;
 
-public class TimeTablePagerAdapter extends FragmentStatePagerAdapter {
+public class TimetablePagerAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
     private String tabTitles[];
 
     private final int DAYS_COUNT = 7;
 
-    public TimeTablePagerAdapter(FragmentManager fragmentManager, Context context) {
+    public TimetablePagerAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);
         this.context = context;
         this.tabTitles = context.getResources().getStringArray(R.array.days_of_week);
@@ -48,7 +48,7 @@ public class TimeTablePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return TimeTableDayFragment.newInstance(position);
+        return TimetableDayFragment.newInstance(position);
     }
 
     @Override

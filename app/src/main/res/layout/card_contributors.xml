@@ -53,7 +53,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/contributor_role"
             android:layout_centerHorizontal="true"
-            android:text="contributor@mail.com"
             android:textColor="#cf001755"
             android:textSize="16sp" />
 
@@ -62,7 +61,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Contributor Name"
             android:textColor="#e0000000"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -73,7 +71,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/contributor_name"
             android:layout_centerHorizontal="true"
-            android:text="Contributor Role"
             android:textColor="#cf001755"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -84,7 +81,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/contributor_email"
             android:layout_centerHorizontal="true"
-            android:text="Github Profile"
             android:textColor="#cf001755"
             android:textSize="16sp" />
 

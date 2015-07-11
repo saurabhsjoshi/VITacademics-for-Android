@@ -73,7 +73,7 @@
             android:gravity="center"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:text="Total Internal Marks:"
+            android:text="@string/label_total_internals"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/primary_text_default_material_light"
@@ -98,7 +98,6 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/course_name"
             android:paddingRight="10dp"
-            android:text="/50"
             android:textColor="@color/primary_text_default_material_light"
             android:textSize="40dp" />
 
