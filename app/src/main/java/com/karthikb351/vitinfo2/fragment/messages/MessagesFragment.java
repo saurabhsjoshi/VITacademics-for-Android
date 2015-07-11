@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  *
  * This file is part of VITacademics.
  * VITacademics is free software: you can redistribute it and/or modify
@@ -28,23 +29,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.api.DataHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
 public class MessagesFragment extends Fragment {
 
-    List<Message> messageList;
-    ArrayList<Message> messages;
-    RecyclerView recyclerView;
-    MessageListAdapter listAdapter;
-    View rootView;
+    private List<Message> messages;
+    private RecyclerView recyclerView;
+    private MessageListAdapter listAdapter;
+    private View rootView;
 
     public MessagesFragment() {
         //required empty public constructor
@@ -55,13 +55,15 @@ public class MessagesFragment extends Fragment {
     }
 
     public void initialize() {
+        messages = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getMessages();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        messageList = DataHolder.getMessages();
-        messages = new ArrayList<>(messageList);
         listAdapter = new MessageListAdapter(getActivity(), messages);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_messages);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listAdapter);
+        String Title = getActivity().getResources().getString(R.string.messages_title);
+        getActivity().setTitle(Title);
+
     }
 
     @Nullable

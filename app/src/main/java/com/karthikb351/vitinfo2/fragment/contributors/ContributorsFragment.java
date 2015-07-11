@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -29,26 +30,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Contributor;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.api.DataHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
 public class ContributorsFragment extends Fragment {
 
-    List<Contributor> contributorsList;
-    ArrayList<Contributor> contributors;
-    RecyclerView recyclerView;
-    ContributorListAdapter contributorsListAdapter;
-    MainActivity mainActivity;
-    RecyclerView.LayoutManager contributorsLayoutManager;
-    View view;
+    private List<Contributor> contributors;
+    private RecyclerView recyclerView;
+    private ContributorListAdapter contributorsListAdapter;
+    private MainActivity mainActivity;
+    private RecyclerView.LayoutManager contributorsLayoutManager;
+    private View view;
 
     public ContributorsFragment() {
     }
@@ -60,18 +60,20 @@ public class ContributorsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.contributors, container, false);
-        getDataAndInitailse();
+        initialize();
         return view;
     }
 
-    public void getDataAndInitailse() {
+    public void initialize() {
+        contributors = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getContributors();
+
         contributorsLayoutManager = new LinearLayoutManager(getActivity());
-        contributorsList = DataHolder.getContributors();
-        contributors = new ArrayList<>(contributorsList);
         contributorsListAdapter = new ContributorListAdapter(getActivity(), contributors);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_contributors);
         recyclerView.setLayoutManager(contributorsLayoutManager);
         recyclerView.setAdapter(contributorsListAdapter);
+        String Title = getActivity().getResources().getString(R.string.contributors_title);
+        getActivity().setTitle(Title);
 
     }
 
@@ -89,6 +91,6 @@ public class ContributorsFragment extends Fragment {
 
     // This method will be called when a RefreshFragmentEvent is posted
     public void onEvent(RefreshFragmentEvent event) {
-        getDataAndInitailse();
+        initialize();
     }
 }

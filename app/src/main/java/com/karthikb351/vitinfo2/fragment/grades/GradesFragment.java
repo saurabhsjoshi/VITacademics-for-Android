@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
@@ -34,22 +35,27 @@ import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Grade;
 import com.karthikb351.vitinfo2.contract.GradeCount;
 import com.karthikb351.vitinfo2.api.DataHolder;
+import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class GradesFragment extends Fragment {
 
-    ArrayList<GradeCount> gradeCounts;
-    ArrayList<Grade> grades;
-    View rootView;
-    TextView CGPA;
-    RecyclerView gradeListRecyclerview;
-    TableLayout gradeCountTable;
-    GradesListAdapter adapter;
+    private float cgpa;
+    private List<GradeCount> gradeCounts;
+    private List<Grade> grades;
+    private List<SemesterWiseGrade> semesterWiseGrades;
+
+    private View rootView;
+    private TextView cgpaTextView;
+    private RecyclerView gradeListRecyclerview;
+    private TableLayout gradeCountTable;
+    private GradesListAdapter gradesListAdapter;
 
     public GradesFragment() {
 
@@ -69,15 +75,20 @@ public class GradesFragment extends Fragment {
     }
 
     public void initialize() {
-        CGPA = (TextView) rootView.findViewById(R.id.text_view_CGPA);
+        cgpa = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCgpa();
+        grades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGrades();
+        gradeCounts = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGradeCounts();
+        semesterWiseGrades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getSemesterWiseGrades();
+
+        cgpaTextView = (TextView) rootView.findViewById(R.id.text_view_cgpa);
         gradeCountTable = (TableLayout) rootView.findViewById(R.id.table_grade_count);
-        gradeCounts = new ArrayList<>(DataHolder.getGradeCounts());
-        grades = new ArrayList<>(DataHolder.getGrades());
         fillGradeCountData();
         gradeListRecyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_grades);
         gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new GradesListAdapter(getActivity(), grades);
-        gradeListRecyclerview.setAdapter(adapter);
+        gradesListAdapter = new GradesListAdapter(getActivity(), grades);
+        gradeListRecyclerview.setAdapter(gradesListAdapter);
+        String Title = getActivity().getResources().getString(R.string.grades_title);
+        getActivity().setTitle(Title);
     }
 
     void fillGradeCountData() {
@@ -87,6 +98,7 @@ public class GradesFragment extends Fragment {
             row.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             row.addView(createTextView(gradeCounts.get(i).getGrade()));
             row.addView(createTextView(Integer.toString(gradeCounts.get(i).getCount())));
+            gradeCountTable.addView(row);
         }
     }
 

@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
@@ -34,9 +35,9 @@ import com.karthikb351.vitinfo2.contract.Course;
 
 public class AssesmentFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    AssesmentListAdapter listAdapter;
-    Course course;
+    private RecyclerView recyclerView;
+    private AssesmentListAdapter listAdapter;
+    private Course course;
 
     public AssesmentFragment() {
 
@@ -57,21 +58,6 @@ public class AssesmentFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_assessments);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listAdapter);
-       /* recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView rv, int newState) {
-                super.onScrollStateChanged(rv, newState);
-                if (newState == 1) {
-                    getActivity().getActionBar().hide();
-                }
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                getActivity().getActionBar().show();
-            }
-        });*/
         return view;
     }
 

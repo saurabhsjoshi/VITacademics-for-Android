@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  *
  * This file is part of VITacademics.
  * VITacademics is free software: you can redistribute it and/or modify
@@ -23,11 +24,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.DataHolder;
+import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
+import com.karthikb351.vitinfo2.utility.ResultListener;
+
+import co.uk.rushorm.core.RushCore;
 
 public class Splash extends Activity {
 
@@ -36,34 +45,43 @@ public class Splash extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
 
+        boolean isLoggedIn = loginCheck();
 
+        // TODO Progress start
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences sharedPreferences = getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
-                String campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
-                String registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
-                String dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);
-                String mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, null);
-
-                if (Constants.CAMPUS_VELLORE.equals(campus)) {
-                    if (registerNumber != null && dateOfBirth != null && mobileNumber != null) {
-                        startActivity(new Intent(Splash.this,MainActivity.class));
-                    } else {
-                        startActivity(new Intent(Splash.this,LoginActivity.class));
-                    }
-                } else if (Constants.CAMPUS_CHENNAI.equals(campus)) {
-                    if (registerNumber != null && dateOfBirth != null) {
-                        startActivity(new Intent(Splash.this,MainActivity.class));
-                    } else {
-                        startActivity(new Intent(Splash.this,LoginActivity.class));
-                    }
-                } else {
-                    startActivity(new Intent(Splash.this,LoginActivity.class));
+        if (isLoggedIn) {
+            ((MainApplication)getApplication()).getDataHolderInstance().refreshData(Splash.this, new ResultListener() {
+                @Override
+                public void onSuccess() {
+                    // TODO Progress stop
+                    startActivity(new Intent(Splash.this, MainActivity.class));
                 }
-            }
-        }, Constants.SPLASH_TIME_OUT);
+
+                @Override
+                public void onFailure(Status status) {
+                    Toast.makeText(Splash.this, status.getMessage(), Toast.LENGTH_SHORT).show();
+                    // TODO Message Dialog box and go to LoginActivity, clearing data first
+                }
+            });
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // TODO Progress stop
+                    startActivity(new Intent(Splash.this, LoginActivity.class));
+                }
+            }, Constants.SPLASH_TIME_OUT);
+        }
+    }
+
+    private boolean loginCheck() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+        String campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
+        String registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
+        String dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);
+        String mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, null);
+
+        return (Constants.CAMPUS_VELLORE.equals(campus) && registerNumber != null && dateOfBirth != null && mobileNumber != null) || (Constants.CAMPUS_CHENNAI.equals(campus) && registerNumber != null && dateOfBirth != null);
     }
 
     protected void onPause() {

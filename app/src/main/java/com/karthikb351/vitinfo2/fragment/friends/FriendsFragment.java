@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -29,29 +30,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Friend;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
 public class FriendsFragment extends Fragment {
 
-    ArrayList<Friend> friends;
-    RecyclerView friendsRecyclerView;
-    FriendsListAdapter adapter;
-    View rootView;
+    private List<Friend> friends;
+    private RecyclerView friendsRecyclerView;
+    private FriendsListAdapter adapter;
+    private View rootView;
 
     public FriendsFragment() {
         // Required empty public constructor
     }
 
     public static FriendsFragment newInstance() {
-        FriendsFragment fragment = new FriendsFragment();
-        return fragment;
+        return new FriendsFragment();
     }
 
     @Override
@@ -62,7 +64,8 @@ public class FriendsFragment extends Fragment {
     }
 
     void initialize() {
-        friends = new ArrayList<Friend>();
+        friends = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getFriends();
+
         RecyclerView.LayoutManager friendsLayoutManager = new LinearLayoutManager(getActivity());
         adapter = new FriendsListAdapter(getActivity(), friends);
         friendsRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_friends);
@@ -74,6 +77,8 @@ public class FriendsFragment extends Fragment {
                 onListItemClick(data);
             }
         });
+        String Title = getActivity().getResources().getString(R.string.friends_title);
+        getActivity().setTitle(Title);
     }
 
     void onListItemClick(Friend friend) {

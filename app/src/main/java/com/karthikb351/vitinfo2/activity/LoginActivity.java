@@ -38,6 +38,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.api.NetworkController;
@@ -71,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        initializeLayouts();
+        initialize();
     }
 
     @Override
@@ -109,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return super.onOptionsItemSelected(item);
     }
 
-    private void initializeLayouts() {
+    private void initialize() {
         editTextRegisterNumber = (EditText) findViewById(R.id.input_reg_no);
         editTextDateOfBirth = (EditText) findViewById(R.id.input_dob);
         editTextMobileNumber = (EditText) findViewById(R.id.input_phone_no);
@@ -156,7 +157,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void loginToServer(String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
 
-        NetworkController networkController = NetworkController.getNetworkControllerSingleton(LoginActivity.this, campus, registerNumber, dateOfBirth, mobileNumber);
+        NetworkController networkController = NetworkController.getInstance(LoginActivity.this, campus, registerNumber, dateOfBirth, mobileNumber);
 
         final ResultListener resultListener = new ResultListener() {
             @Override
@@ -182,7 +183,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         RequestConfig requestConfig = new RequestConfig(new ResultListener() {
             @Override
             public void onSuccess() {
-                DataHolder.refreshData(LoginActivity.this, resultListener);
+                ((MainApplication)getApplication()).getDataHolderInstance().refreshData(LoginActivity.this, resultListener);
             }
 
             @Override

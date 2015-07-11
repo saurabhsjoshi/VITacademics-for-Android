@@ -32,46 +32,42 @@ import com.karthikb351.vitinfo2.R;
 
 public class SettingsAdapter extends ArrayAdapter<String> {
 
-    String []  topics ;
-    String [] messages ;
-    Context context ;
+    private String[] topics;
+    private String[] messages;
+    private Context context;
 
-    public SettingsAdapter(Context context , int Rid , String[] topics , String [] messages)
-    {
-        super(context,Rid,topics);
-        this.topics = topics ;
+    public SettingsAdapter(Context context, int Rid, String[] topics, String[] messages) {
+        super(context, Rid, topics);
+        this.topics = topics;
         this.context = context;
-        this.messages = messages ;
+        this.messages = messages;
     }
 
-    public class SettingsViewHolder
-    {
-        public View rootView ;
-        public TextView topic , message ;
+    public class SettingsViewHolder {
+        public View rootView;
+        public TextView topic, message;
 
-        SettingsViewHolder(View view)
-        {
-            topic = (TextView)view.findViewById(R.id.tv_settings_topic);
-            message = (TextView)view.findViewById(R.id.tv_settings_message);
-            rootView = view ;
+        SettingsViewHolder(View view) {
+            topic = (TextView) view.findViewById(R.id.tv_settings_topic);
+            message = (TextView) view.findViewById(R.id.tv_settings_message);
+            rootView = view;
         }
     }
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        SettingsViewHolder holder ;
+        SettingsViewHolder holder;
 
-        if(view == null)
-        {
-            view = LayoutInflater.from(context).inflate(R.layout.list_item_settings,parent,false);
+        if (view == null) {
+            view = LayoutInflater.from(context).inflate(R.layout.list_item_settings, parent, false);
             holder = new SettingsViewHolder(view);
             view.setTag(holder);
+        } else {
+            holder = (SettingsViewHolder) view.getTag();
         }
-        else
-            holder = (SettingsViewHolder)view.getTag();
         holder.topic.setText(topics[position]);
         holder.message.setText(messages[position]);
 
-        return view ;
+        return view;
     }
 }

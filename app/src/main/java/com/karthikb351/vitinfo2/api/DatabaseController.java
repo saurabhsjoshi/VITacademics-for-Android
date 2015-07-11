@@ -25,7 +25,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 
-import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Contributor;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -40,10 +39,10 @@ import com.karthikb351.vitinfo2.response.LoginResponse;
 import com.karthikb351.vitinfo2.response.RefreshResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
+import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
-import java.util.List;
-
+import co.uk.rushorm.core.RushCore;
 import co.uk.rushorm.core.RushSearch;
 
 public class DatabaseController {
@@ -59,7 +58,7 @@ public class DatabaseController {
         databaseController = this;
     }
 
-    public static DatabaseController getDatabaseSingleton(Context context) {
+    public static DatabaseController getInstance(Context context) {
         if (databaseController != null) {
             databaseController.context = context;
             return databaseController;
@@ -74,12 +73,8 @@ public class DatabaseController {
             @Override
             protected Boolean doInBackground(Boolean... params) {
                 try {
-                    for (Message message : new RushSearch().find(Message.class)) {
-                        message.delete();
-                    }
-                    for (Contributor contributor : new RushSearch().find(Contributor.class)) {
-                        contributor.delete();
-                    }
+                    RushCore.getInstance().deleteAll(Message.class);
+                    RushCore.getInstance().deleteAll(Contributor.class);
 
                     for (Message message : systemResponse.getMessages()) {
                         message.save();
@@ -129,12 +124,8 @@ public class DatabaseController {
             @Override
             protected Boolean doInBackground(Boolean... params) {
                 try {
-                    for (Course course : new RushSearch().find(Course.class)) {
-                        course.delete();
-                    }
-                    for (WithdrawnCourse withdrawnCourse : new RushSearch().find(WithdrawnCourse.class)) {
-                        withdrawnCourse.delete();
-                    }
+                    RushCore.getInstance().deleteAll(Course.class);
+                    RushCore.getInstance().deleteAll(WithdrawnCourse.class);
 
                     for (Course course : refreshResponse.getCourses()) {
                         course.save();
@@ -172,15 +163,9 @@ public class DatabaseController {
             @Override
             protected Boolean doInBackground(Boolean... params) {
                 try {
-                    for (Grade grade : new RushSearch().find(Grade.class)) {
-                        grade.delete();
-                    }
-                    for (SemesterWiseGrade semesterWiseGrade : new RushSearch().find(SemesterWiseGrade.class)) {
-                        semesterWiseGrade.delete();
-                    }
-                    for (GradeCount gradeCount : new RushSearch().find(GradeCount.class)) {
-                        gradeCount.delete();
-                    }
+                    RushCore.getInstance().deleteAll(Grade.class);
+                    RushCore.getInstance().deleteAll(SemesterWiseGrade.class);
+                    RushCore.getInstance().deleteAll(GradeCount.class);
 
                     for (Grade grade : gradesResponse.getGrades()) {
                         grade.save();

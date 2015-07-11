@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -33,15 +34,15 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Course;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseViewHolder> {
 
-    Context context;
-    ArrayList<Course> courses;
-    RecyclerViewOnClickListener<Course> OnclickListener;
+    private Context context;
+    private List<Course> courses;
+    private RecyclerViewOnClickListener<Course> onClickListener;
 
-    public CourseListAdapter(Context context, ArrayList<Course> courses) {
+    public CourseListAdapter(Context context, List<Course> courses) {
         this.context = context;
         this.courses = courses;
     }
@@ -58,14 +59,14 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         int AttendanceP = courses.get(position).getAttendance().getAttendancePercentage();
         courseViewHolder.courseCode.setText(courses.get(position).getCourseCode());
         courseViewHolder.courseName.setText(courses.get(position).getCourseTitle());
-        courseViewHolder.Venue.setText(courses.get(position).getVenue());
-        courseViewHolder.Slot.setText(courses.get(position).getSlot());
-        courseViewHolder.Attendance.setText(Integer.toString(AttendanceP));
-        courseViewHolder.pbAttendance.setProgress(AttendanceP);
+        courseViewHolder.venue.setText(courses.get(position).getVenue());
+        courseViewHolder.slot.setText(courses.get(position).getSlot());
+        courseViewHolder.attendance.setText(Integer.toString(AttendanceP));
+        courseViewHolder.attendanceProgressBar.setProgress(AttendanceP);
     }
 
-    public void setOnclickListener(RecyclerViewOnClickListener<Course> listener) {
-        OnclickListener = listener;
+    public void setOnClickListener(RecyclerViewOnClickListener<Course> onClickListener) {
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -75,24 +76,24 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
 
     public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView courseName, courseCode, Attendance, Slot, Venue;
-        public ProgressBar pbAttendance;
+        public TextView courseName, courseCode, attendance, slot, venue;
+        public ProgressBar attendanceProgressBar;
 
         public CourseViewHolder(View v) {
             super(v);
             courseName = (TextView) v.findViewById(R.id.tv_course_name);
             courseCode = (TextView) v.findViewById(R.id.tv_course_code);
-            Attendance = (TextView) v.findViewById(R.id.tv_attendance);
-            Slot = (TextView) v.findViewById(R.id.tv_slot);
-            Venue = (TextView) v.findViewById(R.id.tv_venue);
-            pbAttendance = (ProgressBar) v.findViewById(R.id.process_bar_attendance);
-            pbAttendance.setMax(100);
+            attendance = (TextView) v.findViewById(R.id.tv_attendance);
+            slot = (TextView) v.findViewById(R.id.tv_slot);
+            venue = (TextView) v.findViewById(R.id.tv_venue);
+            attendanceProgressBar = (ProgressBar) v.findViewById(R.id.process_bar_attendance);
+            attendanceProgressBar.setMax(100);
             v.setOnClickListener(this);
         }
 
         public void onClick(View v) {
             Course course = courses.get(getAdapterPosition());
-            OnclickListener.onItemClick(course);
+            onClickListener.onItemClick(course);
         }
     }
 

@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -33,15 +34,14 @@ import com.karthikb351.vitinfo2.R;
 
 public class TimeTableFragment extends Fragment {
 
-    ViewPager viewpager;
-    TimeTablePagerAdapter pageradapter;
+    private ViewPager viewpager;
+    private TimeTablePagerAdapter pageradapter;
 
     public TimeTableFragment() {
     }
 
     public static TimeTableFragment newInstance() {
-        TimeTableFragment fragment = new TimeTableFragment();
-        return fragment;
+        return new TimeTableFragment();
     }
 
     @Override
@@ -53,6 +53,8 @@ public class TimeTableFragment extends Fragment {
         viewpager.setAdapter(pageradapter);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewpager);
+        String Title = getActivity().getResources().getString(R.string.time_table_title);
+        getActivity().setTitle(Title);
         return view;
     }
 

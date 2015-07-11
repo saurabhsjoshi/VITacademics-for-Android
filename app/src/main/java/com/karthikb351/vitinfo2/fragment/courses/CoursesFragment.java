@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
@@ -29,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -36,26 +38,23 @@ import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
 public class CoursesFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    CourseListAdapter courseListAdapter;
-    ArrayList<Course> courses;
-    List<Course> courseList;
-    View rootView;
+    private List<Course> courses;
+    private RecyclerView recyclerView;
+    private CourseListAdapter courseListAdapter;
+    private View rootView;
 
     public CoursesFragment() {
         // Required empty public constructor
     }
 
     public static CoursesFragment newInstance() {
-        CoursesFragment fragment = new CoursesFragment();
-        return fragment;
+        return new CoursesFragment();
     }
 
     @Override
@@ -66,12 +65,12 @@ public class CoursesFragment extends Fragment {
     }
 
     void initialize() {
+        courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
+
         RecyclerView.LayoutManager courseLayoutManager = new LinearLayoutManager(getActivity());
-        courseList = DataHolder.getCourses();
-        courses = new ArrayList<>(courseList);
         courseListAdapter = new CourseListAdapter(getActivity(), courses);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_courses);
-        courseListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
+        courseListAdapter.setOnClickListener(new RecyclerViewOnClickListener<Course>() {
             @Override
             public void onItemClick(Course data) {
                 onListItemClick(data);
@@ -79,6 +78,8 @@ public class CoursesFragment extends Fragment {
         });
         recyclerView.setLayoutManager(courseLayoutManager);
         recyclerView.setAdapter(courseListAdapter);
+        String Title = getActivity().getResources().getString(R.string.course_title);
+        getActivity().setTitle(Title);
     }
 
     void onListItemClick(Course course) {

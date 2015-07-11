@@ -23,7 +23,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import co.uk.rushorm.core.RushObject;
+import co.uk.rushorm.core.annotations.RushTableAnnotation;
 
+@RushTableAnnotation
 public class Timing extends RushObject {
 
     @Expose

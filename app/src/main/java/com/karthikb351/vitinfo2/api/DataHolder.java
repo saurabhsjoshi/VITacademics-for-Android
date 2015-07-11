@@ -42,30 +42,30 @@ import co.uk.rushorm.core.RushSearch;
 
 public class DataHolder {
 
-    private static String registerNumber;
-    private static String dateOfBirth;
-    private static String mobileNumber;
-    private static String campus;
-    private static String latestVersion;
-    private static String earliestSupportedVersion;
-    private static List<Message> messages;
-    private static List<Contributor> contributors;
-    private static String semester;
-    private static List<Course> courses;
-    private static List<WithdrawnCourse> withdrawnCourses;
-    private static String coursesRefreshed;
-    private static List<Grade> grades;
-    private static List<GradeCount> gradeCounts;
-    private static List<SemesterWiseGrade> semesterWiseGrades;
-    private static float cgpa;
-    private static int creditsEarned;
-    private static int creditsRegistered;
-    private static String gradesRefreshed;
-    private static List<Friend> friends;
-    private static String token;
-    private static String tokenIssued;
+    private String registerNumber;
+    private String dateOfBirth;
+    private String mobileNumber;
+    private String campus;
+    private String latestVersion;
+    private String earliestSupportedVersion;
+    private List<Message> messages;
+    private List<Contributor> contributors;
+    private String semester;
+    private List<Course> courses;
+    private List<WithdrawnCourse> withdrawnCourses;
+    private String coursesRefreshed;
+    private List<Grade> grades;
+    private List<GradeCount> gradeCounts;
+    private List<SemesterWiseGrade> semesterWiseGrades;
+    private float cgpa;
+    private int creditsEarned;
+    private int creditsRegistered;
+    private String gradesRefreshed;
+    private List<Friend> friends;
+    private String token;
+    private String tokenIssued;
 
-    public static void refreshData(final Context context, final ResultListener resultListener) {
+    public void refreshData(final Context context, final ResultListener resultListener) {
 
         new AsyncTask<Boolean, Void, Boolean>() {
 
@@ -117,179 +117,91 @@ public class DataHolder {
 
     }
 
-    public static String getRegisterNumber() {
-        return registerNumber;
+    public String getRegisterNumber() {
+        return this.registerNumber;
     }
 
-    public static void setRegisterNumber(String registerNumber) {
-        DataHolder.registerNumber = registerNumber;
+    public String getDateOfBirth() {
+        return this.dateOfBirth;
     }
 
-    public static String getDateOfBirth() {
-        return dateOfBirth;
+    public String getMobileNumber() {
+        return this.mobileNumber;
     }
 
-    public static void setDateOfBirth(String dateOfBirth) {
-        DataHolder.dateOfBirth = dateOfBirth;
+    public String getCampus() {
+        return this.campus;
     }
 
-    public static String getMobileNumber() {
-        return mobileNumber;
+    public String getLatestVersion() {
+        return this.latestVersion;
     }
 
-    public static void setMobileNumber(String mobileNumber) {
-        DataHolder.mobileNumber = mobileNumber;
+    public String getEarliestSupportedVersion() {
+        return this.earliestSupportedVersion;
     }
 
-    public static String getCampus() {
-        return campus;
+    public List<Message> getMessages() {
+        return this.messages;
     }
 
-    public static void setCampus(String campus) {
-        DataHolder.campus = campus;
+    public List<Contributor> getContributors() {
+        return this.contributors;
     }
 
-    public static String getLatestVersion() {
-        return latestVersion;
+    public String getSemester() {
+        return this.semester;
     }
 
-    public static void setLatestVersion(String latestVersion) {
-        DataHolder.latestVersion = latestVersion;
+    public List<Course> getCourses() {
+        return this.courses;
     }
 
-    public static String getEarliestSupportedVersion() {
-        return earliestSupportedVersion;
+    public List<WithdrawnCourse> getWithdrawnCourses() {
+        return this.withdrawnCourses;
     }
 
-    public static void setEarliestSupportedVersion(String earliestSupportedVersion) {
-        DataHolder.earliestSupportedVersion = earliestSupportedVersion;
+    public String getCoursesRefreshed() {
+        return this.coursesRefreshed;
     }
 
-    public static List<Message> getMessages() {
-        return messages;
+    public List<Grade> getGrades() {
+        return this.grades;
     }
 
-    public static void setMessages(List<Message> messages) {
-        DataHolder.messages = messages;
+    public List<GradeCount> getGradeCounts() {
+        return this.gradeCounts;
     }
 
-    public static List<Contributor> getContributors() {
-        return contributors;
+    public List<SemesterWiseGrade> getSemesterWiseGrades() {
+        return this.semesterWiseGrades;
     }
 
-    public static void setContributors(List<Contributor> contributors) {
-        DataHolder.contributors = contributors;
+    public float getCgpa() {
+        return this.cgpa;
     }
 
-    public static String getSemester() {
-        return semester;
+    public int getCreditsEarned() {
+        return this.creditsEarned;
     }
 
-    public static void setSemester(String semester) {
-        DataHolder.semester = semester;
+    public int getCreditsRegistered() {
+        return this.creditsRegistered;
     }
 
-    public static List<Course> getCourses() {
-        return courses;
+    public String getGradesRefreshed() {
+        return this.gradesRefreshed;
     }
 
-    public static void setCourses(List<Course> courses) {
-        DataHolder.courses = courses;
+    public List<Friend> getFriends() {
+        return this.friends;
     }
 
-    public static List<WithdrawnCourse> getWithdrawnCourses() {
-        return withdrawnCourses;
+    public String getToken() {
+        return this.token;
     }
 
-    public static void setWithdrawnCourses(List<WithdrawnCourse> withdrawnCourses) {
-        DataHolder.withdrawnCourses = withdrawnCourses;
-    }
-
-    public static String getCoursesRefreshed() {
-        return coursesRefreshed;
-    }
-
-    public static void setCoursesRefreshed(String coursesRefreshed) {
-        DataHolder.coursesRefreshed = coursesRefreshed;
-    }
-
-    public static List<Grade> getGrades() {
-        return grades;
-    }
-
-    public static void setGrades(List<Grade> grades) {
-        DataHolder.grades = grades;
-    }
-
-    public static List<GradeCount> getGradeCounts() {
-        return gradeCounts;
-    }
-
-    public static void setGradeCounts(List<GradeCount> gradeCounts) {
-        DataHolder.gradeCounts = gradeCounts;
-    }
-
-    public static List<SemesterWiseGrade> getSemesterWiseGrades() {
-        return semesterWiseGrades;
-    }
-
-    public static void setSemesterWiseGrades(List<SemesterWiseGrade> semesterWiseGrades) {
-        DataHolder.semesterWiseGrades = semesterWiseGrades;
-    }
-
-    public static String getGradesRefreshed() {
-        return gradesRefreshed;
-    }
-
-    public static void setGradesRefreshed(String gradesRefreshed) {
-        DataHolder.gradesRefreshed = gradesRefreshed;
-    }
-
-    public static List<Friend> getFriends() {
-        return friends;
-    }
-
-    public static void setFriends(List<Friend> friends) {
-        DataHolder.friends = friends;
-    }
-
-    public static String getToken() {
-        return token;
-    }
-
-    public static void setToken(String token) {
-        DataHolder.token = token;
-    }
-
-    public static String getTokenIssued() {
-        return tokenIssued;
-    }
-
-    public static void setTokenIssued(String tokenIssued) {
-        DataHolder.tokenIssued = tokenIssued;
-    }
-
-    public static float getCgpa() {
-        return cgpa;
-    }
-
-    public static void setCgpa(float cgpa) {
-        DataHolder.cgpa = cgpa;
-    }
-
-    public static int getCreditsEarned() {
-        return creditsEarned;
-    }
-
-    public static void setCreditsEarned(int creditsEarned) {
-        DataHolder.creditsEarned = creditsEarned;
-    }
-
-    public static int getCreditsRegistered() {
-        return creditsRegistered;
-    }
-
-    public static void setCreditsRegistered(int creditsRegistered) {
-        DataHolder.creditsRegistered = creditsRegistered;
+    public String getTokenIssued() {
+        return this.tokenIssued;
     }
 }

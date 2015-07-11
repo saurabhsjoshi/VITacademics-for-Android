@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  *
@@ -38,18 +39,18 @@ import java.util.List;
 public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdapter.AssesmentViewHolder> {
 
 
-    public int layoutId;
-    Context context;
-    Marks marks;
-    Course course;
-    List<Assessment> assesments;
+    private int layoutId;
+    private Context context;
+    private Marks marks;
+    private Course course;
+    private List<Assessment> assesments;
 
 
     public AssesmentListAdapter(Context context, Course course) {
         this.context = context;
         this.course = course;
-        marks = course.getMarks();
-        assesments = marks.getAssessments();
+        this.marks = course.getMarks();
+        this.assesments = marks.getAssessments();
     }
 
     @Override
@@ -93,16 +94,16 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
 
         public AssesmentViewHolder(View view) {
             super(view);
-            assessmentType = (TextView) view.findViewById(R.id.tv_marks_type);
-            maxMarks = (TextView) view.findViewById(R.id.tv_max_marks);
-            scoredMarks = (TextView) view.findViewById(R.id.tv_scored_marks);
-            weightage = (TextView) view.findViewById(R.id.tv_weightage);
-            contribution = (TextView) view.findViewById(R.id.tv_contribution);
+            assessmentType = (TextView) view.findViewById(R.id.value_marks_type);
+            maxMarks = (TextView) view.findViewById(R.id.value_max_marks);
+            scoredMarks = (TextView) view.findViewById(R.id.value_scored_marks);
+            weightage = (TextView) view.findViewById(R.id.value_weightage);
+            contribution = (TextView) view.findViewById(R.id.value_contribution);
             marksProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar_marks);
             courseCode = (TextView) view.findViewById(R.id.course_code);
             courseName = (TextView) view.findViewById(R.id.course_name);
-            totalMax = (TextView) view.findViewById(R.id.tv_max_marks_total);
-            totalScored = (TextView) view.findViewById(R.id.tv_scored_marks_total);
+            totalMax = (TextView) view.findViewById(R.id.value_max_marks_total);
+            totalScored = (TextView) view.findViewById(R.id.value_scored_marks_total);
 
         }
     }

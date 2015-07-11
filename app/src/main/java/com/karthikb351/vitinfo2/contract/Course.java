@@ -26,7 +26,9 @@ import java.util.List;
 
 import co.uk.rushorm.core.RushObject;
 import co.uk.rushorm.core.annotations.RushList;
+import co.uk.rushorm.core.annotations.RushTableAnnotation;
 
+@RushTableAnnotation
 public class Course extends RushObject {
 
     @Expose

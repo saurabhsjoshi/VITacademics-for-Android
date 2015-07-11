@@ -36,7 +36,6 @@
         android:layout_centerHorizontal="true"
         android:background="@color/highlight"
         android:gravity="center"
-        android:text="CSE101"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="30sp"
@@ -54,7 +53,6 @@
         android:gravity="center"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:text="Computer Programming and Problem Solving"
         android:textAlignment="center"
         android:elevation="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -70,7 +68,6 @@
         android:layout_alignTop="@+id/course_name"
         android:layout_marginTop="45dp"
         android:padding="5dp"
-        android:text="CBL"
         android:textColor="@color/primary_text_default_material_light"
         android:textSize="23sp" />
 
@@ -83,7 +80,6 @@
         android:layout_marginTop="45dp"
         android:padding="5dp"
         android:paddingRight="5dp"
-        android:text="4"
         android:textColor="@color/primary_text_default_material_light"
         android:textSize="23sp" />
 
@@ -97,7 +93,6 @@
         android:gravity="center"
         android:elevation="5dp"
         android:paddingLeft="10dp"
-        android:text="GRADE : A"
         android:textColor="@color/colorAccent"
         android:textSize="30dp"
         android:textStyle="bold" />

@@ -20,18 +20,15 @@
 
 package com.karthikb351.vitinfo2.fragment.settings;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.karthikb351.vitinfo2.fragment.settings.SettingsAdapter;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.LoginActivity;
+import com.karthikb351.vitinfo2.api.ResetTask;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.LicensesFragment;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
@@ -41,9 +38,9 @@ public class SettingsFragment extends ListFragment {
 
 
     //ListView listView;
-    String settingsTopics[];
-    String settingsMessages[];
-    SettingsAdapter adapter ;
+    private String settingsTopics[];
+    private String settingsMessages[];
+    private SettingsAdapter adapter ;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -57,9 +54,10 @@ public class SettingsFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().setTitle("Settings");
-        settingsTopics = getResources().getStringArray(R.array.settingsTopic);
-        settingsMessages = getResources().getStringArray(R.array.settingsMessage);
+        String Title = getActivity().getResources().getString(R.string.settings_title);
+        getActivity().setTitle(Title);
+        settingsTopics = getResources().getStringArray(R.array.settings_topic);
+        settingsMessages = getResources().getStringArray(R.array.settings_message);
         adapter = new SettingsAdapter(getActivity(),R.layout.list_item_settings,settingsTopics,settingsMessages);
         setListAdapter(adapter);
     }
@@ -70,21 +68,24 @@ public class SettingsFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
 
         switch (position) {
-            case 0: //Log Out
-                // TODO: Clear Database
+            case 0:
+                // Reset App
+                new ResetTask(getActivity()).execute();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
-            case 1: //Licenses
-                getActivity().setTitle("Open Source Licenses");
+            case 1:
+                // Show licenses of libraries
                 LicensesFragment.displayLicensesFragment(getFragmentManager());
                 break;
-            case 2: //Contributors
+            case 2:
+                // Contributor List
                 ContributorsFragment contributorsFragment = new ContributorsFragment();
                 this.getFragmentManager().beginTransaction()
                         .replace(R.id.flContent, contributorsFragment, null)
                         .addToBackStack(null).commit();
                 break;
-            case 3: //About
+            case 3:
+                // About Page
                 AboutFragment aboutFragment = new AboutFragment();
                 this.getFragmentManager().beginTransaction()
                         .replace(R.id.flContent, aboutFragment, null)

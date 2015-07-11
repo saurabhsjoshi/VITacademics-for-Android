@@ -34,14 +34,14 @@ public class AboutFragment extends Fragment {
     }
 
     public static AboutFragment newInstance() {
-        AboutFragment fragment = new AboutFragment();
-        return fragment;
+        return new AboutFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().setTitle("About");
+        String Title = getActivity().getResources().getString(R.string.about_title);
+        getActivity().setTitle(Title);
         return inflater.inflate(R.layout.fragment_about, container, false);
     }
 

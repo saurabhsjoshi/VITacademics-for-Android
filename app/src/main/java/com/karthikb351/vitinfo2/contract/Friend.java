@@ -28,7 +28,9 @@ import java.util.List;
 import co.uk.rushorm.core.RushObject;
 import co.uk.rushorm.core.annotations.RushIgnore;
 import co.uk.rushorm.core.annotations.RushList;
+import co.uk.rushorm.core.annotations.RushTableAnnotation;
 
+@RushTableAnnotation
 public class Friend extends RushObject {
 
     @Expose

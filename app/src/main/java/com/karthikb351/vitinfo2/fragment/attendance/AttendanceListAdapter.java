@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  *
  * This file is part of VITacademics.
@@ -36,17 +37,17 @@ import java.util.List;
 
 public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAdapter.AttendanceViewHolder> {
 
-    int layoutId;
-    Context context;
-    Course course;
-    Attendance attendance;
-    List<AttendanceDetail> attendanceDetail;
+    private int layoutId;
+    private Context context;
+    private Course course;
+    private Attendance attendance;
+    private List<AttendanceDetail> attendanceDetail;
 
     public AttendanceListAdapter(Context context, Course course) {
         this.context = context;
         this.course = course;
-        attendance = course.getAttendance();
-        attendanceDetail = attendance.getDetails();
+        this.attendance = course.getAttendance();
+        this.attendanceDetail = attendance.getDetails();
     }
 
     @Override
@@ -70,13 +71,13 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
         holder.attendancePercent.setText(attendance.getAttendancePercentage());
         holder.registeredOn.setText(attendance.getRegistrationDate());
         if (attendance.getAttendancePercentage() <= 75) {
-            holder.status.setTextColor(R.color.error_color);
-            holder.status.setText("DEBARRED");
-            holder.progressBarAttendance.setBackgroundColor(R.color.error_color);
+            holder.status.setTextColor(context.getResources().getColor(R.color.error_color));
+            holder.status.setText(context.getString(R.string.attendance_debarred));
+            holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.error_color));
         } else {
-            holder.status.setTextColor(R.color.colorPrimaryDark);
-            holder.status.setText("SAFE");
-            holder.progressBarAttendance.setBackgroundColor(R.color.colorPrimaryDark);
+            holder.status.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+            holder.status.setText(context.getString(R.string.attendance_debarred));
+            holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
         }
         holder.progressBarAttendance.setProgress(attendance.getAttendancePercentage());
     }

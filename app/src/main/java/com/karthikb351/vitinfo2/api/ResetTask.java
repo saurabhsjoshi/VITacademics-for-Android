@@ -17,36 +17,40 @@
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2;
+package com.karthikb351.vitinfo2.api;
 
-import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 
-import com.karthikb351.vitinfo2.api.DataHolder;
+import com.karthikb351.vitinfo2.utility.Constants;
 
-import co.uk.rushorm.android.AndroidInitializeConfig;
 import co.uk.rushorm.core.RushCore;
 
-public class MainApplication extends Application {
+public class ResetTask extends AsyncTask<Void, Void, Void> {
 
-    private DataHolder dataHolder;
+    private Context context;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        // Rush is initialized asynchronously to receive a callback after it initialized
-        // set an InitializeListener on the config object
-        AndroidInitializeConfig config = new AndroidInitializeConfig(getApplicationContext());
-        RushCore.initialize(config);
-
-        this.dataHolder = new DataHolder();
+    public ResetTask(Context context) {
+        this.context = context;
     }
 
-    public DataHolder getDataHolderInstance() {
-        if (this.dataHolder != null) {
-            return this.dataHolder;
-        }
-        this.dataHolder = new DataHolder();
-        return this.dataHolder;
+    @Override
+    protected Void doInBackground(Void... params) {
+        RushCore.getInstance().clearDatabase();
+        return null;
+
+
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences.edit()
+                .clear()
+                .apply();
+
     }
 }

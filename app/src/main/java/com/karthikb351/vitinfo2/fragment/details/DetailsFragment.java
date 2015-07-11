@@ -1,5 +1,6 @@
 /*
  * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  *
  * This file is part of VITacademics.
@@ -33,11 +34,11 @@ import com.karthikb351.vitinfo2.contract.Course;
 
 public class DetailsFragment extends Fragment {
 
-//    final ActionBar actionBar = getActivity().getActionBar();
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    DetailsAdapter adapter;
-    Course course;
+    final ActionBar actionBar = getActivity().getActionBar();
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private DetailsAdapter adapter;
+    private Course course;
 
     public DetailsFragment() {
 
@@ -54,10 +55,10 @@ public class DetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
 
-        //actionBar.setDisplayHomeAsUpEnabled(false);
-        //actionBar.setDisplayShowTitleEnabled(false);
-        getActivity().setTitle("Test");//course.getCourseCode());
-
+        // TODO, rethink this. Must not change Minimum API level
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+        getActivity().setTitle(course.getCourseCode());
         tabLayout = (TabLayout) view.findViewById(R.id.tabs_details);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager_details);
 

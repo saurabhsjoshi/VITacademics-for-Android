@@ -22,65 +22,60 @@
 
 <resources>
     <string name="app_name">VITacademics</string>
-    <string name="hello_world">Hello world!</string>
+
+    <!-- Actions -->
     <string name="action_settings">Settings</string>
-    <string name="assessType1">QUIZ 1</string>
-    <string name="assessType2">CAT 1</string>
-    <string name="assessType3">QUIZ 2</string>
-    <string name="assessType4">CAT 2</string>
-    <string name="assessType5">QUIZ 3</string>
 
-    <string-array name="topic">
-        <item>Today</item>
-        <item>Courses</item>
-        <item>Time Table</item>
-        <item>Grades</item>
-        <item>CGPA Calculator</item>
-        <item>Friends</item>
-        <item>Messages</item>
-        <item>Settings</item>
-        <item>About</item>
-    </string-array>
+    <!-- Sample text -->
+    <string name="hello_world">Hello world!</string>
+    <string name="fragment_blank_hello">Hello blank fragment</string>
 
-    <string-array name="setGrade">
-        <item>S</item>
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>D</item>
-        <item>E</item>
-        <item>F</item>
-        <item>N</item>
-    </string-array>
+    <!-- LoginActivity -->
+    <string name="activity_login_title">Login</string>
 
-    <string-array name="settingsTopic">
-        <item>Log Out</item>
-        <item>Licenses</item>
-        <item>Contributors</item>
-        <item>About</item>
-    </string-array>
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
 
-    <string-array name="settingsMessage">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-    </string-array>
+    <!-- Dialog Message -->
+    <string name="close_dialog">Close</string>
 
-    <!--MainActivity and its corresponding resources(including its fragments) -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_login">Login</string>
+    <!-- Attendance Messages -->
+    <string name="attendance_safe">Safe</string>
+    <string name="attendance_debarred">Debarred</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- Labels -->
+    <string name="courses_attendance">Attendance</string>
+    <string name="courses_marks">Marks</string>
+    <string name="courses_assessment">Assessment</string>
+    <string name="courses_assessments">Assessments</string>
+    <string name="grade_char">Grade</string>
+    <string name="grade_value">Grade Value</string>
+    <string name="grade_cgpa">CGPA</string>
+    <string name="assessment_weightage">Weightage</string>
+    <string name="assessment_contribution">Contribution</string>
+    <string name="percentage">Percentage</string>
 
-    <string name="action_example">Example action</string>
-
-    <!--Messages for undeveloped feautures-->
-    <string name="not_available">This information is not available at the moment</string>
+    <!--Messages for unavailable or incomplete features-->
+    <string name="not_available">This is not available at the moment</string>
+    <string name="not_applicable">This is not applicable</string>
 
     <!--VITacademics API Messages-->
     <string name="api_server_error">The VITacademics Server is down or has encountered an error</string>
     <string name="api_unknown_error">The VITacademics app has encountered an error</string>
+
+    <!-- Fragment Titles !-->
+    <string name="today_title">Today</string>
+    <string name="course_title">Courses</string>
+    <string name="CGPA_calculator_title">CGPA Calculator</string>
+    <string name="contributors_title">Contributors</string>
+    <string name="details_title">Details</string>
+    <string name="friends_title">Friends</string>
+    <string name="grades_title">Grades</string>
+    <string name="settings_title">Settings</string>
+    <string name="time_table_title">Time Table</string>
+    <string name="messages_title">Messages</string>
+    <string name="about_title">About</string>
+    <string name="licenses_title">Licenses</string>
+
 </resources>

@@ -1,6 +1,7 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
  *
  * This file is part of VITacademics.
  * VITacademics is free software: you can redistribute it and/or modify
@@ -29,27 +30,27 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Grade;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.api.DataHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
 public class CGPACalculatorFragment extends Fragment implements View.OnClickListener {
 
-    List<Grade> gradeList;
-    List<Course> courseList;
-    ArrayList<Grade> grades;
-    ArrayList<Course> courses;
-    RecyclerView recyclerView;
-    ImageButton imageButton;
-    View view;
-    CGPACalculatorListAdapter listAdapter;
+    private List<Grade> grades;
+    private List<Course> courses;
+    private int creditsRegistered;
+    private int creditsEarned;
+    private float cgpa;
+    private RecyclerView recyclerView;
+    private ImageButton imageButton;
+    private View view;
+    private CGPACalculatorListAdapter listAdapter;
 
     public CGPACalculatorFragment() {
         //empty default constructor
@@ -68,17 +69,21 @@ public class CGPACalculatorFragment extends Fragment implements View.OnClickList
     }
 
     public void initialize() {
+        this.grades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGrades();
+        this.courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
+        this.creditsRegistered = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCreditsRegistered();
+        this.creditsEarned = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCreditsEarned();
+        this.cgpa = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCgpa();
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        listAdapter = new CGPACalculatorListAdapter(getActivity(), courses, grades);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_cgpa_calculator);
-        imageButton = (ImageButton) view.findViewById(R.id.iv_calculate);
-        imageButton.setOnClickListener(this);
-        gradeList = DataHolder.getGrades();
-        courseList = DataHolder.getCourses();
-        grades = new ArrayList<>(gradeList);
-        courses = new ArrayList<>(courseList);
-        recyclerView.setAdapter(listAdapter);
-        recyclerView.setLayoutManager(layoutManager);
+        this.listAdapter = new CGPACalculatorListAdapter(getActivity(), courses, grades, creditsRegistered, creditsEarned, cgpa);
+        this.recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_cgpa_calculator);
+        this.imageButton = (ImageButton) view.findViewById(R.id.iv_calculate);
+        this.imageButton.setOnClickListener(this);
+        this.recyclerView.setAdapter(listAdapter);
+        this.recyclerView.setLayoutManager(layoutManager);
+        String Title = getActivity().getResources().getString(R.string.CGPA_calculator_title);
+        getActivity().setTitle(Title);
     }
 
     @Override
