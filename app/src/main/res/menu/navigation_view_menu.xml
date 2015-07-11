@@ -27,7 +27,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
 
-        <!--TODO, change this. Use the array in arrays.xml-->
+        <!--TODO, remove this. Use the array in arrays.xml-->
 
         <item
             android:id="@+id/drawer_home"
