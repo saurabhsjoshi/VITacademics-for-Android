@@ -29,8 +29,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 import com.karthikb351.vitinfo2.contract.Grade;
+import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.util.List;
 

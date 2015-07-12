@@ -23,9 +23,9 @@ package com.karthikb351.vitinfo2.api;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.model.Status;
+import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 public class NetworkController {

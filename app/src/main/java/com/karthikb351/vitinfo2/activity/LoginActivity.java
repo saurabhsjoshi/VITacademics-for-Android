@@ -40,7 +40,6 @@ import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.api.DataHolder;
 import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
 import com.karthikb351.vitinfo2.model.Status;

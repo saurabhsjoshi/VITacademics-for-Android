@@ -24,7 +24,6 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Friend;
 import com.karthikb351.vitinfo2.model.Status;
@@ -33,6 +32,7 @@ import com.karthikb351.vitinfo2.response.LoginResponse;
 import com.karthikb351.vitinfo2.response.RefreshResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
+import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import retrofit.Callback;
