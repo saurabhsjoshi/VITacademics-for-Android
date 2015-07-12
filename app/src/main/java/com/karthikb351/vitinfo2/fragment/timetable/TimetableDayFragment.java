@@ -36,6 +36,7 @@ import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
+import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.util.ArrayList;
@@ -77,7 +78,9 @@ public class TimetableDayFragment extends Fragment {
 
 
     void onListItemClicked(Course course) {
-        //TODO: implement redirection on itemclick
+        android.support.v4.app.Fragment frag = DetailsFragment.newInstance(course);
+        android.support.v4.app.FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.flContent,frag,course.getCourseCode()).addToBackStack(null).commit();
     }
 
 

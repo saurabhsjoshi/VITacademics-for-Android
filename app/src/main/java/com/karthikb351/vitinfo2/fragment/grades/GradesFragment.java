@@ -56,6 +56,9 @@ public class GradesFragment extends Fragment {
     private TableLayout gradeCountTable;
     private GradesListAdapter gradesListAdapter;
 
+    int layoutId;
+    TextView errorMessage;
+
     public GradesFragment() {
 
     }
@@ -68,7 +71,13 @@ public class GradesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_grade, container, false);
+        grades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGrades();
+        if(grades==null||grades.isEmpty())
+            layoutId=R.layout.not_available;
+        else
+            layoutId=R.layout.fragment_grade;
+
+        rootView = inflater.inflate(layoutId, container, false);
         initialize();
         return rootView;
     }
@@ -78,6 +87,9 @@ public class GradesFragment extends Fragment {
         grades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGrades();
         gradeCounts = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGradeCounts();
         semesterWiseGrades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getSemesterWiseGrades();
+
+        errorMessage=(TextView)rootView.findViewById(R.id.tv_message);
+        errorMessage.setText("No grades are available");
 
         cgpaTextView = (TextView) rootView.findViewById(R.id.text_view_cgpa);
         gradeCountTable = (TableLayout) rootView.findViewById(R.id.table_grade_count);

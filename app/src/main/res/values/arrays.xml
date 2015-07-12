@@ -39,6 +39,8 @@
         <item>@string/fragment_licenses_title</item>
         <item>@string/fragment_contributors_title</item>
         <item>@string/fragment_about_title</item>
+        <item>Share</item>
+        <item>Rate us</item>
     </string-array>
 
     <string-array name="settings_message">
@@ -46,6 +48,8 @@
         <item>Sweet software that helped us build VITacademics for Android</item>
         <item>Check out the VITacademics team</item>
         <item>About VITacademics</item>
+        <item>Help your friends</item>
+        <item>Play store ratings</item>
     </string-array>
 
     <string-array name="days_of_week">

@@ -29,6 +29,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
@@ -46,6 +47,8 @@ public class FriendsFragment extends Fragment {
     private RecyclerView friendsRecyclerView;
     private FriendsListAdapter adapter;
     private View rootView;
+    int layoutId;
+    TextView errorMessage;
 
     public FriendsFragment() {
         // Required empty public constructor
@@ -57,7 +60,12 @@ public class FriendsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_friends, container, false);
+        if(friends==null || friends.isEmpty())
+            layoutId=R.layout.not_available;
+        else
+            layoutId=R.layout.not_available;
+
+        rootView = inflater.inflate(layoutId, container, false);
         initialize();
         return rootView;
     }
@@ -65,17 +73,24 @@ public class FriendsFragment extends Fragment {
     void initialize() {
         friends = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getFriends();
 
-        RecyclerView.LayoutManager friendsLayoutManager = new LinearLayoutManager(getActivity());
-        adapter = new FriendsListAdapter(getActivity(), friends);
-        friendsRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_friends);
-        friendsRecyclerView.setLayoutManager(friendsLayoutManager);
-        friendsRecyclerView.setAdapter(adapter);
-        adapter.setOnclickListener(new RecyclerViewOnClickListener<Friend>() {
-            @Override
-            public void onItemClick(Friend data) {
-                onListItemClick(data);
-            }
-        });
+        if(layoutId==R.layout.not_available) {
+            errorMessage = (TextView) rootView.findViewById(R.id.tv_message);
+            errorMessage.setText("This feature is not available at the moment");
+        }
+        else {
+            RecyclerView.LayoutManager friendsLayoutManager = new LinearLayoutManager(getActivity());
+            adapter = new FriendsListAdapter(getActivity(), friends);
+            friendsRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_friends);
+            friendsRecyclerView.setLayoutManager(friendsLayoutManager);
+            friendsRecyclerView.setAdapter(adapter);
+            adapter.setOnclickListener(new RecyclerViewOnClickListener<Friend>() {
+                @Override
+                public void onItemClick(Friend data) {
+                    onListItemClick(data);
+                }
+            });
+        }
+
         String Title = getActivity().getResources().getString(R.string.fragment_friends_title);
         getActivity().setTitle(Title);
     }
