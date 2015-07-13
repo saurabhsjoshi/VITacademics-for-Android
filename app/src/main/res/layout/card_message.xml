@@ -51,6 +51,8 @@
             android:gravity="end"
             android:textAlignment="gravity" />
 
+        <!--TODO timetamp alignment-->
+
         <TextView
             android:id="@+id/message"
             android:textSize="16sp"
