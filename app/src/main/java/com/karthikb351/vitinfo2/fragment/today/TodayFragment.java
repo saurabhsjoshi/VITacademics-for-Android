@@ -78,7 +78,7 @@ public class TodayFragment extends Fragment {
     }
 
     void initialize() {
-        todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
+        todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewToday);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         todayRecyclerView.setLayoutManager(layoutManager);
         getActivity().setTitle("Today");

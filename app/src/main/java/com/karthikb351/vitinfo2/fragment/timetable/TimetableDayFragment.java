@@ -69,7 +69,7 @@ public class TimetableDayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.timetable_day_fragment, container, false);
+        rootView = inflater.inflate(R.layout.fragment_timetable_day, container, false);
         initialize();
         return rootView;
     }
