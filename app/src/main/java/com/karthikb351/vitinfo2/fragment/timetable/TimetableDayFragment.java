@@ -53,7 +53,7 @@ public class TimetableDayFragment extends Fragment {
 
     private TimetableListAdapter adapter;
     private RecyclerView recyclerview;
-    private ProgressBar load;
+    private ProgressBar loadProgress;
     private int dayOfWeek;
     private View rootView;
 
@@ -77,7 +77,7 @@ public class TimetableDayFragment extends Fragment {
         recyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_timetable);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(layoutManager);
-        load = (ProgressBar) rootView.findViewById(R.id.timeTableProgressBar);
+        loadProgress = (ProgressBar) rootView.findViewById(R.id.timeTableProgressBar);
         new LoadData().execute();
     }
 
@@ -109,7 +109,7 @@ public class TimetableDayFragment extends Fragment {
     class LoadData extends AsyncTask<Void, Void, List<Course>> {
         @Override
         protected void onPreExecute() {
-            load.setVisibility(View.VISIBLE);
+            loadProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -152,9 +152,9 @@ public class TimetableDayFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(List<Course> res) {
-            load.setVisibility(View.GONE);
-            adapter = new TimetableListAdapter(getActivity(), res);
+        protected void onPostExecute(List<Course> finalCourses) {
+            loadProgress.setVisibility(View.GONE);
+            adapter = new TimetableListAdapter(getActivity(), finalCourses);
             adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
                 @Override
                 public void onItemClick(Course data) {

@@ -23,8 +23,8 @@
 package com.karthikb351.vitinfo2.fragment.today;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,44 +33,59 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.contract.Timing;
+import com.karthikb351.vitinfo2.utility.Constants;
+import com.karthikb351.vitinfo2.utility.DateTime;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
 
-    Context context;
-    List<Pair<Course, Integer>> courses;
-    RecyclerViewOnClickListener<Course> OnclickListener;
+    private Context context;
+    private List<Course> courses;
+    private int dayOfWeek;
+    private RecyclerViewOnClickListener<Course> OnclickListener;
 
-    public TodayListAdapter(Context context, List<Pair<Course, Integer>> courses) {
+    public TodayListAdapter(Context context, int dayOfWeek, List<Course> courses) {
         this.context = context;
+        this.dayOfWeek = dayOfWeek;
         this.courses = courses;
     }
 
     @Override
     public TodayViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        android.support.v7.widget.CardView rootCard = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(R.layout.card_today, parent, false);
+        CardView rootCard = (CardView) LayoutInflater.from(context).inflate(R.layout.card_today, parent, false);
         return new TodayViewHolder(rootCard);
     }
 
     @Override
-    public void onBindViewHolder(TodayViewHolder holder, int position) {
+    public void onBindViewHolder(TodayViewHolder todayViewHolder, int position) {
 
-        int AttendanceP = courses.get(position).first.getAttendance().getAttendancePercentage();
-        TodayViewHolder todayViewHolder = (TodayViewHolder) holder;
-        todayViewHolder.courseCode.setText(courses.get(position).first.getCourseCode());
-        todayViewHolder.courseName.setText(courses.get(position).first.getCourseTitle());
-        todayViewHolder.Venue.setText(courses.get(position).first.getVenue());
-        todayViewHolder.Slot.setText(courses.get(position).first.getSlot());
+        int AttendanceP = courses.get(position).getAttendance().getAttendancePercentage();
+        todayViewHolder.courseCode.setText(courses.get(position).getCourseCode());
+        todayViewHolder.courseName.setText(courses.get(position).getCourseTitle());
+        todayViewHolder.Venue.setText(courses.get(position).getVenue());
+        todayViewHolder.Slot.setText(courses.get(position).getSlot());
         todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
         todayViewHolder.pbAttendance.setProgress(AttendanceP);
-        String start = courses.get(position).first.getTimings().get(courses.get(position).second).getStartTime();
-        todayViewHolder.TimeLeft.setText(timediff(start));
+
+        long diff = 0;
+        boolean ended = false;
+        for (Course course : courses) {
+            for (Timing timing : course.getTimings()) {
+                if (timing.getDay() == dayOfWeek) {
+                    diff = getTimeDifference(timing);
+                    ended = checkIfSlotEnded(timing);
+                    break;
+                }
+            }
+        }
+
+        todayViewHolder.TimeLeft.setText(getTimeDifferenceString(diff, ended));
     }
 
     public void setOnclickListener(RecyclerViewOnClickListener<Course> listener) {
@@ -82,30 +97,46 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         return courses.size();
     }
 
-    public String timediff(String date) {
-        String result = "";
-        try {
-            int hours = 0, minutes = 0;
-            Date now = new Date();
-            Date startTime = new SimpleDateFormat("MM/dd/yyyy KK:mm:ss a Z").parse(date);
-            long timediff = startTime.getTime() - now.getTime();
-            if (timediff > 60000) {
-                hours = (int) TimeUnit.MILLISECONDS.toHours(timediff);
-                minutes = (int) (TimeUnit.MILLISECONDS.toMinutes(timediff) - TimeUnit.HOURS.toMinutes(hours));
-            } else {
-                result = "Right now";
-            }
+    private String getTimeDifferenceString(long diff, boolean ended) {
+        int hours;
+        int minutes;
+        if (diff < 0 && ended) {
+            return context.getString(R.string.today_course_timing_done);
+        } else if (diff > Constants.MILLISECONDS_IN_HOUR) {
+            hours = (int) TimeUnit.MILLISECONDS.toHours(diff);
+            minutes = (int) (TimeUnit.MILLISECONDS.toMinutes(diff) - TimeUnit.HOURS.toMinutes(hours));
             if (hours == 0) {
-                result = Integer.toString(minutes) + " minutes later";
+                return Integer.toString(minutes) + context.getString(R.string.today_course_timing_minutes) + context.getString(R.string.today_course_timing_later);
             } else if (minutes == 0) {
-                result = Integer.toString(minutes) + " hours later";
+                return Integer.toString(hours) + context.getString(R.string.today_course_timing_hours) + context.getString(R.string.today_course_timing_later);
             } else {
-                result = Integer.toString(hours) + " hours and " + Integer.toString(minutes) + " minutes later";
+                return Integer.toString(hours) + context.getString(R.string.today_course_timing_hours) + context.getString(R.string.today_course_timing_and) + Integer.toString(minutes) + context.getString(R.string.today_course_timing_minutes) +  context.getString(R.string.today_course_timing_later);
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } else {
+            return context.getString(R.string.today_course_timing_right_now);
         }
-        return result;
+    }
+
+    private long getTimeDifference(Timing timing) {
+        Date now = new Date();
+        try {
+            Date courseStartTime = DateTime.getISO8601TimeObject(timing.getStartTime());
+            return courseStartTime.getTime() - now.getTime();
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+
+    private boolean checkIfSlotEnded(Timing timing) {
+        Date now = new Date();
+        try {
+            Date courseEndTime = DateTime.getISO8601TimeObject(timing.getEndTime());
+            return courseEndTime.before(now);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -125,7 +156,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         }
 
         public void onClick(View view) {
-            Course course = courses.get(getAdapterPosition()).first;
+            Course course = courses.get(getAdapterPosition());
             OnclickListener.onItemClick(course);
         }
     }

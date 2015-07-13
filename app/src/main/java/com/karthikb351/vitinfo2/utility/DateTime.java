@@ -49,6 +49,12 @@ public class DateTime {
         return SimpleDateFormat.getTimeInstance().format(time);
     }
 
+    public static Date getISO8601TimeObject(String jsonString) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_TIME_FORMAT, Locale.US);
+        dateFormat.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE_UTC));
+        return dateFormat.parse(jsonString);
+    }
+
     public static int compareTimes(String lhsTimeString, String rhsTimeString) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_TIME_FORMAT, Locale.US);
         dateFormat.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE_UTC));
