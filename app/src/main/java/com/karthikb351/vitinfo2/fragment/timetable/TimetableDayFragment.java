@@ -35,11 +35,17 @@ import android.widget.ProgressBar;
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
+import com.karthikb351.vitinfo2.utility.DateTime;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -111,14 +117,38 @@ public class TimetableDayFragment extends Fragment {
         protected List<Course> doInBackground(Void... params) {
             List<Course> finalArray = new ArrayList<>();
             List<Course> courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
-            for (Course c : courses) {
-                for (int i = 0; i < c.getTimings().size(); i++) {
-                    if (c.getTimings().get(i).getDay() == dayOfWeek) {
-                        finalArray.add(c);
+            for (Course course : courses) {
+                for (Timing timing : course.getTimings()) {
+                    if (timing.getDay() == dayOfWeek) {
+                        finalArray.add(course);
                     }
                 }
             }
-            //TODO , sort based on start time
+
+            Collections.sort(finalArray, new Comparator<Course>() {
+                @Override
+                public int compare(Course lhs, Course rhs) {
+                    String lhsStartTime = "";
+                    String rhsStartTime = "";
+                    for (Timing timing : lhs.getTimings()) {
+                        if (timing.getDay() == dayOfWeek) {
+                            lhsStartTime = timing.getStartTime();
+                        }
+                    }
+                    for (Timing timing : rhs.getTimings()) {
+                        if (timing.getDay() == dayOfWeek) {
+                            rhsStartTime = timing.getStartTime();
+                        }
+                    }
+                    try {
+                        return DateTime.compareTimes(lhsStartTime, rhsStartTime);
+                    } catch (ParseException ex) {
+                        ex.printStackTrace();
+                        return 0;
+                    }
+                }
+            });
+
             return finalArray;
         }
 

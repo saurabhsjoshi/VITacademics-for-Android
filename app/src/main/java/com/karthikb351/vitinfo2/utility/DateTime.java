@@ -48,4 +48,20 @@ public class DateTime {
         Date time = dateFormat.parse(jsonString);
         return SimpleDateFormat.getTimeInstance().format(time);
     }
+
+    public static int compareTimes(String lhsTimeString, String rhsTimeString) throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_TIME_FORMAT, Locale.US);
+        dateFormat.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE_UTC));
+        Date lhsTime = dateFormat.parse(lhsTimeString);
+        Date rhsTime = dateFormat.parse(rhsTimeString);
+
+        if (lhsTime.after(rhsTime)) {
+            return 1;
+        }
+
+        if (lhsTime.before(rhsTime)) {
+            return -1;
+        }
+        return 0;
+    }
 }
