@@ -37,10 +37,8 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
-import com.karthikb351.vitinfo2.utility.DateTime;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,7 +122,7 @@ public class TimetableDayFragment extends Fragment {
                 }
             }
             k=0;
-            try {
+            /*try {
                 for (int i = 0; i < finalArray.size() - 1; i++) {
                     for (int j = i + 1; j < finalArray.size(); j++) {
                         Course a = finalArray.get(i), b = finalArray.get(j);
@@ -139,7 +137,7 @@ public class TimetableDayFragment extends Fragment {
             }
             catch (ParseException e){
                 e.printStackTrace();
-            }
+            }*/
 
 
             return finalArray;
