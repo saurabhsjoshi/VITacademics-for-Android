@@ -21,15 +21,27 @@
 package com.karthikb351.vitinfo2.fragment.messages;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Message;
+import com.karthikb351.vitinfo2.utility.Constants;
+import com.karthikb351.vitinfo2.utility.DateTime;
 
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.MessageViewHolder> {
 
@@ -43,14 +55,21 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
     @Override
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        CardView cardView = (CardView) LayoutInflater.from(context).inflate(R.layout.card_message, parent, false);
+        return new MessageViewHolder(cardView);
     }
 
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
+        holder.messageId.setText(Integer.toString(messages.get(position).getMessageId()));
         holder.message.setText(messages.get(position).getMessage());
-        holder.timeStamp.setText(messages.get(position).getTimestamp());
-        holder.messageId.setText(messages.get(position).getMessageId());
+
+        try {
+            holder.timestamp.setText(DateTime.parseISO8601DateTime(messages.get(position).getTimestamp()));
+
+        } catch (ParseException ex) {
+            holder.timestamp.setText(messages.get(position).getTimestamp());
+        }
     }
 
     @Override
@@ -60,13 +79,14 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
     public class MessageViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView messageId, message, timeStamp;
+        public TextView messageId, message, timestamp;
 
         public MessageViewHolder(View view) {
             super(view);
-            message = (TextView) view.findViewById(R.id.tv_message);
-            timeStamp = (TextView) view.findViewById(R.id.tv_message_timestamp);
-            messageId = (TextView) view.findViewById(R.id.tv_message_id);
+
+            messageId = (TextView) view.findViewById(R.id.message_id);
+            message = (TextView) view.findViewById(R.id.message);
+            timestamp = (TextView) view.findViewById(R.id.message_timestamp);
         }
     }
 }

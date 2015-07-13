@@ -21,7 +21,6 @@
 package com.karthikb351.vitinfo2.fragment.messages;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,6 +33,7 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 
+import java.util.Collections;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -42,35 +42,35 @@ public class MessagesFragment extends Fragment {
 
     private List<Message> messages;
     private RecyclerView recyclerView;
-    private MessageListAdapter listAdapter;
+    private MessageListAdapter messageListAdapter;
+    private RecyclerView.LayoutManager layoutManager;
     private View rootView;
 
     public MessagesFragment() {
-        //required empty public constructor
     }
 
     public static MessagesFragment newInstance() {
         return new MessagesFragment();
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_messages, container, false);
+        initialize();
+        return rootView;
+    }
+
     public void initialize() {
-        messages = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getMessages();
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        listAdapter = new MessageListAdapter(getActivity(), messages);
+        messages = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getMessages();
+        Collections.reverse(messages);
+        layoutManager = new LinearLayoutManager(getActivity());
+        messageListAdapter = new MessageListAdapter(getActivity(), messages);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_messages);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(listAdapter);
+        recyclerView.setAdapter(messageListAdapter);
         String Title = getActivity().getResources().getString(R.string.fragment_messages_title);
         getActivity().setTitle(Title);
 
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.card_message, container, false);
-        initialize();
-        return rootView;
     }
 
     @Override
@@ -89,5 +89,4 @@ public class MessagesFragment extends Fragment {
     public void onEvent(RefreshFragmentEvent event) {
         initialize();
     }
-
 }

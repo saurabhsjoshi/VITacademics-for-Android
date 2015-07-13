@@ -22,10 +22,9 @@ package com.karthikb351.vitinfo2.utility;
 
 public class Constants {
 
-    public static final String API_BASE_URL = "https://vitacademics-rel.herokuapp.com";
+    public static final String API_BASE_URL = "https://vitacademics-staging.herokuapp.com";
 
     public final static String FILENAME_SHAREDPREFERENCES = "vitacademics.prefs";
-    public final static String SQLITE_DATABASE_NAME = "vitacademics.db";
 
     public final static String KEY_COURSES_REFRESHED = "refreshed_courses";
     public final static String KEY_GRADES_REFRESHED = "refreshed_grades";
@@ -54,4 +53,9 @@ public class Constants {
 
     public final static String SQL_FIELD_CAMPUS = "campus";
     public final static String SQL_FIELD_REGISTER_NUMBER = "registerNumber";
+
+    public final static String JSON_ISO8601_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    public final static String JSON_ISO8601_DATE_FORMAT = "yyyy-MM-dd";
+    public final static String JSON_ISO8601_TIME_FORMAT = "HH:mm:ss'Z'";
+    public final static String TIMEZONE_UTC = "UTC";
 }

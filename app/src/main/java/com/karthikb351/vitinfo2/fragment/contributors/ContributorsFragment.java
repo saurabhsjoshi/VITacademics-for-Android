@@ -32,7 +32,6 @@ import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Contributor;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 
@@ -44,9 +43,8 @@ public class ContributorsFragment extends Fragment {
 
     private List<Contributor> contributors;
     private RecyclerView recyclerView;
-    private ContributorListAdapter contributorsListAdapter;
-    private MainActivity mainActivity;
-    private RecyclerView.LayoutManager contributorsLayoutManager;
+    private ContributorListAdapter contributorListAdapter;
+    private RecyclerView.LayoutManager layoutManager;
     private View view;
 
     public ContributorsFragment() {
@@ -58,19 +56,19 @@ public class ContributorsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.contributors, container, false);
+        view = inflater.inflate(R.layout.fragment_contributors, container, false);
         initialize();
         return view;
     }
 
     public void initialize() {
-        contributors = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getContributors();
+        contributors = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getContributors();
 
-        contributorsLayoutManager = new LinearLayoutManager(getActivity());
-        contributorsListAdapter = new ContributorListAdapter(getActivity(), contributors);
+        layoutManager = new LinearLayoutManager(getActivity());
+        contributorListAdapter = new ContributorListAdapter(getActivity(), contributors);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_contributors);
-        recyclerView.setLayoutManager(contributorsLayoutManager);
-        recyclerView.setAdapter(contributorsListAdapter);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(contributorListAdapter);
         String Title = getActivity().getResources().getString(R.string.fragment_contributors_title);
         getActivity().setTitle(Title);
 
