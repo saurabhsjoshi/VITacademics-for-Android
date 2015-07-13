@@ -37,7 +37,7 @@ public class SortedArrayList extends ArrayList<Pair<Course, Integer>> {
         try {
             Date date = new Date();
             Timing thisTime = data.first.getTimings().get(data.second);
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy KK:mm:ss a Z", Locale.US);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_DATETIME_FORMAT, Locale.US);
             Date startDate = simpleDateFormat.parse(thisTime.getStartTime());
             Date endDate = simpleDateFormat.parse(thisTime.getEndTime());
             if (date.after(endDate))
