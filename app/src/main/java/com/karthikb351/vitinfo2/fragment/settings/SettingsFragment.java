@@ -97,10 +97,10 @@ public class SettingsFragment extends ListFragment {
                 Intent share = new Intent(android.content.Intent.ACTION_SEND);
                 share.setType("text/plain");
 
-                share.putExtra(Intent.EXTRA_SUBJECT, "Share VITacademics");
+                share.putExtra(Intent.EXTRA_SUBJECT, "Download VITacademics from: ");
                 share.putExtra(Intent.EXTRA_TEXT, Constants.API_BASE_URL);
 
-                startActivity(Intent.createChooser(share, "Share text to..."));
+                startActivity(Intent.createChooser(share, "Share VITacademics using ..."));
                 break;
         }
 

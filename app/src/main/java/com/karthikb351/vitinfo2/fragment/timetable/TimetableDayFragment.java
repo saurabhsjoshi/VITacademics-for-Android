@@ -140,6 +140,7 @@ public class TimetableDayFragment extends Fragment {
             }*/
 
 
+
             return finalArray;
         }
 
