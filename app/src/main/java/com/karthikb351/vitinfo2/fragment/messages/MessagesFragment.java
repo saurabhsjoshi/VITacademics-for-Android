@@ -33,6 +33,7 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 
+import java.util.Collections;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -61,7 +62,7 @@ public class MessagesFragment extends Fragment {
 
     public void initialize() {
         messages = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getMessages();
-
+        Collections.reverse(messages);
         layoutManager = new LinearLayoutManager(getActivity());
         messageListAdapter = new MessageListAdapter(getActivity(), messages);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_messages);
