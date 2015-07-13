@@ -53,4 +53,9 @@ public class Constants {
 
     public final static String SQL_FIELD_CAMPUS = "campus";
     public final static String SQL_FIELD_REGISTER_NUMBER = "registerNumber";
+
+    public final static String JSON_ISO8601_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    public final static String JSON_ISO8601_DATE_FORMAT = "yyyy-MM-dd";
+    public final static String JSON_ISO8601_TIME_FORMAT = "HH:mm:ss'Z'";
+    public final static String TIMEZONE_UTC = "UTC";
 }
