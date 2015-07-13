@@ -60,7 +60,7 @@ public class MessagesFragment extends Fragment {
     }
 
     public void initialize() {
-        messages = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getMessages();
+        messages = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getMessages();
 
         layoutManager = new LinearLayoutManager(getActivity());
         messageListAdapter = new MessageListAdapter(getActivity(), messages);

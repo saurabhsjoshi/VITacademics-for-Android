@@ -28,7 +28,7 @@ import java.util.TimeZone;
 
 public class DateTime {
 
-    public static String parseISO8601DateTime(String jsonString) throws ParseException{
+    public static String parseISO8601DateTime(String jsonString) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_DATETIME_FORMAT, Locale.US);
         dateFormat.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE_UTC));
         Date dateTime = dateFormat.parse(jsonString);
