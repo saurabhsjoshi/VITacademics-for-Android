@@ -32,6 +32,7 @@ import com.karthikb351.vitinfo2.api.ResetTask;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.LicensesFragment;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
+import com.karthikb351.vitinfo2.utility.Constants;
 
 
 public class SettingsFragment extends ListFragment {
@@ -90,6 +91,16 @@ public class SettingsFragment extends ListFragment {
                 this.getFragmentManager().beginTransaction()
                         .replace(R.id.flContent, aboutFragment, null)
                         .addToBackStack(null).commit();
+                break;
+            case 4:
+                //Share app
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                share.setType("text/plain");
+
+                share.putExtra(Intent.EXTRA_SUBJECT, "Share VITacademics");
+                share.putExtra(Intent.EXTRA_TEXT, Constants.API_BASE_URL);
+
+                startActivity(Intent.createChooser(share, "Share text to..."));
                 break;
         }
 
