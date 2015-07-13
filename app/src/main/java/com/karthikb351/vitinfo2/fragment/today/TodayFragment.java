@@ -67,10 +67,9 @@ public class TodayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.card_today, container, false);
+        rootView = inflater.inflate(R.layout.fragment_today, container, false);
         //load = (ProgressBar) rootView.findViewById(R.id.progress_bar_today);
-        todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
-        initialize();
+       initialize();
         return rootView;
     }
 
@@ -79,6 +78,9 @@ public class TodayFragment extends Fragment {
     }
 
     void initialize() {
+        todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_today);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        todayRecyclerView.setLayoutManager(layoutManager);
         getActivity().setTitle("Today");
         new loadToday().execute();
     }
@@ -131,9 +133,7 @@ public class TodayFragment extends Fragment {
         protected void onPostExecute(List<Pair<Course, Integer>> res) {
             //load.setVisibility(View.GONE);
             todayListAdapter = new TodayListAdapter(getActivity(), res);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-            todayRecyclerView.setLayoutManager(layoutManager);
-            todayRecyclerView.setAdapter(todayListAdapter);
+           todayRecyclerView.setAdapter(todayListAdapter);
 
             todayListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
                 @Override
