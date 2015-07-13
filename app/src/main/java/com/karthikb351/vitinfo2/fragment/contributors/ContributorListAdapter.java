@@ -37,30 +37,26 @@ import java.util.List;
 
 public class ContributorListAdapter extends RecyclerView.Adapter<ContributorListAdapter.ContributorViewHolder> {
 
-    List<Contributor> contributors;
-    Context context;
+    private Context context;
+    private List<Contributor> contributors;
+
 
     public ContributorListAdapter(Context context, List<Contributor> contributors) {
         this.context = context;
         this.contributors = contributors;
-
     }
 
     @Override
     public ContributorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardView cardView = (CardView) LayoutInflater.from(context).inflate(R.layout.card_contributors, parent, false);
+        CardView cardView = (CardView) LayoutInflater.from(context).inflate(R.layout.card_contributor, parent, false);
         return new ContributorViewHolder(cardView);
     }
 
     @Override
     public void onBindViewHolder(ContributorViewHolder holder, int position) {
-        holder.contributorMail.setText(contributors.get(position).getEmail());
-        holder.contributorGit.setText(contributors.get(position).getGithubProfile());
-        holder.contributorRole.setText(contributors.get(position).getRole());
         holder.contributorName.setText(contributors.get(position).getName());
-        holder.contributorId.setText(contributors.get(position).getContributorId());
+        holder.contributorRole.setText(contributors.get(position).getRole());
     }
-
 
     @Override
     public int getItemCount() {
@@ -69,16 +65,13 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
 
     public class ContributorViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView contributorId, contributorName, contributorRole, contributorGit, contributorMail;
+        public TextView contributorName, contributorRole;
 
         public ContributorViewHolder(View view) {
             super(view);
-            //contributorId=(TextView)view.findViewById(R.id.contributor_id);
+
             contributorName = (TextView) view.findViewById(R.id.contributor_name);
             contributorRole = (TextView) view.findViewById(R.id.contributor_role);
-            contributorGit = (TextView) view.findViewById(R.id.contributor_github_profile);
-            contributorMail = (TextView) view.findViewById(R.id.contributor_email);
         }
     }
-
 }

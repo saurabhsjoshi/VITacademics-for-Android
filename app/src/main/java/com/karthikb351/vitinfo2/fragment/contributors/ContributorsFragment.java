@@ -45,7 +45,6 @@ public class ContributorsFragment extends Fragment {
     private List<Contributor> contributors;
     private RecyclerView recyclerView;
     private ContributorListAdapter contributorsListAdapter;
-    private MainActivity mainActivity;
     private RecyclerView.LayoutManager contributorsLayoutManager;
     private View view;
 
@@ -58,13 +57,13 @@ public class ContributorsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.contributors, container, false);
+        view = inflater.inflate(R.layout.fragment_contributors, container, false);
         initialize();
         return view;
     }
 
     public void initialize() {
-        contributors = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getContributors();
+        contributors = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getContributors();
 
         contributorsLayoutManager = new LinearLayoutManager(getActivity());
         contributorsListAdapter = new ContributorListAdapter(getActivity(), contributors);
