@@ -24,16 +24,22 @@
 
 <!--// TODO Use string resources-->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.karthikb351.vitinfo2.fragment.TimeTable.TimeTableDayFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ProgressBar
+        android:id="@+id/timeTableProgressBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_timetable"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/fragment_blank_hello" />
-
-</FrameLayout>
+        android:scrollbars="vertical" />
+</LinearLayout>
