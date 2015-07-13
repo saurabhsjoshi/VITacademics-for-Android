@@ -23,6 +23,7 @@
 package com.karthikb351.vitinfo2.fragment.today;
 
 import android.content.Context;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -46,43 +47,38 @@ import java.util.concurrent.TimeUnit;
 public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
 
     private Context context;
-    private List<Course> courses;
+    private List<Pair<Course, Timing>> courseTimingPairs;
     private int dayOfWeek;
     private RecyclerViewOnClickListener<Course> OnclickListener;
 
-    public TodayListAdapter(Context context, int dayOfWeek, List<Course> courses) {
+    public TodayListAdapter(Context context, int dayOfWeek, List<Pair<Course, Timing>> courseTimingPairs) {
         this.context = context;
         this.dayOfWeek = dayOfWeek;
-        this.courses = courses;
+        this.courseTimingPairs = courseTimingPairs;
     }
 
     @Override
     public TodayViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardView rootCard = (CardView) LayoutInflater.from(context).inflate(R.layout.card_today, parent, false);
-        return new TodayViewHolder(rootCard);
+        CardView cardView = (CardView) LayoutInflater.from(context).inflate(R.layout.card_today, parent, false);
+        return new TodayViewHolder(cardView);
     }
 
     @Override
     public void onBindViewHolder(TodayViewHolder todayViewHolder, int position) {
 
-        int AttendanceP = courses.get(position).getAttendance().getAttendancePercentage();
-        todayViewHolder.courseCode.setText(courses.get(position).getCourseCode());
-        todayViewHolder.courseName.setText(courses.get(position).getCourseTitle());
-        todayViewHolder.Venue.setText(courses.get(position).getVenue());
-        todayViewHolder.Slot.setText(courses.get(position).getSlot());
+        int AttendanceP = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
+        todayViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
+        todayViewHolder.courseName.setText(courseTimingPairs.get(position).first.getCourseTitle());
+        todayViewHolder.Venue.setText(courseTimingPairs.get(position).first.getVenue());
+        todayViewHolder.Slot.setText(courseTimingPairs.get(position).first.getSlot());
         todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
         todayViewHolder.pbAttendance.setProgress(AttendanceP);
 
         long diff = 0;
         boolean ended = false;
-        for (Course course : courses) {
-            for (Timing timing : course.getTimings()) {
-                if (timing.getDay() == dayOfWeek) {
-                    diff = getTimeDifference(timing);
-                    ended = checkIfSlotEnded(timing);
-                    break;
-                }
-            }
+        if (courseTimingPairs.get(position).second.getDay() == dayOfWeek) {
+            diff = getTimeDifference(courseTimingPairs.get(position).second);
+            ended = checkIfSlotEnded(courseTimingPairs.get(position).second);
         }
 
         todayViewHolder.TimeLeft.setText(getTimeDifferenceString(diff, ended));
@@ -94,7 +90,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
     @Override
     public int getItemCount() {
-        return courses.size();
+        return courseTimingPairs.size();
     }
 
     private String getTimeDifferenceString(long diff, boolean ended) {
@@ -110,7 +106,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             } else if (minutes == 0) {
                 return Integer.toString(hours) + context.getString(R.string.today_course_timing_hours) + context.getString(R.string.today_course_timing_later);
             } else {
-                return Integer.toString(hours) + context.getString(R.string.today_course_timing_hours) + context.getString(R.string.today_course_timing_and) + Integer.toString(minutes) + context.getString(R.string.today_course_timing_minutes) +  context.getString(R.string.today_course_timing_later);
+                return Integer.toString(hours) + context.getString(R.string.today_course_timing_hours) + context.getString(R.string.today_course_timing_and) + Integer.toString(minutes) + context.getString(R.string.today_course_timing_minutes) + context.getString(R.string.today_course_timing_later);
             }
         } else {
             return context.getString(R.string.today_course_timing_right_now);
@@ -150,13 +146,13 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             Attendance = (TextView) view.findViewById(R.id.tv_attendance);
             Slot = (TextView) view.findViewById(R.id.tv_slot);
             Venue = (TextView) view.findViewById(R.id.tv_venue);
-            TimeLeft = (TextView) view.findViewById(R.id.tvTimeLeft);
+            TimeLeft = (TextView) view.findViewById(R.id.tv_time_left);
             pbAttendance = (ProgressBar) view.findViewById(R.id.process_bar_attendance);
             pbAttendance.setMax(100);
         }
 
         public void onClick(View view) {
-            Course course = courses.get(getAdapterPosition());
+            Course course = courseTimingPairs.get(getAdapterPosition()).first;
             OnclickListener.onItemClick(course);
         }
     }

@@ -47,7 +47,7 @@
     <string name="button_close_dialog">Close</string>
 
     <!-- Today Fragment -->
-    <string name="today_course_timing_done">Done for the day</string>
+    <string name="today_course_timing_done">Done for today</string>
     <string name="today_course_timing_right_now">Right now</string>
     <string name="today_course_timing_hours">hours</string>
     <string name="today_course_timing_minutes">minutes</string>

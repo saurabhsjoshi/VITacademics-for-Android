@@ -25,6 +25,7 @@ package com.karthikb351.vitinfo2.fragment.today;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -109,36 +110,38 @@ public class TodayFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
     }
 
-    class loadToday extends AsyncTask<Void, Void, List<Course>> {
+    class loadToday extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
         @Override
         protected void onPreExecute() {
             loadProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected List<Course> doInBackground(Void... params) {
+        protected List<Pair<Course, Timing>> doInBackground(Void... params) {
             dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
-            List<Course> finalArray = new ArrayList<>();
+            List<Pair<Course, Timing>> finalArray = new ArrayList<>();
             courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
             for (Course course : courses) {
+                Timing lastTiming = new Timing();
                 for (Timing timing : course.getTimings()) {
-                    if (timing.getDay() == dayOfWeek) {
-                        finalArray.add(course);
+                    if (timing.getDay() == dayOfWeek && !(timing.equals(lastTiming))) {
+                        finalArray.add(new Pair<>(course, timing));
+                        lastTiming = timing;
                     }
                 }
             }
 
-            Collections.sort(finalArray, new Comparator<Course>() {
+            Collections.sort(finalArray, new Comparator<Pair<Course, Timing>>() {
                 @Override
-                public int compare(Course lhs, Course rhs) {
+                public int compare(Pair<Course, Timing> lhs, Pair<Course, Timing> rhs) {
                     String lhsStartTime = "";
                     String rhsStartTime = "";
-                    for (Timing timing : lhs.getTimings()) {
+                    for (Timing timing : lhs.first.getTimings()) {
                         if (timing.getDay() == dayOfWeek) {
                             lhsStartTime = timing.getStartTime();
                         }
                     }
-                    for (Timing timing : rhs.getTimings()) {
+                    for (Timing timing : rhs.first.getTimings()) {
                         if (timing.getDay() == dayOfWeek) {
                             rhsStartTime = timing.getStartTime();
                         }
@@ -152,11 +155,12 @@ public class TodayFragment extends Fragment {
                 }
             });
 
+
             return finalArray;
         }
 
         @Override
-        protected void onPostExecute(List<Course> finalCourses) {
+        protected void onPostExecute(List<Pair<Course, Timing>> finalCourses) {
             loadProgress.setVisibility(View.GONE);
             todayListAdapter = new TodayListAdapter(getActivity(), dayOfWeek, finalCourses);
             todayRecyclerView.setAdapter(todayListAdapter);
