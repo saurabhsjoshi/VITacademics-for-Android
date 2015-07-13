@@ -68,9 +68,9 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
     public void onBindViewHolder(CGPAcalculatorViewHolder holder, int position) {
         holder.tvNewCGPA.setText(Float.toString(newCGPA));
         holder.oldCGPA.setText(Float.toString(cgpa));
-        holder.courseName.setText(courses.get(position - 1).getCourseTitle());
-        holder.courseCode.setText(courses.get(position - 1).getCourseCode());
-        holder.courseCredits.setText(courses.get(position - 1).getLtpc().charAt(3));
+        holder.courseName.setText(courses.get(position).getCourseTitle());
+        holder.courseCode.setText(courses.get(position).getCourseCode());
+        holder.courseCredits.setText(courses.get(position).getLtpc().charAt(3));
     }
 
     @Override
@@ -103,13 +103,13 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
             courseName = (TextView) view.findViewById(R.id.tv_course_name);
             courseCredits = (TextView) view.findViewById(R.id.tv_course_credit);
             spinner = (Spinner) view.findViewById(R.id.spinner_course_grade);
-            spinner.setOnItemClickListener(this);
-            calculate.setOnClickListener(new View.OnClickListener() {
+            //spinner.setOnItemClickListener(this);
+            /*calculate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     newCGPA = totalgradeValue / newCredits;
                 }
-            });
+            });*/
         }
 
         @Override

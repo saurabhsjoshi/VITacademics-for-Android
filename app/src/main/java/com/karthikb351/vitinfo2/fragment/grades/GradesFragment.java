@@ -88,16 +88,20 @@ public class GradesFragment extends Fragment {
         gradeCounts = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGradeCounts();
         semesterWiseGrades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getSemesterWiseGrades();
 
-        errorMessage=(TextView)rootView.findViewById(R.id.tv_message);
-        errorMessage.setText("No grades are available");
+        if(layoutId==R.layout.not_available) {
+            errorMessage = (TextView) rootView.findViewById(R.id.tv_message);
+            errorMessage.setText("No grades are available");
+        }
+        else {
+            cgpaTextView = (TextView) rootView.findViewById(R.id.text_view_cgpa);
+            gradeCountTable = (TableLayout) rootView.findViewById(R.id.table_grade_count);
+            fillGradeCountData();
+            gradeListRecyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_grades);
+            gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+            gradesListAdapter = new GradesListAdapter(getActivity(), grades);
+            gradeListRecyclerview.setAdapter(gradesListAdapter);
+        }
 
-        cgpaTextView = (TextView) rootView.findViewById(R.id.text_view_cgpa);
-        gradeCountTable = (TableLayout) rootView.findViewById(R.id.table_grade_count);
-        fillGradeCountData();
-        gradeListRecyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_grades);
-        gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        gradesListAdapter = new GradesListAdapter(getActivity(), grades);
-        gradeListRecyclerview.setAdapter(gradesListAdapter);
         String Title = getActivity().getResources().getString(R.string.fragment_grades_title);
         getActivity().setTitle(Title);
     }

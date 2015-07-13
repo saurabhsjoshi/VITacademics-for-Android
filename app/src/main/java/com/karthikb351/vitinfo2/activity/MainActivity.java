@@ -46,7 +46,6 @@ import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.UnavailableFragment;
-import com.karthikb351.vitinfo2.fragment.cgpaCalculator.CGPACalculatorFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
@@ -152,25 +151,21 @@ public class MainActivity extends AppCompatActivity {
                         frag = GradesFragment.newInstance();
                         pos = 3;
                         break;
-                    case "CGPA Calculator":
-                        frag = CGPACalculatorFragment.newInstance();
-                        pos = 4;
-                        break;
                     case "Friends":
                         frag = FriendsFragment.newInstance();
-                        pos = 5;
+                        pos = 4;
                         break;
                     case "Settings":
                         frag = SettingsFragment.newInstance();
-                        pos = 6;
+                        pos = 5;
                         break;
                     case "Messages":
                         frag = MessagesFragment.newInstance();
-                        pos = 7;
+                        pos = 6;
                         break;
                     case "About":
                         frag = AboutFragment.newInstance();
-                        pos = 8;
+                        pos = 7;
                         break;
                 }
                 ft.replace(R.id.flContent, frag, navigationTabs.get(pos)).addToBackStack(null).commit();

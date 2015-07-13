@@ -67,7 +67,7 @@ public class CoursesFragment extends Fragment {
         if(courses==null||courses.isEmpty())
             layoutId=R.layout.not_available;
         else
-            layoutId=R.layout.courses;
+            layoutId=R.layout.fragment_courses;
         rootView = inflater.inflate(layoutId, container, false);
         initialize();
         return rootView;

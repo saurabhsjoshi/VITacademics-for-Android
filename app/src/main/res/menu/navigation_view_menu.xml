@@ -47,11 +47,6 @@
             android:title="@string/fragment_grades_title" />
 
         <item
-            android:id="@+id/drawer_cgpa_calculator"
-            android:icon="@mipmap/calculator"
-            android:title="@string/fragment_cgpa_calculator_title" />
-
-        <item
             android:id="@+id/drawer_friends"
             android:icon="@mipmap/ic_people_black_24dp"
             android:title="@string/fragment_friends_title" />

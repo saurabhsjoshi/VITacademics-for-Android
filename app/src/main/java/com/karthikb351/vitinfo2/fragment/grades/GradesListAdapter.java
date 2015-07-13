@@ -62,7 +62,7 @@ public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.Gr
 
     @Override
     public int getItemCount() {
-        return grades.size();
+        return (grades.size()+1);
     }
 
     public class GradesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

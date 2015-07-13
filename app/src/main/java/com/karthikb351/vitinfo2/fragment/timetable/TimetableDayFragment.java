@@ -37,8 +37,10 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
+import com.karthikb351.vitinfo2.utility.DateTime;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,13 +112,36 @@ public class TimetableDayFragment extends Fragment {
         @Override
         protected List<Course> doInBackground(Void... params) {
             List<Course> finalArray = new ArrayList<>();
+            final int position[]=new int[10];
+            int k=0;
             List<Course> courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
             for (Course c : courses) {
                 for (int i = 0; i < c.getTimings().size(); i++) {
-                    if (c.getTimings().get(i).getDay() == dayOfWeek)
+                    if (c.getTimings().get(i).getDay() == dayOfWeek) {
+                        position[k++]=i;
                         finalArray.add(c);
+                    }
                 }
             }
+            k=0;
+            try {
+                for (int i = 0; i < finalArray.size() - 1; i++) {
+                    for (int j = i + 1; j < finalArray.size(); j++) {
+                        Course a = finalArray.get(i), b = finalArray.get(j);
+                        if (DateTime.parseISO8601Time(a.getTimings().get(position[k]).getStartTime()).compareTo(
+                                DateTime.parseISO8601Time(b.getTimings().get(position[k]).getStartTime())) > 0) {
+                            Course temp = finalArray.get(i);
+                            finalArray.set(i, finalArray.get(j));
+                            finalArray.set(j, temp);
+                        }
+                    }
+                }
+            }
+            catch (ParseException e){
+                e.printStackTrace();
+            }
+
+
             return finalArray;
         }
 
