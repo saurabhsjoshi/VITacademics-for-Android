@@ -22,10 +22,9 @@ package com.karthikb351.vitinfo2.utility;
 
 public class Constants {
 
-    public static final String API_BASE_URL = "https://vitacademics-rel.herokuapp.com";
+    public static final String API_BASE_URL = "https://vitacademics-staging.herokuapp.com";
 
     public final static String FILENAME_SHAREDPREFERENCES = "vitacademics.prefs";
-    public final static String SQLITE_DATABASE_NAME = "vitacademics.db";
 
     public final static String KEY_COURSES_REFRESHED = "refreshed_courses";
     public final static String KEY_GRADES_REFRESHED = "refreshed_grades";
