@@ -33,7 +33,9 @@
         android:id="@+id/tv_settings_topic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/abc_text_size_headline_material" />
+        android:textSize="@dimen/abc_text_size_headline_material"
+        android:textStyle="bold"
+        android:textColor="@color/textColorPrimary"/>
 
     <TextView
         android:id="@+id/tv_settings_message"
