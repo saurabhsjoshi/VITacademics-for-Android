@@ -102,11 +102,11 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             hours = (int) TimeUnit.MILLISECONDS.toHours(diff);
             minutes = (int) (TimeUnit.MILLISECONDS.toMinutes(diff) - TimeUnit.HOURS.toMinutes(hours));
             if (hours == 0) {
-                return context.getResources().getQuantityString(R.plurals.today_course_timing_minute, minutes) + context.getString(R.string.today_course_timing_later);
+                return context.getResources().getQuantityString(R.plurals.today_course_timing_minutes_later, minutes, minutes);
             } else if (minutes == 0) {
-                return context.getResources().getQuantityString(R.plurals.today_course_timing_hour, hours) + context.getString(R.string.today_course_timing_later);
+                return context.getResources().getQuantityString(R.plurals.today_course_timing_hours_later, hours, hours);
             } else {
-                return context.getResources().getQuantityString(R.plurals.today_course_timing_hour, hours) + context.getString(R.string.today_course_timing_and) + context.getResources().getQuantityString(R.plurals.today_course_timing_minute, minutes) + context.getString(R.string.today_course_timing_later);
+                return context.getString(R.string.today_course_timing_hours_minutes_later, context.getResources().getQuantityString(R.plurals.today_course_timing_hours, hours, hours), context.getResources().getQuantityString(R.plurals.today_course_timing_minutes_later, minutes, minutes));
             }
         } else {
             return context.getString(R.string.today_course_timing_right_now);
