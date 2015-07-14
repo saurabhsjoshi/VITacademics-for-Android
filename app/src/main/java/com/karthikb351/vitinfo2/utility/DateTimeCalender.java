@@ -19,6 +19,8 @@
 
 package com.karthikb351.vitinfo2.utility;
 
+import org.joda.time.DateTime;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,7 +28,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class DateTime {
+public class DateTimeCalender {
 
     public static String parseISO8601DateTime(String jsonString) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_DATETIME_FORMAT, Locale.US);
@@ -49,10 +51,12 @@ public class DateTime {
         return SimpleDateFormat.getTimeInstance().format(time);
     }
 
-    public static Date getISO8601TimeObject(String jsonString) throws ParseException {
+    public static Date getTodayTimeObject(String jsonString) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_TIME_FORMAT, Locale.US);
+        DateTime today = new DateTime().withTimeAtStartOfDay();
         dateFormat.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE_UTC));
-        return dateFormat.parse(jsonString);
+        Date parsedTime = dateFormat.parse(jsonString);
+        return today.plus(parsedTime.getTime()).toDate();
     }
 
     public static int compareTimes(String lhsTimeString, String rhsTimeString) throws ParseException {
@@ -69,5 +73,9 @@ public class DateTime {
             return -1;
         }
         return 0;
+    }
+
+    public static int getDayOfWeek() {
+        return (new DateTime().getDayOfWeek() - 1);
     }
 }

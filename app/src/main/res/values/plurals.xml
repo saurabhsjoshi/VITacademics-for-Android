@@ -3,7 +3,6 @@
   ~ VITacademics
   ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
   ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
-  ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
   ~
@@ -22,14 +21,22 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<android.support.v7.widget.Toolbar
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/toolbar"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
-    app:elevation="4dp"
-    android:minHeight="?attr/actionBarSize"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+<resources>
+    <!-- Today Fragment -->
+    <plurals name="today_course_timing_hours_later">
+        <item quantity="one">%1$d hour later</item>
+        <item quantity="other">%1$d hours later</item>
+    </plurals>
+    <plurals name="today_course_timing_minutes_later">
+        <item quantity="one">%1$d minute later</item>
+        <item quantity="other">%1$d minutes later</item>
+    </plurals>
+    <plurals name="today_course_timing_hours">
+        <item quantity="one">%1$d hour</item>
+        <item quantity="other">%1$d hours</item>
+    </plurals>
+    <plurals name="today_course_timing_minutes">
+        <item quantity="one">%1$d minute</item>
+        <item quantity="other">%1$d minutes</item>
+    </plurals>
+</resources>

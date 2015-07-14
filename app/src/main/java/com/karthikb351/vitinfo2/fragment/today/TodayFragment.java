@@ -38,12 +38,11 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.utility.DateTime;
+import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -118,7 +117,7 @@ public class TodayFragment extends Fragment {
 
         @Override
         protected List<Pair<Course, Timing>> doInBackground(Void... params) {
-            dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
+            dayOfWeek = DateTimeCalender.getDayOfWeek();
             List<Pair<Course, Timing>> finalArray = new ArrayList<>();
             courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
             for (Course course : courses) {
@@ -147,7 +146,7 @@ public class TodayFragment extends Fragment {
                         }
                     }
                     try {
-                        return DateTime.compareTimes(lhsStartTime, rhsStartTime);
+                        return DateTimeCalender.compareTimes(lhsStartTime, rhsStartTime);
                     } catch (ParseException ex) {
                         ex.printStackTrace();
                         return 0;

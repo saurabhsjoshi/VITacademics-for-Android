@@ -27,8 +27,6 @@
         <item>@string/fragment_courses_title</item>
         <item>@string/fragment_timetable_title</item>
         <item>@string/fragment_grades_title</item>
-        <item>@string/fragment_cgpa_calculator_title</item>
-        <item>@string/fragment_friends_title</item>
         <item>@string/fragment_settings_title</item>
         <item>@string/fragment_messages_title</item>
         <item>@string/fragment_about_title</item>
@@ -36,20 +34,20 @@
 
     <string-array name="settings_topic">
         <item>Reset</item>
-        <item>@string/fragment_licenses_title</item>
-        <item>@string/fragment_contributors_title</item>
-        <item>@string/fragment_about_title</item>
-        <item>Share</item>
+        <item>Show licenses</item>
+        <item>Show contributors</item>
+        <item>Share the app</item>
         <item>Rate us</item>
+        <item>About</item>
     </string-array>
 
     <string-array name="settings_message">
         <item>Reset App, deleting all user data and logging you out</item>
         <item>Sweet software that helped us build VITacademics for Android</item>
         <item>Check out the VITacademics team</item>
+        <item>Sharing is caring</item>
+        <item>Rate our app on Google Play</item>
         <item>About VITacademics</item>
-        <item>Help your friends</item>
-        <item>Play store ratings</item>
     </string-array>
 
     <string-array name="days_of_week">

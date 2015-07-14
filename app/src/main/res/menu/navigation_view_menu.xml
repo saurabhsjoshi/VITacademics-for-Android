@@ -46,11 +46,6 @@
             android:icon="@mipmap/ic_assessment_black_48dp"
             android:title="@string/fragment_grades_title" />
 
-        <item
-            android:id="@+id/drawer_friends"
-            android:icon="@mipmap/ic_people_black_24dp"
-            android:title="@string/fragment_friends_title" />
-
     </group>
 
     <item android:title="@string/navigation_drawer_others_group">
@@ -69,7 +64,7 @@
 
             <item
                 android:id="@+id/drawer_about"
-                android:icon="@mipmap/about_us"
+                android:icon="@mipmap/ic_about_us"
                 android:title="@string/fragment_about_title" />
         </menu>
     </item>

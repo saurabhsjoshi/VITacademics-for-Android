@@ -22,7 +22,10 @@
 
 package com.karthikb351.vitinfo2.fragment.today;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -36,7 +39,7 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.utility.Constants;
-import com.karthikb351.vitinfo2.utility.DateTime;
+import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.text.ParseException;
@@ -63,6 +66,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         return new TodayViewHolder(cardView);
     }
 
+    @SuppressLint("NewApi") @SuppressWarnings("deprecation")
     @Override
     public void onBindViewHolder(TodayViewHolder todayViewHolder, int position) {
 
@@ -73,6 +77,22 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         todayViewHolder.Slot.setText(courseTimingPairs.get(position).first.getSlot());
         todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
         todayViewHolder.pbAttendance.setProgress(AttendanceP);
+
+
+        int sdk = android.os.Build.VERSION.SDK_INT;
+        int bgColor = getAttendanceColor(AttendanceP);
+
+        todayViewHolder.pbAttendance.getProgressDrawable().setColorFilter(bgColor, PorterDuff.Mode.SRC_IN);
+        GradientDrawable txt_bgShape;
+        txt_bgShape = (GradientDrawable)todayViewHolder.Attendance.getBackground();
+        txt_bgShape.setColor(bgColor);
+
+        /* TODO: Check if code actually works on older devices */
+        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
+            todayViewHolder.Attendance.setBackgroundDrawable(txt_bgShape);
+        else
+            todayViewHolder.Attendance.setBackground(txt_bgShape);
+
 
         long diff = 0;
         boolean ended = false;
@@ -98,15 +118,15 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         int minutes;
         if (diff < 0 && ended) {
             return context.getString(R.string.today_course_timing_done);
-        } else if (diff > Constants.MILLISECONDS_IN_HOUR) {
+        } else if (diff > Constants.MILLISECONDS_IN_MINUTE) {
             hours = (int) TimeUnit.MILLISECONDS.toHours(diff);
             minutes = (int) (TimeUnit.MILLISECONDS.toMinutes(diff) - TimeUnit.HOURS.toMinutes(hours));
             if (hours == 0) {
-                return Integer.toString(minutes) + context.getString(R.string.today_course_timing_minutes) + context.getString(R.string.today_course_timing_later);
+                return context.getResources().getQuantityString(R.plurals.today_course_timing_minutes_later, minutes, minutes);
             } else if (minutes == 0) {
-                return Integer.toString(hours) + context.getString(R.string.today_course_timing_hours) + context.getString(R.string.today_course_timing_later);
+                return context.getResources().getQuantityString(R.plurals.today_course_timing_hours_later, hours, hours);
             } else {
-                return Integer.toString(hours) + context.getString(R.string.today_course_timing_hours) + context.getString(R.string.today_course_timing_and) + Integer.toString(minutes) + context.getString(R.string.today_course_timing_minutes) + context.getString(R.string.today_course_timing_later);
+                return context.getString(R.string.today_course_timing_hours_minutes_later, context.getResources().getQuantityString(R.plurals.today_course_timing_hours, hours, hours), context.getResources().getQuantityString(R.plurals.today_course_timing_minutes_later, minutes, minutes));
             }
         } else {
             return context.getString(R.string.today_course_timing_right_now);
@@ -116,7 +136,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     private long getTimeDifference(Timing timing) {
         Date now = new Date();
         try {
-            Date courseStartTime = DateTime.getISO8601TimeObject(timing.getStartTime());
+            Date courseStartTime = DateTimeCalender.getTodayTimeObject(timing.getStartTime());
             return courseStartTime.getTime() - now.getTime();
         } catch (ParseException ex) {
             ex.printStackTrace();
@@ -127,7 +147,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     private boolean checkIfSlotEnded(Timing timing) {
         Date now = new Date();
         try {
-            Date courseEndTime = DateTime.getISO8601TimeObject(timing.getEndTime());
+            Date courseEndTime = DateTimeCalender.getTodayTimeObject(timing.getEndTime());
             return courseEndTime.before(now);
         } catch (ParseException ex) {
             ex.printStackTrace();
@@ -155,5 +175,14 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             Course course = courseTimingPairs.get(getAdapterPosition()).first;
             OnclickListener.onItemClick(course);
         }
+    }
+
+    private int getAttendanceColor(int attendance){
+        if(attendance > 80)
+            return context.getResources().getColor(R.color.highAttend);
+        else if (attendance >= 75 && attendance < 80)
+            return context.getResources().getColor(R.color.midAttend);
+        else
+            return context.getResources().getColor(R.color.lowAttend);
     }
 }

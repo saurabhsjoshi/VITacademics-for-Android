@@ -50,7 +50,6 @@
             android:id="@+id/llMainContent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <include layout="@layout/navigation_toolbar" />
             <!-- Content View -->
             <FrameLayout

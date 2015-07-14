@@ -30,6 +30,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -47,7 +48,6 @@ import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.UnavailableFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
-import com.karthikb351.vitinfo2.fragment.friends.FriendsFragment;
 import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private List<String> navigationTabs;
     private LinearLayout mainContent;
     private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
     private ListView lv;
 
     @Override
@@ -110,16 +111,20 @@ public class MainActivity extends AppCompatActivity {
     public void initialize() {
         navigationTabs = Arrays.asList(getResources().getStringArray(R.array.navigation_tab));
         courses = ((MainApplication)getApplication()).getDataHolderInstance().getCourses();
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mainContent = (LinearLayout) findViewById(R.id.llMainContent);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
-        //  actionBar.setTitle("VitAcademics");
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.mipmap.ic_hamburger);
+            ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
+                    this,  drawerLayout, toolbar,
+                    R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            );
+            drawerLayout.setDrawerListener(mDrawerToggle);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            mDrawerToggle.syncState();
         }
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -151,21 +156,17 @@ public class MainActivity extends AppCompatActivity {
                         frag = GradesFragment.newInstance();
                         pos = 3;
                         break;
-                    case "Friends":
-                        frag = FriendsFragment.newInstance();
-                        pos = 4;
-                        break;
                     case "Settings":
                         frag = SettingsFragment.newInstance();
-                        pos = 5;
+                        pos = 4;
                         break;
                     case "Messages":
                         frag = MessagesFragment.newInstance();
-                        pos = 6;
+                        pos = 5;
                         break;
                     case "About":
                         frag = AboutFragment.newInstance();
-                        pos = 7;
+                        pos = 6;
                         break;
                 }
                 ft.replace(R.id.flContent, frag, navigationTabs.get(pos)).addToBackStack(null).commit();
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         if (courses == null || courses.isEmpty()) {
             getSupportFragmentManager().beginTransaction().add(R.id.flContent, new UnavailableFragment(), "Unavailable").commit();
         } else {
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new CoursesFragment(), "Courses Fragment").commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "Today Fragment").commit();
         }
     }
 

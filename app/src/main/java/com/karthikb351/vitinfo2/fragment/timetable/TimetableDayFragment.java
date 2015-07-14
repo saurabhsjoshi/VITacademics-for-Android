@@ -38,7 +38,7 @@ import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
-import com.karthikb351.vitinfo2.utility.DateTime;
+import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.text.ParseException;
@@ -140,7 +140,7 @@ public class TimetableDayFragment extends Fragment {
                         }
                     }
                     try {
-                        return DateTime.compareTimes(lhsStartTime, rhsStartTime);
+                        return DateTimeCalender.compareTimes(lhsStartTime, rhsStartTime);
                     } catch (ParseException ex) {
                         ex.printStackTrace();
                         return 0;
