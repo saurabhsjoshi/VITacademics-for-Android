@@ -49,8 +49,7 @@
     <!-- Today Fragment -->
     <string name="today_course_timing_done">Done for today</string>
     <string name="today_course_timing_right_now">Right now</string>
-    <string name="today_course_timing_and"> and </string>
-    <string name="today_course_timing_later"> later</string>
+    <string name="today_course_timing_hours_minutes_later" formatted="false">%1$s and %2$s</string>
 
     <!-- Course Attendance -->
     <string name="label_attendance_safe">Safe</string>

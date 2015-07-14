@@ -23,11 +23,19 @@
 
 <resources>
     <!-- Today Fragment -->
-    <plurals name="today_course_timing_hour">
+    <plurals name="today_course_timing_hours_later">
+        <item quantity="one">%1$d hour later</item>
+        <item quantity="other">%1$d hours later</item>
+    </plurals>
+    <plurals name="today_course_timing_minutes_later">
+        <item quantity="one">%1$d minute later</item>
+        <item quantity="other">%1$d minutes later</item>
+    </plurals>
+    <plurals name="today_course_timing_hours">
         <item quantity="one">%1$d hour</item>
         <item quantity="other">%1$d hours</item>
     </plurals>
-    <plurals name="today_course_timing_minute">
+    <plurals name="today_course_timing_minutes">
         <item quantity="one">%1$d minute</item>
         <item quantity="other">%1$d minutes</item>
     </plurals>

@@ -64,7 +64,7 @@
 
             <item
                 android:id="@+id/drawer_about"
-                android:icon="@mipmap/about_us"
+                android:icon="@mipmap/ic_about_us"
                 android:title="@string/fragment_about_title" />
         </menu>
     </item>
