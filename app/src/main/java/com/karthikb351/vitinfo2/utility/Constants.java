@@ -59,5 +59,5 @@ public class Constants {
     public final static String JSON_ISO8601_TIME_FORMAT = "HH:mm:ss'Z'";
     public final static String TIMEZONE_UTC = "UTC";
 
-    public final static int MILLISECONDS_IN_HOUR = 3600000;
+    public final static int MILLISECONDS_IN_MINUTE = 60000;
 }
