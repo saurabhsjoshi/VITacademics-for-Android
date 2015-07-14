@@ -70,7 +70,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        progress=PROGRESS_INCREMENT;
+//        progressBar.setProgress(progress);
         initialize();
     }
 
@@ -81,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String registerNumber = editTextRegisterNumber.getText().toString();
                 String dateOfBirth = editTextDateOfBirth.getText().toString();
                 String mobileNumber = editTextMobileNumber.getText().toString();
+                progressBar.setProgress(PROGRESS_INCREMENT);
                 loginToServer(campus, registerNumber, dateOfBirth, mobileNumber);
                 break;
             case R.id.input_dob:
