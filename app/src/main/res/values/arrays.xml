@@ -34,10 +34,10 @@
 
     <string-array name="settings_topic">
         <item>Reset</item>
-        <item>@string/fragment_licenses_title</item>
-        <item>@string/fragment_contributors_title</item>
-        <item>@string/fragment_about_title</item>
-        <item>Share</item>
+        <item>Show licenses</item>
+        <item>Show contributors</item>
+        <item>About</item>
+        <item>Share the app</item>
         <item>Rate us</item>
     </string-array>
 
@@ -46,8 +46,8 @@
         <item>Sweet software that helped us build VITacademics for Android</item>
         <item>Check out the VITacademics team</item>
         <item>About VITacademics</item>
-        <item>Help your friends</item>
-        <item>Play store ratings</item>
+        <item>Share the love and help your friends</item>
+        <item>Rate in Google Play</item>
     </string-array>
 
     <string-array name="days_of_week">

@@ -60,4 +60,6 @@ public class Constants {
     public final static String TIMEZONE_UTC = "UTC";
 
     public final static int MILLISECONDS_IN_MINUTE = 60000;
+
+    public final static String SHARE_TYPE = "text/plain";
 }

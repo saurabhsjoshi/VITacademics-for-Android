@@ -93,17 +93,15 @@ public class SettingsFragment extends ListFragment {
                         .addToBackStack(null).commit();
                 break;
             case 4:
-                //Share app
+                // Share app
                 Intent share = new Intent(android.content.Intent.ACTION_SEND);
-                share.setType("text/plain");
+                share.setType(Constants.SHARE_TYPE);
 
-                share.putExtra(Intent.EXTRA_SUBJECT, "Download VITacademics from: ");
+                share.putExtra(Intent.EXTRA_SUBJECT, getActivity().getString(R.string.android_share_message_start));
                 share.putExtra(Intent.EXTRA_TEXT, Constants.API_BASE_URL);
 
-                startActivity(Intent.createChooser(share, "Share VITacademics using ..."));
+                startActivity(Intent.createChooser(share, getActivity().getString(R.string.android_share_text)));
                 break;
         }
-
     }
-
 }
