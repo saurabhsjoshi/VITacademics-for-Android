@@ -36,7 +36,7 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.utility.Constants;
-import com.karthikb351.vitinfo2.utility.DateTime;
+import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.text.ParseException;
@@ -98,15 +98,15 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         int minutes;
         if (diff < 0 && ended) {
             return context.getString(R.string.today_course_timing_done);
-        } else if (diff > Constants.MILLISECONDS_IN_HOUR) {
+        } else if (diff > Constants.MILLISECONDS_IN_MINUTE) {
             hours = (int) TimeUnit.MILLISECONDS.toHours(diff);
             minutes = (int) (TimeUnit.MILLISECONDS.toMinutes(diff) - TimeUnit.HOURS.toMinutes(hours));
             if (hours == 0) {
-                return Integer.toString(minutes) + context.getString(R.string.today_course_timing_minutes) + context.getString(R.string.today_course_timing_later);
+                return Integer.toString(minutes) + " " + context.getString(R.string.today_course_timing_minutes) + " " + context.getString(R.string.today_course_timing_later);
             } else if (minutes == 0) {
-                return Integer.toString(hours) + context.getString(R.string.today_course_timing_hours) + context.getString(R.string.today_course_timing_later);
+                return Integer.toString(hours) + " " + context.getString(R.string.today_course_timing_hours) + " " + context.getString(R.string.today_course_timing_later);
             } else {
-                return Integer.toString(hours) + context.getString(R.string.today_course_timing_hours) + context.getString(R.string.today_course_timing_and) + Integer.toString(minutes) + context.getString(R.string.today_course_timing_minutes) + context.getString(R.string.today_course_timing_later);
+                return Integer.toString(hours) + " " + context.getString(R.string.today_course_timing_hours) + " " + context.getString(R.string.today_course_timing_and) + " " + Integer.toString(minutes) + " " + context.getString(R.string.today_course_timing_minutes) + " " + context.getString(R.string.today_course_timing_later);
             }
         } else {
             return context.getString(R.string.today_course_timing_right_now);
@@ -116,7 +116,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     private long getTimeDifference(Timing timing) {
         Date now = new Date();
         try {
-            Date courseStartTime = DateTime.getISO8601TimeObject(timing.getStartTime());
+            Date courseStartTime = DateTimeCalender.getTodayTimeObject(timing.getStartTime());
             return courseStartTime.getTime() - now.getTime();
         } catch (ParseException ex) {
             ex.printStackTrace();
@@ -127,7 +127,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     private boolean checkIfSlotEnded(Timing timing) {
         Date now = new Date();
         try {
-            Date courseEndTime = DateTime.getISO8601TimeObject(timing.getEndTime());
+            Date courseEndTime = DateTimeCalender.getTodayTimeObject(timing.getEndTime());
             return courseEndTime.before(now);
         } catch (ParseException ex) {
             ex.printStackTrace();
