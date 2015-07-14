@@ -151,21 +151,17 @@ public class MainActivity extends AppCompatActivity {
                         frag = GradesFragment.newInstance();
                         pos = 3;
                         break;
-                    case "Friends":
-                        frag = FriendsFragment.newInstance();
-                        pos = 4;
-                        break;
                     case "Settings":
                         frag = SettingsFragment.newInstance();
-                        pos = 5;
+                        pos = 4;
                         break;
                     case "Messages":
                         frag = MessagesFragment.newInstance();
-                        pos = 6;
+                        pos = 5;
                         break;
                     case "About":
                         frag = AboutFragment.newInstance();
-                        pos = 7;
+                        pos = 6;
                         break;
                 }
                 ft.replace(R.id.flContent, frag, navigationTabs.get(pos)).addToBackStack(null).commit();
@@ -178,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
         if (courses == null || courses.isEmpty()) {
             getSupportFragmentManager().beginTransaction().add(R.id.flContent, new UnavailableFragment(), "Unavailable").commit();
         } else {
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new CoursesFragment(), "Courses Fragment").commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "Today Fragment").commit();
         }
     }
 

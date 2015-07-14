@@ -27,8 +27,6 @@
         <item>@string/fragment_courses_title</item>
         <item>@string/fragment_timetable_title</item>
         <item>@string/fragment_grades_title</item>
-        <item>@string/fragment_cgpa_calculator_title</item>
-        <item>@string/fragment_friends_title</item>
         <item>@string/fragment_settings_title</item>
         <item>@string/fragment_messages_title</item>
         <item>@string/fragment_about_title</item>
