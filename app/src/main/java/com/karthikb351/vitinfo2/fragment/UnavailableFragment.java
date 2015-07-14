@@ -27,8 +27,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.karthikb351.vitinfo2.R;
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -73,9 +71,9 @@ public class UnavailableFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.not_available,container,false);
+        TextView textView=new TextView(getActivity());
         textView.setText(message);
-        return view;
+        return textView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
