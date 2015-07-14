@@ -22,7 +22,10 @@
 
 package com.karthikb351.vitinfo2.fragment.today;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -63,6 +66,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         return new TodayViewHolder(cardView);
     }
 
+    @SuppressLint("NewApi") @SuppressWarnings("deprecation")
     @Override
     public void onBindViewHolder(TodayViewHolder todayViewHolder, int position) {
 
@@ -73,6 +77,22 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         todayViewHolder.Slot.setText(courseTimingPairs.get(position).first.getSlot());
         todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
         todayViewHolder.pbAttendance.setProgress(AttendanceP);
+
+
+        int sdk = android.os.Build.VERSION.SDK_INT;
+        int bgColor = getAttendanceColor(AttendanceP);
+
+        todayViewHolder.pbAttendance.getProgressDrawable().setColorFilter(bgColor, PorterDuff.Mode.SRC_IN);
+        GradientDrawable txt_bgShape;
+        txt_bgShape = (GradientDrawable)todayViewHolder.Attendance.getBackground();
+        txt_bgShape.setColor(bgColor);
+
+        /* TODO: Check if code actually works on older devices */
+        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
+            todayViewHolder.Attendance.setBackgroundDrawable(txt_bgShape);
+        else
+            todayViewHolder.Attendance.setBackground(txt_bgShape);
+
 
         long diff = 0;
         boolean ended = false;
@@ -155,5 +175,14 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             Course course = courseTimingPairs.get(getAdapterPosition()).first;
             OnclickListener.onItemClick(course);
         }
+    }
+
+    private int getAttendanceColor(int attendance){
+        if(attendance > 80)
+            return context.getResources().getColor(R.color.highAttend);
+        else if (attendance >= 75 && attendance < 80)
+            return context.getResources().getColor(R.color.midAttend);
+        else
+            return context.getResources().getColor(R.color.lowAttend);
     }
 }

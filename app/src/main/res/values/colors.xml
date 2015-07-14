@@ -22,12 +22,12 @@
 <resources>
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#455A64</color>
-    <color name="textColorPrimary">#ff000349</color>
-    <color name="windowBackground">#FFFFFF</color>
-    <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="lowAttend">#e74c3c</color>
-    <color name="midAttend">#ffffac41</color>
-    <color name="highAttend">#ff7ee73a</color>
+    <color name="colorPrimaryLight">#CFD8DC</color>
+    <color name="textColorPrimary">#212121</color>
+    <color name="textColorDivider">#B6B6B6</color>
+    <color name="colorAccent">#7C4DFF</color>
+    <color name="lowAttend">#C62828</color>
+    <color name="midAttend">#F9A825</color>
+    <color name="highAttend">#2E7D32</color>
     <color name="highlight">#ffe7ffc1</color>
 </resources>
