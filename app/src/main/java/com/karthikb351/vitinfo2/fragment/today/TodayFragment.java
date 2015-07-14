@@ -118,7 +118,7 @@ public class TodayFragment extends Fragment {
 
         @Override
         protected List<Pair<Course, Timing>> doInBackground(Void... params) {
-            dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
+            dayOfWeek = DateTime.getDayOfWeek();
             List<Pair<Course, Timing>> finalArray = new ArrayList<>();
             courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
             for (Course course : courses) {

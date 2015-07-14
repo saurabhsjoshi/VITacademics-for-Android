@@ -22,6 +22,7 @@ package com.karthikb351.vitinfo2.utility;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -69,5 +70,14 @@ public class DateTime {
             return -1;
         }
         return 0;
+    }
+
+    public static int getDayOfWeek() {
+        int dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        if (dayOfWeek == 1) {
+            dayOfWeek = 8; // First day of week is Monday
+        }
+        dayOfWeek = dayOfWeek - 2; // Starts at 0
+        return dayOfWeek;
     }
 }
