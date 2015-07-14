@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/abc_text_size_headline_material"
         android:textStyle="bold"
-        android:textColor="@color/primary_text_default_material_dark"/>
+        android:textColor="@color/textColorPrimary"/>
 
     <TextView
         android:id="@+id/tv_settings_message"

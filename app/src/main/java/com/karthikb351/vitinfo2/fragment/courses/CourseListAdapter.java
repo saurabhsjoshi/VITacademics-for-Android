@@ -57,11 +57,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     public void onBindViewHolder(CourseViewHolder courseViewHolder, int position) {
 
         int AttendanceP = courses.get(position).getAttendance().getAttendancePercentage();
-
-        // Changing drawable based on attendance
-        if(AttendanceP<75){
-        }
-
         courseViewHolder.courseCode.setText(courses.get(position).getCourseCode());
         courseViewHolder.courseName.setText(courses.get(position).getCourseTitle());
         courseViewHolder.venue.setText(courses.get(position).getVenue());

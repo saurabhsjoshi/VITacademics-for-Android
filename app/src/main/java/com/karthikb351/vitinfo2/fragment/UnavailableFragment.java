@@ -71,7 +71,6 @@ public class UnavailableFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView textView=new TextView(getActivity());
         textView.setText(message);
         return textView;
     }
