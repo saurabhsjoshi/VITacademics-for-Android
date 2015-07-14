@@ -29,7 +29,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:id="@+id/headrer_username"
+        android:id="@+id/header_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
