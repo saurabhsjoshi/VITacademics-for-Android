@@ -30,18 +30,10 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Message;
-import com.karthikb351.vitinfo2.utility.Constants;
-import com.karthikb351.vitinfo2.utility.DateTime;
+import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 
-import org.w3c.dom.Text;
-
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.MessageViewHolder> {
 
@@ -65,7 +57,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         holder.message.setText(messages.get(position).getMessage());
 
         try {
-            holder.timestamp.setText(DateTime.parseISO8601DateTime(messages.get(position).getTimestamp()));
+            holder.timestamp.setText(DateTimeCalender.parseISO8601DateTime(messages.get(position).getTimestamp()));
 
         } catch (ParseException ex) {
             holder.timestamp.setText(messages.get(position).getTimestamp());
