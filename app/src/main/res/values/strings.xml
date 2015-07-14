@@ -105,7 +105,8 @@
     <string name="fragment_licenses_title">Licenses</string>
 
     <!-- Share Messages -->
-    <string name="android_share_text">Share VITacademics using &#8230;</string>
+    <string name="android_share_select">Share VITacademics using &#8230;</string>
+    <string name="android_share_message_subject">Download VITacademics from: </string>
     <string name="android_share_message_start">Download VITacademics from: </string>
 
 </resources>

@@ -36,18 +36,18 @@
         <item>Reset</item>
         <item>Show licenses</item>
         <item>Show contributors</item>
-        <item>About</item>
         <item>Share the app</item>
         <item>Rate us</item>
+        <item>About</item>
     </string-array>
 
     <string-array name="settings_message">
         <item>Reset App, deleting all user data and logging you out</item>
         <item>Sweet software that helped us build VITacademics for Android</item>
         <item>Check out the VITacademics team</item>
+        <item>Sharing is caring</item>
+        <item>Rate our app on Google Play</item>
         <item>About VITacademics</item>
-        <item>Share the love and help your friends</item>
-        <item>Rate in Google Play</item>
     </string-array>
 
     <string-array name="days_of_week">

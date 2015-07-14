@@ -86,21 +86,25 @@ public class SettingsFragment extends ListFragment {
                         .addToBackStack(null).commit();
                 break;
             case 3:
+                // Share app
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                share.setType(Constants.SHARE_TYPE);
+
+                share.putExtra(Intent.EXTRA_SUBJECT, getActivity().getString(R.string.android_share_message_subject));
+                share.putExtra(Intent.EXTRA_TEXT, getActivity().getString(R.string.android_share_message_start) + " " + Constants.API_BASE_URL);
+
+                startActivity(Intent.createChooser(share, getActivity().getString(R.string.android_share_select)));
+                break;
+            case 4:
+                // Rate on Google Play
+                // TODO Open Google Play Store link
+                break;
+            case 5:
                 // About Page
                 AboutFragment aboutFragment = new AboutFragment();
                 this.getFragmentManager().beginTransaction()
                         .replace(R.id.flContent, aboutFragment, null)
                         .addToBackStack(null).commit();
-                break;
-            case 4:
-                // Share app
-                Intent share = new Intent(android.content.Intent.ACTION_SEND);
-                share.setType(Constants.SHARE_TYPE);
-
-                share.putExtra(Intent.EXTRA_SUBJECT, getActivity().getString(R.string.android_share_message_start));
-                share.putExtra(Intent.EXTRA_TEXT, Constants.API_BASE_URL);
-
-                startActivity(Intent.createChooser(share, getActivity().getString(R.string.android_share_text)));
                 break;
         }
     }
