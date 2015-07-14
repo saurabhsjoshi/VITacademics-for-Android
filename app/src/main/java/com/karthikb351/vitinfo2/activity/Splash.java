@@ -43,13 +43,10 @@ public class Splash extends Activity {
 
         boolean isLoggedIn = loginCheck();
 
-        // TODO Progress start
-
         if (isLoggedIn) {
             ((MainApplication)getApplication()).getDataHolderInstance().refreshData(Splash.this, new ResultListener() {
                 @Override
                 public void onSuccess() {
-                    // TODO Progress stop
                     startActivity(new Intent(Splash.this, MainActivity.class));
                 }
 
@@ -63,7 +60,6 @@ public class Splash extends Activity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    // TODO Progress stop
                     startActivity(new Intent(Splash.this, LoginActivity.class));
                 }
             }, Constants.SPLASH_TIME_OUT);
