@@ -136,9 +136,9 @@ public class MainActivity extends AppCompatActivity {
                 Fragment frag = null;
                 int pos = 0;
                 // settings can be passed in the new instance function
-                //TODO: inefficient for already created instances. Fix.
+                // TODO: inefficient for already created instances. Fix.
                 switch (navString) {
-                    // TODO Use String resources to compare. This should work even if app is in a different language
+                    // TODO Get Position directly, if not use String resources to compare. This should work even if app is in a different language
                     // TODO Check https://developer.android.com/training/implementing-navigation/nav-drawer.html
                     case "Today":
                         frag = TodayFragment.newInstance();

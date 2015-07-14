@@ -66,7 +66,8 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         return new TodayViewHolder(cardView);
     }
 
-    @SuppressLint("NewApi") @SuppressWarnings("deprecation")
+    @SuppressLint("NewApi")
+    @SuppressWarnings("deprecation")
     @Override
     public void onBindViewHolder(TodayViewHolder todayViewHolder, int position) {
 
@@ -84,15 +85,14 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
         todayViewHolder.pbAttendance.getProgressDrawable().setColorFilter(bgColor, PorterDuff.Mode.SRC_IN);
         GradientDrawable txt_bgShape;
-        txt_bgShape = (GradientDrawable)todayViewHolder.Attendance.getBackground();
+        txt_bgShape = (GradientDrawable) todayViewHolder.Attendance.getBackground();
         txt_bgShape.setColor(bgColor);
 
-        /* TODO: Check if code actually works on older devices */
-        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN)
+        if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
             todayViewHolder.Attendance.setBackgroundDrawable(txt_bgShape);
-        else
+        } else {
             todayViewHolder.Attendance.setBackground(txt_bgShape);
-
+        }
 
         long diff = 0;
         boolean ended = false;
@@ -177,12 +177,13 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         }
     }
 
-    private int getAttendanceColor(int attendance){
-        if(attendance > 80)
+    private int getAttendanceColor(int attendance) {
+        if (attendance >= 80) {
             return context.getResources().getColor(R.color.highAttend);
-        else if (attendance >= 75 && attendance < 80)
+        } else if (attendance >= 75 && attendance < 80) {
             return context.getResources().getColor(R.color.midAttend);
-        else
+        } else {
             return context.getResources().getColor(R.color.lowAttend);
+        }
     }
 }
