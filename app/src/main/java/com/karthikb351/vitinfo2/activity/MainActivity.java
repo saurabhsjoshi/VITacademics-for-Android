@@ -62,10 +62,14 @@ import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String campus;
+    private String registerNumber;
     private List<Course> courses;
     private List<String> navigationTabs;
     private LinearLayout mainContent;
     private DrawerLayout drawerLayout;
+    private TextView headerUsername;
+    private TextView headerCampus;
     private ListView lv;
 
     @Override
@@ -96,11 +100,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initialize() {
-        navigationTabs = Arrays.asList(getResources().getStringArray(R.array.navigation_tab));
         courses = ((MainApplication) getApplication()).getDataHolderInstance().getCourses();
+        campus = ((MainApplication) getApplication()).getDataHolderInstance().getCampus();
+        registerNumber = ((MainApplication) getApplication()).getDataHolderInstance().getRegisterNumber();
+
+        navigationTabs = Arrays.asList(getResources().getStringArray(R.array.navigation_tab));
+
+        headerCampus = (TextView) drawerLayout.findViewById(R.id.header_campus);
+        headerUsername = (TextView) drawerLayout.findViewById(R.id.header_username);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mainContent = (LinearLayout) findViewById(R.id.llMainContent);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -114,12 +125,8 @@ public class MainActivity extends AppCompatActivity {
             mDrawerToggle.syncState();
         }
 
-        String campus = ((MainApplication)getApplication()).getDataHolderInstance().getCampus();
-        campus = campus.substring(0, 1).toUpperCase() + campus.substring(1);
-
-        ((TextView)drawerLayout.findViewById(R.id.header_username)).setText(
-                ((MainApplication)getApplication()).getDataHolderInstance().getRegisterNumber());
-        ((TextView)drawerLayout.findViewById(R.id.header_campus)).setText(campus);
+        headerUsername.setText(registerNumber);
+        headerCampus.setText(toTitleCase(campus));
 
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -214,5 +221,9 @@ public class MainActivity extends AppCompatActivity {
 
     public LinearLayout getMainContent() {
         return mainContent;
+    }
+
+    private static String toTitleCase(String text) {
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
     }
 }
