@@ -1,7 +1,11 @@
 /*
  * VITacademics
- * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+ * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
+ * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+ * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+ * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
  *
  * This file is part of VITacademics.
  * VITacademics is free software: you can redistribute it and/or modify
@@ -25,10 +29,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
-import com.karthikb351.vitinfo2.fragment.OverviewFragment;
-import com.karthikb351.vitinfo2.fragment.assesment.AssesmentFragment;
-import com.karthikb351.vitinfo2.fragment.attendance.AttendanceFragment;
 
 public class DetailsAdapter extends FragmentPagerAdapter {
 
@@ -71,7 +73,7 @@ public class DetailsAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        String detailsTitles[] = {"Overview", "Attendance", "Marks"};
+        String detailsTitles[] = context.getResources().getStringArray(R.array.course_details_tab);
         return detailsTitles[position];
     }
 }

@@ -2,7 +2,9 @@
 <!--
   ~ VITacademics
   ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+  ~ Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
   ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+  ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
   ~
@@ -30,6 +32,12 @@
         <item>@string/fragment_settings_title</item>
         <item>@string/fragment_messages_title</item>
         <item>@string/fragment_about_title</item>
+    </string-array>
+
+    <string-array name="course_details_tab">
+        <item>@string/tab_course_overview</item>
+        <item>@string/tab_course_attendance</item>
+        <item>@string/tab_course_marks</item>
     </string-array>
 
     <string-array name="settings_topic">
