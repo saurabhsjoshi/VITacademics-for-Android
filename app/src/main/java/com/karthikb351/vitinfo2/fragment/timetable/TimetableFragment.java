@@ -53,8 +53,8 @@ public class TimetableFragment extends Fragment {
         viewpager.setAdapter(pageradapter);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewpager);
-        String Title = getActivity().getResources().getString(R.string.fragment_timetable_title);
-        getActivity().setTitle(Title);
+        String title = getActivity().getResources().getString(R.string.fragment_timetable_title);
+        getActivity().setTitle(title);
         return view;
     }
 

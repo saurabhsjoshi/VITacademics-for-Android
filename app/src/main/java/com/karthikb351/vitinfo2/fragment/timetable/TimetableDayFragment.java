@@ -25,6 +25,8 @@ package com.karthikb351.vitinfo2.fragment.timetable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,6 +58,7 @@ public class TimetableDayFragment extends Fragment {
     private ProgressBar loadProgress;
     private int dayOfWeek;
     private View rootView;
+    private List<Course> courses;
 
     public TimetableDayFragment() {
     }
@@ -83,9 +86,9 @@ public class TimetableDayFragment extends Fragment {
 
 
     void onListItemClicked(Course course) {
-        android.support.v4.app.Fragment frag = DetailsFragment.newInstance(course);
-        android.support.v4.app.FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.flContent,frag,course.getCourseCode()).addToBackStack(null).commit();
+        Fragment fragment = DetailsFragment.newInstance(course);
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.flContent, fragment, course.getCourseCode()).addToBackStack(null).commit();
     }
 
 
@@ -106,35 +109,37 @@ public class TimetableDayFragment extends Fragment {
         initialize();
     }
 
-    class LoadData extends AsyncTask<Void, Void, List<Course>> {
+    class LoadData extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
         @Override
         protected void onPreExecute() {
             loadProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected List<Course> doInBackground(Void... params) {
-            List<Course> finalArray = new ArrayList<>();
-            List<Course> courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
+        protected List<Pair<Course, Timing>> doInBackground(Void... params) {
+            List<Pair<Course, Timing>> finalArray = new ArrayList<>();
+            courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
             for (Course course : courses) {
+                Timing lastTiming = new Timing();
                 for (Timing timing : course.getTimings()) {
-                    if (timing.getDay() == dayOfWeek) {
-                        finalArray.add(course);
+                    if (timing.getDay() == dayOfWeek && !(timing.equals(lastTiming))) {
+                        finalArray.add(new Pair<>(course, timing));
+                        lastTiming = timing;
                     }
                 }
             }
 
-            Collections.sort(finalArray, new Comparator<Course>() {
+            Collections.sort(finalArray, new Comparator<Pair<Course, Timing>>() {
                 @Override
-                public int compare(Course lhs, Course rhs) {
+                public int compare(Pair<Course, Timing> lhs, Pair<Course, Timing> rhs) {
                     String lhsStartTime = "";
                     String rhsStartTime = "";
-                    for (Timing timing : lhs.getTimings()) {
+                    for (Timing timing : lhs.first.getTimings()) {
                         if (timing.getDay() == dayOfWeek) {
                             lhsStartTime = timing.getStartTime();
                         }
                     }
-                    for (Timing timing : rhs.getTimings()) {
+                    for (Timing timing : rhs.first.getTimings()) {
                         if (timing.getDay() == dayOfWeek) {
                             rhsStartTime = timing.getStartTime();
                         }
@@ -152,7 +157,7 @@ public class TimetableDayFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(List<Course> finalCourses) {
+        protected void onPostExecute(List<Pair<Course, Timing>> finalCourses) {
             loadProgress.setVisibility(View.GONE);
             adapter = new TimetableListAdapter(getActivity(), finalCourses);
             adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {

@@ -51,6 +51,9 @@
     <string name="today_course_timing_right_now">Right now</string>
     <string name="today_course_timing_hours_minutes_later" formatted="false">%1$s and %2$s</string>
 
+    <!-- Timetable Fragment -->
+    <string name="timetable_course_slot_timing" formatted="false">%1$s to %2$s</string>
+
     <!-- Course Attendance -->
     <string name="label_attendance_safe">Safe</string>
     <string name="label_attendance_debarred">Debarred</string>

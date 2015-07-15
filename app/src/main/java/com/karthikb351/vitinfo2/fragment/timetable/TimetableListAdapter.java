@@ -21,7 +21,11 @@
 
 package com.karthikb351.vitinfo2.fragment.timetable;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.GradientDrawable;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,39 +35,75 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.contract.Timing;
+import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdapter.TimeTableViewHolder> {
 
 
     private RecyclerViewOnClickListener<Course> onClickListener;
-    private List<Course> coursesForTheDay;
+    private List<Pair<Course, Timing>> courseTimingPairs;
     private Context context;
 
-    TimetableListAdapter(Context context, List<Course> coursesForTheDay) {
+    TimetableListAdapter(Context context, List<Pair<Course, Timing>> courseTimingPairs) {
         this.context = context;
-        this.coursesForTheDay = coursesForTheDay;
+        this.courseTimingPairs = courseTimingPairs;
     }
 
     @Override
     public TimeTableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        android.support.v7.widget.CardView rootcard = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(R.layout.card_course, parent, false);
+        android.support.v7.widget.CardView rootcard = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(R.layout.card_timetable_course, parent, false);
         return new TimeTableViewHolder(rootcard);
     }
 
+    @SuppressLint("NewApi")
+    @SuppressWarnings("deprecation")
     @Override
-    public void onBindViewHolder(TimeTableViewHolder cvHolder, int position) {
+    public void onBindViewHolder(TimeTableViewHolder timeTableViewHolder, int position) {
 
-        int AttendanceP = coursesForTheDay.get(position).getAttendance().getAttendancePercentage();
-        //TimeTableViewHolder cvHolder = (TimeTableViewHolder) holder;
-        cvHolder.courseCode.setText(coursesForTheDay.get(position).getCourseCode());
-        cvHolder.courseName.setText(coursesForTheDay.get(position).getCourseTitle());
-        cvHolder.Venue.setText(coursesForTheDay.get(position).getVenue());
-        cvHolder.Slot.setText(coursesForTheDay.get(position).getSlot());
-        cvHolder.Attendance.setText(Integer.toString(AttendanceP));
-        cvHolder.pbAttendance.setProgress(AttendanceP);
+        int attendancePercentage = 0;
+        String startTime;
+        String endTime;
+
+        if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
+            attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
+        }
+        try {
+            startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
+            endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
+        }
+        catch (ParseException ex) {
+            ex.printStackTrace();
+            startTime = courseTimingPairs.get(position).second.getStartTime();
+            endTime = courseTimingPairs.get(position).second.getEndTime();
+        }
+
+        timeTableViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
+        timeTableViewHolder.courseName.setText(courseTimingPairs.get(position).first.getCourseTitle());
+        timeTableViewHolder.venue.setText(courseTimingPairs.get(position).first.getVenue());
+        timeTableViewHolder.slot.setText(courseTimingPairs.get(position).first.getSlot());
+        timeTableViewHolder.attendance.setText(Integer.toString(attendancePercentage));
+        timeTableViewHolder.slotTiming.setText(context.getString(R.string.timetable_course_slot_timing, startTime, endTime));
+        timeTableViewHolder.progressBarAttendance.setProgress(attendancePercentage);
+
+        int sdk = android.os.Build.VERSION.SDK_INT;
+        int bgColor = getAttendanceColor(attendancePercentage);
+
+        timeTableViewHolder.progressBarAttendance.getProgressDrawable().setColorFilter(bgColor, PorterDuff.Mode.SRC_IN);
+        GradientDrawable txt_bgShape;
+        txt_bgShape = (GradientDrawable) timeTableViewHolder.attendance.getBackground();
+        txt_bgShape.setColor(bgColor);
+
+        if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            timeTableViewHolder.attendance.setBackgroundDrawable(txt_bgShape);
+        } else {
+            timeTableViewHolder.attendance.setBackground(txt_bgShape);
+        }
     }
 
     public void setOnclickListener(RecyclerViewOnClickListener<Course> onClickListener) {
@@ -72,31 +112,41 @@ public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdap
 
     @Override
     public int getItemCount() {
-        return coursesForTheDay.size();
+        return courseTimingPairs.size();
     }
 
     public class TimeTableViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView courseName, courseCode, attendance, slot, venue, slotTiming;
+        public ProgressBar progressBarAttendance;
 
-        //data to be changed based on format of timetable card
+        public TimeTableViewHolder(View view) {
+            super(view);
 
-        public TextView courseName, courseCode, Attendance, Slot, Venue;
-        public ProgressBar pbAttendance;
+            courseName = (TextView) view.findViewById(R.id.course_name);
+            courseCode = (TextView) view.findViewById(R.id.course_code);
+            attendance = (TextView) view.findViewById(R.id.attendance);
+            slot = (TextView) view.findViewById(R.id.slot);
+            venue = (TextView) view.findViewById(R.id.venue);
+            slotTiming = (TextView) view.findViewById(R.id.slot_timing);
+            progressBarAttendance = (ProgressBar) view.findViewById(R.id.progress_bar_attendance);
+            progressBarAttendance.setMax(100);
 
-        public TimeTableViewHolder(View v) {
-            super(v);
-            courseName = (TextView) v.findViewById(R.id.tv_course_name);
-            courseCode = (TextView) v.findViewById(R.id.tv_course_code);
-            Attendance = (TextView) v.findViewById(R.id.tv_attendance);
-            Slot = (TextView) v.findViewById(R.id.tv_slot);
-            Venue = (TextView) v.findViewById(R.id.tv_venue);
-            pbAttendance = (ProgressBar) v.findViewById(R.id.process_bar_attendance);
-            pbAttendance.setMax(100);
-            v.setOnClickListener(this);
+            view.setOnClickListener(this);
         }
 
-        public void onClick(View v) {
-            Course course = coursesForTheDay.get(getAdapterPosition());
+        public void onClick(View view) {
+            Course course = courseTimingPairs.get(getAdapterPosition()).first;
             onClickListener.onItemClick(course);
+        }
+    }
+
+    private int getAttendanceColor(int attendance) {
+        if (attendance >= 80) {
+            return context.getResources().getColor(R.color.highAttend);
+        } else if (attendance >= 75 && attendance < 80) {
+            return context.getResources().getColor(R.color.midAttend);
+        } else {
+            return context.getResources().getColor(R.color.lowAttend);
         }
     }
 }

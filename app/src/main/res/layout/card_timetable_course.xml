@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ VITacademics
+  ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+  ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+  ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+  ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+  ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~
+  ~ This file is part of VITacademics.
+  ~ VITacademics is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ VITacademics is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true"
+    android:id="@+id/card_view_today"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/course_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/course_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/bright_foreground_material_light" />
+
+        <TextView
+            android:id="@+id/slot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/venue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/course_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/slot"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/bright_foreground_material_light"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/attendance"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_alignTop="@+id/course_code"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_attendance"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/course_code"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/attendance"
+            android:layout_toEndOf="@+id/attendance"
+            android:progress="100" />
+
+        <TextView
+            android:id="@+id/slot_timing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignLeft="@+id/progress_bar_attendance"
+            android:layout_alignStart="@+id/progress_bar_attendance"
+            android:layout_below="@+id/progress_bar_attendance"
+            android:textColor="@color/bright_foreground_material_light" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="20dp"
+            android:layout_height="10dp"
+            android:layout_below="@+id/slot"
+            android:layout_toEndOf="@+id/course_code"
+            android:layout_toRightOf="@+id/attendance" />
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
