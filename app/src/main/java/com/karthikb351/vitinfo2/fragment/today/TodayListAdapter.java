@@ -53,6 +53,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     private List<Pair<Course, Timing>> courseTimingPairs;
     private int dayOfWeek;
     private RecyclerViewOnClickListener<Course> OnclickListener;
+    private int attendanceIncrement;
 
     public TodayListAdapter(Context context, int dayOfWeek, List<Pair<Course, Timing>> courseTimingPairs) {
         this.context = context;
@@ -102,6 +103,16 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         }
 
         todayViewHolder.TimeLeft.setText(getTimeDifferenceString(diff, ended));
+
+        // Go and miss
+        if(courseTimingPairs.get(position).first.getSlot().charAt(0)=='L')
+        attendanceIncrement=2;
+        else
+        attendanceIncrement=1;
+        todayViewHolder.go.setText(100*(courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()+attendanceIncrement)/
+                courseTimingPairs.get(position).first.getAttendance().getTotalClasses()+attendanceIncrement);
+        todayViewHolder.miss.setText(100*courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()/
+                courseTimingPairs.get(position).first.getAttendance().getTotalClasses()+attendanceIncrement);
     }
 
     public void setOnclickListener(RecyclerViewOnClickListener<Course> listener) {
@@ -156,7 +167,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     }
 
     public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView courseName, courseCode, Attendance, Slot, Venue, TimeLeft;
+        public TextView courseName, courseCode, Attendance, Slot, Venue, TimeLeft, go, miss;
         public ProgressBar pbAttendance;
 
         public TodayViewHolder(View view) {
@@ -167,6 +178,8 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             Slot = (TextView) view.findViewById(R.id.tv_slot);
             Venue = (TextView) view.findViewById(R.id.tv_venue);
             TimeLeft = (TextView) view.findViewById(R.id.tv_time_left);
+            go=(TextView) view.findViewById(R.id.tv_go_attend);
+            miss=(TextView) view.findViewById(R.id.tv_miss_attend);
             pbAttendance = (ProgressBar) view.findViewById(R.id.process_bar_attendance);
             pbAttendance.setMax(100);
         }

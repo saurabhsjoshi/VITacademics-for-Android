@@ -33,8 +33,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
-        android:padding="5dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/tv_course_code"
@@ -43,7 +42,8 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/bright_foreground_material_light"/>
 
         <TextView
             android:id="@+id/tv_attendance"
@@ -55,6 +55,7 @@
             android:background="@drawable/circle"
             android:elegantTextHeight="@bool/abc_action_bar_embed_tabs"
             android:elevation="@dimen/cardview_default_elevation"
+            android:textStyle="bold"
             android:gravity="center"
             android:textColor="@color/bright_foreground_material_light" />
 
@@ -78,7 +79,7 @@
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/tv_attendance"
             android:elevation="@dimen/cardview_default_elevation"
-            android:progress="0" />
+            android:progress="100" />
 
         <TextView
             android:id="@+id/tv_slot"
