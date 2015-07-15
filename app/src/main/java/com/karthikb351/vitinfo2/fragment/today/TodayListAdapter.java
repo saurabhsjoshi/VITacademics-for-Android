@@ -53,7 +53,6 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     private List<Pair<Course, Timing>> courseTimingPairs;
     private int dayOfWeek;
     private RecyclerViewOnClickListener<Course> OnclickListener;
-    private int attendanceIncrement;
 
     public TodayListAdapter(Context context, int dayOfWeek, List<Pair<Course, Timing>> courseTimingPairs) {
         this.context = context;
@@ -72,14 +71,37 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     @Override
     public void onBindViewHolder(TodayViewHolder todayViewHolder, int position) {
 
-        int AttendanceP = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
+        int classLength = 1;
+        int AttendanceP = 0;
+        int calcGo = 100;
+        int calcMiss = 0;
+        long diff = 0;
+        boolean ended = false;
+
+        if (courseTimingPairs.get(position).first.getCourseType() == Constants.COURSE_TYPE_LBC) {
+            classLength = (int) courseTimingPairs.get(position).first.getLtpc().charAt(2);
+        }
+
+        if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
+            AttendanceP = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
+            calcGo = (int) Math.ceil((double) (courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() + classLength) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength));
+            calcMiss = (int) Math.ceil((double) courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength);
+        }
+
+        if (courseTimingPairs.get(position).second.getDay() == dayOfWeek) {
+            diff = getTimeDifference(courseTimingPairs.get(position).second);
+            ended = checkIfSlotEnded(courseTimingPairs.get(position).second);
+        }
+
         todayViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
         todayViewHolder.courseName.setText(courseTimingPairs.get(position).first.getCourseTitle());
         todayViewHolder.Venue.setText(courseTimingPairs.get(position).first.getVenue());
         todayViewHolder.Slot.setText(courseTimingPairs.get(position).first.getSlot());
         todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
         todayViewHolder.pbAttendance.setProgress(AttendanceP);
-
+        todayViewHolder.go.setText(Integer.toString(calcGo));
+        todayViewHolder.miss.setText(Integer.toString(calcMiss));
+        todayViewHolder.TimeLeft.setText(getTimeDifferenceString(diff, ended));
 
         int sdk = android.os.Build.VERSION.SDK_INT;
         int bgColor = getAttendanceColor(AttendanceP);
@@ -94,27 +116,6 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         } else {
             todayViewHolder.Attendance.setBackground(txt_bgShape);
         }
-
-        long diff = 0;
-        boolean ended = false;
-        if (courseTimingPairs.get(position).second.getDay() == dayOfWeek) {
-            diff = getTimeDifference(courseTimingPairs.get(position).second);
-            ended = checkIfSlotEnded(courseTimingPairs.get(position).second);
-        }
-
-        todayViewHolder.TimeLeft.setText(getTimeDifferenceString(diff, ended));
-
-        // Go and miss
-        if(courseTimingPairs.get(position).first.getSlot().charAt(0)=='L')
-        attendanceIncrement=2;
-        else
-        attendanceIncrement=1;
-        double calcGo=100*(courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()+attendanceIncrement)/
-                courseTimingPairs.get(position).first.getAttendance().getTotalClasses()+attendanceIncrement;
-        double calcMiss=100*courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()/
-                courseTimingPairs.get(position).first.getAttendance().getTotalClasses()+attendanceIncrement;
-        todayViewHolder.go.setText(Double.toString(calcGo));
-        todayViewHolder.miss.setText(Double.toString(calcMiss));
     }
 
     public void setOnclickListener(RecyclerViewOnClickListener<Course> listener) {
@@ -180,8 +181,8 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             Slot = (TextView) view.findViewById(R.id.tv_slot);
             Venue = (TextView) view.findViewById(R.id.tv_venue);
             TimeLeft = (TextView) view.findViewById(R.id.tv_time_left);
-            go=(TextView) view.findViewById(R.id.tv_go_attend);
-            miss=(TextView) view.findViewById(R.id.tv_miss_attend);
+            go = (TextView) view.findViewById(R.id.tv_go_attend);
+            miss = (TextView) view.findViewById(R.id.tv_miss_attend);
             pbAttendance = (ProgressBar) view.findViewById(R.id.process_bar_attendance);
             pbAttendance.setMax(100);
         }

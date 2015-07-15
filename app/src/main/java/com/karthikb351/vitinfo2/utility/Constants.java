@@ -63,4 +63,11 @@ public class Constants {
     public final static int MILLISECONDS_IN_MINUTE = 60000;
 
     public final static String SHARE_TYPE = "text/plain";
+
+    public final static int COURSE_TYPE_CBL = 1;
+    public final static int COURSE_TYPE_LBC = 2;
+    public final static int COURSE_TYPE_PBL = 3;
+    public final static int COURSE_TYPE_RBL = 4;
+    public final static int COURSE_TYPE_PBC = 5;
+    public final static int COURSE_TYPE_PBC_NO_PROJECT = 6;
 }
