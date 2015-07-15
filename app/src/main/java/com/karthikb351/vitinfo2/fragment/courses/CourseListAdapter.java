@@ -87,7 +87,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             view.setOnClickListener(this);
         }
 
-        public void onClick(View v) {
+        public void onClick(View view) {
             Course course = courses.get(getAdapterPosition());
             onClickListener.onItemClick(course);
         }

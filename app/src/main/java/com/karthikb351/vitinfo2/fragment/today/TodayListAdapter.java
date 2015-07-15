@@ -95,26 +95,26 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
         todayViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
         todayViewHolder.courseName.setText(courseTimingPairs.get(position).first.getCourseTitle());
-        todayViewHolder.Venue.setText(courseTimingPairs.get(position).first.getVenue());
-        todayViewHolder.Slot.setText(courseTimingPairs.get(position).first.getSlot());
-        todayViewHolder.Attendance.setText(Integer.toString(attendancePercentage));
-        todayViewHolder.pbAttendance.setProgress(attendancePercentage);
-        todayViewHolder.go.setText(Integer.toString(goCalculated));
-        todayViewHolder.miss.setText(Integer.toString(missCalculated));
-        todayViewHolder.TimeLeft.setText(getTimeDifferenceString(timeDifference, ended));
+        todayViewHolder.venue.setText(courseTimingPairs.get(position).first.getVenue());
+        todayViewHolder.slot.setText(courseTimingPairs.get(position).first.getSlot());
+        todayViewHolder.attendance.setText(Integer.toString(attendancePercentage));
+        todayViewHolder.progressBarAttendance.setProgress(attendancePercentage);
+        todayViewHolder.goAttendance.setText(Integer.toString(goCalculated));
+        todayViewHolder.missAttendance.setText(Integer.toString(missCalculated));
+        todayViewHolder.timeLeft.setText(getTimeDifferenceString(timeDifference, ended));
 
         int sdk = android.os.Build.VERSION.SDK_INT;
         int bgColor = getAttendanceColor(attendancePercentage);
 
-        todayViewHolder.pbAttendance.getProgressDrawable().setColorFilter(bgColor, PorterDuff.Mode.SRC_IN);
+        todayViewHolder.progressBarAttendance.getProgressDrawable().setColorFilter(bgColor, PorterDuff.Mode.SRC_IN);
         GradientDrawable txt_bgShape;
-        txt_bgShape = (GradientDrawable) todayViewHolder.Attendance.getBackground();
+        txt_bgShape = (GradientDrawable) todayViewHolder.attendance.getBackground();
         txt_bgShape.setColor(bgColor);
 
         if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            todayViewHolder.Attendance.setBackgroundDrawable(txt_bgShape);
+            todayViewHolder.attendance.setBackgroundDrawable(txt_bgShape);
         } else {
-            todayViewHolder.Attendance.setBackground(txt_bgShape);
+            todayViewHolder.attendance.setBackground(txt_bgShape);
         }
     }
 
@@ -170,21 +170,24 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     }
 
     public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView courseName, courseCode, Attendance, Slot, Venue, TimeLeft, go, miss;
-        public ProgressBar pbAttendance;
+        public TextView courseName, courseCode, attendance, slot, venue, timeLeft, goAttendance, missAttendance;
+        public ProgressBar progressBarAttendance;
 
         public TodayViewHolder(View view) {
             super(view);
-            courseName = (TextView) view.findViewById(R.id.tv_course_name);
-            courseCode = (TextView) view.findViewById(R.id.tv_course_code);
-            Attendance = (TextView) view.findViewById(R.id.tv_attendance);
-            Slot = (TextView) view.findViewById(R.id.tv_slot);
-            Venue = (TextView) view.findViewById(R.id.tv_venue);
-            TimeLeft = (TextView) view.findViewById(R.id.tv_time_left);
-            go = (TextView) view.findViewById(R.id.tv_go_attend);
-            miss = (TextView) view.findViewById(R.id.tv_miss_attend);
-            pbAttendance = (ProgressBar) view.findViewById(R.id.process_bar_attendance);
-            pbAttendance.setMax(100);
+
+            courseName = (TextView) view.findViewById(R.id.course_name);
+            courseCode = (TextView) view.findViewById(R.id.course_code);
+            attendance = (TextView) view.findViewById(R.id.attendance);
+            slot = (TextView) view.findViewById(R.id.slot);
+            venue = (TextView) view.findViewById(R.id.venue);
+            timeLeft = (TextView) view.findViewById(R.id.time_left);
+            goAttendance = (TextView) view.findViewById(R.id.go_attendance);
+            missAttendance = (TextView) view.findViewById(R.id.miss_attendance);
+            progressBarAttendance = (ProgressBar) view.findViewById(R.id.progress_bar_attendance);
+            progressBarAttendance.setMax(100);
+
+            view.setOnClickListener(this);
         }
 
         public void onClick(View view) {

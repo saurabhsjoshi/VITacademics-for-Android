@@ -99,8 +99,8 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
             calculate = (ImageButton) view.findViewById(R.id.iv_calculate);
             tvNewCGPA = (TextView) view.findViewById(R.id.tv_cgpa_new);
             oldCGPA = (TextView) view.findViewById(R.id.tv_cgpa_old);
-            courseCode = (TextView) view.findViewById(R.id.tv_course_code);
-            courseName = (TextView) view.findViewById(R.id.tv_course_name);
+            courseCode = (TextView) view.findViewById(R.id.course_code);
+            courseName = (TextView) view.findViewById(R.id.course_name);
             courseCredits = (TextView) view.findViewById(R.id.tv_course_credit);
             spinner = (Spinner) view.findViewById(R.id.spinner_course_grade);
             //spinner.setOnItemClickListener(this);
