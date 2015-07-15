@@ -51,7 +51,7 @@ public class DetailsFragment extends Fragment {
     public static DetailsFragment newInstance(Course course) {
         DetailsFragment detailsFragment = new DetailsFragment();
         detailsFragment.course = course;
-        return new DetailsFragment();
+        return detailsFragment ;
     }
 
     @Nullable
@@ -62,7 +62,7 @@ public class DetailsFragment extends Fragment {
         // TODO, rethink this. Must not change Minimum API level
        /// actionBar.setDisplayHomeAsUpEnabled(false);
         // actionBar.setDisplayShowTitleEnabled(false);
-//        getActivity().setTitle(course.getCourseCode());
+ //       getActivity().setTitle(course.getCourseCode());
         tabLayout = (TabLayout) view.findViewById(R.id.tabs_details);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager_details);
 
