@@ -27,7 +27,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
@@ -49,26 +48,18 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     @Override
     public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        android.support.v7.widget.CardView rootcard = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(R.layout.card_course, parent, false);
+        android.support.v7.widget.CardView rootcard = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(R.layout.card_courses_course, parent, false);
         return new CourseViewHolder(rootcard);
     }
 
     @Override
     public void onBindViewHolder(CourseViewHolder courseViewHolder, int position) {
 
-        int AttendanceP = courses.get(position).getAttendance().getAttendancePercentage();
-
-        // Changing drawable based on attendance
-        if(AttendanceP<75){
-
-        }
-
+        courseViewHolder.classNumber.setText(Integer.toString(courses.get(position).getClassNumber()));
         courseViewHolder.courseCode.setText(courses.get(position).getCourseCode());
         courseViewHolder.courseName.setText(courses.get(position).getCourseTitle());
-        courseViewHolder.venue.setText(courses.get(position).getVenue());
-        courseViewHolder.slot.setText(courses.get(position).getSlot());
-        courseViewHolder.attendance.setText(Integer.toString(AttendanceP));
-        courseViewHolder.attendanceProgressBar.setProgress(AttendanceP);
+        courseViewHolder.faculty.setText(courses.get(position).getFaculty());
+        courseViewHolder.subjectType.setText(courses.get(position).getSubjectType());
     }
 
     public void setOnClickListener(RecyclerViewOnClickListener<Course> onClickListener) {
@@ -82,19 +73,18 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
 
     public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView courseName, courseCode, attendance, slot, venue;
-        public ProgressBar attendanceProgressBar;
+        public TextView classNumber, courseName, courseCode, faculty, subjectType;
 
-        public CourseViewHolder(View v) {
-            super(v);
-            courseName = (TextView) v.findViewById(R.id.tv_course_name);
-            courseCode = (TextView) v.findViewById(R.id.tv_course_code);
-            attendance = (TextView) v.findViewById(R.id.tv_attendance);
-            slot = (TextView) v.findViewById(R.id.tv_slot);
-            venue = (TextView) v.findViewById(R.id.tv_venue);
-            attendanceProgressBar = (ProgressBar) v.findViewById(R.id.process_bar_attendance);
-            attendanceProgressBar.setMax(100);
-            v.setOnClickListener(this);
+        public CourseViewHolder(View view) {
+            super(view);
+
+            classNumber = (TextView) view.findViewById(R.id.class_number);
+            courseName = (TextView) view.findViewById(R.id.course_name);
+            courseCode = (TextView) view.findViewById(R.id.course_code);
+            faculty = (TextView) view.findViewById(R.id.faculty);
+            subjectType = (TextView) view.findViewById(R.id.subject_type);
+
+            view.setOnClickListener(this);
         }
 
         public void onClick(View v) {
@@ -102,5 +92,4 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             onClickListener.onItemClick(course);
         }
     }
-
 }

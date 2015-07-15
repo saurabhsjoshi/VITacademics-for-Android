@@ -62,7 +62,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
     @Override
     public TodayViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardView cardView = (CardView) LayoutInflater.from(context).inflate(R.layout.card_today, parent, false);
+        CardView cardView = (CardView) LayoutInflater.from(context).inflate(R.layout.card_today_course, parent, false);
         return new TodayViewHolder(cardView);
     }
 
@@ -72,10 +72,10 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     public void onBindViewHolder(TodayViewHolder todayViewHolder, int position) {
 
         int classLength = 1;
-        int AttendanceP = 0;
-        int calcGo = 100;
-        int calcMiss = 0;
-        long diff = 0;
+        int attendancePercentage = 0;
+        int goCalculated = 100;
+        int missCalculated = 0;
+        long timeDifference = 0;
         boolean ended = false;
 
         if (courseTimingPairs.get(position).first.getCourseType() == Constants.COURSE_TYPE_LBC) {
@@ -83,13 +83,13 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         }
 
         if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
-            AttendanceP = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
-            calcGo = (int) Math.ceil((double) (courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() + classLength) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength));
-            calcMiss = (int) Math.ceil((double) courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength);
+            attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
+            goCalculated = (int) Math.ceil((double) (courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() + classLength) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength));
+            missCalculated = (int) Math.ceil((double) courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength);
         }
 
         if (courseTimingPairs.get(position).second.getDay() == dayOfWeek) {
-            diff = getTimeDifference(courseTimingPairs.get(position).second);
+            timeDifference = getTimeDifference(courseTimingPairs.get(position).second);
             ended = checkIfSlotEnded(courseTimingPairs.get(position).second);
         }
 
@@ -97,14 +97,14 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         todayViewHolder.courseName.setText(courseTimingPairs.get(position).first.getCourseTitle());
         todayViewHolder.Venue.setText(courseTimingPairs.get(position).first.getVenue());
         todayViewHolder.Slot.setText(courseTimingPairs.get(position).first.getSlot());
-        todayViewHolder.Attendance.setText(Integer.toString(AttendanceP));
-        todayViewHolder.pbAttendance.setProgress(AttendanceP);
-        todayViewHolder.go.setText(Integer.toString(calcGo));
-        todayViewHolder.miss.setText(Integer.toString(calcMiss));
-        todayViewHolder.TimeLeft.setText(getTimeDifferenceString(diff, ended));
+        todayViewHolder.Attendance.setText(Integer.toString(attendancePercentage));
+        todayViewHolder.pbAttendance.setProgress(attendancePercentage);
+        todayViewHolder.go.setText(Integer.toString(goCalculated));
+        todayViewHolder.miss.setText(Integer.toString(missCalculated));
+        todayViewHolder.TimeLeft.setText(getTimeDifferenceString(timeDifference, ended));
 
         int sdk = android.os.Build.VERSION.SDK_INT;
-        int bgColor = getAttendanceColor(AttendanceP);
+        int bgColor = getAttendanceColor(attendancePercentage);
 
         todayViewHolder.pbAttendance.getProgressDrawable().setColorFilter(bgColor, PorterDuff.Mode.SRC_IN);
         GradientDrawable txt_bgShape;

@@ -48,12 +48,9 @@ public class CoursesFragment extends Fragment {
     private RecyclerView recyclerView;
     private CourseListAdapter courseListAdapter;
     private View rootView;
-    int layoutId;
     TextView errorMessage;
 
     public CoursesFragment() {
-        // Required empty public constructor
-
     }
 
     public static CoursesFragment newInstance() {
@@ -63,24 +60,23 @@ public class CoursesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
-        if(courses==null||courses.isEmpty())
-            layoutId=R.layout.not_available;
-        else
-            layoutId=R.layout.fragment_courses;
-        rootView = inflater.inflate(layoutId, container, false);
+        courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
+        if (courses == null || courses.isEmpty()) {
+            rootView = inflater.inflate(R.layout.not_available, container, false);
+        } else {
+            rootView = inflater.inflate(R.layout.fragment_courses, container, false);
+        }
         initialize();
         return rootView;
     }
 
     void initialize() {
-        courses = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCourses();
+        courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
 
-        if(layoutId==R.layout.not_available) {
+        if (courses == null || courses.isEmpty()) {
             errorMessage = (TextView) rootView.findViewById(R.id.tv_message);
-            errorMessage.setText("You are not registered in any course");
-        }
-        else {
+            errorMessage.setText(getString(R.string.courses_none));
+        } else {
             RecyclerView.LayoutManager courseLayoutManager = new LinearLayoutManager(getActivity());
             courseListAdapter = new CourseListAdapter(getActivity(), courses);
             recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_courses);
@@ -100,9 +96,9 @@ public class CoursesFragment extends Fragment {
     void onListItemClick(Course course) {
         android.support.v4.app.Fragment frag = DetailsFragment.newInstance(course);
         android.support.v4.app.FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.flContent,frag,course.getCourseCode()).addToBackStack(null).commit();
+        ft.replace(R.id.flContent, frag, course.getCourseCode()).addToBackStack(null).commit();
     }
-;
+
     @Override
     public void onResume() {
         super.onResume();
