@@ -79,23 +79,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == android.R.id.home) {
-            drawerLayout.openDrawer(GravityCompat.START);
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -110,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void initialize() {
         navigationTabs = Arrays.asList(getResources().getStringArray(R.array.navigation_tab));
-        courses = ((MainApplication)getApplication()).getDataHolderInstance().getCourses();
+        courses = ((MainApplication) getApplication()).getDataHolderInstance().getCourses();
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mainContent = (LinearLayout) findViewById(R.id.llMainContent);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -118,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
-                    this,  drawerLayout, toolbar,
+                    this, drawerLayout, toolbar,
                     R.string.navigation_drawer_open, R.string.navigation_drawer_close
             );
             drawerLayout.setDrawerListener(mDrawerToggle);
@@ -130,57 +119,53 @@ public class MainActivity extends AppCompatActivity {
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
+                Fragment fragment = null;
+                int position = 0;
+
                 String navString = (String) menuItem.getTitle();
                 menuItem.setChecked(true);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                Fragment frag = null;
-                int pos = 0;
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 // settings can be passed in the new instance function
                 // TODO: inefficient for already created instances. Fix.
                 switch (navString) {
                     // TODO Get Position directly, if not use String resources to compare. This should work even if app is in a different language
                     // TODO Check https://developer.android.com/training/implementing-navigation/nav-drawer.html
                     case "Today":
-                        frag = TodayFragment.newInstance();
-                        pos = 0;
+                        fragment = TodayFragment.newInstance();
+                        position = 0;
                         break;
                     case "Courses":
-                        frag = CoursesFragment.newInstance();
-                        pos = 1;
+                        fragment = CoursesFragment.newInstance();
+                        position = 1;
                         break;
                     case "Timetable":
-                        frag = TimetableFragment.newInstance();
-                        pos = 2;
+                        fragment = TimetableFragment.newInstance();
+                        position = 2;
                         break;
                     case "Grades":
-                        frag = GradesFragment.newInstance();
-                        pos = 3;
+                        fragment = GradesFragment.newInstance();
+                        position = 3;
                         break;
                     case "Settings":
-                        frag = SettingsFragment.newInstance();
-                        pos = 4;
+                        fragment = SettingsFragment.newInstance();
+                        position = 4;
                         break;
                     case "Messages":
-                        frag = MessagesFragment.newInstance();
-                        pos = 5;
+                        fragment = MessagesFragment.newInstance();
+                        position = 5;
                         break;
                     case "About":
-                        frag = AboutFragment.newInstance();
-                        pos = 6;
+                        fragment = AboutFragment.newInstance();
+                        position = 6;
                         break;
                 }
-                ft.replace(R.id.flContent, frag, navigationTabs.get(pos)).addToBackStack(null).commit();
+                fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).addToBackStack(null).commit();
 
                 drawerLayout.closeDrawers();
                 return true;
             }
         });
-        //lv = (ListView) findViewById(R.id.lvDrawer);
-        if (courses == null || courses.isEmpty()) {
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new UnavailableFragment(), "Unavailable").commit();
-        } else {
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), "Today Fragment").commit();
-        }
+        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commit();
     }
 
     public void pullToRefresh() {
@@ -205,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         RequestConfig requestConfig = new RequestConfig(new ResultListener() {
             @Override
             public void onSuccess() {
-                ((MainApplication)getApplication()).getDataHolderInstance().refreshData(MainActivity.this, resultListener);
+                ((MainApplication) getApplication()).getDataHolderInstance().refreshData(MainActivity.this, resultListener);
             }
 
             @Override
