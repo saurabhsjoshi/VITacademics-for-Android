@@ -19,7 +19,7 @@
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.assesment;
+package com.karthikb351.vitinfo2.fragment.details;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
