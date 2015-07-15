@@ -33,10 +33,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.MainApplication;
@@ -46,7 +46,6 @@ import com.karthikb351.vitinfo2.api.RequestConfig;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
-import com.karthikb351.vitinfo2.fragment.UnavailableFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
@@ -67,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     private List<String> navigationTabs;
     private LinearLayout mainContent;
     private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
     private ListView lv;
 
     @Override
@@ -115,6 +113,14 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             mDrawerToggle.syncState();
         }
+
+        String campus = ((MainApplication)getApplication()).getDataHolderInstance().getCampus();
+        campus = campus.substring(0, 1).toUpperCase() + campus.substring(1);
+
+        ((TextView)drawerLayout.findViewById(R.id.header_username)).setText(
+                ((MainApplication)getApplication()).getDataHolderInstance().getRegisterNumber());
+        ((TextView)drawerLayout.findViewById(R.id.header_campus)).setText(campus);
+
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
