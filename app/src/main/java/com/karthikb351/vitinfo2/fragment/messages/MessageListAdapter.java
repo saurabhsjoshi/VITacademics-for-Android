@@ -53,7 +53,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
 
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
-        holder.messageId.setText(Integer.toString(messages.get(position).getMessageId()));
+        //holder.messageId.setText(Integer.toString(messages.get(position).getMessageId()));
         holder.message.setText(messages.get(position).getMessage());
 
         try {
@@ -76,7 +76,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<MessageListAdapter.
         public MessageViewHolder(View view) {
             super(view);
 
-            messageId = (TextView) view.findViewById(R.id.message_id);
+            //messageId = (TextView) view.findViewById(R.id.message_id);
             message = (TextView) view.findViewById(R.id.message);
             timestamp = (TextView) view.findViewById(R.id.message_timestamp);
         }
