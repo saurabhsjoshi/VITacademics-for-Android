@@ -109,10 +109,11 @@ public class MainActivity extends AppCompatActivity {
 
         navigationTabs = Arrays.asList(getResources().getStringArray(R.array.navigation_tab));
 
-        headerCampus = (TextView) drawerLayout.findViewById(R.id.header_campus);
-        headerUsername = (TextView) drawerLayout.findViewById(R.id.header_username);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mainContent = (LinearLayout) findViewById(R.id.llMainContent);
+        headerCampus = (TextView) drawerLayout.findViewById(R.id.header_campus);
+        headerUsername = (TextView) drawerLayout.findViewById(R.id.header_username);
+
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
