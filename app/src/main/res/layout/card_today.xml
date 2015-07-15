@@ -22,8 +22,6 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!--// TODO Use string resources-->
-
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:foreground="?selectableItemBackground"
@@ -67,6 +65,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/tv_slot"
+            android:layout_toEndOf="@+id/tv_slot"
             android:layout_marginRight="3dp"
             android:layout_marginEnd="3dp"
             android:layout_marginTop="5dp"
