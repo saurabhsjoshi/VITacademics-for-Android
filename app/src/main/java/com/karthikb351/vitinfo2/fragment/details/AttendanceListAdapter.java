@@ -61,29 +61,35 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     }
 
     @Override
-    public void onBindViewHolder(AttendanceViewHolder holder, int position) {
-        holder.date.setText(attendanceDetail.get(position - 1).getDate());
-        holder.statusDetails.setText(attendanceDetail.get(position - 1).getStatus());
-        holder.classUnits.setText(attendanceDetail.get(position - 1).getClassUnits());
-        holder.reason.setText(attendanceDetail.get(position - 1).getReason());
-        holder.courseName.setText(course.getCourseTitle());
-        holder.courseCode.setText(course.getCourseCode());
-        holder.courseRoom.setText(course.getVenue());
-        holder.courseSlot.setText(course.getSlot());
-        holder.attended.setText(attendance.getAttendedClasses());
-        holder.totalClasses.setText(attendance.getTotalClasses());
-        holder.attendancePercent.setText(attendance.getAttendancePercentage());
-        holder.registeredOn.setText(attendance.getRegistrationDate());
-        if (attendance.getAttendancePercentage() <= 75) {
-            holder.status.setTextColor(context.getResources().getColor(R.color.error_color));
-            holder.status.setText(context.getString(R.string.label_attendance_debarred));
-            holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.error_color));
-        } else {
-            holder.status.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
-            holder.status.setText(context.getString(R.string.label_attendance_debarred));
-            holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
+    public void onBindViewHolder(AttendanceViewHolder holder, int position)
+    {
+        if(position == 0)
+        {
+            holder.courseName.setText(course.getCourseTitle());
+            holder.courseCode.setText(course.getCourseCode());
+            holder.courseRoom.setText(course.getVenue());
+            holder.courseSlot.setText(course.getSlot());
+            holder.attended.setText(Integer.toString(attendance.getAttendedClasses()));
+            holder.totalClasses.setText(Integer.toString(attendance.getTotalClasses()));
+            holder.attendancePercent.setText(Integer.toString(attendance.getAttendancePercentage()));
+            holder.registeredOn.setText(attendance.getRegistrationDate());
+            if (attendance.getAttendancePercentage() <= 75) {
+                holder.status.setTextColor(context.getResources().getColor(R.color.error_color));
+                holder.status.setText(context.getString(R.string.label_attendance_debarred));
+                holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.error_color));
+            } else {
+                holder.status.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+                holder.status.setText(context.getString(R.string.label_attendance_debarred));
+                holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
+            }
+            holder.progressBarAttendance.setProgress(attendance.getAttendancePercentage());
         }
-        holder.progressBarAttendance.setProgress(attendance.getAttendancePercentage());
+        else {
+            holder.date.setText(attendanceDetail.get(position - 1).getDate());
+            holder.statusDetails.setText(attendanceDetail.get(position - 1).getStatus());
+            holder.classUnits.setText(Integer.toString(attendanceDetail.get(position - 1).getClassUnits()));
+            holder.reason.setText(attendanceDetail.get(position - 1).getReason());
+        }
     }
 
     @Override
@@ -121,7 +127,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             totalClasses = (TextView) view.findViewById(R.id.tv_total_classes);
             attendancePercent = (TextView) view.findViewById(R.id.tv_attendance_percent);
             registeredOn = (TextView) view.findViewById(R.id.tv_registered_on);
-            progressBarAttendance = (ProgressBar) view.findViewById(R.id.progress_bar_marks);
+            progressBarAttendance = (ProgressBar) view.findViewById(R.id.progress_bar_attendance);
         }
     }
 

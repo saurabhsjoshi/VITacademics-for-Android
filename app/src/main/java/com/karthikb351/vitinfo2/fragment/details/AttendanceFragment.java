@@ -61,6 +61,6 @@ public class AttendanceFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_attendance);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(listAdapter);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return view ;
     }
 }

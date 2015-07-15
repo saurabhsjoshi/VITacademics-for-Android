@@ -65,15 +65,22 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
 
     @Override
     public void onBindViewHolder(AssesmentViewHolder holder, int position) {
-        holder.assessmentType.setText(assesments.get(position - 1).getTitle());
-        holder.maxMarks.setText(Double.toString(assesments.get(position - 1).getMaxMarks()));
-        holder.scoredMarks.setText(Double.toString(assesments.get(position - 1).getScoredMarks()) + "/");
-        holder.weightage.setText(Double.toString(assesments.get(position - 1).getWeightage()));
-        Double contribution = assesments.get(position - 1).getScoredPercentage() * assesments.get(position - 1).getWeightage();
-        holder.contribution.setText(Double.toString(contribution));
-        holder.marksProgressBar.setProgress((int) assesments.get(position - 1).getScoredPercentage());
-        holder.totalScored.setText(Double.toString(marks.getScoredMarks()));
-        holder.totalMax.setText(Double.toString(marks.getMaxMarks()));
+        if(position ==0) {
+            holder.totalScored.setText(Double.toString(marks.getScoredMarks()));
+            holder.totalMax.setText(Double.toString(marks.getMaxMarks()));
+            holder.courseCode.setText(course.getCourseCode());
+            holder.courseName.setText(course.getCourseTitle());
+        }
+        else
+        {
+            holder.assessmentType.setText(assesments.get(position - 1).getTitle());
+            holder.maxMarks.setText(Double.toString(assesments.get(position - 1).getMaxMarks()));
+            holder.scoredMarks.setText(Double.toString(assesments.get(position - 1).getScoredMarks()) + "/");
+            holder.weightage.setText(Double.toString(assesments.get(position - 1).getWeightage()));
+            Double contribution = assesments.get(position - 1).getScoredPercentage() * assesments.get(position - 1).getWeightage();
+            holder.contribution.setText(Double.toString(contribution));
+            holder.marksProgressBar.setProgress((int) assesments.get(position - 1).getScoredPercentage());
+        }
     }
 
     @Override

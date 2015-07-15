@@ -28,6 +28,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -37,12 +38,14 @@ public class DetailsAdapter extends FragmentPagerAdapter {
     private Fragment fragment;
     private Context context;
     private Course course;
+    String detailsTitles[];
 
     private final int TAB_COUNT_DETAILS = 3;
 
     public DetailsAdapter(FragmentManager fragmentManager, Context context, Course course) {
         super(fragmentManager);
         this.context = context;
+        detailsTitles = context.getResources().getStringArray(R.array.course_details_tab);
         this.course = course;
     }
 
@@ -73,7 +76,6 @@ public class DetailsAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        String detailsTitles[] = context.getResources().getStringArray(R.array.course_details_tab);
         return detailsTitles[position];
     }
 }
