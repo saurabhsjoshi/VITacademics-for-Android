@@ -109,10 +109,12 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         attendanceIncrement=2;
         else
         attendanceIncrement=1;
-        todayViewHolder.go.setText(100*(courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()+attendanceIncrement)/
-                courseTimingPairs.get(position).first.getAttendance().getTotalClasses()+attendanceIncrement);
-        todayViewHolder.miss.setText(100*courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()/
-                courseTimingPairs.get(position).first.getAttendance().getTotalClasses()+attendanceIncrement);
+        double calcGo=100*(courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()+attendanceIncrement)/
+                courseTimingPairs.get(position).first.getAttendance().getTotalClasses()+attendanceIncrement;
+        double calcMiss=100*courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()/
+                courseTimingPairs.get(position).first.getAttendance().getTotalClasses()+attendanceIncrement;
+        todayViewHolder.go.setText(Double.toString(calcGo));
+        todayViewHolder.miss.setText(Double.toString(calcMiss));
     }
 
     public void setOnclickListener(RecyclerViewOnClickListener<Course> listener) {

@@ -128,6 +128,8 @@
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/fixed_go"
             android:layout_toEndOf="@+id/fixed_go"
+            android:layout_marginLeft="6dp"
+            android:layout_marginStart="6dp"
             android:textColor="@color/bright_foreground_material_light" />
 
         <TextView
