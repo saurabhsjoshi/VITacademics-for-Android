@@ -114,5 +114,7 @@
     <string name="android_share_select">Share VITacademics using &#8230;</string>
     <string name="android_share_message_subject">VITacademics</string>
     <string name="android_share_message_start">Download VITacademics from: </string>
+    <string name="title_activity_sample">SampleActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
