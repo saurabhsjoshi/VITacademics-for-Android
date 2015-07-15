@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
     @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+    */
 
     public void initialize() {
         courses = ((MainApplication) getApplication()).getDataHolderInstance().getCourses();
