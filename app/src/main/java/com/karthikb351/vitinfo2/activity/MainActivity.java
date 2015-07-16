@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                         position = 6;
                         break;
                 }
-                fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).addToBackStack(null).commit();
+                fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).commit();
 
                 drawerLayout.closeDrawers();
                 return true;
