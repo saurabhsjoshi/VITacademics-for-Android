@@ -94,7 +94,10 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
 
     @Override
     public int getItemCount() {
-        return (assesments.size() + 1);
+        if(assesments==null||assesments.isEmpty())
+            return 1;
+        else
+            return (assesments.size() + 1);
     }
 
     public class AssesmentViewHolder extends RecyclerView.ViewHolder {
