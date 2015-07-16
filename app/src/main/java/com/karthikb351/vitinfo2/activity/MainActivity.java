@@ -91,17 +91,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*
-    @Override
-    public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack();
-        } else {
-            super.onBackPressed();
-        }
-    }
-    */
-
     public void initialize() {
         courses = ((MainApplication) getApplication()).getDataHolderInstance().getCourses();
         campus = ((MainApplication) getApplication()).getDataHolderInstance().getCampus();
