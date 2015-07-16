@@ -84,8 +84,6 @@ public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdap
             startTime = courseTimingPairs.get(position).second.getStartTime();
             endTime = courseTimingPairs.get(position).second.getEndTime();
         }
-        startTime=startTime.replace(":00","");
-        endTime=endTime.replace(":00","");
 
         timeTableViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
         timeTableViewHolder.courseName.setText(courseTimingPairs.get(position).first.getCourseTitle());

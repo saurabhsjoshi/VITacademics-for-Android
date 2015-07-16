@@ -46,14 +46,14 @@ public class DateTimeCalender {
         DateFormat dateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_DATE_FORMAT, Locale.US);
         dateFormat.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE_UTC));
         Date date = dateFormat.parse(jsonString);
-        return SimpleDateFormat.getDateInstance().format(date);
+        return SimpleDateFormat.getDateInstance(DateFormat.FULL).format(date);
     }
 
     public static String parseISO8601Time(String jsonString) throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_TIME_FORMAT, Locale.US);
         dateFormat.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE_UTC));
         Date time = dateFormat.parse(jsonString);
-        return SimpleDateFormat.getTimeInstance().format(time);
+        return SimpleDateFormat.getTimeInstance(DateFormat.SHORT).format(time);
     }
 
     public static Date getTodayTimeObject(String jsonString) throws ParseException {
