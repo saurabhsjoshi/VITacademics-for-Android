@@ -25,16 +25,17 @@
 package com.karthikb351.vitinfo2.fragment.details;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.utility.Constants;
 
 public class AttendanceFragment extends Fragment {
 
@@ -43,7 +44,6 @@ public class AttendanceFragment extends Fragment {
     private AttendanceListAdapter listAdapter;
 
     public AttendanceFragment() {
-
     }
 
     public static AttendanceFragment newInstance(Course course) {
@@ -52,15 +52,22 @@ public class AttendanceFragment extends Fragment {
         return attendanceFragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.attendance, container, false);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        listAdapter = new AttendanceListAdapter(getActivity(), course);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_attendance);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(listAdapter);
-        return view ;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (course.getCourseType() == Constants.COURSE_TYPE_PBC || course.getCourseType() == Constants.COURSE_TYPE_PBC_NO_PROJECT) {
+            View view = inflater.inflate(R.layout.not_available, container, false);
+            TextView message = (TextView) view.findViewById(R.id.tv_message);
+            message.setText(getActivity().getResources().getQuantityString(R.plurals.message_not_applicable, Constants.SINGULAR_VALUE, getString(R.string.tab_course_attendance)));
+            return view;
+        }
+        else {
+            View view = inflater.inflate(R.layout.fragment_details_attendance, container, false);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+            listAdapter = new AttendanceListAdapter(getActivity(), course);
+            recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_attendance);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(listAdapter);
+            return view;
+        }
     }
 }

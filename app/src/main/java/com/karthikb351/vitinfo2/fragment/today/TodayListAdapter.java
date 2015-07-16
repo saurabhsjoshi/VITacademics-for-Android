@@ -101,8 +101,8 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         todayViewHolder.slot.setText(courseTimingPairs.get(position).first.getSlot());
         todayViewHolder.attendance.setText(Integer.toString(attendancePercentage));
         todayViewHolder.progressBarAttendance.setProgress(attendancePercentage);
-        todayViewHolder.goAttendance.setText(Integer.toString(goCalculated));
-        todayViewHolder.missAttendance.setText(Integer.toString(missCalculated));
+        todayViewHolder.goAttendance.setText(context.getString(R.string.label_class_go, goCalculated));
+        todayViewHolder.missAttendance.setText(context.getString(R.string.label_class_miss, missCalculated));
         todayViewHolder.timeLeft.setText(getTimeDifferenceString(timeDifference, ended));
 
         int sdk = android.os.Build.VERSION.SDK_INT;

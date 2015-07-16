@@ -23,16 +23,16 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!--// TODO Use string resources-->
+<!-- TODO Incomplete, Redo, Use RelativeLayout like MarksSummary -->
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
         android:orientation="vertical">
 
         <TextView
@@ -49,10 +49,7 @@
             android:id="@+id/course_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp"
@@ -65,24 +62,10 @@
             android:paddingRight="10dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Room: "
-                android:textColor="@color/primary_text_default_material_light"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tv_course_room"
+                android:id="@+id/course_venue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/primary_text_default_material_light"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Slot: "
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="20sp" />
 
@@ -96,7 +79,7 @@
 
 
         <RelativeLayout
-            android:id="@+id/tv_course_details"
+            android:id="@+id/course_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/net_per">
@@ -131,7 +114,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tv_attendance_status"
+                android:id="@+id/attendance_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -145,10 +128,9 @@
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_attendance_status"
+                android:layout_below="@+id/attendance_status"
                 android:layout_toLeftOf="@+id/button_attend"
                 android:layout_toStartOf="@+id/button_attend"
-                android:layout_weight="1"
                 android:text="@string/button_class_miss"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="17sp" />
@@ -160,43 +142,28 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/tv_attendance_status"
-                android:layout_weight="1"
+                android:layout_below="@+id/attendance_status"
                 android:paddingRight="10dp"
+                android:paddingLeft="10dp"
                 android:text="@string/button_class_attend"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="17sp" />
 
             <TextView
-                android:id="@+id/tv_attended"
+                android:id="@+id/attendance_classes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tv_attendance_status"
-                android:layout_marginLeft="23dp"
-                android:layout_marginStart="23dp"
-                android:layout_toEndOf="@+id/tv_attendance_percent"
-                android:layout_toRightOf="@+id/tv_attendance_percent"
+                android:layout_alignTop="@id/button_miss"
                 android:textColor="@color/primary_text_default_material_light"
                 android:textSize="30sp" />
 
             <TextView
-                android:id="@+id/tv_total_classes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/button_miss"
-                android:layout_toEndOf="@+id/tv_attended"
-                android:layout_toRightOf="@+id/tv_attended"
-                android:textColor="@color/primary_text_default_material_light"
-                android:textSize="30sp" />
-
-
-            <TextView
-                android:id="@+id/tv_attendance_percent"
+                android:id="@+id/attendance_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
-                android:id="@+id/tv_registered_on"
+                android:id="@+id/registered_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>

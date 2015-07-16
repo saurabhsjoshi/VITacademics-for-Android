@@ -23,11 +23,11 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!--// TODO Use string resources-->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recycler_view_assessments"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fadeScrollbars="true"
+    android:scrollbars="vertical">
 
-</LinearLayout>
+</android.support.v7.widget.RecyclerView>

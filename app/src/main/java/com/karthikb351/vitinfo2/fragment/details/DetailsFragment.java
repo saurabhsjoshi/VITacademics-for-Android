@@ -38,14 +38,12 @@ import com.karthikb351.vitinfo2.contract.Course;
 
 public class DetailsFragment extends Fragment {
 
-    //final ActionBar actionBar = getActivity().getActionBar();
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private DetailsAdapter adapter;
     private Course course;
 
     public DetailsFragment() {
-
     }
 
     public static DetailsFragment newInstance(Course course) {
@@ -54,15 +52,11 @@ public class DetailsFragment extends Fragment {
         return detailsFragment ;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
 
-        // TODO, rethink this. Must not change Minimum API level
-       /// actionBar.setDisplayHomeAsUpEnabled(false);
-        // actionBar.setDisplayShowTitleEnabled(false);
-        getActivity().setTitle(course.getCourseCode());
+        getActivity().setTitle(R.string.fragment_details_title);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs_details);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager_details);
 

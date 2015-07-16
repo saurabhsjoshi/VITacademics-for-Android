@@ -50,7 +50,7 @@ public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.Gr
 
     @Override
     public GradesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.card_grades, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.card_grade, parent, false);
         return new GradesViewHolder(view);
     }
 
@@ -80,8 +80,8 @@ public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.Gr
             courseCode = (TextView) itemView.findViewById(R.id.course_code);
             courseName = (TextView) itemView.findViewById(R.id.course_name);
             courseType = (TextView) itemView.findViewById(R.id.course_type);
-            credits = (TextView) itemView.findViewById(R.id.tv_course_credit);
-            grade = (TextView) itemView.findViewById(R.id.tv_grade);
+            credits = (TextView) itemView.findViewById(R.id.course_credits);
+            grade = (TextView) itemView.findViewById(R.id.grade);
             itemView.setOnClickListener(this);
         }
 

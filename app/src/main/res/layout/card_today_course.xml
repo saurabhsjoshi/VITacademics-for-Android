@@ -107,7 +107,7 @@
             android:progress="100" />
 
         <TextView
-            android:id="@+id/fixed_go"
+            android:id="@+id/go_attendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/progress_bar_attendance"
@@ -116,42 +116,20 @@
             android:layout_marginLeft="6dp"
             android:layout_marginStart="6dp"
             android:layout_marginTop="10dp"
-            android:text="@string/label_class_attend"
-            android:textColor="@color/bright_foreground_material_light" />
-
-        <TextView
-            android:id="@+id/go_attendance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progress_bar_attendance"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/fixed_go"
-            android:layout_toEndOf="@+id/fixed_go"
-            android:layout_marginLeft="6dp"
-            android:layout_marginStart="6dp"
-            android:textColor="@color/bright_foreground_material_light" />
-
-        <TextView
-            android:id="@+id/fixed_miss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/go_attendance"
-            android:layout_below="@+id/progress_bar_attendance"
-            android:layout_toLeftOf="@+id/miss_attendance"
-            android:layout_toStartOf="@+id/miss_attendance"
-            android:text="@string/label_class_miss"
+            android:text="@string/label_class_go"
             android:textColor="@color/bright_foreground_material_light" />
 
         <TextView
             android:id="@+id/miss_attendance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/go_attendance"
             android:layout_below="@+id/progress_bar_attendance"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginLeft="6dp"
             android:layout_marginStart="6dp"
+            android:text="@string/label_class_miss"
             android:textColor="@color/bright_foreground_material_light" />
 
         <TextView
@@ -159,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:layout_below="@+id/fixed_miss"
+            android:layout_below="@+id/miss_attendance"
             android:textColor="@color/bright_foreground_material_light" />
 
         <android.support.v4.widget.Space

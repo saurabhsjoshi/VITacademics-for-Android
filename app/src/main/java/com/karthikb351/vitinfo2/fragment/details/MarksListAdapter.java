@@ -37,23 +37,29 @@ import com.karthikb351.vitinfo2.contract.Assessment;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Marks;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdapter.AssesmentViewHolder> {
+public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.AssesmentViewHolder> {
 
 
     private int layoutId;
     private Context context;
     private Marks marks;
     private Course course;
-    private List<Assessment> assesments;
+    private List<Assessment> assessments;
 
 
-    public AssesmentListAdapter(Context context, Course course) {
+    public MarksListAdapter(Context context, Course course) {
         this.context = context;
         this.course = course;
-        this.marks = course.getMarks();
-        this.assesments = marks.getAssessments();
+        if (course.getMarks().isSupported()) {
+            this.marks = course.getMarks();
+            this.assessments = marks.getAssessments();
+        } else {
+            this.assessments = new ArrayList<>();
+            this.marks = new Marks(50.0, 50.0, 0.0, 0.0, this.assessments, true);
+        }
     }
 
     @Override
@@ -65,59 +71,55 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
 
     @Override
     public void onBindViewHolder(AssesmentViewHolder holder, int position) {
-        if(position ==0) {
-            holder.totalScored.setText(Double.toString(marks.getScoredMarks())+ "/");
-            holder.totalMax.setText(Double.toString(marks.getMaxMarks()));
+        if (position == 0) {
+            holder.internals.setText(context.getString(R.string.label_total_internals, Double.toString(marks.getScoredPercentage()), Double.toString(marks.getMaxPercentage())));
             holder.courseCode.setText(course.getCourseCode());
             holder.courseName.setText(course.getCourseTitle());
-        }
-        else
-        {
-            holder.assessmentType.setText(assesments.get(position - 1).getTitle());
-            holder.maxMarks.setText(Double.toString(assesments.get(position - 1).getMaxMarks()));
-            holder.scoredMarks.setText(Double.toString(assesments.get(position - 1).getScoredMarks()) + "/");
-            holder.weightage.setText(Double.toString(assesments.get(position - 1).getWeightage()));
-            Double contribution = assesments.get(position - 1).getScoredPercentage() * assesments.get(position - 1).getWeightage();
-            holder.contribution.setText(Double.toString(contribution));
-            holder.marksProgressBar.setProgress((int) assesments.get(position - 1).getScoredPercentage());
+        } else {
+            holder.assessmentTitle.setText(assessments.get(position - 1).getTitle());
+            holder.assessmentMarks.setText(context.getString(R.string.label_assessment_marks, Double.toString(assessments.get(position - 1).getScoredMarks()), Double.toString(assessments.get(position - 1).getMaxMarks())));
+            holder.assessmentWeightage.setText(context.getString(R.string.label_assessment_weightage, Double.toString(assessments.get(position - 1).getWeightage())));
+            holder.assessmentContribution.setText(context.getString(R.string.label_assessment_contribution, Double.toString(assessments.get(position - 1).getScoredPercentage())));
+            holder.marksProgressBar.setProgress((int)( assessments.get(position - 1).getScoredPercentage() / assessments.get(position - 1).getWeightage() * 100));
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0)
-            layoutId = R.layout.card_total_internals;
-        else
-            layoutId = R.layout.card_assessment;
+        if (position == 0) {
+            layoutId = R.layout.card_marks_summary;
+        } else {
+            layoutId = R.layout.card_marks_assessment;
+        }
         return layoutId;
     }
 
     @Override
     public int getItemCount() {
-        if(assesments==null||assesments.isEmpty())
+        if (assessments == null || assessments.isEmpty())
             return 1;
         else
-            return (assesments.size() + 1);
+            return (assessments.size() + 1);
     }
 
     public class AssesmentViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView assessmentType, maxMarks, scoredMarks, weightage, contribution, courseCode, courseName, totalScored, totalMax;
+        public TextView assessmentTitle, assessmentMarks, assessmentWeightage, assessmentContribution;
+        public TextView courseCode, courseName, internals;
         public ProgressBar marksProgressBar;
 
         public AssesmentViewHolder(View view) {
             super(view);
-            assessmentType = (TextView) view.findViewById(R.id.value_marks_type);
-            maxMarks = (TextView) view.findViewById(R.id.value_max_marks);
-            scoredMarks = (TextView) view.findViewById(R.id.value_scored_marks);
-            weightage = (TextView) view.findViewById(R.id.value_weightage);
-            contribution = (TextView) view.findViewById(R.id.value_contribution);
+
+            assessmentTitle = (TextView) view.findViewById(R.id.assessment_title);
+            assessmentMarks = (TextView) view.findViewById(R.id.assessment_marks);
+            assessmentWeightage = (TextView) view.findViewById(R.id.assessment_weightage);
+            assessmentContribution = (TextView) view.findViewById(R.id.assessment_contribution);
             marksProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar_marks);
+
             courseCode = (TextView) view.findViewById(R.id.course_code);
             courseName = (TextView) view.findViewById(R.id.course_name);
-            totalMax = (TextView) view.findViewById(R.id.value_max_marks_total);
-            totalScored = (TextView) view.findViewById(R.id.value_scored_marks_total);
-
+            internals = (TextView) view.findViewById(R.id.internal_marks);
         }
     }
 }

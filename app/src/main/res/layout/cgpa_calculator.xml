@@ -23,9 +23,10 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!--// TODO Use string resources-->
+<!-- TODO Incomplete -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -46,7 +47,7 @@
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="10sp"
         android:layout_marginRight="10sp"
-        android:background="@drawable/cgpa_icon"
-        android:elevation="@dimen/fab_elevation" />
+        android:layout_marginEnd="10sp"
+        android:background="@drawable/cgpa_icon" />
 
 </RelativeLayout>

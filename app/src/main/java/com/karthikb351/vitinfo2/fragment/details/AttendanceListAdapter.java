@@ -36,7 +36,11 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Attendance;
 import com.karthikb351.vitinfo2.contract.AttendanceDetail;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAdapter.AttendanceViewHolder> {
@@ -45,13 +49,19 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     private Context context;
     private Course course;
     private Attendance attendance;
-    private List<AttendanceDetail> attendanceDetail;
+    private List<AttendanceDetail> attendanceDetails;
 
     public AttendanceListAdapter(Context context, Course course) {
         this.context = context;
         this.course = course;
-        this.attendance = course.getAttendance();
-        this.attendanceDetail = attendance.getDetails();
+        if (course.getAttendance().isSupported()) {
+            this.attendance = course.getAttendance();
+            this.attendanceDetails = attendance.getDetails();
+            Collections.reverse(this.attendanceDetails);
+        } else {
+            this.attendanceDetails = new ArrayList<>();
+            this.attendance = new Attendance(context.getString(R.string.registration_date_unavailable), 0, 0, 0, attendanceDetails, true);
+        }
     }
 
     @Override
@@ -61,74 +71,82 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     }
 
     @Override
-    public void onBindViewHolder(AttendanceViewHolder holder, int position)
-    {
-        if(position == 0)
-        {
+    public void onBindViewHolder(AttendanceViewHolder holder, int position) {
+        if (position == 0) {
             holder.courseName.setText(course.getCourseTitle());
             holder.courseCode.setText(course.getCourseCode());
             holder.courseRoom.setText(course.getVenue());
             holder.courseSlot.setText(course.getSlot());
-            holder.attended.setText(Integer.toString(attendance.getAttendedClasses()));
-            holder.totalClasses.setText(Integer.toString(attendance.getTotalClasses()));
+            holder.attendanceClasses.setText(context.getString(R.string.label_attendance_classes, attendance.getAttendedClasses(), attendance.getTotalClasses()));
             holder.attendancePercent.setText(Integer.toString(attendance.getAttendancePercentage()));
-            holder.registeredOn.setText(attendance.getRegistrationDate());
-            if (attendance.getAttendancePercentage() <= 75) {
-                holder.status.setTextColor(context.getResources().getColor(R.color.error_color));
-                holder.status.setText(context.getString(R.string.label_attendance_debarred));
+            try {
+                holder.registeredOn.setText(context.getString(R.string.course_registered_on, DateTimeCalender.parseISO8601DateTime(attendance.getRegistrationDate())));
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+                holder.registeredOn.setText(context.getString(R.string.course_registered_on, attendance.getRegistrationDate()));
+            }
+            if (attendance.getAttendancePercentage() < 75) {
+                holder.attendanceStatus.setTextColor(context.getResources().getColor(R.color.error_color));
+                holder.attendanceStatus.setText(context.getString(R.string.label_attendance_debarred));
                 holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.error_color));
             } else {
-                holder.status.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
-                holder.status.setText(context.getString(R.string.label_attendance_debarred));
+                holder.attendanceStatus.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+                holder.attendanceStatus.setText(context.getString(R.string.label_attendance_safe));
                 holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
             }
             holder.progressBarAttendance.setProgress(attendance.getAttendancePercentage());
-        }
-        else {
-            holder.date.setText(attendanceDetail.get(position - 1).getDate());
-            holder.statusDetails.setText(attendanceDetail.get(position - 1).getStatus());
-            holder.classUnits.setText(Integer.toString(attendanceDetail.get(position - 1).getClassUnits()));
-            holder.reason.setText(attendanceDetail.get(position - 1).getReason());
+        } else {
+            try {
+                holder.date.setText(DateTimeCalender.parseISO8601Date(attendanceDetails.get(position - 1).getDate()));
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+                holder.date.setText(attendanceDetails.get(position - 1).getDate());
+            }
+            holder.detailStatus.setText(attendanceDetails.get(position - 1).getStatus());
+            holder.classUnits.setText(context.getString(R.string.attendance_class_units_earned, attendanceDetails.get(position - 1).getClassUnits()));
+            holder.reason.setText(attendanceDetails.get(position - 1).getReason());
         }
     }
 
     @Override
     public int getItemCount() {
-        return (attendanceDetail.size() + 1);
+        return (attendanceDetails.size() + 1);
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0)
-            layoutId = R.layout.card_attendance;
-        else
-            layoutId = R.layout.attendance_details;
+        if (position == 0) {
+            layoutId = R.layout.card_attendance_summary;
+        }
+        else {
+            layoutId = R.layout.card_attendance_detail;
+        }
         return layoutId;
     }
 
     public class AttendanceViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView date, statusDetails, classUnits, reason, courseName, courseCode, courseRoom, courseSlot, status,
-                attended, totalClasses, attendancePercent, registeredOn;
+        public TextView date, detailStatus, classUnits, reason;
+        public TextView courseName, courseCode, courseRoom, courseSlot, attendanceStatus, attendanceClasses, attendancePercent, registeredOn;
         public ProgressBar progressBarAttendance;
 
         public AttendanceViewHolder(View view) {
             super(view);
-            date = (TextView) view.findViewById(R.id.tv_date);
-            statusDetails = (TextView) view.findViewById(R.id.tv_status_details);
-            classUnits = (TextView) view.findViewById(R.id.tv_class_units);
-            reason = (TextView) view.findViewById(R.id.tv_attendance_reason);
+
+            date = (TextView) view.findViewById(R.id.date);
+            detailStatus = (TextView) view.findViewById(R.id.detail_status);
+            classUnits = (TextView) view.findViewById(R.id.class_units);
+            reason = (TextView) view.findViewById(R.id.reason);
+
             courseName = (TextView) view.findViewById(R.id.course_name);
             courseCode = (TextView) view.findViewById(R.id.course_code);
-            courseRoom = (TextView) view.findViewById(R.id.tv_course_room);
+            courseRoom = (TextView) view.findViewById(R.id.course_venue);
             courseSlot = (TextView) view.findViewById(R.id.course_slot);
-            status = (TextView) view.findViewById(R.id.tv_attendance_status);
-            attended = (TextView) view.findViewById(R.id.tv_attended);
-            totalClasses = (TextView) view.findViewById(R.id.tv_total_classes);
-            attendancePercent = (TextView) view.findViewById(R.id.tv_attendance_percent);
-            registeredOn = (TextView) view.findViewById(R.id.tv_registered_on);
+            attendanceStatus = (TextView) view.findViewById(R.id.attendance_status);
+            attendanceClasses = (TextView) view.findViewById(R.id.attendance_classes);
+            attendancePercent = (TextView) view.findViewById(R.id.attendance_percent);
+            registeredOn = (TextView) view.findViewById(R.id.registered_date);
             progressBarAttendance = (ProgressBar) view.findViewById(R.id.progress_bar_attendance);
         }
     }
-
 }

@@ -39,7 +39,6 @@ public class OverviewFragment extends Fragment {
 
     Course course;
 
-
     public OverviewFragment() {
     }
 
@@ -52,7 +51,7 @@ public class OverviewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_overview, container, false);
+        View view = inflater.inflate(R.layout.fragment_details_overview, container, false);
         return view;
     }
 }

@@ -23,15 +23,16 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!--// TODO Use string resources-->
+<!-- TODO Incomplete -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffffff">
 
     <TextView
-        android:id="@+id/tv_course_code"
+        android:id="@+id/course_code"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -54,8 +55,6 @@
         android:gravity="center"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:textAlignment="center"
-        android:elevation="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -66,6 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/course_name"
         android:layout_marginTop="45dp"
         android:padding="5dp"
@@ -73,28 +73,30 @@
         android:textSize="23sp" />
 
     <TextView
-        android:id="@+id/tv_course_credit"
+        android:id="@+id/course_credits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/course_name"
         android:layout_marginTop="45dp"
         android:padding="5dp"
+        android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:textColor="@color/primary_text_default_material_light"
         android:textSize="23sp" />
 
     <TextView
-        android:id="@+id/tv_grade"
+        android:id="@+id/grade"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_course_credit"
+        android:layout_below="@+id/course_credits"
         android:layout_centerHorizontal="true"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
-        android:elevation="5dp"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:textColor="@color/colorAccent"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 </RelativeLayout>

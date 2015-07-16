@@ -23,21 +23,21 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!--// TODO Use string resources-->
-
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view_assessmnet"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
         android:padding="5sp">
 
         <TextView
-            android:id="@+id/value_marks_type"
+            android:id="@+id/assessment_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -46,28 +46,16 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/value_scored_marks"
+            android:id="@+id/assessment_marks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/value_marks_type"
-            android:layout_alignBottom="@+id/value_marks_type"
-            android:layout_toLeftOf="@+id/value_max_marks"
-            android:layout_toStartOf="@+id/value_max_marks"
-            android:text=""
-            android:textColor="@color/primary_text_default_material_light"
-            android:textSize="@dimen/abc_text_size_large_material" />
-
-        <TextView
-            android:id="@+id/value_max_marks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/value_scored_marks"
-            android:layout_alignBottom="@+id/value_scored_marks"
+            android:layout_alignBaseline="@+id/assessment_title"
+            android:layout_alignBottom="@+id/assessment_title"
             android:layout_alignEnd="@+id/progress_bar_marks"
             android:layout_alignRight="@+id/progress_bar_marks"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
-            android:text=""
+            android:text="@string/label_assessment_marks"
             android:textColor="@color/primary_text_default_material_light"
             android:textSize="@dimen/abc_text_size_large_material" />
 
@@ -76,38 +64,23 @@
             style="@style/BarraProgreso"
             android:layout_width="match_parent"
             android:layout_height="15sp"
-            android:layout_below="@+id/value_scored_marks" />
+            android:layout_below="@+id/assessment_marks" />
 
         <TextView
-            android:id="@+id/label_weightage"
+            android:id="@+id/assessment_weightage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/progress_bar_marks"
             android:text="@string/label_assessment_weightage" />
 
         <TextView
-            android:id="@+id/value_weightage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progress_bar_marks"
-            android:layout_toRightOf="@id/label_weightage" />
-
-        <TextView
-            android:id="@+id/label_contribution"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/progress_bar_marks"
-            android:layout_toLeftOf="@+id/value_contribution"
-            android:text="@string/label_assessment_contribution" />
-
-        <TextView
-            android:id="@+id/value_contribution"
+            android:id="@+id/assessment_contribution"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/progress_bar_marks" />
-        <!--Assesment percentage, scored percentage, contribution to
-        final marks to be included -->
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/progress_bar_marks"
+            android:text="@string/label_assessment_contribution" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

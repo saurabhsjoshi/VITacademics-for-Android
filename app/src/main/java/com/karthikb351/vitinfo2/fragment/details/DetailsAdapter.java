@@ -28,7 +28,6 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -60,7 +59,7 @@ public class DetailsAdapter extends FragmentPagerAdapter {
                 fragment = AttendanceFragment.newInstance(course);
                 break;
             case 2:
-                fragment = AssesmentFragment.newInstance(course);
+                fragment = MarksFragment.newInstance(course);
                 break;
             default:
                 fragment = null;

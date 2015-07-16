@@ -27,7 +27,6 @@
 
     <!-- Sample text -->
     <string name="hello_world">Hello world!</string>
-    <string name="fragment_blank_hello">Hello blank fragment</string>
 
     <!-- Activity Titles -->
     <string name="activity_login_title">VITacademics Login</string>
@@ -64,33 +63,43 @@
     <!-- Course Attendance -->
     <string name="label_attendance_safe">Safe</string>
     <string name="label_attendance_debarred">Debarred</string>
-    <string name="button_class_attend">Attend (+)</string>
-    <string name="button_class_miss">Miss (-)</string>
-    <string name="label_class_attend">Go</string>
-    <string name="label_class_miss">Miss</string>
+    <string name="button_class_attend">+</string>
+    <string name="button_class_miss">-</string>
+    <string name="label_class_go" formatted="false">Go: %1$d</string>
+    <string name="label_class_miss" formatted="false">Miss: %1$d</string>
+    <string name="label_attendance_classes" formatted="false">%1$d / %2$d</string>
+    <string name="attendance_class_units_earned" formatted="false">Units Earned: %1$d</string>
+    <string name="course_registered_on" formatted="false">Registered On: %1$s</string>
+    <string name="registration_date_unavailable">Unavailable</string>
 
     <!-- Course Marks -->
-    <string name="label_total_internals">Total Internals: </string>
+    <string name="label_total_internals" formatted="false">Total Internals: %1$s / %2$s</string>
+    <string name="label_assessment_marks" formatted="false">%1$s / %2$s</string>
+    <string name="label_assessment_weightage" formatted="false">Weightage: %1$s</string>
+    <string name="label_assessment_contribution" formatted="false">Contribution: %1$s</string>
 
-    <!-- CGPA Calculator -->
-    <string name="label_cgpa_current">Current CGPA</string>
-    <string name="label_cgpa_expected">Expected CGPA</string>
-    <string name="button_cgpa_calculate">Calculate</string>
-
-    <!-- Misc Labels -->
-    <string name="label_courses_assessment">Assessment</string>
-    <string name="label_courses_assessments">Assessments</string>
+    <!-- Grade -->
     <string name="label_grade_char">Grade</string>
     <string name="label_grade_value">Grade Value</string>
     <string name="label_grade_cgpa">CGPA</string>
-    <string name="label_assessment_weightage">Weightage: </string>
-    <string name="label_assessment_contribution">Contribution: </string>
+
+    <!-- CGPA Calculator -->
+    <string name="label_cgpa_current" formatted="false">Current CGPA: %1$s</string>
+    <string name="label_cgpa_expected" formatted="false">Expected CGPA: %1$s</string>
+    <string name="button_cgpa_calculate">Calculate</string>
+
+    <!-- Marks Labels -->
+    <string name="label_courses_assessment">Assessment</string>
+    <string name="label_courses_assessments">Assessments</string>
+
+    <!-- Common -->
     <string name="label_percentage">Percentage</string>
 
-    <!--Messages for unavailable or incomplete features-->
+    <!-- Messages -->
     <string name="not_available">This is not available at the moment</string>
-    <string name="not_applicable">This is not applicable</string>
-    <string name="courses_none">No courses available, maybe you haven\'t registered?</string>
+    <string name="not_applicable">This is not applicable for this course</string>
+    <string name="courses_none">No courses available, maybe you haven\'t registered any?</string>
+    <string name="courses_none_day">No courses today, hooray!</string>
 
     <!--VITacademics API Messages-->
     <string name="api_server_error">The VITacademics Server is down or has encountered an error</string>

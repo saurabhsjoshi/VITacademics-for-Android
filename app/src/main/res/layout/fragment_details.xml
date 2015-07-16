@@ -23,9 +23,8 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!--// TODO Use string resources-->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -34,10 +33,12 @@
         android:id="@+id/tabs_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="@dimen/appbar_elevation" />
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:elevation="4dp"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager_details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

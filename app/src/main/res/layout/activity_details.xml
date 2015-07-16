@@ -23,11 +23,11 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment"
+    tools:context=".activity.DetailsActivity"
+    android:name="com.karthikb351.vitinfo2.fragment.details.DetailsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activity.DetailsActivity">
-
-</LinearLayout>
+    tools:layout="@layout/fragment_details" />

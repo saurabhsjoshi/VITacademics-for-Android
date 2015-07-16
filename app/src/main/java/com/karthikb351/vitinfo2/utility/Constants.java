@@ -74,4 +74,7 @@ public class Constants {
     public final static int COURSE_TYPE_RBL = 4;
     public final static int COURSE_TYPE_PBC = 5;
     public final static int COURSE_TYPE_PBC_NO_PROJECT = 6;
+
+    public final static int PLURAL_VALUE = 2;
+    public final static int SINGULAR_VALUE = 1;
 }
