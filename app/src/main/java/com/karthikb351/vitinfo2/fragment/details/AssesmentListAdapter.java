@@ -66,7 +66,7 @@ public class AssesmentListAdapter extends RecyclerView.Adapter<AssesmentListAdap
     @Override
     public void onBindViewHolder(AssesmentViewHolder holder, int position) {
         if(position ==0) {
-            holder.totalScored.setText(Double.toString(marks.getScoredMarks()));
+            holder.totalScored.setText(Double.toString(marks.getScoredMarks())+ "/");
             holder.totalMax.setText(Double.toString(marks.getMaxMarks()));
             holder.courseCode.setText(course.getCourseCode());
             holder.courseName.setText(course.getCourseTitle());

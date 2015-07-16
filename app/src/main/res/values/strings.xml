@@ -70,7 +70,7 @@
     <string name="label_class_miss">Miss</string>
 
     <!-- Course Marks -->
-    <string name="label_total_internals">Total Internals</string>
+    <string name="label_total_internals">Total Internals: </string>
 
     <!-- CGPA Calculator -->
     <string name="label_cgpa_current">Current CGPA</string>
@@ -83,8 +83,8 @@
     <string name="label_grade_char">Grade</string>
     <string name="label_grade_value">Grade Value</string>
     <string name="label_grade_cgpa">CGPA</string>
-    <string name="label_assessment_weightage">Weightage</string>
-    <string name="label_assessment_contribution">Contribution</string>
+    <string name="label_assessment_weightage">Weightage: </string>
+    <string name="label_assessment_contribution">Contribution: </string>
     <string name="label_percentage">Percentage</string>
 
     <!--Messages for unavailable or incomplete features-->
