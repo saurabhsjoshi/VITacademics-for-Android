@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.api.ResetTask;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
@@ -43,7 +44,7 @@ public class Splash extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
+        setContentView(R.layout.app_splash_screen);
 
         boolean isLoggedIn = loginCheck();
 
@@ -57,7 +58,8 @@ public class Splash extends Activity {
                 @Override
                 public void onFailure(Status status) {
                     Toast.makeText(Splash.this, status.getMessage(), Toast.LENGTH_SHORT).show();
-                    // TODO Message Dialog box and go to LoginActivity, clearing data first
+                    new ResetTask(Splash.this).execute();
+                    startActivity(new Intent(Splash.this, LoginActivity.class));
                 }
             });
         } else {

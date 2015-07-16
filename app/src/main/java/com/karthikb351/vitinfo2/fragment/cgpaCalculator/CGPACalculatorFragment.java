@@ -67,7 +67,7 @@ public class CGPACalculatorFragment extends Fragment implements View.OnClickList
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.cgpa_calculator, container, false);
+        view = inflater.inflate(R.layout.fragment_cgpa_calculator, container, false);
         initialize();
         return view;
     }

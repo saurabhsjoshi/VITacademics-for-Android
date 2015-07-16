@@ -23,7 +23,7 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!-- TODO Incomplete, Redo, Use RelativeLayout like MarksSummary -->
+<!-- TODO Incomplete, Redo, simply make like card_marks_summary (use RelativeLayout) -->
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
