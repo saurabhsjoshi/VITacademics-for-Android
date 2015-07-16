@@ -39,21 +39,45 @@
     <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="3dp"
+        android:textSize="18sp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="5dp" />
 
     <TextView
         android:id="@+id/detail_status"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="5sp" />
 
     <TextView
         android:id="@+id/class_units"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_below="@id/date"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp" />
 
     <TextView
         android:id="@+id/reason"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="3dp"
+        android:textSize="16sp"
+        android:layout_below="@id/detail_status"
+        android:layout_marginEnd="3dp"
+        android:layout_marginTop="8sp" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>
