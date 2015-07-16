@@ -43,7 +43,6 @@ import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdapter.TimeTableViewHolder> {
@@ -85,6 +84,8 @@ public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdap
             startTime = courseTimingPairs.get(position).second.getStartTime();
             endTime = courseTimingPairs.get(position).second.getEndTime();
         }
+        startTime=startTime.replace(":00","");
+        endTime=endTime.replace(":00","");
 
         timeTableViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
         timeTableViewHolder.courseName.setText(courseTimingPairs.get(position).first.getCourseTitle());

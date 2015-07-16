@@ -52,7 +52,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/class_no"
+            android:id="@+id/class_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
