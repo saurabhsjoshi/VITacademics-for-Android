@@ -76,7 +76,7 @@ public class FriendsFragment extends Fragment {
         friends = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getFriends();
 
         if(layoutId==R.layout.app_message_not_available) {
-            errorMessage = (TextView) rootView.findViewById(R.id.tv_message);
+            errorMessage = (TextView) rootView.findViewById(R.id.message);
             errorMessage.setText("This feature is not available at the moment");
         }
         else {

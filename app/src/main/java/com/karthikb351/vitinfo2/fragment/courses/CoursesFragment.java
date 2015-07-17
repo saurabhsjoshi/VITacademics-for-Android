@@ -24,9 +24,9 @@
 
 package com.karthikb351.vitinfo2.fragment.courses;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,9 +36,10 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.activity.DetailsActivity;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
+import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.util.List;
@@ -77,7 +78,7 @@ public class CoursesFragment extends Fragment {
         courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
 
         if (courses == null || courses.isEmpty()) {
-            errorMessage = (TextView) rootView.findViewById(R.id.tv_message);
+            errorMessage = (TextView) rootView.findViewById(R.id.message);
             errorMessage.setText(getString(R.string.courses_none));
         } else {
             RecyclerView.LayoutManager courseLayoutManager = new LinearLayoutManager(getActivity());
@@ -97,9 +98,9 @@ public class CoursesFragment extends Fragment {
     }
 
     void onListItemClick(Course course) {
-        Fragment detailsFragment = DetailsFragment.newInstance(course);
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.flContent, detailsFragment, course.getCourseCode()).addToBackStack(null).commit();
+        Intent intent = new Intent(getActivity(), DetailsActivity.class);
+        intent.putExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, course.getClassNumber());
+        startActivity(intent);
     }
 
     @Override

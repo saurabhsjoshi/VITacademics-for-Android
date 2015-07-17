@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/logo"
         android:text="@string/app_name"
-        android:textSize="@dimen/abc_text_size_large_material"
+        android:textSize="36sp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/primary_material_light"
         android:textStyle="bold"/>

@@ -77,4 +77,6 @@ public class Constants {
 
     public final static int PLURAL_VALUE = 2;
     public final static int SINGULAR_VALUE = 1;
+
+    public final static String INTENT_EXTRA_CLASS_NUMBER = "intent_extra_classnumber";
 }

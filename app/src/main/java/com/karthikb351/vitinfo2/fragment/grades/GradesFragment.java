@@ -92,7 +92,7 @@ public class GradesFragment extends Fragment {
         semesterWiseGrades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getSemesterWiseGrades();
 
         if(layoutId==R.layout.app_message_not_available) {
-            errorMessage = (TextView) rootView.findViewById(R.id.tv_message);
+            errorMessage = (TextView) rootView.findViewById(R.id.message);
             errorMessage.setText("No grades are available");
         }
         else {
