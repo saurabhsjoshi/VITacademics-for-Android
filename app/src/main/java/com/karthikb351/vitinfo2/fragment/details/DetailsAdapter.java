@@ -44,7 +44,7 @@ public class DetailsAdapter extends FragmentPagerAdapter {
     public DetailsAdapter(FragmentManager fragmentManager, Context context, Course course) {
         super(fragmentManager);
         this.context = context;
-        detailsTitles = context.getResources().getStringArray(R.array.course_details_tab);
+        this.detailsTitles = context.getResources().getStringArray(R.array.course_details_tab);
         this.course = course;
     }
 
