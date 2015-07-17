@@ -24,8 +24,8 @@
 
 package com.karthikb351.vitinfo2.fragment.details;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -66,5 +66,25 @@ public class DetailsFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
 
         return view ;
+    }
+
+    private class LoadCourseTask extends AsyncTask<Integer, Void, Course> {
+        @Override
+        protected void onPreExecute() {
+            // TODO Progress Start
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Course course) {
+            super.onPostExecute(course);
+            DetailsFragment.this.course = course;
+            // TODO Progress Stop
+        }
+
+        @Override
+        protected Course doInBackground(Integer... params) {
+            return null;
+        }
     }
 }

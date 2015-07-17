@@ -83,7 +83,7 @@ public class TimetableDayFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(layoutManager);
         loadProgress = (ProgressBar) rootView.findViewById(R.id.timeTableProgressBar);
-        new LoadData().execute();
+        new LoadDayTask().execute();
     }
 
 
@@ -111,7 +111,7 @@ public class TimetableDayFragment extends Fragment {
         initialize();
     }
 
-    class LoadData extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
+    private class LoadDayTask extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
         @Override
         protected void onPreExecute() {
             loadProgress.setVisibility(View.VISIBLE);

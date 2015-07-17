@@ -90,7 +90,7 @@ public class TodayFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         todayRecyclerView.setLayoutManager(layoutManager);
         getActivity().setTitle(getString(R.string.fragment_today_title));
-        new loadToday().execute();
+        new LoadTodayTask().execute();
     }
 
     @Override
@@ -115,7 +115,7 @@ public class TodayFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
     }
 
-    class loadToday extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
+    private class LoadTodayTask extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
         @Override
         protected void onPreExecute() {
             loadProgress.setVisibility(View.VISIBLE);
