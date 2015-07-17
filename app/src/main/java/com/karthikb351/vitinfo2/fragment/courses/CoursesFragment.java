@@ -65,7 +65,7 @@ public class CoursesFragment extends Fragment {
 
         courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
         if (courses == null || courses.isEmpty()) {
-            rootView = inflater.inflate(R.layout.not_available, container, false);
+            rootView = inflater.inflate(R.layout.app_message_not_available, container, false);
         } else {
             rootView = inflater.inflate(R.layout.fragment_courses, container, false);
         }

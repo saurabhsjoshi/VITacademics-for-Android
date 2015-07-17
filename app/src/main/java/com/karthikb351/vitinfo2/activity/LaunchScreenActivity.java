@@ -39,34 +39,34 @@ import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
-public class Splash extends Activity {
+public class LaunchScreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.app_splash_screen);
+        setContentView(R.layout.app_launch_screen);
 
         boolean isLoggedIn = loginCheck();
 
         if (isLoggedIn) {
-            ((MainApplication)getApplication()).getDataHolderInstance().refreshData(Splash.this, new ResultListener() {
+            ((MainApplication)getApplication()).getDataHolderInstance().refreshData(LaunchScreenActivity.this, new ResultListener() {
                 @Override
                 public void onSuccess() {
-                    startActivity(new Intent(Splash.this, MainActivity.class));
+                    startActivity(new Intent(LaunchScreenActivity.this, MainActivity.class));
                 }
 
                 @Override
                 public void onFailure(Status status) {
-                    Toast.makeText(Splash.this, status.getMessage(), Toast.LENGTH_SHORT).show();
-                    new ResetTask(Splash.this).execute();
-                    startActivity(new Intent(Splash.this, LoginActivity.class));
+                    Toast.makeText(LaunchScreenActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
+                    new ResetTask(LaunchScreenActivity.this).execute();
+                    startActivity(new Intent(LaunchScreenActivity.this, LoginActivity.class));
                 }
             });
         } else {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startActivity(new Intent(Splash.this, LoginActivity.class));
+                    startActivity(new Intent(LaunchScreenActivity.this, LoginActivity.class));
                 }
             }, Constants.SPLASH_TIME_OUT);
         }

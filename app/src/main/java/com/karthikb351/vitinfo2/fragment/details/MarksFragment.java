@@ -55,7 +55,7 @@ public class MarksFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (course.getCourseType() == Constants.COURSE_TYPE_PBC || course.getCourseType() == Constants.COURSE_TYPE_PBC_NO_PROJECT) {
-            View view = inflater.inflate(R.layout.not_available, container, false);
+            View view = inflater.inflate(R.layout.app_message_not_available, container, false);
             TextView message = (TextView) view.findViewById(R.id.tv_message);
             message.setText(getActivity().getResources().getQuantityString(R.plurals.message_not_applicable, Constants.PLURAL_VALUE, getString(R.string.tab_course_marks)));
             return view;

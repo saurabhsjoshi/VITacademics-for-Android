@@ -76,7 +76,7 @@ public class GradesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         grades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGrades();
         if(grades==null||grades.isEmpty())
-            layoutId=R.layout.not_available;
+            layoutId=R.layout.app_message_not_available;
         else
             layoutId=R.layout.fragment_grade;
 
@@ -91,7 +91,7 @@ public class GradesFragment extends Fragment {
         gradeCounts = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGradeCounts();
         semesterWiseGrades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getSemesterWiseGrades();
 
-        if(layoutId==R.layout.not_available) {
+        if(layoutId==R.layout.app_message_not_available) {
             errorMessage = (TextView) rootView.findViewById(R.id.tv_message);
             errorMessage.setText("No grades are available");
         }
