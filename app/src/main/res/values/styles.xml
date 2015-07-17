@@ -45,4 +45,9 @@
         <item name="spinBars">false</item>
         <item name="color">@android:color/white</item>
     </style>
+
+    <style name="AppTheme.Launcher" parent="AppTheme">
+        <item name="colorPrimaryDark">@color/appBrand</item>
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
 </resources>
