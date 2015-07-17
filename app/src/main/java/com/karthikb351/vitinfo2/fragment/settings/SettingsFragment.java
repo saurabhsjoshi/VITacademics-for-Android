@@ -72,7 +72,10 @@ public class SettingsFragment extends ListFragment {
             case 0:
                 // Reset App
                 new ResetTask(getActivity()).execute();
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                getActivity().finish();
                 break;
             case 1:
                 // Show licenses of libraries
