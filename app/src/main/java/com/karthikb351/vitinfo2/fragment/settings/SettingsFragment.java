@@ -25,6 +25,7 @@
 package com.karthikb351.vitinfo2.fragment.settings;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -87,19 +88,23 @@ public class SettingsFragment extends ListFragment {
                         .replace(R.id.flContent, contributorsFragment, null)
                         .addToBackStack(null).commit();
                 break;
-            case 4:
+            case 3:
                 // Rate on Google Play
-                // TODO Open Google Play Store link
+                final String appPackageName = getActivity().getPackageName();
+                Intent googlePlay = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.GOOGLE_PLAY_DETAILS_URL + appPackageName));
+                startActivity(googlePlay);
+                break;
+            case 4:
+                // Google+ Community
+                Intent googlePlus = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.GOOGLE_PLUS_COMMUNITY_URL));
+                startActivity(googlePlus);
                 break;
             case 5:
-                // Google+ Community
-                // TODO Open Google+ Community Page
+                // Facebook Page
+                Intent facebook = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.FACEBOOK_PAGE_URL));
+                startActivity(facebook);
                 break;
             case 6:
-                // Facebook Page
-                // TODO Open Facebook Page
-                break;
-            case 7:
                 // Share app
                 Intent share = new Intent(android.content.Intent.ACTION_SEND);
                 share.setType(Constants.SHARE_TYPE);

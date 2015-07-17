@@ -79,4 +79,8 @@ public class Constants {
     public final static int SINGULAR_VALUE = 1;
 
     public final static String INTENT_EXTRA_CLASS_NUMBER = "intent_extra_classnumber";
+
+    public final static String GOOGLE_PLAY_DETAILS_URL = "https://play.google.com/store/apps/details?id=";
+    public final static String FACEBOOK_PAGE_URL = "https://www.facebook.com/academicsvit";
+    public final static String GOOGLE_PLUS_COMMUNITY_URL = "https://plus.google.com/communities/112543766365145422569";
 }
