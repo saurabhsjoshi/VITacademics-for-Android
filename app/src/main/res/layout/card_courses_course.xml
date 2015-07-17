@@ -47,7 +47,7 @@
             android:layout_marginLeft="3dp"
             android:layout_marginStart="3dp"
             android:layout_marginTop="5dp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/bright_foreground_material_light"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
             android:layout_marginRight="3dp"
             android:layout_marginEnd="3dp"
             android:layout_marginTop="5sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/bright_foreground_material_light"
             android:textSize="20sp"
             android:textStyle="bold" />
 
