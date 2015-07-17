@@ -33,7 +33,6 @@ import android.widget.ListView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.LoginActivity;
 import com.karthikb351.vitinfo2.api.ResetTask;
-import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.LicensesFragment;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
 import com.karthikb351.vitinfo2.utility.Constants;
@@ -88,7 +87,19 @@ public class SettingsFragment extends ListFragment {
                         .replace(R.id.flContent, contributorsFragment, null)
                         .addToBackStack(null).commit();
                 break;
-            case 3:
+            case 4:
+                // Rate on Google Play
+                // TODO Open Google Play Store link
+                break;
+            case 5:
+                // Google+ Community
+                // TODO Open Google+ Community Page
+                break;
+            case 6:
+                // Facebook Page
+                // TODO Open Facebook Page
+                break;
+            case 7:
                 // Share app
                 Intent share = new Intent(android.content.Intent.ACTION_SEND);
                 share.setType(Constants.SHARE_TYPE);
@@ -97,17 +108,6 @@ public class SettingsFragment extends ListFragment {
                 share.putExtra(Intent.EXTRA_TEXT, getActivity().getString(R.string.android_share_message_start, Constants.API_BASE_URL));
 
                 startActivity(Intent.createChooser(share, getActivity().getString(R.string.android_share_select)));
-                break;
-            case 4:
-                // Rate on Google Play
-                // TODO Open Google Play Store link
-                break;
-            case 5:
-                // About Page
-                AboutFragment aboutFragment = new AboutFragment();
-                this.getFragmentManager().beginTransaction()
-                        .replace(R.id.flContent, aboutFragment, null)
-                        .addToBackStack(null).commit();
                 break;
         }
     }
