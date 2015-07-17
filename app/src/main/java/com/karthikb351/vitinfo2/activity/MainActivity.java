@@ -28,7 +28,6 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -48,7 +47,6 @@ import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
-import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimetableFragment;
@@ -79,16 +77,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initialize();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public void initialize() {
@@ -131,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 String navString = (String) menuItem.getTitle();
                 menuItem.setChecked(true);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                // settings can be passed in the new instance function
-                // TODO: inefficient for already created instances. Fix.
                 switch (navString) {
                     // TODO Get Position directly, if not use String resources to compare. This should work even if app is in a different language
                     // TODO Check https://developer.android.com/training/implementing-navigation/nav-drawer.html
@@ -148,21 +134,17 @@ public class MainActivity extends AppCompatActivity {
                         fragment = TimetableFragment.newInstance();
                         position = 2;
                         break;
-                    case "Grades":
-                        fragment = GradesFragment.newInstance();
-                        position = 3;
-                        break;
                     case "Settings":
                         fragment = SettingsFragment.newInstance();
-                        position = 4;
+                        position = 3;
                         break;
                     case "Messages":
                         fragment = MessagesFragment.newInstance();
-                        position = 5;
+                        position = 4;
                         break;
                     case "About":
                         fragment = AboutFragment.newInstance();
-                        position = 6;
+                        position = 5;
                         break;
                 }
                 fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).commit();

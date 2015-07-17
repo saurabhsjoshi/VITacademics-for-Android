@@ -24,10 +24,10 @@
 
 package com.karthikb351.vitinfo2.fragment.timetable;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,10 +38,11 @@ import android.widget.ProgressBar;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.activity.DetailsActivity;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
+import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
@@ -83,14 +84,14 @@ public class TimetableDayFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(layoutManager);
         loadProgress = (ProgressBar) rootView.findViewById(R.id.timeTableProgressBar);
-        new LoadData().execute();
+        new LoadDayTask().execute();
     }
 
 
     void onListItemClicked(Course course) {
-        Fragment fragment = DetailsFragment.newInstance(course);
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.flContent, fragment, course.getCourseCode()).addToBackStack(null).commit();
+        Intent intent = new Intent(getActivity(), DetailsActivity.class);
+        intent.putExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, course.getClassNumber());
+        startActivity(intent);
     }
 
 
@@ -111,7 +112,7 @@ public class TimetableDayFragment extends Fragment {
         initialize();
     }
 
-    class LoadData extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
+    private class LoadDayTask extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
         @Override
         protected void onPreExecute() {
             loadProgress.setVisibility(View.VISIBLE);

@@ -63,7 +63,7 @@ public class SettingsAdapter extends ArrayAdapter<String> {
         SettingsViewHolder holder;
 
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.list_item_settings, parent, false);
+            view = LayoutInflater.from(context).inflate(R.layout.app_settings_list_item, parent, false);
             holder = new SettingsViewHolder(view);
             view.setTag(holder);
         } else {

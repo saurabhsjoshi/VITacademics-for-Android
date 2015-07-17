@@ -24,6 +24,7 @@
 
 package com.karthikb351.vitinfo2.fragment.today;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,10 +38,11 @@ import android.widget.ProgressBar;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.activity.DetailsActivity;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
-import com.karthikb351.vitinfo2.fragment.details.DetailsFragment;
+import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
@@ -79,9 +81,9 @@ public class TodayFragment extends Fragment {
     }
 
     void onListItemClicked(Course course) {
-        android.support.v4.app.Fragment frag = DetailsFragment.newInstance(course);
-        android.support.v4.app.FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.flContent, frag, course.getCourseCode()).addToBackStack(null).commit();
+        Intent intent = new Intent(getActivity(), DetailsActivity.class);
+        intent.putExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, course.getClassNumber());
+        startActivity(intent);
     }
 
     void initialize() {
@@ -89,7 +91,7 @@ public class TodayFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         todayRecyclerView.setLayoutManager(layoutManager);
         getActivity().setTitle(getString(R.string.fragment_today_title));
-        new loadToday().execute();
+        new LoadTodayTask().execute();
     }
 
     @Override
@@ -114,7 +116,7 @@ public class TodayFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
     }
 
-    class loadToday extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
+    private class LoadTodayTask extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
         @Override
         protected void onPreExecute() {
             loadProgress.setVisibility(View.VISIBLE);

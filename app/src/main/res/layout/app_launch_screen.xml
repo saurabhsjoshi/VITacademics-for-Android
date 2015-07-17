@@ -23,15 +23,30 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:gravity="center"
+    android:theme="@style/AppTheme.Launcher"
+    android:background="@color/appBrand">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:layout_height="wrap_content"
+        android:src="@drawable/launch_screen"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/tv_message"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/not_available" />
+        android:layout_below="@id/logo"
+        android:text="@string/app_name"
+        android:textSize="36sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/primary_material_light"
+        android:textStyle="bold"/>
 
-</LinearLayout>
+</RelativeLayout>

@@ -25,6 +25,7 @@
 package com.karthikb351.vitinfo2.fragment.settings;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -33,7 +34,6 @@ import android.widget.ListView;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.LoginActivity;
 import com.karthikb351.vitinfo2.api.ResetTask;
-import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.LicensesFragment;
 import com.karthikb351.vitinfo2.fragment.contributors.ContributorsFragment;
 import com.karthikb351.vitinfo2.utility.Constants;
@@ -41,19 +41,15 @@ import com.karthikb351.vitinfo2.utility.Constants;
 
 public class SettingsFragment extends ListFragment {
 
-
-    //ListView listView;
     private String settingsTopics[];
     private String settingsMessages[];
     private SettingsAdapter adapter ;
 
     public SettingsFragment() {
-        // Required empty public constructor
     }
 
     public static SettingsFragment newInstance() {
-        SettingsFragment fragment = new SettingsFragment();
-        return fragment;
+        return new SettingsFragment();
     }
 
     @Override
@@ -63,7 +59,7 @@ public class SettingsFragment extends ListFragment {
         getActivity().setTitle(Title);
         settingsTopics = getResources().getStringArray(R.array.settings_topic);
         settingsMessages = getResources().getStringArray(R.array.settings_message);
-        adapter = new SettingsAdapter(getActivity(),R.layout.list_item_settings,settingsTopics,settingsMessages);
+        adapter = new SettingsAdapter(getActivity(),R.layout.app_settings_list_item,settingsTopics,settingsMessages);
         setListAdapter(adapter);
     }
 
@@ -76,7 +72,10 @@ public class SettingsFragment extends ListFragment {
             case 0:
                 // Reset App
                 new ResetTask(getActivity()).execute();
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                getActivity().finish();
                 break;
             case 1:
                 // Show licenses of libraries
@@ -90,25 +89,30 @@ public class SettingsFragment extends ListFragment {
                         .addToBackStack(null).commit();
                 break;
             case 3:
+                // Rate on Google Play
+                final String appPackageName = getActivity().getPackageName();
+                Intent googlePlay = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.GOOGLE_PLAY_DETAILS_URL + appPackageName));
+                startActivity(googlePlay);
+                break;
+            case 4:
+                // Google+ Community
+                Intent googlePlus = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.GOOGLE_PLUS_COMMUNITY_URL));
+                startActivity(googlePlus);
+                break;
+            case 5:
+                // Facebook Page
+                Intent facebook = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.FACEBOOK_PAGE_URL));
+                startActivity(facebook);
+                break;
+            case 6:
                 // Share app
                 Intent share = new Intent(android.content.Intent.ACTION_SEND);
                 share.setType(Constants.SHARE_TYPE);
 
                 share.putExtra(Intent.EXTRA_SUBJECT, getActivity().getString(R.string.android_share_message_subject));
-                share.putExtra(Intent.EXTRA_TEXT, getActivity().getString(R.string.android_share_message_start) + " " + Constants.API_BASE_URL);
+                share.putExtra(Intent.EXTRA_TEXT, getActivity().getString(R.string.android_share_message_start, Constants.API_BASE_URL));
 
                 startActivity(Intent.createChooser(share, getActivity().getString(R.string.android_share_select)));
-                break;
-            case 4:
-                // Rate on Google Play
-                // TODO Open Google Play Store link
-                break;
-            case 5:
-                // About Page
-                AboutFragment aboutFragment = new AboutFragment();
-                this.getFragmentManager().beginTransaction()
-                        .replace(R.id.flContent, aboutFragment, null)
-                        .addToBackStack(null).commit();
                 break;
         }
     }

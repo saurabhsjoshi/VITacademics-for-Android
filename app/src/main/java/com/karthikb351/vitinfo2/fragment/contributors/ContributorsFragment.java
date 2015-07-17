@@ -52,7 +52,7 @@ public class ContributorsFragment extends Fragment {
     public ContributorsFragment() {
     }
 
-    public ContributorsFragment newInstance() {
+    public static ContributorsFragment newInstance() {
         return new ContributorsFragment();
     }
 

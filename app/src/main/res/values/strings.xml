@@ -122,6 +122,6 @@
     <!-- Share Messages -->
     <string name="android_share_select">Share VITacademics using &#8230;</string>
     <string name="android_share_message_subject">VITacademics</string>
-    <string name="android_share_message_start">Download VITacademics from: </string>
+    <string name="android_share_message_start" formatted="false">Download VITacademics from: %1$s</string>
 
 </resources>

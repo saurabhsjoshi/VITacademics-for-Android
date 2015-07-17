@@ -63,9 +63,9 @@ public class FriendsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(friends==null || friends.isEmpty())
-            layoutId=R.layout.not_available;
+            layoutId=R.layout.app_message_not_available;
         else
-            layoutId=R.layout.not_available;
+            layoutId=R.layout.app_message_not_available;
 
         rootView = inflater.inflate(layoutId, container, false);
         initialize();
@@ -75,8 +75,8 @@ public class FriendsFragment extends Fragment {
     void initialize() {
         friends = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getFriends();
 
-        if(layoutId==R.layout.not_available) {
-            errorMessage = (TextView) rootView.findViewById(R.id.tv_message);
+        if(layoutId==R.layout.app_message_not_available) {
+            errorMessage = (TextView) rootView.findViewById(R.id.message);
             errorMessage.setText("This feature is not available at the moment");
         }
         else {
