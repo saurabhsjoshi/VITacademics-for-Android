@@ -30,6 +30,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -38,6 +39,7 @@ import com.karthikb351.vitinfo2.contract.Course;
 public class OverviewFragment extends Fragment {
 
     Course course;
+    TextView courseCode, courseName, slot, faculty, mode, ltpc, type, venue, classNumber;
 
     public OverviewFragment() {
     }
@@ -52,6 +54,26 @@ public class OverviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_details_overview, container, false);
+        courseCode=(TextView)view.findViewById(R.id.course_code);
+        courseName=(TextView)view.findViewById(R.id.course_name);
+        slot=(TextView)view.findViewById(R.id.course_slot);
+        faculty=(TextView)view.findViewById(R.id.faculty);
+        mode=(TextView)view.findViewById(R.id.course_mode);
+        ltpc=(TextView)view.findViewById(R.id.course_credits);
+        type=(TextView)view.findViewById(R.id.course_type);
+        venue=(TextView)view.findViewById(R.id.course_venue);
+        classNumber=(TextView)view.findViewById(R.id.class_number);
+
+        courseCode.setText(course.getCourseCode());
+        courseName.setText(course.getCourseTitle());
+        slot.setText(course.getSlot());
+        faculty.setText(course.getFaculty());
+        mode.setText(course.getCourseMode());
+        ltpc.setText(course.getLtpc());
+        type.setText(course.getCourseType());
+        venue.setText(course.getVenue());
+        classNumber.setText(course.getClassNumber());
+
         return view;
     }
 }
