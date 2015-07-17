@@ -47,7 +47,6 @@ import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
-import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimetableFragment;
@@ -135,21 +134,17 @@ public class MainActivity extends AppCompatActivity {
                         fragment = TimetableFragment.newInstance();
                         position = 2;
                         break;
-                    case "Grades":
-                        fragment = GradesFragment.newInstance();
-                        position = 3;
-                        break;
                     case "Settings":
                         fragment = SettingsFragment.newInstance();
-                        position = 4;
+                        position = 3;
                         break;
                     case "Messages":
                         fragment = MessagesFragment.newInstance();
-                        position = 5;
+                        position = 4;
                         break;
                     case "About":
                         fragment = AboutFragment.newInstance();
-                        position = 6;
+                        position = 5;
                         break;
                 }
                 fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).commit();

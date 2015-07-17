@@ -42,11 +42,6 @@
             android:icon="@mipmap/ic_timetable"
             android:title="@string/fragment_timetable_title" />
 
-        <item
-            android:id="@+id/drawer_grades"
-            android:icon="@mipmap/ic_assessment_black_48dp"
-            android:title="@string/fragment_grades_title" />
-
     </group>
 
     <item android:title="@string/navigation_drawer_others_group">
