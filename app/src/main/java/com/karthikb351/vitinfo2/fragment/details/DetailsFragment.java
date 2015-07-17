@@ -80,15 +80,15 @@ public class DetailsFragment extends Fragment {
             super.onPostExecute(course);
 
             DetailsFragment.this.course = course;
+            // TODO Progress Stop
 
             tabLayout = (TabLayout) view.findViewById(R.id.tabs_details);
             viewPager = (ViewPager) view.findViewById(R.id.view_pager_details);
 
-            adapter = new DetailsAdapter(getActivity().getSupportFragmentManager(), getActivity(), course);
+            adapter = new DetailsAdapter(getActivity().getSupportFragmentManager(), getActivity(), DetailsFragment.this.course);
             viewPager.setAdapter(adapter);
 
             tabLayout.setupWithViewPager(viewPager);
-            // TODO Progress Stop
         }
 
         @Override
