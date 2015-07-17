@@ -42,6 +42,7 @@ public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.Gr
     private List<Grade> grades;
     private Context context;
     private RecyclerViewOnClickListener<Grade> onClickListener;
+    private int layoutId;
 
     GradesListAdapter(Context context, List<Grade> grades) {
         this.context = context;
@@ -50,8 +51,17 @@ public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.Gr
 
     @Override
     public GradesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.card_grade, parent, false);
+        View view = LayoutInflater.from(context).inflate(layoutId, parent, false);
         return new GradesViewHolder(view);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(position==0)
+            layoutId=R.layout.card_grade_count;
+        else
+            layoutId=R.layout.card_grade;
+        return layoutId;
     }
 
     @Override

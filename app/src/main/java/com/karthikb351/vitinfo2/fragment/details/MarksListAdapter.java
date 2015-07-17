@@ -42,13 +42,11 @@ import java.util.List;
 
 public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.AssesmentViewHolder> {
 
-
     private int layoutId;
     private Context context;
     private Marks marks;
     private Course course;
     private List<Assessment> assessments;
-
 
     public MarksListAdapter(Context context, Course course) {
         this.context = context;
