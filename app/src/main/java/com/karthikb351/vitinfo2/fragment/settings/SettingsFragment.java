@@ -41,19 +41,15 @@ import com.karthikb351.vitinfo2.utility.Constants;
 
 public class SettingsFragment extends ListFragment {
 
-
-    //ListView listView;
     private String settingsTopics[];
     private String settingsMessages[];
     private SettingsAdapter adapter ;
 
     public SettingsFragment() {
-        // Required empty public constructor
     }
 
     public static SettingsFragment newInstance() {
-        SettingsFragment fragment = new SettingsFragment();
-        return fragment;
+        return new SettingsFragment();
     }
 
     @Override
@@ -95,7 +91,7 @@ public class SettingsFragment extends ListFragment {
                 share.setType(Constants.SHARE_TYPE);
 
                 share.putExtra(Intent.EXTRA_SUBJECT, getActivity().getString(R.string.android_share_message_subject));
-                share.putExtra(Intent.EXTRA_TEXT, getActivity().getString(R.string.android_share_message_start) + " " + Constants.API_BASE_URL);
+                share.putExtra(Intent.EXTRA_TEXT, getActivity().getString(R.string.android_share_message_start, Constants.API_BASE_URL));
 
                 startActivity(Intent.createChooser(share, getActivity().getString(R.string.android_share_select)));
                 break;

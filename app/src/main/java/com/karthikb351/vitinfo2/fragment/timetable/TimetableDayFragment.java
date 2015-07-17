@@ -88,9 +88,9 @@ public class TimetableDayFragment extends Fragment {
 
 
     void onListItemClicked(Course course) {
-        Fragment fragment = DetailsFragment.newInstance(course);
+        Fragment detailsFragment = DetailsFragment.newInstance(course);
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.flContent, fragment, course.getCourseCode()).addToBackStack(null).commit();
+        fragmentTransaction.replace(R.id.flContent, detailsFragment, course.getCourseCode()).addToBackStack(null).commit();
     }
 
 

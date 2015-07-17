@@ -131,8 +131,6 @@ public class MainActivity extends AppCompatActivity {
                 String navString = (String) menuItem.getTitle();
                 menuItem.setChecked(true);
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                // settings can be passed in the new instance function
-                // TODO: inefficient for already created instances. Fix.
                 switch (navString) {
                     // TODO Get Position directly, if not use String resources to compare. This should work even if app is in a different language
                     // TODO Check https://developer.android.com/training/implementing-navigation/nav-drawer.html
