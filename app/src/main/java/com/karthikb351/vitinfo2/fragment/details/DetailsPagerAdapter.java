@@ -35,16 +35,15 @@ import com.karthikb351.vitinfo2.contract.Course;
 public class DetailsPagerAdapter extends FragmentStatePagerAdapter {
 
     private Fragment fragment;
-    private Context context;
     private Course course;
     String detailsTitles[];
 
-    private final int TAB_COUNT_DETAILS = 3;
+    private final int TAB_COUNT_DETAILS;
 
     public DetailsPagerAdapter(FragmentManager fragmentManager, Context context, Course course) {
         super(fragmentManager);
-        this.context = context;
         this.detailsTitles = context.getResources().getStringArray(R.array.course_details_tab);
+        this.TAB_COUNT_DETAILS = context.getResources().getStringArray(R.array.course_details_tab).length;
         this.course = course;
     }
 

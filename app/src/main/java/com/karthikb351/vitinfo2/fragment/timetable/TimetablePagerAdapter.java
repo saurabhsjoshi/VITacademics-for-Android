@@ -36,12 +36,13 @@ public class TimetablePagerAdapter extends FragmentStatePagerAdapter {
     private Context context;
     private String tabTitles[];
 
-    private final int DAYS_COUNT = 7;
+    private final int DAYS_COUNT;
 
     public TimetablePagerAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);
         this.context = context;
         this.tabTitles = context.getResources().getStringArray(R.array.days_of_week);
+        this.DAYS_COUNT = context.getResources().getStringArray(R.array.days_of_week).length;
     }
 
     @Override
