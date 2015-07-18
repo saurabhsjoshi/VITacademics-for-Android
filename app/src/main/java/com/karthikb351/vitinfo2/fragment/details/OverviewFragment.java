@@ -47,7 +47,7 @@ public class OverviewFragment extends Fragment {
     public static OverviewFragment newInstance(Course course) {
         OverviewFragment overviewFragment = new OverviewFragment();
         overviewFragment.course = course;
-        return new OverviewFragment();
+        return overviewFragment;
     }
 
     @Nullable
@@ -70,9 +70,9 @@ public class OverviewFragment extends Fragment {
         faculty.setText(course.getFaculty());
         mode.setText(course.getCourseMode());
         ltpc.setText(course.getLtpc());
-        type.setText(course.getCourseType());
+        //type.setText(course.getCourseType());
         venue.setText(course.getVenue());
-        classNumber.setText(course.getClassNumber());
+//        classNumber.setText(course.getClassNumber());
 
         return view;
     }

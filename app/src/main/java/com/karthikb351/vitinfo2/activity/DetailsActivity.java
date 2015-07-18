@@ -24,16 +24,90 @@
 
 package com.karthikb351.vitinfo2.activity;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.fragment.details.DetailsPagerAdapter;
+import com.karthikb351.vitinfo2.utility.Constants;
+
+import java.util.List;
 
 public class DetailsActivity extends AppCompatActivity {
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private DetailsPagerAdapter adapter;
+    private Course course;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+
+        Intent intent = getIntent();
+        if (intent.hasExtra(Constants.INTENT_EXTRA_CLASS_NUMBER)) {
+            new LoadCourseTask().execute(intent.getIntExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, -1));
+            setContentView(R.layout.activity_details);
+        }
+        else {
+            setContentView(R.layout.app_message_not_available);
+            TextView errorMessage = (TextView) findViewById(R.id.message);
+            errorMessage.setText(getString(R.string.not_available));
+        }
+    }
+
+
+    private class LoadCourseTask extends AsyncTask<Integer, Void, Course> {
+        @Override
+        protected void onPreExecute() {
+            // TODO Progress Start
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Course course) {
+            super.onPostExecute(course);
+
+            if(course == null)
+                return;
+            DetailsActivity.this.course = course;
+            // TODO Progress Stop
+
+            tabLayout = (TabLayout) findViewById(R.id.tabs_details);
+            viewPager = (ViewPager) findViewById(R.id.view_pager_details);
+
+            adapter = new DetailsPagerAdapter(getSupportFragmentManager(), DetailsActivity.this, DetailsActivity.this.course);
+            viewPager.setAdapter(adapter);
+
+            tabLayout.setupWithViewPager(viewPager);
+        }
+
+        @Override
+        protected Course doInBackground(Integer... params) {
+
+            Course foundCourse = null;
+
+            int classNumber = -1;
+            if (params.length > 0) {
+                classNumber = params[0];
+            }
+            if (classNumber == -1) {
+                return null;
+            }
+
+            List<Course> courseList = ((MainApplication)getApplication()).getDataHolderInstance().getCourses();
+            for (Course courseItem : courseList) {
+                if (courseItem.getClassNumber() == classNumber) {
+                    foundCourse = courseItem;
+                }
+            }
+            return foundCourse;
+        }
     }
 }
