@@ -30,6 +30,7 @@
 
     <!-- Activity Titles -->
     <string name="activity_login_title">VITacademics Login</string>
+    <string name="activity_details_title">Details</string>
 
     <!-- Login Page -->
     <string name="label_campus_chennai">Chennai</string>

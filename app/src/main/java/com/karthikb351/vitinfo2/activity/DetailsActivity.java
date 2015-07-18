@@ -29,7 +29,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.MainApplication;
@@ -54,14 +56,26 @@ public class DetailsActivity extends AppCompatActivity {
         if (intent.hasExtra(Constants.INTENT_EXTRA_CLASS_NUMBER)) {
             new LoadCourseTask().execute(intent.getIntExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, -1));
             setContentView(R.layout.activity_details);
+            initToolbar();
         }
         else {
             setContentView(R.layout.app_message_not_available);
             TextView errorMessage = (TextView) findViewById(R.id.message);
             errorMessage.setText(getString(R.string.not_available));
         }
+
     }
 
+    private void initToolbar(){
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(getString(R.string.activity_details_title));
+
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
 
     private class LoadCourseTask extends AsyncTask<Integer, Void, Course> {
         @Override
