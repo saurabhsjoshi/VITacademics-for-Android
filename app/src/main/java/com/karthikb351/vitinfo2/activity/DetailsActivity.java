@@ -32,6 +32,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.MainApplication;
@@ -73,8 +74,20 @@ public class DetailsActivity extends AppCompatActivity {
 
         final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private class LoadCourseTask extends AsyncTask<Integer, Void, Course> {
@@ -124,4 +137,6 @@ public class DetailsActivity extends AppCompatActivity {
             return foundCourse;
         }
     }
+
+
 }

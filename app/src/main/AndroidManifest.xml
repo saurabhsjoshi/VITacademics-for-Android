@@ -68,11 +68,7 @@
         </activity>
         <activity
             android:name=".activity.DetailsActivity"
-            android:label="@string/fragment_details_title"
-            android:parentActivityName=".activity.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.karthikb351.vitinfo2.activity.MainActivity" />
+            android:label="@string/fragment_details_title">
         </activity>
 
         <!-- RushORM Settings -->
