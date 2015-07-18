@@ -46,7 +46,7 @@ public class DetailsFragment extends Fragment {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private DetailsAdapter adapter;
+    private DetailsPagerAdapter adapter;
     private View view;
     private Course course;
 
@@ -85,7 +85,7 @@ public class DetailsFragment extends Fragment {
             tabLayout = (TabLayout) view.findViewById(R.id.tabs_details);
             viewPager = (ViewPager) view.findViewById(R.id.view_pager_details);
 
-            adapter = new DetailsAdapter(getActivity().getSupportFragmentManager(), getActivity(), DetailsFragment.this.course);
+            adapter = new DetailsPagerAdapter(getActivity().getSupportFragmentManager(), getActivity(), DetailsFragment.this.course);
             viewPager.setAdapter(adapter);
 
             tabLayout.setupWithViewPager(viewPager);

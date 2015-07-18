@@ -27,12 +27,12 @@ package com.karthikb351.vitinfo2.fragment.details;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 
-public class DetailsAdapter extends FragmentPagerAdapter {
+public class DetailsPagerAdapter extends FragmentStatePagerAdapter {
 
     private Fragment fragment;
     private Context context;
@@ -41,7 +41,7 @@ public class DetailsAdapter extends FragmentPagerAdapter {
 
     private final int TAB_COUNT_DETAILS = 3;
 
-    public DetailsAdapter(FragmentManager fragmentManager, Context context, Course course) {
+    public DetailsPagerAdapter(FragmentManager fragmentManager, Context context, Course course) {
         super(fragmentManager);
         this.context = context;
         this.detailsTitles = context.getResources().getStringArray(R.array.course_details_tab);
