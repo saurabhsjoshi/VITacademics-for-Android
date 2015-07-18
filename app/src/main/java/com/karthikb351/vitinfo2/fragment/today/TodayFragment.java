@@ -29,6 +29,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ import android.widget.ProgressBar;
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.DetailsActivity;
+import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
@@ -55,7 +57,7 @@ import java.util.List;
 import de.greenrobot.event.EventBus;
 
 public class TodayFragment extends Fragment {
-
+    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView todayRecyclerView;
     private TodayListAdapter todayListAdapter;
     private ProgressBar loadProgress;
@@ -75,6 +77,7 @@ public class TodayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_today, container, false);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         loadProgress = (ProgressBar) rootView.findViewById(R.id.progress_bar_today);
         initialize();
         return rootView;
@@ -91,6 +94,13 @@ public class TodayFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         todayRecyclerView.setLayoutManager(layoutManager);
         getActivity().setTitle(getString(R.string.fragment_today_title));
+        swipeRefreshLayout.setColorSchemeColors(getActivity().getResources().getColor(R.color.colorAccent));
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ((MainActivity)getActivity()).pullToRefresh();
+            }
+        });
         new LoadTodayTask().execute();
     }
 
