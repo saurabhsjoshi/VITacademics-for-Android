@@ -102,6 +102,7 @@ public class NetworkController {
         final ResultListener resultListener = new ResultListener() {
             @Override
             public void onSuccess() {
+                requestConfig.getResultListener().onProgress();
                 requestConfig.removeRequest(requestConfig.getFirstRequest());
                 if (requestConfig.getRequestsLeft() > 0) {
                     performRequest(requestConfig.getFirstRequest(), this);
