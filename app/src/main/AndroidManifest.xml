@@ -89,6 +89,9 @@
             android:name="Rush_log"
             android:value="false" />
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="28e3871574e10571181662cc8fc2da6b210f40f6" />
     </application>
 
 </manifest>
