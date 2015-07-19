@@ -66,8 +66,8 @@
     <string name="label_attendance_debarred">Debarred</string>
     <string name="button_class_attend">+</string>
     <string name="button_class_miss">-</string>
-    <string name="label_class_go" formatted="false">Go: %1$d</string>
-    <string name="label_class_miss" formatted="false">Miss: %1$d</string>
+    <string name="label_class_go" formatted="false">Attend %1$d</string>
+    <string name="label_class_miss" formatted="false">Miss %1$d</string>
     <string name="label_attendance_classes" formatted="false">%1$d / %2$d</string>
     <string name="attendance_class_units_earned" formatted="false">Units Earned: %1$d</string>
     <string name="course_registered_on" formatted="false">Registered On: %1$s</string>
