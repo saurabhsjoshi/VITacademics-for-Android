@@ -27,21 +27,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="12sp">
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/tv_settings_topic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/abc_text_size_headline_material"
-        android:textColor="@color/textColorPrimary"/>
+        android:textSize="16sp"
+        android:textColor="@android:color/black"/>
 
     <TextView
         android:id="@+id/tv_settings_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/abc_text_size_body_1_material"
-        android:textStyle="italic"
-        android:textColor="@color/textColorDivider"/>
+        android:textSize="13sp"
+        android:textColor="@android:color/darker_gray"/>
 
 </LinearLayout>
