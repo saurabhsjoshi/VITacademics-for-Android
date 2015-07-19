@@ -63,7 +63,7 @@ public class TodayFragment extends Fragment {
     private ProgressBar loadProgress;
     private View rootView;
     private List<Course> courses;
-    private int dayOfWeek;
+    private int today, dayOfWeek;
 
     public TodayFragment() {
 
@@ -90,6 +90,8 @@ public class TodayFragment extends Fragment {
     }
 
     void initialize() {
+        today = DateTimeCalender.getDayOfWeek();
+        dayOfWeek = today;
         todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewToday);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         todayRecyclerView.setLayoutManager(layoutManager);
@@ -98,7 +100,7 @@ public class TodayFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ((MainActivity)getActivity()).pullToRefresh();
+                ((MainActivity) getActivity()).pullToRefresh();
             }
         });
         new LoadTodayTask().execute();
@@ -134,7 +136,6 @@ public class TodayFragment extends Fragment {
 
         @Override
         protected List<Pair<Course, Timing>> doInBackground(Void... params) {
-            dayOfWeek = DateTimeCalender.getDayOfWeek();
             List<Pair<Course, Timing>> finalArray = new ArrayList<>();
             courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
             for (Course course : courses) {
@@ -178,16 +179,47 @@ public class TodayFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Pair<Course, Timing>> finalCourses) {
             loadProgress.setVisibility(View.GONE);
-            todayListAdapter = new TodayListAdapter(getActivity(), dayOfWeek, finalCourses);
-            todayRecyclerView.setAdapter(todayListAdapter);
 
-            todayListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
-                @Override
-                public void onItemClick(Course data) {
-                    onListItemClicked(data);
+            if (finalCourses.size() == 0) {
+                if (getNextDay(dayOfWeek) == today) {
+                    // TODO No classes message, change view
+                    getActivity().setTitle(getString(R.string.fragment_today_title));
+                } else {
+                    dayOfWeek = getNextDay(dayOfWeek);
+                    if (isTomorrow(dayOfWeek)) {
+                        getActivity().setTitle(getString(R.string.fragment_today_title_tomorrow));
+                    } else {
+                        getActivity().setTitle(getString(R.string.fragment_today_title_on_day, getDayOfWeek(dayOfWeek)));
+                    }
+                    new LoadTodayTask().execute();
                 }
-            });
+            } else {
+                todayListAdapter = new TodayListAdapter(getActivity(), dayOfWeek, finalCourses);
+                todayRecyclerView.setAdapter(todayListAdapter);
+                todayListAdapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
+                    @Override
+                    public void onItemClick(Course data) {
+                        onListItemClicked(data);
+                    }
+                });
+            }
         }
 
+    }
+
+    private int getNextDay(int day) {
+        if (day == 6) {
+            return 0;
+        }
+        return (day + 1);
+    }
+
+    private String getDayOfWeek(int day) {
+        String daysOfWeek[] = getActivity().getResources().getStringArray(R.array.days_of_week);
+        return daysOfWeek[day];
+    }
+
+    private boolean isTomorrow(int day) {
+        return (getNextDay(today) == day);
     }
 }

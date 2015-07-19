@@ -52,6 +52,8 @@
     <string name="today_course_timing_done">Done for today</string>
     <string name="today_course_timing_right_now">Right now</string>
     <string name="today_course_timing_hours_minutes_later" formatted="false">%1$s and %2$s</string>
+    <string name="fragment_today_title_tomorrow">Tomorrow</string>
+    <string name="fragment_today_title_on_day" formatted="false">On %1$s</string>
 
     <!-- Timetable Fragment -->
     <string name="timetable_course_slot_timing" formatted="false">%1$s to %2$s</string>
@@ -100,7 +102,7 @@
     <string name="not_available">This is not available at the moment</string>
     <string name="not_applicable">This is not applicable for this course</string>
     <string name="courses_none">No courses available, maybe you haven\'t registered any?</string>
-    <string name="courses_none_day">No classes today, hooray!</string>
+    <string name="courses_none_day">No classes for you, hooray!</string>
 
     <!-- VITacademics API Messages -->
     <string name="api_server_error">The VITacademics Server is down or has encountered an error</string>
