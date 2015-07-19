@@ -102,11 +102,12 @@
     <string name="courses_none">No courses available, maybe you haven\'t registered any?</string>
     <string name="courses_none_day">No courses today, hooray!</string>
 
-    <!--VITacademics API Messages-->
+    <!-- VITacademics API Messages -->
     <string name="api_server_error">The VITacademics Server is down or has encountered an error</string>
     <string name="api_unknown_error">The VITacademics app has encountered an error</string>
+    <string name="message_login_loading">Logging you in, please wait&#8230;</string>
 
-    <!-- Fragment Titles !-->
+    <!-- Fragment Titles -->
     <string name="fragment_today_title">Today</string>
     <string name="fragment_courses_title">Courses</string>
     <string name="fragment_cgpa_calculator_title">CGPA Calculator</string>
@@ -120,13 +121,13 @@
     <string name="fragment_about_title">About</string>
     <string name="fragment_licenses_title">Licenses</string>
 
-    <!-- About !-->
-    <string name="about_description"> aneesh - fill this </string>
-    <string name="contribute_github"> Want to help us? </string>
-    <string name="email_addrerss"> gauravagerwala@gmail.com </string>
+    <!-- About -->
+    <string name="about_description">Dummy Text Dummy Text</string>
+    <string name="label_contribute">Contribute to the VITacademics project</string>
+    <string name="label_feedback">Provide Feedback</string>
 
     <!-- Share Messages -->
-    <string name="android_share_select">Share VITacademics using &#8230;</string>
+    <string name="android_share_select">Share VITacademics using&#8230;</string>
     <string name="android_share_message_subject">VITacademics</string>
     <string name="android_share_message_start" formatted="false">Download VITacademics from: %1$s</string>
 
