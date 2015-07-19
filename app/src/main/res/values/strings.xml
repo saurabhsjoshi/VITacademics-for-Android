@@ -1,0 +1,152 @@
+<!--
+  ~ VITacademics
+  ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+  ~ Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
+  ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+  ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+  ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+  ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~
+  ~ This file is part of VITacademics.
+  ~ VITacademics is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ VITacademics is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">VITacademics</string>
+
+    <!-- Sample text -->
+    <string name="hello_world">Hello world!</string>
+
+    <!-- Activity Titles -->
+    <string name="activity_login_title">VITacademics Login</string>
+    <string name="activity_details_title">Details</string>
+
+    <!-- Login Page -->
+    <string name="label_campus_chennai">Chennai</string>
+    <string name="label_campus_vellore">Vellore</string>
+    <string name="input_hint_register_number">Register Number</string>
+    <string name="input_hint_date_of_birth">Date of Birth (ddmmyyyy)</string>
+    <string name="input_hint_parent_number">Registered Parent\'s Phone Number</string>
+    <string name="button_login">Login</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="navigation_drawer_others_group">Others</string>
+
+    <!-- Dialog Message -->
+    <string name="button_close_dialog">Close</string>
+
+    <!-- Today Fragment -->
+    <string name="today_course_timing_done">Done for today</string>
+    <string name="today_course_timing_right_now">Right now</string>
+    <string name="today_course_timing_hours_minutes_later" formatted="false">%1$s and %2$s</string>
+    <string name="fragment_today_title_tomorrow">Tomorrow</string>
+    <string name="fragment_today_title_on_day" formatted="false">On %1$s</string>
+
+    <!-- Timetable Fragment -->
+    <string name="timetable_course_slot_timing" formatted="false">%1$s to %2$s</string>
+
+    <!-- Course Details Tabs -->
+    <string name="tab_course_overview">Overview</string>
+    <string name="tab_course_attendance">Attendance</string>
+    <string name="tab_course_marks">Marks</string>
+
+    <!-- Overview -->
+    <string name="label_class_number" formatted="false">Class Number: %1$d</string>
+    <string name="label_course_code" formatted="false">Code: %1$s</string>
+    <string name="label_course_type" formatted="false">Type: %1$s</string>
+    <string name="label_course_mode" formatted="false">Mode: %1$s</string>
+    <string name="label_course_option" formatted="false">Option: %1$s</string>
+    <string name="label_ltpc" formatted="false">LTPC: %1$s</string>
+    <string name="label_faculty" formatted="false">Faculty: %1$s</string>
+    <string name="label_slot" formatted="false">Slot: %1$s</string>
+    <string name="label_venue" formatted="false">Venue: %1$s</string>
+    <string name="label_registered_on" formatted="false">Registered On: %1$s</string>
+    <string name="label_project_title" formatted="false">Project Title: %1$s</string>
+    <string name="label_timings">Class Timings</string>
+    <string name="label_slot_timing" formatted="false">%1$s, %2$s to %3$s</string>
+    
+    <!-- Course Attendance -->
+    <string name="label_attendance_safe">Safe</string>
+    <string name="label_attendance_debarred">Debarred</string>
+    <string name="button_class_attend">+</string>
+    <string name="button_class_miss">-</string>
+    <string name="label_class_go" formatted="false">Attend %1$d</string>
+    <string name="label_class_miss" formatted="false">Miss %1$d</string>
+    <string name="label_attendance_classes" formatted="false">%1$d / %2$d</string>
+    <string name="attendance_class_units_earned" formatted="false">Units Earned: %1$d</string>
+    <string name="registration_date_unavailable">Unavailable</string>
+
+    <!-- Course Marks -->
+    <string name="label_total_internals" formatted="false">Total Internals: %1$s / %2$s</string>
+    <string name="label_assessment_marks" formatted="false">%1$s / %2$s</string>
+    <string name="label_assessment_weightage" formatted="false">Weightage: %1$s</string>
+    <string name="label_assessment_contribution" formatted="false">Contribution: %1$s</string>
+
+    <!-- Grade -->
+    <string name="label_grade_char">Grade</string>
+    <string name="label_grade_value">Grade Value</string>
+    <string name="label_grade_cgpa">CGPA</string>
+
+    <!-- CGPA Calculator -->
+    <string name="label_cgpa_current" formatted="false">Current CGPA: %1$s</string>
+    <string name="label_cgpa_expected" formatted="false">Expected CGPA: %1$s</string>
+    <string name="button_cgpa_calculate">Calculate</string>
+
+    <!-- Marks Labels -->
+    <string name="label_courses_assessment">Assessment</string>
+    <string name="label_courses_assessments">Assessments</string>
+
+    <!-- Common -->
+    <string name="label_percentage">Percentage</string>
+
+    <!-- Messages -->
+    <string name="not_available">This is not available at the moment</string>
+    <string name="not_applicable">This is not applicable for this course</string>
+    <string name="courses_none">No courses available, maybe you haven\'t registered any?</string>
+    <string name="classes_none">No classes for you, hooray!</string>
+    <string name="classes_none_day">No classes today, hooray!</string>
+
+    <!-- VITacademics API Messages -->
+    <string name="api_server_error">The VITacademics Server is down or has encountered an error</string>
+    <string name="api_unknown_error">The VITacademics app has encountered an error</string>
+    <string name="message_login_loading">Logging you in, please wait&#8230;</string>
+
+    <!-- Fragment Titles -->
+    <string name="fragment_today_title">Today</string>
+    <string name="fragment_courses_title">Courses</string>
+    <string name="fragment_cgpa_calculator_title">CGPA Calculator</string>
+    <string name="fragment_contributors_title">Contributors</string>
+    <string name="fragment_details_title">Course Details</string>
+    <string name="fragment_friends_title">Friends</string>
+    <string name="fragment_grades_title">Grades</string>
+    <string name="fragment_settings_title">Settings</string>
+    <string name="fragment_timetable_title">Timetable</string>
+    <string name="fragment_messages_title">Messages</string>
+    <string name="fragment_about_title">About</string>
+    <string name="fragment_licenses_title">Licenses</string>
+
+    <!-- About -->
+    <string name="app_version" formatted="false">Version: %1$s</string>
+    <string name="about_description">Helps you keep track of your academic metrics</string>
+    <string name="label_contribute">Contribute to the VITacademics project</string>
+    <string name="label_feedback">Provide Feedback</string>
+
+    <!-- Share Messages -->
+    <string name="android_share_select">Share VITacademics using&#8230;</string>
+    <string name="android_share_message_subject">VITacademics</string>
+    <string name="android_share_message_start" formatted="false">Download VITacademics from: %1$s</string>
+
+</resources>

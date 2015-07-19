@@ -1,15 +1,13 @@
-###VITacademics 2014 Update
+#VITacademics
 
-[![Build Status](https://travis-ci.org/saurabhsjoshi/VITacademics-for-Android.svg?branch=lollipop)](https://travis-ci.org/saurabhsjoshi/VITacademics-for-Android)
+The VITacademics app for Android.
+Get it from [here](https://play.google.com/store/apps/details?id=com.karthikb351.vitinfo2).
 
-- Built using Android Studio
-- Refreshed UI
-- Full scale Timetable support
-- Add freinds to check if they are in class
-- Login using facebook
-- Campus map
-- Reminders before class (Experimental)
-- Reset app option to load data for another user
-- Supports Parse Push Messages
-- Release verison is now pushed to all users!
-- First release version: 3.4.2 ; Version Code: 22
+You'll be able to check your courses and their respective attendance and marks for the semester. The app shall help you keep track of your academic metrics at VIT.
+
+More features are coming soon. The development and release of the app shall use semantic versioning (semver). For more information about semantic versioning, check [here](http://semver.org/).
+
+If you wish to improve the app, feel free to contribute to this repository. We would love to see Pull Requests.
+
+####Licensing
+For [COPYING](https://github.com/saurabhsjoshi/VITacademics-for-Android/blob/master/COPYING), [COPYRIGHT](https://github.com/saurabhsjoshi/VITacademics-for-Android/blob/master/COPYRIGHT) and [LICENSE](https://github.com/saurabhsjoshi/VITacademics-for-Android/blob/master/LICENSE) check the respective files in the repository.

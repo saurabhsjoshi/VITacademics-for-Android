@@ -1,0 +1,10 @@
+{
+  "reg_no": "13BCE0139",
+  "dob": "16011995",
+  "mobile": "9830051893",
+  "campus": "vellore",
+  "status": {
+    "message": "Successful execution",
+    "code": 0
+  }
+}

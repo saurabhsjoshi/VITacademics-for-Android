@@ -1,0 +1,352 @@
+{
+  "reg_no": "13BCE0139",
+  "dob": "16011995",
+  "mobile": "9830051893",
+  "campus": "vellore",
+  "grades": [
+    {
+      "course_code": "CHY101",
+      "course_title": "Engineering Chemistry",
+      "course_type": "TheoryLab",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2014-05",
+      "result_date": "2014-06-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CHY104",
+      "course_title": "Environmental Studies",
+      "course_type": "Theory",
+      "credits": 3,
+      "grade": "A",
+      "exam_held": "2013-11",
+      "result_date": "2013-12-31",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CSE101",
+      "course_title": "Computer Programming and Problem Solving",
+      "course_type": "TheoryLab",
+      "credits": 3,
+      "grade": "S",
+      "exam_held": "2013-11",
+      "result_date": "2013-12-31",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CSE109",
+      "course_title": "Digital Logic",
+      "course_type": "TheoryLab",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2014-05",
+      "result_date": "2014-06-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CSE202",
+      "course_title": "Algorithm Design and Analysis",
+      "course_type": "Theory",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2015-05",
+      "result_date": "2015-06-05",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CSE205_20",
+      "course_title": "Computer Architecture and Organization",
+      "course_type": "Theory",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2014-11",
+      "result_date": "2014-12-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CSE219",
+      "course_title": "Object Oriented Paradigm and Programming",
+      "course_type": "TheoryLab",
+      "credits": 5,
+      "grade": "S",
+      "exam_held": "2014-11",
+      "result_date": "2014-12-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CSE220",
+      "course_title": "Data Structures and Algorithms",
+      "course_type": "TheoryLab",
+      "credits": 5,
+      "grade": "S",
+      "exam_held": "2014-11",
+      "result_date": "2014-12-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CSE221",
+      "course_title": "Microprocessor and Interfacing",
+      "course_type": "TheoryLab",
+      "credits": 4,
+      "grade": "A",
+      "exam_held": "2015-05",
+      "result_date": "2015-06-05",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CSE222",
+      "course_title": "Operating Systems",
+      "course_type": "TheoryLab",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2015-05",
+      "result_date": "2015-06-05",
+      "option": "NIL"
+    },
+    {
+      "course_code": "CSE324",
+      "course_title": "Database Systems",
+      "course_type": "TheoryLab",
+      "credits": 4,
+      "grade": "A",
+      "exam_held": "2015-05",
+      "result_date": "2015-06-05",
+      "option": "NIL"
+    },
+    {
+      "course_code": "EEE101",
+      "course_title": "Basic Electrical and Electronics Engineering",
+      "course_type": "TheoryLab",
+      "credits": 4,
+      "grade": "A",
+      "exam_held": "2013-11",
+      "result_date": "2013-12-31",
+      "option": "NIL"
+    },
+    {
+      "course_code": "EEE103",
+      "course_title": "Electronics",
+      "course_type": "TheoryLab",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2014-05",
+      "result_date": "2014-06-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "ENG101_20",
+      "course_title": "English for Engineers - I",
+      "course_type": "TheoryLab",
+      "credits": 3,
+      "grade": "A",
+      "exam_held": "2013-11",
+      "result_date": "2013-12-31",
+      "option": "NIL"
+    },
+    {
+      "course_code": "ENG102_20",
+      "course_title": "English for Engineers - II",
+      "course_type": "TheoryLab",
+      "credits": 3,
+      "grade": "A",
+      "exam_held": "2014-05",
+      "result_date": "2014-06-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "ESP101",
+      "course_title": "Basic Spanish",
+      "course_type": "Theory",
+      "credits": 2,
+      "grade": "S",
+      "exam_held": "2014-05",
+      "result_date": "2014-06-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "HUM112",
+      "course_title": "Business Accounting for Engineers",
+      "course_type": "Theory",
+      "credits": 3,
+      "grade": "A",
+      "exam_held": "2014-11",
+      "result_date": "2014-12-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "HUM121_20",
+      "course_title": "Ethics and Values",
+      "course_type": "TheoryLab",
+      "credits": 3,
+      "grade": "S",
+      "exam_held": "2015-05",
+      "result_date": "2015-06-05",
+      "option": "NIL"
+    },
+    {
+      "course_code": "MAT101",
+      "course_title": "Multivariable Calculus and Differential Equations",
+      "course_type": "Theory",
+      "credits": 4,
+      "grade": "A",
+      "exam_held": "2013-11",
+      "result_date": "2013-12-31",
+      "option": "NIL"
+    },
+    {
+      "course_code": "MAT105",
+      "course_title": "Differential and Difference Equations",
+      "course_type": "Theory",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2014-05",
+      "result_date": "2014-06-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "MAT106",
+      "course_title": "Discrete Mathematical Structures",
+      "course_type": "Theory",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2014-05",
+      "result_date": "2014-06-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "MAT202",
+      "course_title": "Linear Algebra",
+      "course_type": "Theory",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2015-05",
+      "result_date": "2015-06-05",
+      "option": "NIL"
+    },
+    {
+      "course_code": "MAT203",
+      "course_title": "Numerical Analysis",
+      "course_type": "Theory",
+      "credits": 3,
+      "grade": "S",
+      "exam_held": "2014-11",
+      "result_date": "2014-12-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "MAT207",
+      "course_title": "Applied Probability, Statistics and Reliability",
+      "course_type": "Theory",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2014-11",
+      "result_date": "2014-12-12",
+      "option": "NIL"
+    },
+    {
+      "course_code": "MEE101",
+      "course_title": "Engineering Graphics",
+      "course_type": "Lab",
+      "credits": 2,
+      "grade": "A",
+      "exam_held": "2013-11",
+      "result_date": "2013-12-31",
+      "option": "NIL"
+    },
+    {
+      "course_code": "MEE102",
+      "course_title": "Workshop Practice",
+      "course_type": "Lab",
+      "credits": 1,
+      "grade": "A",
+      "exam_held": "2013-11",
+      "result_date": "2013-12-31",
+      "option": "NIL"
+    },
+    {
+      "course_code": "PHY101",
+      "course_title": "Modern Physics",
+      "course_type": "TheoryLab",
+      "credits": 4,
+      "grade": "S",
+      "exam_held": "2013-11",
+      "result_date": "2013-12-31",
+      "option": "NIL"
+    }
+  ],
+  "semester_wise": [
+    {
+      "exam_held": "2014-05",
+      "credits": 25,
+      "gpa": 9.87
+    },
+    {
+      "exam_held": "2013-11",
+      "credits": 24,
+      "gpa": 9.29
+    },
+    {
+      "exam_held": "2015-05",
+      "credits": 23,
+      "gpa": 9.65
+    },
+    {
+      "exam_held": "2014-11",
+      "credits": 24,
+      "gpa": 9.88
+    }
+  ],
+  "grade_count": [
+    {
+      "count": 17,
+      "value": 10,
+      "grade": "S"
+    },
+    {
+      "count": 10,
+      "value": 9,
+      "grade": "A"
+    },
+    {
+      "count": 0,
+      "value": 8,
+      "grade": "B"
+    },
+    {
+      "count": 0,
+      "value": 7,
+      "grade": "C"
+    },
+    {
+      "count": 0,
+      "value": 6,
+      "grade": "D"
+    },
+    {
+      "count": 0,
+      "value": 5,
+      "grade": "E"
+    },
+    {
+      "count": 0,
+      "value": 0,
+      "grade": "F"
+    },
+    {
+      "count": 0,
+      "value": null,
+      "grade": "N"
+    }
+  ],
+  "credits_registered": 96,
+  "credits_earned": 96,
+  "cgpa": 9.68,
+  "grades_refreshed": "2015-07-08T18:40:04.859Z",
+  "cached": false,
+  "status": {
+    "message": "Successful execution",
+    "code": 0
+  }
+}
+

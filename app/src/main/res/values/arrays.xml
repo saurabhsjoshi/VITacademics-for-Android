@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ VITacademics
+  ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+  ~ Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
+  ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+  ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+  ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+  ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~
+  ~ This file is part of VITacademics.
+  ~ VITacademics is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ VITacademics is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string-array name="navigation_tab">
+        <item>@string/fragment_today_title</item>
+        <item>@string/fragment_courses_title</item>
+        <item>@string/fragment_timetable_title</item>
+        <item>@string/fragment_settings_title</item>
+        <item>@string/fragment_messages_title</item>
+        <item>@string/fragment_about_title</item>
+    </string-array>
+
+    <string-array name="course_details_tab">
+        <item>@string/tab_course_overview</item>
+        <item>@string/tab_course_attendance</item>
+        <item>@string/tab_course_marks</item>
+    </string-array>
+
+    <string-array name="settings_topic">
+        <item>Reset</item>
+        <item>Show licenses</item>
+        <item>Show contributors</item>
+        <item>Rate us</item>
+        <item>Google+ Community</item>
+        <item>Facebook Page</item>
+        <item>Share the app</item>
+    </string-array>
+
+    <string-array name="settings_message">
+        <item>Reset App, deleting all user data and logging you out</item>
+        <item>Sweet software that helped us build VITacademics for Android</item>
+        <item>Check out the VITacademics team</item>
+        <item>Rate and review our app on Google Play</item>
+        <item>Join our Google+ community and help us make VITacademics better</item>
+        <item>Follow VITacademics on Facebook to keep yourself abreast of any new developments</item>
+        <item>Sharing is caring, tell your friends about the app</item>
+    </string-array>
+
+    <string-array name="days_of_week">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+</resources>

@@ -1,0 +1,289 @@
+{
+  "reg_no": "13BCE0139",
+  "dob": "16011995",
+  "campus": "vellore",
+  "courses": [
+    {
+      "class_number": 4792,
+      "course_code": "CSE202",
+      "course_title": "Algorithm Design and Analysis",
+      "subject_type": "Theory Only",
+      "ltpc": "3104",
+      "course_mode": "CBL",
+      "course_option": "Regular",
+      "slot": "F1+TF1",
+      "venue": "SJT803",
+      "faculty": "ANNAPURNA JONNALAGADDA - SCSE",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 0,
+          "start_time": "03:30:00Z",
+          "end_time": "04:20:00Z"
+        },
+        {
+          "day": 1,
+          "start_time": "06:30:00Z",
+          "end_time": "07:20:00Z"
+        },
+        {
+          "day": 2,
+          "start_time": "03:30:00Z",
+          "end_time": "04:20:00Z"
+        },
+        {
+          "day": 3,
+          "start_time": "04:30:00Z",
+          "end_time": "05:20:00Z"
+        }
+      ],
+      "course_type": 1
+    },
+    {
+      "class_number": 4574,
+      "course_code": "CSE221",
+      "course_title": "Microprocessor and Interfacing",
+      "subject_type": "Embedded Theory",
+      "ltpc": "3003",
+      "course_mode": "CBL",
+      "course_option": "Regular",
+      "slot": "G1+TG1",
+      "venue": "SJT421",
+      "faculty": "SENTHILKUMAR R - SCSE",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 1,
+          "start_time": "03:30:00Z",
+          "end_time": "04:20:00Z"
+        },
+        {
+          "day": 2,
+          "start_time": "06:30:00Z",
+          "end_time": "07:20:00Z"
+        },
+        {
+          "day": 4,
+          "start_time": "04:30:00Z",
+          "end_time": "05:20:00Z"
+        }
+      ],
+      "course_type": 1
+    },
+    {
+      "class_number": 4706,
+      "course_code": "CSE221",
+      "course_title": "Microprocessor and Interfacing",
+      "subject_type": "Embedded Lab",
+      "ltpc": "0021",
+      "course_mode": "LBC",
+      "course_option": "Regular",
+      "slot": "L51+L52",
+      "venue": "SJT416",
+      "faculty": "BHULAKSHMI BONTHU - SCSE",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 3,
+          "start_time": "10:30:00Z",
+          "end_time": "12:20:00Z"
+        }
+      ],
+      "course_type": 2
+    },
+    {
+      "class_number": 4525,
+      "course_code": "CSE222",
+      "course_title": "Operating Systems",
+      "subject_type": "Embedded Theory",
+      "ltpc": "3003",
+      "course_mode": "PBL",
+      "course_option": "Regular",
+      "slot": "C1",
+      "venue": "SJT404",
+      "faculty": "SENTHIL J - SCSE",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 0,
+          "start_time": "04:30:00Z",
+          "end_time": "05:20:00Z"
+        },
+        {
+          "day": 2,
+          "start_time": "02:30:00Z",
+          "end_time": "03:20:00Z"
+        },
+        {
+          "day": 3,
+          "start_time": "05:30:00Z",
+          "end_time": "06:20:00Z"
+        }
+      ],
+      "course_type": 3
+    },
+    {
+      "class_number": 4630,
+      "course_code": "CSE222",
+      "course_title": "Operating Systems",
+      "subject_type": "Embedded Lab",
+      "ltpc": "0021",
+      "course_mode": "LBC",
+      "course_option": "Regular",
+      "slot": "L45+L46",
+      "venue": "SJT418",
+      "faculty": "LAVANYA K - SCSE",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 2,
+          "start_time": "10:30:00Z",
+          "end_time": "12:20:00Z"
+        }
+      ],
+      "course_type": 2
+    },
+    {
+      "class_number": 4540,
+      "course_code": "CSE324",
+      "course_title": "Database Systems",
+      "subject_type": "Embedded Theory",
+      "ltpc": "3003",
+      "course_mode": "CBL",
+      "course_option": "Regular",
+      "slot": "D1",
+      "venue": "SJT421",
+      "faculty": "SATISH C.J - SCSE",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 1,
+          "start_time": "04:30:00Z",
+          "end_time": "05:20:00Z"
+        },
+        {
+          "day": 3,
+          "start_time": "02:30:00Z",
+          "end_time": "03:20:00Z"
+        },
+        {
+          "day": 4,
+          "start_time": "05:30:00Z",
+          "end_time": "06:20:00Z"
+        }
+      ],
+      "course_type": 1
+    },
+    {
+      "class_number": 5270,
+      "course_code": "CSE324",
+      "course_title": "Database Systems",
+      "subject_type": "Embedded Lab",
+      "ltpc": "0021",
+      "course_mode": "LBC",
+      "course_option": "Regular",
+      "slot": "L49+L50",
+      "venue": "SJT319",
+      "faculty": "VENKATESAN M - SCSE",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 3,
+          "start_time": "08:30:00Z",
+          "end_time": "10:20:00Z"
+        }
+      ],
+      "course_type": 2
+    },
+    {
+      "class_number": 2055,
+      "course_code": "HUM121",
+      "course_title": "Ethics and Values",
+      "subject_type": "Embedded Theory",
+      "ltpc": "2002",
+      "course_mode": "CBL",
+      "course_option": "Regular",
+      "slot": "B1",
+      "venue": "SJT522",
+      "faculty": "NILAVATHY K - SSL",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 1,
+          "start_time": "02:30:00Z",
+          "end_time": "03:20:00Z"
+        },
+        {
+          "day": 4,
+          "start_time": "03:30:00Z",
+          "end_time": "04:20:00Z"
+        }
+      ],
+      "course_type": 1
+    },
+    {
+      "class_number": 5510,
+      "course_code": "HUM121",
+      "course_title": "Ethics and Values",
+      "subject_type": "Embedded Lab",
+      "ltpc": "0021",
+      "course_mode": "LBC",
+      "course_option": "Regular",
+      "slot": "L39+L40",
+      "venue": "SJT504",
+      "faculty": "NILAVATHY K - SSL",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 1,
+          "start_time": "10:30:00Z",
+          "end_time": "12:20:00Z"
+        }
+      ],
+      "course_type": 2
+    },
+    {
+      "class_number": 2216,
+      "course_code": "MAT202",
+      "course_title": "Linear Algebra",
+      "subject_type": "Theory Only",
+      "ltpc": "3104",
+      "course_mode": "CBL",
+      "course_option": "Regular",
+      "slot": "E1+TE1",
+      "venue": "SJT409",
+      "faculty": "NALLIAH M - SAS",
+      "project_title": null,
+      "timings": [
+        {
+          "day": 0,
+          "start_time": "05:30:00Z",
+          "end_time": "06:20:00Z"
+        },
+        {
+          "day": 2,
+          "start_time": "04:30:00Z",
+          "end_time": "05:20:00Z"
+        },
+        {
+          "day": 3,
+          "start_time": "06:30:00Z",
+          "end_time": "07:20:00Z"
+        },
+        {
+          "day": 4,
+          "start_time": "02:30:00Z",
+          "end_time": "03:20:00Z"
+        }
+      ],
+      "course_type": 1
+    }
+  ],
+  "semester": "WS",
+  "refreshed": "2015-07-05T19:40:09.485Z",
+  "mobile": "9830051893",
+  "status": {
+    "message": "Successful execution",
+    "code": 0
+  }
+}
