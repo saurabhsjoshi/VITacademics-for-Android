@@ -24,83 +24,92 @@
   -->
 
 <ScrollView
-    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
-<LinearLayout
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <android.support.v7.widget.CardView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-       <LinearLayout
-         android:orientation="vertical" android:layout_width="match_parent"
-           android:background="@color/appBrand"
-         android:layout_height="match_parent">
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:contentDescription="@string/app_name"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/launch_screen"
-        android:layout_gravity="center_horizontal"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/appBrand"
+                android:orientation="vertical">
 
-        <TextView
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/launch_screen" />
 
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="36sp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/primary_material_light"
-            android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/app_name"
+                    android:textColor="@color/primary_material_light"
+                    android:textSize="36sp" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/app_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/primary_material_light" />
 
-   </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
-            android:orientation="vertical" android:layout_width="match_parent"
-            android:padding="10dp"
-            android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/about_description"
-        android:gravity="center_horizontal"
-        android:textColor="@color/textColorPrimary"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/about_description"
+                android:textColor="@color/textColorPrimary" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:textColor="#FFF"
-        android:background="@color/colorPrimary"
-        android:layout_marginRight="60dp"
-        android:text="Feedback"
-        android:id="@+id/button_feedback"/>
+            <Button
+                android:id="@+id/button_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/label_feedback"
+                android:textColor="#FFF" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        android:id="@+id/contribute"
-        android:text="Contribute to this project"
-        android:textColor="@color/textColorPrimary"
-        android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:id="@+id/contribute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:text="@string/label_contribute"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="20sp"
+                android:textStyle="italic" />
 
         </LinearLayout>
 
- </LinearLayout>
+    </LinearLayout>
 </ScrollView>

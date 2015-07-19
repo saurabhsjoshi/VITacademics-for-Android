@@ -34,14 +34,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.karthikb351.vitinfo2.BuildConfig;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.utility.Constants;
-
 
 public class AboutFragment extends Fragment {
 
     Button feedbackButton;
-    TextView contribute ;
+    TextView appVersion, contribute;
 
     public AboutFragment() {
     }
@@ -57,8 +57,11 @@ public class AboutFragment extends Fragment {
 
         getActivity().setTitle(getString(R.string.fragment_about_title));
 
-        feedbackButton = (Button)view.findViewById(R.id.button_feedback);
-        contribute = (TextView)view.findViewById(R.id.contribute);
+        feedbackButton = (Button) view.findViewById(R.id.button_feedback);
+        appVersion = (TextView) view.findViewById(R.id.app_version);
+        contribute = (TextView) view.findViewById(R.id.contribute);
+
+        appVersion.setText(getString(R.string.app_version, BuildConfig.VERSION_NAME));
 
         feedbackButton.setOnClickListener(new View.OnClickListener() {
             @Override

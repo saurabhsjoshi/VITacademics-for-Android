@@ -31,6 +31,7 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
+import com.karthikb351.vitinfo2.BuildConfig;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.LoginActivity;
 import com.karthikb351.vitinfo2.api.ResetTask;
@@ -90,8 +91,7 @@ public class SettingsFragment extends ListFragment {
                 break;
             case 3:
                 // Rate on Google Play
-                final String appPackageName = getActivity().getPackageName();
-                Intent googlePlay = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.GOOGLE_PLAY_DETAILS_URL + appPackageName));
+                Intent googlePlay = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.GOOGLE_PLAY_DETAILS_URL + BuildConfig.APPLICATION_ID));
                 startActivity(googlePlay);
                 break;
             case 4:
