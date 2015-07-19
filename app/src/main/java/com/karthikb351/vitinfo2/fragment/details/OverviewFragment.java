@@ -25,7 +25,6 @@
 package com.karthikb351.vitinfo2.fragment.details;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,12 +33,18 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.utility.Constants;
+import com.karthikb351.vitinfo2.utility.DateTimeCalender;
+
+import java.text.ParseException;
 
 
 public class OverviewFragment extends Fragment {
 
-    Course course;
-    TextView courseCode, courseName, slot, faculty, mode, ltpc, type, venue, classNumber;
+    private Course course;
+    private TextView courseName, classNumber, courseCode, faculty, courseMode, courseType, ltpc, courseOption;
+    private TextView registeredOn, slot, venue;
+    private TextView projectTitle;
 
     public OverviewFragment() {
     }
@@ -50,29 +55,63 @@ public class OverviewFragment extends Fragment {
         return overviewFragment;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_details_overview_class, container, false);
-        courseCode = (TextView) view.findViewById(R.id.course_code);
-        courseName = (TextView) view.findViewById(R.id.course_name);
-        slot = (TextView) view.findViewById(R.id.course_slot);
-        faculty = (TextView) view.findViewById(R.id.faculty);
-        mode = (TextView) view.findViewById(R.id.course_mode);
-        ltpc = (TextView) view.findViewById(R.id.course_credits);
-        type = (TextView) view.findViewById(R.id.course_type);
-        venue = (TextView) view.findViewById(R.id.course_venue);
-        classNumber = (TextView) view.findViewById(R.id.class_number);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        courseCode.setText(course.getCourseCode());
+        View view;
+        if (course.getCourseType() == Constants.COURSE_TYPE_PBC || course.getCourseType() == Constants.COURSE_TYPE_PBC_NO_PROJECT) {
+            view = inflater.inflate(R.layout.fragment_details_overview_project, container, false);
+
+            if (course.getCourseType() == Constants.COURSE_TYPE_PBC) {
+                projectTitle = (TextView) view.findViewById(R.id.project_title);
+            }
+        } else {
+            view = inflater.inflate(R.layout.fragment_details_overview_class, container, false);
+
+            registeredOn = (TextView) view.findViewById(R.id.registered_on);
+            venue = (TextView) view.findViewById(R.id.venue);
+            slot = (TextView) view.findViewById(R.id.slot);
+        }
+
+        courseName = (TextView) view.findViewById(R.id.course_name);
+        classNumber = (TextView) view.findViewById(R.id.class_number);
+        courseCode = (TextView) view.findViewById(R.id.course_code);
+        faculty = (TextView) view.findViewById(R.id.faculty);
+        courseType = (TextView) view.findViewById(R.id.course_type);
+        courseMode = (TextView) view.findViewById(R.id.course_mode);
+        ltpc = (TextView) view.findViewById(R.id.ltpc);
+        courseOption = (TextView) view.findViewById(R.id.course_option);
+
+        if (course.getCourseType() == Constants.COURSE_TYPE_PBC) {
+            projectTitle.setText(course.getProjectTitle());
+            projectTitle.setVisibility(View.VISIBLE);
+        } else if (course.getCourseType() == Constants.COURSE_TYPE_CBL || course.getCourseType() == Constants.COURSE_TYPE_LBC || course.getCourseType() == Constants.COURSE_TYPE_PBL || course.getCourseType() == Constants.COURSE_TYPE_RBL) {
+            slot.setText(getString(R.string.label_slot, course.getSlot()));
+            venue.setText(getString(R.string.label_venue, course.getVenue()));
+
+            if (course.getAttendance().isSupported()) {
+                String registeredDate;
+                try {
+                    registeredDate = DateTimeCalender.parseISO8601DateTime(course.getAttendance().getRegistrationDate());
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                    registeredDate = course.getAttendance().getRegistrationDate();
+                }
+                registeredOn.setText(getString(R.string.label_registered_on, registeredDate));
+                registeredOn.setVisibility(View.VISIBLE);
+            }
+
+            // TODO Set Timings
+        }
+
         courseName.setText(course.getCourseTitle());
-        slot.setText(course.getSlot());
-        faculty.setText(course.getFaculty());
-        mode.setText(course.getCourseMode());
-        ltpc.setText(course.getLtpc());
-        //type.setText(course.getCourseType());
-        venue.setText(course.getVenue());
-//        classNumber.setText(course.getClassNumber());
+        classNumber.setText(getString(R.string.label_class_number, course.getClassNumber()));
+        courseCode.setText(getString(R.string.label_course_code, course.getCourseCode()));
+        faculty.setText(getString(R.string.label_faculty, course.getFaculty()));
+        ltpc.setText(getString(R.string.label_ltpc, course.getLtpc()));
+        courseType.setText(getString(R.string.label_course_type, course.getSubjectType()));
+        courseMode.setText(getString(R.string.label_course_mode, course.getCourseMode()));
+        courseOption.setText(getString(R.string.label_course_option, course.getCourseOption()));
 
         return view;
     }
