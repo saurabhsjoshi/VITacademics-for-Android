@@ -83,13 +83,13 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         boolean ended = false;
 
         if (courseTimingPairs.get(position).first.getCourseType() == Constants.COURSE_TYPE_LBC) {
-            classLength = (int) courseTimingPairs.get(position).first.getLtpc().charAt(2);
+            classLength = Character.getNumericValue(courseTimingPairs.get(position).first.getLtpc().charAt(2));
         }
 
         if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
             attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
-            goCalculated = (int) Math.ceil((double) (courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() + classLength) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength));
-            missCalculated = (int) Math.ceil((double) courseTimingPairs.get(position).first.getAttendance().getAttendedClasses()) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength);
+            goCalculated = ((int) Math.ceil((double) (courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() + classLength) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength)));
+            missCalculated = ((int) Math.ceil((double) courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength)));
         }
 
         if (courseTimingPairs.get(position).second.getDay() == dayOfWeek) {
