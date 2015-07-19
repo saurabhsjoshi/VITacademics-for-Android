@@ -54,12 +54,14 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     private Context context;
     private List<Pair<Course, Timing>> courseTimingPairs;
     private int dayOfWeek;
+    private int today;
     private RecyclerViewOnClickListener<Course> OnclickListener;
 
     public TodayListAdapter(Context context, int dayOfWeek, List<Pair<Course, Timing>> courseTimingPairs) {
         this.context = context;
         this.dayOfWeek = dayOfWeek;
         this.courseTimingPairs = courseTimingPairs;
+        this.today = DateTimeCalender.getDayOfWeek();
     }
 
     @Override
@@ -103,7 +105,24 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         todayViewHolder.progressBarAttendance.setProgress(attendancePercentage);
         todayViewHolder.goAttendance.setText(context.getString(R.string.label_class_go, goCalculated));
         todayViewHolder.missAttendance.setText(context.getString(R.string.label_class_miss, missCalculated));
-        todayViewHolder.timeLeft.setText(getTimeDifferenceString(timeDifference, ended));
+
+        if (today == courseTimingPairs.get(position).second.getDay()) {
+            todayViewHolder.timeLeft.setText(getTimeDifferenceString(timeDifference, ended));
+        }
+        else {
+            String startTime;
+            String endTime;
+            try {
+                startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
+                endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
+            }
+            catch (ParseException ex) {
+                ex.printStackTrace();
+                startTime = courseTimingPairs.get(position).second.getStartTime();
+                endTime = courseTimingPairs.get(position).second.getEndTime();
+            }
+            todayViewHolder.timeLeft.setText(context.getString(R.string.timetable_course_slot_timing, startTime, endTime));
+        }
 
         int sdk = android.os.Build.VERSION.SDK_INT;
         int bgColor = getAttendanceColor(attendancePercentage);
