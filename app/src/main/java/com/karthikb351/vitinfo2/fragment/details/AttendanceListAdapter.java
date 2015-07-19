@@ -86,13 +86,13 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
                 holder.registeredOn.setText(context.getString(R.string.course_registered_on, attendance.getRegistrationDate()));
             }
             if (attendance.getAttendancePercentage() < 75) {
-                holder.attendanceStatus.setTextColor(context.getResources().getColor(R.color.error_color));
+                //holder.attendanceStatus.setTextColor(context.getResources().getColor(R.color.error_color));
                 holder.attendanceStatus.setText(context.getString(R.string.label_attendance_debarred));
-                holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.error_color));
+                //holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.error_color));
             } else {
-                holder.attendanceStatus.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+                //holder.attendanceStatus.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
                 holder.attendanceStatus.setText(context.getString(R.string.label_attendance_safe));
-                holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
+                //holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
             }
             holder.progressBarAttendance.setProgress(attendance.getAttendancePercentage());
         } else {
