@@ -26,7 +26,7 @@ package com.karthikb351.vitinfo2.utility;
 
 public class Constants {
 
-    public static final String API_BASE_URL = "https://vitacademics-staging.herokuapp.com";
+    public static final String API_BASE_URL = "https://vitacademics-rel.herokuapp.com";
 
     public final static String FILENAME_SHAREDPREFERENCES = "vitacademics.prefs";
 
