@@ -33,6 +33,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.MainApplication;
@@ -48,6 +50,7 @@ public class DetailsActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private DetailsPagerAdapter adapter;
     private Course course;
+    private ProgressBar loadProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class DetailsActivity extends AppCompatActivity {
             new LoadCourseTask().execute(intent.getIntExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, -1));
             setContentView(R.layout.activity_details);
             initToolbar();
+            loadProgress = (ProgressBar) findViewById(R.id.progress_bar_today);
         } else {
             setContentView(R.layout.app_message_not_available);
             TextView errorMessage = (TextView) findViewById(R.id.message);
@@ -91,18 +95,16 @@ public class DetailsActivity extends AppCompatActivity {
     private class LoadCourseTask extends AsyncTask<Integer, Void, Course> {
         @Override
         protected void onPreExecute() {
-            // TODO Progress Start
-            super.onPreExecute();
+            loadProgress.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected void onPostExecute(Course course) {
-            super.onPostExecute(course);
+            loadProgress.setVisibility(View.GONE);
 
             if (course == null)
                 return;
             DetailsActivity.this.course = course;
-            // TODO Progress Stop
 
             tabLayout = (TabLayout) findViewById(R.id.tabs_details);
             viewPager = (ViewPager) findViewById(R.id.view_pager_details);
