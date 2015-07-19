@@ -52,7 +52,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     private Attendance attendance;
     private List<AttendanceDetail> attendanceDetails;
 
-    private int conducted, attended, offset = 0, miss = 0, attend = 0;
+    private int conducted, attended,  miss = 0, attend = 0;
 
 
     public AttendanceListAdapter(Context context, Course course) {
@@ -78,7 +78,8 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
     private void updateHolder(AttendanceViewHolder holder){
         holder.attendanceClasses.setText(context.getString(R.string.label_attendance_classes,
-                attended, conducted));
+                attended + attend, conducted + attend + miss));
+
         holder.txtAttend.setText(context.getString(R.string.label_class_go, attend));
         holder.txtMiss.setText(context.getString(R.string.label_class_miss, miss));
         holder.attendancePercent.setText(Integer.toString(getPercentage()));
@@ -86,7 +87,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     }
 
     private int getPercentage(){
-          return ((int)(((float)attended/conducted)*1000))/10;
+        return ((int)(((float)(attended+attend)/(conducted + attend + miss))*1000))/10;
     }
 
     @Override
@@ -97,13 +98,23 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
                 @Override
                 public void onClick(View view) {
                     if(view == holder.attendPlus){
-
+                        attend += 1;
+                        if(!holder.attendMinus.isClickable())
+                            holder.attendMinus.setClickable(true);
                     } else if (view == holder.attendMinus) {
-
+                        if(attend == 0)
+                            holder.attendMinus.setClickable(false);
+                        else
+                            attend -= 1;
                     } else if (view == holder.missPlus) {
-
+                        miss += 1;
+                        if(!holder.missMinus.isClickable())
+                            holder.missMinus.setClickable(true);
                     } else if (view == holder.missMinus) {
-
+                        if(miss == 0)
+                            holder.missMinus.setClickable(false);
+                        else
+                            miss -= 1;
                     }
                     updateHolder(holder);
                 }
