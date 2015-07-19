@@ -41,7 +41,7 @@
             android:id="@+id/layout_ring"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true">
             <ProgressBar
@@ -184,6 +184,19 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/attendance_classes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="38dp"
+            android:layout_marginEnd="20dp"
+            android:paddingBottom="12dp"
+            android:textSize="19sp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -209,6 +222,8 @@
         </LinearLayout>
 
 
+
+
         <RelativeLayout
             android:visibility="gone"
             android:id="@+id/course_details"
@@ -232,12 +247,7 @@
                 android:textSize="@dimen/abc_text_size_headline_material"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/attendance_classes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primary_text_default_material_light"
-                android:textSize="30sp" />
+
 
             <TextView
                 android:id="@+id/net_per"
