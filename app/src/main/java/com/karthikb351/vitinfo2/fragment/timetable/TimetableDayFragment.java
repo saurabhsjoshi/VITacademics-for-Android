@@ -73,14 +73,14 @@ public class TimetableDayFragment extends Fragment {
 
     public static TimetableDayFragment newInstance(int dayOfWeek) {
         TimetableDayFragment fragment = new TimetableDayFragment();
-        fragment.dayOfWeek = dayOfWeek ;
+        fragment.dayOfWeek = dayOfWeek;
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_timetable_day, container, false);
-        swipeRefreshLayout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         initialize();
         return rootView;
     }
@@ -110,7 +110,7 @@ public class TimetableDayFragment extends Fragment {
         initializeData();
     }
 
-    private void initializeData(){
+    private void initializeData() {
         new LoadDayTask().execute();
     }
 
@@ -198,7 +198,8 @@ public class TimetableDayFragment extends Fragment {
                     }
                 });
                 recyclerview.setAdapter(adapter);
-            }catch (Exception ignore){}
+            } catch (Exception ignore) {
+            }
 
         }
 

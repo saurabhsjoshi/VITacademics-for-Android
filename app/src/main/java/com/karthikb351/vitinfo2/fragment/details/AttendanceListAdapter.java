@@ -53,7 +53,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     private Attendance attendance;
     private List<AttendanceDetail> attendanceDetails;
 
-    private int conducted, attended,  miss = 0, attend = 0, offset = 1;
+    private int conducted, attended, miss = 0, attend = 0, offset = 1;
 
 
     public AttendanceListAdapter(Context context, Course course) {
@@ -83,7 +83,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
 
     @SuppressWarnings("deprecation")
-    private void setProgressBarDrawable(ProgressBar progressBar){
+    private void setProgressBarDrawable(ProgressBar progressBar) {
         if (getPercentage() >= 80) {
             progressBar.setProgressDrawable(context.getResources().getDrawable(R.drawable.ring_attendance_green));
         } else if (getPercentage() >= 75 && getPercentage() < 80) {
@@ -93,7 +93,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
         }
     }
 
-    private void updateHolder(AttendanceViewHolder holder){
+    private void updateHolder(AttendanceViewHolder holder) {
         holder.attendanceClasses.setText(context.getString(R.string.label_attendance_classes,
                 attended + attend, conducted + attend + miss));
 
@@ -104,8 +104,8 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
         setProgressBarDrawable(holder.progressBarAttendance);
     }
 
-    private int getPercentage(){
-        return ((int)(((float)(attended+attend)/(conducted + attend + miss))*1000))/10;
+    private int getPercentage() {
+        return ((int) (((float) (attended + attend) / (conducted + attend + miss)) * 1000)) / 10;
     }
 
     @Override
@@ -115,21 +115,21 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             View.OnClickListener onClickListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(view == holder.attendPlus){
+                    if (view == holder.attendPlus) {
                         attend += offset;
-                        if(!holder.attendMinus.isClickable())
+                        if (!holder.attendMinus.isClickable())
                             holder.attendMinus.setClickable(true);
                     } else if (view == holder.attendMinus) {
-                        if(attend == 0)
+                        if (attend == 0)
                             holder.attendMinus.setClickable(false);
                         else
                             attend -= offset;
                     } else if (view == holder.missPlus) {
                         miss += offset;
-                        if(!holder.missMinus.isClickable())
+                        if (!holder.missMinus.isClickable())
                             holder.missMinus.setClickable(true);
                     } else if (view == holder.missMinus) {
-                        if(miss == 0)
+                        if (miss == 0)
                             holder.missMinus.setClickable(false);
                         else
                             miss -= offset;
@@ -172,8 +172,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     public int getItemViewType(int position) {
         if (position == 0) {
             layoutId = R.layout.card_attendance_summary;
-        }
-        else {
+        } else {
             layoutId = R.layout.card_attendance_detail;
         }
         return layoutId;

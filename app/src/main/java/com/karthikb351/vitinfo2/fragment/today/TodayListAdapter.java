@@ -108,15 +108,13 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
         if (today == courseTimingPairs.get(position).second.getDay()) {
             todayViewHolder.timeLeft.setText(getTimeDifferenceString(timeDifference, ended));
-        }
-        else {
+        } else {
             String startTime;
             String endTime;
             try {
                 startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
                 endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
-            }
-            catch (ParseException ex) {
+            } catch (ParseException ex) {
                 ex.printStackTrace();
                 startTime = courseTimingPairs.get(position).second.getStartTime();
                 endTime = courseTimingPairs.get(position).second.getEndTime();
@@ -190,6 +188,16 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         }
     }
 
+    private int getAttendanceColor(int attendance) {
+        if (attendance >= 80) {
+            return context.getResources().getColor(R.color.highAttend);
+        } else if (attendance >= 75 && attendance < 80) {
+            return context.getResources().getColor(R.color.midAttend);
+        } else {
+            return context.getResources().getColor(R.color.lowAttend);
+        }
+    }
+
     public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView courseName, courseCode, attendance, slot, venue, timeLeft, goAttendance, missAttendance;
         public ProgressBar progressBarAttendance;
@@ -214,16 +222,6 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         public void onClick(View view) {
             Course course = courseTimingPairs.get(getAdapterPosition()).first;
             OnclickListener.onItemClick(course);
-        }
-    }
-
-    private int getAttendanceColor(int attendance) {
-        if (attendance >= 80) {
-            return context.getResources().getColor(R.color.highAttend);
-        } else if (attendance >= 75 && attendance < 80) {
-            return context.getResources().getColor(R.color.midAttend);
-        } else {
-            return context.getResources().getColor(R.color.lowAttend);
         }
     }
 }

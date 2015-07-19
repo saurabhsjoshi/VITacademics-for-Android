@@ -59,8 +59,7 @@ public class AttendanceFragment extends Fragment {
             TextView message = (TextView) view.findViewById(R.id.message);
             message.setText(getActivity().getResources().getQuantityString(R.plurals.message_not_applicable, Constants.SINGULAR_VALUE, getString(R.string.tab_course_attendance)));
             return view;
-        }
-        else {
+        } else {
             View view = inflater.inflate(R.layout.fragment_details_attendance, container, false);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
             listAdapter = new AttendanceListAdapter(getActivity(), course);

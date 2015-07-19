@@ -49,7 +49,7 @@ public class LaunchScreenActivity extends Activity {
         boolean isLoggedIn = loginCheck();
 
         if (isLoggedIn) {
-            ((MainApplication)getApplication()).getDataHolderInstance().refreshData(LaunchScreenActivity.this, new ResultListener() {
+            ((MainApplication) getApplication()).getDataHolderInstance().refreshData(LaunchScreenActivity.this, new ResultListener() {
                 @Override
                 public void onSuccess() {
                     startActivity(new Intent(LaunchScreenActivity.this, MainActivity.class));

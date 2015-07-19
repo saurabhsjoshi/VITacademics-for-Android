@@ -55,6 +55,8 @@ import java.util.Locale;
 
 public class LoginFragment extends Fragment {
 
+    private final int PROGRESS_START = 0;
+    private final int PROGRESS_INCREMENT = 20;
     private EditText editTextRegisterNumber, editTextDateOfBirth, editTextMobileNumber;
     private Button buttonLogin;
     private RadioGroup radioGroupCampus;
@@ -64,12 +66,8 @@ public class LoginFragment extends Fragment {
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private ProgressBar progressBar;
     private TextView loadingMessage;
-
     private int progress;
     private String campus;
-
-    private final int PROGRESS_START = 0;
-    private final int PROGRESS_INCREMENT = 20;
 
     public LoginFragment() {
     }
@@ -174,7 +172,7 @@ public class LoginFragment extends Fragment {
         RequestConfig requestConfig = new RequestConfig(new ResultListener() {
             @Override
             public void onSuccess() {
-                ((MainApplication)getActivity().getApplication()).getDataHolderInstance().refreshData(getActivity(), resultListener);
+                ((MainApplication) getActivity().getApplication()).getDataHolderInstance().refreshData(getActivity(), resultListener);
             }
 
             @Override

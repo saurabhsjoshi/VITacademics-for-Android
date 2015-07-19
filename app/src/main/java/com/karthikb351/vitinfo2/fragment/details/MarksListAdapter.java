@@ -68,13 +68,14 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
     @Override
     public void onBindViewHolder(AssesmentViewHolder holder, int position) {
         if (position == 0) {
-            holder.internals.setText(context.getString(R.string.label_total_internals, Double.toString(marks.getScoredPercentage()), Double.toString(marks.getMaxPercentage())));;
+            holder.internals.setText(context.getString(R.string.label_total_internals, Double.toString(marks.getScoredPercentage()), Double.toString(marks.getMaxPercentage())));
+            ;
         } else {
             holder.assessmentTitle.setText(assessments.get(position - 1).getTitle());
             holder.assessmentMarks.setText(context.getString(R.string.label_assessment_marks, Double.toString(assessments.get(position - 1).getScoredMarks()), Double.toString(assessments.get(position - 1).getMaxMarks())));
             holder.assessmentWeightage.setText(context.getString(R.string.label_assessment_weightage, Double.toString(assessments.get(position - 1).getWeightage())));
             holder.assessmentContribution.setText(context.getString(R.string.label_assessment_contribution, Double.toString(assessments.get(position - 1).getScoredPercentage())));
-            holder.marksProgressBar.setProgress((int)( assessments.get(position - 1).getScoredPercentage() / assessments.get(position - 1).getWeightage() * 100));
+            holder.marksProgressBar.setProgress((int) (assessments.get(position - 1).getScoredPercentage() / assessments.get(position - 1).getWeightage() * 100));
         }
     }
 

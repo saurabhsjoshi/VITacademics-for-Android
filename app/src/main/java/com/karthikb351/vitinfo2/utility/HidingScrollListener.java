@@ -34,18 +34,16 @@ public abstract class HidingScrollListener extends RecyclerView.OnScrollListener
 
     private static final float HIDE_THRESHOLD = 10;
     private static final float SHOW_THRESHOLD = 70;
-
+    boolean toolbarVisible = true;
     private int mToolbarOffset = 0;
-    private Context context ;
+    private Context context;
     private int mToolbarHeight;
-    boolean toolbarVisible = true ;
     private LinearLayout mainContent;
 
-    public HidingScrollListener(Context context)
-    {
-        this.context = context ;
-        mainContent = ((MainActivity)context).getMainContent();
-        mToolbarHeight = ((MainActivity)context).getSupportActionBar().getHeight();
+    public HidingScrollListener(Context context) {
+        this.context = context;
+        mainContent = ((MainActivity) context).getMainContent();
+        mToolbarHeight = ((MainActivity) context).getSupportActionBar().getHeight();
     }
 
     @Override
@@ -55,63 +53,53 @@ public abstract class HidingScrollListener extends RecyclerView.OnScrollListener
         clipToolbarOffset();
         Move(mToolbarOffset);
 
-        if((mToolbarOffset <mToolbarHeight && dy>0) || (mToolbarOffset >0 && dy<0)) {
+        if ((mToolbarOffset < mToolbarHeight && dy > 0) || (mToolbarOffset > 0 && dy < 0)) {
             mToolbarOffset += dy;
         }
     }
 
     private void clipToolbarOffset() {
-        if(mToolbarOffset > mToolbarHeight) {
+        if (mToolbarOffset > mToolbarHeight) {
             mToolbarOffset = mToolbarHeight;
-        } else if(mToolbarOffset < 0) {
+        } else if (mToolbarOffset < 0) {
             mToolbarOffset = 0;
         }
     }
 
-    public void Move(int distance)
-    {
-     // TODO, rethink this. Must not change Minimum API Level
-     mainContent.setTranslationY(-distance);
+    public void Move(int distance) {
+        // TODO, rethink this. Must not change Minimum API Level
+        mainContent.setTranslationY(-distance);
     }
 
     @Override
     public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-        if(newState == RecyclerView.SCROLL_STATE_IDLE) {
+        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
             if (toolbarVisible) {
-                if (mToolbarOffset > HIDE_THRESHOLD)
-                {
+                if (mToolbarOffset > HIDE_THRESHOLD) {
                     setInvisible();
-                }
-                else
-                {
+                } else {
                     setVisible();
                 }
-            }
-            else
-            {
-                if ((mToolbarHeight - mToolbarOffset) > SHOW_THRESHOLD)
-                {
+            } else {
+                if ((mToolbarHeight - mToolbarOffset) > SHOW_THRESHOLD) {
                     setVisible();
-                }
-                else
-                {
+                } else {
                     setInvisible();
                 }
             }
         }
 
     }
+
     private void setVisible() {
-        if(mToolbarOffset > 0)
-        {
+        if (mToolbarOffset > 0) {
             mToolbarOffset = 0;
         }
         toolbarVisible = true;
     }
 
     private void setInvisible() {
-        if(mToolbarOffset < mToolbarHeight)
-        {
+        if (mToolbarOffset < mToolbarHeight) {
             mToolbarOffset = mToolbarHeight;
         }
         toolbarVisible = false;

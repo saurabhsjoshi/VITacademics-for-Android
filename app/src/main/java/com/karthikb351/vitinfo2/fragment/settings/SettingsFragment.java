@@ -43,7 +43,7 @@ public class SettingsFragment extends ListFragment {
 
     private String settingsTopics[];
     private String settingsMessages[];
-    private SettingsAdapter adapter ;
+    private SettingsAdapter adapter;
 
     public SettingsFragment() {
     }
@@ -59,7 +59,7 @@ public class SettingsFragment extends ListFragment {
         getActivity().setTitle(Title);
         settingsTopics = getResources().getStringArray(R.array.settings_topic);
         settingsMessages = getResources().getStringArray(R.array.settings_message);
-        adapter = new SettingsAdapter(getActivity(),R.layout.app_settings_list_item,settingsTopics,settingsMessages);
+        adapter = new SettingsAdapter(getActivity(), R.layout.app_settings_list_item, settingsTopics, settingsMessages);
         setListAdapter(adapter);
     }
 

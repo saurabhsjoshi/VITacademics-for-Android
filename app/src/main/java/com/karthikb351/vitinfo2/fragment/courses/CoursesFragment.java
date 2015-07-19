@@ -52,12 +52,12 @@ import de.greenrobot.event.EventBus;
 
 public class CoursesFragment extends Fragment {
 
+    TextView errorMessage;
     private SwipeRefreshLayout swipeRefreshLayout;
     private List<Course> courses;
     private RecyclerView recyclerView;
     private CourseListAdapter courseListAdapter;
     private View rootView;
-    TextView errorMessage;
 
     public CoursesFragment() {
     }
@@ -74,7 +74,7 @@ public class CoursesFragment extends Fragment {
             rootView = inflater.inflate(R.layout.app_message_not_available, container, false);
         } else {
             rootView = inflater.inflate(R.layout.fragment_courses, container, false);
-            swipeRefreshLayout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_refresh_layout);
+            swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         }
         initialize();
         return rootView;
@@ -120,11 +120,12 @@ public class CoursesFragment extends Fragment {
         getActivity().setTitle(Title);
     }
 
-    private void initializeData(){
+    private void initializeData() {
         try {
             courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
             courseListAdapter.notifyDataSetChanged();
-        }catch (Exception ignore){}
+        } catch (Exception ignore) {
+        }
     }
 
     void onListItemClick(Course course) {

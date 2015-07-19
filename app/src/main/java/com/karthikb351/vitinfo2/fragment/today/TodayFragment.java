@@ -118,7 +118,7 @@ public class TodayFragment extends Fragment {
         initializeData();
     }
 
-    private void initializeData(){
+    private void initializeData() {
         new LoadTodayTask().execute();
     }
 
@@ -142,6 +142,22 @@ public class TodayFragment extends Fragment {
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
+    }
+
+    private int getNextDay(int day) {
+        if (day == 6) {
+            return 0;
+        }
+        return (day + 1);
+    }
+
+    private String getDayOfWeek(int day) {
+        String daysOfWeek[] = getActivity().getResources().getStringArray(R.array.days_of_week);
+        return daysOfWeek[day];
+    }
+
+    private boolean isTomorrow(int day) {
+        return (getNextDay(today) == day);
     }
 
     private class LoadTodayTask extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
@@ -221,21 +237,5 @@ public class TodayFragment extends Fragment {
             }
         }
 
-    }
-
-    private int getNextDay(int day) {
-        if (day == 6) {
-            return 0;
-        }
-        return (day + 1);
-    }
-
-    private String getDayOfWeek(int day) {
-        String daysOfWeek[] = getActivity().getResources().getStringArray(R.array.days_of_week);
-        return daysOfWeek[day];
-    }
-
-    private boolean isTomorrow(int day) {
-        return (getNextDay(today) == day);
     }
 }

@@ -69,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView headerUsername;
     private TextView headerCampus;
 
+    private static String toTitleCase(String text) {
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,11 +132,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commitAllowingStateLoss();
     }
 
-    private void switchFragment(int id){
+    private void switchFragment(int id) {
         Fragment fragment = null;
         int position = 0;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        switch (id){
+        switch (id) {
             case R.id.drawer_home:
                 fragment = TodayFragment.newInstance();
                 position = 0;
@@ -168,14 +172,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 initializeData();
-                if(callback!=null)
+                if (callback != null)
                     callback.onSuccess();
                 EventBus.getDefault().post(new RefreshFragmentEvent());
             }
 
             @Override
             public void onFailure(Status status) {
-                if(callback!=null)
+                if (callback != null)
                     callback.onFailure(status);
                 Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -202,9 +206,5 @@ public class MainActivity extends AppCompatActivity {
 
     public LinearLayout getMainContent() {
         return mainContent;
-    }
-
-    private static String toTitleCase(String text) {
-        return text.substring(0, 1).toUpperCase() + text.substring(1);
     }
 }

@@ -78,8 +78,7 @@ public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdap
         try {
             startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
             endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
-        }
-        catch (ParseException ex) {
+        } catch (ParseException ex) {
             ex.printStackTrace();
             startTime = courseTimingPairs.get(position).second.getStartTime();
             endTime = courseTimingPairs.get(position).second.getEndTime();
@@ -117,6 +116,16 @@ public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdap
         return courseTimingPairs.size();
     }
 
+    private int getAttendanceColor(int attendance) {
+        if (attendance >= 80) {
+            return context.getResources().getColor(R.color.highAttend);
+        } else if (attendance >= 75 && attendance < 80) {
+            return context.getResources().getColor(R.color.midAttend);
+        } else {
+            return context.getResources().getColor(R.color.lowAttend);
+        }
+    }
+
     public class TimeTableViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView courseName, courseCode, attendance, slot, venue, slotTiming;
         public ProgressBar progressBarAttendance;
@@ -139,16 +148,6 @@ public class TimetableListAdapter extends RecyclerView.Adapter<TimetableListAdap
         public void onClick(View view) {
             Course course = courseTimingPairs.get(getAdapterPosition()).first;
             onClickListener.onItemClick(course);
-        }
-    }
-
-    private int getAttendanceColor(int attendance) {
-        if (attendance >= 80) {
-            return context.getResources().getColor(R.color.highAttend);
-        } else if (attendance >= 75 && attendance < 80) {
-            return context.getResources().getColor(R.color.midAttend);
-        } else {
-            return context.getResources().getColor(R.color.lowAttend);
         }
     }
 }

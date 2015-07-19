@@ -106,8 +106,7 @@ public class NetworkController {
                 requestConfig.removeRequest(requestConfig.getFirstRequest());
                 if (requestConfig.getRequestsLeft() > 0) {
                     performRequest(requestConfig.getFirstRequest(), this);
-                }
-                else {
+                } else {
                     requestConfig.getResultListener().onSuccess();
                 }
             }
@@ -117,8 +116,7 @@ public class NetworkController {
                 if (status.getCode() == StatusCodes.TIMED_OUT) {
                     requestConfig.addRequest(RequestConfig.REQUEST_LOGIN);
                     performRequest(requestConfig.getFirstRequest(), this);
-                }
-                else {
+                } else {
                     requestConfig.getResultListener().onFailure(status);
                 }
             }
@@ -126,8 +124,7 @@ public class NetworkController {
 
         if (requestConfig.getRequestsLeft() > 0) {
             performRequest(requestConfig.getFirstRequest(), resultListener);
-        }
-        else {
+        } else {
             requestConfig.getResultListener().onSuccess();
         }
     }
