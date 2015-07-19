@@ -35,7 +35,7 @@ import com.karthikb351.vitinfo2.contract.Course;
 public class DetailsPagerAdapter extends FragmentStatePagerAdapter {
 
     private final int TAB_COUNT_DETAILS;
-    String detailsTitles[];
+    private String detailsTitles[];
     private Fragment fragment;
     private Course course;
 

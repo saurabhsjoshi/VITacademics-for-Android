@@ -71,7 +71,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
         }
 
         if (course.getCourseType() == Constants.COURSE_TYPE_LBC) {
-            offset = (int) course.getLtpc().charAt(2);
+            offset = Character.getNumericValue(course.getLtpc().charAt(2));
         }
     }
 
@@ -105,7 +105,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     }
 
     private int getPercentage() {
-        return ((int) (((float) (attended + attend) / (conducted + attend + miss)) * 1000)) / 10;
+        return ((int) Math.ceil((double) (attended + attend) / (conducted + attend + miss) * 100));
     }
 
     @Override
