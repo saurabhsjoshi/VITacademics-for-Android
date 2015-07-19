@@ -60,41 +60,47 @@
     </RadioGroup>
 
 
-    <EditText
-        android:id="@+id/input_reg_no"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="@string/input_hint_register_number"
-        android:inputType="textCapCharacters"/>
-        <!--
-        android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
-        android:textColorHint="@color/material_blue_grey_800"
-        android:textSize="@dimen/abc_text_size_small_material" -->
+        android:layout_margin="5dp">
+        <EditText
+            android:id="@+id/input_reg_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/input_hint_register_number"
+            android:inputType="textCapCharacters"/>
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/input_dob"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="@string/input_hint_date_of_birth"
-        android:inputType="date" />
-        <!--
-        android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
-        android:textColorHint="@color/material_blue_grey_800"
-        android:textSize="@dimen/abc_text_size_small_material" -->
+        android:layout_margin="5dp">
+        <EditText
+            android:id="@+id/input_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="@string/input_hint_date_of_birth"
+            android:inputType="date" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/input_phone_no"
+
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="@string/input_hint_parent_number"
-        android:inputType="phone" />
-        <!--
-        android:textAppearance="@dimen/abc_edit_text_inset_bottom_material"
-        android:textColorHint="@color/material_blue_grey_800"
-        android:textSize="@dimen/abc_text_size_small_material" -->
+        android:layout_margin="5dp">
+        <EditText
+            android:id="@+id/input_phone_no"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input_hint_parent_number"
+            android:inputType="phone" />
+    </android.support.design.widget.TextInputLayout>
+
 
     <Button
         android:id="@+id/button_login"
@@ -102,9 +108,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="@string/button_login" />
-        <!--
-        android:textAppearance="@dimen/abc_button_inset_horizontal_material"
-        android:textSize="@dimen/abc_text_size_button_material" -->
 
      <ProgressBar
         android:id="@+id/progress_bar_login"
