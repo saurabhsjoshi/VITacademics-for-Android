@@ -25,6 +25,7 @@
 package com.karthikb351.vitinfo2.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -52,6 +53,7 @@ import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimetableFragment;
 import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
+import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.Arrays;
@@ -115,48 +117,53 @@ public class MainActivity extends AppCompatActivity {
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                Fragment fragment = null;
-                int position = 0;
-
-                String navString = (String) menuItem.getTitle();
+            public boolean onNavigationItemSelected(final MenuItem menuItem) {
                 menuItem.setChecked(true);
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                switch (navString) {
-                    // TODO Get Position directly, if not use String resources to compare. This should work even if app is in a different language
-                    // TODO Check https://developer.android.com/training/implementing-navigation/nav-drawer.html
-                    case "Today":
-                        fragment = TodayFragment.newInstance();
-                        position = 0;
-                        break;
-                    case "Courses":
-                        fragment = CoursesFragment.newInstance();
-                        position = 1;
-                        break;
-                    case "Timetable":
-                        fragment = TimetableFragment.newInstance();
-                        position = 2;
-                        break;
-                    case "Settings":
-                        fragment = SettingsFragment.newInstance();
-                        position = 3;
-                        break;
-                    case "Messages":
-                        fragment = MessagesFragment.newInstance();
-                        position = 4;
-                        break;
-                    case "About":
-                        fragment = AboutFragment.newInstance();
-                        position = 5;
-                        break;
-                }
-                fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).commit();
-
                 drawerLayout.closeDrawers();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        switchFragment(menuItem.getItemId());
+                    }
+                }, Constants.DRAWER_CLOSE_TIME_OUT);
                 return true;
             }
         });
-        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commit();
+
+        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commitAllowingStateLoss();
+    }
+
+    private void switchFragment(int id){
+        Fragment fragment = null;
+        int position = 0;
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        switch (id){
+            case R.id.drawer_home:
+                fragment = TodayFragment.newInstance();
+                position = 0;
+                break;
+            case R.id.drawer_courses:
+                fragment = CoursesFragment.newInstance();
+                position = 1;
+                break;
+            case R.id.drawer_timetable:
+                fragment = TimetableFragment.newInstance();
+                position = 2;
+                break;
+            case R.id.drawer_settings:
+                fragment = SettingsFragment.newInstance();
+                position = 3;
+                break;
+            case R.id.drawer_messages:
+                fragment = MessagesFragment.newInstance();
+                position = 4;
+                break;
+            case R.id.drawer_about:
+                fragment = AboutFragment.newInstance();
+                position = 5;
+                break;
+        }
+        fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).commit();
     }
 
     public void pullToRefresh() {
@@ -167,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 initializeData();
+
                 initializeView();
                 // TODO Progress Ring Stop
                 EventBus.getDefault().post(new RefreshFragmentEvent());

@@ -54,6 +54,7 @@ public class Constants {
     public final static String KEY_GRADES_CREDITS_REGISTERED = "grades_credits_registered";
 
     public final static int SPLASH_TIME_OUT = 2000;
+    public final static int DRAWER_CLOSE_TIME_OUT = 250;
 
     public final static String SQL_FIELD_CAMPUS = "campus";
     public final static String SQL_FIELD_REGISTER_NUMBER = "registerNumber";
