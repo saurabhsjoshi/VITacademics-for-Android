@@ -57,10 +57,10 @@ public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.Gr
 
     @Override
     public int getItemViewType(int position) {
-        if(position==0)
-            layoutId=R.layout.card_grade_count;
+        if (position == 0)
+            layoutId = R.layout.card_grade_count;
         else
-            layoutId=R.layout.card_grade;
+            layoutId = R.layout.card_grade;
         return layoutId;
     }
 
@@ -75,10 +75,10 @@ public class GradesListAdapter extends RecyclerView.Adapter<GradesListAdapter.Gr
 
     @Override
     public int getItemCount() {
-        if(grades==null||grades.isEmpty())
+        if (grades == null || grades.isEmpty())
             return 1;
         else
-            return (grades.size()+1);
+            return (grades.size() + 1);
     }
 
     public class GradesViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

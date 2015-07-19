@@ -47,17 +47,6 @@ public class SettingsAdapter extends ArrayAdapter<String> {
         this.messages = messages;
     }
 
-    public class SettingsViewHolder {
-        public View rootView;
-        public TextView topic, message;
-
-        SettingsViewHolder(View view) {
-            topic = (TextView) view.findViewById(R.id.tv_settings_topic);
-            message = (TextView) view.findViewById(R.id.tv_settings_message);
-            rootView = view;
-        }
-    }
-
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         SettingsViewHolder holder;
@@ -73,5 +62,16 @@ public class SettingsAdapter extends ArrayAdapter<String> {
         holder.message.setText(messages[position]);
 
         return view;
+    }
+
+    public class SettingsViewHolder {
+        public View rootView;
+        public TextView topic, message;
+
+        SettingsViewHolder(View view) {
+            topic = (TextView) view.findViewById(R.id.tv_settings_topic);
+            message = (TextView) view.findViewById(R.id.tv_settings_message);
+            rootView = view;
+        }
     }
 }

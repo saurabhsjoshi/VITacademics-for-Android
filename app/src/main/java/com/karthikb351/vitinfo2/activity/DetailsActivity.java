@@ -58,8 +58,7 @@ public class DetailsActivity extends AppCompatActivity {
             new LoadCourseTask().execute(intent.getIntExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, -1));
             setContentView(R.layout.activity_details);
             initToolbar();
-        }
-        else {
+        } else {
             setContentView(R.layout.app_message_not_available);
             TextView errorMessage = (TextView) findViewById(R.id.message);
             errorMessage.setText(getString(R.string.not_available));
@@ -67,7 +66,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
 
-    private void initToolbar(){
+    private void initToolbar() {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.activity_details_title));
@@ -81,8 +80,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 break;
@@ -101,7 +99,7 @@ public class DetailsActivity extends AppCompatActivity {
         protected void onPostExecute(Course course) {
             super.onPostExecute(course);
 
-            if(course == null)
+            if (course == null)
                 return;
             DetailsActivity.this.course = course;
             // TODO Progress Stop
@@ -128,7 +126,7 @@ public class DetailsActivity extends AppCompatActivity {
                 return null;
             }
 
-            List<Course> courseList = ((MainApplication)getApplication()).getDataHolderInstance().getCourses();
+            List<Course> courseList = ((MainApplication) getApplication()).getDataHolderInstance().getCourses();
             for (Course courseItem : courseList) {
                 if (courseItem.getClassNumber() == classNumber) {
                     foundCourse = courseItem;

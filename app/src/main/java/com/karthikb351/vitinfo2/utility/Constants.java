@@ -54,6 +54,7 @@ public class Constants {
     public final static String KEY_GRADES_CREDITS_REGISTERED = "grades_credits_registered";
 
     public final static int SPLASH_TIME_OUT = 2000;
+    public final static int DRAWER_CLOSE_TIME_OUT = 250;
 
     public final static String SQL_FIELD_CAMPUS = "campus";
     public final static String SQL_FIELD_REGISTER_NUMBER = "registerNumber";
@@ -66,7 +67,7 @@ public class Constants {
 
     public final static int MILLISECONDS_IN_MINUTE = 60000;
 
-    public final static String SHARE_TYPE = "text/plain";
+    public final static String INTENT_TYPE_PLAIN = "text/plain";
 
     public final static int COURSE_TYPE_CBL = 1;
     public final static int COURSE_TYPE_LBC = 2;
@@ -83,4 +84,9 @@ public class Constants {
     public final static String GOOGLE_PLAY_DETAILS_URL = "https://play.google.com/store/apps/details?id=";
     public final static String FACEBOOK_PAGE_URL = "https://www.facebook.com/academicsvit";
     public final static String GOOGLE_PLUS_COMMUNITY_URL = "https://plus.google.com/communities/112543766365145422569";
+
+    public final static String FEEDBACK_EMAIL_SUBJECT = "VITacademics Feedback";
+    public final static String FEEDBACK_EMAIL_LINK = "gauravagerwala@gmail.com";
+
+    public final static String GITHUB_COLLEGECODE_URL = "https://github.com/CollegeCODE";
 }

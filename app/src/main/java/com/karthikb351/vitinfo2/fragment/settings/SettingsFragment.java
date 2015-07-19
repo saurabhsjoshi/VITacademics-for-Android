@@ -43,7 +43,7 @@ public class SettingsFragment extends ListFragment {
 
     private String settingsTopics[];
     private String settingsMessages[];
-    private SettingsAdapter adapter ;
+    private SettingsAdapter adapter;
 
     public SettingsFragment() {
     }
@@ -59,7 +59,7 @@ public class SettingsFragment extends ListFragment {
         getActivity().setTitle(Title);
         settingsTopics = getResources().getStringArray(R.array.settings_topic);
         settingsMessages = getResources().getStringArray(R.array.settings_message);
-        adapter = new SettingsAdapter(getActivity(),R.layout.app_settings_list_item,settingsTopics,settingsMessages);
+        adapter = new SettingsAdapter(getActivity(), R.layout.app_settings_list_item, settingsTopics, settingsMessages);
         setListAdapter(adapter);
     }
 
@@ -107,7 +107,7 @@ public class SettingsFragment extends ListFragment {
             case 6:
                 // Share app
                 Intent share = new Intent(android.content.Intent.ACTION_SEND);
-                share.setType(Constants.SHARE_TYPE);
+                share.setType(Constants.INTENT_TYPE_PLAIN);
 
                 share.putExtra(Intent.EXTRA_SUBJECT, getActivity().getString(R.string.android_share_message_subject));
                 share.putExtra(Intent.EXTRA_TEXT, getActivity().getString(R.string.android_share_message_start, Constants.API_BASE_URL));

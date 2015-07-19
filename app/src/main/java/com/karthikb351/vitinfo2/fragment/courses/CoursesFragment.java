@@ -41,8 +41,10 @@ import com.karthikb351.vitinfo2.activity.DetailsActivity;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
+import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.List;
 
@@ -50,12 +52,12 @@ import de.greenrobot.event.EventBus;
 
 public class CoursesFragment extends Fragment {
 
+    TextView errorMessage;
     private SwipeRefreshLayout swipeRefreshLayout;
     private List<Course> courses;
     private RecyclerView recyclerView;
     private CourseListAdapter courseListAdapter;
     private View rootView;
-    TextView errorMessage;
 
     public CoursesFragment() {
     }
@@ -72,15 +74,14 @@ public class CoursesFragment extends Fragment {
             rootView = inflater.inflate(R.layout.app_message_not_available, container, false);
         } else {
             rootView = inflater.inflate(R.layout.fragment_courses, container, false);
-            swipeRefreshLayout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_refresh_layout);
+            swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         }
         initialize();
         return rootView;
     }
 
     void initialize() {
-        courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
-
+        initializeData();
         if (courses == null || courses.isEmpty()) {
             errorMessage = (TextView) rootView.findViewById(R.id.message);
             errorMessage.setText(getString(R.string.courses_none));
@@ -101,12 +102,30 @@ public class CoursesFragment extends Fragment {
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    ((MainActivity) getActivity()).pullToRefresh();
+                    ((MainActivity) getActivity()).pullToRefresh(new ResultListener() {
+                        @Override
+                        public void onSuccess() {
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+
+                        @Override
+                        public void onFailure(Status status) {
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    });
                 }
             });
         }
         String Title = getActivity().getResources().getString(R.string.fragment_courses_title);
         getActivity().setTitle(Title);
+    }
+
+    private void initializeData() {
+        try {
+            courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
+            courseListAdapter.notifyDataSetChanged();
+        } catch (Exception ignore) {
+        }
     }
 
     void onListItemClick(Course course) {
@@ -129,6 +148,6 @@ public class CoursesFragment extends Fragment {
 
     // This method will be called when a RefreshFragmentEvent is posted
     public void onEvent(RefreshFragmentEvent event) {
-        initialize();
+        initializeData();
     }
 }

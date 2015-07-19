@@ -45,12 +45,12 @@ import de.greenrobot.event.EventBus;
 
 public class FriendsFragment extends Fragment {
 
+    int layoutId;
+    TextView errorMessage;
     private List<Friend> friends;
     private RecyclerView friendsRecyclerView;
     private FriendsListAdapter adapter;
     private View rootView;
-    int layoutId;
-    TextView errorMessage;
 
     public FriendsFragment() {
         // Required empty public constructor
@@ -62,10 +62,10 @@ public class FriendsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(friends==null || friends.isEmpty())
-            layoutId=R.layout.app_message_not_available;
+        if (friends == null || friends.isEmpty())
+            layoutId = R.layout.app_message_not_available;
         else
-            layoutId=R.layout.app_message_not_available;
+            layoutId = R.layout.app_message_not_available;
 
         rootView = inflater.inflate(layoutId, container, false);
         initialize();
@@ -73,13 +73,12 @@ public class FriendsFragment extends Fragment {
     }
 
     void initialize() {
-        friends = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getFriends();
+        friends = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getFriends();
 
-        if(layoutId==R.layout.app_message_not_available) {
+        if (layoutId == R.layout.app_message_not_available) {
             errorMessage = (TextView) rootView.findViewById(R.id.message);
             errorMessage.setText("This feature is not available at the moment");
-        }
-        else {
+        } else {
             RecyclerView.LayoutManager friendsLayoutManager = new LinearLayoutManager(getActivity());
             adapter = new FriendsListAdapter(getActivity(), friends);
             friendsRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_friends);

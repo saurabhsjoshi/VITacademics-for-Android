@@ -24,7 +24,11 @@
   -->
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view_assessment"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardCornerRadius="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -32,38 +36,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp">
-
-        <TextView
-            android:id="@+id/course_code"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/course_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/course_code"
-            android:layout_centerHorizontal="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-            android:textStyle="italic" />
-
         <TextView
             android:id="@+id/internal_marks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_below="@+id/course_name"
+            android:layout_marginBottom="15dp"
             android:text="@string/label_total_internals"
             android:layout_centerHorizontal="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="@color/primary_text_default_material_light"
+            android:textColor="@android:color/white"
             android:textSize="20sp" />
 
     </RelativeLayout>

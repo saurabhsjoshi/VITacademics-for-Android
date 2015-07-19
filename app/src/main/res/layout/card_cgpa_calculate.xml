@@ -45,6 +45,7 @@
             android:layout_alignParentTop="true"
             android:gravity="center"
             android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:text="@string/label_cgpa_expected"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -67,7 +68,9 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp" />
 
         <TextView
             android:id="@+id/old_cgpa"
@@ -80,7 +83,9 @@
             android:paddingRight="5dp"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp" />
 
         <TextView
             android:id="@+id/new_cgpa"
@@ -93,7 +98,9 @@
             android:paddingRight="5dp"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp" />
 
         <Button
             android:id="@+id/button_calculate"

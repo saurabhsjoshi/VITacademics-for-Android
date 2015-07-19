@@ -33,10 +33,9 @@ import com.karthikb351.vitinfo2.R;
 
 public class TimetablePagerAdapter extends FragmentStatePagerAdapter {
 
+    private final int DAYS_COUNT;
     private Context context;
     private String tabTitles[];
-
-    private final int DAYS_COUNT;
 
     public TimetablePagerAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);

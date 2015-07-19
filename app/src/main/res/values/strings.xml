@@ -36,7 +36,7 @@
     <string name="label_campus_chennai">Chennai</string>
     <string name="label_campus_vellore">Vellore</string>
     <string name="input_hint_register_number">Register Number</string>
-    <string name="input_hint_date_of_birth">Date of Birth</string>
+    <string name="input_hint_date_of_birth">Date of Birth (ddmmyyyy)</string>
     <string name="input_hint_parent_number">Registered Parent\'s Phone Number</string>
     <string name="button_login">Login</string>
 
@@ -52,6 +52,8 @@
     <string name="today_course_timing_done">Done for today</string>
     <string name="today_course_timing_right_now">Right now</string>
     <string name="today_course_timing_hours_minutes_later" formatted="false">%1$s and %2$s</string>
+    <string name="fragment_today_title_tomorrow">Tomorrow</string>
+    <string name="fragment_today_title_on_day" formatted="false">On %1$s</string>
 
     <!-- Timetable Fragment -->
     <string name="timetable_course_slot_timing" formatted="false">%1$s to %2$s</string>
@@ -61,6 +63,19 @@
     <string name="tab_course_attendance">Attendance</string>
     <string name="tab_course_marks">Marks</string>
 
+    <!-- Overview -->
+    <string name="label_class_number" formatted="false">Class Number: %1$d</string>
+    <string name="label_course_code" formatted="false">Code: %1$s</string>
+    <string name="label_course_type" formatted="false">Type: %1$s</string>
+    <string name="label_course_mode" formatted="false">Mode: %1$s</string>
+    <string name="label_course_option" formatted="false">Option: %1$s</string>
+    <string name="label_ltpc" formatted="false">LTPC: %1$s</string>
+    <string name="label_faculty" formatted="false">Faculty: %1$s</string>
+    <string name="label_slot" formatted="false">Slot: %1$s</string>
+    <string name="label_venue" formatted="false">Venue: %1$s</string>
+    <string name="label_registered_on" formatted="false">Registered On: %1$s</string>
+    <string name="label_project_title" formatted="false">Project Title: %1$s</string>
+    
     <!-- Course Attendance -->
     <string name="label_attendance_safe">Safe</string>
     <string name="label_attendance_debarred">Debarred</string>
@@ -70,7 +85,6 @@
     <string name="label_class_miss" formatted="false">Miss %1$d</string>
     <string name="label_attendance_classes" formatted="false">%1$d / %2$d</string>
     <string name="attendance_class_units_earned" formatted="false">Units Earned: %1$d</string>
-    <string name="course_registered_on" formatted="false">Registered On: %1$s</string>
     <string name="registration_date_unavailable">Unavailable</string>
 
     <!-- Course Marks -->
@@ -100,13 +114,15 @@
     <string name="not_available">This is not available at the moment</string>
     <string name="not_applicable">This is not applicable for this course</string>
     <string name="courses_none">No courses available, maybe you haven\'t registered any?</string>
-    <string name="courses_none_day">No courses today, hooray!</string>
+    <string name="classes_none">No classes for you, hooray!</string>
+    <string name="classes_none_day">No classes today, hooray!</string>
 
-    <!--VITacademics API Messages-->
+    <!-- VITacademics API Messages -->
     <string name="api_server_error">The VITacademics Server is down or has encountered an error</string>
     <string name="api_unknown_error">The VITacademics app has encountered an error</string>
+    <string name="message_login_loading">Logging you in, please wait&#8230;</string>
 
-    <!-- Fragment Titles !-->
+    <!-- Fragment Titles -->
     <string name="fragment_today_title">Today</string>
     <string name="fragment_courses_title">Courses</string>
     <string name="fragment_cgpa_calculator_title">CGPA Calculator</string>
@@ -120,13 +136,14 @@
     <string name="fragment_about_title">About</string>
     <string name="fragment_licenses_title">Licenses</string>
 
-    <!-- About !-->
-    <string name="about_description"> aneesh - fill this </string>
-    <string name="contribute_github"> Want to help us? </string>
-    <string name="email_addrerss"> gauravagerwala@gmail.com </string>
+    <!-- About -->
+    <string name="app_version" formatted="false">Version: %1$s</string>
+    <string name="about_description">Dummy Text Dummy Text</string>
+    <string name="label_contribute">Contribute to the VITacademics project</string>
+    <string name="label_feedback">Provide Feedback</string>
 
     <!-- Share Messages -->
-    <string name="android_share_select">Share VITacademics using &#8230;</string>
+    <string name="android_share_select">Share VITacademics using&#8230;</string>
     <string name="android_share_message_subject">VITacademics</string>
     <string name="android_share_message_start" formatted="false">Download VITacademics from: %1$s</string>
 

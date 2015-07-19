@@ -72,7 +72,6 @@ public class LicensesFragment extends DialogFragment {
      * Creates a new instance of LicensesFragment with an optional Close button.
      *
      * @param showCloseButton Whether to show a Close button at the bottom of the dialog.
-     *
      * @return A new licenses fragment.
      */
     public static LicensesFragment newInstance(boolean showCloseButton) {
@@ -110,7 +109,7 @@ public class LicensesFragment extends DialogFragment {
      * Requires "/res/raw/licenses.html" and "/res/layout/licenses_fragment.xml"
      * to be present.
      *
-     * @param fm A fragment manager instance used to display this LicensesFragment.
+     * @param fm              A fragment manager instance used to display this LicensesFragment.
      * @param showCloseButton Whether to show a Close button at the bottom of the dialog.
      */
     public static void displayLicensesFragment(FragmentManager fm, boolean showCloseButton) {

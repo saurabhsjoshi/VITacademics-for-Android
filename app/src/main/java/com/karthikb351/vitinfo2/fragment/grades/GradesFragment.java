@@ -48,19 +48,17 @@ import java.util.List;
 
 public class GradesFragment extends Fragment {
 
+    int layoutId;
+    TextView errorMessage;
     private float cgpa;
     private List<GradeCount> gradeCounts;
     private List<Grade> grades;
     private List<SemesterWiseGrade> semesterWiseGrades;
-
     private View rootView;
     private TextView cgpaTextView;
     private RecyclerView gradeListRecyclerview;
     private TableLayout gradeCountTable;
     private GradesListAdapter gradesListAdapter;
-
-    int layoutId;
-    TextView errorMessage;
 
     public GradesFragment() {
 
@@ -74,11 +72,11 @@ public class GradesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        grades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGrades();
-        if(grades==null||grades.isEmpty())
-            layoutId=R.layout.app_message_not_available;
+        grades = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getGrades();
+        if (grades == null || grades.isEmpty())
+            layoutId = R.layout.app_message_not_available;
         else
-            layoutId=R.layout.fragment_grade;
+            layoutId = R.layout.fragment_grade;
 
         rootView = inflater.inflate(layoutId, container, false);
         initialize();
@@ -86,16 +84,15 @@ public class GradesFragment extends Fragment {
     }
 
     public void initialize() {
-        cgpa = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getCgpa();
-        grades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGrades();
-        gradeCounts = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getGradeCounts();
-        semesterWiseGrades = ((MainApplication)getActivity().getApplication()).getDataHolderInstance().getSemesterWiseGrades();
+        cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCgpa();
+        grades = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getGrades();
+        gradeCounts = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getGradeCounts();
+        semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getSemesterWiseGrades();
 
-        if(layoutId==R.layout.app_message_not_available) {
+        if (layoutId == R.layout.app_message_not_available) {
             errorMessage = (TextView) rootView.findViewById(R.id.message);
             errorMessage.setText("No grades are available");
-        }
-        else {
+        } else {
             cgpaTextView = (TextView) rootView.findViewById(R.id.text_view_cgpa);
             gradeCountTable = (TableLayout) rootView.findViewById(R.id.table_grade_count);
             fillGradeCountData();

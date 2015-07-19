@@ -25,6 +25,7 @@
 package com.karthikb351.vitinfo2.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -35,7 +36,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +43,6 @@ import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
-import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
@@ -52,6 +51,7 @@ import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimetableFragment;
 import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
+import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.Arrays;
@@ -63,26 +63,30 @@ public class MainActivity extends AppCompatActivity {
 
     private String campus;
     private String registerNumber;
-    private List<Course> courses;
     private List<String> navigationTabs;
     private LinearLayout mainContent;
     private DrawerLayout drawerLayout;
     private TextView headerUsername;
     private TextView headerCampus;
-    private ListView lv;
+
+    private static String toTitleCase(String text) {
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        initialize();
+        initializeData();
+        initializeView();
     }
 
-    public void initialize() {
-        courses = ((MainApplication) getApplication()).getDataHolderInstance().getCourses();
+    private void initializeData() {
         campus = ((MainApplication) getApplication()).getDataHolderInstance().getCampus();
         registerNumber = ((MainApplication) getApplication()).getDataHolderInstance().getRegisterNumber();
+    }
+
+    private void initializeView() {
 
         navigationTabs = Arrays.asList(getResources().getStringArray(R.array.navigation_tab));
 
@@ -112,65 +116,71 @@ public class MainActivity extends AppCompatActivity {
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                Fragment fragment = null;
-                int position = 0;
-
-                String navString = (String) menuItem.getTitle();
+            public boolean onNavigationItemSelected(final MenuItem menuItem) {
                 menuItem.setChecked(true);
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                switch (navString) {
-                    // TODO Get Position directly, if not use String resources to compare. This should work even if app is in a different language
-                    // TODO Check https://developer.android.com/training/implementing-navigation/nav-drawer.html
-                    case "Today":
-                        fragment = TodayFragment.newInstance();
-                        position = 0;
-                        break;
-                    case "Courses":
-                        fragment = CoursesFragment.newInstance();
-                        position = 1;
-                        break;
-                    case "Timetable":
-                        fragment = TimetableFragment.newInstance();
-                        position = 2;
-                        break;
-                    case "Settings":
-                        fragment = SettingsFragment.newInstance();
-                        position = 3;
-                        break;
-                    case "Messages":
-                        fragment = MessagesFragment.newInstance();
-                        position = 4;
-                        break;
-                    case "About":
-                        fragment = AboutFragment.newInstance();
-                        position = 5;
-                        break;
-                }
-                fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).commit();
-
                 drawerLayout.closeDrawers();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        switchFragment(menuItem.getItemId());
+                    }
+                }, Constants.DRAWER_CLOSE_TIME_OUT);
                 return true;
             }
         });
-        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commit();
+
+        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commitAllowingStateLoss();
     }
 
-    public void pullToRefresh() {
+    private void switchFragment(int id) {
+        Fragment fragment = null;
+        int position = 0;
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        switch (id) {
+            case R.id.drawer_home:
+                fragment = TodayFragment.newInstance();
+                position = 0;
+                break;
+            case R.id.drawer_courses:
+                fragment = CoursesFragment.newInstance();
+                position = 1;
+                break;
+            case R.id.drawer_timetable:
+                fragment = TimetableFragment.newInstance();
+                position = 2;
+                break;
+            case R.id.drawer_settings:
+                fragment = SettingsFragment.newInstance();
+                position = 3;
+                break;
+            case R.id.drawer_messages:
+                fragment = MessagesFragment.newInstance();
+                position = 4;
+                break;
+            case R.id.drawer_about:
+                fragment = AboutFragment.newInstance();
+                position = 5;
+                break;
+        }
+        fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).commit();
+    }
+
+    public void pullToRefresh(final ResultListener callback) {
 
         NetworkController networkController = NetworkController.getInstance(MainActivity.this);
-        // TODO Progress Ring Start
         final ResultListener resultListener = new ResultListener() {
             @Override
             public void onSuccess() {
-                initialize();
-                // TODO Progress Ring Stop
+                initializeData();
+                if (callback != null)
+                    callback.onSuccess();
                 EventBus.getDefault().post(new RefreshFragmentEvent());
             }
 
             @Override
             public void onFailure(Status status) {
-                // TODO Progress Ring Stop
+                if (callback != null)
+                    callback.onFailure(status);
                 Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
             }
         };
@@ -196,9 +206,5 @@ public class MainActivity extends AppCompatActivity {
 
     public LinearLayout getMainContent() {
         return mainContent;
-    }
-
-    private static String toTitleCase(String text) {
-        return text.substring(0, 1).toUpperCase() + text.substring(1);
     }
 }

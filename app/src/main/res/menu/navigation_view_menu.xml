@@ -38,7 +38,7 @@
             android:title="@string/fragment_courses_title" />
 
         <item
-            android:id="@+id/drawer_favourite"
+            android:id="@+id/drawer_timetable"
             android:icon="@mipmap/ic_timetable"
             android:title="@string/fragment_timetable_title" />
 
