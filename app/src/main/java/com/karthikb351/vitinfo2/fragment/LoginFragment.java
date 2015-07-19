@@ -100,7 +100,7 @@ public class LoginFragment extends Fragment {
                         String registerNumber = editTextRegisterNumber.getText().toString();
                         String dateOfBirth = editTextDateOfBirth.getText().toString();
                         String mobileNumber = editTextMobileNumber.getText().toString();
-                        loadingMessage.setText("Loading. PLease wait..");
+                        loadingMessage.setText(getString(R.string.message_login_loading));
                         loginToServer(campus, registerNumber, dateOfBirth, mobileNumber);
                         break;
                     case R.id.input_dob:

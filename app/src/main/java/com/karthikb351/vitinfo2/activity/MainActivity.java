@@ -75,14 +75,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        initialize();
+        initializeData();
+        initializeView();
     }
 
-    public void initialize() {
+    private void initializeData() {
         courses = ((MainApplication) getApplication()).getDataHolderInstance().getCourses();
         campus = ((MainApplication) getApplication()).getDataHolderInstance().getCampus();
         registerNumber = ((MainApplication) getApplication()).getDataHolderInstance().getRegisterNumber();
+    }
+
+    private void initializeView() {
 
         navigationTabs = Arrays.asList(getResources().getStringArray(R.array.navigation_tab));
 
@@ -163,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
         final ResultListener resultListener = new ResultListener() {
             @Override
             public void onSuccess() {
-                initialize();
+                initializeData();
+                initializeView();
                 // TODO Progress Ring Stop
                 EventBus.getDefault().post(new RefreshFragmentEvent());
             }
