@@ -52,7 +52,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     private Attendance attendance;
     private List<AttendanceDetail> attendanceDetails;
 
-    private int conducted, attended,  miss = 0, attend = 0;
+    private int conducted, attended,  miss = 0, attend = 0, offset = 1;
 
 
     public AttendanceListAdapter(Context context, Course course) {
@@ -76,6 +76,18 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
         return new AttendanceViewHolder(view);
     }
 
+
+    @SuppressWarnings("deprecation")
+    private void setProgressBarDrawable(ProgressBar progressBar){
+        if (getPercentage() >= 80) {
+            progressBar.setProgressDrawable(context.getResources().getDrawable(R.drawable.ring_attendance_green));
+        } else if (getPercentage() >= 75 && getPercentage() < 80) {
+            progressBar.setProgressDrawable(context.getResources().getDrawable(R.drawable.ring_attendance_orange));
+        } else {
+            progressBar.setProgressDrawable(context.getResources().getDrawable(R.drawable.ring_attendance_red));
+        }
+    }
+
     private void updateHolder(AttendanceViewHolder holder){
         holder.attendanceClasses.setText(context.getString(R.string.label_attendance_classes,
                 attended + attend, conducted + attend + miss));
@@ -84,6 +96,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
         holder.txtMiss.setText(context.getString(R.string.label_class_miss, miss));
         holder.attendancePercent.setText(Integer.toString(getPercentage()));
         holder.progressBarAttendance.setProgress(getPercentage());
+        setProgressBarDrawable(holder.progressBarAttendance);
     }
 
     private int getPercentage(){
@@ -98,23 +111,23 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
                 @Override
                 public void onClick(View view) {
                     if(view == holder.attendPlus){
-                        attend += 1;
+                        attend += offset;
                         if(!holder.attendMinus.isClickable())
                             holder.attendMinus.setClickable(true);
                     } else if (view == holder.attendMinus) {
                         if(attend == 0)
                             holder.attendMinus.setClickable(false);
                         else
-                            attend -= 1;
+                            attend -= offset;
                     } else if (view == holder.missPlus) {
-                        miss += 1;
+                        miss += offset;
                         if(!holder.missMinus.isClickable())
                             holder.missMinus.setClickable(true);
                     } else if (view == holder.missMinus) {
                         if(miss == 0)
                             holder.missMinus.setClickable(false);
                         else
-                            miss -= 1;
+                            miss -= offset;
                     }
                     updateHolder(holder);
                 }
