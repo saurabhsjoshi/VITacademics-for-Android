@@ -36,7 +36,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +43,6 @@ import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
-import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
@@ -65,13 +63,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String campus;
     private String registerNumber;
-    private List<Course> courses;
     private List<String> navigationTabs;
     private LinearLayout mainContent;
     private DrawerLayout drawerLayout;
     private TextView headerUsername;
     private TextView headerCampus;
-    private ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeData() {
-        courses = ((MainApplication) getApplication()).getDataHolderInstance().getCourses();
         campus = ((MainApplication) getApplication()).getDataHolderInstance().getCampus();
         registerNumber = ((MainApplication) getApplication()).getDataHolderInstance().getRegisterNumber();
     }
@@ -166,23 +161,21 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).commit();
     }
 
-    public void pullToRefresh() {
+    public void pullToRefresh(final ResultListener callback) {
 
         NetworkController networkController = NetworkController.getInstance(MainActivity.this);
-        // TODO Progress Ring Start
         final ResultListener resultListener = new ResultListener() {
             @Override
             public void onSuccess() {
                 initializeData();
-
-                initializeView();
-                // TODO Progress Ring Stop
+                if(callback!=null)
+                    callback.onSuccess();
                 EventBus.getDefault().post(new RefreshFragmentEvent());
             }
 
             @Override
             public void onFailure(Status status) {
-                // TODO Progress Ring Stop
+                if(callback!=null)
                 Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
             }
         };

@@ -44,9 +44,11 @@ import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
+import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
+import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -100,9 +102,23 @@ public class TodayFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ((MainActivity) getActivity()).pullToRefresh();
+                ((MainActivity) getActivity()).pullToRefresh(new ResultListener() {
+                    @Override
+                    public void onSuccess() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+
+                    @Override
+                    public void onFailure(Status status) {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
             }
         });
+        initializeData();
+    }
+
+    private void initializeData(){
         new LoadTodayTask().execute();
     }
 
@@ -120,7 +136,7 @@ public class TodayFragment extends Fragment {
 
     // This method will be called when a RefreshFragmentEvent is posted
     public void onEvent(RefreshFragmentEvent event) {
-        initialize();
+        initializeData();
     }
 
     @Override
