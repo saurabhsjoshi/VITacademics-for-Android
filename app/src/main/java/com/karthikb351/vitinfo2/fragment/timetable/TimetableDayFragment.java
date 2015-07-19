@@ -29,6 +29,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ import android.widget.ProgressBar;
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.DetailsActivity;
+import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
@@ -56,6 +58,7 @@ import de.greenrobot.event.EventBus;
 
 public class TimetableDayFragment extends Fragment {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private TimetableListAdapter adapter;
     private RecyclerView recyclerview;
     private ProgressBar loadProgress;
@@ -75,6 +78,7 @@ public class TimetableDayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_timetable_day, container, false);
+        swipeRefreshLayout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_refresh_layout);
         initialize();
         return rootView;
     }
@@ -84,6 +88,13 @@ public class TimetableDayFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(layoutManager);
         loadProgress = (ProgressBar) rootView.findViewById(R.id.timeTableProgressBar);
+        swipeRefreshLayout.setColorSchemeColors(getActivity().getResources().getColor(R.color.colorAccent));
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ((MainActivity)getActivity()).pullToRefresh();
+            }
+        });
         new LoadDayTask().execute();
     }
 

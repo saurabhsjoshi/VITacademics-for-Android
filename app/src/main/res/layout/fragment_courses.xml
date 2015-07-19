@@ -22,6 +22,11 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/recycler_view_courses"
@@ -30,3 +35,4 @@
     android:fadeScrollbars="true"
     android:scrollbars="vertical">
 </android.support.v7.widget.RecyclerView>
+</android.support.v4.widget.SwipeRefreshLayout>

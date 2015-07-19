@@ -166,7 +166,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onProgress() {
                 progress = progress + PROGRESS_INCREMENT;
-                progressBar.setProgress(progress);
+                progressBar.incrementProgressBy(progress);
 
             }
         };
