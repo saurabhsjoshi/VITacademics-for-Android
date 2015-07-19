@@ -32,73 +32,85 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/course_name"/>
+        android:id="@+id/course_name"
+        android:textSize="@dimen/abc_text_size_headline_material" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/class_number"/>
+        android:id="@+id/class_number"
+        android:textSize="@dimen/abc_text_size_body_1_material" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/course_code" />
+        android:id="@+id/course_code"
+        android:textSize="@dimen/abc_text_size_body_1_material" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/faculty" />
+        android:id="@+id/faculty"
+        android:textSize="@dimen/abc_text_size_body_1_material" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/course_type" />
+        android:id="@+id/course_type"
+        android:textSize="@dimen/abc_text_size_body_1_material" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/course_mode" />
+        android:id="@+id/course_mode"
+        android:textSize="@dimen/abc_text_size_body_1_material" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/ltpc" />
+        android:id="@+id/ltpc"
+        android:textSize="@dimen/abc_text_size_body_1_material"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/course_option" />
+        android:id="@+id/course_option"
+        android:textSize="@dimen/abc_text_size_body_1_material"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:textColor="@android:color/black"
-        android:id="@+id/registered_on" />
+        android:id="@+id/registered_on"
+        android:textSize="@dimen/abc_text_size_body_1_material"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/slot" />
+        android:id="@+id/slot"
+        android:textSize="@dimen/abc_text_size_body_1_material"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/venue" />
+        android:id="@+id/venue"
+        android:textSize="@dimen/abc_text_size_body_1_material"/>
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/timing_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
-    </LinearLayout>
+    </ListView>
 
 </LinearLayout>

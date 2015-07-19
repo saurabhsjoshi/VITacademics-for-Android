@@ -75,6 +75,7 @@
     <string name="label_venue" formatted="false">Venue: %1$s</string>
     <string name="label_registered_on" formatted="false">Registered On: %1$s</string>
     <string name="label_project_title" formatted="false">Project Title: %1$s</string>
+    <string name="label_slot_timing" formatted="false">%1$s, %2$s to %3$s</string>
     
     <!-- Course Attendance -->
     <string name="label_attendance_safe">Safe</string>

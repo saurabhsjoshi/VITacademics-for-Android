@@ -29,14 +29,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OverviewFragment extends Fragment {
 
@@ -44,6 +49,7 @@ public class OverviewFragment extends Fragment {
     private TextView courseName, classNumber, courseCode, faculty, courseMode, courseType, ltpc, courseOption;
     private TextView registeredOn, slot, venue;
     private TextView projectTitle;
+    private ListView timingList;
 
     public OverviewFragment() {
     }
@@ -71,6 +77,7 @@ public class OverviewFragment extends Fragment {
             registeredOn = (TextView) view.findViewById(R.id.registered_on);
             venue = (TextView) view.findViewById(R.id.venue);
             slot = (TextView) view.findViewById(R.id.slot);
+            timingList = (ListView) view.findViewById(R.id.timing_list);
         }
 
         courseName = (TextView) view.findViewById(R.id.course_name);
@@ -101,7 +108,22 @@ public class OverviewFragment extends Fragment {
                 registeredOn.setVisibility(View.VISIBLE);
             }
 
-            // TODO Set Timings
+            List<String> timings = new ArrayList<>();
+            for (Timing timing : course.getTimings()) {
+                String day = getDayOfWeek(timing.getDay());
+                String startTime;
+                String endTime;
+                try {
+                    startTime = DateTimeCalender.parseISO8601Time(timing.getStartTime());
+                    endTime = DateTimeCalender.parseISO8601Time(timing.getEndTime());
+                } catch (ParseException ex) {
+                    startTime = timing.getStartTime();
+                    endTime = timing.getEndTime();
+                }
+                timings.add(getActivity().getString(R.string.label_slot_timing, day, startTime, endTime));
+            }
+            ArrayAdapter timingsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, timings);
+            timingList.setAdapter(timingsAdapter);
         }
 
         courseName.setText(course.getCourseTitle());
@@ -114,5 +136,10 @@ public class OverviewFragment extends Fragment {
         courseOption.setText(getString(R.string.label_course_option, course.getCourseOption()));
 
         return view;
+    }
+
+    private String getDayOfWeek(int day) {
+        String daysOfWeek[] = getActivity().getResources().getStringArray(R.array.days_of_week);
+        return daysOfWeek[day];
     }
 }
