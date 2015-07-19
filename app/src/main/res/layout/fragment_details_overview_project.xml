@@ -26,6 +26,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:paddingLeft="14sp"
+    android:paddingRight="14sp"
     android:orientation="vertical">
 
     <TextView

@@ -56,18 +56,20 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         Intent intent = getIntent();
         if (intent.hasExtra(Constants.INTENT_EXTRA_CLASS_NUMBER)) {
-            new LoadCourseTask().execute(intent.getIntExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, -1));
             setContentView(R.layout.activity_details);
             initToolbar();
-            loadProgress = (ProgressBar) findViewById(R.id.progress_bar_today);
+            loadProgress = (ProgressBar) findViewById(R.id.progress_bar_details);
+            new LoadCourseTask().execute(intent.getIntExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, -1));
+
         } else {
             setContentView(R.layout.app_message_not_available);
             TextView errorMessage = (TextView) findViewById(R.id.message);
             errorMessage.setText(getString(R.string.not_available));
         }
-
     }
 
     private void initToolbar() {

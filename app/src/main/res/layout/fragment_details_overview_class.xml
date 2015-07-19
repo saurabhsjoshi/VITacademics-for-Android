@@ -26,6 +26,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:paddingLeft="14sp"
+    android:paddingRight="14sp"
     android:orientation="vertical">
 
     <TextView
@@ -106,11 +108,21 @@
         android:id="@+id/venue"
         android:textSize="@dimen/abc_text_size_body_1_material"/>
 
+    <TextView
+        android:text="@string/label_timings"
+        android:layout_width="wrap_content"
+        android:paddingTop="10dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:gravity="start"
+        android:textStyle="bold"
+        android:textSize="@dimen/abc_text_size_subtitle_material_toolbar"/>
+
     <ListView
         android:id="@+id/timing_list"
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="wrap_content">
     </ListView>
 
 </LinearLayout>
