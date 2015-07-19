@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="25sp"
@@ -87,7 +88,9 @@
             android:paddingRight="5dp"
             android:textColor="#ffff0100"
             android:textSize="23sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

@@ -47,7 +47,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginRight="16dp" />
+                android:layout_marginRight="16dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginEnd="16dp" />
 
             <TextView
                 android:id="@+id/tv_friend_name"
@@ -55,14 +57,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/photo_friend"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:layout_toEndOf="@+id/photo_friend" />
 
             <TextView
                 android:id="@+id/tv_friend_reg_no"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_friend_name"
-                android:layout_toRightOf="@+id/photo_friend" />
+                android:layout_toRightOf="@+id/photo_friend"
+                android:layout_toEndOf="@+id/photo_friend" />
 
         </RelativeLayout>
     </LinearLayout>
