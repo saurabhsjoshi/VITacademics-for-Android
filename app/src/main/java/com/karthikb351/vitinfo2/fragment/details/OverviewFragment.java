@@ -53,7 +53,7 @@ public class OverviewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_details_overview, container, false);
+        View view = inflater.inflate(R.layout.fragment_details_overview_class, container, false);
         courseCode = (TextView) view.findViewById(R.id.course_code);
         courseName = (TextView) view.findViewById(R.id.course_name);
         slot = (TextView) view.findViewById(R.id.course_slot);
