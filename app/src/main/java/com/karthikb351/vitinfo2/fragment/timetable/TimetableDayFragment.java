@@ -188,10 +188,10 @@ public class TimetableDayFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<Pair<Course, Timing>> finalCourses) {
+            loadProgress.setVisibility(View.GONE);
             if (finalCourses.size() == 0) {
                 // TODO No classes today message, change view
             } else {
-                loadProgress.setVisibility(View.GONE);
                 adapter = new TimetableListAdapter(getActivity(), finalCourses);
                 adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
                     @Override

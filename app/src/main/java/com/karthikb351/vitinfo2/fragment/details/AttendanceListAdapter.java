@@ -64,7 +64,9 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             this.attendanceDetails = attendance.getDetails();
             this.conducted = attendance.getTotalClasses();
             this.attended = attendance.getAttendedClasses();
-            Collections.reverse(this.attendanceDetails);
+            if (!(this.attendanceDetails == null || this.attendanceDetails.isEmpty())) {
+                Collections.reverse(this.attendanceDetails);
+            }
         } else {
             this.attendanceDetails = new ArrayList<>();
             this.attendance = new Attendance(context.getString(R.string.registration_date_unavailable), 0, 0, 0, attendanceDetails, true);
@@ -165,6 +167,9 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
     @Override
     public int getItemCount() {
+        if (attendanceDetails == null || attendanceDetails.isEmpty()) {
+            return 1;
+        }
         return (attendanceDetails.size() + 1);
     }
 
