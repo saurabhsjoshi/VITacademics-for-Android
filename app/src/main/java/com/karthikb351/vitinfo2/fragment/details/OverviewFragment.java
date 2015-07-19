@@ -38,7 +38,6 @@ import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 
 import java.text.ParseException;
 
-
 public class OverviewFragment extends Fragment {
 
     private Course course;
@@ -59,6 +58,7 @@ public class OverviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view;
+
         if (course.getCourseType() == Constants.COURSE_TYPE_PBC || course.getCourseType() == Constants.COURSE_TYPE_PBC_NO_PROJECT) {
             view = inflater.inflate(R.layout.fragment_details_overview_project, container, false);
 
