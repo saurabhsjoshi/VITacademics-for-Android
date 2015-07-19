@@ -102,7 +102,8 @@
     <string name="not_available">This is not available at the moment</string>
     <string name="not_applicable">This is not applicable for this course</string>
     <string name="courses_none">No courses available, maybe you haven\'t registered any?</string>
-    <string name="courses_none_day">No classes for you, hooray!</string>
+    <string name="classes_none">No classes for you, hooray!</string>
+    <string name="classes_none_day">No classes today, hooray!</string>
 
     <!-- VITacademics API Messages -->
     <string name="api_server_error">The VITacademics Server is down or has encountered an error</string>

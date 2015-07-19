@@ -188,7 +188,9 @@ public class TimetableDayFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<Pair<Course, Timing>> finalCourses) {
-            try {
+            if (finalCourses.size() == 0) {
+                // TODO No classes message, change view
+            } else {
                 loadProgress.setVisibility(View.GONE);
                 adapter = new TimetableListAdapter(getActivity(), finalCourses);
                 adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
@@ -198,9 +200,7 @@ public class TimetableDayFragment extends Fragment {
                     }
                 });
                 recyclerview.setAdapter(adapter);
-            } catch (Exception ignore) {
             }
-
         }
 
     }
