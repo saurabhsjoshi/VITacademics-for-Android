@@ -63,6 +63,14 @@
     <string name="tab_course_attendance">Attendance</string>
     <string name="tab_course_marks">Marks</string>
 
+    <!-- Overview -->
+    <string name="label_course_code">Code: $</string>
+    <string name="label_slot">Slot: $</string>
+    <string name="label_venue">Venue: $</string>
+    <string name="label_ltpc">LTPC: $</string>
+    <string name="label_course_mode">Mode: $</string>
+    <string name="label_faculty">Faculty: $</string>
+    
     <!-- Course Attendance -->
     <string name="label_attendance_safe">Safe</string>
     <string name="label_attendance_debarred">Debarred</string>
