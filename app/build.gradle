@@ -30,7 +30,7 @@ android {
 
     defaultConfig {
         applicationId "com.karthikb351.vitinfo2"
-        minSdkVersion 11
+        minSdkVersion 15
         targetSdkVersion 22
         versionCode 35
         versionName "4.0.0"
