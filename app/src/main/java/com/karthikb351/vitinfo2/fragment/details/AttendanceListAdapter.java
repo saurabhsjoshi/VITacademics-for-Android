@@ -75,25 +75,8 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
         if (position == 0) {
             holder.courseName.setText(course.getCourseTitle());
             holder.courseCode.setText(course.getCourseCode());
-            holder.courseRoom.setText(course.getVenue());
-            holder.courseSlot.setText(course.getSlot());
             holder.attendanceClasses.setText(context.getString(R.string.label_attendance_classes, attendance.getAttendedClasses(), attendance.getTotalClasses()));
             holder.attendancePercent.setText(Integer.toString(attendance.getAttendancePercentage()));
-            try {
-                holder.registeredOn.setText(context.getString(R.string.course_registered_on, DateTimeCalender.parseISO8601DateTime(attendance.getRegistrationDate())));
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-                holder.registeredOn.setText(context.getString(R.string.course_registered_on, attendance.getRegistrationDate()));
-            }
-            if (attendance.getAttendancePercentage() < 75) {
-                //holder.attendanceStatus.setTextColor(context.getResources().getColor(R.color.error_color));
-                holder.attendanceStatus.setText(context.getString(R.string.label_attendance_debarred));
-                //holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.error_color));
-            } else {
-                //holder.attendanceStatus.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
-                holder.attendanceStatus.setText(context.getString(R.string.label_attendance_safe));
-                //holder.progressBarAttendance.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
-            }
             holder.progressBarAttendance.setProgress(attendance.getAttendancePercentage());
         } else {
             try {
@@ -127,7 +110,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     public class AttendanceViewHolder extends RecyclerView.ViewHolder {
 
         public TextView date, detailStatus, classUnits, reason;
-        public TextView courseName, courseCode, courseRoom, courseSlot, attendanceStatus, attendanceClasses, attendancePercent, registeredOn;
+        public TextView courseName, courseCode, attendanceClasses, attendancePercent;
         public ProgressBar progressBarAttendance;
 
         public AttendanceViewHolder(View view) {
@@ -140,12 +123,8 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
             courseName = (TextView) view.findViewById(R.id.course_name);
             courseCode = (TextView) view.findViewById(R.id.course_code);
-            courseRoom = (TextView) view.findViewById(R.id.course_venue);
-            courseSlot = (TextView) view.findViewById(R.id.course_slot);
-            attendanceStatus = (TextView) view.findViewById(R.id.attendance_status);
             attendanceClasses = (TextView) view.findViewById(R.id.attendance_classes);
             attendancePercent = (TextView) view.findViewById(R.id.attendance_percent);
-            registeredOn = (TextView) view.findViewById(R.id.registered_date);
             progressBarAttendance = (ProgressBar) view.findViewById(R.id.progress_bar_attendance);
         }
     }

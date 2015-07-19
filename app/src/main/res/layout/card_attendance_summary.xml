@@ -62,7 +62,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:textColor="@android:color/white"
-                android:textSize="17sp" />
+                android:textSize="18sp" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -197,67 +197,5 @@
             android:paddingBottom="12dp"
             android:textSize="19sp" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:visibility="gone"
-            android:paddingRight="10dp">
-
-            <TextView
-                android:id="@+id/course_venue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/primary_text_default_material_light"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/course_slot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primary_text_default_material_light"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-
-
-
-        <RelativeLayout
-            android:visibility="gone"
-            android:id="@+id/course_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/attendance_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:textColor="@color/primary_text_default_material_light"
-                android:textSize="@dimen/abc_text_size_headline_material"
-                android:textStyle="bold" />
-
-
-
-            <TextView
-                android:id="@+id/net_per"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/registered_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
     </RelativeLayout>
 </android.support.v7.widget.CardView>
