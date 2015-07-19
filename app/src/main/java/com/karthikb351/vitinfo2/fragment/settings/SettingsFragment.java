@@ -107,7 +107,7 @@ public class SettingsFragment extends ListFragment {
             case 6:
                 // Share app
                 Intent share = new Intent(android.content.Intent.ACTION_SEND);
-                share.setType(Constants.SHARE_TYPE);
+                share.setType(Constants.INTENT_TYPE_PLAIN);
 
                 share.putExtra(Intent.EXTRA_SUBJECT, getActivity().getString(R.string.android_share_message_subject));
                 share.putExtra(Intent.EXTRA_TEXT, getActivity().getString(R.string.android_share_message_start, Constants.API_BASE_URL));

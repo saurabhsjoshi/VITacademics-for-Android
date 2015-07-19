@@ -64,17 +64,17 @@
     <string name="tab_course_marks">Marks</string>
 
     <!-- Overview -->
-    <string name="label_class_number">Class Number: %1$d</string>
-    <string name="label_course_code">Code: %1$s</string>
-    <string name="label_course_type">Type: %1$s</string>
-    <string name="label_course_mode">Mode: %1$s</string>
-    <string name="label_course_option">Option: %1$s</string>
-    <string name="label_ltpc">LTPC: %1$s</string>
-    <string name="label_faculty">Faculty: %1$s</string>
-    <string name="label_slot">Slot: %1$s</string>
-    <string name="label_venue">Venue: %1$s</string>
+    <string name="label_class_number" formatted="false">Class Number: %1$d</string>
+    <string name="label_course_code" formatted="false">Code: %1$s</string>
+    <string name="label_course_type" formatted="false">Type: %1$s</string>
+    <string name="label_course_mode" formatted="false">Mode: %1$s</string>
+    <string name="label_course_option" formatted="false">Option: %1$s</string>
+    <string name="label_ltpc" formatted="false">LTPC: %1$s</string>
+    <string name="label_faculty" formatted="false">Faculty: %1$s</string>
+    <string name="label_slot" formatted="false">Slot: %1$s</string>
+    <string name="label_venue" formatted="false">Venue: %1$s</string>
     <string name="label_registered_on" formatted="false">Registered On: %1$s</string>
-    <string name="label_project_title">Project Title: %1$s</string>
+    <string name="label_project_title" formatted="false">Project Title: %1$s</string>
     
     <!-- Course Attendance -->
     <string name="label_attendance_safe">Safe</string>
@@ -137,6 +137,7 @@
     <string name="fragment_licenses_title">Licenses</string>
 
     <!-- About -->
+    <string name="app_version" formatted="false">Version: %1$s</string>
     <string name="about_description">Dummy Text Dummy Text</string>
     <string name="label_contribute">Contribute to the VITacademics project</string>
     <string name="label_feedback">Provide Feedback</string>
