@@ -189,7 +189,7 @@ public class TimetableDayFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Pair<Course, Timing>> finalCourses) {
             if (finalCourses.size() == 0) {
-                // TODO No classes message, change view
+                // TODO No classes today message, change view
             } else {
                 loadProgress.setVisibility(View.GONE);
                 adapter = new TimetableListAdapter(getActivity(), finalCourses);
