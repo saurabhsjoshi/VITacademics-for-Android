@@ -35,12 +35,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.utility.Constants;
 
 
 public class AboutFragment extends Fragment {
 
     Button feedbackButton;
     TextView contribute ;
+
     public AboutFragment() {
     }
 
@@ -52,10 +54,12 @@ public class AboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
-        String Title = getActivity().getResources().getString(R.string.fragment_about_title);
-        getActivity().setTitle(Title);
+
+        getActivity().setTitle(getString(R.string.fragment_about_title));
+
         feedbackButton = (Button)view.findViewById(R.id.button_feedback);
         contribute = (TextView)view.findViewById(R.id.contribute);
+
         feedbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,21 +72,22 @@ public class AboutFragment extends Fragment {
                 contributeClick(view);
             }
         });
+
         return view;
     }
 
     void sendFeedBack(View view)
     {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setType("text/plain");
-        intent.setData(Uri.parse("mailto:" + "gauravagerwala@gmail.com"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+        intent.setType(Constants.INTENT_TYPE_PLAIN);
+        intent.setData(Uri.parse(Constants.FEEDBACK_EMAIL_LINK));
+        intent.putExtra(Intent.EXTRA_SUBJECT, Constants.FEEDBACK_EMAIL_SUBJECT);
         startActivity(intent);
     }
 
     void contributeClick(View view)
     {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/CollegeCODE/VITacademics-Android.git"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.GITHUB_COLLEGECODE_URL));
         startActivity(browserIntent);
     }
 }

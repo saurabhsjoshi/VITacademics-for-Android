@@ -86,7 +86,7 @@ public class Constants {
     public final static String GOOGLE_PLUS_COMMUNITY_URL = "https://plus.google.com/communities/112543766365145422569";
 
     public final static String FEEDBACK_EMAIL_SUBJECT = "VITacademics Feedback";
-    public final static String FEEDBACK_EMAIL_LINK = "gauravagerwala@gmail.com";
+    public final static String FEEDBACK_EMAIL_LINK = "mailto:gauravagerwala@gmail.com";
 
     public final static String GITHUB_COLLEGECODE_URL = "https://github.com/CollegeCODE";
 }
