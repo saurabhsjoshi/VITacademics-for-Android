@@ -24,17 +24,23 @@
 
 package com.karthikb351.vitinfo2.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 
 
 public class AboutFragment extends Fragment {
 
+    Button feedbackButton;
+    TextView contribute ;
     public AboutFragment() {
     }
 
@@ -43,12 +49,40 @@ public class AboutFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+    {
+        View view = inflater.inflate(R.layout.fragment_about, container, false);
         String Title = getActivity().getResources().getString(R.string.fragment_about_title);
         getActivity().setTitle(Title);
-        return inflater.inflate(R.layout.fragment_about, container, false);
+        feedbackButton = (Button)view.findViewById(R.id.button_feedback);
+        contribute = (TextView)view.findViewById(R.id.contribute);
+        feedbackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendFeedBack(view);
+            }
+        });
+        contribute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                contributeClick(view);
+            }
+        });
+        return view;
     }
 
+    void sendFeedBack(View view)
+    {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setType("text/plain");
+        intent.setData(Uri.parse("mailto:" + "gauravagerwala@gmail.com"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+        startActivity(intent);
+    }
 
+    void contributeClick(View view)
+    {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/CollegeCODE/VITacademics-Android.git"));
+        startActivity(browserIntent);
+    }
 }

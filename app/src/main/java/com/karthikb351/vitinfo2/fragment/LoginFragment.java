@@ -28,6 +28,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.activity.LoginActivity;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
@@ -158,14 +160,19 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getActivity(), status.getMessage(), Toast.LENGTH_SHORT).show();
                 loadingMessage.setText("");
                 progress = PROGRESS_START;
-                progressBar.setProgress(progress);
+                progressBar.setProgress(PROGRESS_INCREMENT);
             }
 
             @Override
             public void onProgress() {
-                progress = progress + PROGRESS_INCREMENT;
-                progressBar.incrementProgressBy(progress);
-
+                Log.d("PROGRESS" , "Reaching progress");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progress = progress + PROGRESS_INCREMENT;
+                        progressBar.incrementProgressBy(PROGRESS_INCREMENT);
+                    }
+                });
             }
         };
 
@@ -181,10 +188,15 @@ public class LoginFragment extends Fragment {
             }
 
             @Override
-            public void onProgress() {
-                progress = progress + PROGRESS_INCREMENT;
-                progressBar.setProgress(progress);
-
+            public void onProgress(){
+            Log.d("PROGRESS" , "Reaching progress");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        progress = progress + PROGRESS_INCREMENT;
+                        progressBar.incrementProgressBy(progress);
+                    }
+                });
             }
         });
         requestConfig.addRequest(RequestConfig.REQUEST_SYSTEM);
