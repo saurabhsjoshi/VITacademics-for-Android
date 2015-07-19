@@ -45,12 +45,10 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
     private int layoutId;
     private Context context;
     private Marks marks;
-    private Course course;
     private List<Assessment> assessments;
 
     public MarksListAdapter(Context context, Course course) {
         this.context = context;
-        this.course = course;
         if (course.getMarks().isSupported()) {
             this.marks = course.getMarks();
             this.assessments = marks.getAssessments();
@@ -70,9 +68,7 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
     @Override
     public void onBindViewHolder(AssesmentViewHolder holder, int position) {
         if (position == 0) {
-            holder.internals.setText(context.getString(R.string.label_total_internals, Double.toString(marks.getScoredPercentage()), Double.toString(marks.getMaxPercentage())));
-            holder.courseCode.setText(course.getCourseCode());
-            holder.courseName.setText(course.getCourseTitle());
+            holder.internals.setText(context.getString(R.string.label_total_internals, Double.toString(marks.getScoredPercentage()), Double.toString(marks.getMaxPercentage())));;
         } else {
             holder.assessmentTitle.setText(assessments.get(position - 1).getTitle());
             holder.assessmentMarks.setText(context.getString(R.string.label_assessment_marks, Double.toString(assessments.get(position - 1).getScoredMarks()), Double.toString(assessments.get(position - 1).getMaxMarks())));
@@ -103,7 +99,7 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
     public class AssesmentViewHolder extends RecyclerView.ViewHolder {
 
         public TextView assessmentTitle, assessmentMarks, assessmentWeightage, assessmentContribution;
-        public TextView courseCode, courseName, internals;
+        public TextView internals;
         public ProgressBar marksProgressBar;
 
         public AssesmentViewHolder(View view) {
@@ -115,8 +111,6 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
             assessmentContribution = (TextView) view.findViewById(R.id.assessment_contribution);
             marksProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar_marks);
 
-            courseCode = (TextView) view.findViewById(R.id.course_code);
-            courseName = (TextView) view.findViewById(R.id.course_name);
             internals = (TextView) view.findViewById(R.id.internal_marks);
         }
     }
