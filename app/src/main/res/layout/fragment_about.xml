@@ -23,8 +23,8 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -40,8 +40,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/appBrand"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:elevation="3dp">
 
                 <ImageView
                     android:id="@+id/logo"
@@ -50,7 +50,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/launch_screen" />
+                    android:src="@mipmap/ic_vitacademics_borderless" />
 
                 <TextView
                     android:id="@+id/name"
@@ -59,7 +59,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="20dp"
                     android:text="@string/app_name"
-                    android:textColor="@color/primary_material_light"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="36sp" />
 
                 <TextView
@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textColor="@color/primary_material_light" />
+                    android:textColor="@color/textColorPrimary" />
 
             </LinearLayout>
 
