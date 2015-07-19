@@ -54,13 +54,15 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Feedback"/>
+        android:text="Feedback"
+        android:id="@+id/button_feedback"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:text="Contribute"
+        android:id="@+id/contribute"
+        android:text="Contribute to this project"
         android:textColor="@color/primary_material_light"
         android:layout_gravity="center_horizontal"/>
 </LinearLayout>

@@ -37,6 +37,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.MainApplication;
@@ -62,6 +63,7 @@ public class LoginFragment extends Fragment {
     private View rootView;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private ProgressBar progressBar;
+    private TextView loadingMessage;
 
     private int progress;
     private String campus;
@@ -88,6 +90,7 @@ public class LoginFragment extends Fragment {
         radioChennaiCampus = (RadioButton) rootView.findViewById(R.id.select_chennai);
         buttonLogin = (Button) rootView.findViewById(R.id.button_login);
         progressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar_login);
+        loadingMessage = (TextView) rootView.findViewById(R.id.loading_message);
 
         View.OnClickListener loginViewOnClickListener = new View.OnClickListener() {
             @Override
@@ -97,6 +100,7 @@ public class LoginFragment extends Fragment {
                         String registerNumber = editTextRegisterNumber.getText().toString();
                         String dateOfBirth = editTextDateOfBirth.getText().toString();
                         String mobileNumber = editTextMobileNumber.getText().toString();
+                        loadingMessage.setText("Loading. PLease wait..");
                         loginToServer(campus, registerNumber, dateOfBirth, mobileNumber);
                         break;
                     case R.id.input_dob:
@@ -154,6 +158,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onFailure(Status status) {
                 Toast.makeText(getActivity(), status.getMessage(), Toast.LENGTH_SHORT).show();
+                loadingMessage.setText("");
                 progress = PROGRESS_START;
                 progressBar.setProgress(progress);
             }
@@ -161,7 +166,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onProgress() {
                 progress = progress + PROGRESS_INCREMENT;
-                progressBar.setProgress(progress);
+                progressBar.incrementProgressBy(progress);
 
             }
         };

@@ -27,6 +27,7 @@ package com.karthikb351.vitinfo2.fragment.courses;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ import android.widget.TextView;
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.activity.DetailsActivity;
+import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.utility.Constants;
@@ -48,6 +50,7 @@ import de.greenrobot.event.EventBus;
 
 public class CoursesFragment extends Fragment {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private List<Course> courses;
     private RecyclerView recyclerView;
     private CourseListAdapter courseListAdapter;
@@ -69,6 +72,7 @@ public class CoursesFragment extends Fragment {
             rootView = inflater.inflate(R.layout.app_message_not_available, container, false);
         } else {
             rootView = inflater.inflate(R.layout.fragment_courses, container, false);
+            swipeRefreshLayout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_refresh_layout);
         }
         initialize();
         return rootView;
@@ -92,6 +96,14 @@ public class CoursesFragment extends Fragment {
             });
             recyclerView.setLayoutManager(courseLayoutManager);
             recyclerView.setAdapter(courseListAdapter);
+
+            swipeRefreshLayout.setColorSchemeColors(getActivity().getResources().getColor(R.color.colorAccent));
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    ((MainActivity) getActivity()).pullToRefresh();
+                }
+            });
         }
         String Title = getActivity().getResources().getString(R.string.fragment_courses_title);
         getActivity().setTitle(Title);
