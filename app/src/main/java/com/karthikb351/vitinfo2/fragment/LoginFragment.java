@@ -179,7 +179,7 @@ public class LoginFragment extends Fragment {
         RequestConfig requestConfig = new RequestConfig(new ResultListener() {
             @Override
             public void onSuccess() {
-                ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().refreshData(getActivity(), resultListener);
+                ((MainApplication) getActivity().getApplication()).getDataHolderInstance().refreshData(getActivity(), resultListener);
             }
 
             @Override
