@@ -158,28 +158,41 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onFailure(Status status) {
-                Toast.makeText(getActivity(), status.getMessage(), Toast.LENGTH_SHORT).show();
-                loadingMessage.setText("");
-                progress = PROGRESS_START;
-                progressBar.setProgress(progress);
+                try {
+                    Toast.makeText(getActivity(), status.getMessage(), Toast.LENGTH_SHORT).show();
+                    loadingMessage.setText("");
+                    progress = PROGRESS_START;
+                    progressBar.setProgress(progress);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
             public void onProgress() {
-                LoginFragment.this.getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        progress = progress + PROGRESS_INCREMENT;
-                        progressBar.incrementProgressBy(PROGRESS_INCREMENT);
-                    }
-                });
+                try {
+                    LoginFragment.this.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progress = progress + PROGRESS_INCREMENT;
+                            progressBar.incrementProgressBy(PROGRESS_INCREMENT);
+                        }
+                    });
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
             }
         };
 
         RequestConfig requestConfig = new RequestConfig(new ResultListener() {
             @Override
             public void onSuccess() {
-                ((MainApplication) getActivity().getApplication()).getDataHolderInstance().refreshData(getActivity(), resultListener);
+                try {
+                    ((MainApplication) getActivity().getApplication()).getDataHolderInstance().refreshData(getActivity(), resultListener);
+                } catch (NullPointerException ignore){}
+
             }
 
             @Override
@@ -189,13 +202,17 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onProgress() {
-                LoginFragment.this.getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        progress = progress + PROGRESS_INCREMENT;
-                        progressBar.incrementProgressBy(PROGRESS_INCREMENT);
-                    }
-                });
+                try {
+                    LoginFragment.this.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            progress = progress + PROGRESS_INCREMENT;
+                            progressBar.incrementProgressBy(PROGRESS_INCREMENT);
+                        }
+                    });
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
             }
         });
         requestConfig.addRequest(RequestConfig.REQUEST_SYSTEM);

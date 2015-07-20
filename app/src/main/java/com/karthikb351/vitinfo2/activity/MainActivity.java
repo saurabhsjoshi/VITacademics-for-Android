@@ -70,7 +70,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView headerCampus;
 
     private static String toTitleCase(String text) {
-        return text.substring(0, 1).toUpperCase() + text.substring(1);
+        try {
+            return text.substring(0, 1).toUpperCase() + text.substring(1);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     @Override
