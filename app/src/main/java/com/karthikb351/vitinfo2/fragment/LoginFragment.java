@@ -28,7 +28,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +56,7 @@ import java.util.Locale;
 public class LoginFragment extends Fragment {
 
     private final int PROGRESS_START = 0;
+    private final int PROGRESS_END = 100;
     private final int PROGRESS_INCREMENT = 20;
     private EditText editTextRegisterNumber, editTextDateOfBirth, editTextMobileNumber;
     private Button buttonLogin;
@@ -151,6 +151,8 @@ public class LoginFragment extends Fragment {
         final ResultListener resultListener = new ResultListener() {
             @Override
             public void onSuccess() {
+                progress = PROGRESS_END;
+                progressBar.setProgress(progress);
                 startActivity(new Intent(getActivity(), MainActivity.class));
             }
 
@@ -159,12 +161,11 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getActivity(), status.getMessage(), Toast.LENGTH_SHORT).show();
                 loadingMessage.setText("");
                 progress = PROGRESS_START;
-                progressBar.setProgress(PROGRESS_INCREMENT);
+                progressBar.setProgress(progress);
             }
 
             @Override
             public void onProgress() {
-                Log.d("PROGRESS" , "Reaching progress");
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -188,12 +189,11 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onProgress(){
-            Log.d("PROGRESS" , "Reaching progress");
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         progress = progress + PROGRESS_INCREMENT;
-                        progressBar.incrementProgressBy(progress);
+                        progressBar.incrementProgressBy(PROGRESS_INCREMENT);
                     }
                 });
             }
