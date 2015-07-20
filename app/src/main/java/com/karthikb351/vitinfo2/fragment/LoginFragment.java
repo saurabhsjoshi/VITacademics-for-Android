@@ -166,7 +166,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onProgress() {
-                getActivity().runOnUiThread(new Runnable() {
+                LoginFragment.this.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         progress = progress + PROGRESS_INCREMENT;
@@ -189,7 +189,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onProgress(){
-                getActivity().runOnUiThread(new Runnable() {
+                LoginFragment.this.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         progress = progress + PROGRESS_INCREMENT;
