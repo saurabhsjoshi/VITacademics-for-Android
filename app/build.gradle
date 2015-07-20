@@ -47,10 +47,6 @@ android {
         versionName "4.0.1"
     }
     buildTypes {
-        release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
     }
 }
 
@@ -66,6 +62,9 @@ repositories {
 }
 
 dependencies {
+    //Uncomment to generate release APK
+    //apply from: project.property("VITacademics.signing") + ".gradle";
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // Android Support
