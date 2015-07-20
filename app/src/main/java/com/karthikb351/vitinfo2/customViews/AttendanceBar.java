@@ -6,7 +6,6 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
@@ -32,9 +31,9 @@ public class AttendanceBar extends View {
     ColorStateList ringColor, textColor;
     float percentage, innerRectOffset;
     String percentageText;
-    Path path;
     Paint paint;
     RectF rectF;
+    Rect rect;
 
     public AttendanceBar(Context context) {
         super(context);
@@ -44,7 +43,7 @@ public class AttendanceBar extends View {
         super(context, attrs);
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         rectF = new RectF();
-        path = new Path();
+        rect = new Rect();
         TypedArray typedArray = context.getTheme().obtainStyledAttributes(
                 attrs,
                 R.styleable.AttendanceBar, 0, 0);
@@ -86,13 +85,12 @@ public class AttendanceBar extends View {
 
         innerRectOffset = getWidth() - getWidth() / innerRadiusRatio - paint.getStrokeWidth();
         rectF.set(paint.getStrokeWidth(), paint.getStrokeWidth(), innerRectOffset, innerRectOffset);
-        path.arcTo(rectF, 270, percentage / 100 * 360);
-        canvas.drawPath(path, paint);
+        canvas.drawArc(rectF, 270, percentage / 100 * 360, false, paint);
 
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(textColor.getDefaultColor());
         paint.setTextSize(fontSize);
-        Rect rect = new Rect();
+
         paint.getTextBounds(percentageText, 0, percentageText.length(), rect);
         canvas.drawText(percentageText,
                 rectF.centerX() - paint.measureText(percentageText) / 2,
@@ -112,9 +110,4 @@ public class AttendanceBar extends View {
         invalidate();
     }
 
-    @Override
-    public void invalidate() {
-        path = new Path();
-        super.invalidate();
-    }
 }
