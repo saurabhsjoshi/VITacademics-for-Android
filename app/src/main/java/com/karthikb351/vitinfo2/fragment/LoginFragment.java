@@ -188,7 +188,7 @@ public class LoginFragment extends Fragment {
             }
 
             @Override
-            public void onProgress(){
+            public void onProgress() {
                 LoginFragment.this.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

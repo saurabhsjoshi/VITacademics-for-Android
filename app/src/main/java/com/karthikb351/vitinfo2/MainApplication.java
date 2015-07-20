@@ -54,8 +54,7 @@ public class MainApplication extends Application {
         if (this.dataHolder != null) {
             if (this.dataHolder.isInitialized()) {
                 return this.dataHolder;
-            }
-            else {
+            } else {
                 this.dataHolder.refreshData(getApplicationContext());
                 return this.dataHolder;
             }
@@ -64,8 +63,7 @@ public class MainApplication extends Application {
 
         if (this.dataHolder.isInitialized()) {
             return this.dataHolder;
-        }
-        else {
+        } else {
             this.dataHolder.refreshData(getApplicationContext());
             return this.dataHolder;
         }

@@ -57,7 +57,6 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-
         Intent intent = getIntent();
         if (intent.hasExtra(Constants.INTENT_EXTRA_CLASS_NUMBER)) {
             setContentView(R.layout.activity_details);

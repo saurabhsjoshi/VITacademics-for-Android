@@ -51,8 +51,7 @@ public class AboutFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
         getActivity().setTitle(getString(R.string.fragment_about_title));
@@ -79,8 +78,7 @@ public class AboutFragment extends Fragment {
         return view;
     }
 
-    void sendFeedBack(View view)
-    {
+    void sendFeedBack(View view) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType(Constants.INTENT_TYPE_PLAIN);
         intent.setData(Uri.parse(Constants.FEEDBACK_EMAIL_LINK));
@@ -88,8 +86,7 @@ public class AboutFragment extends Fragment {
         startActivity(intent);
     }
 
-    void contributeClick(View view)
-    {
+    void contributeClick(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.GITHUB_COLLEGECODE_URL));
         startActivity(browserIntent);
     }
