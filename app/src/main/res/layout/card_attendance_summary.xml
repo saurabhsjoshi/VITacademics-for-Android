@@ -33,30 +33,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="100">
 
-        <!--<RelativeLayout-->
-        <!--android:id="@+id/layout_ring"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_alignParentEnd="true">-->
-        <!--<ProgressBar-->
-        <!--android:id="@+id/progress_bar_attendance"-->
-        <!--style="?android:attr/progressBarStyleHorizontal"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="150dp"-->
-        <!--android:indeterminate="false"-->
-        <!--android:max="100"-->
-        <!--android:progress="60"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:progressDrawable="@drawable/ring_attendance_red" />-->
-
-
-        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        <LinearLayout
             android:id="@+id/layout_course_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -72,9 +53,7 @@
                 android:layout_marginTop="20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"
-                android:text="CSE309"
-                 />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/course_name"
@@ -84,7 +63,6 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="1dp"
-                android:text="Programming Language Translators"
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
@@ -108,6 +86,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_weight="1"
                     android:text="@string/label_class_go"
                     android:textColor="@android:color/white"
                     android:textSize="17sp" />
@@ -116,6 +96,7 @@
                     android:id="@+id/button_attend_plus"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="50dp"
+                    android:layout_gravity="end"
                     android:layout_height="wrap_content"
                     android:text="@string/button_class_attend"
                     android:textColor="@android:color/white"
@@ -126,6 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/button_miss_minus"
                     style="?android:attr/borderlessButtonStyle"
@@ -134,33 +116,30 @@
                     android:text="@string/button_class_miss"
                     android:textColor="@android:color/white"
                     android:textSize="19sp" />
+
                 <TextView
                     android:id="@+id/txt_miss"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="@string/label_class_go"
                     android:textColor="@android:color/white"
                     android:textSize="17sp" />
+
                 <Button
                     android:id="@+id/button_miss_plus"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="50dp"
+                    android:layout_gravity="end"
                     android:layout_height="wrap_content"
                     android:text="@string/button_class_attend"
                     android:textColor="@android:color/white"
                     android:textSize="19sp" />
-                </LinearLayout>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/attendance_classes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="12dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:textColor="@android:color/white"
-                android:textSize="19sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -170,15 +149,25 @@
             android:orientation="vertical">
 
             <com.karthikb351.vitinfo2.customViews.AttendanceBar
+                android:id="@+id/attendanceBar"
                 android:layout_width="200dp"
-                android:layout_height="150dp"
+                android:layout_height="140dp"
+                android:layout_gravity="end"
                 android:layout_marginTop="10dp"
                 app:fontSize="22sp"
                 app:innerRadiusRatio="9"
-                android:layout_gravity="end"
-                app:percentage="60"
                 app:ringColor="@color/lowAttend"
                 app:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/attendance_classes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:textColor="@android:color/white"
+                android:textSize="19sp" />
 
         </LinearLayout>
     </LinearLayout>

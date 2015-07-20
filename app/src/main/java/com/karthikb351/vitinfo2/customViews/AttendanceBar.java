@@ -101,5 +101,20 @@ public class AttendanceBar extends View {
         );
     }
 
+    public void setRingColor(ColorStateList ringColor) {
+        this.ringColor = ringColor;
+        invalidate();
+    }
 
+    public void setPercentage(int percentage) {
+        this.percentage = percentage;
+        this.percentageText = Integer.toString(percentage);
+        invalidate();
+    }
+
+    @Override
+    public void invalidate() {
+        path = new Path();
+        super.invalidate();
+    }
 }
