@@ -148,6 +148,13 @@ public class DatabaseController {
             protected void onPostExecute(Boolean result) {
                 if (result) {
                     Editor editor = sharedPreferences.edit();
+
+                    editor.putString(Constants.KEY_CAMPUS, refreshResponse.getCampus());
+                    editor.putString(Constants.KEY_REGISTERNUMBER, refreshResponse.getRegisterNumber());
+                    editor.putString(Constants.KEY_DATEOFBIRTH, refreshResponse.getDateOfBirth());
+                    editor.putString(Constants.KEY_MOBILE, refreshResponse.getMobileNumber());
+                    editor.apply();
+
                     editor.putString(Constants.KEY_SEMESTER, refreshResponse.getSemester());
                     editor.putString(Constants.KEY_COURSES_REFRESHED, refreshResponse.getRefreshed());
                     editor.apply();
