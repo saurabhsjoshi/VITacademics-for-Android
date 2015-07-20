@@ -101,9 +101,9 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
         holder.txtAttend.setText(context.getString(R.string.label_class_go, attend));
         holder.txtMiss.setText(context.getString(R.string.label_class_miss, miss));
-        holder.attendancePercent.setText(Integer.toString(getPercentage()));
-        holder.progressBarAttendance.setProgress(getPercentage());
-        setProgressBarDrawable(holder.progressBarAttendance);
+//        holder.attendancePercent.setText(Integer.toString(getPercentage()));
+//        holder.progressBarAttendance.setProgress(getPercentage());
+//        setProgressBarDrawable(holder.progressBarAttendance);
     }
 
     private int getPercentage() {
@@ -186,8 +186,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     public class AttendanceViewHolder extends RecyclerView.ViewHolder {
 
         public TextView date, detailStatus, classUnits, reason, txtMiss, txtAttend;
-        public TextView courseName, courseCode, attendanceClasses, attendancePercent;
-        public ProgressBar progressBarAttendance;
+        public TextView courseName, courseCode, attendanceClasses;
         public Button attendPlus, attendMinus, missPlus, missMinus;
 
         public AttendanceViewHolder(View view) {
@@ -205,8 +204,8 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             courseName = (TextView) view.findViewById(R.id.course_name);
             courseCode = (TextView) view.findViewById(R.id.course_code);
             attendanceClasses = (TextView) view.findViewById(R.id.attendance_classes);
-            attendancePercent = (TextView) view.findViewById(R.id.attendance_percent);
-            progressBarAttendance = (ProgressBar) view.findViewById(R.id.progress_bar_attendance);
+//            attendancePercent = (TextView) view.findViewById(R.id.attendance_percent);
+//            progressBarAttendance = (ProgressBar) view.findViewById(R.id.progress_bar_attendance);
         }
     }
 }

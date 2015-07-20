@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AttendanceBar">
+        <attr name="innerRadiusRatio" format="integer" />
+        <attr name="thicknessRatio" format="integer" />
+        <attr name="ringColor" format="color" />
+        <attr name="fontSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="percentage" format="float" />
+    </declare-styleable>
+</resources>
