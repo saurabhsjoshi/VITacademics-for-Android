@@ -172,7 +172,7 @@ public class TodayFragment extends Fragment {
             courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
             for (Course course : courses) {
                 Timing lastTiming = new Timing();
-                if(course.getTimings() != null) {
+                if (course.getTimings() != null) {
                     for (Timing timing : course.getTimings()) {
                         if (timing.getDay() == dayOfWeek && !(timing.equals(lastTiming))) {
                             finalArray.add(new Pair<>(course, timing));

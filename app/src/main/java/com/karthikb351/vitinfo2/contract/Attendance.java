@@ -27,6 +27,7 @@ package com.karthikb351.vitinfo2.contract;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.uk.rushorm.core.RushObject;
@@ -106,7 +107,10 @@ public class Attendance extends RushObject {
     }
 
     public List<AttendanceDetail> getDetails() {
-        return details;
+        if (details != null) {
+            return details;
+        }
+        return new ArrayList<>();
     }
 
     public void setDetails(List<AttendanceDetail> details) {

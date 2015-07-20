@@ -28,6 +28,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.karthikb351.vitinfo2.model.Status;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.uk.rushorm.core.RushObject;
@@ -135,7 +136,10 @@ public class Friend extends RushObject {
     }
 
     public List<FriendCourse> getCourses() {
-        return courses;
+        if (courses != null) {
+            return courses;
+        }
+        return new ArrayList<>();
     }
 
     public void setCourses(List<FriendCourse> courses) {
