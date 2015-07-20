@@ -43,7 +43,6 @@ import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.activity.LoginActivity;
 import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
@@ -179,7 +178,7 @@ public class LoginFragment extends Fragment {
         RequestConfig requestConfig = new RequestConfig(new ResultListener() {
             @Override
             public void onSuccess() {
-                ((MainApplication) getActivity().getApplication()).getDataHolderInstance().refreshData(getActivity(), resultListener);
+                ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().refreshData(getActivity(), resultListener);
             }
 
             @Override

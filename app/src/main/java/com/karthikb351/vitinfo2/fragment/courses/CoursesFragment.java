@@ -69,7 +69,7 @@ public class CoursesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
+        courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
         if (courses == null || courses.isEmpty()) {
             rootView = inflater.inflate(R.layout.app_message_not_available, container, false);
         } else {
@@ -122,7 +122,7 @@ public class CoursesFragment extends Fragment {
 
     private void initializeData() {
         try {
-            courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
+            courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
             courseListAdapter.notifyDataSetChanged();
         } catch (Exception ignore) {
         }

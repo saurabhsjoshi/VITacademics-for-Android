@@ -50,6 +50,27 @@ public class MainApplication extends Application {
         this.dataHolder = new DataHolder();
     }
 
+    public DataHolder getDataHolderInstanceInitialized() {
+        if (this.dataHolder != null) {
+            if (this.dataHolder.isInitialized()) {
+                return this.dataHolder;
+            }
+            else {
+                this.dataHolder.refreshData(getApplicationContext());
+                return this.dataHolder;
+            }
+        }
+        this.dataHolder = new DataHolder();
+
+        if (this.dataHolder.isInitialized()) {
+            return this.dataHolder;
+        }
+        else {
+            this.dataHolder.refreshData(getApplicationContext());
+            return this.dataHolder;
+        }
+    }
+
     public DataHolder getDataHolderInstance() {
         if (this.dataHolder != null) {
             return this.dataHolder;

@@ -72,7 +72,7 @@ public class GradesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        grades = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getGrades();
+        grades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGrades();
         if (grades == null || grades.isEmpty())
             layoutId = R.layout.app_message_not_available;
         else
@@ -84,10 +84,10 @@ public class GradesFragment extends Fragment {
     }
 
     public void initialize() {
-        cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCgpa();
-        grades = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getGrades();
-        gradeCounts = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getGradeCounts();
-        semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getSemesterWiseGrades();
+        cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
+        grades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGrades();
+        gradeCounts = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGradeCounts();
+        semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
 
         if (layoutId == R.layout.app_message_not_available) {
             errorMessage = (TextView) rootView.findViewById(R.id.message);

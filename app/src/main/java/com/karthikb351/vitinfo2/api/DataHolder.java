@@ -46,6 +46,8 @@ import co.uk.rushorm.core.RushSearch;
 
 public class DataHolder {
 
+    private boolean initialized;
+
     private String registerNumber;
     private String dateOfBirth;
     private String mobileNumber;
@@ -68,6 +70,10 @@ public class DataHolder {
     private List<Friend> friends;
     private String token;
     private String tokenIssued;
+
+    public DataHolder() {
+        initialized = false;
+    }
 
     public void refreshData(final Context context, final ResultListener resultListener) {
 
@@ -94,6 +100,9 @@ public class DataHolder {
             @Override
             protected void onPostExecute(Boolean result) {
                 super.onPostExecute(result);
+
+                DataHolder.this.initialized = result;
+
                 if (result) {
 
                     SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
@@ -121,91 +130,144 @@ public class DataHolder {
 
     }
 
+    public void refreshData(final Context context) {
+
+        new AsyncTask<Boolean, Void, Boolean>() {
+
+            @Override
+            protected Boolean doInBackground(Boolean... params) {
+                try {
+                    messages = new RushSearch().find(Message.class);
+                    contributors = new RushSearch().find(Contributor.class);
+                    courses = new RushSearch().find(Course.class);
+                    withdrawnCourses = new RushSearch().find(WithdrawnCourse.class);
+                    grades = new RushSearch().find(Grade.class);
+                    gradeCounts = new RushSearch().find(GradeCount.class);
+                    semesterWiseGrades = new RushSearch().find(SemesterWiseGrade.class);
+                    friends = new RushSearch().find(Friend.class);
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                super.onPostExecute(result);
+
+                DataHolder.this.initialized = result;
+
+                SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+
+                campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
+                registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
+                dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);
+                mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, null);
+                latestVersion = sharedPreferences.getString(Constants.KEY_ANDROID_LATEST_VERSION, null);
+                earliestSupportedVersion = sharedPreferences.getString(Constants.KEY_ANDROID_SUPPORTED_VERSION, null);
+                semester = sharedPreferences.getString(Constants.KEY_SEMESTER, null);
+                coursesRefreshed = sharedPreferences.getString(Constants.KEY_COURSES_REFRESHED, null);
+                gradesRefreshed = sharedPreferences.getString(Constants.KEY_GRADES_REFRESHED, null);
+                token = sharedPreferences.getString(Constants.KEY_SHARE_TOKEN, null);
+                tokenIssued = sharedPreferences.getString(Constants.KEY_SHARE_TOKEN_ISSUED, null);
+                cgpa = sharedPreferences.getFloat(Constants.KEY_GRADES_CGPA, 0);
+                creditsEarned = sharedPreferences.getInt(Constants.KEY_GRADES_CREDITS_EARNED, 0);
+                creditsRegistered = sharedPreferences.getInt(Constants.KEY_GRADES_CREDITS_REGISTERED, 0);
+            }
+        }.execute(true);
+
+    }
+
+    public boolean isInitialized() {
+        return initialized;
+    }
+
     public String getRegisterNumber() {
-        return this.registerNumber;
+        return registerNumber;
     }
 
     public String getDateOfBirth() {
-        return this.dateOfBirth;
+        return dateOfBirth;
     }
 
     public String getMobileNumber() {
-        return this.mobileNumber;
+        return mobileNumber;
     }
 
     public String getCampus() {
-        return this.campus;
+        return campus;
     }
 
     public String getLatestVersion() {
-        return this.latestVersion;
+        return latestVersion;
     }
 
     public String getEarliestSupportedVersion() {
-        return this.earliestSupportedVersion;
+        return earliestSupportedVersion;
     }
 
     public List<Message> getMessages() {
-        return this.messages;
+        return messages;
     }
 
     public List<Contributor> getContributors() {
-        return this.contributors;
+        return contributors;
     }
 
     public String getSemester() {
-        return this.semester;
+        return semester;
     }
 
     public List<Course> getCourses() {
-        return this.courses;
+        return courses;
     }
 
     public List<WithdrawnCourse> getWithdrawnCourses() {
-        return this.withdrawnCourses;
+        return withdrawnCourses;
     }
 
     public String getCoursesRefreshed() {
-        return this.coursesRefreshed;
+        return coursesRefreshed;
     }
 
     public List<Grade> getGrades() {
-        return this.grades;
+        return grades;
     }
 
     public List<GradeCount> getGradeCounts() {
-        return this.gradeCounts;
+        return gradeCounts;
     }
 
     public List<SemesterWiseGrade> getSemesterWiseGrades() {
-        return this.semesterWiseGrades;
+        return semesterWiseGrades;
     }
 
     public float getCgpa() {
-        return this.cgpa;
+        return cgpa;
     }
 
     public int getCreditsEarned() {
-        return this.creditsEarned;
+        return creditsEarned;
     }
 
     public int getCreditsRegistered() {
-        return this.creditsRegistered;
+        return creditsRegistered;
     }
 
     public String getGradesRefreshed() {
-        return this.gradesRefreshed;
+        return gradesRefreshed;
     }
 
     public List<Friend> getFriends() {
-        return this.friends;
+        return friends;
     }
 
     public String getToken() {
-        return this.token;
+        return token;
     }
 
     public String getTokenIssued() {
-        return this.tokenIssued;
+        return tokenIssued;
     }
 }

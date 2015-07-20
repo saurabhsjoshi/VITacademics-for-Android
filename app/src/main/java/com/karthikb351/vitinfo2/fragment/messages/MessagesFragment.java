@@ -65,7 +65,7 @@ public class MessagesFragment extends Fragment {
     }
 
     public void initialize() {
-        messages = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getMessages();
+        messages = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getMessages();
         Collections.reverse(messages);
         layoutManager = new LinearLayoutManager(getActivity());
         messageListAdapter = new MessageListAdapter(getActivity(), messages);

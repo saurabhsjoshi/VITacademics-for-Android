@@ -130,7 +130,7 @@ public class DetailsActivity extends AppCompatActivity {
                 return null;
             }
 
-            List<Course> courseList = ((MainApplication) getApplication()).getDataHolderInstance().getCourses();
+            List<Course> courseList = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getCourses();
             for (Course courseItem : courseList) {
                 if (courseItem.getClassNumber() == classNumber) {
                     foundCourse = courseItem;

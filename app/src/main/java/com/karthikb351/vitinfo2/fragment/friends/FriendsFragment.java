@@ -73,7 +73,7 @@ public class FriendsFragment extends Fragment {
     }
 
     void initialize() {
-        friends = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getFriends();
+        friends = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getFriends();
 
         if (layoutId == R.layout.app_message_not_available) {
             errorMessage = (TextView) rootView.findViewById(R.id.message);

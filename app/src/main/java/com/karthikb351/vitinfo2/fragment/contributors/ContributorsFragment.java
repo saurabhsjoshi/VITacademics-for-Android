@@ -64,7 +64,7 @@ public class ContributorsFragment extends Fragment {
     }
 
     public void initialize() {
-        contributors = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getContributors();
+        contributors = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getContributors();
 
         layoutManager = new LinearLayoutManager(getActivity());
         contributorListAdapter = new ContributorListAdapter(getActivity(), contributors);

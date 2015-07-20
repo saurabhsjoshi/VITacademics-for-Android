@@ -148,7 +148,7 @@ public class TimetableDayFragment extends Fragment {
         @Override
         protected List<Pair<Course, Timing>> doInBackground(Void... params) {
             List<Pair<Course, Timing>> finalArray = new ArrayList<>();
-            courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
+            courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
             for (Course course : courses) {
                 Timing lastTiming = new Timing();
                 for (Timing timing : course.getTimings()) {

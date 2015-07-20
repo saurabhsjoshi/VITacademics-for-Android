@@ -73,11 +73,11 @@ public class CGPACalculatorFragment extends Fragment implements View.OnClickList
     }
 
     public void initialize() {
-        this.grades = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getGrades();
-        this.courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCourses();
-        this.creditsRegistered = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCreditsRegistered();
-        this.creditsEarned = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCreditsEarned();
-        this.cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstance().getCgpa();
+        this.grades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGrades();
+        this.courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
+        this.creditsRegistered = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCreditsRegistered();
+        this.creditsEarned = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCreditsEarned();
+        this.cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         this.listAdapter = new CGPACalculatorListAdapter(getActivity(), courses, grades, creditsRegistered, creditsEarned, cgpa);
