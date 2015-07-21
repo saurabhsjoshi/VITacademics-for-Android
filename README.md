@@ -1,7 +1,9 @@
 #VITacademics
 
-The VITacademics app for Android.
-Get it from [here](https://play.google.com/store/apps/details?id=com.karthikb351.vitinfo2).
+<a href="https://play.google.com/store/apps/details?id=com.karthikb351.vitinfo2">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
+</a>
 
 You'll be able to check your courses and their respective attendance and marks for the semester. The app shall help you keep track of your academic metrics at VIT.
 
