@@ -46,7 +46,7 @@ import java.util.List;
 public class OverviewFragment extends Fragment {
 
     private Course course;
-    private TextView courseName, classNumber, courseCode, faculty, courseMode, courseType, ltpc, courseOption;
+    private TextView courseName, classNumber, courseCode, faculty, courseMode, courseType, ltpjc, courseOption;
     private TextView registeredOn, slot, venue;
     private TextView projectTitle;
     private ListView timingList;
@@ -86,7 +86,7 @@ public class OverviewFragment extends Fragment {
         faculty = (TextView) view.findViewById(R.id.faculty);
         courseType = (TextView) view.findViewById(R.id.course_type);
         courseMode = (TextView) view.findViewById(R.id.course_mode);
-        ltpc = (TextView) view.findViewById(R.id.ltpc);
+        ltpjc = (TextView) view.findViewById(R.id.ltpjc);
         courseOption = (TextView) view.findViewById(R.id.course_option);
 
         if (course.getCourseType() == Constants.COURSE_TYPE_PBC) {
@@ -130,7 +130,7 @@ public class OverviewFragment extends Fragment {
         classNumber.setText(getString(R.string.label_class_number, course.getClassNumber()));
         courseCode.setText(getString(R.string.label_course_code, course.getCourseCode()));
         faculty.setText(getString(R.string.label_faculty, course.getFaculty()));
-        ltpc.setText(getString(R.string.label_ltpc, course.getLtpc()));
+        ltpjc.setText(getString(R.string.label_ltpjc, course.getLtpjc()));
         courseType.setText(getString(R.string.label_course_type, course.getSubjectType()));
         courseMode.setText(getString(R.string.label_course_mode, course.getCourseMode()));
         courseOption.setText(getString(R.string.label_course_option, course.getCourseOption()));

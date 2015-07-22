@@ -75,7 +75,7 @@
         <!-- RushORM Settings -->
         <meta-data
             android:name="Rush_db_version"
-            android:value="1" />
+            android:value="2" />
         <meta-data
             android:name="Rush_db_name"
             android:value="vitacademics.db" />

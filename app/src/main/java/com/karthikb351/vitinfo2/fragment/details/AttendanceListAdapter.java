@@ -73,7 +73,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
         }
 
         if (course.getCourseType() == Constants.COURSE_TYPE_LBC) {
-            offset = Character.getNumericValue(course.getLtpc().charAt(2));
+            offset = Character.getNumericValue(course.getLtpjc().charAt(2));
         }
     }
 

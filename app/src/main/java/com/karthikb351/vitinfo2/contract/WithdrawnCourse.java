@@ -28,6 +28,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import co.uk.rushorm.core.RushObject;
+import co.uk.rushorm.core.annotations.RushRenamed;
 import co.uk.rushorm.core.annotations.RushTableAnnotation;
 
 @RushTableAnnotation
@@ -50,8 +51,9 @@ public class WithdrawnCourse extends RushObject {
     private String subjectType;
 
     @Expose
-    @SerializedName("ltpc")
-    private String LTPC;
+    @SerializedName("ltpjc")
+    @RushRenamed(names = {"ltpc"})
+    private String ltpjc;
 
     @Expose
     @SerializedName("course_mode")
@@ -60,12 +62,12 @@ public class WithdrawnCourse extends RushObject {
     public WithdrawnCourse() {
     }
 
-    public WithdrawnCourse(int classNumber, String courseCode, String courseTitle, String subjectType, String LTPC, String courseMode) {
+    public WithdrawnCourse(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpjc, String courseMode) {
         this.classNumber = classNumber;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
         this.subjectType = subjectType;
-        this.LTPC = LTPC;
+        this.ltpjc = ltpjc;
         this.courseMode = courseMode;
     }
 
@@ -101,12 +103,12 @@ public class WithdrawnCourse extends RushObject {
         this.subjectType = subjectType;
     }
 
-    public String getLTPC() {
-        return LTPC;
+    public String getLtpjc() {
+        return ltpjc;
     }
 
-    public void setLTPC(String LTPC) {
-        this.LTPC = LTPC;
+    public void setLtpjc(String ltpjc) {
+        this.ltpjc = ltpjc;
     }
 
     public String getCourseMode() {

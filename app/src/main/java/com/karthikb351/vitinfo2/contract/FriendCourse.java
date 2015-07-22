@@ -32,6 +32,7 @@ import java.util.List;
 
 import co.uk.rushorm.core.RushObject;
 import co.uk.rushorm.core.annotations.RushList;
+import co.uk.rushorm.core.annotations.RushRenamed;
 import co.uk.rushorm.core.annotations.RushTableAnnotation;
 
 @RushTableAnnotation
@@ -54,8 +55,9 @@ public class FriendCourse extends RushObject {
     private String subjectType;
 
     @Expose
-    @SerializedName("ltpc")
-    private String ltpc;
+    @SerializedName("ltpjc")
+    @RushRenamed(names = {"ltpc"})
+    private String ltpjc;
 
     @Expose
     @SerializedName("course_mode")
@@ -93,12 +95,12 @@ public class FriendCourse extends RushObject {
     public FriendCourse() {
     }
 
-    public FriendCourse(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpc, String courseMode, String courseOption, String slot, String venue, String faculty, String projectTitle, int courseType, List<Timing> timings) {
+    public FriendCourse(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpjc, String courseMode, String courseOption, String slot, String venue, String faculty, String projectTitle, int courseType, List<Timing> timings) {
         this.classNumber = classNumber;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
         this.subjectType = subjectType;
-        this.ltpc = ltpc;
+        this.ltpjc = ltpjc;
         this.courseMode = courseMode;
         this.courseOption = courseOption;
         this.slot = slot;
@@ -141,12 +143,12 @@ public class FriendCourse extends RushObject {
         this.subjectType = subjectType;
     }
 
-    public String getLtpc() {
-        return ltpc;
+    public String getLtpjc() {
+        return ltpjc;
     }
 
-    public void setLtpc(String ltpc) {
-        this.ltpc = ltpc;
+    public void setLtpjc(String ltpjc) {
+        this.ltpjc = ltpjc;
     }
 
     public String getCourseMode() {

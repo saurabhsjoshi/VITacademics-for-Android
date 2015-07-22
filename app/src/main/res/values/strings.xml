@@ -69,7 +69,7 @@
     <string name="label_course_type" formatted="false">Type: %1$s</string>
     <string name="label_course_mode" formatted="false">Mode: %1$s</string>
     <string name="label_course_option" formatted="false">Option: %1$s</string>
-    <string name="label_ltpc" formatted="false">LTPC: %1$s</string>
+    <string name="label_ltpjc" formatted="false">LTPJC: %1$s</string>
     <string name="label_faculty" formatted="false">Faculty: %1$s</string>
     <string name="label_slot" formatted="false">Slot: %1$s</string>
     <string name="label_venue" formatted="false">Venue: %1$s</string>

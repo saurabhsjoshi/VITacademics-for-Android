@@ -75,7 +75,7 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
         holder.oldCGPA.setText(Float.toString(cgpa));
         holder.courseName.setText(courses.get(position).getCourseTitle());
         holder.courseCode.setText(courses.get(position).getCourseCode());
-        holder.courseCredits.setText(courses.get(position).getLtpc().charAt(3));
+        holder.courseCredits.setText(courses.get(position).getLtpjc().substring(4));
     }
 
     @Override
@@ -120,8 +120,7 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             totalgradeValue = totalgradeValue + position;
-            String ltpc = courses.get(position).getLtpc();
-            int credits = (int) ltpc.charAt(3);
+            int credits = Integer.parseInt(courses.get(position).getLtpjc().substring(4));
             newCredits += credits;
         }
 
