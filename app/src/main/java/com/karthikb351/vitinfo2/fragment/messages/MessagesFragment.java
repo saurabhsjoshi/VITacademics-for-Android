@@ -65,8 +65,7 @@ public class MessagesFragment extends Fragment {
     }
 
     public void initialize() {
-        messages = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getMessages();
-        Collections.reverse(messages);
+        initializeData();
         layoutManager = new LinearLayoutManager(getActivity());
         messageListAdapter = new MessageListAdapter(getActivity(), messages);
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_messages);
@@ -74,7 +73,15 @@ public class MessagesFragment extends Fragment {
         recyclerView.setAdapter(messageListAdapter);
         String Title = getActivity().getResources().getString(R.string.fragment_messages_title);
         getActivity().setTitle(Title);
+    }
 
+    private void initializeData() {
+        try {
+            messages = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getMessages();
+            Collections.reverse(messages);
+            messageListAdapter.notifyDataSetChanged();
+        } catch (Exception ignore) {
+        }
     }
 
     @Override

@@ -177,15 +177,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 initializeData();
-                if (callback != null)
+                if (callback != null) {
                     callback.onSuccess();
+                }
                 EventBus.getDefault().post(new RefreshFragmentEvent());
             }
 
             @Override
             public void onFailure(Status status) {
-                if (callback != null)
+                if (callback != null) {
                     callback.onFailure(status);
+                }
                 Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
             }
         };

@@ -85,7 +85,6 @@ public class GradesFragment extends Fragment {
 
     public void initialize() {
         cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
-        grades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGrades();
         gradeCounts = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGradeCounts();
         semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
 

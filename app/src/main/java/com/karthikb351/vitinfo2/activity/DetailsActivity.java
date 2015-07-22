@@ -56,13 +56,14 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        List<Course> courseList = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getCourses();
 
         Intent intent = getIntent();
         if (intent.hasExtra(Constants.INTENT_EXTRA_CLASS_NUMBER)) {
             setContentView(R.layout.activity_details);
             initToolbar();
             loadProgress = (ProgressBar) findViewById(R.id.progress_bar_details);
-            new LoadCourseTask().execute(intent.getIntExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, -1));
+            new LoadCourseTask(courseList).execute(intent.getIntExtra(Constants.INTENT_EXTRA_CLASS_NUMBER, -1));
 
         } else {
             setContentView(R.layout.app_message_not_available);
@@ -94,6 +95,13 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private class LoadCourseTask extends AsyncTask<Integer, Void, Course> {
+
+        private List<Course> courses;
+
+        LoadCourseTask(List<Course> courses) {
+            this.courses = courses;
+        }
+
         @Override
         protected void onPreExecute() {
             loadProgress.setVisibility(View.VISIBLE);
@@ -129,8 +137,7 @@ public class DetailsActivity extends AppCompatActivity {
                 return null;
             }
 
-            List<Course> courseList = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getCourses();
-            for (Course courseItem : courseList) {
+            for (Course courseItem : courses) {
                 if (courseItem.getClassNumber() == classNumber) {
                     foundCourse = courseItem;
                 }
@@ -138,6 +145,5 @@ public class DetailsActivity extends AppCompatActivity {
             return foundCourse;
         }
     }
-
 
 }

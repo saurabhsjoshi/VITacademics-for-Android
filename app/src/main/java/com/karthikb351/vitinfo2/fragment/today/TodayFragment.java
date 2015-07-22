@@ -119,6 +119,7 @@ public class TodayFragment extends Fragment {
     }
 
     private void initializeData() {
+        courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
         new LoadTodayTask().execute();
     }
 
@@ -169,7 +170,6 @@ public class TodayFragment extends Fragment {
         @Override
         protected List<Pair<Course, Timing>> doInBackground(Void... params) {
             List<Pair<Course, Timing>> finalArray = new ArrayList<>();
-            courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
             for (Course course : courses) {
                 Timing lastTiming = new Timing();
                 if (course.getTimings() != null) {

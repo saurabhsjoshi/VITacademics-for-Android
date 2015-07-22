@@ -191,8 +191,8 @@ public class LoginFragment extends Fragment {
             public void onSuccess() {
                 try {
                     ((MainApplication) getActivity().getApplication()).getDataHolderInstance().refreshData(getActivity(), resultListener);
-                } catch (NullPointerException ignore){}
-
+                } catch (NullPointerException ignore){
+                }
             }
 
             @Override
