@@ -34,7 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:id="@+id/course_name"/>
+        android:id="@+id/course_name"
+        android:textSize="@dimen/abc_text_size_headline_material" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,15 +53,15 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:textColor="@android:color/black"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
         android:id="@+id/faculty"
         android:textSize="@dimen/abc_text_size_body_1_material" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:textColor="@android:color/black"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
         android:id="@+id/course_type"
         android:textSize="@dimen/abc_text_size_body_1_material" />
 
@@ -76,14 +77,14 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:id="@+id/ltpjc"
-        android:textSize="@dimen/abc_text_size_body_1_material" />
+        android:textSize="@dimen/abc_text_size_body_1_material"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:id="@+id/course_option"
-        android:textSize="@dimen/abc_text_size_body_1_material" />
+        android:textSize="@dimen/abc_text_size_body_1_material"/>
 
     <TextView
         android:layout_width="wrap_content"
