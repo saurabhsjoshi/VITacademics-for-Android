@@ -25,6 +25,7 @@
 package com.karthikb351.vitinfo2.fragment.courses;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     @Override
     public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        android.support.v7.widget.CardView rootcard = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(R.layout.card_courses_course, parent, false);
+        CardView rootcard = (CardView) LayoutInflater.from(context).inflate(R.layout.card_courses_course, parent, false);
         return new CourseViewHolder(rootcard);
     }
 
