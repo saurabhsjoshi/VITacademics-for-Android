@@ -26,6 +26,7 @@ package com.karthikb351.vitinfo2.fragment.details;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Attendance;
 import com.karthikb351.vitinfo2.contract.AttendanceDetail;
 import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.customViews.AttendanceBar;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 
@@ -47,10 +49,8 @@ import java.util.List;
 
 public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAdapter.AttendanceViewHolder> {
 
-    private int layoutId;
     private Context context;
     private Course course;
-    private Attendance attendance;
     private List<AttendanceDetail> attendanceDetails;
 
     private int conducted, attended, miss = 0, attend = 0, offset = 1;
@@ -59,8 +59,9 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     public AttendanceListAdapter(Context context, Course course) {
         this.context = context;
         this.course = course;
+        Attendance attendance;
         if (course.getAttendance().isSupported()) {
-            this.attendance = course.getAttendance();
+            attendance = course.getAttendance();
             this.attendanceDetails = attendance.getDetails();
             this.conducted = attendance.getTotalClasses();
             this.attended = attendance.getAttendedClasses();
@@ -69,7 +70,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             }
         } else {
             this.attendanceDetails = new ArrayList<>();
-            this.attendance = new Attendance(context.getString(R.string.registration_date_unavailable), 0, 0, 0, attendanceDetails, true);
+            attendance = new Attendance(context.getString(R.string.registration_date_unavailable), 0, 0, 0, attendanceDetails, true);
         }
 
         if (course.getCourseType() == Constants.COURSE_TYPE_LBC) {
@@ -101,9 +102,10 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
         holder.txtAttend.setText(context.getString(R.string.label_class_go, attend));
         holder.txtMiss.setText(context.getString(R.string.label_class_miss, miss));
-        holder.attendancePercent.setText(Integer.toString(getPercentage()));
-        holder.progressBarAttendance.setProgress(getPercentage());
-        setProgressBarDrawable(holder.progressBarAttendance);
+
+        Log.d("attendancePercentage", "" + getPercentage());
+        holder.attendanceBar.setPercentage(getPercentage());
+//        setProgressBarDrawable(holder.progressBarAttendance);
     }
 
     private int getPercentage() {
@@ -175,6 +177,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
     @Override
     public int getItemViewType(int position) {
+        int layoutId;
         if (position == 0) {
             layoutId = R.layout.card_attendance_summary;
         } else {
@@ -185,9 +188,9 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
     public class AttendanceViewHolder extends RecyclerView.ViewHolder {
 
+        public AttendanceBar attendanceBar;
         public TextView date, detailStatus, classUnits, reason, txtMiss, txtAttend;
-        public TextView courseName, courseCode, attendanceClasses, attendancePercent;
-        public ProgressBar progressBarAttendance;
+        public TextView courseName, courseCode, attendanceClasses;
         public Button attendPlus, attendMinus, missPlus, missMinus;
 
         public AttendanceViewHolder(View view) {
@@ -205,8 +208,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             courseName = (TextView) view.findViewById(R.id.course_name);
             courseCode = (TextView) view.findViewById(R.id.course_code);
             attendanceClasses = (TextView) view.findViewById(R.id.attendance_classes);
-            attendancePercent = (TextView) view.findViewById(R.id.attendance_percent);
-            progressBarAttendance = (ProgressBar) view.findViewById(R.id.progress_bar_attendance);
+            attendanceBar = (AttendanceBar) view.findViewById(R.id.attendanceBar);
         }
     }
 }
