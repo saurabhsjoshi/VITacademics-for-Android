@@ -40,6 +40,7 @@ import com.karthikb351.vitinfo2.contract.WithdrawnCourse;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import co.uk.rushorm.core.RushSearch;
@@ -107,17 +108,17 @@ public class DataHolder {
 
                     SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
 
-                    campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
-                    registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
-                    dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);
-                    mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, null);
-                    latestVersion = sharedPreferences.getString(Constants.KEY_ANDROID_LATEST_VERSION, null);
-                    earliestSupportedVersion = sharedPreferences.getString(Constants.KEY_ANDROID_SUPPORTED_VERSION, null);
-                    semester = sharedPreferences.getString(Constants.KEY_SEMESTER, null);
-                    coursesRefreshed = sharedPreferences.getString(Constants.KEY_COURSES_REFRESHED, null);
-                    gradesRefreshed = sharedPreferences.getString(Constants.KEY_GRADES_REFRESHED, null);
-                    token = sharedPreferences.getString(Constants.KEY_SHARE_TOKEN, null);
-                    tokenIssued = sharedPreferences.getString(Constants.KEY_SHARE_TOKEN_ISSUED, null);
+                    campus = sharedPreferences.getString(Constants.KEY_CAMPUS, "");
+                    registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, "");
+                    dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, "");
+                    mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, "");
+                    latestVersion = sharedPreferences.getString(Constants.KEY_ANDROID_LATEST_VERSION, "");
+                    earliestSupportedVersion = sharedPreferences.getString(Constants.KEY_ANDROID_SUPPORTED_VERSION, "");
+                    semester = sharedPreferences.getString(Constants.KEY_SEMESTER, "");
+                    coursesRefreshed = sharedPreferences.getString(Constants.KEY_COURSES_REFRESHED, "");
+                    gradesRefreshed = sharedPreferences.getString(Constants.KEY_GRADES_REFRESHED, "");
+                    token = sharedPreferences.getString(Constants.KEY_SHARE_TOKEN, "");
+                    tokenIssued = sharedPreferences.getString(Constants.KEY_SHARE_TOKEN_ISSUED, "");
                     cgpa = sharedPreferences.getFloat(Constants.KEY_GRADES_CGPA, 0);
                     creditsEarned = sharedPreferences.getInt(Constants.KEY_GRADES_CREDITS_EARNED, 0);
                     creditsRegistered = sharedPreferences.getInt(Constants.KEY_GRADES_CREDITS_REGISTERED, 0);
@@ -208,11 +209,17 @@ public class DataHolder {
     }
 
     public List<Message> getMessages() {
-        return messages;
+        if (messages != null) {
+            return messages;
+        }
+        return new ArrayList<>();
     }
 
     public List<Contributor> getContributors() {
-        return contributors;
+        if (contributors != null) {
+            return contributors;
+        }
+        return new ArrayList<>();
     }
 
     public String getSemester() {
@@ -220,11 +227,17 @@ public class DataHolder {
     }
 
     public List<Course> getCourses() {
-        return courses;
+        if (courses != null) {
+            return courses;
+        }
+        return new ArrayList<>();
     }
 
     public List<WithdrawnCourse> getWithdrawnCourses() {
-        return withdrawnCourses;
+        if (withdrawnCourses != null) {
+            return withdrawnCourses;
+        }
+        return new ArrayList<>();
     }
 
     public String getCoursesRefreshed() {
@@ -232,15 +245,24 @@ public class DataHolder {
     }
 
     public List<Grade> getGrades() {
-        return grades;
+        if (grades != null) {
+            return grades;
+        }
+        return new ArrayList<>();
     }
 
     public List<GradeCount> getGradeCounts() {
-        return gradeCounts;
+        if (gradeCounts != null) {
+            return gradeCounts;
+        }
+        return new ArrayList<>();
     }
 
     public List<SemesterWiseGrade> getSemesterWiseGrades() {
-        return semesterWiseGrades;
+        if (semesterWiseGrades != null) {
+            return semesterWiseGrades;
+        }
+        return new ArrayList<>();
     }
 
     public float getCgpa() {
@@ -260,7 +282,10 @@ public class DataHolder {
     }
 
     public List<Friend> getFriends() {
-        return friends;
+        if (friends != null) {
+            return friends;
+        }
+        return new ArrayList<>();
     }
 
     public String getToken() {
