@@ -120,7 +120,7 @@ public class TodayFragment extends Fragment {
 
     private void initializeData() {
         courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
-        if (courses.isEmpty()) {
+        if (!(courses.isEmpty())) {
             new LoadTodayTask().execute();
         }
     }
