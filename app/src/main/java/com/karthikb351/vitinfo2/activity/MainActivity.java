@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private TextView headerUsername;
     private TextView headerCampus;
-    String fragmentPreference;
 
     private static String toTitleCase(String text) {
         try {
@@ -134,13 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        fragmentPreference = "TodayFragment";
-        try {
-            Class pref = Class.forName(fragmentPreference);
-        }
-        catch (ClassNotFoundException e){
-            e.printStackTrace();
-        }
+
             getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commitAllowingStateLoss();
     }
 
