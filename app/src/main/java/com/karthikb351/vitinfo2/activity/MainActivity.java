@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-            getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commitAllowingStateLoss();
     }
 
     private void switchFragment(int id) {
