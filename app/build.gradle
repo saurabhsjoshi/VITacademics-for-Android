@@ -43,8 +43,8 @@ android {
         applicationId "com.karthikb351.vitinfo2"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 39
-        versionName "4.1.0"
+        versionCode 40
+        versionName "4.2.0"
     }
     buildTypes {
     }

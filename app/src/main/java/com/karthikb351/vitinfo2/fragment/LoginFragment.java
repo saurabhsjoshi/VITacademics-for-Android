@@ -24,6 +24,7 @@
 
 package com.karthikb351.vitinfo2.fragment;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,6 +56,7 @@ import java.util.Locale;
 
 public class LoginFragment extends Fragment {
 
+    private Activity thisActivity;
     private final int PROGRESS_START = 0;
     private final int PROGRESS_END = 100;
     private final int PROGRESS_INCREMENT = 20;
@@ -140,6 +142,12 @@ public class LoginFragment extends Fragment {
         };
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        thisActivity = activity;
+    }
+
     private void showDatePicker(View view) {
         new DatePickerDialog(getActivity(), onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
@@ -153,26 +161,25 @@ public class LoginFragment extends Fragment {
             public void onSuccess() {
                 progress = PROGRESS_END;
                 progressBar.setProgress(progress);
-                startActivity(new Intent(getActivity(), MainActivity.class));
+                startActivity(new Intent(thisActivity, MainActivity.class));
             }
 
             @Override
             public void onFailure(Status status) {
                 try {
-                    Toast.makeText(getActivity(), status.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(thisActivity, status.getMessage(), Toast.LENGTH_SHORT).show();
                     loadingMessage.setText("");
                     progress = PROGRESS_START;
                     progressBar.setProgress(progress);
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
             public void onProgress() {
                 try {
-                    LoginFragment.this.getActivity().runOnUiThread(new Runnable() {
+                    thisActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             progress = progress + PROGRESS_INCREMENT;
@@ -190,7 +197,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onSuccess() {
                 try {
-                    ((MainApplication) getActivity().getApplication()).getDataHolderInstance().refreshData(getActivity(), resultListener);
+                    ((MainApplication) thisActivity.getApplication()).getDataHolderInstance().refreshData(thisActivity, resultListener);
                 } catch (NullPointerException ignore){
                 }
             }
@@ -203,7 +210,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onProgress() {
                 try {
-                    LoginFragment.this.getActivity().runOnUiThread(new Runnable() {
+                    thisActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             progress = progress + PROGRESS_INCREMENT;

@@ -34,13 +34,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/primary_text_default_material_light" />
 
     <TextView
         android:id="@+id/tv_settings_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="13sp"
-        android:textColor="@android:color/darker_gray"/>
+        android:textColor="@color/secondary_text_default_material_light" />
 
 </LinearLayout>
