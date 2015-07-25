@@ -66,8 +66,8 @@ public class ContributorsFragment extends Fragment {
         return view;
     }
 
-    public void initialize() {
-        contributors = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getContributors();
+    private void initialize() {
+        initializeData();
 
         layoutManager = new LinearLayoutManager(getActivity());
         contributorListAdapter = new ContributorListAdapter(getActivity(), contributors);
@@ -83,6 +83,14 @@ public class ContributorsFragment extends Fragment {
         String Title = getActivity().getResources().getString(R.string.fragment_contributors_title);
         getActivity().setTitle(Title);
 
+    }
+
+    private void initializeData() {
+        try {
+            contributors = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getContributors();
+            contributorListAdapter.notifyDataSetChanged();
+        } catch (Exception ignore) {
+        }
     }
 
     void onListItemClick(Contributor contributor) {

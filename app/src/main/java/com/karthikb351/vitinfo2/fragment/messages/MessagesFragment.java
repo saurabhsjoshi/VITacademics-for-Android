@@ -78,7 +78,6 @@ public class MessagesFragment extends Fragment {
     private void initializeData() {
         try {
             messages = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getMessages();
-            Collections.reverse(messages);
             messageListAdapter.notifyDataSetChanged();
         } catch (Exception ignore) {
         }
