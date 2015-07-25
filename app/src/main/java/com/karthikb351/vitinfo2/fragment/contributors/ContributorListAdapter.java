@@ -34,6 +34,8 @@ import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Contributor;
+import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
 
     private Context context;
     private List<Contributor> contributors;
-
+    private RecyclerViewOnClickListener<Contributor> onClickListener;
 
     public ContributorListAdapter(Context context, List<Contributor> contributors) {
         this.context = context;
@@ -60,13 +62,16 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
         holder.contributorRole.setText(contributors.get(position).getRole());
     }
 
+    public void setOnClickListener(RecyclerViewOnClickListener<Contributor> onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
     @Override
     public int getItemCount() {
         return contributors.size();
     }
 
-    public class ContributorViewHolder extends RecyclerView.ViewHolder {
-
+    public class ContributorViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView contributorName, contributorRole;
 
         public ContributorViewHolder(View view) {
@@ -74,6 +79,13 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
 
             contributorName = (TextView) view.findViewById(R.id.contributor_name);
             contributorRole = (TextView) view.findViewById(R.id.contributor_role);
+
+            view.setOnClickListener(this);
+        }
+
+        public void onClick(View view) {
+            Contributor contributor = contributors.get(getAdapterPosition());
+            onClickListener.onItemClick(contributor);
         }
     }
 }

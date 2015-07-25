@@ -24,6 +24,8 @@
 
 package com.karthikb351.vitinfo2.fragment.contributors;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +38,7 @@ import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Contributor;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
+import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.util.List;
 
@@ -70,10 +73,21 @@ public class ContributorsFragment extends Fragment {
         contributorListAdapter = new ContributorListAdapter(getActivity(), contributors);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_contributors);
         recyclerView.setLayoutManager(layoutManager);
+        contributorListAdapter.setOnClickListener(new RecyclerViewOnClickListener<Contributor>() {
+            @Override
+            public void onItemClick(Contributor data) {
+                onListItemClick(data);
+            }
+        });
         recyclerView.setAdapter(contributorListAdapter);
         String Title = getActivity().getResources().getString(R.string.fragment_contributors_title);
         getActivity().setTitle(Title);
 
+    }
+
+    void onListItemClick(Contributor contributor) {
+        Intent contributorPage = new Intent(Intent.ACTION_VIEW, Uri.parse(contributor.getGithubProfile()));
+        startActivity(contributorPage);
     }
 
     @Override
