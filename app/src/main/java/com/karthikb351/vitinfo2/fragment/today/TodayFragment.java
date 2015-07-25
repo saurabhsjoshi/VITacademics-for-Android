@@ -120,7 +120,9 @@ public class TodayFragment extends Fragment {
 
     private void initializeData() {
         courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
-        new LoadTodayTask().execute();
+        if (courses.isEmpty()) {
+            new LoadTodayTask().execute();
+        }
     }
 
     @Override
@@ -137,10 +139,7 @@ public class TodayFragment extends Fragment {
 
     // This method will be called when a RefreshFragmentEvent is posted
     public void onEvent(RefreshFragmentEvent event) {
-        if(courses == null || courses.size()==0) {
-            courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
-        }
-            initializeData();
+        initializeData();
     }
 
     @Override
