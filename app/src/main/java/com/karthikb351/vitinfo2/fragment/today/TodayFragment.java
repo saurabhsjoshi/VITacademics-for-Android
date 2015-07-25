@@ -137,7 +137,10 @@ public class TodayFragment extends Fragment {
 
     // This method will be called when a RefreshFragmentEvent is posted
     public void onEvent(RefreshFragmentEvent event) {
-        initializeData();
+        if(courses == null || courses.size()==0) {
+            courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
+        }
+            initializeData();
     }
 
     @Override
@@ -170,10 +173,6 @@ public class TodayFragment extends Fragment {
         @Override
         protected List<Pair<Course, Timing>> doInBackground(Void... params) {
             List<Pair<Course, Timing>> finalArray = new ArrayList<>();
-            if(courses == null || courses.size()==0){
-                courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
-            }
-            else {
                 for (Course course : courses) {
                     Timing lastTiming = new Timing();
                     if (course.getTimings() != null) {
@@ -209,7 +208,7 @@ public class TodayFragment extends Fragment {
                         }
                     }
                 });
-            }
+
 
             return finalArray;
         }
