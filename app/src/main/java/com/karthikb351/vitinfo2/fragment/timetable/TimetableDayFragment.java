@@ -112,7 +112,9 @@ public class TimetableDayFragment extends Fragment {
 
     private void initializeData() {
         courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
-        new LoadDayTask().execute();
+        if (!(courses.isEmpty())) {
+            new LoadDayTask().execute();
+        }
     }
 
 

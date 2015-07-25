@@ -155,8 +155,11 @@ public class TodayFragment extends Fragment {
     }
 
     private String getDayOfWeek(int day) {
-        String daysOfWeek[] = getActivity().getResources().getStringArray(R.array.days_of_week);
-        return daysOfWeek[day];
+        if (isAdded() && getActivity() != null) {
+            String daysOfWeek[] = getActivity().getResources().getStringArray(R.array.days_of_week);
+            return daysOfWeek[day];
+        }
+        return "";
     }
 
     private boolean isTomorrow(int day) {
