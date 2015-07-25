@@ -170,42 +170,46 @@ public class TodayFragment extends Fragment {
         @Override
         protected List<Pair<Course, Timing>> doInBackground(Void... params) {
             List<Pair<Course, Timing>> finalArray = new ArrayList<>();
-            for (Course course : courses) {
-                Timing lastTiming = new Timing();
-                if (course.getTimings() != null) {
-                    for (Timing timing : course.getTimings()) {
-                        if (timing.getDay() == dayOfWeek && !(timing.equals(lastTiming))) {
-                            finalArray.add(new Pair<>(course, timing));
-                            lastTiming = timing;
-                        }
-                    }
-                }
+            if(courses == null || courses.size()==0){
+                courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
             }
-
-            Collections.sort(finalArray, new Comparator<Pair<Course, Timing>>() {
-                @Override
-                public int compare(Pair<Course, Timing> lhs, Pair<Course, Timing> rhs) {
-                    String lhsStartTime = "";
-                    String rhsStartTime = "";
-                    for (Timing timing : lhs.first.getTimings()) {
-                        if (timing.getDay() == dayOfWeek) {
-                            lhsStartTime = timing.getStartTime();
+            else {
+                for (Course course : courses) {
+                    Timing lastTiming = new Timing();
+                    if (course.getTimings() != null) {
+                        for (Timing timing : course.getTimings()) {
+                            if (timing.getDay() == dayOfWeek && !(timing.equals(lastTiming))) {
+                                finalArray.add(new Pair<>(course, timing));
+                                lastTiming = timing;
+                            }
                         }
-                    }
-                    for (Timing timing : rhs.first.getTimings()) {
-                        if (timing.getDay() == dayOfWeek) {
-                            rhsStartTime = timing.getStartTime();
-                        }
-                    }
-                    try {
-                        return DateTimeCalender.compareTimes(lhsStartTime, rhsStartTime);
-                    } catch (ParseException ex) {
-                        ex.printStackTrace();
-                        return 0;
                     }
                 }
-            });
 
+                Collections.sort(finalArray, new Comparator<Pair<Course, Timing>>() {
+                    @Override
+                    public int compare(Pair<Course, Timing> lhs, Pair<Course, Timing> rhs) {
+                        String lhsStartTime = "";
+                        String rhsStartTime = "";
+                        for (Timing timing : lhs.first.getTimings()) {
+                            if (timing.getDay() == dayOfWeek) {
+                                lhsStartTime = timing.getStartTime();
+                            }
+                        }
+                        for (Timing timing : rhs.first.getTimings()) {
+                            if (timing.getDay() == dayOfWeek) {
+                                rhsStartTime = timing.getStartTime();
+                            }
+                        }
+                        try {
+                            return DateTimeCalender.compareTimes(lhsStartTime, rhsStartTime);
+                        } catch (ParseException ex) {
+                            ex.printStackTrace();
+                            return 0;
+                        }
+                    }
+                });
+            }
 
             return finalArray;
         }
@@ -238,6 +242,5 @@ public class TodayFragment extends Fragment {
                 });
             }
         }
-
     }
 }
