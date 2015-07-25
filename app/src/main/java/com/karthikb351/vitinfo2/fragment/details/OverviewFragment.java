@@ -90,7 +90,7 @@ public class OverviewFragment extends Fragment {
         courseOption = (TextView) view.findViewById(R.id.course_option);
 
         if (course.getCourseType() == Constants.COURSE_TYPE_PBC) {
-            projectTitle.setText(course.getProjectTitle());
+            projectTitle.setText(getString(R.string.label_project_title, course.getProjectTitle()));
             projectTitle.setVisibility(View.VISIBLE);
         } else if (course.getCourseType() == Constants.COURSE_TYPE_CBL || course.getCourseType() == Constants.COURSE_TYPE_LBC || course.getCourseType() == Constants.COURSE_TYPE_PBL || course.getCourseType() == Constants.COURSE_TYPE_RBL) {
             slot.setText(getString(R.string.label_slot, course.getSlot()));
