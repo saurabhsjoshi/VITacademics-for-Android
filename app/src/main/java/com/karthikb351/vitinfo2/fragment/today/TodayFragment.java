@@ -72,8 +72,8 @@ public class TodayFragment extends Fragment {
     }
 
     public static TodayFragment newInstance() {
-        TodayFragment fragment = new TodayFragment();
-        return fragment;
+        TodayFragment todayFragment = new TodayFragment();
+        return todayFragment;
     }
 
     @Override
@@ -147,23 +147,12 @@ public class TodayFragment extends Fragment {
         super.onViewStateRestored(savedInstanceState);
     }
 
-    private int getNextDay(int day) {
-        if (day == 6) {
-            return 0;
-        }
-        return (day + 1);
-    }
-
     private String getDayOfWeek(int day) {
         if (isAdded() && getActivity() != null) {
             String daysOfWeek[] = getActivity().getResources().getStringArray(R.array.days_of_week);
             return daysOfWeek[day];
         }
         return "";
-    }
-
-    private boolean isTomorrow(int day) {
-        return (getNextDay(today) == day);
     }
 
     private class LoadTodayTask extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
@@ -219,12 +208,12 @@ public class TodayFragment extends Fragment {
             loadProgress.setVisibility(View.GONE);
 
             if (finalCourses.size() == 0) {
-                if (getNextDay(dayOfWeek) == today) {
+                if (DateTimeCalender.getNextDay(dayOfWeek) == today) {
                     // TODO No classes message, change view
                     getActivity().setTitle(getString(R.string.fragment_today_title));
                 } else {
-                    dayOfWeek = getNextDay(dayOfWeek);
-                    if (isTomorrow(dayOfWeek)) {
+                    dayOfWeek = DateTimeCalender.getNextDay(dayOfWeek);
+                    if (DateTimeCalender.isTomorrow(dayOfWeek)) {
                         getActivity().setTitle(getString(R.string.fragment_today_title_tomorrow));
                     } else {
                         getActivity().setTitle(getString(R.string.fragment_today_title_on_day, getDayOfWeek(dayOfWeek)));

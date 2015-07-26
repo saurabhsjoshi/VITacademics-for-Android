@@ -38,6 +38,7 @@ import com.karthikb351.vitinfo2.contract.Attendance;
 import com.karthikb351.vitinfo2.contract.AttendanceDetail;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.utility.Constants;
+import com.karthikb351.vitinfo2.utility.Data;
 import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 
 import java.text.ParseException;
@@ -72,9 +73,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             this.attendance = new Attendance(context.getString(R.string.registration_date_unavailable), 0, 0, 0, attendanceDetails, true);
         }
 
-        if (course.getCourseType() == Constants.COURSE_TYPE_LBC) {
-            offset = Character.getNumericValue(course.getLtpjc().charAt(2));
-        }
+        offset = Data.getClassUnitsFromLtpjc(course.getLtpjc());
     }
 
     @Override
