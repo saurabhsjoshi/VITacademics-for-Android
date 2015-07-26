@@ -1,7 +1,6 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
- * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
@@ -75,7 +74,7 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
         holder.oldCGPA.setText(Float.toString(cgpa));
         holder.courseName.setText(courses.get(position).getCourseTitle());
         holder.courseCode.setText(courses.get(position).getCourseCode());
-        holder.courseCredits.setText(courses.get(position).getLtpjc().substring(4));
+        holder.courseCredits.setText(Integer.toString(courses.get(position).getCredits()));
     }
 
     @Override

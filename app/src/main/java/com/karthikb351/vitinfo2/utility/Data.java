@@ -1,7 +1,6 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
- * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
@@ -31,19 +30,5 @@ public class Data {
             return text.substring(0, 1).toUpperCase() + text.substring(1);
         }
         return "";
-    }
-
-    public static int getLabUnitsFromLtpjc(String ltpjc) {
-        if (ltpjc != null) {
-            return Character.getNumericValue(ltpjc.charAt(2));
-        }
-        return 2;
-    }
-
-    public static int getCreditsFromLtpjc(String ltpjc) {
-        if (ltpjc != null) {
-            return Integer.parseInt(ltpjc.substring(4));
-        }
-        return 0;
     }
 }
