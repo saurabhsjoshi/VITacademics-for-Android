@@ -26,7 +26,8 @@ package com.karthikb351.vitinfo2.fragment;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,31 +36,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.activity.MainActivity;
-import com.karthikb351.vitinfo2.api.NetworkController;
-import com.karthikb351.vitinfo2.api.RequestConfig;
-import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
-import com.karthikb351.vitinfo2.utility.ResultListener;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class LoginFragment extends Fragment {
 
-    private Activity thisActivity;
-    private final int PROGRESS_START = 0;
-    private final int PROGRESS_END = 100;
-    private final int PROGRESS_INCREMENT = 20;
     private EditText editTextRegisterNumber, editTextDateOfBirth, editTextMobileNumber;
     private Button buttonLogin;
     private RadioGroup radioGroupCampus;
@@ -67,9 +54,7 @@ public class LoginFragment extends Fragment {
     private Calendar calendar;
     private View rootView;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
-    private ProgressBar progressBar;
     private TextView loadingMessage;
-    private int progress;
     private String campus;
 
     public LoginFragment() {
@@ -78,6 +63,8 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_login, container, false);
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.frame_login,new LoginFragment(),"Login Fragment");
         initialize();
         return rootView;
     }
@@ -90,7 +77,6 @@ public class LoginFragment extends Fragment {
         radioVelloreCampus = (RadioButton) rootView.findViewById(R.id.select_vellore);
         radioChennaiCampus = (RadioButton) rootView.findViewById(R.id.select_chennai);
         buttonLogin = (Button) rootView.findViewById(R.id.button_login);
-        progressBar = (ProgressBar) rootView.findViewById(R.id.progress_bar_login);
         loadingMessage = (TextView) rootView.findViewById(R.id.loading_message);
 
         View.OnClickListener loginViewOnClickListener = new View.OnClickListener() {
@@ -101,8 +87,10 @@ public class LoginFragment extends Fragment {
                         String registerNumber = editTextRegisterNumber.getText().toString();
                         String dateOfBirth = editTextDateOfBirth.getText().toString();
                         String mobileNumber = editTextMobileNumber.getText().toString();
-                        loadingMessage.setText(getString(R.string.message_login_loading));
-                        loginToServer(campus, registerNumber, dateOfBirth, mobileNumber);
+                        LoggingInFragment loggingInFragment= LoggingInFragment.newInstance(campus, registerNumber, dateOfBirth, mobileNumber);
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.frame_login,loggingInFragment,"Logging In Fragment").
+                                addToBackStack(null).commit();
                         break;
                     case R.id.input_dob:
                         showDatePicker(view);
@@ -142,91 +130,15 @@ public class LoginFragment extends Fragment {
         };
     }
 
-    @Override
+    /*@Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         thisActivity = activity;
-    }
+    }*/
 
     private void showDatePicker(View view) {
         new DatePickerDialog(getActivity(), onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    private void loginToServer(String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
 
-        NetworkController networkController = NetworkController.getInstance(getActivity(), campus, registerNumber, dateOfBirth, mobileNumber);
-
-        final ResultListener resultListener = new ResultListener() {
-            @Override
-            public void onSuccess() {
-                progress = PROGRESS_END;
-                progressBar.setProgress(progress);
-                startActivity(new Intent(thisActivity, MainActivity.class));
-            }
-
-            @Override
-            public void onFailure(Status status) {
-                try {
-                    Toast.makeText(thisActivity, status.getMessage(), Toast.LENGTH_SHORT).show();
-                    loadingMessage.setText("");
-                    progress = PROGRESS_START;
-                    progressBar.setProgress(progress);
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onProgress() {
-                try {
-                    thisActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            progress = progress + PROGRESS_INCREMENT;
-                            progressBar.incrementProgressBy(PROGRESS_INCREMENT);
-                        }
-                    });
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        };
-
-        RequestConfig requestConfig = new RequestConfig(new ResultListener() {
-            @Override
-            public void onSuccess() {
-                try {
-                    ((MainApplication) thisActivity.getApplication()).getDataHolderInstance().refreshData(thisActivity, resultListener);
-                } catch (NullPointerException ignore){
-                }
-            }
-
-            @Override
-            public void onFailure(Status status) {
-                resultListener.onFailure(status);
-            }
-
-            @Override
-            public void onProgress() {
-                try {
-                    thisActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            progress = progress + PROGRESS_INCREMENT;
-                            progressBar.incrementProgressBy(PROGRESS_INCREMENT);
-                        }
-                    });
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        requestConfig.addRequest(RequestConfig.REQUEST_SYSTEM);
-        requestConfig.addRequest(RequestConfig.REQUEST_REFRESH);
-        requestConfig.addRequest(RequestConfig.REQUEST_GRADES);
-        requestConfig.addRequest(RequestConfig.REQUEST_TOKEN);
-
-        networkController.dispatch(requestConfig);
-    }
 }

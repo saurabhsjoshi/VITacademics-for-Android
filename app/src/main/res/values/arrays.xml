@@ -33,6 +33,15 @@
         <item>@string/fragment_about_title</item>
     </string-array>
 
+    <string-array name="login_messages">
+        <item>Contacting VITacademics server..</item>
+        <item>Scraping data..</item>
+        <item>Getting courses and attendance..</item>
+        <item>Getting grades..</item>
+        <item>Parsing and storing data..</item>
+
+    </string-array>
+
     <string-array name="course_details_tab">
         <item>@string/tab_course_overview</item>
         <item>@string/tab_course_attendance</item>
