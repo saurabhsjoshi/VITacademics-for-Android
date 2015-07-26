@@ -82,7 +82,9 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         long timeDifference = 0;
         boolean ended = false;
 
-        classLength = Data.getClassUnitsFromLtpjc(courseTimingPairs.get(position).first.getLtpjc());
+        if (courseTimingPairs.get(position).first.getCourseType() == Constants.COURSE_TYPE_LBC) {
+            classLength = Data.getLabUnitsFromLtpjc(courseTimingPairs.get(position).first.getLtpjc());
+        }
 
         if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
             attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();

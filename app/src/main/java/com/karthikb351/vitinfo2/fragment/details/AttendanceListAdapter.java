@@ -73,7 +73,9 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             this.attendance = new Attendance(context.getString(R.string.registration_date_unavailable), 0, 0, 0, attendanceDetails, true);
         }
 
-        offset = Data.getClassUnitsFromLtpjc(course.getLtpjc());
+        if (course.getCourseType() == Constants.COURSE_TYPE_LBC) {
+            offset = Data.getLabUnitsFromLtpjc(course.getLtpjc());
+        }
     }
 
     @Override

@@ -33,11 +33,11 @@ public class Data {
         return "";
     }
 
-    public static int getClassUnitsFromLtpjc(String ltpjc) {
+    public static int getLabUnitsFromLtpjc(String ltpjc) {
         if (ltpjc != null) {
-            return (Character.getNumericValue(ltpjc.charAt(0)) + Character.getNumericValue(ltpjc.charAt(1)) + Character.getNumericValue(ltpjc.charAt(2)));
+            return Character.getNumericValue(ltpjc.charAt(2));
         }
-        return 0;
+        return 2;
     }
 
     public static int getCreditsFromLtpjc(String ltpjc) {
