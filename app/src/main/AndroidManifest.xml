@@ -2,7 +2,6 @@
 <!--
   ~ VITacademics
   ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
-  ~ Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
   ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
   ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
@@ -33,15 +32,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_vitacademics_borderless"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
-        android:supportsRtl="true">
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
 
         <activity
             android:name=".activity.LaunchScreenActivity"
+            android:label="@string/app_name"
             android:noHistory="true"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Launcher"
-            android:label="@string/app_name">
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,10 +49,10 @@
         </activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
+            android:label="@string/activity_login_title"
             android:launchMode="singleTop"
-            android:label="@string/activity_login_title">
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,8 +61,8 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -72,14 +71,14 @@
         </activity>
         <activity
             android:name=".activity.DetailsActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/fragment_details_title">
+            android:label="@string/fragment_details_title"
+            android:screenOrientation="portrait">
         </activity>
 
         <!-- RushORM Settings -->
         <meta-data
             android:name="Rush_db_version"
-            android:value="2" />
+            android:value="3" />
         <meta-data
             android:name="Rush_db_name"
             android:value="vitacademics.db" />

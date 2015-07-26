@@ -1,7 +1,6 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
- * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
@@ -41,7 +40,6 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.utility.Constants;
-import com.karthikb351.vitinfo2.utility.Data;
 import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
@@ -75,21 +73,16 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     @Override
     public void onBindViewHolder(TodayViewHolder todayViewHolder, int position) {
 
-        int classLength = 1;
         int attendancePercentage = 0;
         int goCalculated = 100;
         int missCalculated = 0;
         long timeDifference = 0;
         boolean ended = false;
 
-        if (courseTimingPairs.get(position).first.getCourseType() == Constants.COURSE_TYPE_LBC) {
-            classLength = Data.getLabUnitsFromLtpjc(courseTimingPairs.get(position).first.getLtpjc());
-        }
-
         if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
             attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
-            goCalculated = ((int) Math.ceil((double) (courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() + classLength) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength)));
-            missCalculated = ((int) Math.ceil((double) courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength)));
+            goCalculated = ((int) Math.ceil((double) (courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() + courseTimingPairs.get(position).first.getClassLength()) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + courseTimingPairs.get(position).first.getClassLength())));
+            missCalculated = ((int) Math.ceil((double) courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + courseTimingPairs.get(position).first.getClassLength())));
         }
 
         if (courseTimingPairs.get(position).second.getDay() == dayOfWeek) {

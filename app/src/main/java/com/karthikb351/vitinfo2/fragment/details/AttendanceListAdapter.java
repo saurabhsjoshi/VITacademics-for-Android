@@ -1,7 +1,6 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
- * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
@@ -37,8 +36,6 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Attendance;
 import com.karthikb351.vitinfo2.contract.AttendanceDetail;
 import com.karthikb351.vitinfo2.contract.Course;
-import com.karthikb351.vitinfo2.utility.Constants;
-import com.karthikb351.vitinfo2.utility.Data;
 import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 
 import java.text.ParseException;
@@ -54,7 +51,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     private Attendance attendance;
     private List<AttendanceDetail> attendanceDetails;
 
-    private int conducted, attended, miss = 0, attend = 0, offset = 1;
+    private int conducted, attended, classLength, miss = 0, attend = 0;
 
 
     public AttendanceListAdapter(Context context, Course course) {
@@ -73,9 +70,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             this.attendance = new Attendance(context.getString(R.string.registration_date_unavailable), 0, 0, 0, attendanceDetails, true);
         }
 
-        if (course.getCourseType() == Constants.COURSE_TYPE_LBC) {
-            offset = Data.getLabUnitsFromLtpjc(course.getLtpjc());
-        }
+        classLength = course.getClassLength();
     }
 
     @Override
@@ -119,23 +114,23 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
                 @Override
                 public void onClick(View view) {
                     if (view == holder.attendPlus) {
-                        attend += offset;
+                        attend += classLength;
                         if (!holder.attendMinus.isClickable())
                             holder.attendMinus.setClickable(true);
                     } else if (view == holder.attendMinus) {
                         if (attend == 0)
                             holder.attendMinus.setClickable(false);
                         else
-                            attend -= offset;
+                            attend -= classLength;
                     } else if (view == holder.missPlus) {
-                        miss += offset;
+                        miss += classLength;
                         if (!holder.missMinus.isClickable())
                             holder.missMinus.setClickable(true);
                     } else if (view == holder.missMinus) {
                         if (miss == 0)
                             holder.missMinus.setClickable(false);
                         else
-                            miss -= offset;
+                            miss -= classLength;
                     }
                     updateHolder(holder);
                 }
