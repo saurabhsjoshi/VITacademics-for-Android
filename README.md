@@ -1,5 +1,7 @@
 #VITacademics
 
+[![Join the chat at https://gitter.im/saurabhsjoshi/VITacademics-for-Android](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/saurabhsjoshi/VITacademics-for-Android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <a href="https://play.google.com/store/apps/details?id=com.karthikb351.vitinfo2">
   <img alt="Get it on Google Play"
        src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
