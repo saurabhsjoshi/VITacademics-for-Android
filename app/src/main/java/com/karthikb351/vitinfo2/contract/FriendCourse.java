@@ -1,7 +1,6 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
- * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
@@ -88,6 +87,14 @@ public class FriendCourse extends RushObject {
     private int courseType;
 
     @Expose
+    @SerializedName("credits")
+    private int credits;
+
+    @Expose
+    @SerializedName("class_length")
+    private int classLength;
+
+    @Expose
     @SerializedName("timings")
     @RushList(classType = Timing.class)
     private List<Timing> timings;
@@ -95,7 +102,7 @@ public class FriendCourse extends RushObject {
     public FriendCourse() {
     }
 
-    public FriendCourse(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpjc, String courseMode, String courseOption, String slot, String venue, String faculty, String projectTitle, int courseType, List<Timing> timings) {
+    public FriendCourse(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpjc, String courseMode, String courseOption, String slot, String venue, String faculty, String projectTitle, int courseType, int credits, int classLength, List<Timing> timings) {
         this.classNumber = classNumber;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
@@ -108,6 +115,8 @@ public class FriendCourse extends RushObject {
         this.faculty = faculty;
         this.projectTitle = projectTitle;
         this.courseType = courseType;
+        this.credits = credits;
+        this.classLength = classLength;
         this.timings = timings;
     }
 
@@ -205,6 +214,22 @@ public class FriendCourse extends RushObject {
 
     public void setCourseType(int courseType) {
         this.courseType = courseType;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public int getClassLength() {
+        return classLength;
+    }
+
+    public void setClassLength(int classLength) {
+        this.classLength = classLength;
     }
 
     public List<Timing> getTimings() {

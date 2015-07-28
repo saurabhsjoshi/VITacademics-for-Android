@@ -52,6 +52,7 @@ import com.karthikb351.vitinfo2.fragment.timetable.TimetableFragment;
 import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
+import com.karthikb351.vitinfo2.utility.Data;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.Arrays;
@@ -68,15 +69,6 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private TextView headerUsername;
     private TextView headerCampus;
-
-    private static String toTitleCase(String text) {
-        try {
-            return text.substring(0, 1).toUpperCase() + text.substring(1);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            return "";
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         headerUsername.setText(registerNumber);
-        headerCampus.setText(toTitleCase(campus));
+        headerCampus.setText(Data.toTitleCase(campus));
 
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

@@ -24,6 +24,8 @@
 
 package com.karthikb351.vitinfo2.utility;
 
+import com.karthikb351.vitinfo2.contract.Timing;
+
 import org.joda.time.DateTime;
 
 import java.text.DateFormat;
@@ -82,5 +84,28 @@ public class DateTimeCalender {
 
     public static int getDayOfWeek() {
         return (new DateTime().getDayOfWeek() - 1);
+    }
+
+    public static int getNextDay(int day) {
+        if (day == 6) {
+            return 0;
+        }
+        return (day + 1);
+    }
+
+    public static boolean isTomorrow(int day) {
+        return (DateTimeCalender.getNextDay(getDayOfWeek()) == day);
+    }
+
+    public static long getTimeDifference(Timing timing) throws ParseException {
+        Date now = new Date();
+        Date courseStartTime = DateTimeCalender.getTodayTimeObject(timing.getStartTime());
+        return courseStartTime.getTime() - now.getTime();
+    }
+
+    public static boolean checkIfSlotEnded(Timing timing) throws ParseException {
+        Date now = new Date();
+        Date courseEndTime = DateTimeCalender.getTodayTimeObject(timing.getEndTime());
+        return courseEndTime.before(now);
     }
 }

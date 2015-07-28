@@ -1,7 +1,6 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
- * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
@@ -100,6 +99,14 @@ public class Course extends RushObject {
     private int courseType;
 
     @Expose
+    @SerializedName("credits")
+    private int credits;
+
+    @Expose
+    @SerializedName("class_length")
+    private int classLength;
+
+    @Expose
     @SerializedName("attendance")
     private Attendance attendance;
 
@@ -115,7 +122,7 @@ public class Course extends RushObject {
     public Course() {
     }
 
-    public Course(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpjc, String courseMode, String courseOption, String slot, String venue, String faculty, String registrationStatus, String billDate, int billNumber, String projectTitle, int courseType, Attendance attendance, Marks marks, List<Timing> timings) {
+    public Course(int classNumber, String courseCode, String courseTitle, String subjectType, String ltpjc, String courseMode, String courseOption, String slot, String venue, String faculty, String registrationStatus, String billDate, int billNumber, String projectTitle, int courseType, int credits, int classLength, Attendance attendance, Marks marks, List<Timing> timings) {
         this.classNumber = classNumber;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
@@ -131,6 +138,8 @@ public class Course extends RushObject {
         this.billNumber = billNumber;
         this.projectTitle = projectTitle;
         this.courseType = courseType;
+        this.credits = credits;
+        this.classLength = classLength;
         this.attendance = attendance;
         this.marks = marks;
         this.timings = timings;
@@ -254,6 +263,22 @@ public class Course extends RushObject {
 
     public void setCourseType(int courseType) {
         this.courseType = courseType;
+    }
+
+    public int getCredits() {
+        return credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public int getClassLength() {
+        return classLength;
+    }
+
+    public void setClassLength(int classLength) {
+        this.classLength = classLength;
     }
 
     public Attendance getAttendance() {

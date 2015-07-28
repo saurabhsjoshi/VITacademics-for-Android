@@ -1,7 +1,6 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
- * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
@@ -45,7 +44,6 @@ import com.karthikb351.vitinfo2.utility.DateTimeCalender;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -75,26 +73,27 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     @Override
     public void onBindViewHolder(TodayViewHolder todayViewHolder, int position) {
 
-        int classLength = 1;
         int attendancePercentage = 0;
         int goCalculated = 100;
         int missCalculated = 0;
         long timeDifference = 0;
         boolean ended = false;
 
-        if (courseTimingPairs.get(position).first.getCourseType() == Constants.COURSE_TYPE_LBC) {
-            classLength = Character.getNumericValue(courseTimingPairs.get(position).first.getLtpjc().charAt(2));
-        }
-
         if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
             attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
-            goCalculated = ((int) Math.ceil((double) (courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() + classLength) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength)));
-            missCalculated = ((int) Math.ceil((double) courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + classLength)));
+            goCalculated = ((int) Math.ceil((double) (courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() + courseTimingPairs.get(position).first.getClassLength()) * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + courseTimingPairs.get(position).first.getClassLength())));
+            missCalculated = ((int) Math.ceil((double) courseTimingPairs.get(position).first.getAttendance().getAttendedClasses() * 100 / (courseTimingPairs.get(position).first.getAttendance().getTotalClasses() + courseTimingPairs.get(position).first.getClassLength())));
         }
 
         if (courseTimingPairs.get(position).second.getDay() == dayOfWeek) {
-            timeDifference = getTimeDifference(courseTimingPairs.get(position).second);
-            ended = checkIfSlotEnded(courseTimingPairs.get(position).second);
+            try {
+                timeDifference = DateTimeCalender.getTimeDifference(courseTimingPairs.get(position).second);
+                ended = DateTimeCalender.checkIfSlotEnded(courseTimingPairs.get(position).second);
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+                timeDifference = -1;
+                ended = false;
+            }
         }
 
         todayViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
@@ -163,28 +162,6 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             }
         } else {
             return context.getString(R.string.today_course_timing_right_now);
-        }
-    }
-
-    private long getTimeDifference(Timing timing) {
-        Date now = new Date();
-        try {
-            Date courseStartTime = DateTimeCalender.getTodayTimeObject(timing.getStartTime());
-            return courseStartTime.getTime() - now.getTime();
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-            return -1;
-        }
-    }
-
-    private boolean checkIfSlotEnded(Timing timing) {
-        Date now = new Date();
-        try {
-            Date courseEndTime = DateTimeCalender.getTodayTimeObject(timing.getEndTime());
-            return courseEndTime.before(now);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-            return false;
         }
     }
 

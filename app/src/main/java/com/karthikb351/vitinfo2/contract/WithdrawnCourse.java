@@ -52,7 +52,7 @@ public class WithdrawnCourse extends RushObject {
 
     @Expose
     @SerializedName("ltpjc")
-    @RushRenamed(names = {"ltpc"})
+    @RushRenamed(names = {"ltpc", "LTPC"})
     private String ltpjc;
 
     @Expose
