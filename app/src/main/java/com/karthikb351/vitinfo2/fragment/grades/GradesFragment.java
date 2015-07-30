@@ -43,8 +43,11 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Grade;
 import com.karthikb351.vitinfo2.contract.GradeCount;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
+import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 public class GradesFragment extends Fragment {
 
@@ -84,9 +87,6 @@ public class GradesFragment extends Fragment {
     }
 
     public void initialize() {
-        cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
-        gradeCounts = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGradeCounts();
-        semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
 
         if (layoutId == R.layout.app_message_not_available) {
             errorMessage = (TextView) rootView.findViewById(R.id.message);
@@ -94,15 +94,22 @@ public class GradesFragment extends Fragment {
         } else {
             cgpaTextView = (TextView) rootView.findViewById(R.id.text_view_cgpa);
             gradeCountTable = (TableLayout) rootView.findViewById(R.id.table_grade_count);
-            fillGradeCountData();
-            gradeListRecyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_grades);
-            gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-            gradesListAdapter = new GradesListAdapter(getActivity(), grades);
-            gradeListRecyclerview.setAdapter(gradesListAdapter);
+            initializeData();
         }
 
         String Title = getActivity().getResources().getString(R.string.fragment_grades_title);
         getActivity().setTitle(Title);
+    }
+
+    public void initializeData(){
+        cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
+        gradeCounts = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGradeCounts();
+        semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
+        fillGradeCountData();
+        gradeListRecyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_grades);
+        gradeListRecyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        gradesListAdapter = new GradesListAdapter(getActivity(), grades);
+        gradeListRecyclerview.setAdapter(gradesListAdapter);
     }
 
     void fillGradeCountData() {
@@ -124,5 +131,23 @@ public class GradesFragment extends Fragment {
         tv.setPadding(0, 5, 0, 5);
         tv.setText(text);
         return tv;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        EventBus.getDefault().unregister(this);
+        super.onPause();
+    }
+
+    // This method will be called when a RefreshFragmentEvent is posted
+    public void onEvent(RefreshFragmentEvent event) {
+        initializeData();
     }
 }
