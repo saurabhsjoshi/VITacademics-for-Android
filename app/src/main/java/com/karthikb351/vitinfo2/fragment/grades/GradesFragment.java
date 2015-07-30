@@ -133,7 +133,6 @@ public class GradesFragment extends Fragment {
         return tv;
     }
 
-
     @Override
     public void onResume() {
         super.onResume();

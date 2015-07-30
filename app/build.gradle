@@ -79,6 +79,7 @@ dependencies {
         transitive = true;
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.diogobernardino:williamchart:2.0.1'
     compile 'co.uk.rushorm:rushandroid:1.1.7'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'net.danlew:android.joda:2.8.1'
