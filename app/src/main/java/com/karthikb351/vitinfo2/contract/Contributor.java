@@ -60,7 +60,7 @@ public class Contributor extends RushObject {
     public Contributor() {
     }
 
-    public Contributor(int contributorId, String name, String email, String role, String githubProfile) {
+    public Contributor(int contributorId, String name, String email, String role, String facebookProfile,String githubProfile) {
         this.contributorId = contributorId;
         this.name = name;
         this.email = email;
@@ -116,4 +116,3 @@ public class Contributor extends RushObject {
         this.githubProfile = githubProfile;
     }
 }
-q
