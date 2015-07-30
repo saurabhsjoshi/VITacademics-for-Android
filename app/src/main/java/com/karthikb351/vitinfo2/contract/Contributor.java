@@ -50,6 +50,10 @@ public class Contributor extends RushObject {
     private String role;
 
     @Expose
+    @SerializedName("facebook_profile")
+    private String facebookProfile;
+
+    @Expose
     @SerializedName("github_profile")
     private String githubProfile;
 
@@ -96,6 +100,13 @@ public class Contributor extends RushObject {
         this.role = role;
     }
 
+    public String getFacebookProfile(){
+        return facebookProfile;
+    }
+
+    public void setFacebookProfile(String facebookProfile){
+        this.facebookProfile = facebookProfile;
+    }
     public String getGithubProfile() {
         return githubProfile;
     }
