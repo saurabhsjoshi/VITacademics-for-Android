@@ -65,6 +65,7 @@ public class Contributor extends RushObject {
         this.name = name;
         this.email = email;
         this.role = role;
+        this.facebookProfile = facebookProfile;
         this.githubProfile = githubProfile;
     }
 
@@ -115,3 +116,4 @@ public class Contributor extends RushObject {
         this.githubProfile = githubProfile;
     }
 }
+q
