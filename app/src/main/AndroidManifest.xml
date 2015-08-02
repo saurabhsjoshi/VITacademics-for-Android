@@ -6,6 +6,7 @@
   ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
   ~
   ~ This file is part of VITacademics.
   ~ VITacademics is free software: you can redistribute it and/or modify
@@ -26,37 +27,26 @@
     package="com.karthikb351.vitinfo2">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_vitacademics_borderless"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".activity.LaunchScreenActivity"
-            android:label="@string/app_name"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Launcher">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/activity_login_title"
+            android:label="@string/app_name"
             android:launchMode="singleTop"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity

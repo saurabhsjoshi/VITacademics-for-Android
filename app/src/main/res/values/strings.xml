@@ -6,6 +6,7 @@
   ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
   ~
   ~ This file is part of VITacademics.
   ~ VITacademics is free software: you can redistribute it and/or modify
@@ -33,12 +34,15 @@
     <string name="activity_details_title">Details</string>
 
     <!-- Login Page -->
+    <string name="label_campus_choose">Choose your campus</string>
     <string name="label_campus_chennai">Chennai</string>
     <string name="label_campus_vellore">Vellore</string>
-    <string name="input_hint_register_number">Register Number</string>
+    <string name="input_hint_register_number">Registration Number</string>
     <string name="input_hint_date_of_birth">Date of Birth (ddmmyyyy)</string>
     <string name="input_hint_parent_number">Registered Parent\'s Phone Number</string>
-    <string name="button_login">Login</string>
+    <string name="button_next">Next&#160;&#160;〉</string>
+    <string name="button_login">Login&#160;&#160;〉</string>
+    <string name="button_exit">〈</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
