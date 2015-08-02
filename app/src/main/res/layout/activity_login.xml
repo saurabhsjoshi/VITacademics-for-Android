@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ VITacademics
+  ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+  ~ Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
+  ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+  ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+  ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+  ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
+  ~
+  ~ This file is part of VITacademics.
+  ~ VITacademics is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ VITacademics is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+  <RelativeLayout
+      android:id="@+id/rlLoginLayout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      foo:layout_behavior="com.karthikb351.vitinfo2.behavior.ButtonBarBehavior">
+
+    <RelativeLayout
+        android:id="@+id/buttonBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorButtonBarBackground"
+        style="@android:style/ButtonBar">
+
+      <com.karthikb351.vitinfo2.customwidget.CustomButton
+          android:id="@+id/loginButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_alignParentEnd="true"
+          android:text="@string/button_next"
+          android:textSize="16sp"
+          android:padding="12dp"
+          android:enabled="false"
+          android:textColor="@drawable/login_button_color"
+          android:layout_marginEnd="14dp"
+          android:layout_marginRight="14dp"
+          foo:bFont="Roboto-Regular.ttf"
+          style="?attr/toolbarNavigationButtonStyle"
+          android:textAllCaps="true"
+          />
+      <com.karthikb351.vitinfo2.customwidget.CustomButton
+          android:id="@+id/exitButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentStart="true"
+          android:layout_alignParentLeft="true"
+          android:text="@string/button_exit"
+          android:textStyle="bold"
+          android:textColor="@drawable/exit_button_color"
+          android:textSize="16sp"
+          android:padding="12dp"
+          android:layout_marginStart="14dp"
+          android:layout_marginLeft="14dp"
+          style="?attr/toolbarNavigationButtonStyle"
+          foo:bFont="Roboto-Regular.ttf"
+          android:textAllCaps="true"
+          />
+
+    </RelativeLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarLogin"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="?attr/colorPrimary"
+        >
+
+      <LinearLayout
+          android:padding="@dimen/activity_horizontal_margin"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_margin="5dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <com.karthikb351.vitinfo2.customwidget.CustomTextView
+            android:id="@+id/loginSupportText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/text_primary"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            foo:tvFont="Roboto-Light.ttf"
+            android:gravity="center"/>
+
+      </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout
+        android:id="@+id/shadowProgressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarLogin">
+
+      <!--To overlay the progress bar over the shadow of the toolbar-->
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="5dp"
+          android:background="@drawable/toolbar_drop_shadow" />
+
+      <ProgressBar
+          android:id="@+id/progressBarLogin"
+          android:visibility="gone"
+          style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+          android:layout_marginTop="-6dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:indeterminate="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlLoginDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shadowProgressLayout"
+        >
+
+      <LinearLayout
+          android:id="@+id/llLoginDetailsP1"
+          android:layout_width="match_parent"
+          android:orientation="vertical"
+          android:gravity="center"
+          android:paddingLeft="@dimen/activity_horizontal_margin"
+          android:paddingRight="@dimen/activity_horizontal_margin"
+          android:paddingTop="@dimen/activity_vertical_margin"
+          android:paddingBottom="@dimen/activity_vertical_margin"
+          android:layout_height="wrap_content">
+
+        <com.karthikb351.vitinfo2.customwidget.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            foo:tvFont="Roboto-Regular.ttf"
+            android:textSize="20sp"
+            android:text="@string/label_campus_choose"/>
+
+        <RadioGroup
+            android:id="@+id/select_campus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="start"
+            android:orientation="vertical">
+
+          <android.support.v7.widget.AppCompatRadioButton
+              android:id="@+id/select_vellore"
+              android:layout_width="match_parent"
+              android:layout_margin="10dp"
+              android:layout_height="22dp"
+              android:checked="false"
+              android:textSize="18sp"
+              android:text="@string/label_campus_vellore" />
+
+          <android.support.v7.widget.AppCompatRadioButton
+              android:id="@+id/select_chennai"
+              android:layout_width="match_parent"
+              android:layout_margin="10dp"
+              android:layout_height="22dp"
+              android:textSize="18sp"
+              android:checked="false"
+              android:text="@string/label_campus_chennai" />
+        </RadioGroup>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:id="@+id/llLoginDetailsP2"
+          android:layout_width="match_parent"
+          android:orientation="vertical"
+          android:gravity="center"
+          android:visibility="gone"
+          android:paddingLeft="@dimen/activity_horizontal_margin"
+          android:paddingRight="@dimen/activity_horizontal_margin"
+          android:paddingTop="@dimen/activity_vertical_margin"
+          android:paddingBottom="@dimen/activity_vertical_margin"
+          android:layout_height="wrap_content">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etRegNoHolder"
+            android:paddingTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            >
+
+          <EditText
+              android:id="@+id/etRegNo"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/input_hint_register_number"
+              android:singleLine="true"
+              android:inputType="textCapCharacters"
+              />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etDOBHolder"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            >
+
+          <EditText
+              android:id="@+id/etDOB"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/input_hint_date_of_birth"
+              android:singleLine="true"
+              android:editable="false"
+              />
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etPhoneHolder"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            >
+
+          <EditText
+              android:id="@+id/etPhone"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="@string/input_hint_parent_number"
+              android:singleLine="true"
+              android:inputType="phone"
+
+              />
+
+        </android.support.design.widget.TextInputLayout>
+
+      </LinearLayout>
+
+    </RelativeLayout>
+
+  </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
