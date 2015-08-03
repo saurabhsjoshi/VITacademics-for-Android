@@ -11,6 +11,7 @@
   ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
   ~
   ~ This file is part of VITacademics.
+  ~
   ~ VITacademics is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
   ~ the Free Software Foundation, either version 3 of the License, or
@@ -26,9 +27,7 @@
   -->
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle"
-    >
-    <solid
-        android:color="@color/colorTransparentBlack"/>
+    android:shape="rectangle">
+    <solid android:color="@color/colorTransparentBlack" />
 
 </shape>

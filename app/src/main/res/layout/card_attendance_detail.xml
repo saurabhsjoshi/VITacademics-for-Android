@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ VITacademics
   ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
@@ -7,8 +8,10 @@
   ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
   ~
   ~ This file is part of VITacademics.
+  ~
   ~ VITacademics is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
   ~ the Free Software Foundation, either version 3 of the License, or
@@ -36,48 +39,48 @@
         android:layout_height="wrap_content"
         android:padding="8dp">
 
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="3dp"
-        android:textSize="18sp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="5dp" />
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/detail_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="3dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginTop="5sp" />
+        <TextView
+            android:id="@+id/detail_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="5sp"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/class_units"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:layout_marginStart="3dp"
-        android:layout_below="@id/date"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp" />
+        <TextView
+            android:id="@+id/class_units"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/reason"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="3dp"
-        android:textSize="16sp"
-        android:layout_below="@id/detail_status"
-        android:layout_marginEnd="3dp"
-        android:layout_marginTop="8sp" />
+        <TextView
+            android:id="@+id/reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/detail_status"
+            android:layout_marginEnd="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="8sp"
+            android:textSize="16sp" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>

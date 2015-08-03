@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ VITacademics
   ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
@@ -7,8 +8,10 @@
   ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
   ~
   ~ This file is part of VITacademics.
+  ~
   ~ VITacademics is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
   ~ the Free Software Foundation, either version 3 of the License, or
@@ -26,7 +29,6 @@
 <!-- TODO Incomplete -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -46,8 +48,8 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="10sp"
-        android:layout_marginRight="10sp"
         android:layout_marginEnd="10sp"
+        android:layout_marginRight="10sp"
         android:background="@drawable/cgpa_icon" />
 
 </RelativeLayout>

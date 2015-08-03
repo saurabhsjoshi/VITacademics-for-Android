@@ -11,6 +11,7 @@
   ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
   ~
   ~ This file is part of VITacademics.
+  ~
   ~ VITacademics is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
   ~ the Free Software Foundation, either version 3 of the License, or
@@ -26,7 +27,7 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_enabled="false" android:color="@color/loginButtonDisabled" />
+    <item android:color="@color/loginButtonDisabled" android:state_enabled="false" />
     <item android:color="@color/colorAccent" />
 
 </selector>

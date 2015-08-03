@@ -1,16 +1,3 @@
-package com.karthikb351.vitinfo2.customwidget;
-
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Typeface;
-import android.os.Build;
-import android.util.AttributeSet;
-import android.widget.TextView;
-
-import com.karthikb351.vitinfo2.R;
-
-
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
@@ -22,6 +9,7 @@ import com.karthikb351.vitinfo2.R;
  * Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
  *
  * This file is part of VITacademics.
+ *
  * VITacademics is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -36,10 +24,18 @@ import com.karthikb351.vitinfo2.R;
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package com.karthikb351.vitinfo2.customwidget;
 
-/**
- * Created by Darshan on 07-01-2015.
- */
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.util.AttributeSet;
+import android.widget.TextView;
+
+import com.karthikb351.vitinfo2.R;
+
 public class CustomTextView extends TextView {
     public CustomTextView(Context context) {
         super(context);
@@ -62,19 +58,19 @@ public class CustomTextView extends TextView {
     }
 
     private void setCustomFont(Context context, AttributeSet attrs) {
-        TypedArray a=context.obtainStyledAttributes(attrs, R.styleable.CustomTextView);
-        String fontName=a.getString(R.styleable.CustomTextView_tvFont);
-        if(!isInEditMode()){
-            setCustomFont(context,fontName);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomTextView);
+        String fontName = a.getString(R.styleable.CustomTextView_tvFont);
+        if (!isInEditMode()) {
+            setCustomFont(context, fontName);
         }
         a.recycle();
     }
 
     private boolean setCustomFont(Context context, String fontName) {
-        Typeface tf=null;
-        try{
-            tf= Typeface.createFromAsset(context.getAssets(), fontName);
-        }catch(Exception e){
+        Typeface tf = null;
+        try {
+            tf = Typeface.createFromAsset(context.getAssets(), fontName);
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

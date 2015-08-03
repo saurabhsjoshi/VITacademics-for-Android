@@ -1,15 +1,3 @@
-package com.karthikb351.vitinfo2.customwidget;
-
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Typeface;
-import android.os.Build;
-import android.util.AttributeSet;
-import android.widget.Button;
-
-import com.karthikb351.vitinfo2.R;
-
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
@@ -21,6 +9,7 @@ import com.karthikb351.vitinfo2.R;
  * Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
  *
  * This file is part of VITacademics.
+ *
  * VITacademics is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -35,10 +24,17 @@ import com.karthikb351.vitinfo2.R;
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package com.karthikb351.vitinfo2.customwidget;
 
-/**
- * Created by Darshan on 30/05/15.
- */
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.util.AttributeSet;
+import android.widget.Button;
+
+import com.karthikb351.vitinfo2.R;
 
 public class CustomButton extends Button {
 
@@ -64,8 +60,8 @@ public class CustomButton extends Button {
     private void setCustomFont(Context context, AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomButton);
         String fontName = a.getString(R.styleable.CustomButton_bFont);
-        if(!isInEditMode()){
-            setCustomFont(context,fontName);
+        if (!isInEditMode()) {
+            setCustomFont(context, fontName);
         }
         a.recycle();
 
@@ -74,9 +70,9 @@ public class CustomButton extends Button {
 
     private boolean setCustomFont(Context context, String fontName) {
         Typeface tf;
-        try{
+        try {
             tf = Typeface.createFromAsset(context.getAssets(), fontName);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

@@ -1,15 +1,38 @@
+/*
+ * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+ * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
+ * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+ * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+ * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+ * Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
+ *
+ * This file is part of VITacademics.
+ *
+ * VITacademics is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * VITacademics is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.karthikb351.vitinfo2.fragment;
 
-
 import android.app.Activity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.Fragment;;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,8 +44,6 @@ import com.karthikb351.vitinfo2.api.RequestConfig;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
-
-
 public class LoggingInFragment extends Fragment {
 
     private Activity thisActivity;
@@ -31,11 +52,11 @@ public class LoggingInFragment extends Fragment {
     private String messageList[];
     private int progress;
 
-    public LoggingInFragment(){
+    public LoggingInFragment() {
 
     }
 
-    public static LoggingInFragment newInstance(String campus, String registrationNumer, String dateOfBirth, String mobileNumber){
+    public static LoggingInFragment newInstance(String campus, String registrationNumer, String dateOfBirth, String mobileNumber) {
 
         LoggingInFragment fragment = new LoggingInFragment();
         fragment.campus = campus;
@@ -47,11 +68,11 @@ public class LoggingInFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_logging_in,container,false);
-        messageList= (getResources().getStringArray(R.array.login_messages));
-        progress=0;
-        message=(TextView)view.findViewById(R.id.login_message);
-        loginToServer(campus,registrationNumer,dateOfBirth,mobileNumber);
+        View view = inflater.inflate(R.layout.fragment_logging_in, container, false);
+        messageList = (getResources().getStringArray(R.array.login_messages));
+        progress = 0;
+        message = (TextView) view.findViewById(R.id.login_message);
+        loginToServer(campus, registrationNumer, dateOfBirth, mobileNumber);
         return view;
     }
 
@@ -76,7 +97,7 @@ public class LoggingInFragment extends Fragment {
                 try {
                     Toast.makeText(thisActivity, status.getMessage(), Toast.LENGTH_SHORT).show();
                     getFragmentManager().popBackStack();
-                    } catch (NullPointerException e) {
+                } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
             }
@@ -87,7 +108,7 @@ public class LoggingInFragment extends Fragment {
                     thisActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if(progress<6)
+                            if (progress < 6)
                                 message.setText(messageList[progress++]);
                         }
                     });
@@ -103,7 +124,7 @@ public class LoggingInFragment extends Fragment {
             public void onSuccess() {
                 try {
                     ((MainApplication) thisActivity.getApplication()).getDataHolderInstance().refreshData(thisActivity, resultListener);
-                } catch (NullPointerException ignore){
+                } catch (NullPointerException ignore) {
                 }
             }
 

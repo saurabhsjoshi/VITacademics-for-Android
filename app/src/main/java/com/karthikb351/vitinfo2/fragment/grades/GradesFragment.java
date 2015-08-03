@@ -6,8 +6,10 @@
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+ * Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
  *
  * This file is part of VITacademics.
+ *
  * VITacademics is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -101,7 +103,7 @@ public class GradesFragment extends Fragment {
         getActivity().setTitle(Title);
     }
 
-    public void initializeData(){
+    public void initializeData() {
         cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
         gradeCounts = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGradeCounts();
         semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();

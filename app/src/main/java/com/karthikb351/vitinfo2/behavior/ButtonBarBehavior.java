@@ -1,13 +1,3 @@
-package com.karthikb351.vitinfo2.behavior;
-
-import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.util.AttributeSet;
-import android.view.View;
-import android.widget.RelativeLayout;
-
-
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
@@ -19,6 +9,7 @@ import android.widget.RelativeLayout;
  * Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
  *
  * This file is part of VITacademics.
+ *
  * VITacademics is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -33,11 +24,20 @@ import android.widget.RelativeLayout;
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * Created by Darshan on 01/08/15.
- */
+package com.karthikb351.vitinfo2.behavior;
+
+import android.content.Context;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.RelativeLayout;
+
 public class ButtonBarBehavior extends CoordinatorLayout.Behavior<RelativeLayout> {
 
+    public ButtonBarBehavior(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, RelativeLayout child, View dependency) {
@@ -49,9 +49,5 @@ public class ButtonBarBehavior extends CoordinatorLayout.Behavior<RelativeLayout
     @Override
     public boolean layoutDependsOn(CoordinatorLayout parent, RelativeLayout child, View dependency) {
         return dependency instanceof Snackbar.SnackbarLayout;
-    }
-
-    public ButtonBarBehavior(Context context, AttributeSet attrs) {
-        super(context, attrs);
     }
 }
