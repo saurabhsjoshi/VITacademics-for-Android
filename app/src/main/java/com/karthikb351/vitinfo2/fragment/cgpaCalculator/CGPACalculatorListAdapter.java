@@ -105,7 +105,7 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
             oldCGPA = (TextView) view.findViewById(R.id.tv_cgpa_old);
             courseCode = (TextView) view.findViewById(R.id.course_code);
             courseName = (TextView) view.findViewById(R.id.course_name);
-            courseCredits = (TextView) view.findViewById(R.id.course_credits);
+         //   courseCredits = (TextView) view.findViewById(R.id.course_credits);
             spinner = (Spinner) view.findViewById(R.id.spinner_course_grade);
             //spinner.setOnItemClickListener(this);
             /*calculate.setOnClickListener(new View.OnClickListener() {

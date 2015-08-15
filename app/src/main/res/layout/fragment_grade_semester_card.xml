@@ -1,0 +1,56 @@
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent" >
+ <LinearLayout
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+     android:padding="10dp"
+    tools:context="com.karthikb351.vitinfo2.fragment.grades.GradeSemesterCardFragment">
+
+     <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+         android:id="@+id/card_view_subjects"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
+             <RelativeLayout
+                 android:layout_width="match_parent"
+                 android:padding="5dp"
+                 android:background="@color/colorPrimary"
+                 android:layout_height="wrap_content">
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="18sp"
+                     android:id="@+id/text_view_semester_name"
+                     android:textColor="#FFF"
+                     android:text="Fall sem 2015"
+                     android:layout_alignParentLeft="true"/>
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:textSize="18sp"
+                     android:textColor="#FFF"
+                     android:id="@+id/text_view_semester_gpa"
+                     android:text="7.9"
+                     android:layout_alignParentRight="true"/>
+             </RelativeLayout>
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/linear_layout_grade_container" android:orientation="vertical">
+
+             </LinearLayout>
+          <!--   <android.support.v7.widget.RecyclerView
+                 android:id="@+id/recycler_view_semester_grades"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:scrollbars="vertical"/>!-->
+         </LinearLayout>
+         </android.support.v7.widget.CardView>
+
+ </LinearLayout>
+</ScrollView>

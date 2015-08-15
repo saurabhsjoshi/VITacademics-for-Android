@@ -41,6 +41,10 @@
             android:id="@+id/drawer_timetable"
             android:icon="@mipmap/ic_timetable"
             android:title="@string/fragment_timetable_title" />
+        <item
+            android:id="@+id/drawer_grades"
+            android:icon="@mipmap/ic_timetable"
+            android:title="@string/fragment_grades_title" />
 
     </group>
 

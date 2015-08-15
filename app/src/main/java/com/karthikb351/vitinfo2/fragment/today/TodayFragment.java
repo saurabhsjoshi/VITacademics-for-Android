@@ -124,7 +124,6 @@ public class TodayFragment extends Fragment {
             new LoadTodayTask().execute();
         }
     }
-
     @Override
     public void onResume() {
         super.onResume();

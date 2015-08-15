@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/progress">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="ring" android:innerRadius="19dp" android:thickness="2.5dp">
+            <stroke android:width="2dp" android:color="#47f200" />
+        </shape>
+    </item>
+</layer-list>

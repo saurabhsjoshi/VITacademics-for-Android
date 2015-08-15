@@ -31,6 +31,7 @@
         <item>@string/fragment_settings_title</item>
         <item>@string/fragment_messages_title</item>
         <item>@string/fragment_about_title</item>
+        <item>@string/fragment_grades_title</item>
     </string-array>
 
     <string-array name="course_details_tab">
@@ -68,4 +69,15 @@
         <item>Saturday</item>
         <item>Sunday</item>
     </string-array>
+
+    <array name = "grade_colors">
+        <item>#2ecc71</item>
+        <item>#27ae60</item>
+        <item>#e67e22</item>
+        <item>#d35400</item>
+        <item>#e74c3c</item>
+        <item>#c0392b</item>
+        <item>#f1c40f</item>
+        <item>#2980b9</item>
+    </array>
 </resources>

@@ -46,6 +46,7 @@ import com.karthikb351.vitinfo2.api.RequestConfig;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
+import com.karthikb351.vitinfo2.fragment.grades.GradesFragment_new;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.timetable.TimetableFragment;
@@ -158,6 +159,10 @@ public class MainActivity extends AppCompatActivity {
                 fragment = AboutFragment.newInstance();
                 position = 5;
                 break;
+            case R.id.drawer_grades:
+                fragment = GradesFragment_new.newInstance();
+                position = 6;
+                break ;
         }
         fragmentTransaction.replace(R.id.flContent, fragment, navigationTabs.get(position)).commit();
     }

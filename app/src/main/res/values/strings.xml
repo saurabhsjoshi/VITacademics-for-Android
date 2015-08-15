@@ -150,4 +150,7 @@
     <string name="android_share_message_subject">VITacademics</string>
     <string name="android_share_message_start" formatted="false">Download VITacademics from: %1$s</string>
 
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
