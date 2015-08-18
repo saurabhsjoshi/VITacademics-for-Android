@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ VITacademics
   ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
@@ -7,8 +8,10 @@
   ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
   ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
   ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
   ~
   ~ This file is part of VITacademics.
+  ~
   ~ VITacademics is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
   ~ the Free Software Foundation, either version 3 of the License, or
@@ -25,11 +28,11 @@
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardUseCompatPadding="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/colorPrimaryDark"
     app:cardCornerRadius="8dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,20 +42,22 @@
             android:id="@+id/layout_ring"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentTop="true">
+
             <ProgressBar
                 android:id="@+id/progress_bar_attendance"
                 style="?android:attr/progressBarStyleHorizontal"
-                android:layout_centerInParent="true"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:indeterminate="false"
                 android:max="100"
                 android:progress="60"
-                android:layout_gravity="center"
                 android:progressDrawable="@drawable/ring_attendance_red" />
+
             <TextView
                 android:id="@+id/attendance_percent"
                 android:layout_width="wrap_content"
@@ -65,48 +70,51 @@
 
         <RelativeLayout
             android:id="@+id/layout_course_details"
-            android:layout_alignParentTop="true"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
             <TextView
                 android:id="@+id/course_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
+
             <TextView
                 android:id="@+id/course_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/course_code"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="1dp"
-                android:layout_marginBottom="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle"
-                android:textSize="14sp"/>
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/layout_interact"
-            android:layout_below="@id/layout_course_details"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_course_details">
 
             <LinearLayout
                 android:id="@+id/layout_minus_buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <Button
                     android:id="@+id/button_attend_minus"
                     style="?android:attr/borderlessButtonStyle"
@@ -123,45 +131,46 @@
                     android:layout_height="wrap_content"
                     android:text="@string/button_class_miss"
                     android:textColor="@android:color/white"
-                    android:textSize="19sp"/>
+                    android:textSize="19sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layout_texts"
-                android:layout_toRightOf="@id/layout_minus_buttons"
-                android:layout_toEndOf="@id/layout_minus_buttons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/layout_minus_buttons"
+                android:layout_toRightOf="@id/layout_minus_buttons"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txt_attend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/label_class_go"
                     android:textColor="@android:color/white"
-                    android:textSize="17sp"
-                    android:text="@string/label_class_go" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/txt_miss"
-                    android:layout_marginTop="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/label_class_go"
                     android:textColor="@android:color/white"
-                    android:textSize="17sp"
-                    android:text="@string/label_class_go" />
+                    android:textSize="17sp" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_toRightOf="@id/layout_texts"
-                android:layout_toEndOf="@id/layout_texts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/layout_texts"
+                android:layout_toRightOf="@id/layout_texts"
                 android:orientation="vertical">
+
                 <Button
                     android:id="@+id/button_attend_plus"
                     style="?android:attr/borderlessButtonStyle"
@@ -170,6 +179,7 @@
                     android:text="@string/button_class_attend"
                     android:textColor="@android:color/white"
                     android:textSize="19sp" />
+
                 <Button
                     android:id="@+id/button_miss_plus"
                     style="?android:attr/borderlessButtonStyle"
@@ -177,24 +187,23 @@
                     android:layout_height="wrap_content"
                     android:text="@string/button_class_attend"
                     android:textColor="@android:color/white"
-                    android:textSize="19sp"
-                    />
+                    android:textSize="19sp" />
 
             </LinearLayout>
 
         </RelativeLayout>
 
         <TextView
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:id="@+id/attendance_classes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:layout_marginRight="38dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_marginEnd="20dp"
+            android:layout_marginRight="38dp"
             android:paddingBottom="12dp"
+            android:textColor="@android:color/white"
             android:textSize="19sp" />
 
     </RelativeLayout>

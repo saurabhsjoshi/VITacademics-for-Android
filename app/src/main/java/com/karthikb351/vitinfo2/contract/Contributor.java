@@ -6,8 +6,10 @@
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+ * Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
  *
  * This file is part of VITacademics.
+ *
  * VITacademics is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -50,17 +52,22 @@ public class Contributor extends RushObject {
     private String role;
 
     @Expose
+    @SerializedName("facebook_profile")
+    private String facebookProfile;
+
+    @Expose
     @SerializedName("github_profile")
     private String githubProfile;
 
     public Contributor() {
     }
 
-    public Contributor(int contributorId, String name, String email, String role, String githubProfile) {
+    public Contributor(int contributorId, String name, String email, String role, String facebookProfile, String githubProfile) {
         this.contributorId = contributorId;
         this.name = name;
         this.email = email;
         this.role = role;
+        this.facebookProfile = facebookProfile;
         this.githubProfile = githubProfile;
     }
 
@@ -94,6 +101,14 @@ public class Contributor extends RushObject {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getFacebookProfile() {
+        return facebookProfile;
+    }
+
+    public void setFacebookProfile(String facebookProfile) {
+        this.facebookProfile = facebookProfile;
     }
 
     public String getGithubProfile() {
