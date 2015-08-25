@@ -1,54 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ VITacademics
+  ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+  ~ Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
+  ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+  ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+  ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+  ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
+  ~
+  ~ This file is part of VITacademics.
+  ~
+  ~ VITacademics is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ VITacademics is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:padding="5dp"
+    android:layout_height="wrap_content"
     android:background="#ffffffff"
-    android:layout_height="wrap_content">
+    android:padding="5dp">
 
     <TextView
-        android:layout_width="50dp"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:layout_height="50dp"
-        android:text="A"
-        android:textColor="#FFF"
-        android:background="@drawable/circle"
         android:id="@+id/tv_grade"
-        android:layout_centerVertical="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
-        />
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:textColor="#FFF"
+        android:textSize="18sp" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CSE101"
-        android:textSize="12sp"
-        android:textColor="#000"
-        android:layout_marginLeft="10dp"
         android:id="@+id/tv_course_code"
-        android:layout_below="@+id/tv_course_name"
-        android:layout_toRightOf="@+id/tv_grade"/>
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4 Credits"
-        android:textSize="12sp"
-        android:textColor="#000"
-        android:layout_marginRight="5dp"
-        android:id="@+id/tv_course_credit"
         android:layout_below="@+id/tv_course_name"
-        android:layout_alignParentRight="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Computer Programming and Problem Solving"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
         android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/tv_grade"
+        android:layout_toRightOf="@id/tv_grade"
+        android:textColor="#000"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_course_credit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tv_course_name"
+        android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:minLines="1"
-        android:maxLines="2"
+        android:textColor="#000"
+        android:textSize="12sp" />
+
+    <TextView
         android:id="@+id/tv_course_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/tv_grade"
         android:layout_toRightOf="@+id/tv_grade"
-        android:layout_toEndOf="@+id/tv_grade" />
+        android:maxLines="2"
+        android:minLines="1"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
 </RelativeLayout>

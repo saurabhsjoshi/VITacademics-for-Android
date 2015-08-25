@@ -31,6 +31,7 @@
 
     <!-- Sample text -->
     <string name="hello_world">Hello world!</string>
+    <string name="hello_blank_fragment">Hello blank fragment!</string>
 
     <!-- Activity Titles -->
     <string name="activity_login_title">VITacademics Login</string>
@@ -106,6 +107,8 @@
     <string name="label_grade_char">Grade</string>
     <string name="label_grade_value">Grade Value</string>
     <string name="label_grade_cgpa">CGPA</string>
+    <string name="label_grade_gpa">GPA</string>
+    <string name="label_semester_no" formatted="false">Semester %1$d</string>
 
     <!-- CGPA Calculator -->
     <string name="label_cgpa_current" formatted="false">Current CGPA: %1$s</string>
@@ -156,8 +159,5 @@
     <string name="android_share_select">Share VITacademics using&#8230;</string>
     <string name="android_share_message_subject">VITacademics</string>
     <string name="android_share_message_start" formatted="false">Download VITacademics from: %1$s</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

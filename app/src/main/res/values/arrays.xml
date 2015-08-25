@@ -82,14 +82,14 @@
         <item>Sunday</item>
     </string-array>
 
-    <array name = "grade_colors">
-        <item>#2ecc71</item>
-        <item>#27ae60</item>
-        <item>#e67e22</item>
-        <item>#d35400</item>
-        <item>#e74c3c</item>
-        <item>#c0392b</item>
-        <item>#f1c40f</item>
-        <item>#2980b9</item>
+    <array name="grade_colors">
+        <item>@color/grade_a</item>
+        <item>@color/grade_b</item>
+        <item>@color/grade_c</item>
+        <item>@color/grade_d</item>
+        <item>@color/grade_e</item>
+        <item>@color/grade_f</item>
+        <item>@color/grade_s</item>
+        <item>@color/grade_n</item>
     </array>
 </resources>

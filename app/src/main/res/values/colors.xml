@@ -44,4 +44,13 @@
     <color name="loginButtonDisabled">#B1B3B5</color>
     <color name="colorTransparentBlack">#463c3c3c</color>
     <color name="colorButtonBarBackground">#E4E7E9</color>
+
+    <color name="grade_a">#2ecc71</color>
+    <color name="grade_b">#27ae60</color>
+    <color name="grade_c">#e67e22</color>
+    <color name="grade_d">#d35400</color>
+    <color name="grade_e">#e74c3c</color>
+    <color name="grade_f">#c0392b</color>
+    <color name="grade_s">#f1c40f</color>
+    <color name="grade_n">#2980b9</color>
 </resources>

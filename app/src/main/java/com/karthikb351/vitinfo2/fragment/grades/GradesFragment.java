@@ -1,12 +1,36 @@
+/*
+ * VITacademics
+ * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+ * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
+ * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+ * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+ * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+ * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+ * Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
+ *
+ * This file is part of VITacademics.
+ *
+ * VITacademics is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * VITacademics is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.karthikb351.vitinfo2.fragment.grades;
 
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +44,6 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.contract.Grade;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 
@@ -29,69 +52,64 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
+public class GradesFragment extends Fragment {
 
-public class GradesFragment_new extends Fragment {
+    private View rootView;
+    private LineChart chart;
+    private ViewPager pager;
+    private GradesPagerAdapter pagerAdapter;
+    private List<SemesterWiseGrade> semesterWiseGrades;
+    private RecyclerView gradesRecyclerView;
 
+    public GradesFragment() {
+    }
 
-    View rootView ;
-    LineChart chart ;
-    ViewPager pager ;
-    GradesPagerAdapter pagerAdapter;
-    List<SemesterWiseGrade> semesterWiseGrades ;
-    RecyclerView gradesRecyclerView ;
-
-    public  static GradesFragment_new newInstance() {
-        GradesFragment_new fragment = new GradesFragment_new();
+    public static GradesFragment newInstance() {
+        GradesFragment fragment = new GradesFragment();
         return fragment;
     }
 
-    public GradesFragment_new() {}
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        rootView  = inflater.inflate(R.layout.fragment_grades_new, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_grades, container, false);
         initialize();
-        return rootView ;
+        return rootView;
     }
 
-    void initialize()
-    {
+    void initialize() {
         semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
-        chart = (LineChart)rootView.findViewById(R.id.grades_chart);
+        chart = (LineChart) rootView.findViewById(R.id.grades_chart);
         initializeChart();
-        pager = (ViewPager)rootView.findViewById(R.id.view_pager_grades);
-        pagerAdapter =new GradesPagerAdapter(getActivity(),getActivity().getSupportFragmentManager(),semesterWiseGrades);
+        pager = (ViewPager) rootView.findViewById(R.id.view_pager_grades);
+        pagerAdapter = new GradesPagerAdapter(getActivity(), getActivity().getSupportFragmentManager(), semesterWiseGrades);
         pager.setAdapter(pagerAdapter);
         pager.addOnPageChangeListener(new semCardChangeListener());
         String Title = getActivity().getResources().getString(R.string.fragment_grades_title);
         getActivity().setTitle(Title);
     }
 
-    void initializeChart()
-    {
+    void initializeChart() {
         Resources r = getResources();
         ArrayList<Entry> data = new ArrayList<>();
-        float maxGpa = 0.0f , minGpa = 10.0f;
+        float maxGpa = 0.0f, minGpa = 10.0f;
         ArrayList<String> xVals = new ArrayList<>();
-        for(int i = 0 ; i < semesterWiseGrades.size() ; i++)
-        {
-            float gpa = (float)semesterWiseGrades.get(i).getGpa();
-            xVals.add("Semester "+Integer.toString(i+1));
-            data.add(new Entry(gpa,i));
-            if(gpa>maxGpa)
-                maxGpa=gpa;
-            if(gpa<minGpa)
-                minGpa=gpa;
+        for (int i = 0; i < semesterWiseGrades.size(); i++) {
+            float gpa = (float) semesterWiseGrades.get(i).getGpa();
+            xVals.add(getString(R.string.label_semester_no, i + 1));
+            data.add(new Entry(gpa, i));
+            if (gpa > maxGpa)
+                maxGpa = gpa;
+            if (gpa < minGpa)
+                minGpa = gpa;
         }
-        LineDataSet dset = new LineDataSet(data,"gpa");
+        LineDataSet dset = new LineDataSet(data, getString(R.string.label_grade_gpa));
         dset.setLineWidth(2.0f);
         dset.setValueTextSize(10.0f);
         dset.setColor(r.getColor(R.color.colorPrimary));
         dset.setHighLightColor(r.getColor(R.color.colorPrimary));
         dset.setCircleColor(r.getColor(R.color.colorAccent));
         dset.setDrawCircleHole(false);
-        LineData chartData = new LineData(xVals,dset);
+        LineData chartData = new LineData(xVals, dset);
         YAxis leftaxis = chart.getAxisLeft();
         leftaxis.setStartAtZero(false);
         leftaxis.setAxisMinValue(minGpa - 0.1f);
@@ -104,16 +122,16 @@ public class GradesFragment_new extends Fragment {
         chart.setData(chartData);
         chart.setPinchZoom(false);
         chart.setDoubleTapToZoomEnabled(false);
-        chart.highlightValue(0,0);
+        chart.highlightValue(0, 0);
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-               pager.setCurrentItem(e.getXIndex());
+                pager.setCurrentItem(e.getXIndex());
             }
 
             @Override
             public void onNothingSelected() {
-               pager.setCurrentItem(0);
+                pager.setCurrentItem(0);
             }
         });
     }
@@ -135,8 +153,7 @@ public class GradesFragment_new extends Fragment {
         initialize();
     }
 
-    class semCardChangeListener implements ViewPager.OnPageChangeListener
-    {
+    class semCardChangeListener implements ViewPager.OnPageChangeListener {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -144,7 +161,7 @@ public class GradesFragment_new extends Fragment {
 
         @Override
         public void onPageSelected(int position) {
-            chart.highlightValue(position,0);
+            chart.highlightValue(position, 0);
         }
 
         @Override
