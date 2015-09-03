@@ -35,6 +35,7 @@
     <color name="colorAccentLight">#FF8A80</color>
     <color name="colorControlHighlight">#463c3c3c</color>
     <color name="text_primary">#D9FFFFFF</color>
+    <color name="text_secondary">#D9000000</color>
     <color name="textColorDivider">#B6B6B6</color>
     <color name="lowAttend">#C62828</color>
     <color name="midAttend">#F9A825</color>

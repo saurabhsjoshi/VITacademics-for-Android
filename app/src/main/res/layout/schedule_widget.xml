@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ VITacademics
+  ~ Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
+  ~ Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
+  ~ Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
+  ~ Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
+  ~ Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
+  ~ Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
+  ~ Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
+  ~
+  ~ This file is part of VITacademics.
+  ~
+  ~ VITacademics is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ VITacademics is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity"
+    android:gravity="center">
+
+    <com.karthikb351.vitinfo2.customwidget.CustomTextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textSize="16sp"
+        app:tvFont="Roboto-Light.ttf"
+        android:textColor="#333333"
+        android:layout_alignParentLeft="true"
+        android:text="08:00"/>
+    <com.karthikb351.vitinfo2.customwidget.CustomTextView
+        android:id="@+id/tvTimeAMPM"
+        android:layout_below="@id/tvTime"
+        android:layout_alignRight="@id/tvTime"
+        android:layout_alignEnd="@id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        app:tvFont="Roboto-Light.ttf"
+        android:textColor="#333333"
+        android:textAllCaps="true"
+        android:text="AM"/>
+
+    <com.karthikb351.vitinfo2.customwidget.TimeLineView
+        android:id="@+id/timeline"
+        android:layout_toRightOf="@id/tvTime"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        />
+
+    <com.karthikb351.vitinfo2.customwidget.CustomTextView
+        android:id="@+id/tvCourseName"
+        android:layout_toRightOf="@id/timeline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tvTime"
+        android:maxLines="2"
+        android:textSize="18sp"
+        app:tvFont="Roboto-Light.ttf"
+        android:textColor="@color/text_secondary"
+        android:text="Computer Architecture and Organization"/>
+
+    <LinearLayout
+        android:id="@+id/llVenue"
+        android:layout_below="@id/tvCourseName"
+        android:layout_alignLeft="@id/tvCourseName"
+        android:layout_alignStart="@id/tvCourseName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_venue_black"/>
+
+        <com.karthikb351.vitinfo2.customwidget.CustomTextView
+            android:id="@+id/tvVenue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            app:tvFont="Roboto-Light.ttf"
+            android:layout_gravity="bottom"
+            android:textAllCaps="true"
+            android:textColor="@color/text_secondary"
+            android:text="SJT 415"/>
+    </LinearLayout>
+
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/progressAttendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llVenue"
+        android:layout_alignLeft="@id/llVenue"
+        android:layout_alignStart="@id/llVenue"
+        android:layout_marginTop="7dp"
+        />
+
+
+
+</RelativeLayout>
