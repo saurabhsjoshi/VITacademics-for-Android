@@ -1,15 +1,12 @@
 /*
  * VITacademics
  * Copyright (C) 2015  Aneesh Neelam <neelam.aneesh@gmail.com>
- * Copyright (C) 2015  Saurabh Joshi <saurabhjoshi94@outlook.com>
  * Copyright (C) 2015  Gaurav Agerwala <gauravagerwala@gmail.com>
  * Copyright (C) 2015  Karthik Balakrishnan <karthikb351@gmail.com>
  * Copyright (C) 2015  Pulkit Juneja <pulkit.16296@gmail.com>
  * Copyright (C) 2015  Hemant Jain <hemanham@gmail.com>
- * Copyright (C) 2015  Darshan Mehta <darshanmehta17@gmail.com>
  *
  * This file is part of VITacademics.
- *
  * VITacademics is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -36,6 +33,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Grade;
@@ -48,12 +46,15 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
     private List<Grade> grades;
     private Context context;
     private int creditsRegistered;
+    private int failCred;
+    private int newCredEarned;
     private int creditsEarned;
     private float cgpa;
     private int layoutId;
     private float totalgradeValue;
     private float newCGPA;
     private int newCredits;
+    private float newGPA;
 
     public CGPACalculatorListAdapter(Context context, List<Course> courses, List<Grade> grades, int creditsRegistered, int creditsEarned, float cgpa) {
         this.context = context;
@@ -108,15 +109,15 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
             oldCGPA = (TextView) view.findViewById(R.id.tv_cgpa_old);
             courseCode = (TextView) view.findViewById(R.id.course_code);
             courseName = (TextView) view.findViewById(R.id.course_name);
-         //   courseCredits = (TextView) view.findViewById(R.id.course_credits);
+            courseCredits = (TextView) view.findViewById(R.id.course_credits);
             spinner = (Spinner) view.findViewById(R.id.spinner_course_grade);
             //spinner.setOnItemClickListener(this);
-            /*calculate.setOnClickListener(new View.OnClickListener() {
+            calculate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    newCGPA = totalgradeValue / newCredits;
+                    calcCGPA();
                 }
-            });*/
+            });
         }
 
         @Override
@@ -124,6 +125,63 @@ public class CGPACalculatorListAdapter extends RecyclerView.Adapter<CGPACalculat
             totalgradeValue = totalgradeValue + position;
             int credits = Integer.parseInt(courses.get(position).getLtpjc().substring(4));
             newCredits += credits;
+        }
+
+        public void calcCGPA() {
+            int newgradeValue = 0;
+            for (int i = 0; i < courses.size(); i++){
+                for(int j=0; j<grades.size(); j++) {
+                    if(courses.get(i).getCourseCode().equals(grades.get(j).getCourseCode()))
+                    {
+                        //delete the element
+                        creditsEarned -= courses.get(i).getCredits();
+                        courses.remove(i);
+                    }
+                }
+            }
+            for(int j=0; j<grades.size(); j++)
+            {
+                int credCurrent = grades.get(j).getCredits();
+                switch (grades.get(j).getGrade())
+                {   //Check if Audit(U) or Withdrawn(W) or P/F (Pass or Fail) and exclude from calculation of GPA/new CGPA
+                    // For W, U and P/F, remove for credits earned
+                    //add respective grade value and credits earned
+                    case "S" : newgradeValue = 10*credCurrent;
+                        newCredEarned+=credCurrent;
+                        break;
+                    case "A" : newgradeValue += 9*credCurrent;
+                        newCredEarned+=credCurrent;
+                        break;
+                    case "B" : newgradeValue += 8*credCurrent;
+                        newCredEarned+=credCurrent;
+                        break;
+                    case "C" : newgradeValue += 7*credCurrent;
+                        newCredEarned+=credCurrent;
+                        break;
+                    case "D" : newgradeValue += 6*credCurrent;
+                        newCredEarned+=credCurrent;
+                        break;
+                    case "E" : newgradeValue += 5*credCurrent;
+                        newCredEarned+=credCurrent;
+                        break;
+                    case "F" : newgradeValue += 0;
+                        failCred +=credCurrent;
+                        break;
+                    case "N" : newgradeValue += 0;
+                        failCred +=credCurrent;
+                        break;
+                    case "W" : newgradeValue += 0;
+                        break;
+                    case "U" : newgradeValue += 0;
+                        break;
+                    case "P" : newgradeValue += 0;
+                        break;
+                    default: break;
+                }
+            }
+            totalgradeValue += newgradeValue;
+            newGPA = newgradeValue/creditsRegistered;
+            newCGPA = totalgradeValue/(creditsEarned + newCredEarned +failCred);
         }
 
     }

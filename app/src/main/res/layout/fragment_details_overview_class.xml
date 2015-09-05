@@ -27,7 +27,7 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingLeft="14sp"
@@ -112,19 +112,20 @@
         android:textSize="@dimen/abc_text_size_body_1_material" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
         android:paddingTop="10dp"
         android:text="@string/label_timings"
+        android:gravity="center"
         android:textColor="@android:color/black"
         android:textSize="@dimen/abc_text_size_subtitle_material_toolbar"
         android:textStyle="bold" />
 
     <ListView
         android:id="@+id/timing_list"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"></ListView>
 
 </LinearLayout>

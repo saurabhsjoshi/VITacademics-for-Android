@@ -27,6 +27,8 @@
 package com.karthikb351.vitinfo2.fragment.details;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -157,6 +159,10 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
                 holder.date.setText(attendanceDetails.get(position - 1).getDate());
             }
             holder.detailStatus.setText(attendanceDetails.get(position - 1).getStatus());
+            if(holder.detailStatus.getText().equals("Present"))
+                holder.detailStatus.setTextColor(ColorStateList.valueOf(Color.rgb(50,205,50)));
+            else
+                holder.detailStatus.setTextColor(ColorStateList.valueOf(Color.rgb(230,40,40)));
             holder.classUnits.setText(context.getString(R.string.attendance_class_units_earned,
                     attendanceDetails.get(position - 1).getClassUnits()));
 

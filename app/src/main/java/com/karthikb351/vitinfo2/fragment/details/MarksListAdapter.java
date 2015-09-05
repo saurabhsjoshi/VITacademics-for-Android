@@ -31,6 +31,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -62,8 +63,8 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
 
     @Override
     public AssesmentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        android.support.v7.widget.CardView cardView;
-        cardView = (android.support.v7.widget.CardView) LayoutInflater.from(context).inflate(viewType, parent, false);
+       View cardView;
+        cardView = LayoutInflater.from(context).inflate(viewType, parent, false);
         return new AssesmentViewHolder(cardView);
     }
 
