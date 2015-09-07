@@ -137,7 +137,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     collapseView(toolbar);
                 }
             }
-        }, 1500);
+        }, 800);
 
     }
 
