@@ -160,9 +160,9 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             }
             holder.detailStatus.setText(attendanceDetails.get(position - 1).getStatus());
             if(holder.detailStatus.getText().equals("Present"))
-                holder.detailStatus.setTextColor(ColorStateList.valueOf(Color.rgb(50,205,50)));
+                holder.detailStatus.setTextColor(ColorStateList.valueOf(Color.rgb(0,135,0)));
             else
-                holder.detailStatus.setTextColor(ColorStateList.valueOf(Color.rgb(230,40,40)));
+                holder.detailStatus.setTextColor(ColorStateList.valueOf(Color.rgb(230, 40, 40)));
             holder.classUnits.setText(context.getString(R.string.attendance_class_units_earned,
                     attendanceDetails.get(position - 1).getClassUnits()));
 

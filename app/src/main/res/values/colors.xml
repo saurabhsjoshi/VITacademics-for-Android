@@ -39,7 +39,7 @@
     <color name="textColorDivider">#B6B6B6</color>
     <color name="lowAttend">#C62828</color>
     <color name="midAttend">#F9A825</color>
-    <color name="highAttend">#2E7D32</color>
+    <color name="highAttend">#008700</color>
     <color name="highlight">#ffe7ffc1</color>
     <color name="appBrand">#ff535150</color>
     <color name="loginButtonDisabled">#B1B3B5</color>
