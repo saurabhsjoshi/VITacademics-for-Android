@@ -96,9 +96,15 @@ public class ScheduleView extends RelativeLayout {
         return tvCourseName.getText().toString();
     }
 
-    public void setTime(String time, String AMPM){
-        tvTime.setText(time);
-        tvTimeAMPM.setText(AMPM);
+    public void setTime(String time){
+        String timeHeader = time.substring(0, time.length() - 3);
+        String AMPM = time.substring(time.length() - 2);
+
+        if(timeHeader.length() == 4){
+            timeHeader = "0" + timeHeader;
+        }
+        tvTime.setText(timeHeader);
+        tvTimeAMPM.setText(AMPM.toUpperCase());
     }
 
     public void setVenue(String venue){
@@ -109,11 +115,10 @@ public class ScheduleView extends RelativeLayout {
         return tvVenue.getText().toString();
     }
 
-    public void setValues(String courseName, String venue, String time, String AMPM, int attendance){
+    public void setValues(String courseName, String venue, String time, int attendance){
         tvCourseName.setText(courseName);
         tvVenue.setText(venue);
-        tvTime.setText(time);
-        tvTimeAMPM.setText(AMPM);
+        setTime(time);
         setAttendance(attendance);
     }
 

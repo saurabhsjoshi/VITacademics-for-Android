@@ -24,7 +24,7 @@
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.timetable;
+package com.karthikb351.vitinfo2.fragment.schedule;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -36,24 +36,24 @@ import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
 
-public class TimetableFragment extends Fragment {
+public class ScheduleFragment extends Fragment {
 
     private ViewPager viewpager;
-    private TimetablePagerAdapter pageradapter;
+    private SchedulePagerAdapter pageradapter;
 
-    public TimetableFragment() {
+    public ScheduleFragment() {
     }
 
-    public static TimetableFragment newInstance() {
-        return new TimetableFragment();
+    public static ScheduleFragment newInstance() {
+        return new ScheduleFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_timetable, container, false);
+        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
         viewpager = (ViewPager) view.findViewById(R.id.view_pager_timetable);
-        pageradapter = new TimetablePagerAdapter(getActivity().getSupportFragmentManager(), getActivity());
+        pageradapter = new SchedulePagerAdapter(getActivity().getSupportFragmentManager(), getActivity());
         viewpager.setAdapter(pageradapter);
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewpager);

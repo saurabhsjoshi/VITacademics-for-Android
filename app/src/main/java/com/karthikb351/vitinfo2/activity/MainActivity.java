@@ -51,7 +51,7 @@ import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
-import com.karthikb351.vitinfo2.fragment.timetable.TimetableFragment;
+import com.karthikb351.vitinfo2.fragment.schedule.ScheduleFragment;
 import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new TodayFragment(), TodayFragment.class.getSimpleName()).commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().add(R.id.flContent, new ScheduleFragment(), ScheduleFragment.class.getSimpleName()).commitAllowingStateLoss();
     }
 
     private void switchFragment(int id) {
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 position = 1;
                 break;
             case R.id.drawer_timetable:
-                fragment = TimetableFragment.newInstance();
+                fragment = ScheduleFragment.newInstance();
                 position = 2;
                 break;
             case R.id.drawer_settings:

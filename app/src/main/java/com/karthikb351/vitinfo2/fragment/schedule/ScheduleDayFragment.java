@@ -24,12 +24,13 @@
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.timetable;
+package com.karthikb351.vitinfo2.fragment.schedule;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,7 +38,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
@@ -60,28 +60,27 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 
-public class TimetableDayFragment extends Fragment {
+public class ScheduleDayFragment extends Fragment {
 
     private SwipeRefreshLayout swipeRefreshLayout;
-    private TimetableListAdapter adapter;
+    private ScheduleListAdapter adapter;
     private RecyclerView recyclerview;
-    private ProgressBar loadProgress;
     private int dayOfWeek;
     private View rootView;
     private List<Course> courses;
 
-    public TimetableDayFragment() {
+    public ScheduleDayFragment() {
     }
 
-    public static TimetableDayFragment newInstance(int dayOfWeek) {
-        TimetableDayFragment fragment = new TimetableDayFragment();
+    public static ScheduleDayFragment newInstance(int dayOfWeek) {
+        ScheduleDayFragment fragment = new ScheduleDayFragment();
         fragment.dayOfWeek = dayOfWeek;
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_timetable_day, container, false);
+        rootView = inflater.inflate(R.layout.fragment_schedule_day, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         initialize();
         return rootView;
@@ -91,8 +90,7 @@ public class TimetableDayFragment extends Fragment {
         recyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_timetable);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(layoutManager);
-        loadProgress = (ProgressBar) rootView.findViewById(R.id.timeTableProgressBar);
-        swipeRefreshLayout.setColorSchemeColors(getActivity().getResources().getColor(R.color.colorAccent));
+        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorAccent));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -145,10 +143,6 @@ public class TimetableDayFragment extends Fragment {
     }
 
     private class LoadDayTask extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
-        @Override
-        protected void onPreExecute() {
-            loadProgress.setVisibility(View.VISIBLE);
-        }
 
         @Override
         protected List<Pair<Course, Timing>> doInBackground(Void... params) {
@@ -192,11 +186,10 @@ public class TimetableDayFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<Pair<Course, Timing>> finalCourses) {
-            loadProgress.setVisibility(View.GONE);
             if (finalCourses.size() == 0) {
                 // TODO No classes today message, change view
             } else {
-                adapter = new TimetableListAdapter(getActivity(), finalCourses);
+                adapter = new ScheduleListAdapter(getActivity(), finalCourses);
                 adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {
                     @Override
                     public void onItemClick(Course data) {

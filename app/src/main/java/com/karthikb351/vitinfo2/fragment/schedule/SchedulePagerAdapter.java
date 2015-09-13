@@ -24,7 +24,7 @@
  * along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.karthikb351.vitinfo2.fragment.timetable;
+package com.karthikb351.vitinfo2.fragment.schedule;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -32,14 +32,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.fragment.schedule.ScheduleDayFragment;
 
-public class TimetablePagerAdapter extends FragmentStatePagerAdapter {
+public class SchedulePagerAdapter extends FragmentStatePagerAdapter {
 
     private final int DAYS_COUNT;
     private Context context;
     private String tabTitles[];
 
-    public TimetablePagerAdapter(FragmentManager fragmentManager, Context context) {
+    public SchedulePagerAdapter(FragmentManager fragmentManager, Context context) {
         super(fragmentManager);
         this.context = context;
         this.tabTitles = context.getResources().getStringArray(R.array.days_of_week);
@@ -53,7 +54,7 @@ public class TimetablePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return TimetableDayFragment.newInstance(position);
+        return ScheduleDayFragment.newInstance(position);
     }
 
     @Override
