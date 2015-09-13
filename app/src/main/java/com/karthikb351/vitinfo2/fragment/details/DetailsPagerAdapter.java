@@ -53,13 +53,13 @@ public class DetailsPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                fragment = OverviewFragment.newInstance(course);
-                break;
-            case 1:
                 fragment = AttendanceFragment.newInstance(course);
                 break;
-            case 2:
+            case 1:
                 fragment = MarksFragment.newInstance(course);
+                break;
+            case 2:
+                fragment = OverviewFragment.newInstance(course);
                 break;
             default:
                 fragment = null;
