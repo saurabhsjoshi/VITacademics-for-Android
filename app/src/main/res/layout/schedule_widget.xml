@@ -72,7 +72,7 @@
         android:layout_alignBaseline="@id/tvTime"
         android:maxLines="2"
         android:textSize="18sp"
-        app:tvFont="Roboto-Light.ttf"
+        app:tvFont="Roboto-Regular.ttf"
         android:textColor="@color/text_secondary"
         android:text="Computer Architecture and Organization"/>
 
@@ -90,7 +90,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:scaleType="centerInside"
-            android:src="@mipmap/ic_venue_black"/>
+            android:src="@mipmap/map_marker"/>
 
         <com.karthikb351.vitinfo2.customwidget.CustomTextView
             android:id="@+id/tvVenue"
