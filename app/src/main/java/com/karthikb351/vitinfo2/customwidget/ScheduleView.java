@@ -30,12 +30,22 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.karthikb351.vitinfo2.R;
+import com.karthikb351.vitinfo2.utility.DateTimeCalender;
+
+import org.joda.time.DateTimeZone;
+import org.joda.time.LocalTime;
+import org.joda.time.ReadablePeriod;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 
 public class ScheduleView extends RelativeLayout {
@@ -103,8 +113,60 @@ public class ScheduleView extends RelativeLayout {
         if(timeHeader.length() == 4){
             timeHeader = "0" + timeHeader;
         }
+        compareTimeAndUpdate(time);
         tvTime.setText(timeHeader);
         tvTimeAMPM.setText(AMPM.toUpperCase());
+    }
+
+    private void compareTimeAndUpdate(String time) {
+
+        // Formatting strings to get the nearest hours
+        String AMPM = time.substring(time.length() - 2);
+        String timeHeader = time.substring(0, time.length() - 3);
+
+        if(timeHeader.length() == 4){
+            timeHeader = "0" + timeHeader;
+        }
+
+        String hour = timeHeader.substring(0,2);
+
+        int hr = Integer.parseInt(hour);
+
+        if(AMPM.compareToIgnoreCase("PM") == 0 && hr != 12){
+            hr += 12;
+        }
+
+        // TODO fix timezone
+
+        String floorHour = hr + ":00";
+        String ceilHour = hr + ":45";
+
+        // Comparing time
+        LocalTime nowTime = LocalTime.now(DateTimeZone.UTC);
+
+        // To correct the timezone difference
+        Log.d("SCHEDULE_VIEW", "Now Time 1: " + nowTime);
+        nowTime.plusHours(5);
+        Log.d("SCHEDULE_VIEW", "Now Time 2: " + nowTime);
+        nowTime.plusMinutes(30);
+
+        LocalTime floorTime = new LocalTime(floorHour);
+        LocalTime ceilTime = new LocalTime(ceilHour);
+
+        boolean lowerCheck = nowTime.isAfter(floorTime) || nowTime.isEqual(floorTime);
+        boolean upperCheck = nowTime.isBefore(ceilTime);
+        boolean upperOverCheck = nowTime.isAfter(ceilTime) || nowTime.isEqual(ceilTime);
+
+        if(lowerCheck && upperCheck){
+            setState(TimeLineView.STATE_CURRENT);
+            Log.d("SCHEDULE_VIEW", "Now Time: " + nowTime);
+            Log.d("SCHEDULE_VIEW", "Floor Time: " + floorTime);
+            Log.d("SCHEDULE_VIEW", "Ceil Time: " + ceilTime);
+        }else if(lowerCheck && upperOverCheck){
+            setState(TimeLineView.STATE_FINISHED);
+        }else {
+            setState(TimeLineView.STATE_SCHEDULED);
+        }
     }
 
     public void setVenue(String venue){
