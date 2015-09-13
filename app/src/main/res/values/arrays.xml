@@ -47,9 +47,9 @@
     </string-array>
 
     <string-array name="course_details_tab">
-        <item>@string/tab_course_overview</item>
         <item>@string/tab_course_attendance</item>
         <item>@string/tab_course_marks</item>
+        <item>@string/tab_course_overview</item>
     </string-array>
 
     <string-array name="settings_topic">
