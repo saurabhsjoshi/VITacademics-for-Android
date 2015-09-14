@@ -48,8 +48,8 @@ import java.util.List;
 public class OverviewFragment extends Fragment {
 
     private Course course;
-    private TextView courseName, classNumber, courseCode, faculty, courseMode, courseType, ltpjc, courseOption;
-    private TextView registeredOn, slot, venue;
+    private TextView courseName, courseCode, faculty, courseMode, courseType, ltpjc;
+    private TextView slot, venue;
     private TextView projectTitle;
     private ListView timingList;
 
@@ -76,20 +76,17 @@ public class OverviewFragment extends Fragment {
         } else {
             view = inflater.inflate(R.layout.fragment_details_overview_class, container, false);
 
-            registeredOn = (TextView) view.findViewById(R.id.registered_on);
             venue = (TextView) view.findViewById(R.id.venue);
             slot = (TextView) view.findViewById(R.id.slot);
             timingList = (ListView) view.findViewById(R.id.timing_list);
         }
 
         courseName = (TextView) view.findViewById(R.id.course_name);
-        classNumber = (TextView) view.findViewById(R.id.class_number);
         courseCode = (TextView) view.findViewById(R.id.course_code);
         faculty = (TextView) view.findViewById(R.id.faculty);
         courseType = (TextView) view.findViewById(R.id.course_type);
         courseMode = (TextView) view.findViewById(R.id.course_mode);
         ltpjc = (TextView) view.findViewById(R.id.ltpjc);
-        courseOption = (TextView) view.findViewById(R.id.course_option);
 
         if (course.getCourseType() == Constants.COURSE_TYPE_PBC) {
             projectTitle.setText(getString(R.string.label_project_title, course.getProjectTitle()));
@@ -98,7 +95,7 @@ public class OverviewFragment extends Fragment {
             slot.setText(getString(R.string.label_slot, course.getSlot()));
             venue.setText(getString(R.string.label_venue, course.getVenue()));
 
-            if (course.getAttendance().isSupported()) {
+            /*if (course.getAttendance().isSupported()) {
                 String registeredDate;
                 try {
                     registeredDate = DateTimeCalender.parseISO8601DateTime(course.getAttendance().getRegistrationDate());
@@ -106,10 +103,8 @@ public class OverviewFragment extends Fragment {
                     ex.printStackTrace();
                     registeredDate = course.getAttendance().getRegistrationDate();
                 }
-                registeredOn.setText(getString(R.string.label_registered_on, registeredDate));
-                registeredOn.setVisibility(View.VISIBLE);
             }
-
+*/
             List<String> timings = new ArrayList<>();
             for (Timing timing : course.getTimings()) {
                 String day = getDayOfWeek(timing.getDay());
@@ -129,13 +124,11 @@ public class OverviewFragment extends Fragment {
         }
 
         courseName.setText(course.getCourseTitle());
-        classNumber.setText(getString(R.string.label_class_number, course.getClassNumber()));
         courseCode.setText(getString(R.string.label_course_code, course.getCourseCode()));
         faculty.setText(getString(R.string.label_faculty, course.getFaculty()));
         ltpjc.setText(getString(R.string.label_ltpjc, course.getLtpjc()));
         courseType.setText(getString(R.string.label_course_type, course.getSubjectType()));
         courseMode.setText(getString(R.string.label_course_mode, course.getCourseMode()));
-        courseOption.setText(getString(R.string.label_course_option, course.getCourseOption()));
 
         return view;
     }

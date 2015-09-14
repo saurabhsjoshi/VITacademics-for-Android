@@ -132,3 +132,4 @@ Temporary Items
 # Linux trash folder which might appear on any partition or disk
 .Trash-*
 
+app/src/main/java/com/karthikb351/vitinfo2/fragment/cgpaCalculator/CGPACalculatorListAdapter.java

@@ -35,17 +35,11 @@
 
     <TextView
         android:id="@+id/course_name"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:textColor="@android:color/black"
         android:textSize="@dimen/abc_text_size_headline_material" />
-
-    <TextView
-        android:id="@+id/class_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material" />
 
     <TextView
         android:id="@+id/course_code"
@@ -81,21 +75,6 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:textSize="@dimen/abc_text_size_body_1_material" />
-
-    <TextView
-        android:id="@+id/course_option"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material" />
-
-    <TextView
-        android:id="@+id/registered_on"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material"
-        android:visibility="gone" />
 
     <TextView
         android:id="@+id/slot"
