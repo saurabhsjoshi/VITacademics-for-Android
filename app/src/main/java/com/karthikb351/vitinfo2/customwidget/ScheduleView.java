@@ -75,7 +75,6 @@ public class ScheduleView extends RelativeLayout {
         progressAttendance.setProgressTextColor(ContextCompat.getColor(getContext(), R.color.text_secondary));
         progressAttendance.setReachedBarColor(ContextCompat.getColor(getContext(), R.color.text_secondary));
         progressAttendance.setMax(100);
-//        progressBar.setProgressTextSize(12*3);
         progressAttendance.setProgress(0);
     }
 
@@ -113,60 +112,8 @@ public class ScheduleView extends RelativeLayout {
         if(timeHeader.length() == 4){
             timeHeader = "0" + timeHeader;
         }
-        compareTimeAndUpdate(time);
         tvTime.setText(timeHeader);
         tvTimeAMPM.setText(AMPM.toUpperCase());
-    }
-
-    private void compareTimeAndUpdate(String time) {
-
-        // Formatting strings to get the nearest hours
-        String AMPM = time.substring(time.length() - 2);
-        String timeHeader = time.substring(0, time.length() - 3);
-
-        if(timeHeader.length() == 4){
-            timeHeader = "0" + timeHeader;
-        }
-
-        String hour = timeHeader.substring(0,2);
-
-        int hr = Integer.parseInt(hour);
-
-        if(AMPM.compareToIgnoreCase("PM") == 0 && hr != 12){
-            hr += 12;
-        }
-
-        // TODO fix timezone
-
-        String floorHour = hr + ":00";
-        String ceilHour = hr + ":45";
-
-        // Comparing time
-        LocalTime nowTime = LocalTime.now(DateTimeZone.UTC);
-
-        // To correct the timezone difference
-        Log.d("SCHEDULE_VIEW", "Now Time 1: " + nowTime);
-        nowTime.plusHours(5);
-        Log.d("SCHEDULE_VIEW", "Now Time 2: " + nowTime);
-        nowTime.plusMinutes(30);
-
-        LocalTime floorTime = new LocalTime(floorHour);
-        LocalTime ceilTime = new LocalTime(ceilHour);
-
-        boolean lowerCheck = nowTime.isAfter(floorTime) || nowTime.isEqual(floorTime);
-        boolean upperCheck = nowTime.isBefore(ceilTime);
-        boolean upperOverCheck = nowTime.isAfter(ceilTime) || nowTime.isEqual(ceilTime);
-
-        if(lowerCheck && upperCheck){
-            setState(TimeLineView.STATE_CURRENT);
-            Log.d("SCHEDULE_VIEW", "Now Time: " + nowTime);
-            Log.d("SCHEDULE_VIEW", "Floor Time: " + floorTime);
-            Log.d("SCHEDULE_VIEW", "Ceil Time: " + ceilTime);
-        }else if(lowerCheck && upperOverCheck){
-            setState(TimeLineView.STATE_FINISHED);
-        }else {
-            setState(TimeLineView.STATE_SCHEDULED);
-        }
     }
 
     public void setVenue(String venue){

@@ -36,6 +36,8 @@ import android.view.ViewGroup;
 
 import com.karthikb351.vitinfo2.R;
 
+import java.util.Calendar;
+
 public class ScheduleFragment extends Fragment {
 
     private ViewPager viewpager;
@@ -59,7 +61,27 @@ public class ScheduleFragment extends Fragment {
         tabLayout.setupWithViewPager(viewpager);
         String title = getActivity().getResources().getString(R.string.fragment_timetable_title);
         getActivity().setTitle(title);
+        viewpager.setCurrentItem(getEquivalentDay(Calendar.getInstance().get(Calendar.DAY_OF_WEEK)), true);
         return view;
     }
+
+    private int getEquivalentDay(int day) {
+        switch (day){
+            case Calendar.SUNDAY:
+                day = 6;
+                break;
+            case Calendar.MONDAY:
+            case Calendar.TUESDAY:
+            case Calendar.WEDNESDAY:
+            case Calendar.THURSDAY:
+            case Calendar.FRIDAY:
+            case Calendar.SATURDAY:
+                day -= 2;
+                break;
+            default: day = 0;
+        }
+        return day;
+    }
+
 
 }

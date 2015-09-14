@@ -84,7 +84,7 @@ public class TimeLineView extends View {
                 rectF.set(cx - BORDER_THICKNESS, cy - BORDER_THICKNESS,
                         cx + BORDER_THICKNESS, cy + BORDER_THICKNESS);
                 mPath.reset();
-                for (int i = 0; i <= 360; i += 1)
+                for (int i = 0; i <= 360; i++)
                 {
                     mPath.addArc(rectF, i, 1);
                 }
