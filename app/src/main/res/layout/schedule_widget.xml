@@ -43,7 +43,7 @@
         app:tvFont="Roboto-Light.ttf"
         android:textColor="#333333"
         android:layout_alignParentLeft="true"
-        android:text="08:00"/>
+        android:layout_alignParentStart="true"/>
     <com.karthikb351.vitinfo2.customwidget.CustomTextView
         android:id="@+id/tvTimeAMPM"
         android:layout_below="@id/tvTime"
@@ -54,12 +54,12 @@
         android:textSize="12sp"
         app:tvFont="Roboto-Light.ttf"
         android:textColor="#333333"
-        android:textAllCaps="true"
-        android:text="AM"/>
+        android:textAllCaps="true"/>
 
     <com.karthikb351.vitinfo2.customwidget.TimeLineView
         android:id="@+id/timeline"
         android:layout_toRightOf="@id/tvTime"
+        android:layout_toEndOf="@id/tvTime"
         android:layout_width="40dp"
         android:layout_height="match_parent"
         />
@@ -67,14 +67,14 @@
     <com.karthikb351.vitinfo2.customwidget.CustomTextView
         android:id="@+id/tvCourseName"
         android:layout_toRightOf="@id/timeline"
+        android:layout_toEndOf="@id/timeline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/tvTime"
         android:maxLines="2"
         android:textSize="18sp"
         app:tvFont="Roboto-Regular.ttf"
-        android:textColor="@color/text_secondary"
-        android:text="Computer Architecture and Organization"/>
+        android:textColor="@color/text_secondary"/>
 
     <LinearLayout
         android:id="@+id/llVenue"
@@ -90,7 +90,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:scaleType="centerInside"
-            android:src="@mipmap/map_marker"/>
+            android:src="@mipmap/ic_venue_black"/>
 
         <com.karthikb351.vitinfo2.customwidget.CustomTextView
             android:id="@+id/tvVenue"
@@ -100,8 +100,7 @@
             app:tvFont="Roboto-Light.ttf"
             android:layout_gravity="bottom"
             android:textAllCaps="true"
-            android:textColor="@color/text_secondary"
-            android:text="SJT 415"/>
+            android:textColor="@color/text_secondary"/>
     </LinearLayout>
 
 
