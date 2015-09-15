@@ -90,7 +90,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:scaleType="centerInside"
-            android:src="@mipmap/ic_venue_black"/>
+            android:src="@mipmap/ic_venue_black_18dp"/>
 
         <com.karthikb351.vitinfo2.customwidget.CustomTextView
             android:id="@+id/tvVenue"
