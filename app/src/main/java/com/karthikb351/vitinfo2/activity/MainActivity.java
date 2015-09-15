@@ -45,6 +45,7 @@ import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
+import com.karthikb351.vitinfo2.customwidget.CustomTextView;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
 import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
@@ -67,11 +68,15 @@ public class MainActivity extends AppCompatActivity {
 
     private String campus;
     private String registerNumber;
+
     private List<String> navigationTabs;
+
     private LinearLayout mainContent;
+
     private DrawerLayout drawerLayout;
-    private TextView headerUsername;
-    private TextView headerCampus;
+
+    private CustomTextView headerUsername;
+    private CustomTextView headerCampus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mainContent = (LinearLayout) findViewById(R.id.llMainContent);
-        headerCampus = (TextView) drawerLayout.findViewById(R.id.header_campus);
-        headerUsername = (TextView) drawerLayout.findViewById(R.id.header_username);
+        headerCampus = (CustomTextView) drawerLayout.findViewById(R.id.header_campus);
+        headerUsername = (CustomTextView) drawerLayout.findViewById(R.id.header_username);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -110,8 +115,14 @@ public class MainActivity extends AppCompatActivity {
             mDrawerToggle.syncState();
         }
 
-        headerUsername.setText(registerNumber);
-        headerCampus.setText(Data.toTitleCase(campus));
+        if(registerNumber != null){
+            headerUsername.setText(registerNumber);
+        }
+
+        if(campus != null && !campus.isEmpty()){
+            headerCampus.setText(Data.toTitleCase(campus));
+        }
+
 
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
