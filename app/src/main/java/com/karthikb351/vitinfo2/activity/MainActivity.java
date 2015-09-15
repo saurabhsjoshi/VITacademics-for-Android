@@ -137,16 +137,18 @@ public class MainActivity extends AppCompatActivity {
         int position = 0;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         switch (id) {
-            case R.id.drawer_home:
-                fragment = TodayFragment.newInstance();
+
+            case R.id.drawer_timetable:
+                fragment = ScheduleFragment.newInstance();
                 position = 0;
                 break;
+
             case R.id.drawer_courses:
                 fragment = CoursesFragment.newInstance();
                 position = 1;
                 break;
-            case R.id.drawer_timetable:
-                fragment = ScheduleFragment.newInstance();
+            case R.id.drawer_home:
+                fragment = TodayFragment.newInstance();
                 position = 2;
                 break;
             case R.id.drawer_settings:
