@@ -161,9 +161,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
         if(lowerCheck && upperCheck){
             scheduleView.setState(TimeLineView.STATE_CURRENT);
-            Log.d("SCHEDULE_VIEW", "Now Time: " + nowTime);
-            Log.d("SCHEDULE_VIEW", "Floor Time: " + floorTime);
-            Log.d("SCHEDULE_VIEW", "Ceil Time: " + ceilTime);
         }else if(lowerCheck && upperOverCheck){
             scheduleView.setState(TimeLineView.STATE_FINISHED);
         }else {
