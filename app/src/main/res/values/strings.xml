@@ -151,8 +151,8 @@
 
     <!-- About -->
     <string name="app_version" formatted="false">Version: %1$s</string>
-    <string name="about_description">Helps you keep track of your academic metrics</string>
-    <string name="label_contribute">Contribute to the VITacademics project</string>
+    <string name="about_description">We help you keep track of your academic metrics</string>
+    <string name="label_contribute">Contribute to VITacademics</string>
     <string name="label_feedback">Provide Feedback</string>
 
     <!-- Share Messages -->

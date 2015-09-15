@@ -73,7 +73,7 @@
         android:layout_alignBaseline="@id/tvTime"
         android:maxLines="2"
         android:textSize="18sp"
-        app:tvFont="Roboto-Light.ttf"
+        app:tvFont="Roboto-Regular.ttf"
         android:textColor="@color/text_secondary"/>
 
     <LinearLayout
