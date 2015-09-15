@@ -33,11 +33,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     tools:context=".MainActivity"
-    android:gravity="center">
+    android:clickable="true"
+    android:gravity="center"
+    android:background="?attr/selectableItemBackground">
 
-  <com.karthikb351.vitinfo2.customwidget.ScheduleView
-    android:id="@+id/scheduleView"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"/>
+    <com.karthikb351.vitinfo2.customwidget.ScheduleView
+        android:id="@+id/scheduleView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
 
 </RelativeLayout>
