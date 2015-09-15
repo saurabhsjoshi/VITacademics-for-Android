@@ -196,10 +196,8 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
                 hr--;
             }
             mins = 50;
-        }else{
-            mins -= 10;
         }
-
+        
         time = hr + ":" + mins;
 
         if(time.length() == 4){
