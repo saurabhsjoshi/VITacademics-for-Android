@@ -33,6 +33,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.karthikb351.vitinfo2.R;
@@ -51,6 +52,9 @@ public class TimeLineView extends View {
     private float PADDING_TOP = 12;
     private float CIRCLE_RADIUS = 6;
     private float BORDER_THICKNESS = 4;
+    private float STROKE_WIDTH_RING = 3.33f;
+    private float STROKE_WIDTH_BORDER = 10;
+    private float STROKE_WIDTH_LINE = 2;
 
     private int widgetState;
     private int widgetType;
@@ -127,7 +131,9 @@ public class TimeLineView extends View {
         BORDER_THICKNESS += CIRCLE_RADIUS;
         BORDER_THICKNESS *= density;
         CIRCLE_RADIUS *= density;
-
+        STROKE_WIDTH_RING *= density;
+        STROKE_WIDTH_BORDER *= density;
+        STROKE_WIDTH_LINE *= density;
 
         paintDot = new Paint();
         paintDot.setColor(ContextCompat.getColor(getContext(), R.color.text_secondary));
@@ -136,21 +142,21 @@ public class TimeLineView extends View {
         paintRing = new Paint();
         paintRing.setColor(ContextCompat.getColor(getContext(), R.color.text_secondary));
         paintRing.setFlags(Paint.ANTI_ALIAS_FLAG);
-        paintRing.setStrokeWidth(10);
+        paintRing.setStrokeWidth(STROKE_WIDTH_RING);
         paintRing.setStyle(Paint.Style.FILL_AND_STROKE);
 
         paintBorder = new Paint();
         paintBorder.setColor(ContextCompat.getColor(getContext(), R.color.text_secondary));
         paintBorder.setAlpha(90);
         paintBorder.setFlags(Paint.ANTI_ALIAS_FLAG);
-        paintBorder.setStrokeWidth(30);
+        paintBorder.setStrokeWidth(STROKE_WIDTH_BORDER);
         paintBorder.setStyle(Paint.Style.FILL_AND_STROKE);
 
         paintLine = new Paint();
         paintLine.setColor(ContextCompat.getColor(getContext(), R.color.text_secondary));
         paintLine.setAlpha(70);
         paintLine.setFlags(Paint.ANTI_ALIAS_FLAG);
-        paintLine.setStrokeWidth(5);
+        paintLine.setStrokeWidth(STROKE_WIDTH_LINE);
         paintLine.setStyle(Paint.Style.FILL_AND_STROKE);
 
         widgetState = STATE_SCHEDULED;
