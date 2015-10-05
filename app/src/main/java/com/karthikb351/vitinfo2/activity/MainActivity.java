@@ -29,6 +29,7 @@ package com.karthikb351.vitinfo2.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -192,6 +193,11 @@ public class MainActivity extends AppCompatActivity {
                 if (callback != null) {
                     callback.onSuccess();
                 }
+                try {
+                    Snackbar.make(findViewById(R.id.llMainContent), "Success", Snackbar.LENGTH_LONG).show();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
                 EventBus.getDefault().post(new RefreshFragmentEvent());
             }
 
@@ -200,7 +206,12 @@ public class MainActivity extends AppCompatActivity {
                 if (callback != null) {
                     callback.onFailure(status);
                 }
-                Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
+                try {
+                    Snackbar.make(findViewById(R.id.llMainContent), status.getMessage(), Snackbar.LENGTH_LONG).show();
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+                //Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
             }
         };
 
