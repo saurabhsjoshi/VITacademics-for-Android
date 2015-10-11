@@ -60,7 +60,7 @@
     <string name="today_course_timing_done">Done for today</string>
     <string name="today_course_timing_right_now">Right now</string>
     <string name="today_course_timing_hours_minutes_later" formatted="false">%1$s and %2$s</string>
-    <string name="fragment_today_title_tomorrow">Tomorrow</string>
+    <string name="fragment_today_title_tomorrow">Courses</string>
     <string name="fragment_today_title_on_day" formatted="false">On %1$s</string>
 
     <!-- Timetable Fragment -->
