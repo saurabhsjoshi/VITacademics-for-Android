@@ -155,10 +155,10 @@ public class MainActivity extends AppCompatActivity {
                 position = 0;
                 break;
 
-            case R.id.drawer_courses:
+            /*case R.id.drawer_courses:
                 fragment = CoursesFragment.newInstance();
                 position = 1;
-                break;
+                break;*/
             case R.id.drawer_home:
                 fragment = TodayFragment.newInstance();
                 position = 2;

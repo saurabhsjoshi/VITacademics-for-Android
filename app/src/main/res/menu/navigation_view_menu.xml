@@ -35,16 +35,16 @@
             android:icon="@mipmap/ic_timetable"
             android:title="@string/fragment_timetable_title" />
 
-        <item
+        <!--<item
             android:id="@+id/drawer_courses"
             android:icon="@mipmap/ic_school_black_24dp"
-            android:title="@string/fragment_courses_title" />
+            android:title="@string/fragment_courses_title" />-->
 
 
         <item
             android:id="@+id/drawer_home"
             android:icon="@mipmap/ic_today_black_48dp"
-            android:title="@string/fragment_today_title" />
+            android:title="@string/fragment_courses_title" />
 
         <item
             android:id="@+id/drawer_grades"

@@ -53,7 +53,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     @Override
     public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardView rootcard = (CardView) LayoutInflater.from(context).inflate(R.layout.card_courses_course, parent, false);
+        View rootcard = LayoutInflater.from(context).inflate(R.layout.card_courses_course, parent, false);
         return new CourseViewHolder(rootcard);
     }
 
