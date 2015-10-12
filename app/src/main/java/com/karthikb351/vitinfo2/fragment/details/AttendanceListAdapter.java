@@ -55,9 +55,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
     private Course course;
     private Attendance attendance;
     private List<AttendanceDetail> attendanceDetails;
-
     private int conducted, attended, classLength, miss = 0, attend = 0;
-
 
     public AttendanceListAdapter(Context context, Course course) {
         this.context = context;
@@ -165,10 +163,10 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
                 holder.detailStatus.setTextColor(ColorStateList.valueOf(Color.rgb(40,40,230)));
             else
                 holder.detailStatus.setTextColor(ColorStateList.valueOf(Color.rgb(230, 40, 40)));
-            holder.classUnits.setText(context.getString(R.string.attendance_class_units_earned,
-                    attendanceDetails.get(position - 1).getClassUnits()));
+           // holder.classUnits.setText(context.getString(R.string.attendance_class_units_earned,
+                    //attendanceDetails.get(position - 1).getClassUnits()));
 
-            holder.reason.setText(attendanceDetails.get(position - 1).getReason());
+            //holder.reason.setText(attendanceDetails.get(position - 1).getReason());
         }
     }
 
@@ -192,7 +190,7 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
 
     public class AttendanceViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView date, detailStatus, classUnits, reason, txtMiss, txtAttend;
+        public TextView date, detailStatus, txtMiss, txtAttend;
         public TextView courseName, courseCode, attendanceClasses, attendancePercent;
         public ProgressBar progressBarAttendance;
         public Button attendPlus, attendMinus, missPlus, missMinus;
@@ -207,8 +205,8 @@ public class AttendanceListAdapter extends RecyclerView.Adapter<AttendanceListAd
             txtAttend = (TextView) view.findViewById(R.id.txt_attend);
             date = (TextView) view.findViewById(R.id.date);
             detailStatus = (TextView) view.findViewById(R.id.detail_status);
-            classUnits = (TextView) view.findViewById(R.id.class_units);
-            reason = (TextView) view.findViewById(R.id.reason);
+            //classUnits = (TextView) view.findViewById(R.id.class_units);
+            //reason = (TextView) view.findViewById(R.id.reason);
             courseName = (TextView) view.findViewById(R.id.course_name);
             courseCode = (TextView) view.findViewById(R.id.course_code);
             attendanceClasses = (TextView) view.findViewById(R.id.attendance_classes);

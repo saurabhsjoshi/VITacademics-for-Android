@@ -46,17 +46,12 @@
             android:icon="@mipmap/ic_today_black_48dp"
             android:title="@string/fragment_courses_title" />
 
-        <item
+            <item
             android:id="@+id/drawer_grades"
             android:icon="@mipmap/ic_timetable"
             android:title="@string/fragment_grades_title" />
 
-    </group>
 
-    <item android:title="@string/navigation_drawer_others_group">
-        <menu
-            android:checkableBehavior="single"
-            android:menuCategory="alternative">
             <item
                 android:id="@+id/drawer_settings"
                 android:icon="@mipmap/ic_settings_black_24dp"
@@ -71,6 +66,5 @@
                 android:id="@+id/drawer_about"
                 android:icon="@mipmap/ic_about_us"
                 android:title="@string/fragment_about_title" />
-        </menu>
-    </item>
+      </group>
 </menu>
