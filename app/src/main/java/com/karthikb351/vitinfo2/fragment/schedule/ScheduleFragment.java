@@ -67,10 +67,9 @@ public class ScheduleFragment extends Fragment {
 
     private int getEquivalentDay(int day) {
         switch (day){
-            case Calendar.SUNDAY:
-                day = 6;
-                break;
             case Calendar.MONDAY:
+                day=4;
+                break;
             case Calendar.TUESDAY:
             case Calendar.WEDNESDAY:
             case Calendar.THURSDAY:

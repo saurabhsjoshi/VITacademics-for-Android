@@ -55,9 +55,7 @@ public class ResetTask extends AsyncTask<Void, Void, Void> {
         super.onPostExecute(aVoid);
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
-        sharedPreferences.edit()
-                .clear()
-                .apply();
+        sharedPreferences.edit().clear().apply();
 
     }
 }
