@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeData() {
-        campus = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getCampus();
+        campus = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getName();
         registerNumber = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getRegisterNumber();
     }
 

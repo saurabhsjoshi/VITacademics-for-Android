@@ -51,6 +51,10 @@ public class RefreshResponse {
     private String campus;
 
     @Expose
+    @SerializedName("name")
+    private String name;
+
+    @Expose
     @SerializedName("status")
     private Status status;
 
@@ -77,7 +81,7 @@ public class RefreshResponse {
     public RefreshResponse() {
     }
 
-    public RefreshResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status, String semester, Course[] courses, WithdrawnCourse[] withdrawnCourses, String refreshed, boolean cached) {
+    public RefreshResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, String name, Status status, String semester, Course[] courses, WithdrawnCourse[] withdrawnCourses, String refreshed, boolean cached) {
         this.registerNumber = registerNumber;
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
@@ -120,6 +124,14 @@ public class RefreshResponse {
 
     public void setCampus(String campus) {
         this.campus = campus;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public Status getStatus() {

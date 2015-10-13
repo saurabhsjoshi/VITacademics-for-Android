@@ -55,6 +55,7 @@ public class DataHolder {
     private String dateOfBirth;
     private String mobileNumber;
     private String campus;
+    private String name;
     private String latestVersion;
     private String earliestSupportedVersion;
     private List<Message> messages;
@@ -114,6 +115,7 @@ public class DataHolder {
                     registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, "");
                     dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, "");
                     mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, "");
+                    name = sharedPreferences.getString(Constants.KEY_NAME, "");
                     latestVersion = sharedPreferences.getString(Constants.KEY_ANDROID_LATEST_VERSION, "");
                     earliestSupportedVersion = sharedPreferences.getString(Constants.KEY_ANDROID_SUPPORTED_VERSION, "");
                     semester = sharedPreferences.getString(Constants.KEY_SEMESTER, "");
@@ -167,6 +169,7 @@ public class DataHolder {
                 registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
                 dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);
                 mobileNumber = sharedPreferences.getString(Constants.KEY_MOBILE, null);
+                name = sharedPreferences.getString(Constants.KEY_NAME, null);
                 latestVersion = sharedPreferences.getString(Constants.KEY_ANDROID_LATEST_VERSION, null);
                 earliestSupportedVersion = sharedPreferences.getString(Constants.KEY_ANDROID_SUPPORTED_VERSION, null);
                 semester = sharedPreferences.getString(Constants.KEY_SEMESTER, null);
@@ -200,6 +203,10 @@ public class DataHolder {
 
     public String getCampus() {
         return campus;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public String getLatestVersion() {

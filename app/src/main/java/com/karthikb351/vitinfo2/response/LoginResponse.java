@@ -26,6 +26,8 @@
 
 package com.karthikb351.vitinfo2.response;
 
+import android.content.SharedPreferences;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.karthikb351.vitinfo2.model.Status;
@@ -49,17 +51,22 @@ public class LoginResponse {
     private String campus;
 
     @Expose
+    @SerializedName("name")
+    private String name;
+
+    @Expose
     @SerializedName("status")
     private Status status;
 
     public LoginResponse() {
     }
 
-    public LoginResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, Status status) {
+    public LoginResponse(String registerNumber, String dateOfBirth, String mobileNumber, String campus, String name, Status status) {
         this.registerNumber = registerNumber;
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
         this.campus = campus;
+        this.name = name;
         this.status = status;
     }
 
@@ -93,6 +100,14 @@ public class LoginResponse {
 
     public void setCampus(String campus) {
         this.campus = campus;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public Status getStatus() {

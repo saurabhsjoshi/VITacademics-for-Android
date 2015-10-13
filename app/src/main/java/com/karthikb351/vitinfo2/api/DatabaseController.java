@@ -118,6 +118,7 @@ public class DatabaseController {
         editor.putString(Constants.KEY_REGISTERNUMBER, loginResponse.getRegisterNumber());
         editor.putString(Constants.KEY_DATEOFBIRTH, loginResponse.getDateOfBirth());
         editor.putString(Constants.KEY_MOBILE, loginResponse.getMobileNumber());
+        editor.putString(Constants.KEY_NAME,loginResponse.getName());
         editor.apply();
 
         resultListener.onSuccess();
@@ -155,6 +156,8 @@ public class DatabaseController {
                     editor.putString(Constants.KEY_REGISTERNUMBER, refreshResponse.getRegisterNumber());
                     editor.putString(Constants.KEY_DATEOFBIRTH, refreshResponse.getDateOfBirth());
                     editor.putString(Constants.KEY_MOBILE, refreshResponse.getMobileNumber());
+                    editor.putString(Constants.KEY_NAME,refreshResponse.getName());
+
                     editor.apply();
 
                     editor.putString(Constants.KEY_SEMESTER, refreshResponse.getSemester());
