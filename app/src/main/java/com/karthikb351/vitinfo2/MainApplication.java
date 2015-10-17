@@ -34,6 +34,7 @@ import com.karthikb351.vitinfo2.api.DataHolder;
 import co.uk.rushorm.android.AndroidInitializeConfig;
 import co.uk.rushorm.core.RushCore;
 import io.fabric.sdk.android.Fabric;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class MainApplication extends Application {
 
@@ -50,6 +51,15 @@ public class MainApplication extends Application {
         RushCore.initialize(config);
 
         this.dataHolder = new DataHolder();
+
+        /**
+         * Calligraphy configuration to set the default font to Roboto-Regular
+         */
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                        .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()
+        );
     }
 
     public DataHolder getDataHolderInstanceInitialized() {
