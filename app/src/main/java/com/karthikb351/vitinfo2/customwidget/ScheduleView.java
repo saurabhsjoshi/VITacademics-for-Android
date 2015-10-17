@@ -30,32 +30,23 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.utility.DateTimeCalender;
-
-import org.joda.time.DateTimeZone;
-import org.joda.time.LocalTime;
-import org.joda.time.ReadablePeriod;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
 
 
 public class ScheduleView extends RelativeLayout {
 
     private TimeLineView timeLineView;
 
-    private CustomTextView tvTime;
-    private CustomTextView tvTimeAMPM;
-    private CustomTextView tvCourseName;
-    private CustomTextView tvVenue;
+    private TextView tvTime;
+    private TextView tvTimeAMPM;
+    private TextView tvCourseName;
+    private TextView tvVenue;
 
     private NumberProgressBar progressAttendance;
 
@@ -66,10 +57,10 @@ public class ScheduleView extends RelativeLayout {
 
         timeLineView = (TimeLineView) findViewById(R.id.timeline);
 
-        tvTime = (CustomTextView) findViewById(R.id.tvTime);
-        tvTimeAMPM = (CustomTextView) findViewById(R.id.tvTimeAMPM);
-        tvCourseName = (CustomTextView) findViewById(R.id.tvCourseName);
-        tvVenue= (CustomTextView) findViewById(R.id.tvVenue);
+        tvTime = (TextView) findViewById(R.id.tvTime);
+        tvTimeAMPM = (TextView) findViewById(R.id.tvTimeAMPM);
+        tvCourseName = (TextView) findViewById(R.id.tvCourseName);
+        tvVenue= (TextView) findViewById(R.id.tvVenue);
 
         progressAttendance = (NumberProgressBar) findViewById(R.id.progressAttendance);
         progressAttendance.setProgressTextColor(ContextCompat.getColor(getContext(), R.color.text_secondary));
