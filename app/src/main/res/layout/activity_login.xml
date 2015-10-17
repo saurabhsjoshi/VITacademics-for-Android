@@ -32,7 +32,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:ignore="MissingPrefix">
 
     <RelativeLayout
         android:id="@+id/rlLoginLayout"
@@ -48,7 +49,7 @@
             android:layout_alignParentBottom="true"
             android:background="@color/colorButtonBarBackground">
 
-            <com.karthikb351.vitinfo2.customwidget.CustomButton
+            <Button
                 android:id="@+id/loginButton"
                 style="?attr/toolbarNavigationButtonStyle"
                 android:layout_width="wrap_content"
@@ -63,9 +64,9 @@
                 android:textAllCaps="true"
                 android:textColor="@drawable/login_button_color"
                 android:textSize="16sp"
-                foo:bFont="Roboto-Regular.ttf" />
+                fontPath="fonts/Roboto-Regular.ttf" />
 
-            <com.karthikb351.vitinfo2.customwidget.CustomButton
+            <Button
                 android:id="@+id/exitButton"
                 style="?attr/toolbarNavigationButtonStyle"
                 android:layout_width="wrap_content"
@@ -80,7 +81,7 @@
                 android:textColor="@drawable/exit_button_color"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                foo:bFont="Roboto-Regular.ttf" />
+                fontPath="fonts/Roboto-Regular.ttf" />
 
         </RelativeLayout>
 
@@ -107,7 +108,7 @@
                     android:layout_margin="5dp"
                     android:src="@mipmap/ic_launcher" />
 
-                <com.karthikb351.vitinfo2.customwidget.CustomTextView
+                <TextView
                     android:id="@+id/loginSupportText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -116,7 +117,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/text_primary"
                     android:textSize="24sp"
-                    foo:tvFont="Roboto-Light.ttf" />
+                    fontPath="fonts/Roboto-Light.ttf"/>
 
             </LinearLayout>
 
@@ -165,12 +166,12 @@
                 android:paddingStart="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin">
 
-                <com.karthikb351.vitinfo2.customwidget.CustomTextView
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/label_campus_choose"
                     android:textSize="20sp"
-                    foo:tvFont="Roboto-Regular.ttf"
+                    fontPath="fonts/Roboto-Regular.ttf"
                     android:textColor="@color/text_secondary"/>
 
                 <RadioGroup

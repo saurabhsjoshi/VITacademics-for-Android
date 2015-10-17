@@ -66,6 +66,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener, IDateDialogListener, RadioGroup.OnCheckedChangeListener {
 
     private Toolbar toolbar;
@@ -498,4 +500,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return super.onKeyDown(keyCode, event);
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 }
