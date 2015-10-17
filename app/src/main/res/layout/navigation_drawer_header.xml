@@ -26,12 +26,13 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="172dp"
-    android:background="@mipmap/navbar_hero_image">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@mipmap/navbar_hero_image"
+    tools:ignore="MissingPrefix">
 
 
     <LinearLayout
@@ -45,24 +46,23 @@
         android:orientation="vertical"
         android:layout_alignParentBottom="true">
 
-        <com.karthikb351.vitinfo2.customwidget.CustomTextView
+        <TextView
             android:id="@+id/header_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="14sp"
             android:textColor="@color/colorPrimaryLight"
-            app:tvFont="Roboto-Medium.ttf" />
+            fontPath="fonts/Roboto-Medium.ttf" />
 
-        <com.karthikb351.vitinfo2.customwidget.CustomTextView
+        <TextView
             android:id="@+id/header_registration_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/colorPrimaryLight"
-            app:tvFont="Roboto-Regular.ttf"
-            android:textSize="14sp"
-            />
+            fontPath="fonts/Roboto-Regular.ttf"
+            android:textSize="14sp" />
 
     </LinearLayout>
 
