@@ -67,7 +67,7 @@ import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String campus;
+    private String name;
     private String registerNumber;
 
     private List<String> navigationTabs;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
 
     private CustomTextView headerUsername;
-    private CustomTextView headerCampus;
+    private CustomTextView headerRegistrationNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeData() {
-        campus = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getName();
+        name = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getName();
         registerNumber = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getRegisterNumber();
     }
 
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mainContent = (LinearLayout) findViewById(R.id.llMainContent);
-        headerCampus = (CustomTextView) drawerLayout.findViewById(R.id.header_campus);
+        headerRegistrationNumber = (CustomTextView) drawerLayout.findViewById(R.id.header_registration_number);
         headerUsername = (CustomTextView) drawerLayout.findViewById(R.id.header_username);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -117,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(registerNumber != null){
-            headerUsername.setText(registerNumber);
+            headerRegistrationNumber.setText(registerNumber);
         }
 
-        if(campus != null && !campus.isEmpty()){
-            headerCampus.setText(Data.toTitleCase(campus));
+        if(name != null && !name.isEmpty()){
+            headerUsername.setText(Data.toTitleCase(name));
         }
 
 

@@ -55,7 +55,7 @@
             app:tvFont="Roboto-Medium.ttf" />
 
         <com.karthikb351.vitinfo2.customwidget.CustomTextView
-            android:id="@+id/header_campus"
+            android:id="@+id/header_registration_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
