@@ -89,8 +89,8 @@ public class ScheduleView extends RelativeLayout {
         animation.start();
 
         if(attendance >= 80){
-            progressAttendance.setReachedBarColor(ContextCompat.getColor(getContext(), R.color.highAttend));
-            progressAttendance.setProgressTextColor(ContextCompat.getColor(getContext(), R.color.highAttend));
+            progressAttendance.setReachedBarColor(ContextCompat.getColor(getContext(), R.color.text_secondary));
+            progressAttendance.setProgressTextColor(ContextCompat.getColor(getContext(), R.color.text_secondary));
         }
         else if(attendance < 75){
             progressAttendance.setReachedBarColor(ContextCompat.getColor(getContext(), android.R.color.holo_red_light));
