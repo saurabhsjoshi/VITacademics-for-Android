@@ -26,15 +26,18 @@
 
 package com.karthikb351.vitinfo2.fragment.details;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Assessment;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -78,7 +81,24 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
             holder.assessmentMarks.setText(context.getString(R.string.label_assessment_marks, Double.toString(assessments.get(position - 1).getScoredMarks()), Double.toString(assessments.get(position - 1).getMaxMarks())));
             holder.assessmentWeightage.setText(context.getString(R.string.label_assessment_weightage, Double.toString(assessments.get(position - 1).getWeightage())));
             holder.assessmentContribution.setText(context.getString(R.string.label_assessment_contribution, Double.toString(assessments.get(position - 1).getScoredPercentage())));
-            holder.marksProgressBar.setProgress((int) (assessments.get(position - 1).getScoredPercentage() / assessments.get(position - 1).getWeightage() * 100));
+
+
+            if(assessments.get(position-1).getScoredMarks()!=0){
+
+                holder.marksProgressBar.setMax((int) assessments.get(position - 1).getMaxMarks());
+                holder.marksProgressBar.setProgress(0);
+
+                ObjectAnimator animation = ObjectAnimator.ofInt( holder.marksProgressBar, "progress", (int)assessments.get(position - 1).getScoredMarks());
+                animation.setDuration(1500);
+                animation.setInterpolator(new DecelerateInterpolator());
+                animation.start();
+
+            }
+            else {
+                holder.marksProgressBar.setProgressTextVisibility(NumberProgressBar.ProgressTextVisibility.Invisible);
+            }
+
+
         }
     }
 
@@ -104,7 +124,7 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
 
         public TextView assessmentTitle, assessmentMarks, assessmentWeightage, assessmentContribution;
         public TextView internals;
-        public ProgressBar marksProgressBar;
+        public NumberProgressBar marksProgressBar;
 
         public AssesmentViewHolder(View view) {
             super(view);
@@ -113,7 +133,7 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
             assessmentMarks = (TextView) view.findViewById(R.id.assessment_marks);
             assessmentWeightage = (TextView) view.findViewById(R.id.assessment_weightage);
             assessmentContribution = (TextView) view.findViewById(R.id.assessment_contribution);
-            marksProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar_marks);
+            marksProgressBar = (NumberProgressBar) view.findViewById(R.id.progress_bar_marks);
 
             internals = (TextView) view.findViewById(R.id.internal_marks);
         }

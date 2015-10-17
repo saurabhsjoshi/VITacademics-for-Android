@@ -62,9 +62,9 @@
             android:textColor="@color/primary_text_default_material_light"
             android:textSize="@dimen/abc_text_size_large_material" />
 
-        <ProgressBar
+        <com.daimajia.numberprogressbar.NumberProgressBar
             android:id="@+id/progress_bar_marks"
-            style="@style/BarraProgreso"
+            style="@style/NumberProgressBar_Relax_Blue"
             android:layout_width="match_parent"
             android:layout_height="15sp"
             android:layout_below="@+id/assessment_marks" />
