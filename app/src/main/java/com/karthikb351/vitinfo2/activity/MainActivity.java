@@ -26,6 +26,7 @@
 
 package com.karthikb351.vitinfo2.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -40,20 +41,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.api.NetworkController;
 import com.karthikb351.vitinfo2.api.RequestConfig;
-import com.karthikb351.vitinfo2.customwidget.CustomTextView;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import com.karthikb351.vitinfo2.fragment.AboutFragment;
-import com.karthikb351.vitinfo2.fragment.courses.CoursesFragment;
 import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
-import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.schedule.ScheduleFragment;
+import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
@@ -64,10 +62,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String campus;
+    private String name;
     private String registerNumber;
 
     private List<String> navigationTabs;
@@ -76,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
-    private CustomTextView headerUsername;
-    private CustomTextView headerCampus;
+    private TextView headerUsername;
+    private TextView headerRegistrationNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +87,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeData() {
-        campus = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getName();
+        name = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getName();
         registerNumber = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getRegisterNumber();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     private void initializeView() {
@@ -98,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mainContent = (LinearLayout) findViewById(R.id.llMainContent);
-        headerCampus = (CustomTextView) drawerLayout.findViewById(R.id.header_campus);
-        headerUsername = (CustomTextView) drawerLayout.findViewById(R.id.header_username);
+        headerRegistrationNumber = (TextView) drawerLayout.findViewById(R.id.header_registration_number);
+        headerUsername = (TextView) drawerLayout.findViewById(R.id.header_username);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -117,11 +121,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(registerNumber != null){
-            headerUsername.setText(registerNumber);
+            headerRegistrationNumber.setText(registerNumber);
         }
 
-        if(campus != null && !campus.isEmpty()){
-            headerCampus.setText(Data.toTitleCase(campus));
+        if(name != null && !name.isEmpty()){
+            headerUsername.setText(Data.toTitleCase(name));
         }
 
 

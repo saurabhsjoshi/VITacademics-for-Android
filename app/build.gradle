@@ -90,4 +90,5 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'net.danlew:android.joda:2.8.2'
     compile 'com.daimajia.numberprogressbar:library:1.2@aar'
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
 }

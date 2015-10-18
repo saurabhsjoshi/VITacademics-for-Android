@@ -38,6 +38,15 @@ public class ResetTask extends AsyncTask<Void, Void, Void> {
 
     private Context context;
 
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+        sharedPreferences.edit().clear().apply();
+
+    }
+
     public ResetTask(Context context) {
         this.context = context;
     }
@@ -47,15 +56,6 @@ public class ResetTask extends AsyncTask<Void, Void, Void> {
         RushCore.getInstance().clearDatabase();
         return null;
 
-
     }
 
-    @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
-
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
-        sharedPreferences.edit().clear().apply();
-
-    }
 }
