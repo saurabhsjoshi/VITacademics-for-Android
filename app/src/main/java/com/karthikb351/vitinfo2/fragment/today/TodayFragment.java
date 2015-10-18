@@ -46,6 +46,7 @@ import com.karthikb351.vitinfo2.activity.MainActivity;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.contract.Timing;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
+import com.karthikb351.vitinfo2.fragment.courses.CourseListAdapter;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.DateTimeCalender;
@@ -62,8 +63,8 @@ import de.greenrobot.event.EventBus;
 
 public class TodayFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
-    private RecyclerView todayRecyclerView;
-    private TodayListAdapter todayListAdapter;
+    private RecyclerView courseRecyclerView;
+    private CourseListAdapter courseListAdapter;
     private ProgressBar loadProgress;
     private View rootView;
     private List<Course> courses;
@@ -80,7 +81,7 @@ public class TodayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_today, container, false);
+        rootView = inflater.inflate(R.layout.fragment_courses, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         loadProgress = (ProgressBar) rootView.findViewById(R.id.progress_bar_today);
         initialize();
@@ -96,10 +97,10 @@ public class TodayFragment extends Fragment {
     void initialize() {
         today = DateTimeCalender.getDayOfWeek();
         dayOfWeek = today;
-        todayRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerViewToday);
+        courseRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_courses);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        todayRecyclerView.setLayoutManager(layoutManager);
-        getActivity().setTitle(getString(R.string.fragment_today_title));
+        courseRecyclerView.setLayoutManager(layoutManager);
+        getActivity().setTitle(getString(R.string.fragment_courses_title));
         swipeRefreshLayout.setColorSchemeColors(getActivity().getResources().getColor(R.color.colorAccent));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -123,7 +124,14 @@ public class TodayFragment extends Fragment {
     private void initializeData() {
         courses = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCourses();
         if (!(courses.isEmpty())) {
-            new LoadTodayTask().execute();
+            courseListAdapter=new CourseListAdapter(getActivity(),courses);
+            courseRecyclerView.setAdapter(courseListAdapter);
+            courseListAdapter.setOnClickListener(new RecyclerViewOnClickListener<Course>(){
+                @Override
+                public void onItemClick(Course data) {
+                    onListItemClicked(data);
+                }
+            });
         }
     }
     @Override
@@ -156,7 +164,7 @@ public class TodayFragment extends Fragment {
         return "";
     }
 
-    private class LoadTodayTask extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
+   /**private class LoadTodayTask extends AsyncTask<Void, Void, List<Pair<Course, Timing>>> {
         @Override
         protected void onPreExecute() {
             loadProgress.setVisibility(View.VISIBLE);
@@ -232,5 +240,5 @@ public class TodayFragment extends Fragment {
                 });
             }
         }
-    }
+    }**/
 }
