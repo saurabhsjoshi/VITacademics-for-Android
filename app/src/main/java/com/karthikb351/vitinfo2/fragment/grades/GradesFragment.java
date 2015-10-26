@@ -34,6 +34,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
@@ -47,7 +48,9 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -57,6 +60,7 @@ public class GradesFragment extends Fragment {
     private View rootView;
     private LineChart chart;
     private ViewPager pager;
+    float Cgpa ;
     private GradesPagerAdapter pagerAdapter;
     private List<SemesterWiseGrade> semesterWiseGrades;
     private RecyclerView gradesRecyclerView;
@@ -79,6 +83,7 @@ public class GradesFragment extends Fragment {
     void initialize() {
         semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
         chart = (LineChart) rootView.findViewById(R.id.grades_chart);
+        Cgpa =  ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
         initializeChart();
         pager = (ViewPager) rootView.findViewById(R.id.view_pager_grades);
         pagerAdapter = new GradesPagerAdapter(getActivity(), getActivity().getSupportFragmentManager(), semesterWiseGrades);
@@ -90,7 +95,15 @@ public class GradesFragment extends Fragment {
 
     void initializeChart() {
         Resources r = getResources();
+        int CgpaColor ;
+        if(Cgpa>8.0f)
+            CgpaColor = r.getColor(R.color.highAttend);
+        else if(Cgpa>6.0f&&Cgpa<8.0f)
+            CgpaColor = r.getColor(R.color.midAttend);
+        else
+            CgpaColor = r.getColor(R.color.lowAttend);
         ArrayList<Entry> data = new ArrayList<>();
+        ArrayList<Entry> CGPAentryList = new ArrayList<>();
         float maxGpa = 0.0f, minGpa = 10.0f;
         ArrayList<String> xVals = new ArrayList<>();
         for (int i = 0; i < semesterWiseGrades.size(); i++) {
@@ -102,14 +115,25 @@ public class GradesFragment extends Fragment {
             if (gpa < minGpa)
                 minGpa = gpa;
         }
+        CGPAentryList.add(new Entry(Cgpa,0));
+        CGPAentryList.add(new Entry(Cgpa,data.size()-1));
         LineDataSet dset = new LineDataSet(data, getString(R.string.label_grade_gpa));
-        dset.setLineWidth(2.0f);
-        dset.setValueTextSize(10.0f);
-        dset.setColor(r.getColor(R.color.colorPrimary));
+        LineDataSet CGPAdset = new LineDataSet(CGPAentryList,"CGPA " + String.valueOf(Cgpa));
+        CGPAdset.setDrawCircleHole(false);
+        CGPAdset.setHighlightEnabled(false);
+        CGPAdset.setDrawFilled(true);
+        CGPAdset.setFillAlpha(80);
+        CGPAdset.enableDashedLine(1.0f,0.5f,0.5f);
+        CGPAdset.setDrawCircles(false);
+        CGPAdset.setDrawValues(false);
+        dset.setLineWidth(2.0f);CGPAdset.setLineWidth(1.0f);
+        dset.setValueTextSize(10.0f);CGPAdset.setValueTextSize(10.0f);
+        dset.setColor(r.getColor(R.color.colorPrimary));CGPAdset.setColor(CgpaColor);
+        CGPAdset.setFillColor(CgpaColor);
         dset.setHighLightColor(r.getColor(R.color.colorPrimary));
         dset.setCircleColor(r.getColor(R.color.colorAccent));
         dset.setDrawCircleHole(false);
-        LineData chartData = new LineData(xVals, dset);
+        LineData chartData = new LineData(xVals, Arrays.asList(dset,CGPAdset));
         YAxis leftaxis = chart.getAxisLeft();
         leftaxis.setStartAtZero(false);
         leftaxis.setAxisMinValue(minGpa - 0.1f);
