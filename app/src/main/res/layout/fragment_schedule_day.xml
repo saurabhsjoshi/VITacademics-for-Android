@@ -26,9 +26,10 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:layout_height="fill_parent"
     android:orientation="vertical">
 
     <ProgressBar
@@ -38,12 +39,17 @@
         android:layout_gravity="center"
         android:indeterminate="true"
         android:visibility="gone" />
-
+    <ImageView
+        android:id="@+id/scheduleImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:src="@drawable/no_classes_sign" />
     <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_timetable"
             android:layout_width="match_parent"
@@ -51,4 +57,4 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:scrollbars="vertical" />
     </android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+</RelativeLayout>

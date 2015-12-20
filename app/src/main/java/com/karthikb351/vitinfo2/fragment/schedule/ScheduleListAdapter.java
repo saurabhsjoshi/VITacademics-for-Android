@@ -28,12 +28,14 @@ package com.karthikb351.vitinfo2.fragment.schedule;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.media.Image;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.karthikb351.vitinfo2.R;
@@ -58,6 +60,8 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     private RecyclerViewOnClickListener<Course> onClickListener;
     private List<Pair<Course, Timing>> courseTimingPairs;
     private Context context;
+    int nday[] = {0,1,2,3,4,5,6};
+    int cday[] = {0,0,0,0,0,0,0};
 
     public ScheduleListAdapter(Context context, List<Pair<Course, Timing>> courseTimingPairs) {
         this.context = context;
@@ -81,12 +85,18 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
         if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
             attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
+           // scheduleViewHolder.scheduleImageView.setVisibility(View.INVISIBLE);
         }
-
+        /*else
+        {
+            scheduleViewHolder.scheduleView.setVisibility(View.INVISIBLE);
+            scheduleViewHolder.scheduleImageView.setVisibility(View.VISIBLE);
+        }*/
         try {
             startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
             endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
             day = courseTimingPairs.get(position).second.getDay();
+            cday[day]++;
         } catch (ParseException ex) {
             ex.printStackTrace();
             startTime = courseTimingPairs.get(position).second.getStartTime();
@@ -96,7 +106,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         scheduleViewHolder.scheduleView.setValues(courseTimingPairs.get(position).first.getCourseTitle(),
                 courseTimingPairs.get(position).first.getVenue(),
                 startTime, attendancePercentage);
-
         if(position == 0){
             scheduleViewHolder.scheduleView.setType(TimeLineView.TYPE_INITIAL);
         }
@@ -105,7 +114,14 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         }
 
         updateTimeSign(scheduleViewHolder.scheduleView, day, startTime, endTime);
-
+        /*if(cday[day]==0){
+            scheduleViewHolder.scheduleView.setVisibility(View.INVISIBLE);
+            scheduleViewHolder.scheduleImageView.setVisibility(View.VISIBLE);
+        }
+        else{
+            scheduleViewHolder.scheduleView.setVisibility(View.VISIBLE);
+            scheduleViewHolder.scheduleImageView.setVisibility(View.INVISIBLE);
+        }*/
 //        scheduleViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
 //        scheduleViewHolder.courseName.setText();
 //        scheduleViewHolder.venue.setText();
@@ -131,7 +147,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
     private void updateTimeSign(ScheduleView scheduleView, int day, String startTime, String endTime) {
         int calenderDay = getEquivalentDay(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
-
         if(day == calenderDay){
             compareTimeAndUpdate(scheduleView, startTime, endTime);
         }else if(day < calenderDay){
@@ -235,12 +250,13 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     public class ScheduleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ScheduleView scheduleView;
+        public ImageView scheduleImageView;
 
         public ScheduleViewHolder(View view) {
             super(view);
 
             scheduleView = (ScheduleView) view.findViewById(R.id.scheduleView);
-
+            scheduleImageView = (ImageView) view.findViewById(R.id.scheduleImageView);
             view.setOnClickListener(this);
         }
 
