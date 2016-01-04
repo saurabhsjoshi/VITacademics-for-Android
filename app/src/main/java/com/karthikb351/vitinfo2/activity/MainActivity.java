@@ -120,14 +120,14 @@ public class MainActivity extends AppCompatActivity {
             mDrawerToggle.syncState();
         }
 
-        if(registerNumber != null){
+   /*     if(registerNumber != null){
             headerRegistrationNumber.setText(registerNumber);
         }
 
         if(name != null && !name.isEmpty()){
             headerUsername.setText(Data.toTitleCase(name));
         }
-
+*/
 
         NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
         view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

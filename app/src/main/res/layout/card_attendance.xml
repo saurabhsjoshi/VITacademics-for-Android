@@ -70,7 +70,7 @@
                 android:layout_alignParentLeft="true"
                 android:text="-"
                 android:id="@+id/button_attend_minus"
-                android:background="@drawable/attendanceButtonCircle"/>
+                android:background="@drawable/attendance_button_circle"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
                 android:layout_alignParentTop="true"
                 android:text="+"
                 android:id="@+id/button_attend_plus"
-                android:background="@drawable/attendanceButtonCircle"/>
+                android:background="@drawable/attendance_button_circle"/>
             <Button
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -95,7 +95,7 @@
                 android:layout_below="@+id/button_attend_minus"
                 android:text="-"
                 android:id="@+id/button_miss_minus"
-                android:background="@drawable/attendanceButtonCircle"/>
+                android:background="@drawable/attendance_button_circle"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                 android:layout_alignParentRight="true"
                 android:text="+"
                 android:id="@+id/button_miss_plus"
-                android:background="@drawable/attendanceButtonCircle"/>
+                android:background="@drawable/attendance_button_circle"/>
         </RelativeLayout>
         <View
             android:layout_width="fill_parent"
