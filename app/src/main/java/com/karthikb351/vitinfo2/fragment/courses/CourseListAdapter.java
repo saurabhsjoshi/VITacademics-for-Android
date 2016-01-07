@@ -26,14 +26,18 @@
 
 package com.karthikb351.vitinfo2.fragment.courses;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
 import com.karthikb351.vitinfo2.utility.RecyclerViewOnClickListener;
@@ -60,11 +64,37 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
     @Override
     public void onBindViewHolder(CourseViewHolder courseViewHolder, int position) {
 
-        courseViewHolder.classNumber.setText(Integer.toString(courses.get(position).getClassNumber()));
+        //courseViewHolder.classNumber.setText(Integer.toString(courses.get(position).getClassNumber()));
         courseViewHolder.courseCode.setText(courses.get(position).getCourseCode());
         courseViewHolder.courseName.setText(courses.get(position).getCourseTitle());
         courseViewHolder.faculty.setText(courses.get(position).getFaculty());
-        courseViewHolder.subjectType.setText(courses.get(position).getSubjectType());
+        int attendance = courses.get(position).getAttendance().getAttendancePercentage();
+        courseViewHolder.numberProgressBar.setProgressTextColor(ContextCompat.getColor(this.context, R.color.text_secondary));
+        courseViewHolder.numberProgressBar.setReachedBarColor(ContextCompat.getColor(this.context, R.color.text_secondary));
+        courseViewHolder.numberProgressBar.setMax(100);
+        courseViewHolder.numberProgressBar.setProgress(0);
+        setAttendance(attendance,courseViewHolder);
+        //courseViewHolder.subjectType.setText(courses.get(position).getSubjectType());
+    }
+
+    public void setAttendance(int attendance, CourseViewHolder courseViewHolder){
+        ObjectAnimator animation = ObjectAnimator.ofInt(courseViewHolder.numberProgressBar, "progress", attendance);
+        animation.setDuration(1500);
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
+
+        if(attendance >= 80){
+            courseViewHolder.numberProgressBar.setReachedBarColor(ContextCompat.getColor(this.context, R.color.text_secondary));
+            courseViewHolder.numberProgressBar.setProgressTextColor(ContextCompat.getColor(this.context, R.color.text_secondary));
+        }
+        else if(attendance < 75){
+            courseViewHolder.numberProgressBar.setReachedBarColor(ContextCompat.getColor(this.context, android.R.color.holo_red_light));
+            courseViewHolder.numberProgressBar.setProgressTextColor(ContextCompat.getColor(this.context, android.R.color.holo_red_light));
+        }
+        else{
+            courseViewHolder.numberProgressBar.setReachedBarColor(ContextCompat.getColor(this.context, R.color.midAttend));
+            courseViewHolder.numberProgressBar.setProgressTextColor(ContextCompat.getColor(this.context, R.color.midAttend));
+        }
     }
 
     public void setOnClickListener(RecyclerViewOnClickListener<Course> onClickListener) {
@@ -79,15 +109,17 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
 
     public class CourseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView classNumber, courseName, courseCode, faculty, subjectType;
+        public NumberProgressBar numberProgressBar;
 
         public CourseViewHolder(View view) {
             super(view);
 
-            classNumber = (TextView) view.findViewById(R.id.class_number);
+            //classNumber = (TextView) view.findViewById(R.id.class_number);
             courseName = (TextView) view.findViewById(R.id.course_name);
             courseCode = (TextView) view.findViewById(R.id.course_code);
             faculty = (TextView) view.findViewById(R.id.faculty);
-            subjectType = (TextView) view.findViewById(R.id.subject_type);
+            numberProgressBar = (NumberProgressBar)view.findViewById(R.id.progressAttendanceCourse);
+           // subjectType = (TextView) view.findViewById(R.id.subject_type);
 
             view.setOnClickListener(this);
         }

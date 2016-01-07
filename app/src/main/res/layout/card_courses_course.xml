@@ -27,7 +27,6 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view_course"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -43,26 +42,11 @@
 
         <TextView
             android:id="@+id/course_code"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="3dp"
-            android:layout_marginStart="3dp"
+            android:gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:textColor="@color/bright_foreground_material_light"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/class_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="5sp"
             android:textColor="@color/bright_foreground_material_light"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -75,7 +59,7 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/bright_foreground_material_light"
             android:textSize="18sp"
-            android:textStyle="italic" />
+             />
 
         <TextView
             android:id="@+id/faculty"
@@ -85,16 +69,20 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="5dp"
             android:textColor="@color/bright_foreground_material_light"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="italic"/>
 
-        <TextView
-            android:id="@+id/subject_type"
-            android:layout_width="wrap_content"
+        <com.daimajia.numberprogressbar.NumberProgressBar
+            android:id="@+id/progressAttendanceCourse"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/faculty"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/bright_foreground_material_light"
-            android:textSize="14sp" />
+            android:layout_below="@id/faculty"
+            android:layout_marginLeft="5sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginEnd="5sp"
+            android:layout_marginTop="7dp"/>
+
 
     </RelativeLayout>
 
