@@ -26,12 +26,39 @@
 
 package com.karthikb351.vitinfo2.utility;
 
-public class Data {
+public class StringUtils {
 
-    public static String toTitleCase(String text) {
-        if (text != null) {
-            return text.substring(0, 1).toUpperCase() + text.substring(1);
+
+    public static String toTitleCase(String string) {
+
+        if (string == null) {
+            return null;
         }
-        return "";
+
+        boolean space = true;
+        StringBuilder builder = new StringBuilder(string);
+        final int len = builder.length();
+
+        for (int i = 0; i < len; ++i) {
+            char c = builder.charAt(i);
+            if (space) {
+                if (!Character.isWhitespace(c)) {
+                    // Convert to title case and switch out of whitespace mode.
+                    builder.setCharAt(i, Character.toTitleCase(c));
+                    space = false;
+                }
+            } else if (Character.isWhitespace(c)) {
+                space = true;
+            } else {
+                builder.setCharAt(i, Character.toLowerCase(c));
+            }
+        }
+
+        return builder.toString();
     }
+
+    public static boolean checkString(String string) {
+        return string != null && !string.isEmpty();
+    }
+
 }
