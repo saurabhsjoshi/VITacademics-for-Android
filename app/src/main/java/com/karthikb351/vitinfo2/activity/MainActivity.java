@@ -39,6 +39,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -102,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mainContent = (LinearLayout) findViewById(R.id.llMainContent);
-        headerRegistrationNumber = (TextView) drawerLayout.findViewById(R.id.header_registration_number);
-        headerUsername = (TextView) drawerLayout.findViewById(R.id.header_username);
 
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -120,17 +119,9 @@ public class MainActivity extends AppCompatActivity {
             mDrawerToggle.syncState();
         }
 
-   /*     if(registerNumber != null){
-            headerRegistrationNumber.setText(registerNumber);
-        }
 
-        if(name != null && !name.isEmpty()){
-            headerUsername.setText(Data.toTitleCase(name));
-        }
-*/
-
-        NavigationView view = (NavigationView) findViewById(R.id.navigation_view);
-        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(final MenuItem menuItem) {
                 menuItem.setChecked(true);
@@ -144,6 +135,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        View headerLayout = navigationView.getHeaderView(0);
+
+        headerRegistrationNumber = (TextView) headerLayout.findViewById(R.id.header_registration_number);
+        headerUsername = (TextView) headerLayout.findViewById(R.id.header_username);
+
+        if(StringUtils.checkString(registerNumber)){
+            headerRegistrationNumber.setText(registerNumber);
+        }
+
+        if(StringUtils.checkString(name)){
+            headerUsername.setText(StringUtils.toTitleCase(name));
+        }
 
         getSupportFragmentManager().beginTransaction().add(R.id.flContent, new ScheduleFragment(), ScheduleFragment.class.getSimpleName()).commitAllowingStateLoss();
     }
