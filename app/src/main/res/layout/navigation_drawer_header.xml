@@ -56,7 +56,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="14sp"
             android:textColor="@color/colorPrimaryLight"
-            tools:text="Darshan Mehta"
             fontPath="fonts/Roboto-Medium.ttf" />
 
         <TextView
@@ -66,7 +65,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/colorPrimaryLight"
             fontPath="fonts/Roboto-Regular.ttf"
-            tools:text="13BCE0258"
             android:textSize="14sp" />
 
     </LinearLayout>
