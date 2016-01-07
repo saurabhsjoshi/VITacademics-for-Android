@@ -114,9 +114,39 @@
         android:layout_below="@id/llVenue"
         android:layout_alignLeft="@id/llVenue"
         android:layout_alignStart="@id/llVenue"
-        android:layout_marginTop="7dp"
-        />
+        android:layout_marginTop="7dp"/>
 
+    <TextView
+        android:id="@+id/tvAttend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:text="Attend: 80%"
+        fontPath="fonts/Roboto.ttf"
+        android:textAllCaps="true"
+        android:textColor="@color/highAttend"
+        android:layout_below="@+id/progressAttendance"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="5dp" />
 
-
+    <TextView
+        android:id="@+id/tvMiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:text="Miss: 70%"
+        fontPath="fonts/Roboto.ttf"
+        android:textAllCaps="true"
+        android:textColor="@color/lowAttend"
+        android:layout_below="@+id/progressAttendance"
+        android:layout_toStartOf="@+id/tvAttend"
+        android:layout_toLeftOf="@+id/tvAttend"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="125dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginTop="5dp" />
 </RelativeLayout>
