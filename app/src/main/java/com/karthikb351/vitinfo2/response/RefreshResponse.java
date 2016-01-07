@@ -86,6 +86,7 @@ public class RefreshResponse {
         this.dateOfBirth = dateOfBirth;
         this.mobileNumber = mobileNumber;
         this.campus = campus;
+        this.name=name;
         this.status = status;
         this.semester = semester;
         this.courses = courses;
