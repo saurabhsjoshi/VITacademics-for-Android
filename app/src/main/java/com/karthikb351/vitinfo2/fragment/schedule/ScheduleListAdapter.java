@@ -86,7 +86,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
             attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
         }
-        if(getItemCount()<0)
+        if(getItemCount()>0)
         {
             Log.e("No Class", "scheduleViewHolder.scheduleImageView.setVisibility(View.INVISIBLE)");
         }
@@ -116,14 +116,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         }
 
         updateTimeSign(scheduleViewHolder.scheduleView, day, startTime, endTime);
-        /*if(cday[day]==0){
-            scheduleViewHolder.scheduleView.setVisibility(View.INVISIBLE);
-            scheduleViewHolder.scheduleImageView.setVisibility(View.VISIBLE);
-        }
-        else{
-            scheduleViewHolder.scheduleView.setVisibility(View.VISIBLE);
-            scheduleViewHolder.scheduleImageView.setVisibility(View.INVISIBLE);
-        }*/
 //        scheduleViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
 //        scheduleViewHolder.courseName.setText();
 //        scheduleViewHolder.venue.setText();
