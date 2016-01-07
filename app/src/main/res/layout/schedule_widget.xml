@@ -116,7 +116,7 @@
         android:layout_alignStart="@id/llVenue"
         android:layout_marginTop="7dp"/>
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tvAttend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -148,5 +148,5 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="125dp"
         android:layout_marginEnd="125dp"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp" />-->
 </RelativeLayout>

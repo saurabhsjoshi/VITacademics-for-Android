@@ -40,6 +40,6 @@
     <com.karthikb351.vitinfo2.customwidget.ScheduleView
         android:id="@+id/scheduleView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"/>
+        android:layout_height="100dp"/>
 
 </RelativeLayout>
