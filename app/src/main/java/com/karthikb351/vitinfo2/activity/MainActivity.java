@@ -55,7 +55,7 @@ import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
 import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
-import com.karthikb351.vitinfo2.utility.Data;
+import com.karthikb351.vitinfo2.utility.StringUtils;
 import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import java.util.Arrays;
