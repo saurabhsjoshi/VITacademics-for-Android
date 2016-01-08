@@ -75,7 +75,6 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
     public void onBindViewHolder(AssesmentViewHolder holder, int position) {
         if (position == 0) {
             holder.internals.setText(context.getString(R.string.label_total_internals, Double.toString(marks.getScoredPercentage()), Double.toString(marks.getMaxPercentage())));
-            ;
         } else {
             holder.assessmentTitle.setText(assessments.get(position - 1).getTitle());
             holder.assessmentMarks.setText(context.getString(R.string.label_assessment_marks, Double.toString(assessments.get(position - 1).getScoredMarks()), Double.toString(assessments.get(position - 1).getMaxMarks())));
