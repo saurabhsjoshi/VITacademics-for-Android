@@ -131,7 +131,7 @@
     <string name="classes_none_day">No classes today, hooray!</string>
 
     <!-- VITacademics API Messages -->
-    <string name="api_server_error">The VITacademics Server is down or has encountered an error</string>
+    <string name="api_server_error">The VIT Server may be down</string>
     <string name="api_unknown_error">The VITacademics app has encountered an error</string>
     <string name="message_login_loading">Logging you in, please wait&#8230;</string>
 

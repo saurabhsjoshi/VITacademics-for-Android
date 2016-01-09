@@ -34,6 +34,10 @@
     android:paddingRight="14sp"
     android:layout_gravity="center_horizontal">
 
+    <android.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="8sp" />
+
     <TextView
         android:id="@+id/course_name"
         android:layout_width="fill_parent"
@@ -43,61 +47,99 @@
         android:textSize="@dimen/abc_text_size_headline_material"
         android:layout_gravity="center_horizontal"/>
 
+    <android.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="8sp" />
+
     <TextView
         android:id="@+id/course_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material"
+        android:textSize="17sp"
         android:layout_gravity="center_horizontal"/>
+
+    <android.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="4sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:src="@drawable/dotted"
+        android:background="@color/textColorDivider"/>
+
+    <android.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="4sp" />
 
     <TextView
         android:id="@+id/faculty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material"
+        android:textSize="17sp"
         android:layout_gravity="center_horizontal"/>
+
+    <android.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="4sp" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:src="@drawable/dotted"
+        android:padding="4sp"
+        android:paddingTop="4sp"
+        android:background="@color/textColorDivider"/>
+
+    <android.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="4sp" />
 
     <TextView
         android:id="@+id/course_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material"
+        android:textSize="17sp"
         android:layout_gravity="center_horizontal"/>
+
+    <android.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="4sp" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:src="@drawable/dotted"
+        android:padding="4sp"
+        android:paddingTop="4sp"
+        android:background="@color/textColorDivider"/>
+
+    <android.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="4sp" />
 
     <TextView
         android:id="@+id/course_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material"
+        android:textSize="17sp"
         android:layout_gravity="center_horizontal"/>
 
-    <TextView
-        android:id="@+id/ltpjc"
+    <android.widget.Space
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_height="4sp" />
 
-    <TextView
-        android:id="@+id/slot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material"
-        android:layout_gravity="center_horizontal"/>
-
-    <TextView
-        android:id="@+id/venue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/abc_text_size_body_1_material"
-        android:layout_gravity="center_horizontal"/>
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:src="@drawable/dotted"
+        android:padding="4sp"
+        android:paddingTop="4sp"
+        android:background="@color/textColorDivider"/>
 
     <TextView
         android:layout_width="fill_parent"

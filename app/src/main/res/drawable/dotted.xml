@@ -5,6 +5,5 @@
     <stroke
         android:color="#363434"
         android:dashWidth="10px"
-        android:dashGap="1px"
-        android:width="2dp"/>
+        android:dashGap="1px" />
 </shape>

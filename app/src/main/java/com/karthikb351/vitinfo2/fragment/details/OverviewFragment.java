@@ -92,8 +92,8 @@ public class OverviewFragment extends Fragment {
             projectTitle.setText(getString(R.string.label_project_title, course.getProjectTitle()));
             projectTitle.setVisibility(View.VISIBLE);
         } else if (course.getCourseType() == Constants.COURSE_TYPE_CBL || course.getCourseType() == Constants.COURSE_TYPE_LBC || course.getCourseType() == Constants.COURSE_TYPE_PBL || course.getCourseType() == Constants.COURSE_TYPE_RBL) {
-            slot.setText(getString(R.string.label_slot, course.getSlot()));
-            venue.setText(getString(R.string.label_venue, course.getVenue()));
+            //slot.setText(getString(R.string.label_slot, course.getSlot()));
+            //venue.setText(getString(R.string.label_venue, course.getVenue()));
 
             /*if (course.getAttendance().isSupported()) {
                 String registeredDate;
@@ -126,7 +126,7 @@ public class OverviewFragment extends Fragment {
         courseName.setText(course.getCourseTitle());
         courseCode.setText(getString(R.string.label_course_code, course.getCourseCode()));
         faculty.setText(getString(R.string.label_faculty, course.getFaculty()));
-        ltpjc.setText(getString(R.string.label_ltpjc, course.getLtpjc()));
+        //ltpjc.setText(getString(R.string.label_ltpjc, course.getLtpjc()));
         courseType.setText(getString(R.string.label_course_type, course.getSubjectType()));
         courseMode.setText(getString(R.string.label_course_mode, course.getCourseMode()));
 
