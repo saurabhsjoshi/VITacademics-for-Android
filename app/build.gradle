@@ -37,7 +37,7 @@ buildscript {
 }
 */
 apply plugin: 'com.android.application'
-//apply plugin: 'io.fabric'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 23
@@ -60,9 +60,9 @@ repositories {
     maven {
         url "http://maven.rushorm.com"
     }
-  /*  maven {
+    maven {
         url 'https://maven.fabric.io/public'
-    }*/
+    }
     maven {
         url "https://jitpack.io"
     }
@@ -81,9 +81,9 @@ dependencies {
     // Third Party
     compile 'co.uk.rushorm:rushandroid:1.1.9'
     compile 'com.avast:android-styled-dialogs:2.2.0'
-  /*  compile('com.crashlytics.sdk.android:crashlytics:2.5.1@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.1@aar') {
         transitive = true;
-    }*/
+    }
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.3'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
