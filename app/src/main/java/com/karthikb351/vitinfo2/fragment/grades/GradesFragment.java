@@ -82,6 +82,7 @@ public class GradesFragment extends Fragment {
 
     void initialize() {
         semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
+
         chart = (LineChart) rootView.findViewById(R.id.grades_chart);
         Cgpa =  ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
         initializeChart();
