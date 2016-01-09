@@ -28,12 +28,12 @@ package com.karthikb351.vitinfo2;
 
 import android.app.Application;
 
-//import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.Crashlytics;
 import com.karthikb351.vitinfo2.api.DataHolder;
 
 import co.uk.rushorm.android.AndroidInitializeConfig;
 import co.uk.rushorm.core.RushCore;
-//import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.Fabric;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class MainApplication extends Application {
@@ -43,8 +43,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-  //      Fabric.with(this, new Crashlytics());
-
+        Fabric.with(this, new Crashlytics());
         // Rush is initialized asynchronously to receive a callback after it initialized
         // set an InitializeListener on the config object
         AndroidInitializeConfig config = new AndroidInitializeConfig(getApplicationContext());
