@@ -82,6 +82,4 @@ public class ScheduleFragment extends Fragment {
         }
         return day;
     }
-
-
 }
