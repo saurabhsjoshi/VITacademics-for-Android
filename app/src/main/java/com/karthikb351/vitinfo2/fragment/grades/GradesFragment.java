@@ -26,16 +26,18 @@
 
 package com.karthikb351.vitinfo2.fragment.grades;
 
+
+import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
@@ -63,7 +65,8 @@ public class GradesFragment extends Fragment {
     private View rootView;
     private LineChart chart;
     private ViewPager pager;
-    float Cgpa;
+    private float Cgpa;
+    private FragmentManager fragmentManager;
     private GradesPagerAdapter pagerAdapter;
     private List<SemesterWiseGrade> semesterWiseGrades;
     private RecyclerView gradesRecyclerView;
@@ -86,7 +89,6 @@ public class GradesFragment extends Fragment {
     void initialize() {
         semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
         Collections.sort(semesterWiseGrades, new SemCompare());
-        Log.w("Tester:", semesterWiseGrades.get(0).getExamHeld());
         chart = (LineChart) rootView.findViewById(R.id.grades_chart);
         Cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
         initializeChart();
@@ -167,19 +169,7 @@ public class GradesFragment extends Fragment {
             }
         });
     }
-    class SemCompare implements Comparator<SemesterWiseGrade> {
-        @Override
-        public int compare(SemesterWiseGrade s1, SemesterWiseGrade s2) {
-            // write comparison logic here like below , it's just a sample
-            String heldDate1[] = s1.getExamHeld().split("-"); //{month, year}
-            String heldDate2[] = s2.getExamHeld().split("-");
-            Log.w("Test Start",heldDate1[1]+"-"+heldDate1[0]);
-            if (heldDate1[0].compareTo(heldDate2[0]) == 0)
-                return heldDate1[1].compareTo(heldDate2[1]);
-            else
-                return heldDate1[0].compareTo(heldDate2[0]);
-        }
-    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -192,9 +182,27 @@ public class GradesFragment extends Fragment {
         super.onPause();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
     // This method will be called when a RefreshFragmentEvent is posted
     public void onEvent(RefreshFragmentEvent event) {
         initialize();
+    }
+
+    class SemCompare implements Comparator<SemesterWiseGrade> {
+        @Override
+        public int compare(SemesterWiseGrade s1, SemesterWiseGrade s2) {
+             String heldDate1[] = s1.getExamHeld().split("-"); //{month, year}
+            String heldDate2[] = s2.getExamHeld().split("-");
+            Log.w("Test Start",heldDate1[1]+"-"+heldDate1[0]);
+            if (heldDate1[0].compareTo(heldDate2[0]) == 0)
+                return heldDate1[1].compareTo(heldDate2[1]);
+            else
+                return heldDate1[0].compareTo(heldDate2[0]);
+        }
     }
 
     class semCardChangeListener implements ViewPager.OnPageChangeListener {

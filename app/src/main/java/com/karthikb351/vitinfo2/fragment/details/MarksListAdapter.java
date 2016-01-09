@@ -87,7 +87,7 @@ public class MarksListAdapter extends RecyclerView.Adapter<MarksListAdapter.Asse
                 holder.marksProgressBar.setMax((int) assessments.get(position - 1).getMaxMarks());
                 holder.marksProgressBar.setProgress(0);
 
-                ObjectAnimator animation = ObjectAnimator.ofInt( holder.marksProgressBar, "progress", (int)assessments.get(position - 1).getScoredMarks());
+                ObjectAnimator animation = ObjectAnimator.ofInt( holder.marksProgressBar, "progress", (int)assessments.get(position - 1).getScoredPercentage());
                 animation.setDuration(1500);
                 animation.setInterpolator(new DecelerateInterpolator());
                 animation.start();
