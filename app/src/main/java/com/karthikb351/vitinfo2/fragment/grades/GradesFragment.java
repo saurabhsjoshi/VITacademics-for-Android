@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +86,7 @@ public class GradesFragment extends Fragment {
     void initialize() {
         semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
         Collections.sort(semesterWiseGrades, new SemCompare());
+        Log.w("Tester:", semesterWiseGrades.get(0).getExamHeld());
         chart = (LineChart) rootView.findViewById(R.id.grades_chart);
         Cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
         initializeChart();
@@ -169,12 +171,13 @@ public class GradesFragment extends Fragment {
         @Override
         public int compare(SemesterWiseGrade s1, SemesterWiseGrade s2) {
             // write comparison logic here like below , it's just a sample
-            String heldDate1[] = s1.getExamHeld().split("-");
+            String heldDate1[] = s1.getExamHeld().split("-"); //{month, year}
             String heldDate2[] = s2.getExamHeld().split("-");
-            if (heldDate1[1].compareTo(heldDate2[1]) == 0)
-                return heldDate1[0].compareTo(heldDate2[0]);
-            else
+            Log.w("Test Start",heldDate1[1]+"-"+heldDate1[0]);
+            if (heldDate1[0].compareTo(heldDate2[0]) == 0)
                 return heldDate1[1].compareTo(heldDate2[1]);
+            else
+                return heldDate1[0].compareTo(heldDate2[0]);
         }
     }
     @Override
