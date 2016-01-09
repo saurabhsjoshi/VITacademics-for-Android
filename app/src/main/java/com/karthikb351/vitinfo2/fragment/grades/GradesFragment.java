@@ -51,6 +51,8 @@ import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -60,7 +62,7 @@ public class GradesFragment extends Fragment {
     private View rootView;
     private LineChart chart;
     private ViewPager pager;
-    float Cgpa ;
+    float Cgpa;
     private GradesPagerAdapter pagerAdapter;
     private List<SemesterWiseGrade> semesterWiseGrades;
     private RecyclerView gradesRecyclerView;
@@ -82,8 +84,9 @@ public class GradesFragment extends Fragment {
 
     void initialize() {
         semesterWiseGrades = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getSemesterWiseGrades();
+        Collections.sort(semesterWiseGrades, new SemCompare());
         chart = (LineChart) rootView.findViewById(R.id.grades_chart);
-        Cgpa =  ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
+        Cgpa = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getCgpa();
         initializeChart();
         pager = (ViewPager) rootView.findViewById(R.id.view_pager_grades);
         pagerAdapter = new GradesPagerAdapter(getActivity(), getActivity().getSupportFragmentManager(), semesterWiseGrades);
@@ -95,10 +98,10 @@ public class GradesFragment extends Fragment {
 
     void initializeChart() {
         Resources r = getResources();
-        int CgpaColor ;
-        if(Cgpa>8.0f)
+        int CgpaColor;
+        if (Cgpa > 8.0f)
             CgpaColor = r.getColor(R.color.highAttend);
-        else if(Cgpa>6.0f&&Cgpa<8.0f)
+        else if (Cgpa > 6.0f && Cgpa < 8.0f)
             CgpaColor = r.getColor(R.color.midAttend);
         else
             CgpaColor = r.getColor(R.color.lowAttend);
@@ -115,25 +118,28 @@ public class GradesFragment extends Fragment {
             if (gpa < minGpa)
                 minGpa = gpa;
         }
-        CGPAentryList.add(new Entry(Cgpa,0));
-        CGPAentryList.add(new Entry(Cgpa,data.size()-1));
+        CGPAentryList.add(new Entry(Cgpa, 0));
+        CGPAentryList.add(new Entry(Cgpa, data.size() - 1));
         LineDataSet dset = new LineDataSet(data, getString(R.string.label_grade_gpa));
-        LineDataSet CGPAdset = new LineDataSet(CGPAentryList,"CGPA " + String.valueOf(Cgpa));
+        LineDataSet CGPAdset = new LineDataSet(CGPAentryList, "CGPA " + String.valueOf(Cgpa));
         CGPAdset.setDrawCircleHole(false);
         CGPAdset.setHighlightEnabled(false);
         CGPAdset.setDrawFilled(true);
         CGPAdset.setFillAlpha(80);
-        CGPAdset.enableDashedLine(1.0f,0.5f,0.5f);
+        CGPAdset.enableDashedLine(1.0f, 0.5f, 0.5f);
         CGPAdset.setDrawCircles(false);
         CGPAdset.setDrawValues(false);
-        dset.setLineWidth(2.0f);CGPAdset.setLineWidth(1.0f);
-        dset.setValueTextSize(10.0f);CGPAdset.setValueTextSize(10.0f);
-        dset.setColor(r.getColor(R.color.colorPrimary));CGPAdset.setColor(CgpaColor);
+        dset.setLineWidth(2.0f);
+        CGPAdset.setLineWidth(1.0f);
+        dset.setValueTextSize(10.0f);
+        CGPAdset.setValueTextSize(10.0f);
+        dset.setColor(r.getColor(R.color.colorPrimary));
+        CGPAdset.setColor(CgpaColor);
         CGPAdset.setFillColor(CgpaColor);
         dset.setHighLightColor(r.getColor(R.color.colorPrimary));
         dset.setCircleColor(r.getColor(R.color.colorAccent));
         dset.setDrawCircleHole(false);
-        LineData chartData = new LineData(xVals, Arrays.asList(dset,CGPAdset));
+        LineData chartData = new LineData(xVals, Arrays.asList(dset, CGPAdset));
         YAxis leftaxis = chart.getAxisLeft();
         leftaxis.setStartAtZero(false);
         leftaxis.setAxisMinValue(minGpa - 0.1f);
@@ -159,7 +165,18 @@ public class GradesFragment extends Fragment {
             }
         });
     }
-
+    class SemCompare implements Comparator<SemesterWiseGrade> {
+        @Override
+        public int compare(SemesterWiseGrade s1, SemesterWiseGrade s2) {
+            // write comparison logic here like below , it's just a sample
+            String heldDate1[] = s1.getExamHeld().split("-");
+            String heldDate2[] = s2.getExamHeld().split("-");
+            if (heldDate1[1].compareTo(heldDate2[1]) == 0)
+                return heldDate1[0].compareTo(heldDate2[0]);
+            else
+                return heldDate1[1].compareTo(heldDate2[1]);
+        }
+    }
     @Override
     public void onResume() {
         super.onResume();
@@ -193,4 +210,7 @@ public class GradesFragment extends Fragment {
 
         }
     }
+
 }
+
+
