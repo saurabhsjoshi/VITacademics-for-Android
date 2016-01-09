@@ -29,13 +29,13 @@ package com.karthikb351.vitinfo2.fragment.grades;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 
 import java.util.List;
 
-public class GradesPagerAdapter extends FragmentPagerAdapter {
+public class GradesPagerAdapter extends FragmentStatePagerAdapter {
 
     private final int GRADES_COUNT;
     private FragmentManager fragmentManager;
