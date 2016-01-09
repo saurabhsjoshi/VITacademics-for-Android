@@ -100,7 +100,7 @@ public class CoursesFragment extends Fragment {
             recyclerView.setLayoutManager(courseLayoutManager);
             recyclerView.setAdapter(courseListAdapter);
 
-            swipeRefreshLayout.setColorSchemeColors(getActivity().getResources().getColor(R.color.colorAccent));
+/*            swipeRefreshLayout.setColorSchemeColors(getActivity().getResources().getColor(R.color.colorAccent));
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
@@ -116,7 +116,7 @@ public class CoursesFragment extends Fragment {
                         }
                     });
                 }
-            });
+            });*/
         }
         String Title = getActivity().getResources().getString(R.string.fragment_courses_title);
         getActivity().setTitle(Title);

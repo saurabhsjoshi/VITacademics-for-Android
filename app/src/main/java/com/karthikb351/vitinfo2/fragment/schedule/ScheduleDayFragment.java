@@ -90,7 +90,7 @@ public class ScheduleDayFragment extends Fragment {
         recyclerview = (RecyclerView) rootView.findViewById(R.id.recycler_view_timetable);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerview.setLayoutManager(layoutManager);
-        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorAccent));
+/*        swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorAccent));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -106,7 +106,7 @@ public class ScheduleDayFragment extends Fragment {
                     }
                 });
             }
-        });
+        });*/
         initializeData();
     }
 

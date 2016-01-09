@@ -126,7 +126,7 @@
     <string name="loading">Loading, please wait&#8230;</string>
     <string name="not_available">This is not available at the moment</string>
     <string name="not_applicable">This is not applicable for this course</string>
-    <string name="courses_none">No courses available, maybe you haven\'t registered any?</string>
+    <string name="courses_none">No courses available, you may have not registered any</string>
     <string name="classes_none">No classes for you, hooray!</string>
     <string name="classes_none_day">No classes today, hooray!</string>
 
@@ -153,7 +153,7 @@
     <string name="app_version" formatted="false">Version: %1$s</string>
     <string name="about_description">We help you keep track of your academic metrics</string>
     <string name="label_contribute">Contribute to VITacademics</string>
-    <string name="label_feedback">Provide Feedback</string>
+    <string name="label_feedback">Give Feedback</string>
 
     <!-- Share Messages -->
     <string name="android_share_select">Share VITacademics using&#8230;</string>
