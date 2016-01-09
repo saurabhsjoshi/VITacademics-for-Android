@@ -38,6 +38,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ViewSwitcher;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
@@ -67,7 +68,10 @@ public class ScheduleDayFragment extends Fragment {
     private RecyclerView recyclerview;
     private int dayOfWeek;
     private View rootView;
+    private LayoutInflater layoutInflater;
+    private ViewGroup viewGroup;
     private List<Course> courses;
+    private ViewSwitcher viewSwitcher;
 
     public ScheduleDayFragment() {
     }
@@ -80,7 +84,10 @@ public class ScheduleDayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_schedule_day, container, false);
+        layoutInflater = inflater;
+        viewGroup = container;
+        rootView = layoutInflater.inflate(R.layout.fragment_schedule_day, viewGroup, false);
+        viewSwitcher = (ViewSwitcher) rootView.findViewById(R.id.view_switcher_schedule);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_refresh_layout);
         initialize();
         return rootView;
@@ -187,7 +194,7 @@ public class ScheduleDayFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Pair<Course, Timing>> finalCourses) {
             if (finalCourses.size() == 0) {
-                // TODO No classes today message, change view
+                viewSwitcher.showNext();
             } else {
                 adapter = new ScheduleListAdapter(getActivity(), finalCourses);
                 adapter.setOnclickListener(new RecyclerViewOnClickListener<Course>() {

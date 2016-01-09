@@ -37,6 +37,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
@@ -85,14 +86,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
         if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
             attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
-        }
-        if(getItemCount()>0)
-        {
-            Log.e("No Class", "scheduleViewHolder.scheduleImageView.setVisibility(View.INVISIBLE)");
-        }
-        else
-        {
-            Log.e("No Class", "scheduleViewHolder.scheduleImageView.setVisibility(View.VISIBLE)");
         }
         try {
             startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
@@ -244,13 +237,11 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     public class ScheduleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ScheduleView scheduleView;
-        public ImageView scheduleImageView;
 
         public ScheduleViewHolder(View view) {
             super(view);
 
             scheduleView = (ScheduleView) view.findViewById(R.id.scheduleView);
-            scheduleImageView = (ImageView) view.findViewById(R.id.scheduleImageView);
             view.setOnClickListener(this);
         }
 

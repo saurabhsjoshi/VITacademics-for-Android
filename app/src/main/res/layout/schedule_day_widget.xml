@@ -37,6 +37,7 @@
     android:gravity="center"
     android:background="?attr/selectableItemBackground">
 
+
     <com.karthikb351.vitinfo2.customwidget.ScheduleView
         android:id="@+id/scheduleView"
         android:layout_width="match_parent"

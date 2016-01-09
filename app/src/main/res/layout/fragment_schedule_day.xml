@@ -25,37 +25,60 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:background="#fff"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/view_switcher_schedule">
 
-    <ProgressBar
-        android:id="@+id/progress_bar_today"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:indeterminate="true"
-        android:visibility="gone" />
-    <ImageView
-        android:id="@+id/scheduleImageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingBottom="40dp"
-        android:src="@drawable/no_classes_sign" />
-    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/swipe_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_timetable"
+    <RelativeLayout android:layout_width="fill_parent"
+        android:background="#fff"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progress_bar_today"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone" />
+
+        <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:scrollbars="vertical" />
-    </android.support.v4.widget.SwipeRefreshLayout>
-</RelativeLayout>
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_timetable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:scrollbars="vertical" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+
+    <RelativeLayout android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60sp"
+            android:gravity="center"
+            android:id="@+id/iv_logo_schedule"
+            android:src="@mipmap/ic_vitacademics_borderless"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_logo_schedule"
+            android:layout_centerHorizontal="true"
+            android:text="@string/classes_none_day"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textSize="30sp"/>
+
+    </RelativeLayout>
+</ViewSwitcher>
+
