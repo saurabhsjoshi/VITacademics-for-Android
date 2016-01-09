@@ -65,7 +65,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/colorPrimaryLight"
             fontPath="fonts/Roboto-Regular.ttf"
-            android:textSize="14sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
