@@ -68,8 +68,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
-
     private String name;
     private String registerNumber;
 
@@ -147,8 +145,6 @@ public class MainActivity extends AppCompatActivity {
         if(StringUtils.checkString(registerNumber)){
             headerRegistrationNumber.setText(registerNumber);
         }
-
-        Log.d(TAG, "initializeView: Name= " + name);
 
         if(StringUtils.checkString(name)){
             headerUsername.setText(StringUtils.toTitleCase(name.toLowerCase()));
