@@ -27,7 +27,6 @@
 package com.karthikb351.vitinfo2.fragment.grades;
 
 
-import android.app.FragmentTransaction;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -51,7 +50,6 @@ import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
 import com.karthikb351.vitinfo2.event.RefreshFragmentEvent;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
