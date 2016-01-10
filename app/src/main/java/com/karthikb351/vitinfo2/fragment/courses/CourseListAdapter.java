@@ -36,6 +36,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.karthikb351.vitinfo2.R;
@@ -68,16 +69,19 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         courseViewHolder.courseCode.setText(courses.get(position).getCourseCode());
         courseViewHolder.courseName.setText(courses.get(position).getCourseTitle());
         courseViewHolder.faculty.setText(courses.get(position).getFaculty());
-        int attendance = courses.get(position).getAttendance().getAttendancePercentage();
+        int attendance;
+        if(courses.get(position) != null){
+            attendance = courses.get(position).getAttendance().getAttendancePercentage();
+            setAttendance(courseViewHolder,attendance);
+        }
         courseViewHolder.numberProgressBar.setProgressTextColor(ContextCompat.getColor(this.context, R.color.text_secondary));
         courseViewHolder.numberProgressBar.setReachedBarColor(ContextCompat.getColor(this.context, R.color.text_secondary));
         courseViewHolder.numberProgressBar.setMax(100);
         courseViewHolder.numberProgressBar.setProgress(0);
-        setAttendance(attendance,courseViewHolder);
         //courseViewHolder.subjectType.setText(courses.get(position).getSubjectType());
     }
 
-    public void setAttendance(int attendance, CourseViewHolder courseViewHolder){
+    public void setAttendance(CourseViewHolder courseViewHolder, int attendance){
         ObjectAnimator animation = ObjectAnimator.ofInt(courseViewHolder.numberProgressBar, "progress", attendance);
         animation.setDuration(1500);
         animation.setInterpolator(new DecelerateInterpolator());

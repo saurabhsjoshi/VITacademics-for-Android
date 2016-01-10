@@ -80,6 +80,9 @@ public class AboutFragment extends Fragment {
         return view;
     }
 
+
+
+
     void sendFeedBack(View view) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType(Constants.INTENT_TYPE_PLAIN);
