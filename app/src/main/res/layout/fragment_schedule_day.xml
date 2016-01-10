@@ -69,7 +69,7 @@
             android:layout_marginTop="60sp"
             android:gravity="center"
             android:id="@+id/iv_logo_schedule"
-            android:src="@mipmap/ic_vitacademics_borderless"/>
+            android:src="@mipmap/ic_launcher"/>
 
         <TextView
             android:layout_width="wrap_content"

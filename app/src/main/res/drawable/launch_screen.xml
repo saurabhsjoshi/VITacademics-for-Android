@@ -32,6 +32,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/ic_vitacademics_borderless" />
+            android:src="@mipmap/ic_launcher" />
     </item>
 </layer-list>

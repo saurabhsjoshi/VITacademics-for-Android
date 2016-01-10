@@ -52,7 +52,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@mipmap/ic_vitacademics_borderless" />
+                    android:src="@mipmap/ic_launcher" />
 
                 <TextView
                     android:id="@+id/name"

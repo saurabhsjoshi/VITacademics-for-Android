@@ -106,7 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
                     android:layout_margin="5dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/ic_launcher_borderless" />
 
                 <TextView
                     android:id="@+id/loginSupportText"

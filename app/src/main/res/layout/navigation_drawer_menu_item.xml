@@ -36,7 +36,7 @@
         android:id="@+id/drawer_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher_borderless" />
 
 
     <TextView
