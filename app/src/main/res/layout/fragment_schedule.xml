@@ -41,6 +41,7 @@
         app:elevation="4dp"
         app:tabMode="scrollable" />
 
+
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager_timetable"
         android:layout_width="fill_parent"

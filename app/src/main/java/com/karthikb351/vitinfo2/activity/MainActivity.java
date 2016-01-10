@@ -38,6 +38,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -66,6 +67,8 @@ import de.greenrobot.event.EventBus;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     private String name;
     private String registerNumber;
@@ -145,8 +148,10 @@ public class MainActivity extends AppCompatActivity {
             headerRegistrationNumber.setText(registerNumber);
         }
 
+        Log.d(TAG, "initializeView: Name= " + name);
+
         if(StringUtils.checkString(name)){
-            headerUsername.setText(StringUtils.toTitleCase(name));
+            headerUsername.setText(StringUtils.toTitleCase(name.toLowerCase()));
         }
 
         getSupportFragmentManager().beginTransaction().add(R.id.flContent, new ScheduleFragment(), ScheduleFragment.class.getSimpleName()).commitAllowingStateLoss();

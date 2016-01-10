@@ -26,9 +26,11 @@
 
 package com.karthikb351.vitinfo2.utility;
 
+import android.support.annotation.Nullable;
+
 public class StringUtils {
 
-
+    @Nullable
     public static String toTitleCase(String string) {
 
         if (string == null) {
