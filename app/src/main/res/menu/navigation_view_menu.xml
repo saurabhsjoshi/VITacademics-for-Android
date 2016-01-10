@@ -32,7 +32,7 @@
         <item
             android:id="@+id/drawer_timetable"
             android:checked="true"
-            android:icon="@mipmap/ic_timetable"
+            android:icon="@mipmap/ic_timeline_black_24dp"
             android:title="@string/fragment_timetable_title" />
 
         <!--<item
