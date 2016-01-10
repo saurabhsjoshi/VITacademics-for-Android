@@ -35,5 +35,7 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
 
-    <dimen name="fab_size_normal">16dp</dimen> <!-- TODO change this to the actual value needed -->
+    <dimen name="fab_size_normal">16dp</dimen>
+    <dimen name="logo_size_borderless">200dp
+    </dimen> <!-- TODO change this to the actual value needed -->
 </resources>
