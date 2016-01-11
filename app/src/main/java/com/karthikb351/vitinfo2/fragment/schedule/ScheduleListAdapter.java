@@ -96,7 +96,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         try {
             startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
             endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
-            Log.d(TAG, "onBindViewHolder: Start time: " + startTime + "End time: " + endTime);
             day = courseTimingPairs.get(position).second.getDay();
             cday[day]++;
         } catch (ParseException ex) {
@@ -117,27 +116,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
         updateTimeSign(scheduleViewHolder.scheduleView, day, startTime, endTime);
 
-//        scheduleViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
-//        scheduleViewHolder.courseName.setText();
-//        scheduleViewHolder.venue.setText();
-//        scheduleViewHolder.slot.setText(courseTimingPairs.get(position).first.getSlot());
-//        scheduleViewHolder.attendance.setText();
-//        scheduleViewHolder.slotTiming.setText(context.getString(R.string.timetable_course_slot_timing, startTime, endTime));
-//        scheduleViewHolder.progressBarAttendance.setProgress(attendancePercentage);
-//
-//        int sdk = android.os.Build.VERSION.SDK_INT;
-//        int bgColor = getAttendanceColor(attendancePercentage);
-//
-//        scheduleViewHolder.progressBarAttendance.getProgressDrawable().setColorFilter(bgColor, PorterDuff.Mode.SRC_IN);
-//        GradientDrawable txt_bgShape;
-//        txt_bgShape = (GradientDrawable) scheduleViewHolder.attendance.getBackground();
-//        txt_bgShape.setColor(bgColor);
-//
-//        if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-//            scheduleViewHolder.attendance.setBackgroundDrawable(txt_bgShape);
-//        } else {
-//            scheduleViewHolder.attendance.setBackground(txt_bgShape);
-//        }
     }
 
     private void updateTimeSign(ScheduleView scheduleView, int day, String startTime, String endTime) {
@@ -180,8 +158,12 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
     private String formatTime(String time) {
 
+        Log.d(TAG, "formatTime() called with: " + "time = [" + time + "]");
+
         String AMPM = time.substring(time.length() - 2);
         String timeHeader = time.substring(0, time.length() - 3);
+
+        Log.d(TAG, "formatTime: AMPM: " + AMPM + " timeheader: " + timeHeader);
 
         if(timeHeader.length() == 4){
             timeHeader = "0" + timeHeader;
