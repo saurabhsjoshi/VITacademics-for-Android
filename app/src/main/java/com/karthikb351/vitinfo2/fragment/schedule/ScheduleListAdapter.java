@@ -93,10 +93,11 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         startTime = courseTimingPairs.get(position).second.getStartTime();
         endTime = courseTimingPairs.get(position).second.getEndTime();
 
-        Log.d(TAG, "onBindViewHolder: Start time: " + startTime + "End time: " + endTime);
+
         try {
             startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
             endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
+            Log.d(TAG, "onBindViewHolder: Start time: " + startTime + "End time: " + endTime);
             day = courseTimingPairs.get(position).second.getDay();
             cday[day]++;
         } catch (ParseException ex) {
@@ -181,6 +182,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     private String formatTime(String time) {
 
         String AMPM = time.substring(time.length() - 2);
+        Log.e("fsf",time);
         String timeHeader = time.substring(0, time.length() - 3);
 
         if(timeHeader.length() == 4){
