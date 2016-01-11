@@ -92,7 +92,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
         startTime = courseTimingPairs.get(position).second.getStartTime();
         endTime = courseTimingPairs.get(position).second.getEndTime();
-
+        Log.d("Original", startTime);
         try {
             startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
             endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
@@ -158,14 +158,10 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
 
     private String formatTime(String time) {
 
-        Log.d(TAG, "formatTime() called with: " + "time = [" + time + "]");
-
-        String AMPM = time.substring(time.length() - 2);
+         String AMPM = time.substring(time.length() - 2);
         String timeHeader = time.substring(0, time.length() - 3);
 
-        Log.d(TAG, "formatTime: AMPM: " + AMPM + " timeheader: " + timeHeader);
-
-        if(timeHeader.length() == 4){
+         if(timeHeader.length() == 4){
             timeHeader = "0" + timeHeader;
         }
         String hour = timeHeader.substring(0, 2);
