@@ -86,15 +86,17 @@ public class GradeSemesterCardFragment extends Fragment {
         //gradeRecyclerView = (RecyclerView)rootView.findViewById(R.id.recycler_view_semester_grades);
         inflater = LayoutInflater.from(getActivity());
         ArrayList<Grade> gradestoadd = new ArrayList<>();
-        gpa.setText(Double.toString(semester.getGpa()));
-        gradeList = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGrades();
-        for (Grade g : gradeList) {
-            if (g.getExamHeld().equals(semester.getExamHeld())) {
-                //  gradestoadd.add(g);
-                addGrade(g);
+        if (semester !=null) {
+            gpa.setText(Double.toString(semester.getGpa()));
+            gradeList = ((MainApplication) getActivity().getApplication()).getDataHolderInstanceInitialized().getGrades();
+            for (Grade g : gradeList) {
+                if (g.getExamHeld().equals(semester.getExamHeld())) {
+                    //  gradestoadd.add(g);
+                    addGrade(g);
+                }
             }
         }
-        //  Log.d("grade length",Integer.toString(gradestoadd.size()));
+            //  Log.d("grade length",Integer.toString(gradestoadd.size()));
         //   gradeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //   listAdapter = new GradeListAdapter(getActivity(),gradestoadd);
         // gradeRecyclerView.setAdapter(listAdapter);

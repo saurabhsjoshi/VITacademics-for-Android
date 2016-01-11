@@ -177,7 +177,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         if(timeHeader.length() == 4){
             timeHeader = "0" + timeHeader;
         }
-
+        Log.e("fsf",timeHeader);
         String hour = timeHeader.substring(0, 2);
         String minutes = timeHeader.substring(3, 5);
 
