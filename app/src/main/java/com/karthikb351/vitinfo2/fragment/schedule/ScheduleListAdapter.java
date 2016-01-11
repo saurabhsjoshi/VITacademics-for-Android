@@ -58,6 +58,8 @@ import java.util.List;
 
 public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapter.ScheduleViewHolder> {
 
+    private static final String TAG = "ScheduleListAdapter";
+
     private RecyclerViewOnClickListener<Course> onClickListener;
     private List<Pair<Course, Timing>> courseTimingPairs;
     private Context context;
@@ -171,13 +173,15 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     }
 
     private String formatTime(String time) {
+
+        Log.d(TAG, "formatTime() called with: " + "time = [" + time + "]");
+
         String AMPM = time.substring(time.length() - 2);
         String timeHeader = time.substring(0, time.length() - 3);
 
         if(timeHeader.length() == 4){
             timeHeader = "0" + timeHeader;
         }
-        Log.e("fsf",timeHeader);
         String hour = timeHeader.substring(0, 2);
         String minutes = timeHeader.substring(3, 5);
 
