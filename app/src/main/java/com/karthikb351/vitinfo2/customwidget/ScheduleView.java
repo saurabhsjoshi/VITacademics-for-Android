@@ -28,7 +28,6 @@ package com.karthikb351.vitinfo2.customwidget;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;

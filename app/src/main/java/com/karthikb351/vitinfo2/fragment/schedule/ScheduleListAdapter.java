@@ -28,16 +28,11 @@ package com.karthikb351.vitinfo2.fragment.schedule;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.media.Image;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Course;
