@@ -71,6 +71,9 @@ repositories {
 dependencies {
     //Uncomment to generate release APK
     //apply from: project.property("VITacademics.signing") + ".gradle";
+
+    testCompile 'junit:junit:4.12'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     // Android Support
     compile 'com.android.support:design:23.1.1'
