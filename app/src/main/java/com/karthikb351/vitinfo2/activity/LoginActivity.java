@@ -173,7 +173,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         };
 
-        animation.setDuration((int) ((initialHeight - targetHeight) / view.getContext().getResources().getDisplayMetrics().density));
+        int difference = initialHeight - targetHeight;
+        if (difference < 0){
+            difference = 0;
+        }
+        animation.setDuration((int) (difference / view.getContext().getResources().getDisplayMetrics().density));
         view.startAnimation(animation);
     }
 
