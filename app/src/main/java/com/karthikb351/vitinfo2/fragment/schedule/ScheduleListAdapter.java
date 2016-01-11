@@ -89,6 +89,11 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         if (courseTimingPairs.get(position).first.getAttendance().isSupported()) {
             attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
         }
+
+        startTime = courseTimingPairs.get(position).second.getStartTime();
+        endTime = courseTimingPairs.get(position).second.getEndTime();
+
+        Log.d(TAG, "onBindViewHolder: Start time: " + startTime + "End time: " + endTime);
         try {
             startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
             endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
@@ -111,6 +116,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         }
 
         updateTimeSign(scheduleViewHolder.scheduleView, day, startTime, endTime);
+
 //        scheduleViewHolder.courseCode.setText(courseTimingPairs.get(position).first.getCourseCode());
 //        scheduleViewHolder.courseName.setText();
 //        scheduleViewHolder.venue.setText();
@@ -173,8 +179,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
     }
 
     private String formatTime(String time) {
-
-        Log.d(TAG, "formatTime() called with: " + "time = [" + time + "]");
 
         String AMPM = time.substring(time.length() - 2);
         String timeHeader = time.substring(0, time.length() - 3);
