@@ -70,7 +70,7 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         courseViewHolder.courseName.setText(courses.get(position).getCourseTitle());
         courseViewHolder.faculty.setText(courses.get(position).getFaculty());
         int attendance;
-        if(courses.get(position) != null){
+        if(courses.get(position).getAttendance() != null){
             attendance = courses.get(position).getAttendance().getAttendancePercentage();
             setAttendance(courseViewHolder,attendance);
         }
