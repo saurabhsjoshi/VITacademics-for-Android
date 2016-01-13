@@ -57,7 +57,9 @@ public class DateTimeCalender {
         DateFormat dateFormat = new SimpleDateFormat(Constants.JSON_ISO8601_TIME_FORMAT, Locale.US);
         dateFormat.setTimeZone(TimeZone.getTimeZone(Constants.TIMEZONE_UTC));
         Date time = dateFormat.parse(jsonString);
-        return SimpleDateFormat.getTimeInstance(DateFormat.SHORT).format(time);
+        //return SimpleDateFormat.getTimeInstance(DateFormat.SHORT).format(time);
+        /* TODO: Temporary fix */
+        return new SimpleDateFormat("hh:mm aa").format(time);
     }
 
     public static Date getTodayTimeObject(String jsonString) throws ParseException {

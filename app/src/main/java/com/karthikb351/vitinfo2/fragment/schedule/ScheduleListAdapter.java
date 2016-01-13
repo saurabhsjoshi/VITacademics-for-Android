@@ -80,9 +80,6 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
             attendancePercentage = courseTimingPairs.get(position).first.getAttendance().getAttendancePercentage();
         }
 
-        startTime = courseTimingPairs.get(position).second.getStartTime();
-        endTime = courseTimingPairs.get(position).second.getEndTime();
-
         try {
             startTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getStartTime());
             endTime = DateTimeCalender.parseISO8601Time(courseTimingPairs.get(position).second.getEndTime());
@@ -146,6 +143,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListAdapte
         }
     }
 
+    /* TODO: Please make this free of string manipulation. Use library functions instead */
     private String formatTime(String time) {
 
         String AMPM = time.substring(time.length() - 2);
