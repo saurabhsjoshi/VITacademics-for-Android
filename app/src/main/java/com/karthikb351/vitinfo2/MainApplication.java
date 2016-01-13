@@ -31,6 +31,8 @@ import android.app.Application;
 import com.crashlytics.android.Crashlytics;
 import com.karthikb351.vitinfo2.api.DataHolder;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import co.uk.rushorm.android.AndroidInitializeConfig;
 import co.uk.rushorm.core.RushCore;
 import io.fabric.sdk.android.Fabric;
@@ -44,6 +46,8 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
+        //Init JodaTime to avoid exceptions
+        JodaTimeAndroid.init(this);
         // Rush is initialized asynchronously to receive a callback after it initialized
         // set an InitializeListener on the config object
         AndroidInitializeConfig config = new AndroidInitializeConfig(getApplicationContext());
