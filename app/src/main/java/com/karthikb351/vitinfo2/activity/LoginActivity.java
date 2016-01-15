@@ -292,7 +292,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else if (dateOfBirth.isEmpty()) {
             etDOBHolder.setError("Choose a valid date");
             setFocusTo(etDOB, etRegNo, etPhone);
-        } else if ((mobileNumber.isEmpty() || mobileNumber.length() != 10) && campus.contentEquals(Constants.CAMPUS_VELLORE)) {
+        } else if ((mobileNumber.isEmpty()) && campus.contentEquals(Constants.CAMPUS_VELLORE)) {
             etPhoneHolder.setError("Enter a valid phone number");
             setFocusTo(etPhone, etDOB, etRegNo);
         } else {
