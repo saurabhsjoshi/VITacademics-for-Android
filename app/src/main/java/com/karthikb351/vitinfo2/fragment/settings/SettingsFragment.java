@@ -26,10 +26,12 @@
 
 package com.karthikb351.vitinfo2.fragment.settings;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ListView;
 
@@ -73,12 +75,8 @@ public class SettingsFragment extends ListFragment {
 
         switch (position) {
             case 0:
-                // Reset App
-                new ResetTask(getActivity()).execute();
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                getActivity().finish();
+                //Get confirmation from user
+                showResetConfirmationDialog();
                 break;
             case 1:
                 // Show licenses of libraries
@@ -117,5 +115,32 @@ public class SettingsFragment extends ListFragment {
                 startActivity(Intent.createChooser(share, getActivity().getString(R.string.android_share_select)));
                 break;
         }
+    }
+
+    private void showResetConfirmationDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+                resetApp();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.dismiss();
+            }
+        });
+        builder.setTitle("Warning");
+        builder.setMessage("Are you sure you want to reset the app?");
+        builder.create().show();
+    }
+
+    private void resetApp(){
+        // Reset App
+        new ResetTask(getActivity()).execute();
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        getActivity().finish();
     }
 }
