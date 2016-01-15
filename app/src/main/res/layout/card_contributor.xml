@@ -26,18 +26,11 @@
   ~ along with VITacademics.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:foreground="?selectableItemBackground"
-    app:cardElevation="3dp"
-    app:cardUseCompatPadding="true">
-
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:padding="5dp">
 
         <TextView
@@ -55,7 +48,22 @@
             android:textColor="@color/secondary_text_default_material_light"
             android:textSize="14sp" />
 
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:id="@+id/spacer"
+        android:layout_below="@+id/contributor_role"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1sp"
+        android:src="@drawable/dotted"
+        android:padding="4sp"
+        android:paddingTop="4sp"
+        android:layout_below="@+id/spacer"
+        android:background="@color/textColorDivider"/>
+
         <!-- TODO Add menu button to contact via email -->
 
     </RelativeLayout>
-</android.support.v7.widget.CardView>

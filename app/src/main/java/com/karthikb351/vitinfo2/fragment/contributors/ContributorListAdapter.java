@@ -53,8 +53,8 @@ public class ContributorListAdapter extends RecyclerView.Adapter<ContributorList
 
     @Override
     public ContributorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        CardView cardView = (CardView) LayoutInflater.from(context).inflate(R.layout.card_contributor, parent, false);
-        return new ContributorViewHolder(cardView);
+        View view = LayoutInflater.from(context).inflate(R.layout.card_contributor, parent, false);
+        return new ContributorViewHolder(view);
     }
 
     @Override
