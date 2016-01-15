@@ -119,19 +119,19 @@ public class SettingsFragment extends ListFragment {
 
     private void showResetConfirmationDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.fragment_settings_reset_dialog_yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
                 resetApp();
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.fragment_settings_reset_dialog_no, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
             }
         });
-        builder.setTitle("Warning");
-        builder.setMessage("Are you sure you want to reset the app?");
+        builder.setTitle(getActivity().getString(R.string.fragment_settings_reset_dialog_title));
+        builder.setMessage(getActivity().getString(R.string.fragment_settings_reset_dialog_message));
         builder.create().show();
     }
 

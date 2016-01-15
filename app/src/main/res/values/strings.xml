@@ -160,4 +160,10 @@
     <string name="android_share_message_subject">VITacademics</string>
     <string name="android_share_message_start" formatted="false">Download VITacademics from: %1$s</string>
 
+    <!-- Reset Confirmation Dialog -->
+    <string name="fragment_settings_reset_dialog_title">Warning</string>
+    <string name="fragment_settings_reset_dialog_message">Are you sure you want to reset the app?</string>
+    <string name="fragment_settings_reset_dialog_yes">Yes</string>
+    <string name="fragment_settings_reset_dialog_no">No</string>
+
 </resources>
