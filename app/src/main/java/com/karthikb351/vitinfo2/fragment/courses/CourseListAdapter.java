@@ -77,8 +77,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             attendance = 0;
         }
         setAttendance(courseViewHolder,attendance);
-        courseViewHolder.numberProgressBar.setProgressTextColor(ContextCompat.getColor(this.context, R.color.text_secondary));
-        courseViewHolder.numberProgressBar.setReachedBarColor(ContextCompat.getColor(this.context, R.color.text_secondary));
         courseViewHolder.numberProgressBar.setMax(100);
         courseViewHolder.numberProgressBar.setProgress(0);
         //courseViewHolder.subjectType.setText(courses.get(position).getSubjectType());
