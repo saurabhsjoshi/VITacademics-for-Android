@@ -38,12 +38,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.karthikb351.vitinfo2.MainApplication;
 import com.karthikb351.vitinfo2.R;
@@ -92,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeData() {
         name = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getName();
         registerNumber = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getRegisterNumber();
-        Toast.makeText(this,name,Toast.LENGTH_LONG).show();
-    }
+        }
 
     @Override
     protected void attachBaseContext(Context newBase) {
