@@ -58,6 +58,9 @@
                 android:title="@string/fragment_settings_title" />
 
             <item
+                android:id="@+id/drawer_spotlight"
+                android:title="@string/fragment_spotlight_title" />
+            <item
                 android:id="@+id/drawer_messages"
                 android:icon="@mipmap/ic_message_black_48dp"
                 android:title="@string/fragment_messages_title" />
