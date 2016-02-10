@@ -32,7 +32,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.karthikb351.vitinfo2.R;
-import com.karthikb351.vitinfo2.fragment.schedule.ScheduleDayFragment;
 
 public class SchedulePagerAdapter extends FragmentStatePagerAdapter {
 

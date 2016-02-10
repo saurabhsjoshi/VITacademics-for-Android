@@ -53,7 +53,6 @@ import com.karthikb351.vitinfo2.fragment.grades.GradesFragment;
 import com.karthikb351.vitinfo2.fragment.messages.MessagesFragment;
 import com.karthikb351.vitinfo2.fragment.schedule.ScheduleFragment;
 import com.karthikb351.vitinfo2.fragment.settings.SettingsFragment;
-import com.karthikb351.vitinfo2.fragment.today.TodayFragment;
 import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.StringUtils;
@@ -76,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
-    private TextView headerUsername;
-    private TextView headerRegistrationNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeView() {
+
+        TextView headerUsername;
+        TextView headerRegistrationNumber;
 
         navigationTabs = Arrays.asList(getResources().getStringArray(R.array.navigation_tab));
 
@@ -167,10 +167,10 @@ public class MainActivity extends AppCompatActivity {
                 fragment = CoursesFragment.newInstance();
                 position = 1;
                 break;*/
-            case R.id.drawer_home:
-                fragment = TodayFragment.newInstance();
-                position = 2;
-                break;
+//            case R.id.drawer_home:
+//                fragment = TodayFragment.newInstance();
+//                position = 2;
+//                break;
             case R.id.drawer_settings:
                 fragment = SettingsFragment.newInstance();
                 position = 3;
@@ -219,7 +219,6 @@ public class MainActivity extends AppCompatActivity {
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
-                //Toast.makeText(MainActivity.this, status.getMessage(), Toast.LENGTH_SHORT).show();
             }
         };
 
