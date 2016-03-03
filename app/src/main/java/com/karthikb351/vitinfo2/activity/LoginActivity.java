@@ -311,7 +311,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      */
     private void loginToServer() {
 
-        NetworkController networkController = NetworkController.getInstance(this, campus, registrationNumber, dateOfBirth, mobileNumber);
+        NetworkController networkController = NetworkController.getInstance(getApplicationContext(), campus, registrationNumber, dateOfBirth, mobileNumber);
 
         final ResultListener resultListener = new ResultListener() {
             @Override
@@ -468,7 +468,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
      * @return true is logged in already, false otherwise
      */
     private boolean loginCheck() {
-        SharedPreferences sharedPreferences = getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+        Context mContext = getApplicationContext();
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
         String campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
         String registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
         String dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);

@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void pullToRefresh(final ResultListener callback) {
 
-        NetworkController networkController = NetworkController.getInstance(MainActivity.this);
+        NetworkController networkController = NetworkController.getInstance(getApplicationContext());
         final ResultListener resultListener = new ResultListener() {
             @Override
             public void onSuccess() {

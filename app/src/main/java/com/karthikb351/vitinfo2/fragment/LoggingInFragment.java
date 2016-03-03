@@ -84,7 +84,7 @@ public class LoggingInFragment extends Fragment {
 
     private void loginToServer(String campus, String registerNumber, String dateOfBirth, String mobileNumber) {
 
-        NetworkController networkController = NetworkController.getInstance(getActivity(), campus, registerNumber, dateOfBirth, mobileNumber);
+        NetworkController networkController = NetworkController.getInstance(getActivity().getApplicationContext(), campus, registerNumber, dateOfBirth, mobileNumber);
 
         final ResultListener resultListener = new ResultListener() {
             @Override

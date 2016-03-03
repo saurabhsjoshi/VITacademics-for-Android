@@ -75,7 +75,8 @@ public class LaunchScreenActivity extends Activity {
     }
 
     private boolean loginCheck() {
-        SharedPreferences sharedPreferences = getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
+        Context mContext = getApplicationContext();
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(Constants.FILENAME_SHAREDPREFERENCES, Context.MODE_PRIVATE);
         String campus = sharedPreferences.getString(Constants.KEY_CAMPUS, null);
         String registerNumber = sharedPreferences.getString(Constants.KEY_REGISTERNUMBER, null);
         String dateOfBirth = sharedPreferences.getString(Constants.KEY_DATEOFBIRTH, null);
