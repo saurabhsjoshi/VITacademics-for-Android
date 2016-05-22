@@ -33,6 +33,7 @@ import com.karthikb351.vitinfo2.response.RefreshResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
 
+import retrofit.Call;
 import retrofit.Callback;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
@@ -43,29 +44,29 @@ import retrofit.http.Path;
 public interface APIService {
 
     @GET("/api/v2/system")
-    void system(Callback<SystemResponse> callback);
+    Call<SystemResponse> system();
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/login")
-    void login(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<LoginResponse> callback);
+    Call<LoginResponse> login(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile);
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/refresh")
-    void refresh(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<RefreshResponse> callback);
+    Call<RefreshResponse> refresh(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile);
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/token")
-    void token(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<TokenResponse> callback);
+    Call<TokenResponse> token(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile);
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/grades")
-    void grades(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, Callback<GradesResponse> callback);
+    Call<GradesResponse> grades(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile);
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/share")
-    void share(@Path("campus") String campus, @Field("token") String token, @Field("receiver") String receiver, Callback<Friend> callback);
+    Call<Friend> share(@Path("campus") String campus, @Field("token") String token, @Field("receiver") String receiver);
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/share")
-    void share(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, @Field("receiver") String receiver, Callback<Friend> callback);
+    Call<Friend> share(@Path("campus") String campus, @Field("regno") String regno, @Field("dob") String dob, @Field("mobile") String mobile, @Field("receiver") String receiver);
 }

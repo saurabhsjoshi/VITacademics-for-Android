@@ -28,8 +28,6 @@ package com.karthikb351.vitinfo2.api;
 
 import android.content.Context;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.karthikb351.vitinfo2.R;
 import com.karthikb351.vitinfo2.contract.Friend;
 import com.karthikb351.vitinfo2.model.Status;
@@ -40,12 +38,13 @@ import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
 import com.karthikb351.vitinfo2.utility.Constants;
 import com.karthikb351.vitinfo2.utility.ResultListener;
+import com.squareup.okhttp.ResponseBody;
 
+import retrofit.Call;
 import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import retrofit.converter.GsonConverter;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 public class VITacademicsAPI {
 
@@ -58,11 +57,10 @@ public class VITacademicsAPI {
         this.context = context;
         this.databaseController = DatabaseController.getInstance(context);
 
-        Gson gson = new GsonBuilder().create();
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .setEndpoint(Constants.API_BASE_URL)
-                .setConverter(new GsonConverter(gson))
+        Retrofit restAdapter = new Retrofit.Builder()
+//                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .baseUrl(Constants.API_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         this.service = restAdapter.create(APIService.class);
@@ -73,224 +71,285 @@ public class VITacademicsAPI {
     }
 
     public void system(final ResultListener resultListener) {
-        service.system(new Callback<SystemResponse>() {
+        Call<SystemResponse> call = service.system();
+        call.enqueue(new Callback<SystemResponse>() {
             @Override
-            public void success(final SystemResponse systemResponse, Response response) {
-                switch (systemResponse.getStatus().getCode()) {
-                    case StatusCodes.SUCCESS:
-                        databaseController.saveSystem(systemResponse, new ResultListener() {
-                            @Override
-                            public void onSuccess() {
-                                resultListener.onSuccess();
-                            }
+            public void onResponse(Response<SystemResponse> response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+                    SystemResponse systemResponse = response.body();
+                    switch (systemResponse.getStatus().getCode()) {
+                        case StatusCodes.SUCCESS:
+                            databaseController.saveSystem(systemResponse, new ResultListener() {
+                                @Override
+                                public void onSuccess() {
+                                    resultListener.onSuccess();
+                                }
 
-                            @Override
-                            public void onFailure(Status status) {
-                                resultListener.onFailure(status);
-                            }
-                        });
-                        break;
-                    default:
-                        resultListener.onFailure(systemResponse.getStatus());
+                                @Override
+                                public void onFailure(Status status) {
+                                    resultListener.onFailure(status);
+                                }
+                            });
+                            break;
+                        default:
+                            resultListener.onFailure(systemResponse.getStatus());
+                    }
+                } else {
+                    int statusCode = response.code();
+                    resultListener.onFailure(new Status(StatusCodes.UNKNOWN, context.getResources().getString(R.string.api_unknown_error)));
                 }
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+            public void onFailure(Throwable t) {
+                //TODO: Add no internet error
             }
         });
     }
 
     public void refresh(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
-        service.refresh(campus, regno, dob, mobile, new Callback<RefreshResponse>() {
-            @Override
-            public void success(final RefreshResponse refreshResponse, Response response) {
-                switch (refreshResponse.getStatus().getCode()) {
-                    case StatusCodes.SUCCESS:
-                        databaseController.saveCourses(refreshResponse, new ResultListener() {
-                            @Override
-                            public void onSuccess() {
-                                resultListener.onSuccess();
-                            }
+        Call<RefreshResponse> call = service.refresh(campus,regno,dob,mobile);
 
-                            @Override
-                            public void onFailure(Status status) {
-                                resultListener.onFailure(status);
-                            }
-                        });
-                        break;
-                    case StatusCodes.TIMED_OUT:
-                        resultListener.onFailure(refreshResponse.getStatus());
-                        break;
-                    default:
-                        resultListener.onFailure(refreshResponse.getStatus());
-                        break;
+        call.enqueue(new Callback<RefreshResponse>() {
+            @Override
+            public void onResponse(Response<RefreshResponse> response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+                    RefreshResponse refreshResponse = response.body();
+                    switch (refreshResponse.getStatus().getCode()) {
+                        case StatusCodes.SUCCESS:
+                            databaseController.saveCourses(refreshResponse, new ResultListener() {
+                                @Override
+                                public void onSuccess() {
+                                    resultListener.onSuccess();
+                                }
+
+                                @Override
+                                public void onFailure(Status status) {
+                                    resultListener.onFailure(status);
+                                }
+                            });
+                            break;
+                        case StatusCodes.TIMED_OUT:
+                            resultListener.onFailure(refreshResponse.getStatus());
+                            break;
+                        default:
+                            resultListener.onFailure(refreshResponse.getStatus());
+                            break;
+                    }
+                }
+                else {
+                int statusCode = response.code();
+                    resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+                    ResponseBody errorBody = response.errorBody();
                 }
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+            public void onFailure(Throwable t) {
+                //TODO: Add no internet error
             }
         });
+
     }
 
     public void login(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
-        service.login(campus, regno, dob, mobile, new Callback<LoginResponse>() {
-            @Override
-            public void success(final LoginResponse loginResponse, Response response) {
-                switch (loginResponse.getStatus().getCode()) {
-                    case StatusCodes.SUCCESS:
-                        databaseController.saveLogin(loginResponse, new ResultListener() {
-                            @Override
-                            public void onSuccess() {
-                                resultListener.onSuccess();
-                            }
+        Call<LoginResponse> call = service.login(campus, regno, dob, mobile);
 
-                            @Override
-                            public void onFailure(Status status) {
-                                resultListener.onFailure(status);
-                            }
-                        });
-                        break;
-                    default:
-                        resultListener.onFailure(loginResponse.getStatus());
-                        break;
+        call.enqueue(new Callback<LoginResponse>() {
+
+            @Override
+            public void onResponse(Response<LoginResponse> response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+                    LoginResponse loginResponse = response.body();
+                    switch (loginResponse.getStatus().getCode()) {
+                        case StatusCodes.SUCCESS:
+                            databaseController.saveLogin(loginResponse, new ResultListener() {
+                                @Override
+                                public void onSuccess() {
+                                    resultListener.onSuccess();
+                                }
+
+                                @Override
+                                public void onFailure(Status status) {
+                                    resultListener.onFailure(status);
+                                }
+                            });
+                            break;
+                        default:
+                            resultListener.onFailure(loginResponse.getStatus());
+                            break;
+                    }
                 }
-            }
+                    else{
+                        resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+                    }
+                }
 
             @Override
-            public void failure(RetrofitError error) {
-                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+            public void onFailure(Throwable t) {
+                //TODO: Add no internet error
             }
         });
-
     }
 
     public void token(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
-        service.token(campus, regno, dob, mobile, new Callback<TokenResponse>() {
-            @Override
-            public void success(final TokenResponse tokenResponse, Response response) {
-                switch (tokenResponse.getStatus().getCode()) {
-                    case StatusCodes.SUCCESS:
-                        databaseController.saveToken(tokenResponse, new ResultListener() {
-                            @Override
-                            public void onSuccess() {
-                                resultListener.onSuccess();
-                            }
+        Call<TokenResponse> call = service.token(campus, regno, dob, mobile);
 
-                            @Override
-                            public void onFailure(Status status) {
-                                resultListener.onFailure(status);
-                            }
-                        });
-                        break;
-                    default:
-                        resultListener.onFailure(tokenResponse.getStatus());
-                        break;
+        call.enqueue(new Callback<TokenResponse>() {
+            @Override
+            public void onResponse(Response<TokenResponse> response, Retrofit retrofit) {
+                if(response.isSuccess()){
+                    TokenResponse tokenResponse = response.body();
+                    switch (tokenResponse.getStatus().getCode()) {
+                        case StatusCodes.SUCCESS:
+                            databaseController.saveToken(tokenResponse, new ResultListener() {
+                                @Override
+                                public void onSuccess() {
+                                    resultListener.onSuccess();
+                                }
+
+                                @Override
+                                public void onFailure(Status status) {
+                                    resultListener.onFailure(status);
+                                }
+                            });
+                            break;
+                        default:
+                            resultListener.onFailure(tokenResponse.getStatus());
+                            break;
+                    }
+                }
+                else{
+                    resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
                 }
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+            public void onFailure(Throwable t) {
+                //TODO : Internet Error
             }
         });
     }
 
     public void grades(final String campus, final String regno, final String dob, final String mobile, final ResultListener resultListener) {
-        service.grades(campus, regno, dob, mobile, new Callback<GradesResponse>() {
-            @Override
-            public void success(GradesResponse gradesResponse, Response response) {
-                switch (gradesResponse.getStatus().getCode()) {
-                    case StatusCodes.SUCCESS:
-                        databaseController.saveGrades(gradesResponse, new ResultListener() {
-                            @Override
-                            public void onSuccess() {
-                                resultListener.onSuccess();
-                            }
 
-                            @Override
-                            public void onFailure(Status status) {
-                                resultListener.onFailure(status);
-                            }
-                        });
-                        break;
-                    case StatusCodes.TIMED_OUT:
-                        resultListener.onFailure(gradesResponse.getStatus());
-                        break;
-                    default:
-                        resultListener.onFailure(gradesResponse.getStatus());
-                        break;
+        final Call<GradesResponse> call = service.grades(campus, regno, dob, mobile);
+
+        call.enqueue(new Callback<GradesResponse>() {
+            @Override
+            public void onResponse(Response<GradesResponse> response, Retrofit retrofit) {
+                if(response.isSuccess()){
+                    GradesResponse gradesResponse = response.body();
+                    switch (gradesResponse.getStatus().getCode()) {
+                        case StatusCodes.SUCCESS:
+                            databaseController.saveGrades(gradesResponse, new ResultListener() {
+                                @Override
+                                public void onSuccess() {
+                                    resultListener.onSuccess();
+                                }
+
+                                @Override
+                                public void onFailure(Status status) {
+                                    resultListener.onFailure(status);
+                                }
+                            });
+                            break;
+                        case StatusCodes.TIMED_OUT:
+                            resultListener.onFailure(gradesResponse.getStatus());
+                            break;
+                        default:
+                            resultListener.onFailure(gradesResponse.getStatus());
+                            break;
+                    }
+                }
+                else {
+                    resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
                 }
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+            public void onFailure(Throwable t) {
+                //TODO : Internet Error
             }
         });
     }
 
     public void share(final String campus, final String token, final String receiver, final ResultListener resultListener) {
-        service.share(campus, token, receiver, new Callback<Friend>() {
-            @Override
-            public void success(Friend friend, Response response) {
-                switch (friend.getStatus().getCode()) {
-                    case StatusCodes.SUCCESS:
-                        databaseController.saveFriend(friend, new ResultListener() {
-                            @Override
-                            public void onSuccess() {
-                                resultListener.onSuccess();
-                            }
+        final Call<Friend> call = service.share(campus,token,receiver);
 
-                            @Override
-                            public void onFailure(Status status) {
-                                resultListener.onFailure(status);
-                            }
-                        });
-                        break;
-                    default:
-                        resultListener.onFailure(friend.getStatus());
-                        break;
+        call.enqueue(new Callback<Friend>() {
+            @Override
+            public void onResponse(Response<Friend> response, Retrofit retrofit) {
+                if(response.isSuccess()){
+                    Friend friend = response.body();
+                    switch (friend.getStatus().getCode()) {
+                        case StatusCodes.SUCCESS:
+                            databaseController.saveFriend(friend, new ResultListener() {
+                                @Override
+                                public void onSuccess() {
+                                    resultListener.onSuccess();
+                                }
+
+                                @Override
+                                public void onFailure(Status status) {
+                                    resultListener.onFailure(status);
+                                }
+                            });
+                            break;
+                        default:
+                            resultListener.onFailure(friend.getStatus());
+                            break;
+                    }
+                }
+                else {
+                    resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
                 }
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+            public void onFailure(Throwable t) {
+
             }
         });
     }
 
     public void share(final String campus, final String regno, final String dob, final String mobile, final String receiver, final ResultListener resultListener) {
-        service.share(campus, regno, dob, mobile, receiver, new Callback<Friend>() {
-            @Override
-            public void success(Friend friend, Response response) {
-                switch (friend.getStatus().getCode()) {
-                    case StatusCodes.SUCCESS:
-                        databaseController.saveFriend(friend, new ResultListener() {
-                            @Override
-                            public void onSuccess() {
-                                resultListener.onSuccess();
-                            }
+        Call<Friend> call = service.share(campus, regno, dob, mobile, receiver);
 
-                            @Override
-                            public void onFailure(Status status) {
-                                resultListener.onFailure(status);
-                            }
-                        });
-                        break;
-                    default:
-                        resultListener.onFailure(friend.getStatus());
-                        break;
+
+        call.enqueue(new Callback<Friend>() {
+            @Override
+            public void onResponse(Response<Friend> response, Retrofit retrofit) {
+                if(response.isSuccess()){
+                    Friend friend = response.body();
+                    switch (friend.getStatus().getCode()) {
+                        case StatusCodes.SUCCESS:
+                            databaseController.saveFriend(friend, new ResultListener() {
+                                @Override
+                                public void onSuccess() {
+                                    resultListener.onSuccess();
+                                }
+
+                                @Override
+                                public void onFailure(Status status) {
+                                    resultListener.onFailure(status);
+                                }
+                            });
+                            break;
+                        default:
+                            resultListener.onFailure(friend.getStatus());
+                            break;
+                    }
+                }
+
+                else{
+                    resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
                 }
             }
 
             @Override
-            public void failure(RetrofitError error) {
-                resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+            public void onFailure(Throwable t) {
+                //TODO
             }
         });
     }
