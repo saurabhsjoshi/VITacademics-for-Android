@@ -30,10 +30,30 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.karthikb351.vitinfo2.api.DataHolder;
+import com.karthikb351.vitinfo2.contract.Assessment;
+import com.karthikb351.vitinfo2.contract.Attendance;
+import com.karthikb351.vitinfo2.contract.AttendanceDetail;
+import com.karthikb351.vitinfo2.contract.Contributor;
+import com.karthikb351.vitinfo2.contract.Course;
+import com.karthikb351.vitinfo2.contract.Friend;
+import com.karthikb351.vitinfo2.contract.FriendCourse;
+import com.karthikb351.vitinfo2.contract.Grade;
+import com.karthikb351.vitinfo2.contract.GradeCount;
+import com.karthikb351.vitinfo2.contract.Marks;
+import com.karthikb351.vitinfo2.contract.Message;
+import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
+import com.karthikb351.vitinfo2.contract.Spotlight;
+import com.karthikb351.vitinfo2.contract.SpotlightMessage;
+import com.karthikb351.vitinfo2.contract.Timing;
+import com.karthikb351.vitinfo2.contract.WithdrawnCourse;
 
 import net.danlew.android.joda.JodaTimeAndroid;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import co.uk.rushorm.android.AndroidInitializeConfig;
+import co.uk.rushorm.core.Rush;
 import co.uk.rushorm.core.RushCore;
 import io.fabric.sdk.android.Fabric;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -50,7 +70,29 @@ public class MainApplication extends Application {
         JodaTimeAndroid.init(this);
         // Rush is initialized asynchronously to receive a callback after it initialized
         // set an InitializeListener on the config object
+
+        List<Class<? extends Rush>> classes = new ArrayList<>();
+        // Add classes
+        classes.add(Assessment.class);
+        classes.add(Attendance.class);
+        classes.add(AttendanceDetail.class);
+        classes.add(Contributor.class);
+        classes.add(Course.class);
+        classes.add(Friend.class);
+        classes.add(FriendCourse.class);
+        classes.add(Grade.class);
+        classes.add(GradeCount.class);
+        classes.add(Marks.class);
+        classes.add(Message.class);
+        classes.add(SemesterWiseGrade.class);
+        classes.add(Timing.class);
+        classes.add(WithdrawnCourse.class);
+        classes.add(SpotlightMessage.class);
+        classes.add(Spotlight.class);
+
         AndroidInitializeConfig config = new AndroidInitializeConfig(getApplicationContext());
+        config.setClasses(classes);
+
         RushCore.initialize(config);
 
         this.dataHolder = new DataHolder();

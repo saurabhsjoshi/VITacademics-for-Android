@@ -41,6 +41,7 @@ public class RequestConfig {
     public final static int REQUEST_GRADES = 4;
     public final static int REQUEST_TOKEN = 5;
     public final static int REQUEST_FRIENDS = 6;
+    public final static int REQUEST_SPOTLIGHT = 7;
 
     private List<Integer> requests;
     private ResultListener resultListener;

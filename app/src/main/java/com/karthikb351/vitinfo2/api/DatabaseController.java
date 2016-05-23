@@ -39,10 +39,13 @@ import com.karthikb351.vitinfo2.contract.Grade;
 import com.karthikb351.vitinfo2.contract.GradeCount;
 import com.karthikb351.vitinfo2.contract.Message;
 import com.karthikb351.vitinfo2.contract.SemesterWiseGrade;
+import com.karthikb351.vitinfo2.contract.Spotlight;
+import com.karthikb351.vitinfo2.contract.SpotlightMessage;
 import com.karthikb351.vitinfo2.contract.WithdrawnCourse;
 import com.karthikb351.vitinfo2.response.GradesResponse;
 import com.karthikb351.vitinfo2.response.LoginResponse;
 import com.karthikb351.vitinfo2.response.RefreshResponse;
+import com.karthikb351.vitinfo2.response.SpotlightResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
 import com.karthikb351.vitinfo2.utility.Constants;
@@ -50,6 +53,7 @@ import com.karthikb351.vitinfo2.utility.ResultListener;
 
 import co.uk.rushorm.core.RushCore;
 import co.uk.rushorm.core.RushSearch;
+import co.uk.rushorm.core.annotations.RushList;
 
 public class DatabaseController {
 
@@ -122,6 +126,46 @@ public class DatabaseController {
         editor.apply();
 
         resultListener.onSuccess();
+    }
+
+    public void saveSpotlight(final SpotlightResponse spotlightResponse, final ResultListener resultListener){
+        new AsyncTask<Boolean, Void, Boolean>(){
+
+            @Override
+            protected Boolean doInBackground(Boolean... params) {
+                try {
+                    RushCore.getInstance().deleteAll(SpotlightMessage.class);
+
+                    for (SpotlightMessage message : spotlightResponse.getSpotlight().getAcademicsSpotlightMessages()) {
+                        message.setSpotlightType(Constants.SPOTLIGHT_ACADEMICS);
+                        message.save();
+                    }
+
+                    for (SpotlightMessage message : spotlightResponse.getSpotlight().getCoeSpotlightMessages()) {
+                        message.setSpotlightType(Constants.SPOTLIGHT_COE);
+                        message.save();
+                    }
+
+                    for (SpotlightMessage message : spotlightResponse.getSpotlight().getResearchSpotlightMessages()) {
+                        message.setSpotlightType(Constants.SPOTLIGHT_RESEARCH);
+                        message.save();
+                    }
+                    return true;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return false;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                if (result) {
+                    resultListener.onSuccess();
+                } else {
+                    resultListener.onFailure(new com.karthikb351.vitinfo2.model.Status(StatusCodes.UNKNOWN, context.getResources().getString(R.string.api_unknown_error)));
+                }
+            }
+        }.execute(true);
     }
 
     public void saveCourses(final RefreshResponse refreshResponse, final ResultListener resultListener) {

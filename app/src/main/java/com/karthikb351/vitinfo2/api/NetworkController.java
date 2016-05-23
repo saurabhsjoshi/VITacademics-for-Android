@@ -148,6 +148,8 @@ public class NetworkController {
             case RequestConfig.REQUEST_TOKEN:
                 viTacademicsAPI.token(campus, registerNumber, dateOfBirth, mobileNumber, resultListener);
                 break;
+            case RequestConfig.REQUEST_SPOTLIGHT:
+                viTacademicsAPI.spotlight(campus, resultListener);
             default:
                 resultListener.onFailure(new Status(StatusCodes.UNKNOWN, context.getResources().getString(R.string.api_unknown_error)));
         }
