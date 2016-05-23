@@ -83,6 +83,10 @@ public class Constants {
     public final static int PLURAL_VALUE = 2;
     public final static int SINGULAR_VALUE = 1;
 
+    public final static int SPOTLIGHT_ACADEMICS = 0;
+    public final static int SPOTLIGHT_COE = 1;
+    public final static int SPOTLIGHT_RESEARCH = 2;
+
     public final static String INTENT_EXTRA_CLASS_NUMBER = "intent_extra_classnumber";
 
     public final static String GOOGLE_PLAY_DETAILS_URL = "https://play.google.com/store/apps/details?id=";

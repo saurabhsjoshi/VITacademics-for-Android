@@ -34,6 +34,7 @@ import com.karthikb351.vitinfo2.model.Status;
 import com.karthikb351.vitinfo2.response.GradesResponse;
 import com.karthikb351.vitinfo2.response.LoginResponse;
 import com.karthikb351.vitinfo2.response.RefreshResponse;
+import com.karthikb351.vitinfo2.response.SpotlightResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
 import com.karthikb351.vitinfo2.utility.Constants;
@@ -342,6 +343,45 @@ public class VITacademicsAPI {
                     }
                 }
 
+                else{
+                    resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                //TODO
+            }
+        });
+    }
+
+    public void spotlight(final String campus, final ResultListener resultListener){
+        Call<SpotlightResponse> call = service.spotlight(campus);
+
+        call.enqueue(new Callback<SpotlightResponse>() {
+            @Override
+            public void onResponse(Response<SpotlightResponse> response, Retrofit retrofit) {
+                SpotlightResponse spotlightResponse = response.body();
+                if(response.isSuccess()) {
+                    switch (spotlightResponse.getStatus().getCode()){
+                        case StatusCodes.SUCCESS:
+                            //TODO : Testing
+                            databaseController.saveSpotlight(spotlightResponse, new ResultListener() {
+                                @Override
+                                public void onSuccess() {
+                                    resultListener.onSuccess();
+                                }
+
+                                @Override
+                                public void onFailure(Status status) {
+                                    resultListener.onFailure(status);
+                                }
+                            });
+                        default:
+                            resultListener.onFailure(spotlightResponse.getStatus());
+                            break;
+                    }
+                }
                 else{
                     resultListener.onFailure(new Status(StatusCodes.MAINTENANCE_DOWN, context.getResources().getString(R.string.api_server_error)));
                 }

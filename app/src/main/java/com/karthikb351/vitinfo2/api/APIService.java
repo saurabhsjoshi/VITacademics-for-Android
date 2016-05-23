@@ -27,9 +27,11 @@
 package com.karthikb351.vitinfo2.api;
 
 import com.karthikb351.vitinfo2.contract.Friend;
+import com.karthikb351.vitinfo2.contract.SpotlightMessage;
 import com.karthikb351.vitinfo2.response.GradesResponse;
 import com.karthikb351.vitinfo2.response.LoginResponse;
 import com.karthikb351.vitinfo2.response.RefreshResponse;
+import com.karthikb351.vitinfo2.response.SpotlightResponse;
 import com.karthikb351.vitinfo2.response.SystemResponse;
 import com.karthikb351.vitinfo2.response.TokenResponse;
 
@@ -45,6 +47,9 @@ public interface APIService {
 
     @GET("/api/v2/system")
     Call<SystemResponse> system();
+
+    @GET("/api/v2/{campus}/spotlight")
+    Call<SpotlightResponse> spotlight(@Path("campus") String campus);
 
     @FormUrlEncoded
     @POST("/api/v2/{campus}/login")
