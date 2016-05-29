@@ -84,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
         initializeView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setContentView(R.layout.activity_main);
+        initializeData();
+        initializeView();
+    }
+
     private void initializeData() {
         name = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getName();
         registerNumber = ((MainApplication) getApplication()).getDataHolderInstanceInitialized().getRegisterNumber();
